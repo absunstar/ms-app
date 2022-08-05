@@ -1,0 +1,46 @@
+[
+    {
+        "name": "qualifications",
+        "en": "Qualifications",
+        "ar": "التأهيلات"
+    },
+    {
+        "name": "qualification",
+        "en": "Qualification",
+        "ar": "التأهيل"
+    },
+    {
+        "name": "qualification_new",
+        "en": "New Qualification",
+        "ar": "تأهيل جديد"
+    },
+    {
+        "name": "qualification_add",
+        "en": "Add Qualification",
+        "ar": "إضافة تأهيل "
+    },
+    {
+        "name": "qualification_edit",
+        "en": "Edit Qualification",
+        "ar": "تعديل تأهيل "
+    },
+    {
+        "name": "qualification_details",
+        "en": "Qualification Details",
+        "ar": "تفاصيل التأهيل "
+    },
+    {
+        "name": "qualification_delete",
+        "en": "Delete Qualification",
+        "ar": "حذف تأهيل "
+    },
+    {
+        "name": "qualification_name",
+        "en": "Qualification Name",
+        "ar": "إسم التأهيل "
+    }
+
+
+
+
+]

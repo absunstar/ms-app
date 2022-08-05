@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="training_center_ui || training_center_manage" data-ng-app="myApp">
+  <head x-import="head.html"> </head>
+
+  <body class="##session.lang##" ng-controller="training_center">
+    <nav x-import="0/bar.html" class="sitebar" ng-controller="bar"></nav>
+
+    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
+    <div id="main-layout" class="container loaded">
+      <div class="row">
+        <div class="row">
+          <div x-permissions="training_center_add || training_center_manage" x-import="training-center/add_modal.html"></div>
+          <div x-permissions="training_center_update || training_center_manage" x-import="training-center/update_modal.html"></div>
+          <div x-permissions="training_center_delete || training_center_manage" x-import="training-center/delete_modal.html"></div>
+          <div x-permissions="training_center_view || training_center_manage" x-import="training-center/view_modal.html"></div>
+          <div x-permissions="training_center_search || training_center_manage" x-import="training-center/search_all_modal.html"></div>
+
+          <div class="row">
+            <h1 class="bold text-center">##word.training_centers##</h1>
+          </div>
+
+          <div class="top-actions">
+            <h3 class="bold" ng-show="'##query.id##' != 'undefined'">##word.training_category## : {{training_category.name_##session.lang##}}</h3>
+            <button x-permissions="training_center_add || training_center_manage" type="button" class="btn btn-success" ng-click="displayAddTrainingCenter()"><i class="fas fa-plus-circle"></i> ##word.training_center_new##</button>
+            <button x-permissions="training_center_search || training_center_manage" type="button" class="btn btn-primary" ng-click="displaySearchModal()"><i class="fa fa-search"></i> ##word.search_all##</button>
+
+            <h3 class="bold text-center">##word.count## : {{count}}</h3>
+            <h3 class="bold text-center text-danger">{{error}}</h3>
+          </div>
+
+          <table x-permissions="login" class="table table-striped text-center" id="t1">
+            <thead>
+              <tr>
+                <!--  <th class="not-print">##word.logo##</th> -->
+                <th>##word.code##</th>
+                <th>##word.training_center_name##</th>
+                <th>##word.phone##</th>
+                <th>##word.status##</th>
+                <th class="not-print">##word.actions##</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="c in list">
+                <!--   <td class="center not-print">
+                  <i-image view class="logo" ng-model="c.image_url"></i-image>
+                </td> -->
+                <td class="center userPrint blue">{{c.code}}</td>
+                <td class="center title">{{c.name_##session.lang##}}</td>
+                <td class="center title">{{c.phone}}</td>
+                <td class="center">
+                  <p ng-show="c.active ==true" class="green">##word.active##</p>
+                  <p ng-show="!c.active" class="red">##word.not_active##</p>
+                </td>
+
+                <td class="center not-print">
+                  <button x-permissions="training_center_view || training_center_manage" type="button" class="btn btn-info" ng-click="displayDetailsTrainingCenter(c)"><i class="fa fa-file"></i> ##word.details##</button>
+
+                  <button x-permissions="training_center_update || training_center_manage" type="button" class="btn btn-dark" ng-show="!c.active" ng-click="c.active = true; updateActivate(c)">##word.activate##</button>
+                  <button x-permissions="training_center_update || training_center_manage" type="button" class="btn btn-dark" ng-show="c.active" ng-click="c.active = false; updateActivate(c)">##word.deactivate##</button>
+                  <button x-permissions="training_center_update || training_center_manage" type="button" class="btn btn-warning" ng-click="displayUpdateTrainingCenter(c)"><i class="fas fa-pen"></i> ##word.edit##</button>
+
+                  <button x-permissions="training_center_delete || training_center_manage" type="button" class="btn btn-danger" ng-click="displayDeleteTrainingCenter(c)"><i class="fa fa-trash"></i> ##word.delete##</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="container mt-3">
+            <button type="button" class="btn btn-light" onclick="export_to_xlsx('t1' , 'training_report.xlsx')"><i class="fas fa-table"></i> ##word.export_to_excel##</button>
+            <button type="button" class="btn btn-light" onclick="site.print('#t1')"><i class="fas fa-print"></i> ##word.print##</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div x-import="0/scripts.html"></div>
+    <script x-import="training-center/index.js"></script>
+  </body>
+</html>

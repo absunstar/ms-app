@@ -1,0 +1,23 @@
+
+
+<div class="modal" id="jobFairsDeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title"><i class="fa fa-trash"></i> ##word.job_fairs_delete## </h3>
+          <button type="button" class="btn-close" onclick="site.hideModal( '#jobFairsDeleteModal')" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div x-import="job-fairs/view.html"></div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light" onclick="site.print('#v1')"><i class="fas fa-print"></i> ##word.print##</button>
+
+            <button type="button" class="btn btn-danger" ng-click="deleteJobFairs(job_fairs)"> ##word.delete##</button>
+
+            <button type="button" class="btn btn-dark" onclick="site.hideModal( '#jobFairsDeleteModal')"> <i class="fa fa-times" aria-hidden="true"></i> ##word.close##</button>
+
+        </div>
+      </div>
+    </div>
+  </div>

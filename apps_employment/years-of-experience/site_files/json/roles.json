@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "years_of_experience_admin",
+    "en": "Years Of Experience Admin",
+    "ar": "إدارة مجالات العمل",
+    "permissions": ["years_of_experience_manage"]
+}]

@@ -1,0 +1,46 @@
+[
+    {
+        "name": "languages",
+        "en": "Languages",
+        "ar": "اللغات"
+    },
+    {
+        "name": "language",
+        "en": "Language",
+        "ar": "اللغة"
+    },
+    {
+        "name": "languages_new",
+        "en": "New Language",
+        "ar": "لغة جديدة"
+    },
+    {
+        "name": "languages_add",
+        "en": "Add Language",
+        "ar": "إضافة لغة "
+    },
+    {
+        "name": "languages_edit",
+        "en": "Edit Language",
+        "ar": "تعديل لغة "
+    },
+    {
+        "name": "languages_details",
+        "en": "Language Details",
+        "ar": "تفاصيل اللغة "
+    },
+    {
+        "name": "languages_delete",
+        "en": "Delete Language",
+        "ar": "حذف لغة "
+    },
+    {
+        "name": "languages_name",
+        "en": "Language Name",
+        "ar": "إسم اللغة "
+    }
+
+
+
+
+]

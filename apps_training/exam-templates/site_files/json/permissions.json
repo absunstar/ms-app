@@ -1,0 +1,11 @@
+[
+    { "module_name" : "public" , "screen_name" : "exam-templates" , "name":"exam_templates_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "public" , "screen_name" : "exam-templates" , "name":"exam_templates_add" , "en":"Add" , "ar":"إضافة"},
+    { "module_name" : "public" , "screen_name" : "exam-templates" , "name":"exam_templates_update" , "en":"Edit" , "ar":"تعديل"},
+    { "module_name" : "public" , "screen_name" : "exam-templates" , "name":"exam_templates_delete" , "en":"Delete" , "ar":"حذف"},
+    { "module_name" : "public" , "screen_name" : "exam-templates" , "name":"exam_templates_view" , "en":"View" , "ar":"عرض"},
+    { "module_name" : "public" , "screen_name" : "exam-templates" , "name":"exam_templates_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "public" , "screen_name" : "exam-templates" , "name":"exam_templates_export" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "public" , "screen_name" : "exam-templates" , "name":"exam_templates_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "public" , "screen_name" : "exam-templates" , "name":"exam_templates_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+]

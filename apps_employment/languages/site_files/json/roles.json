@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "languages_admin",
+    "en": "Languages Admin",
+    "ar": "إدارة اللغات",
+    "permissions": ["languages_manage"]
+}]

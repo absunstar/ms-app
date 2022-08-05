@@ -1,0 +1,81 @@
+<div class="form">
+  <div id="basicInformation" class="container">
+    <fieldset>
+      <legend>##word.basic_information##</legend>
+      <div class="row">
+        <div class="row g-2">
+          <div class="col">
+            <input type="text" ng-hide="disabledCode" class="form-control" ng-model="question.code" placeholder="##word.code##" aria-label="code" aria-describedby="basic-addon1" />
+          </div>
+          <div class="col">
+            <div class="form-check">
+              <input class="form-check-input" ng-model="question.active" type="checkbox" value="" id="flexCheckDefault" />
+              <label class="form-check-label" for="flexCheckDefault"> ##word.active## </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">##word.question##</label>
+          <textarea class="form-control" ng-model="question.question" id="exampleFormControlTextarea1"></textarea>
+        </div>
+
+        <div class="row g-2">
+          <div class="col">
+            <select class="form-select col" ng-change="getTrainingCategoryList(question.training_type)" ng-model="question.training_type" ng-options="s as (s.name_##session.lang##)   for s in trainingTypeList">
+              <option value="" selected>##word.select## (##word.training_type##)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row g-2">
+          <div class="col">
+            <select class="form-select col" ng-model="question.training_category" ng-options="s as (s.name_##session.lang##)   for s in trainingCategoryList">
+              <option value="" selected>##word.select## (##word.training_category##)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row g-2">
+          <div class="col">
+            <select class="form-select col" ng-model="question.difficulty" ng-options="s as (s.##session.lang##)   for s in difficultyList">
+              <option value="" selected>##word.select## (##word.difficulty##)</option>
+            </select>
+          </div>
+        </div>
+
+        <form>
+          <br />
+          <br />
+          <fieldset>
+            <legend>
+              ##word.answer##
+              <button type="button" class="btn btn-success" ng-click="question.answers_list.push({})"><i class="fas fa-plus-circle"></i> ##word.add##</button>
+            </legend>
+
+            <div class="row" ng-repeat="q in question.answers_list">
+              <div class="col-8">
+                <label for="exampleFormControlTextarea_{{$index}}" class="form-label">##word.answer##</label>
+                <textarea class="form-control" ng-model="q.answer" id="exampleFormControlTextarea_{{$index}}" rows="3"></textarea>
+              </div>
+
+              <div class="col">
+                <br />
+                <br />
+                <div class="form-check">
+                  <input class="form-check-input" ng-change="checkCorrect($index)" ng-model="q.correct" type="checkbox" value="" id="flexCheckDefault" />
+                  <label class="form-check-label" for="flexCheckDefault"> ##word.correct_answer## </label>
+                </div>
+                <button type="button" class="btn btn-danger" ng-click="question.answers_list.splice($index,1)"><i class="fas fa-trash"></i></button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+
+        <!--  <div class="col3">
+          <i-image help-id="questions_logo" ng-model="question.image_url"></i-image>
+        </div> -->
+      </div>
+    </fieldset>
+  </div>
+</div>

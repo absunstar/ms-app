@@ -1,0 +1,50 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <table id="basicInformationTable" class="table hover bold">
+
+                    <tr>
+                        <td class="title">##word.code##</td>
+                        <td class="center userPrint blue">{{exam_templates.code}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.exam_templates_name##</td>
+                        <td class="center">{{exam_templates.name_##session.lang##}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.percentage## ##word.easy##</td>
+                        <td class="center">{{exam_templates.easy}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.percentage## ##word.medium##</td>
+                        <td class="center">{{exam_templates.medium}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.percentage## ##word.hard##</td>
+                        <td class="center">{{exam_templates.hard}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.status##</td>
+                        <td ng-show="exam_templates.active == true" class="green center"> ##word.active## </td>
+                        <td ng-show="exam_templates.active == false" class="red center"> ##word.not_active## </td>
+                    </tr>
+
+                </table>
+            </div>
+
+         <!--    <div class="col3">
+                <i-image view ng-model="exam_templates.image_url"></i-image>
+            </div> -->
+
+        </fieldset>
+    </div>
+</div>
+
+<div x-import="exam-templates/action_info.html"></div>

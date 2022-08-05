@@ -1,0 +1,20 @@
+
+<div class="modal" id="jobFieldsAddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fas fa-plus-circle"></i> ##word.job_fields_add## </h3>
+        <button type="button" class="btn-close" onclick="site.hideModal( '#jobFieldsAddModal')" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div x-import="job-fields/content.html"></div>
+      </div>
+      <div class="modal-footer">
+        <h2 class="bold text-center text-danger">{{error}}</h2>
+        <button type="button" class="btn btn-success" ng-click="addJobFields()">##word.add##</button>
+  
+        <button type="button" class="btn btn-dark" onclick="site.hideModal( '#jobFieldsAddModal')"><i class="fa fa-times" aria-hidden="true"></i> ##word.close##</button>
+      </div>
+    </div>
+  </div>
+</div>

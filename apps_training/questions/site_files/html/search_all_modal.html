@@ -1,0 +1,68 @@
+
+
+<div class="modal" id="questionSearchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title"><i class="fa fa-search"></i> ##word.search_all##</h3>
+          <button type="button" class="btn-close" onclick="site.hideModal( '#questionSearchModal')" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form class="form">
+                <fieldset>
+                    <legend>##word.search_all##</legend>
+                    <div class="row g-2">
+                      <div class="col">
+                        <input type="text" class="form-control" ng-model="search.question" placeholder="##word.questions_name##" aria-label="name_ar" aria-describedby="basic-addon1" />
+
+                      </div>
+                    </div>
+                    <div class="row g-2">
+                      <div class="col">
+                        <select class="form-select col" ng-change="getTrainingCategoryList(search.training_type)" ng-model="search.training_type" ng-options="s as (s.name_##session.lang##)   for s in trainingTypeList">
+                          <option value="" selected>##word.select## (##word.training_type##)</option>
+                        </select>
+                      </div>
+                    </div>
+            
+                    <div class="row g-2">
+                      <div class="col">
+                        <select class="form-select col" ng-model="search.training_category" ng-options="s as (s.name_##session.lang##)   for s in trainingCategoryList">
+                          <option value="" selected>##word.select## (##word.training_category##)</option>
+                        </select>
+                      </div>
+                    </div>
+            
+                    <div class="row g-2">
+                      <div class="col">
+                        <select class="form-select col" ng-model="search.difficulty" ng-options="s as (s.##session.lang##)   for s in difficultyList">
+                          <option value="" selected>##word.select## (##word.difficulty##)</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row g-2">
+
+                        <div class="control col3">
+                            <label> ##word.status## </label>
+                            <select ng-model="search.active">
+                                <option ng-value="true"> ##word.active## </option>
+                                <option ng-value="false"> ##word.not_active## </option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <h2 class="error">{{error}}</h2>
+          <button type="search" class="btn btn-primary" ng-click="searchAll()"><i class="fa fa-search"></i> ##word.search##</button>
+
+            <button type="button" class="btn btn-light"  ng-click="search = {}"> ##word.empty_search##</button>
+
+            <button type="button" class="btn btn-dark" onclick="site.hideModal( '#questionSearchModal')"><i class="fa fa-times" aria-hidden="true"></i> ##word.close##</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  

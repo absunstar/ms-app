@@ -1,0 +1,31 @@
+</span>
+<div ng-hide="busy" class="row">
+    <div class="col7">
+        <br>
+        <table class="table bold">
+            <tr>
+                <td class="title">##word.training_list_name##</td>
+                <td class="center indigo">{{military_state.name}}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.notes##</td>
+                <td class="center blue">{{military_state.notes}}</td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.status##</td>
+                <td ng-show="military_state.active == true" class="green center"> ##word.active## </td>
+                <td ng-show="military_state.active == false" class="red center"> ##word.not_active## </td>
+            </tr>
+
+        </table>
+    </div>
+    <div class="col2"></div>
+    <div class="col3 center">
+
+        <i-image view category="training_list" ng-model="military_state.image_url"></i-image>
+        <i-files view ng-model="military_state.files"></i-files>
+
+    </div>
+</div>

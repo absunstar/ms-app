@@ -1,0 +1,48 @@
+<div class="form">
+  <div id="basicInformation" class="">
+    <fieldset>
+      <legend>##word.basic_information##</legend>
+      <div class="row">
+        <div class="col9">
+
+          <div class="row g-2">
+            <div class="col">
+                <input type="text" ng-hide="disabledCode" class="form-control" ng-model="partner.code" placeholder="##word.code##" aria-label="code" aria-describedby="basic-addon1" />
+            </div>
+            <div class="col">
+                <div class="form-check">
+                    <input class="form-check-input" ng-model="partner.active" type="checkbox" value="" id="flexCheckDefault" />
+                    <label class="form-check-label" for="flexCheckDefault"> ##word.active## </label>
+                  </div>
+            </div>
+          </div>
+          <div class="row g-2">
+            <div class="col">
+                <input type="text" v="r" class="form-control" ng-model="partner.name_ar" placeholder="##word.partner_name##" aria-label="name_ar" aria-describedby="basic-addon1" />
+            </div>
+            <div class="col">
+                <input type="text" v="r" class="form-control" ng-model="partner.name_en" placeholder="##word.name_en##" aria-label="name_en" aria-describedby="basic-addon1" />
+            </div>
+          </div>
+         
+          <div class="col">
+            <input type="text" v="r" class="form-control" ng-model="partner.phone" placeholder="##word.phone##" aria-label="phone"  />
+          </div>
+
+          <div class="col">
+            <input type="number" v="r" class="form-control" ng-model="partner.min_hours" placeholder="##word.min_hours##" aria-label="age"  />
+          </div>
+
+          <div class="col">
+            <input type="number" v="r" class="form-control" ng-model="partner.max_hours" placeholder="##word.max_hours##" aria-label="age"  />
+          </div>
+
+        </div>
+
+        <!--  <div class="col3">
+          <i-image help-id="partner_logo" ng-model="partner.image_url"></i-image>
+        </div> -->
+      </div>
+    </fieldset>
+  </div>
+</div>

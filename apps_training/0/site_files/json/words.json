@@ -1,0 +1,357 @@
+[
+    {
+        "name": "brand_title",
+        "en": "Training",
+        "ar": "تدريبات"
+    },
+    {
+        "name": "brand_tag",
+        "en": "Develop and change",
+        "ar": "تدريبات طور و غير"
+    },
+    {
+        "name": "delivery_inside_outside",
+        "en": "Delivery is free inside Riyadh on the same day and outside Riyadh within three working days",
+        "ar": "التوصيل مجاني داخل الرياض في نفس اليوم و خارج الرياض في خلال ثلاثة أيام عمل"
+    },
+    {
+        "name": "companies_basic_information",
+        "en": "Basic Informations",
+        "ar": "البيانات الاساسية"
+    },
+    {
+        "name": "companies_contact_information",
+        "en": "Contact Informations",
+        "ar": "بيانات الاتصال"
+    },
+    {
+        "name": "workshop_center",
+        "en": "Workshop/center",
+        "ar": "ورشة/مركز"
+    },
+    {
+        "name": "personal",
+        "en": "Personal",
+        "ar": "شخصي"
+    },
+    {
+        "name": "err_identifi_img",
+        "en": "You must enter the frame number or download the form",
+        "ar": "يجب إدخال رقم الهيكل أو تحميل صورة الإستمارة"
+    },
+    {
+        "name": "upload_form",
+        "en": "upload the form image (optional)",
+        "ar": "رفع صورة الإستمارة (إختياري)"
+    },
+    {
+        "name": "place_delivery",
+        "en": "Place of delivery",
+        "ar": "مكان التوصيل"
+    },
+    {
+        "name": "request_successfully",
+        "en": "Your request has been successfully received",
+        "ar": "تم إستلام طلبك بنجاح"
+    },
+    {
+        "name": "confirmation_mobile",
+        "en": "A confirmation message has been sent to your mobile phone with the reference number",
+        "ar": "تم إرسال رساله تأكيد الى جوالك بالرقم المرجعي"
+    },
+    {
+        "name": "follow_request_reference_num",
+        "en": "To follow up on your request, use the reference number",
+        "ar": "لمتابعة طلبك استخدم الرقم المرجعي"
+    },
+    {
+        "name": "companies_phone",
+        "en": "Phone",
+        "ar": "التليفون"
+    },
+    {
+        "name": "EntityManagement",
+        "en": "Entity Management",
+        "ar": "إدارة الكيانات"
+    },
+    {
+        "name": "companies_mobile",
+        "en": "Mobile",
+        "ar": "المحمول"
+    },
+    {
+        "name": "companies_activity",
+        "en": "Activity",
+        "ar": "النشاط"
+    },
+    {
+        "name": "companies_branches_informations",
+        "en": "Branches Informations",
+        "ar": "بيانات الفروع"
+    },
+    {
+        "name": "companies_branch",
+        "en": "Branch",
+        "ar": "الفرع"
+    },
+    {
+        "name": "companies_branch_information",
+        "en": "Branch Information",
+        "ar": "بيانات الفرع"
+    },
+    {
+        "name": "companies_contact_charge",
+        "en": "Charge Information",
+        "ar": "بيانات المسئول"
+    },
+    {
+        "name": "companies_branch_code",
+        "en": "Branch Code",
+        "ar": "كود الفرع"
+    },
+    {
+        "name": "companies_branch_name",
+        "en": "Branch Name",
+        "ar": "إسم الفرع"
+    },
+    {
+        "name": "companies_branch_name_ar",
+        "en": "Branch Name Arabic",
+        "ar": "إسم الفرع بالعربى"
+    },
+    {
+        "name": "companies_branch_name_en",
+        "en": "Branch Name English",
+        "ar": "إسم الفرع بالانجليزى"
+    },
+    {
+        "name": "companies_branch_notes",
+        "en": "Branch Notes",
+        "ar": "ملاحظات الفرع"
+    },
+    {
+        "name": "companies_charge_name",
+        "en": "Charge Name",
+        "ar": "إسم المسئول"
+    },
+    {
+        "name": "companies_charge_job",
+        "en": "Charge Job",
+        "ar": "الوظيفة"
+    },
+    {
+        "name": "companies_internal_number",
+        "en": "Internal Number",
+        "ar": "الرقم الداخلي"
+    },
+    {
+        "name": "companies_banking_informations",
+        "en": "Banking Informations",
+        "ar": "البنوك"
+    },
+    {
+        "name": "companies_bank_information",
+        "en": "Bank Information",
+        "ar": "بيانات البنك"
+    },
+    {
+        "name": "companies_bank_name",
+        "en": "Bank Name",
+        "ar": "إسم البنك"
+    },
+    {
+        "name": "companies_bank_account_number",
+        "en": "Bank Account Number",
+        "ar": "رقم الحساب"
+    },
+    {
+        "name": "companies_filter_with_date",
+        "en": "Filter With Date",
+        "ar": "تصفية البيانات بالتاريخ"
+    },
+    {
+        "name": "companies_calender_type",
+        "en": "Calender Type",
+        "ar": "نوع التقويم"
+    },
+    {
+        "name": "companies_gegorian",
+        "en": "Gregorian",
+        "ar": "ميلادي"
+    },
+    {
+        "name": "companies_hijri",
+        "en": "Hijri",
+        "ar": "هجري"
+    },
+    {
+        "name": "companies_date",
+        "en": "Date",
+        "ar": "التاريخ"
+    },
+    {
+        "name": "companies_gov",
+        "en": "Gov",
+        "ar": "المحافظة"
+    },
+    {
+        "name": "companies_city",
+        "en": "City",
+        "ar": "المدينة"
+    },
+    {
+        "name": "companies_email",
+        "en": "Email",
+        "ar": "البريد الالكتروني"
+    },
+    {
+        "name": "companies_fax",
+        "en": "Fax",
+        "ar": "الفاكس"
+    },
+    {
+        "name": "companies_name_ar",
+        "en": "Point Of Sale Name Arabic",
+        "ar": "إسم نقطة البيع"
+    },
+    {
+        "name": "companies_name_en",
+        "en": "Point Of Sale Name English",
+        "ar": "إسم نقطة البيع بالانجليزية"
+    },
+    {
+        "name": "companies_excahange_price",
+        "en": "Exchange Price",
+        "ar": "سعر الصرف"
+    },
+    {
+        "name": "companies_company_swift_code",
+        "en": "Swift Code",
+        "ar": "رقم السويفت"
+    },
+    {
+        "name": "companies_new",
+        "en": "New Point Of Sale",
+        "ar": "نقطة بيع جديدة"
+    },
+    {
+        "name": "companies_country",
+        "en": "Coutntry",
+        "ar": "الدولة"
+    },
+    {
+        "name": "companies_address",
+        "en": "Address",
+        "ar": "العنوان"
+    },
+    {
+        "name": "companies_customer_service",
+        "en": "Customer Services",
+        "ar": "خدمة العملاء"
+    },
+    {
+        "name": "menu_goves",
+        "en": "Cities Menu",
+        "ar": "قائمة المدن"
+    },
+    {
+        "name": "menu_goves_tag",
+        "en": " Cities Manegment",
+        "ar": "إدارة المدن"
+    },
+    {
+        "name": "goves",
+        "en": "Cities",
+        "ar": "المدينة"
+    },
+    {
+        "name": "gov",
+        "en": "City",
+        "ar": "المدينة"
+    },
+    {
+        "name": "goves_new",
+        "en": "New City",
+        "ar": "مدينة جديد"
+    },
+    {
+        "name": "goves_add",
+        "en": "Add City",
+        "ar": "إضافة مدينة "
+    },
+    {
+        "name": "goves_edit",
+        "en": "Edit City",
+        "ar": "تعديل مدينة "
+    },
+    {
+        "name": "goves_details",
+        "en": "City Details",
+        "ar": "تفاصيل المدينة "
+    },
+    {
+        "name": "goves_delete",
+        "en": "Delete City",
+        "ar": "حذف مدينة "
+    },
+    {
+        "name": "goves_name",
+        "en": "City Name",
+        "ar": "إسم المدينة "
+    },
+    {
+        "name": "city",
+        "en": "City",
+        "ar": "المدينة"
+    },
+    {
+        "name": "area",
+        "en": "Area",
+        "ar": "المنطقة"
+    },
+    {
+        "name": "cities",
+        "en": "Areas",
+        "ar": "المناطق"
+    },
+    {
+        "name": "city_new",
+        "en": "New Area",
+        "ar": "منطقة  جديدة"
+    },
+    {
+        "name": "city_add",
+        "en": "Add Area",
+        "ar": "إضافة منطقة "
+    },
+    {
+        "name": "city_edit",
+        "en": "Edit Area",
+        "ar": "تعديل منطقة "
+    },
+    {
+        "name": "city_details",
+        "en": "Area Details",
+        "ar": "تفاصيل المنطقة "
+    },
+    {
+        "name": "city_delete",
+        "en": "Delete Area",
+        "ar": "حذف منطقة "
+    },
+    {
+        "name": "city_name",
+        "en": "Area Name",
+        "ar": "إسم المنطقة "
+    },
+    {
+        "name": "menu_city",
+        "en": "Areas Menu",
+        "ar": "قائمة المناطق"
+    },
+    {
+        "name": "menu_city_tag",
+        "en": "Areas Manegment",
+        "ar": "إدارة المناطق"
+    }
+]

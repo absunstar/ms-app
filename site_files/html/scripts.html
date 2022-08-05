@@ -1,0 +1,75 @@
+<script src="/x-js/all.js?v=##site.options.version##"></script>
+<script src="/x-js/bootstrap5.js?v=##site.options.version##"></script>
+<script>
+    site.features = '##req.features##';
+    site.feature = (f)=> site.features.indexOf(f) !== -1;
+
+    setTimeout(() => {
+        document.querySelectorAll('.loaded').forEach(el => {
+            el.style.visibility = 'visible';
+        });
+    }, 1000);
+</script>
+
+
+<script>
+    var app = app || angular.module('myApp', []);
+</script>
+
+
+<script src="/js/sitebar.js?v=##site.options.version##"></script>
+<script src="/js/sitebottom.js?v=##site.options.version##"></script>
+<script src="/js/FileSaver.js?v=##site.options.version##"></script>
+<script src="/js/xlsx.full.min.js?v=##site.options.version##"></script>
+
+<div x-permission="!login" x-import="security/login_modal.html"></div>
+<div x-permission="login" x-import="security/logout_modal.html"></div>
+<div x-permission="!login" x-import="security/customer_register_modal.html"></div>
+
+<div x-permission="help" x-import="ui-help/index.html"></div>
+<script x-import="ui-print/index.js"></script>
+<script>
+    $(document).on('keydown', 'input,select,textarea', function (e) {
+        if (e.which == 13 || e.keyCode == 13) {
+            e.preventDefault();
+            var $canfocus = $('input,select,textarea');
+            var index = $canfocus.index(document.activeElement) + 1;
+            if (index >= $canfocus.length) index = 0;
+            $canfocus.eq(index).focus();
+        }
+    });
+
+    function string_to_buffer(s) {
+        if (typeof ArrayBuffer !== "undefined") {
+            var buf = new ArrayBuffer(s.length);
+            var view = new Uint8Array(buf);
+            for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xff;
+            return buf;
+        } else {
+            var buf = new Array(s.length);
+            for (var i = 0; i != s.length; ++i) buf[i] = s.charCodeAt(i) & 0xff;
+            return buf;
+        }
+    }
+
+    function export_to_xlsx(id, _fileName) {
+        _fileType = 'xlsx';
+        var workbook = XLSX.utils.table_to_book(document.getElementById(id), {
+            sheet: "Sheet JS"
+        });
+        var wbout = XLSX.write(workbook, {
+            bookType: _fileType,
+            bookSST: true,
+            type: "binary"
+        });
+        var fileName = _fileName || "file." + _fileType;
+        try {
+            saveAs(new Blob([string_to_buffer(wbout)], {
+                type: "application/octet-stream"
+            }), fileName);
+        } catch (e) {
+            if (typeof console != "undefined") console.log(e);
+        }
+        return wbout;
+    }
+</script>

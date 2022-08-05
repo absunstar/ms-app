@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "industry_admin",
+    "en": "Industries Admin",
+    "ar": "إدارة الصناعات",
+    "permissions": ["industry_manage"]
+}]

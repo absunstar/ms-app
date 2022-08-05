@@ -1,0 +1,46 @@
+[
+    {
+        "name": "training_centers",
+        "en": "Training Centers",
+        "ar": "مراكز التدريب"
+    },
+    {
+        "name": "training_center",
+        "en": "Training Center",
+        "ar": "مركز التدريب"
+    },
+    {
+        "name": "training_center_new",
+        "en": "New Training Center",
+        "ar": "مركز تدريب جديد"
+    },
+    {
+        "name": "training_center_add",
+        "en": "Add Training Center",
+        "ar": "إضافة مركز تدريب "
+    },
+    {
+        "name": "training_center_edit",
+        "en": "Edit Training Center",
+        "ar": "تعديل مركز تدريب "
+    },
+    {
+        "name": "training_center_details",
+        "en": "Training Center Details",
+        "ar": "تفاصيل مركز التدريب "
+    },
+    {
+        "name": "training_center_delete",
+        "en": "Delete Training Center",
+        "ar": "حذف مركز تدريب "
+    },
+    {
+        "name": "training_center_name",
+        "en": "Training Center Name",
+        "ar": "إسم مركز التدريب "
+    }
+
+
+
+
+]

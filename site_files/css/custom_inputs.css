@@ -1,0 +1,52 @@
+
+
+.r_red,
+.r_red input {
+    color: red;
+    font-weight: bold;
+    font-size: 20px;
+}
+.r_green,
+.r_green input {
+    color: green;
+    font-weight :bold;
+    font-size: 20px;
+}
+
+.r_indigo,
+.r_indigo input {
+    color:Indigo;
+    font-weight :bold;
+    font-size: 20px;
+}
+
+.indigo,
+.indigo {
+    color: indigo;
+}
+
+.bg_notifi,
+.bg_notifi {
+    background-color: rgb(190, 189, 189) !important;
+}
+
+.gold,
+.gold {
+    color: gold;
+}
+
+.darkGray {
+  color: grey;
+}
+
+.txt_center,
+.txt_center input {
+    text-align : center;
+    font-weight :bold;
+    font-size: 20px;
+
+  }
+  .qerascy {
+    color: rgb(161, 0, 215) !important;
+  }
+  

@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "partner_admin",
+    "en": "Partners Admin",
+    "ar": "إدارة الشركاء",
+    "permissions": ["partner_manage"]
+}]

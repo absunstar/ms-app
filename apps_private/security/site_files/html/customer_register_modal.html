@@ -1,0 +1,77 @@
+<div data-ng-controller="register" id="customerRegisterModal" class="modal small" fixed>
+    <style>
+
+    </style>
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.register_customer##
+                <i class="fa fa-plus "></i>
+            </h2>
+
+        </div>
+
+        <div class="modal-body bg-white">
+
+            <form class="form ">
+                <div class="row">
+
+                    <fieldset>
+                        <legend>##word.register_data##</legend>
+                        <div class="row">
+                            <div class="row">
+
+
+                                <div class="row">
+                                    <i-control class="col6" help-id="" v="r" label="##word.security_user_email##"
+                                        ng-model="user.email">
+                                    </i-control>
+
+                                    <i-control class="col6" help-id="" v="r" label="##word.customer_name##"
+                                        ng-model="user.profile.name">
+                                    </i-control>
+
+                                </div>
+
+                                <div class="row">
+                                    <i-control class="col6" help-id="" v="r" type="password" label="##word.password##"
+                                        ng-model="user.password"></i-control>
+                                    <i-control class="col6" help-id="" v="r" type="password"
+                                        label="##word.password_return##" ng-model="user.password_return">
+                                    </i-control>
+                                </div>
+
+                                <div class="row">
+
+                                    <i-control class="col6" help-id="" v="r" label="##word.mobile##"
+                                        ng-model="user.profile.mobile">
+                                    </i-control>
+                                    <i-control class="col6" label="##word.phone##" ng-model="user.profile.phone">
+                                    </i-control>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+                </div>
+            </form>
+        </div>
+
+        <div class="modal-footer center bg-white">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="add" label="##word.register##" ng-click="addRegisterCustomer()"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#customerRegisterModal')"> >
+            </i-button>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+<script x-import="security/register.js"></script>

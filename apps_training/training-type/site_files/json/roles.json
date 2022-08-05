@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "training_types_admin",
+    "en": "Training Types Admin",
+    "ar": "إدارة أنواع التدريب",
+    "permissions": ["training_types_manage"]
+}]

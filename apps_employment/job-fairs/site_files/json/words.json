@@ -1,0 +1,76 @@
+[
+    {
+        "name": "job_fairs",
+        "en": "Job Fairs",
+        "ar": "معارض الوظائف"
+    },
+    {
+        "name": "attendance_for_job_fair",
+        "en": "Attendance For Job Fair",
+        "ar": "الحضور في معرض الوظائف"
+    },
+    {
+        "name": "job_fair",
+        "en": "Job Fair",
+        "ar": "معرض الوظائف"
+    },
+    {
+        "name": "attendance_code",
+        "en": "Attendance Code",
+        "ar": "رمز الحضور"
+    },
+    {
+        "name": "job_fair_description",
+        "en": "Job Fair Description",
+        "ar": "وصف معرض الوظائف"
+    },
+    {
+        "name": "job_fair_site",
+        "en": "Job Fair Site",
+        "ar": "موقع معرض الوظائف"
+    },
+    {
+        "name": "job_fairs_new",
+        "en": "New Job Fair",
+        "ar": "معرض وظائف جديد"
+    },
+    {
+        "name": "job_fairs_add",
+        "en": "Add Job Fair",
+        "ar": "إضافة معرض وظائف "
+    },
+    {
+        "name": "job_fairs_edit",
+        "en": "Edit Job Fair",
+        "ar": "تعديل معرض وظائف "
+    },
+    {
+        "name": "job_fairs_details",
+        "en": "Job Fair Details",
+        "ar": "تفاصيل معرض الوظائف "
+    },
+    {
+        "name": "job_fairs_delete",
+        "en": "Delete Job Fair",
+        "ar": "حذف معرض وظائف "
+    },
+    {
+        "name": "job_fairs_name",
+        "en": "Job Fair Name",
+        "ar": "إسم معرض الوظائف "
+    },
+    {
+        "name": "field",
+        "en": "Field",
+        "ar": "مجال"
+    },
+    {
+        "name": "event_date",
+        "en": "Event Date",
+        "ar": "تاريخ الحدث"
+    }
+
+
+
+
+]

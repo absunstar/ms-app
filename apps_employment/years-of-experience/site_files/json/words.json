@@ -1,0 +1,41 @@
+[
+    {
+        "name": "years_of_experience",
+        "en": "Years Of Experience",
+        "ar": "سنوات الخبرة"
+    },
+    {
+        "name": "years_of_experience_new",
+        "en": "New Years Of Experience",
+        "ar": "سنوات خبرة جديدة"
+    },
+    {
+        "name": "years_of_experience_add",
+        "en": "Add Years Of Experience",
+        "ar": "إضافة سنوات خبرة "
+    },
+    {
+        "name": "years_of_experience_edit",
+        "en": "Edit Years Of Experience",
+        "ar": "تعديل سنوات خبرة "
+    },
+    {
+        "name": "years_of_experience_details",
+        "en": "Years Of Experience Details",
+        "ar": "تفاصيل سنوات الخبرة "
+    },
+    {
+        "name": "years_of_experience_delete",
+        "en": "Delete Years Of Experience",
+        "ar": "حذف سنوات خبرة "
+    },
+    {
+        "name": "years_of_experience_name",
+        "en": "Years Of Experience Name",
+        "ar": "إسم سنوات الخبرة "
+    }
+
+
+
+
+]

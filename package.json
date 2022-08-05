@@ -1,0 +1,18 @@
+{
+  "name": "smart_code",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "employment": "node employment.js",
+    "training": "node training.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "isite": "^2022.4.10",
+    "zklib": "^0.2.11"
+  }
+}

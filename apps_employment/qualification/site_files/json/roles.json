@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "qualification_admin",
+    "en": "Qualifications Admin",
+    "ar": "إدارة التأهيلات",
+    "permissions": ["qualification_manage"]
+}]

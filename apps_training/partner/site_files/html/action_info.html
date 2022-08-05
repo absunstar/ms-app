@@ -1,0 +1,23 @@
+<div class="row">
+  <br />
+  <br />
+  <table class="table hover border">
+    <tr>
+      <th>##word.add_user_info##</th>
+      <th>##word.edit_user_info##</th>
+    </tr>
+    <tr>
+      <td class="center">
+        <p class="blue">{{partner.add_user_info.name_##session.lang##}}</p>
+        <small class="green"> {{partner.add_user_info.date |date:"hh:mm"}} </small>
+        <small> {{partner.add_user_info.date |date:"dd - MM - yyyy"}} </small>
+      </td>
+
+      <td class="center">
+        <p class="blue">{{partner.edit_user_info.name_##session.lang##}}</p>
+        <small class="green"> {{partner.edit_user_info.date |date:"hh:mm"}} </small>
+        <small> {{partner.edit_user_info.date |date:"dd - MM - yyyy"}} </small>
+      </td>
+    </tr>
+  </table>
+</div>

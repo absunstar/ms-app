@@ -1,0 +1,48 @@
+<div class="form">
+  <div id="basicInformation" class="">
+    <fieldset>
+      <legend>##word.basic_information##</legend>
+      <div class="row container">
+        <div class="col9">
+        
+          <div class="row g-2">
+            <div class="col">
+                <input type="text" ng-hide="disabledCode" class="form-control" ng-model="exam_templates.code" placeholder="##word.code##" aria-label="code" aria-describedby="basic-addon1" />
+            </div>
+            <div class="col">
+                <div class="form-check">
+                    <input class="form-check-input" ng-model="exam_templates.active" type="checkbox" value="" id="flexCheckDefault" />
+                    <label class="form-check-label" for="flexCheckDefault"> ##word.active## </label>
+                  </div>
+            </div>
+          </div>
+          <div class="row g-2">
+            <div class="col">
+                <input type="text" v="r" class="form-control" ng-model="exam_templates.name_ar" placeholder="##word.exam_templates_name##" aria-label="name_ar" aria-describedby="basic-addon1" />
+            </div>
+            <div class="col">
+                <input type="text" v="r" class="form-control" ng-model="exam_templates.name_en" placeholder="##word.name_en##" aria-label="name_en" aria-describedby="basic-addon1" />
+            </div>
+          </div>
+
+          <div class="col">
+            <input type="number" v="r" class="form-control" ng-model="exam_templates.easy" placeholder="##word.percentage## ##word.easy##" aria-label="age"  />
+          </div>
+
+          <div class="col">
+            <input type="number" v="r" class="form-control" ng-model="exam_templates.medium" placeholder="##word.percentage## ##word.medium##" aria-label="age"  />
+          </div>
+
+          <div class="col">
+            <input type="number" v="r" class="form-control" ng-model="exam_templates.hard" placeholder="##word.percentage## ##word.hard##" aria-label="age"  />
+          </div>
+         
+        </div>
+
+        <!--  <div class="col3">
+          <i-image help-id="exam_templates_logo" ng-model="exam_templates.image_url"></i-image>
+        </div> -->
+      </div>
+    </fieldset>
+  </div>
+</div>

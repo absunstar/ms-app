@@ -1,0 +1,46 @@
+[
+    {
+        "name": "countries",
+        "en": "Countries",
+        "ar": "البلاد"
+    },
+    {
+        "name": "country",
+        "en": "Country",
+        "ar": "البلد"
+    },
+    {
+        "name": "country_new",
+        "en": "New Country",
+        "ar": "بلد جديدة"
+    },
+    {
+        "name": "country_add",
+        "en": "Add Country",
+        "ar": "إضافة بلد "
+    },
+    {
+        "name": "country_edit",
+        "en": "Edit Country",
+        "ar": "تعديل بلد "
+    },
+    {
+        "name": "country_details",
+        "en": "Country Details",
+        "ar": "تفاصيل البلد "
+    },
+    {
+        "name": "country_delete",
+        "en": "Delete Country",
+        "ar": "حذف بلد "
+    },
+    {
+        "name": "country_name",
+        "en": "Country Name",
+        "ar": "إسم البلد "
+    }
+
+
+
+
+]

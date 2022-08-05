@@ -1,0 +1,67 @@
+[
+    {
+        "name": "exam_templates",
+        "en": "Exam Templates",
+        "ar": "قوالب الإختبار"
+    },
+    {
+        "name": "exam_template",
+        "en": "Exam Template",
+        "ar": "قالب الإختبار"
+    },
+    {
+        "name": "exam_templates_new",
+        "en": "New Exam Template",
+        "ar": "قالب إختبار جديد"
+    },
+    {
+        "name": "exam_templates_add",
+        "en": "Add Exam Template",
+        "ar": "إضافة قالب إختبار "
+    },
+    {
+        "name": "exam_templates_edit",
+        "en": "Edit Exam Template",
+        "ar": "تعديل قالب إختبار "
+    },
+    {
+        "name": "exam_templates_details",
+        "en": "Exam Template Details",
+        "ar": "تفاصيل قالب الإختبار "
+    },
+    {
+        "name": "exam_templates_delete",
+        "en": "Delete Exam Template",
+        "ar": "حذف قالب إختبار "
+    },
+    {
+        "name": "exam_templates_name",
+        "en": "Exam Template Name",
+        "ar": "إسم قالب الإختبار "
+    },
+    {
+        "name": "percentage",
+        "en": "percentage",
+        "ar": "النسبة المئوية"
+    },
+    {
+        "name": "easy",
+        "en": "Easy",
+        "ar": "السهلة"
+    },
+    {
+        "name": "medium",
+        "en": "Medium",
+        "ar": "المتوسطة"
+    },
+    {
+        "name": "hard",
+        "en": "Hard",
+        "ar": "الصعبة"
+    }
+    
+
+    
+
+
+]

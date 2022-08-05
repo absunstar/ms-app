@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "questions_admin",
+    "en": "Questions Admin",
+    "ar": "إدارة الأسئلة",
+    "permissions": ["questions_manage"]
+}]

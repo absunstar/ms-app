@@ -1,0 +1,66 @@
+<div ng-hide="busy" class="row">
+  <div id="basicInformation" class="">
+    <fieldset>
+      <legend>##word.basic_information##</legend>
+      <div class="col9">
+        <table id="basicInformationTable" class="table hover bold">
+          <tr>
+            <td class="title">##word.code##</td>
+            <td class="center userPrint blue">{{question.code}}</td>
+          </tr>
+
+          <tr>
+            <td class="title">##word.question##</td>
+            <td class="center">{{question.question}}</td>
+          </tr>
+          <tr>
+            <td class="title">##word.training_type##</td>
+            <td class="center">{{question.training_type.name_##session.lang##}}</td>
+          </tr>
+          <tr>
+            <td class="title">##word.training_category##</td>
+            <td class="center">{{question.training_category.name_##session.lang##}}</td>
+          </tr>
+
+          <tr>
+            <td class="title">##word.difficulty##</td>
+            <td class="center">{{question.difficulty.##session.lang##}}</td>
+          </tr>
+          <tr>
+            <td class="title">##word.status##</td>
+            <td ng-show="question.active == true" class="green center">##word.active##</td>
+            <td ng-show="question.active == false" class="red center">##word.not_active##</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="row">
+        <table class="table table-striped text-center">
+            <thead>
+              <tr>
+                <th>##word.answer##</th>
+                <th>##word.correct_answer##</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="c in question.answers_list">
+             
+                <td class="center title">{{c.answer}}</td>
+                <td class="center">
+                  <p ng-show="c.correct ==true">##word.yes##</p>
+                  <p ng-show="!c.correct">##word.no##</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+
+
+      <!--    <div class="col3">
+                <i-image view ng-model="question.image_url"></i-image>
+            </div> -->
+    </fieldset>
+  </div>
+</div>
+
+<div x-import="questions/action_info.html"></div>

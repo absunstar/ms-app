@@ -1,0 +1,23 @@
+
+
+<div class="modal" id="cityDeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title"><i class="fa fa-trash"></i> ##word.city_delete## </h3>
+          <button type="button" class="btn-close" onclick="site.hideModal( '#cityDeleteModal')" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div x-import="city/view.html"></div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light" onclick="site.print('#v1')"><i class="fas fa-print"></i> ##word.print##</button>
+
+            <button type="button" class="btn btn-danger" ng-click="deleteCity(city)"> ##word.delete##</button>
+
+            <button type="button" class="btn btn-dark" onclick="site.hideModal( '#cityDeleteModal')"> <i class="fa fa-times" aria-hidden="true"></i> ##word.close##</button>
+
+        </div>
+      </div>
+    </div>
+  </div>

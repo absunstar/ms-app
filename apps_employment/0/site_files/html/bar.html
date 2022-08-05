@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-success" ng-controller="bar">
+  <div class="container-fluid">
+    <a href="/" class="navbar-brand"> ##word.brand_tag##</a>
+    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse2">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse2">
+      <div class="navbar-nav" x-permissions="login">
+        <a href="/JobFair" class="nav-item nav-link">##word.job_fairs##</a>
+        <div class="btn-group" >
+          <!-- <a href="/training-report" data-bs-toggle="dropdown" class="nav-item nav-link">##word.training_report##</a> -->
+          <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">##word.data_management##</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/Languages">##word.language## </a></li>
+            <li><a class="dropdown-item" href="/Country">##word.country## </a></li>
+            <li><a class="dropdown-item" href="/Industry">##word.industry## </a></li>
+            <li><a class="dropdown-item" href="/JobFields">##word.job_field## </a></li>
+            <li><a class="dropdown-item" href="/Qualification">##word.qualification## </a></li>
+            <li><a class="dropdown-item" href="/YearsOfExperience">##word.years_experience## </a></li>
+          </ul>
+        </div>
+      </div>
+      <form class="d-flex ms-auto">
+        <a ng-click="logout()" x-permissions="login" class="btn btn-danger btn-lg"> <i class="bi bi-box-arrow-right"></i> ##word.logout## </a>
+        <a type="button" href="/Login" x-permissions="!login" class="btn btn-success btn-lg">##word.login##</a>
+        <a type="button" href="/Register" x-permissions="!login" class="btn btn-info btn-lg">##word.register##</a>
+      </form>
+    </div>
+  </div>
+</nav>

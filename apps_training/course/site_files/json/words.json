@@ -1,0 +1,46 @@
+[
+    {
+        "name": "courses",
+        "en": "Courses",
+        "ar": "الدورات"
+    },
+    {
+        "name": "course",
+        "en": "Course",
+        "ar": "الدورة"
+    },
+    {
+        "name": "course_new",
+        "en": "New Course",
+        "ar": "دورة جديدة"
+    },
+    {
+        "name": "course_add",
+        "en": "Add Course",
+        "ar": "إضافة دورة "
+    },
+    {
+        "name": "course_edit",
+        "en": "Edit Course",
+        "ar": "تعديل دورة "
+    },
+    {
+        "name": "course_details",
+        "en": "Course Details",
+        "ar": "تفاصيل الدورة "
+    },
+    {
+        "name": "course_delete",
+        "en": "Delete Course",
+        "ar": "حذف دورة "
+    },
+    {
+        "name": "course_name",
+        "en": "Course Name",
+        "ar": "إسم الدورة "
+    }
+
+
+
+
+]

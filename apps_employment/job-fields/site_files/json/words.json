@@ -1,0 +1,46 @@
+[
+    {
+        "name": "job_fields",
+        "en": "Job Fields",
+        "ar": "مجالات العمل"
+    },
+    {
+        "name": "job_field",
+        "en": "Job Field",
+        "ar": "مجال العمل"
+    },
+    {
+        "name": "job_fields_new",
+        "en": "New Job Field",
+        "ar": "مجال عمل جديد"
+    },
+    {
+        "name": "job_fields_add",
+        "en": "Add Job Field",
+        "ar": "إضافة مجال عمل "
+    },
+    {
+        "name": "job_fields_edit",
+        "en": "Edit Job Field",
+        "ar": "تعديل مجال عمل "
+    },
+    {
+        "name": "job_fields_details",
+        "en": "Job Field Details",
+        "ar": "تفاصيل مجال العمل "
+    },
+    {
+        "name": "job_fields_delete",
+        "en": "Delete Job Field",
+        "ar": "حذف مجال عمل "
+    },
+    {
+        "name": "job_fields_name",
+        "en": "Job Field Name",
+        "ar": "إسم مجال العمل "
+    }
+
+
+
+
+]

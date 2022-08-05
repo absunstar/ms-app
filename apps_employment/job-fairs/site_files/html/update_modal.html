@@ -1,0 +1,19 @@
+<div class="modal" id="jobFairsUpdateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fas fa-pen"></i> ##word.job_fairs_edit##</h3>
+        <button type="button" class="btn-close" onclick="site.hideModal( '#jobFairsUpdateModal')" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div x-import="job-fairs/content.html"></div>
+        <div x-import="job-fairs/action_info.html"></div>
+      </div>
+      <div class="modal-footer">
+        <h2 class="bold text-center text-danger">{{error}}</h2>
+        <button type="button" class="btn btn-warning" ng-click="updateJobFairs(job_fairs)"><i class="fa fa-save" aria-hidden="true"></i> ##word.save##</button>
+        <button type="button" class="btn btn-dark" onclick="site.hideModal( '#jobFairsUpdateModal')"><i class="fa fa-times" aria-hidden="true"></i> ##word.close##</button>
+      </div>
+    </div>
+  </div>
+</div>
