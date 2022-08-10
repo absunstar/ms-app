@@ -17,7 +17,8 @@
       "job_fairs_manage",
       "exam_templates_manage",
       "partner_manage",
-      "questions_manage"
+      "questions_manage",
+      "company_manage"
     ]
   }
 ]

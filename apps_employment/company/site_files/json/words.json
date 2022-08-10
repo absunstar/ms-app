@@ -1,0 +1,46 @@
+[
+    {
+        "name": "companies",
+        "en": "Companies",
+        "ar": "الشركات"
+    },
+    {
+        "name": "company",
+        "en": "Company",
+        "ar": "الشركة"
+    },
+    {
+        "name": "company_new",
+        "en": "New Company",
+        "ar": "شركة جديدة"
+    },
+    {
+        "name": "company_add",
+        "en": "Add Company",
+        "ar": "إضافة شركة "
+    },
+    {
+        "name": "company_edit",
+        "en": "Edit Company",
+        "ar": "تعديل شركة "
+    },
+    {
+        "name": "company_details",
+        "en": "Company Details",
+        "ar": "تفاصيل الشركة "
+    },
+    {
+        "name": "company_delete",
+        "en": "Delete Company",
+        "ar": "حذف شركة "
+    },
+    {
+        "name": "company_name",
+        "en": "Company Name",
+        "ar": "إسم الشركة "
+    }
+
+
+
+
+]
