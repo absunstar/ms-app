@@ -2,23 +2,18 @@
   <div id="basicInformation" class="">
     <fieldset>
       <legend>##word.basic_information##</legend>
+
       <div class="row">
-        <div class="col9">
-          <div class="row">
-            <i-control type="text" class="col2" ng-hide="disabledCode" ng-model="country.code" label="##word.code##"></i-control>
-            <i-control type="text" class="col4" v="r" ng-model="country.name_ar" label="##word.country_name##" ></i-control>
-            <i-control type="text" class="col4" v="r" ng-model="country.name_en" label="##word.name_en##"></i-control>
-            <i-checkbox  class="col2" label="##word.active##" ng-model="country.active">
-            </i-checkbox>
+        <i-image class="col2" ng-model="country.image"></i-image>
 
-          </div>
-         
-        </div>
-
-        <div class="col3">
-          <i-image help-id="country_logo" ng-model="country.image"></i-image>
-        </div> 
+        <i-control type="text" class="col1" ng-hide="disabledCode" ng-model="country.code" label="##word.code##"></i-control>
+        <i-control type="text" class="col4" v="r" ng-model="country.name_ar" label="##word.country_name##"></i-control>
+        <i-control type="text" class="col4" v="r" ng-model="country.name_en" label="##word.name_en##"></i-control>
       </div>
+      <div class="row justify-content-md-center">
+        <i-checkbox class="col" label="##word.active##" ng-model="country.active"> </i-checkbox>
+      </div>
+      
     </fieldset>
   </div>
 </div>
