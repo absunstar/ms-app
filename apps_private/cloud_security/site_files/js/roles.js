@@ -103,7 +103,7 @@ app.controller("security", function ($scope, $http, $interval) {
 
   $scope.user = {
     profile: {
-      image_url: '/images/user.png',
+      image: '/images/user.png',
       files: []
     },
     permissions: [],
@@ -254,7 +254,7 @@ app.controller("security", function ($scope, $http, $interval) {
     $scope.view(user);
     $scope.user = {
       profile: {
-        image_url: '/images/user.png',
+        image: '/images/user.png',
         files: []
       },
       permissions: [],
@@ -291,7 +291,7 @@ app.controller("security", function ($scope, $http, $interval) {
     $scope.view(user);
     $scope.user = {
       profile: {
-        image_url: '/images/user.png',
+        image: '/images/user.png',
         files: []
       },
       permissions: [],

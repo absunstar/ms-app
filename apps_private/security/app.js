@@ -67,7 +67,7 @@ module.exports = function init(site) {
         for (let i = 0; i < docs.length; i++) {
           let u = docs[i]
           u.profile = u.profile || {}
-          u.profile.image_url = u.profile.image_url || '/images/user.png'
+          u.profile.image = u.profile.image || '/images/user.png'
         }
         response.users = docs
         response.count = count

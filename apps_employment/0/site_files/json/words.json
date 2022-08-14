@@ -308,45 +308,6 @@
         "name": "cities",
         "en": "Areas",
         "ar": "المناطق"
-    },
-    {
-        "name": "city_new",
-        "en": "New Area",
-        "ar": "منطقة  جديدة"
-    },
-    {
-        "name": "city_add",
-        "en": "Add Area",
-        "ar": "إضافة منطقة "
-    },
-    {
-        "name": "city_edit",
-        "en": "Edit Area",
-        "ar": "تعديل منطقة "
-    },
-    {
-        "name": "city_details",
-        "en": "Area Details",
-        "ar": "تفاصيل المنطقة "
-    },
-    {
-        "name": "city_delete",
-        "en": "Delete Area",
-        "ar": "حذف منطقة "
-    },
-    {
-        "name": "city_name",
-        "en": "Area Name",
-        "ar": "إسم المنطقة "
-    },
-    {
-        "name": "menu_city",
-        "en": "Areas Menu",
-        "ar": "قائمة المناطق"
-    },
-    {
-        "name": "menu_city_tag",
-        "en": "Areas Manegment",
-        "ar": "إدارة المناطق"
     }
+   
 ]

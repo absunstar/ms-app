@@ -1,0 +1,46 @@
+[
+    {
+        "name": "accounts",
+        "en": "Accounts",
+        "ar": "الحسابات"
+    },
+    {
+        "name": "account",
+        "en": "Account",
+        "ar": "الحساب"
+    },
+    {
+        "name": "account_new",
+        "en": "New Account",
+        "ar": "حساب جديد"
+    },
+    {
+        "name": "account_add",
+        "en": "Add Account",
+        "ar": "إضافة حساب "
+    },
+    {
+        "name": "account_edit",
+        "en": "Edit Account",
+        "ar": "تعديل حساب "
+    },
+    {
+        "name": "account_details",
+        "en": "Account Details",
+        "ar": "تفاصيل الحساب "
+    },
+    {
+        "name": "account_delete",
+        "en": "Delete Account",
+        "ar": "حذف حساب "
+    },
+    {
+        "name": "account_name",
+        "en": "Account Name",
+        "ar": "إسم الحساب "
+    }
+
+
+
+
+]

@@ -18,6 +18,8 @@
       "exam_templates_manage",
       "partner_manage",
       "questions_manage",
+      "job_manage",
+      "job_subFields_manage",
       "company_manage"
     ]
   }

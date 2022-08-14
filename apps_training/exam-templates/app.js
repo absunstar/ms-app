@@ -19,7 +19,7 @@ module.exports = function init(site) {
         code: '1-Test',
         name_ar: 'مجال عمل إفتراضي',
         name_en: 'Default Exam Template',
-        image_url: '/images/exam_templates.png',
+        image: '/images/exam_templates.png',
         active: true,
       },
       (err, doc1) => {}

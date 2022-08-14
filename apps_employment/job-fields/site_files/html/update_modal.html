@@ -1,19 +1,25 @@
-<div class="modal" id="jobFieldsUpdateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
+<div id="jobFieldsUpdateModal" class="modal" fixed>
+  <div class="modal-content  ">
       <div class="modal-header">
-        <h3 class="modal-title"><i class="fas fa-pen"></i> ##word.job_fields_edit##</h3>
-        <button type="button" class="btn-close" onclick="site.hideModal( '#jobFieldsUpdateModal')" data-bs-dismiss="modal" aria-label="Close"></button>
+          <span class="close">&times;</span>
+          <h2 class="center">
+              ##word.job_fields_edit##
+              <i class="fa fa-pencil"></i>
+          </h2>
       </div>
+
       <div class="modal-body">
-        <div x-import="job-fields/content.html"></div>
-        <div x-import="job-fields/action_info.html"></div>
+
+          <div x-import="job-fields/content.html"></div>
+          <br>
+          <br>
+          <div x-import="job-fields/action_info.html"></div>
       </div>
-      <div class="modal-footer">
-        <h2 class="bold text-center text-danger">{{error}}</h2>
-        <button type="button" class="btn btn-warning" ng-click="updateJobFields(job_fields)"><i class="fa fa-save" aria-hidden="true"></i> ##word.save##</button>
-        <button type="button" class="btn btn-dark" onclick="site.hideModal( '#jobFieldsUpdateModal')"><i class="fa fa-times" aria-hidden="true"></i> ##word.close##</button>
+
+      <div class="modal-footer center">
+          <h2 class="error"> {{error}} </h2>
+          <i-button type="edit" label="##word.edit##" ng-click="updateJobFields(job_fields)"></i-button>
+          <i-button type="close" label="##word.close##" onclick="site.hideModal( '#jobFieldsUpdateModal')"></i-button>
       </div>
-    </div>
   </div>
 </div>

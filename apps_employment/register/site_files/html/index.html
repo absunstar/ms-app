@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" data-ng-app="myApp">
-  <head x-import="head.html"> </head>
+  <head x-import="head.html">
+    <style>
+      html,
+      body {
+        background: linear-gradient(to left, #dce35b, #45b649);
+      }
+    </style>
+  </head>
 
   <body class="##session.lang##" ng-controller="register_souq">
     <nav x-import="0/bar.html" class="sitebar" ng-controller="bar"></nav>
@@ -8,68 +15,96 @@
     <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
 
     <div id="main-layout" class="container">
-      <div class="row" id="registersouqModal">
+      <div class="row align-items-center" id="registersouqModal">
         <div class="row">
-          <div class="row">
-            <h1 class="bold text-center">##word.register##</h1>
-          </div>
+          <section class="py-5 header">
+            <div class="container py-4">
+              <header class="text-center mb-5 pb-5 text-white">
+                <h1 class="display-4">
+                  ##word.register##
+                  <p class="font-18">##word.existing_user## <a href="/login">##word.login_now##</a></p>
+                </h1>
+              </header>
 
-          <div class="row">
-            <h2 class="bold red">{{error}}</h2>
-          </div>
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="nav flex-column v-tabs" aria-orientation="vertical">
+                    <a class="nav-link mb-3 p-3 shadow active" id="v-employer-tab" data-toggle="pill" onclick="site.vTab('v-employer')" role="tab" aria-controls="v-employer" aria-selected="true">
+                      <i class="fa-solid fa-people-roof mr-2"></i>
+                      <span class="font-weight-bold small text-uppercase"> ##word.employer## </span></a
+                    >
 
-          <!--    <div class="row">
-            <i-image help-id="user_logo" ng-model="user.image_url"></i-image>
-          </div> -->
+                    <a class="nav-link mb-3 p-3 shadow" id="v-job-seeker-tab" data-toggle="pill" onclick="site.vTab('v-job-seeker')" role="tab" aria-controls="v-job-seeker" aria-selected="false">
+                      <i class="fa-solid fa-person mt-2"></i>
+                      <span class="font-weight-bold small text-uppercase">##word.job_seeker##</span></a
+                    >
+                  </div>
+                </div>
 
-          <div class="row">
-            <div class="input-group mb-3">
-              <input type="text" v="r" class="form-control" ng-model="user.first_name" placeholder="##word.first_name##" aria-label="Username" aria-describedby="basic-addon1" />
-              <input type="text" v="r" class="form-control" ng-model="user.last_name" placeholder="##word.last_name##" aria-label="Username" aria-describedby="basic-addon1" />
-            </div>
-          </div>
+                <div class="col-md-9">
+                  <div class="v-contents">
+                    <div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-employer-content" role="tabpanel" aria-labelledby="v-employer-tab">
+                      <div class="employer-form">
+                        <div class="row">
+                          <i-control v="r" class="col5" ng-model="user.first_name" label="##word.first_name##"></i-control>
+                          <i-control v="r" class="col5" ng-model="user.last_name" label="##word.last_name##"></i-control>
+                          <i-image class="col2" ng-model="user.image"></i-image>
+                        </div>
 
-          <div class="row">
-            <div class="input-group mb-3">
-              <input type="text" v="r" class="form-control" ng-model="user.email" placeholder="##word.email##" aria-label="Email" aria-describedby="basic-addon1" />
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-group mb-3">
-              <input type="text" v="r" class="form-control" ng-model="user.password" placeholder="##word.password##" aria-label="password" aria-describedby="basic-addon1" />
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-group mb-3">
-              <input type="text" v="r" class="form-control" ng-model="user.re_password" placeholder="##word.retype_password##" aria-label="password" aria-describedby="basic-addon1" />
-            </div>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" ng-click="showPass()" ng-model="show_password" type="checkbox" value="" id="flexCheckDefault" />
-            <label class="form-check-label" for="flexCheckDefault"> ##word.show_password## </label>
-          </div>
+                        <i-control v="r" class="row" ng-model="user.email" label="##word.email##"></i-control>
 
-          <div class="row">
-            <div class="form-check">
-              <input class="form-check-input" type="radio" ng-model="user.type" name="exampleRadios" id="exampleRadios1" value="employer" checked>
-              <label class="form-check-label" for="exampleRadios1">
-                ##word.employer##
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" ng-model="user.type" name="exampleRadios" id="exampleRadios2" value="job_seeker">
-              <label class="form-check-label" for="exampleRadios2">
-                ##word.job_seeker##
-              </label>
-            </div>
-          </div>
+                        <div class="row">
+                          <i-control v="r" type="password" class="col pass" ng-model="user.password" label="##word.password##"></i-control>
+                          <i-control v="r" type="password" class="col pass" ng-model="user.re_password" label="##word.retype_password##"></i-control>
+                          <i-checkbox class="col" ng-change="showPass()" ng-model="show_password" label="##word.show_password##"></i-checkbox>
+                        </div>
 
-          <div class="col">
-            <a type="button" class="btn btn-primary col" label="##word.register_now##" ng-click="registerSouq()">##word.login_now##</a>
-          </div>
-          <form>
-            <p class="font-18">##word.existing_user## <a href="/login">##word.login_now##</a></p>
-          </form>
+                        <div class="row">
+                          <h2 class="center red">{{error}}</h2>
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+
+                        <div class="center">
+                          <i-button class="center" label="##word.register_as_employer##" ng-click="registerAsEmployer()"></i-button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="tab-pane fade shadow rounded bg-white p-5" id="v-job-seeker-content" role="tabpanel" aria-labelledby="v-job-seeker-tab">
+                      <div class="job-seeker-form">
+                        <div class="row">
+                          <i-control v="r" class="col5" ng-model="user.first_name" label="##word.first_name##"></i-control>
+                          <i-control v="r" class="col5" ng-model="user.last_name" label="##word.last_name##"></i-control>
+                          <i-image class="col2" ng-model="user.image"></i-image>
+                        </div>
+
+                        <i-control v="r" class="row" ng-model="user.email" label="##word.email##"></i-control>
+
+                        <div class="row">
+                          <i-control v="r" type="password" class="col pass" ng-model="user.password" label="##word.password##"></i-control>
+                          <i-control v="r" type="password" class="col pass" ng-model="user.re_password" label="##word.retype_password##"></i-control>
+                          <i-checkbox class="col" ng-change="showPass()" ng-model="show_password" label="##word.show_password##"></i-checkbox>
+                        </div>
+
+                        <div class="row">
+                          <h2 class="center red">{{error}}</h2>
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+
+                        <div class="center">
+                          <i-button class="center" label="##word.register_as_job_seeker##" ng-click="registerAsJobSeeker()"></i-button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </div>

@@ -13,7 +13,7 @@ app.controller('job_fairs', function ($scope, $http, $timeout) {
   $scope.displayAddJobFairs = function () {
     $scope.error = '';
     $scope.job_fairs = {
-      image_url: '/images/job_fairs.png',
+      image: '/images/job_fairs.png',
       active: true,
     };
 

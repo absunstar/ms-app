@@ -72,6 +72,15 @@
   { "name": "password_err_match", "en": "password does not match", "ar": "كلمة السر غير متطابقة" },
   { "name": "register_now", "en": "Register Now", "ar": "تسجيل الاّن" },
   {
+    "name": "register_as_employer",
+    "en": "Register As Employer",
+    "ar": "تسجيل الدخول كصاحب شركة"
+  }, {
+    "name": "register_as_job_seeker",
+    "en": "Register As Job Seeker",
+    "ar": "تسجيل الدخول كباحث عن عمل"
+  },
+  {
     "name": "create_account",
     "en": "Create an account",
     "ar": "أنشئ حساب"

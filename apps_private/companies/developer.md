@@ -30,7 +30,7 @@
         calender_type:'gregorian' || 'hijri',
         filter_date:date,
         active:'boolean',
-        image_url:'string',
+        image:'string',
         branch_list:[{
             code:'int',
             name:'string required',

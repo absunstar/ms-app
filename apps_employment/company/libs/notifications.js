@@ -1,13 +1,13 @@
 module.exports = function init(site) {
 
-  let collection_name = 'Company'
+  let collection_name = 'Companies'
 
   let source = {
     en: 'Companies System',
     ar: 'نظام الشركات'
   }
 
-  let image_url = '/images/company.png'
+  let image = '/images/company.png'
   let add_message = {
     en: 'New Company Added',
     ar: 'تم إضافة شركة جديدة'
@@ -26,7 +26,7 @@ module.exports = function init(site) {
     if (result.collection === collection_name) {
       site.call('please monitor action', {
         obj: {
-          icon: image_url,
+          icon: image,
           source: source,
           message: add_message,
           value: {
@@ -46,7 +46,7 @@ module.exports = function init(site) {
     if (result.collection === collection_name) {
       site.call('please monitor action', {
         obj: {
-          icon: image_url,
+          icon: image,
           source: source,
           message: update_message,
           value: {
@@ -67,7 +67,7 @@ module.exports = function init(site) {
     if (result.collection === collection_name) {
       site.call('please monitor action', {
         obj: {
-          icon: image_url,
+          icon: image,
           source: source,
           message: delete_message,
           value: {

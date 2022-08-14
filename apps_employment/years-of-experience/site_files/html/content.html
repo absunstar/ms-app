@@ -4,32 +4,21 @@
       <legend>##word.basic_information##</legend>
       <div class="row">
         <div class="col9">
-        
-          <div class="row g-2">
-            <div class="col">
-                <input type="text" ng-hide="disabledCode" class="form-control" ng-model="years_of_experience.code" placeholder="##word.code##" aria-label="code" aria-describedby="basic-addon1" />
-            </div>
-            <div class="col">
-                <div class="form-check">
-                    <input class="form-check-input" ng-model="years_of_experience.active" type="checkbox" value="" id="flexCheckDefault" />
-                    <label class="form-check-label" for="flexCheckDefault"> ##word.active## </label>
-                  </div>
-            </div>
-          </div>
-          <div class="row g-2">
-            <div class="col">
-                <input type="text" v="r" class="form-control" ng-model="years_of_experience.name_ar" placeholder="##word.years_of_experience_name##" aria-label="name_ar" aria-describedby="basic-addon1" />
-            </div>
-            <div class="col">
-                <input type="text" v="r" class="form-control" ng-model="years_of_experience.name_en" placeholder="##word.name_en##" aria-label="name_en" aria-describedby="basic-addon1" />
-            </div>
+
+          <div class="row">
+            <i-control type="text" class="col2" ng-hide="disabledCode" ng-model="years_of_experience.code" label="##word.code##"></i-control>
+            <i-control type="text" class="col4" v="r" ng-model="years_of_experience.name_ar" label="##word.years_of_experience_name##" ></i-control>
+            <i-control type="text" class="col4" v="r" ng-model="years_of_experience.name_en" label="##word.name_en##"></i-control>
+            <i-checkbox  class="col2" label="##word.active##" ng-model="years_of_experience.active">
+            </i-checkbox>
+  
           </div>
          
         </div>
 
-        <!--  <div class="col3">
-          <i-image help-id="years_of_experience_logo" ng-model="years_of_experience.image_url"></i-image>
-        </div> -->
+        <div class="col3">
+          <i-image help-id="years_of_experience_logo" ng-model="years_of_experience.image"></i-image>
+        </div>
       </div>
     </fieldset>
   </div>

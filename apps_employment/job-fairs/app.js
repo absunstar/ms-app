@@ -19,7 +19,7 @@ module.exports = function init(site) {
         code: '1-Test',
         name_ar: 'معرض وظائف إفتراضي',
         name_en: 'Default Job Fair',
-        image_url: '/images/job_fairs.png',
+        image: '/images/job_fairs.png',
         active: true,
       },
       (err, doc1) => {}
@@ -241,6 +241,23 @@ module.exports = function init(site) {
     if (where['name_en']) {
       where['name_en'] = site.get_RegExp(where['name_en'], 'i');
     }
+
+   
+
+    if(where['not_active']){
+      where['active'] = false;
+    }
+
+    if(where['active_search']){
+      where['active'] = true;
+    }
+
+    if(where['not_active'] && where['active_search']){
+      delete where['active'];
+    }
+
+    delete where['active_search'];
+    delete where['not_active'];
 
     $job_fairs.findMany(
       {

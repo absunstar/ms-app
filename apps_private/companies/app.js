@@ -1,5 +1,5 @@
 module.exports = function init(site) {
-  const $companies = site.connectCollection("companies")
+  const $companies = site.connectCollection("company")
 
   site.on('[register][company][add]', doc => {
 
@@ -12,7 +12,7 @@ module.exports = function init(site) {
       active: true,
       username: doc.username,
       password: doc.password,
-      image_url: doc.image_url
+      image: doc.image
     }, (err, doc) => {
       if (!err && doc) {
         site.call('[company][created]', doc)
@@ -31,7 +31,7 @@ module.exports = function init(site) {
           company_id: doc.id,
           profile: {
             name: doc.name_ar,
-            image_url: doc.image_url
+            image: doc.image
           }
         })
       }
@@ -59,7 +59,7 @@ module.exports = function init(site) {
   })
 
   site.get({
-    name: "companies",
+    name: "company",
     path: __dirname + "/site_files/html/index.html",
     parser: "html",
     compress: true
@@ -112,7 +112,7 @@ module.exports = function init(site) {
             profile: {
               name: doc.name_ar,
               mobile: doc.mobile,
-              image_url: companies_doc.image_url
+              image: companies_doc.image
             }
           } , (err  , user_doc)=>{
             if(!err && user_doc){
@@ -173,7 +173,7 @@ module.exports = function init(site) {
               profile: {
                 name: companies_doc.name_ar,
                 mobile: companies_doc.mobile,
-                image_url: companies_doc.image_url
+                image: companies_doc.image
               }
             } , (err , user_result)=>{
               if(!err && user_result.doc){
@@ -195,7 +195,7 @@ module.exports = function init(site) {
                   profile: {
                     name: companies_doc.name_ar,
                     mobile: companies_doc.mobile,
-                    image_url: companies_doc.image_url
+                    image: companies_doc.image
                   }
                 } , (err , user_doc)=>{
                   if(!err && user_doc){

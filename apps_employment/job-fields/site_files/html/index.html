@@ -20,29 +20,27 @@
           </div>
 
           <div class="top-actions">
-            <button x-permissions="job_fields_add || job_fields_manage" type="button" class="btn btn-success" ng-click="displayAddJobFields()"><i class="fas fa-plus-circle"></i> ##word.job_fields_new##</button>
-
-            <button x-permissions="job_fields_search || job_fields_manage" type="button" class="btn btn-primary" ng-click="displaySearchModal()"><i class="fa fa-search"></i> ##word.search_all##</button>
+            
+            <i-button x-permissions="job_fields_add || job_fields_manage" type="add" label="##word.job_fields_new##" ng-click="displayAddJobFields()"></i-button>
+            <i-button x-permissions="job_fields_search || job_fields_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
 
             <h3 class="bold text-center">##word.count## : {{count}}</h3>
             <h3 class="bold text-center text-danger">{{error}}</h3>
           </div>
 
           <table x-permissions="login" class="table table-striped text-center" id="t1">
-            <thead>
               <tr>
-                <!--  <th class="not-print">##word.logo##</th> -->
+                <th class="not-print">##word.logo##</th>
                 <th>##word.code##</th>
                 <th>##word.job_fields_name##</th>
                 <th>##word.status##</th>
                 <th class="not-print">##word.actions##</th>
               </tr>
-            </thead>
             <tbody>
               <tr ng-repeat="c in list">
-                <!--   <td class="center not-print">
-                  <i-image view class="logo" ng-model="c.image_url"></i-image>
-                </td> -->
+                <td class="center not-print">
+                  <i-image view class="logo" ng-model="c.image"></i-image>
+                </td> 
                 <td class="center userPrint blue">{{c.code}}</td>
                 <td class="center title">{{c.name_##session.lang##}}</td>
                 <td class="center">
@@ -51,21 +49,22 @@
                 </td>
 
                 <td class="center not-print">
-                  <button x-permissions="job_fields_view || job_fields_manage" type="button" class="btn btn-info" ng-click="displayDetailsJobFields(c)"><i class="fa fa-file"></i> ##word.details##</button>
 
-                  <button x-permissions="job_fields_update || job_fields_manage" type="button" class="btn btn-dark" ng-show="!c.active" ng-click="c.active = true; updateActivate(c)">##word.activate##</button>
-                  <button x-permissions="job_fields_update || job_fields_manage" type="button" class="btn btn-dark" ng-show="c.active" ng-click="c.active = false; updateActivate(c)">##word.deactivate##</button>
-                  <button x-permissions="job_fields_update || job_fields_manage" type="button" class="btn btn-warning" ng-click="displayUpdateJobFields(c)"><i class="fas fa-pen"></i> ##word.edit##</button>
+                  <i-button x-permissions="job_fields_view || job_fields_manage" type="view" label="##word.details##" ng-click="displayDetailsJobFields(c)"></i-button>
+                  <i-button x-permissions="job_fields_update || job_fields_manage" type="edit" label="##word.edit##" ng-click="displayUpdateJobFields(c)"></i-button>
+                  <i-button x-permissions="job_fields_update || job_fields_manage" ng-show="!c.active" label="##word.activate##" ng-click="c.active = true; updateActivate(c)"></i-button>
+                  <i-button x-permissions="job_fields_update || job_fields_manage" ng-show="c.active" label="##word.deactivate##" ng-click="c.active = false; updateActivate(c)"></i-button>
+                  <i-button x-permissions="job_fields_delete || job_fields_manage" type="delete" label="##word.delete##" ng-click="displayDeleteJobFields(c)"></i-button>
 
-                  <button x-permissions="job_fields_delete || job_fields_manage" type="button" class="btn btn-danger" ng-click="displayDeleteJobFields(c)"><i class="fa fa-trash"></i> ##word.delete##</button>
+                  <a type="button" class="btn btn-primary btn-lg" href="/JobSubFields?id={{c.id}}" >##word.job_subfield##</a>
                 </td>
               </tr>
             </tbody>
           </table>
-          <div class="container mt-3">
-            <button type="button" class="btn btn-light" onclick="export_to_xlsx('t1' , 'training_report.xlsx')"><i class="fas fa-table"></i> ##word.export_to_excel##</button>
-            <button type="button" class="btn btn-light" onclick="site.print('#t1')"><i class="fas fa-print"></i> ##word.print##</button>
-          </div>
+
+          <i-button x-permissions="job_fields_print || job_fields_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>        
+          <i-button x-permissions="job_fields_print || job_fields_manage" type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'training_report.xlsx')"></i-button>
+
         </div>
       </div>
     </div>

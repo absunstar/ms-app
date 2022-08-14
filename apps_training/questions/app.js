@@ -24,7 +24,7 @@ module.exports = function init(site) {
         code: '1-Test',
         name_ar: 'سؤال إفتراضية',
         name_en: 'Default Question',
-        image_url: '/images/question.png',
+        image: '/images/question.png',
         active: true,
       },
       (err, doc1) => {}

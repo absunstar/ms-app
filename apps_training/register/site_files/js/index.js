@@ -1,5 +1,5 @@
 app.controller('register_souq', function ($scope, $http, $timeout) {
-  $scope.user = { image_url: '/images/user_logo.png' };
+  $scope.user = { image: '/images/user_logo.png' };
 
   $scope.registerSouq = function () {
     $scope.error = '';

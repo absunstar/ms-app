@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp">
+  <head x-import="head.html"> </head>
+
+  <body class="##session.lang##" ng-controller="resume">
+    <nav x-import="0/bar.html" class="sitebar" ng-controller="bar"></nav>
+
+    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
+    <div id="main-layout" class="container" id="resumeModal">
+      <div class="row">
+        <div x-import="resume/profile.html"></div>
+        <div x-import="resume/education_modal.html"></div>
+        <div x-import="resume/certificate_modal.html"></div>
+        <div x-import="resume/extra_curricular_modal.html"></div>
+        <div x-import="resume/work_experience_modal.html"></div>
+
+        <div class="row">
+
+          <div class="col7">
+            <div class="row">
+              <div class="col3">
+                <i-image help-id="user_logo" ng-model="user.profile.image"></i-image>
+              </div>
+              <div class="col4">
+                <br>
+                <br>
+                <h2>{{user.profile.name}}</h2> <i class="fas fa-pen pointer" onclick="site.showModal( '#profileModal')" aria-hidden="true"></i>
+                <b>{{user.profile.job_title}}</b>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col3"></div>
+              <div class="col3">
+                <b>{{user.profile.country.name_##session.lang##}} , {{user.profile.city.name_##session.lang##}} </b>
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col5">
+
+            <p>{{user.profile.website}} <i class="fa fa-globe" aria-hidden="true"></i></p>
+            <p>{{user.profile.phone}} <i class="fa fa-phone-square" aria-hidden="true"></i></p>
+            <p>{{user.email}} <i class="fa fa-envelope" aria-hidden="true"></i></p>
+            <p>{{user.profile.linkedin}} <i class="fa fa-linkedin" aria-hidden="true"></i></p>
+
+          </div>
+
+        </div>
+
+        <br />
+        <br />
+        <br />
+
+
+        <div class="row">
+
+          <div class="col9">
+
+            <div class="row">
+              <fieldset>
+                <legend>
+                  ##word.about_me##
+                  <i-button type="edit default" ng-hide="user.profile.$edit_about_me" ng-click="user.profile.$edit_about_me = true; about_me = user.profile.about_me"></i-button>
+                  <i-button type="save default" ng-show="user.profile.$edit_about_me" ng-click="user.profile.$edit_about_me = false; user.profile.about_me = about_me ; update(user)"></i-button>
+                  <i-button type="close default" ng-show="user.profile.$edit_about_me" ng-click="user.profile.$edit_about_me = false"></i-button>
+                </legend>
+              </fieldset>
+
+              <i-textarea ng-show="user.profile.$edit_about_me" ng-model="about_me">
+              </i-textarea>
+
+              <b ng-hide="user.profile.$edit_about_me">{{user.profile.about_me}}</b>
+            </div>
+
+            <div class="row">
+              <fieldset>
+                <legend>
+                  ##word.education##
+                  <i-button type="add default" ng-click="showEducation('add')"></i-button>
+                  <div class="row" ng-repeat="e in user.profile.educations_list">
+                    <b>{{e.university_name}}</b> 
+                    <b ng-show="e.joining_date">{{e.joining_date | date:"dd/MM/yyyy"}} - </b>
+                    <b ng-show="e.expiry_date">{{e.expiry_date | date:"dd/MM/yyyy"}} - </b>
+                    <i-button type="edit default" ng-click="showEducation('edit',e)"></i-button>
+                    <i-button type="delete default" ng-click="user.profile.educations_list.splice($index,1) ; update(user)"></i-button>
+                    <b>{{e.faculty_name}}</b>
+                    <p>{{e.description}}</p>
+                  </div>
+                </legend>
+              </fieldset>
+            </div>
+
+            <div class="row">
+              <fieldset>
+                <legend>
+                  ##word.work_experience##
+                  <i-button type="add default" ng-click="showWorkExperience('add')"></i-button>
+                  <div class="row" ng-repeat="e in user.profile.work_experience_list">
+                    <b>{{e.company_name}}</b> 
+                    <b ng-show="e.joining_date">{{e.joining_date | date:"dd/MM/yyyy"}} - </b>
+                    <b ng-show="e.expiry_date">{{e.expiry_date | date:"dd/MM/yyyy"}} - </b>
+                    <i-button type="edit default" ng-click="showWorkExperience('edit',e)"></i-button>
+                    <i-button type="delete default" ng-click="user.profile.work_experience_list.splice($index,1) ; update(user)"></i-button>
+                    <b>{{e.job_title}}</b>
+                    <p>{{e.description}}</p>
+                  </div>
+                </legend>
+              </fieldset>
+            </div>
+
+            <div class="row">
+              <fieldset>
+                <legend>
+                  ##word.certificates##
+                  <i-button type="add default" ng-click="showCertificate('add')"></i-button>
+                  <div class="row" ng-repeat="e in user.profile.certificates_list">
+                    <b>{{e.certificate_name}}</b> 
+                    <b>{{e.certificate_date | date:"dd/MM/yyyy"}} - </b>
+                    <i-button type="edit default" ng-click="showCertificate('edit',e)"></i-button>
+                    <i-button type="delete default" ng-click="user.profile.certificates_list.splice($index,1) ; update(user)"></i-button>
+                    <p>{{e.description}}</p>
+                  </div>
+                </legend>
+              </fieldset>
+            </div>
+  
+            <div class="row">
+              <fieldset>
+                <legend>
+                  ##word.extra_curricular##
+                  <i-button type="add default" ng-click="showExtraCurricular('add')"></i-button>
+                  <div class="row" ng-repeat="e in user.profile.extra_curricular_list">
+                    <b>{{e.enterprise_name}}</b> 
+                    <b ng-show="e.joining_date">{{e.joining_date | date:"dd/MM/yyyy"}} - </b>
+                    <b ng-show="e.expiry_date">{{e.expiry_date | date:"dd/MM/yyyy"}} - </b>
+                    <i-button type="edit default" ng-click="showExtraCurricular('edit',e)"></i-button>
+                    <i-button type="delete default" ng-click="user.profile.extra_curricular_list.splice($index,1) ; update(user)"></i-button>
+                    <b>{{e.job_title}}</b>
+                    <p>{{e.description}}</p>
+                  </div>
+                </legend>
+              </fieldset>
+            </div>
+
+          </div>
+
+          <div class="col3">
+            <div class="row" id="editProfileModal">
+
+                  <fieldset>
+                    <legend>
+                      <i-button type="edit default" ng-hide="profile.$edit_profile" ng-click="editProfile(profile,'edit')"></i-button>
+                      <i-button type="save default" ng-show="profile.$edit_profile" ng-click="editProfile(profile,'save')"></i-button>
+                      <i-button type="close default" ng-show="profile.$edit_profile" ng-click="editProfile(profile,'close')"></i-button>
+                    </legend>
+
+                    <div class="row">
+                      <b>##word.experience##</b>
+                      <p ng-hide="profile.$edit_profile">{{user.profile.experience.name_##session.lang##}}</p>
+                      <i-list help-id="" v="r" ng-show="profile.$edit_profile" ng-model="profile.experience"
+                      display="name_##session.lang##" items="yearsOfExperienceList" ng-search="_search.$user_profile_experience"></i-list>
+                    </div>
+
+                    <div class="row">
+                      <b>##word.age##</b>
+                      <p ng-hide="profile.$edit_profile">{{user.profile.age | date:"dd/MM/yyyy"}}</p>
+                      <i-date2 ng-show="profile.$edit_profile" ng-model="profile.age"> </i-date2>
+                    </div>
+
+                    <div class="row">
+                      <b>##word.languages##</b>
+                      <p ng-hide="profile.$edit_profile"><b ng-repeat="l in user.profile.languages">{{l.name_##session.lang##}} , </b>
+                      </p>
+                      <i-checklist help-id="" v="r" ng-show="profile.$edit_profile" ng-model="profile.languages"
+                      display="name_##session.lang##" items="languagesList" ng-search="_search.$user_profile_languages"></i-checklist>
+                    </div>
+
+                    <div class="row">
+                      <b>##word.qualification##</b>
+                      <p ng-hide="profile.$edit_profile">{{user.profile.qualification.name_##session.lang##}}</p>
+                      <i-list help-id="" v="r" ng-show="profile.$edit_profile" ng-model="profile.qualification"
+                      display="name_##session.lang##" items="qualificationList" ng-search="_search.$user_profile_qualification"></i-list>
+                    </div>
+      
+      
+                  </fieldset>
+              
+             </div>
+
+             <div class="row">
+              <fieldset>
+                <legend>##word.attachments##</legend>
+                <i-files label="##word.upload_cover_letter##" categoty="upload_cover_letter" ng-model="user.profile.upload_cover_letter"></i-files>
+                <i-files label="##word.upload_resume##" categoty="upload_resume" ng-model="user.profile.upload_resume"></i-files>
+
+              </fieldset>
+             </div>
+          </div>
+
+        </div>
+
+
+        
+        
+      </div>
+    </div>
+
+    <div x-import="0/scripts.html"></div>
+    <script x-import="resume/index.js"></script>
+  </body>
+</html>

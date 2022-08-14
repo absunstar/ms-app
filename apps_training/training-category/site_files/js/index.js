@@ -13,7 +13,7 @@ app.controller('training_categories', function ($scope, $http, $timeout) {
   $scope.displayAddTrainingCategories = function () {
     $scope.error = '';
     $scope.training_categories = {
-      image_url: '/images/training_categories.png',
+      image: '/images/training_categories.png',
       active: true,
     };
 

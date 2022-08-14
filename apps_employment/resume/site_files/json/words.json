@@ -1,0 +1,107 @@
+[{
+        "name": "resume",
+        "en": "Resume",
+        "ar": "السيرة الذاتية"
+    },
+    {
+        "name": "update_your_profile_info",
+        "en": "Update Your Profile Info",
+        "ar": "تحديث معلومات ملف التعريف الخاص بك"
+    }, 
+    {
+        "name": "about_me",
+        "en": "About Me",
+        "ar": "نبذة عني"
+    },
+    {
+        "name": "education",
+        "en": "Education",
+        "ar": "التعليم"
+    },
+    {
+        "name": "university_name",
+        "en": "University Name",
+        "ar": "إسم الجامعة"
+    },
+    {
+        "name": "faculty_name",
+        "en": "Faculty Name",
+        "ar": "إسم الكلية"
+    },
+    {
+        "name": "joining_date",
+        "en": "Joining Date",
+        "ar": "تاريخ الإلتحاق"
+    },
+    {
+        "name": "graduation_date",
+        "en": "Graduation Date",
+        "ar": "تاريخ التخرج"
+    },
+    {
+        "name": "expiry_date",
+        "en": "Expiry Date",
+        "ar": "تاريخ الإنتهاء"
+    },
+    {
+        "name": "expiry",
+        "en": "Expiry",
+        "ar": "الإنتهاء"
+    },
+    {
+        "name": "joining",
+        "en": "Joining",
+        "ar": "الإلتحاق"
+    },
+    {
+        "name": "graduation",
+        "en": "Graduation",
+        "ar": "التخرج"
+    },
+    {
+        "name": "work_experience",
+        "en": "Work Experience",
+        "ar": "خبرة العمل"
+    },
+    {
+        "name": "certificates",
+        "en": "Certificates",
+        "ar": "الشهادات"
+    },
+    {
+        "name": "certificate_name",
+        "en": "Certificate Name",
+        "ar": "إسم الشهادة"
+    },
+    {
+        "name": "certificate_date",
+        "en": "Certificate Date",
+        "ar": "تاريخ الشهادة"
+    },
+    {
+        "name": "extra_curricular",
+        "en": "Extra-Curricular",
+        "ar": "الأنشطة"
+    },
+    {
+        "name": "enterprise_name",
+        "en": "Enterprise Name",
+        "ar": "إسم المؤسسة"
+    },
+    {
+        "name": "upload_cover_letter",
+        "en": "Upload Cover Letter",
+        "ar": "تحمل خطاب تقديمي"
+    },
+    {
+        "name": "attachments",
+        "en": "Attachments",
+        "ar": "المرفقات"
+    },
+    {
+        "name": "upload_resume",
+        "en": "Upload Resume",
+        "ar": "تحميل السيرة الذاتية"
+    }
+    
+] 

@@ -38,7 +38,68 @@
         "name": "company_name",
         "en": "Company Name",
         "ar": "إسم الشركة "
+    },
+    {
+        "name": "company_profile",
+        "en": "Company Profile",
+        "ar": "ملف تعريف الشركة"
+    },
+    {
+        "name": "email_address",
+        "en": "Email Address",
+        "ar": "عنوان البريد الإلكتروني"
+    },
+    {
+        "name": "website_address",
+        "en": "Website Address",
+        "ar": "عنوان موقع الويب"
+    },
+    {
+        "name": "social_network",
+        "en": "Social Network",
+        "ar": "شبكة اجتماعية"
+    },
+    {
+        "name": "about_company",
+        "en": "About Company",
+        "ar": "حول الشركة"
+    },
+    {
+        "name": "facebook",
+        "en": "Facebook",
+        "ar": "الفيسبوك"
+    },
+    {
+        "name": "Twitter",
+        "en": "twitter",
+        "ar": "تويتر"
+    },
+    {
+        "name": "linkedin",
+        "en": "Linkedin",
+        "ar": "لينكد إن"
+    },
+    {
+        "name": "google_plus",
+        "en": "Google Plus",
+        "ar": "جوجل بلس"
+    },
+    {
+        "name": "est_since",
+        "en": "Est. Since",
+        "ar": "أنشأت منذ"
+    },
+    {
+        "name": "full_address",
+        "en": "Full Address",
+        "ar": "العنوان الكامل"
+    },
+    {
+        "name": "contact_information",
+        "en": "Contact Information",
+        "ar": "معلومات الاتصال"
     }
+   
 
 
 

@@ -19,7 +19,7 @@ module.exports = function init(site) {
         code: '1-Test',
         name_ar: 'سنوات خبرة إفتراضية',
         name_en: 'Default Years Of Experience',
-        image_url: '/images/years_of_experience.png',
+        image: '/images/years_of_experience.png',
         active: true,
       },
       (err, doc1) => {}
@@ -241,6 +241,21 @@ module.exports = function init(site) {
     if (where['name_en']) {
       where['name_en'] = site.get_RegExp(where['name_en'], 'i');
     }
+
+    if(where['not_active']){
+      where['active'] = false;
+    }
+
+    if(where['active_search']){
+      where['active'] = true;
+    }
+
+    if(where['not_active'] && where['active_search']){
+      delete where['active'];
+    }
+
+    delete where['active_search'];
+    delete where['not_active'];
 
     $years_of_experience.findMany(
       {

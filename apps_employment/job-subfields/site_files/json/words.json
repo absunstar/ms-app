@@ -1,0 +1,46 @@
+[
+    {
+        "name": "job_subfields",
+        "en": "Job SubFields",
+        "ar": "الوظائف الفرعية"
+    },
+    {
+        "name": "job_subfield",
+        "en": "Job SubField",
+        "ar": "الوظيفة الفرعية"
+    },
+    {
+        "name": "job_subfields_new",
+        "en": "New Job SubFields",
+        "ar": "وظيفة فرعية جديدة"
+    },
+    {
+        "name": "job_subfields_add",
+        "en": "Add Job SubFields",
+        "ar": "إضافة وظيفة فرعية "
+    },
+    {
+        "name": "job_subfields_edit",
+        "en": "Edit Job SubFields",
+        "ar": "تعديل وظيفة فرعية "
+    },
+    {
+        "name": "job_subfields_details",
+        "en": "Job SubFields Details",
+        "ar": "تفاصيل الوظيفة فرعية "
+    },
+    {
+        "name": "job_subfields_delete",
+        "en": "Delete Job SubFields",
+        "ar": "حذف وظيفة فرعية "
+    },
+    {
+        "name": "job_subfields_name",
+        "en": "Job SubFields Name",
+        "ar": "إسم الوظيفة الفرعية "
+    }
+
+
+
+
+]

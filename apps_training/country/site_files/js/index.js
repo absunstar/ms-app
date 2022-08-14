@@ -6,7 +6,7 @@ app.controller('country', function ($scope, $http, $timeout) {
   $scope.displayAddCountry = function () {
     $scope.error = '';
     $scope.country = {
-      image_url: '/images/country.png',
+      image: '/images/country.png',
       active: true,
     };
 

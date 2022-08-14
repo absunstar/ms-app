@@ -1,18 +1,24 @@
-<div class="modal" id="jobFairsViewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
+<div id="jobFairsViewModal" class="modal">
+  <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title"><i class="fa fa-file"></i> ##word.job_fairs_details##</h3>
-        <button type="button" class="btn-close" onclick="site.hideModal( '#jobFairsViewModal')" data-bs-dismiss="modal" aria-label="Close"></button>
+          <span class="close">&times;</span>
+          <h1 class="center">
+              ##word.job_fairs_details##
+              <i class="fa fa-file"></i>
+          </h1>
       </div>
-      <div class="modal-body">
-        <div x-import="job-fairs/view.html"></div>
-      </div>
-      <div class="modal-footer">
-        <button type="print" class="btn btn-light" onclick="site.print('#v1')"><i class="fas fa-print"></i> ##word.print##</button>
 
-        <button type="button" class="btn btn-dark" onclick="site.hideModal( '#jobFairsViewModal')"><i class="fa fa-times" aria-hidden="true"></i> ##word.close##</button>
+      <div class="modal-body">
+          <div x-import="job-fairs/view.html"></div>
+
       </div>
-    </div>
+
+      <h2 class="error"> {{error}} </h2>
+
+      <div class="modal-footer center">
+          <i-button type="print" label="##word.print##" onclick="site.print('#v1')"></i-button>
+
+          <i-button type="close" label="##word.close##" onclick="site.hideModal('#jobFairsViewModal')"></i-button>
+      </div>
   </div>
 </div>

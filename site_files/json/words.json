@@ -10,6 +10,11 @@
     "ar": "قائمة التدريب"
   },
   {
+    "name": "gender",
+    "en": "Gender",
+    "ar": "الجنس"
+  },
+  {
     "name": "name",
     "en": "Name",
     "ar": "الاسم"

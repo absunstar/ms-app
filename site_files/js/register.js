@@ -31,7 +31,7 @@ app.controller('register', function ($scope, $http) {
 
   /*  $scope.showRegisterModal = function () {
      $scope.customer = {
-       image_url: '/images/customer.png'
+       image: '/images/customer.png'
      };
  
      site.showModal('#customerRegisterModal')

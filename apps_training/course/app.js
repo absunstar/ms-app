@@ -19,7 +19,7 @@ module.exports = function init(site) {
         code: '1-Test',
         name_ar: 'دورة إفتراضية',
         name_en: 'Default Course',
-        image_url: '/images/course.png',
+        image: '/images/course.png',
         active: true,
       },
       (err, doc1) => {}

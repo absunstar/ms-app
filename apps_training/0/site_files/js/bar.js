@@ -17,14 +17,14 @@ app.controller('bar', ($scope, $http) => {
 
     $scope.showRegisterModal = function () {
         $scope.customer = {
-            image_url: '/images/customer.png'
+            image: '/images/customer.png'
         };
 
         site.showModal('#customerRegisterModal')
     };
 
     $scope.registerCustomer = function () {
-        $scope.user = { profile: { image_url: '/images/user.png', files: [] }, permissions: [], roles: [] };
+        $scope.user = { profile: { image: '/images/user.png', files: [] }, permissions: [], roles: [] };
         site.showModal('#customerRegisterModal');
     };
 

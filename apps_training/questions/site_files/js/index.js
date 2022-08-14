@@ -6,7 +6,7 @@ app.controller('questions', function ($scope, $http, $timeout) {
   $scope.displayAddQuestion = function () {
     $scope.error = '';
     $scope.question = {
-      image_url: '/images/question.png',
+      image: '/images/question.png',
       answers_list: [{}],
       active: true,
     };

@@ -19,7 +19,7 @@ module.exports = function init(site) {
         code: '1-Test',
         name_ar: 'مركز تدريب إفتراضي',
         name_en: 'Default Training Center',
-        image_url: '/images/training_center.png',
+        image: '/images/training_center.png',
         active: true,
       },
       (err, doc1) => {}

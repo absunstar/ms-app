@@ -7,7 +7,7 @@ module.exports = function init(site) {
     ar: 'نظام مجالات العمل'
   }
 
-  let image_url = '/images/job_fields.png'
+  let image = '/images/job_fields.png'
   let add_message = {
     en: 'New Job Field Added',
     ar: 'تم إضافة مجال عمل جديد'
@@ -26,7 +26,7 @@ module.exports = function init(site) {
     if (result.collection === collection_name) {
       site.call('please monitor action', {
         obj: {
-          icon: image_url,
+          icon: image,
           source: source,
           message: add_message,
           value: {
@@ -46,7 +46,7 @@ module.exports = function init(site) {
     if (result.collection === collection_name) {
       site.call('please monitor action', {
         obj: {
-          icon: image_url,
+          icon: image,
           source: source,
           message: update_message,
           value: {
@@ -67,7 +67,7 @@ module.exports = function init(site) {
     if (result.collection === collection_name) {
       site.call('please monitor action', {
         obj: {
-          icon: image_url,
+          icon: image,
           source: source,
           message: delete_message,
           value: {

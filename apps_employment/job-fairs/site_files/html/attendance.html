@@ -1,26 +1,25 @@
-<div class="modal" id="attendanceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
+<div id="attendanceModal" class="modal small" fixed>
+  <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title"><i class="fa fa-file"></i> ##word.attendance_for_job_fair##</h3>
-        <button type="button" class="btn-close" onclick="site.hideModal( '#attendanceModal')" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="form">
-          <div class="row">
-            <div class="row g-2">
-              <div class="col">
-                <input type="number" v="r" class="form-control" ng-model="job_fairs.attendance_code" placeholder="##word.attendance_code##" aria-label="attendance_code" aria-describedby="basic-addon1" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="print" class="btn btn-light" onclick="site.print('#v1')"><i class="fas fa-print"></i> ##word.print##</button>
+          <span class="close">&times;</span>
+          <h2 class="center">
+              ##word.attendance_for_job_fair##
+              <i class="fa fa-plus "></i>
+          </h2>
 
-        <button type="button" class="btn btn-dark" onclick="site.hideModal( '#attendanceModal')"><i class="fa fa-times" aria-hidden="true"></i> ##word.close##</button>
       </div>
-    </div>
+
+      <div class="modal-body">
+        <div class="row">
+          <i-control type="number" class="col4 center" v="r" ng-model="job_fairs.attendance_code" label="##word.attendance_code##" ></i-control>
+
+        </div>
+          
+      </div>
+
+      <div class="modal-footer center">
+          <h2 class="error"> {{error}} </h2>
+          <i-button type="close" label="##word.close##" onclick="site.hideModal( '#attendanceModal')"></i-button>
+      </div>
   </div>
 </div>

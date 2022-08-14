@@ -8,7 +8,7 @@ module.exports = function init(site) {
     ar: 'نظام الحماية'
   }
 
-  let image_url = '/images/users.png'
+  let image = '/images/users.png'
 
   let login_message = {
     name: 'user Login',
@@ -41,7 +41,7 @@ module.exports = function init(site) {
       obj: {
         company: result.doc.company,
         branch: result.doc.branch,
-        icon: image_url,
+        icon: image,
         source: source,
         message: register_message,
         value: {
@@ -61,7 +61,7 @@ module.exports = function init(site) {
       obj: {
         company: result.doc.company,
         branch: result.doc.branch,
-        icon: image_url,
+        icon: image,
         source: source,
         message: login_message,
         value: {
@@ -81,7 +81,7 @@ module.exports = function init(site) {
       obj: {
         company: result.doc.company,
         branch: result.doc.branch,
-        icon: image_url,
+        icon: image,
         source: source,
         message: logout_message,
         value: {
@@ -101,7 +101,7 @@ module.exports = function init(site) {
       obj: {
         company: result.doc.company,
         branch: result.doc.branch,
-        icon: image_url,
+        icon: image,
         source: source,
         message: add_message,
         value: {
@@ -122,7 +122,7 @@ module.exports = function init(site) {
       obj: {
         company: result.doc.company,
         branch: result.doc.branch,
-        icon: image_url,
+        icon: image,
         source: source,
         message: update_message,
         value: {
@@ -142,7 +142,7 @@ module.exports = function init(site) {
       obj: {
         company: result.doc.company,
         branch: result.doc.branch,
-        icon: image_url,
+        icon: image,
         source: source,
         message: delete_message,
         value: {

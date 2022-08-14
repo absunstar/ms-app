@@ -1,0 +1,44 @@
+<div id="workExperienceModal" class="modal small" fixed>
+  <div class="modal-content">
+      <div class="modal-header">
+          <span class="close">&times;</span>
+          <h2 class="center" ng-show="!work_experience.$edit">
+              ##word.add##
+              <i class="fa fa-plus"></i>
+          </h2>
+
+          <h2 class="center" ng-show="work_experience.$edit">
+            ##word.edit##
+            <i class="fa fa-plus"></i>
+        </h2>
+
+      </div>
+
+      <div class="modal-body">
+
+        <div class="row">
+          <i-control type="text" class="col6" v="r" ng-model="work_experience.company_name" label="##word.company_name##" ></i-control>
+          <i-control type="text" class="col6" v="r" ng-model="work_experience.job_title" label="##word.job_title##" ></i-control>
+
+        </div>
+
+        <div class="row">
+          <i-date2 class="col6" ng-model="work_experience.joining_date" label="##word.joining_date##"> </i-date2>
+          <i-date2 class="col6" ng-model="work_experience.expiry_date" label="##word.expiry_date##"> </i-date2>
+        </div>
+
+        <div class="row">
+          <i-textarea label="##word.work_experience##" ng-model="work_experience.description">
+          </i-textarea>
+        </div>
+
+      </div>
+
+      <div class="modal-footer center">
+          <h2 class="error"> {{error}} </h2>
+          <i-button type="add" label="##word.add##" ng-show="!work_experience.$edit" ng-click="work_experienceTransaction(work_experience,'add')"></i-button>
+          <i-button type="save" label="##word.save##" ng-show="work_experience.$edit" ng-click="work_experienceTransaction(work_experience,'upate')"></i-button>
+          <i-button type="close" label="##word.close##" onclick="site.hideModal( '#workExperienceModal')"></i-button>
+      </div>
+  </div>
+</div>

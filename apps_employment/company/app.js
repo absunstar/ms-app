@@ -1,5 +1,5 @@
 module.exports = function init(site) {
-  const $company = site.connectCollection('Company');
+  const $company = site.connectCollection('Companies');
 
   site.get({
     name: 'images',
@@ -7,7 +7,7 @@ module.exports = function init(site) {
   });
 
   site.get({
-    name: 'Company',
+    name: 'Companies',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,
@@ -19,7 +19,7 @@ module.exports = function init(site) {
         code: '1-Test',
         name_ar: 'شركة إفتراضية',
         name_en: 'Default Company',
-        image_url: '/images/company.png',
+        image: '/images/company.png',
         active: true,
       },
       (err, doc1) => {}
@@ -241,6 +241,23 @@ module.exports = function init(site) {
     if (where['name_en']) {
       where['name_en'] = site.get_RegExp(where['name_en'], 'i');
     }
+
+   
+
+    if(where['not_active']){
+      where['active'] = false;
+    }
+
+    if(where['active_search']){
+      where['active'] = true;
+    }
+
+    if(where['not_active'] && where['active_search']){
+      delete where['active'];
+    }
+
+    delete where['active_search'];
+    delete where['not_active'];
 
     $company.findMany(
       {

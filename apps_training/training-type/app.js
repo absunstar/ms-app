@@ -19,7 +19,7 @@ module.exports = function init(site) {
         code: '1-Test',
         name_ar: 'معرض وظائف إفتراضي',
         name_en: 'Default Training Type',
-        image_url: '/images/training_types.png',
+        image: '/images/training_types.png',
         active: true,
       },
       (err, doc1) => {}

@@ -6,7 +6,7 @@ app.controller('qualification', function ($scope, $http, $timeout) {
   $scope.displayAddQualification = function () {
     $scope.error = '';
     $scope.qualification = {
-      image_url: '/images/qualification.png',
+      image: '/images/qualification.png',
       active: true,
     };
 

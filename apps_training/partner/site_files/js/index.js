@@ -6,7 +6,7 @@ app.controller('partner', function ($scope, $http, $timeout) {
   $scope.displayAddPartner = function () {
     $scope.error = '';
     $scope.partner = {
-      image_url: '/images/partner.png',
+      image: '/images/partner.png',
       active: true,
     };
 

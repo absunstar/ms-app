@@ -6,7 +6,7 @@ app.controller('years_of_experience', function ($scope, $http, $timeout) {
   $scope.displayAddYearsOfExperience = function () {
     $scope.error = '';
     $scope.years_of_experience = {
-      image_url: '/images/years_of_experience.png',
+      image: '/images/years_of_experience.png',
       active: true,
     };
 
@@ -131,6 +131,7 @@ app.controller('years_of_experience', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.years_of_experience = response.data.doc;
+          console.log($scope.years_of_experience);
         } else {
           $scope.error = response.data.error;
         }

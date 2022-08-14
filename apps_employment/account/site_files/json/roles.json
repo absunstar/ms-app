@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "account_admin",
+    "en": "Accounts Admin",
+    "ar": "إدارة الحسابات",
+    "permissions": ["account_manage"]
+}]

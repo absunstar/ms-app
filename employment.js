@@ -6,7 +6,11 @@ const site = require('isite')({
     theme: 'theme_paper',
     mongodb: {
         db: 'employment',
-        limit: 100000
+        limit: 100000,
+        events: true,
+  identity: {
+      enabled: !0,
+  },
     },
     security: {
         keys: ['e698f2679be5ba5c9c0b0031cb5b057c' , '9705a3a85c1b21118532fefcee840f99'],
@@ -38,6 +42,7 @@ site.get(
 site.loadLocalApp('client-side')
 site.importApps(__dirname + '/apps_employment')
 site.importApp(__dirname + '/apps_private/security')
+site.importApp(__dirname + '/apps_private/cloud_security')
 site.importApp(__dirname + '/apps_private/ui-print')
 site.importApp(__dirname + '/apps_private/ui-help')
 

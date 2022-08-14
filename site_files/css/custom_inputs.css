@@ -25,6 +25,12 @@
     color: indigo;
 }
 
+.white_space {
+    white-space: pre-wrap;
+}
+
+
+
 .bg_notifi,
 .bg_notifi {
     background-color: rgb(190, 189, 189) !important;

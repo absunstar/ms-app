@@ -1,0 +1,108 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <table id="basicInformationTable" class="table hover bold">
+
+                    <tr>
+                        <td class="title">##word.code##</td>
+                        <td class="center userPrint blue">{{job.code}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.job_title##</td>
+                        <td class="center">{{job.job_title}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.company##</td>
+                        <td class="center">{{job.company.name_##session.lang##}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.status##</td>
+                        <td ng-show="job.active == true" class="green center"> ##word.active## </td>
+                        <td ng-show="job.active == false" class="red center"> ##word.not_active## </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="title">##word.job_responsibilities##</td>
+                        <td class="center">{{job.job_responsibilities}}</td>
+                    </tr>
+
+                    
+                    <tr>
+                        <td class="title">##word.job_required_skills##</td>
+                        <td class="center">{{job.job_required_skills}}</td>
+                    </tr>
+
+                    
+                    <tr>
+                        <td class="title">##word.job_seeker_received_benefits##</td>
+                        <td class="center">{{job.job_seeker_received_benefits}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.job_type##</td>
+                        <td class="center">{{job.job_type.##session.lang##}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.application_deadline_date##</td>
+                        <td class="center">{{job.application_deadline_date | date:"dd/MM/yyyy"}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.job_field##</td>
+                        <td class="center">{{job.job_field.name_##session.lang##}}</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="title">##word.job_subfield##</td>
+                        <td class="center">{{job.job_subfield.name_##session.lang##}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.years_of_experience##</td>
+                        <td class="center">{{job.years_of_experience.name_##session.lang##}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.industry##</td>
+                        <td class="center">{{job.industry.name_##session.lang##}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.qualification##</td>
+                        <td class="center">{{job.qualification.name_##session.lang##}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.remuneration##</td>
+                        <td class="center">{{job.remuneration}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.country##</td>
+                        <td class="center">{{job.country.name_##session.lang##}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.city##</td>
+                        <td class="center">{{job.city.name_##session.lang##}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.full_address##</td>
+                        <td class="center">{{job.full_address}}</td>
+                    </tr>
+                
+
+                </table>
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="job.image"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+
+<div x-import="job/action_info.html"></div>

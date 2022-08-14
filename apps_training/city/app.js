@@ -19,7 +19,7 @@ module.exports = function init(site) {
         code: '1-Test',
         name_ar: 'مدينة إفتراضية',
         name_en: 'Default City',
-        image_url: '/images/city.png',
+        image: '/images/city.png',
         active: true,
       },
       (err, doc1) => {}

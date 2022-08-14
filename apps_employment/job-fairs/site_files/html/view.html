@@ -21,12 +21,38 @@
                         <td ng-show="job_fairs.active == false" class="red center"> ##word.not_active## </td>
                     </tr>
 
+                    <tr>
+                        <td class="title">##word.website##</td>
+                        <td class="center">{{job_fairs.website}}</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="title">##word.field##</td>
+                        <td class="center">{{job_fairs.field}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.event_date##</td>
+                        <td class="center"> {{job_fairs.event_date | date:"dd/MM/yyyy"}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.site##</td>
+                        <td ng-show="job_fairs.site == 'online'" class="center"> ##word.online## </td>
+                        <td ng-show="job_fairs.site == offline" class="center"> ##word.offline## </td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.job_fair_description##</td>
+                        <td class="center">{{job_fairs.description}}</td>
+                    </tr>
+
                 </table>
             </div>
 
-         <!--    <div class="col3">
-                <i-image view ng-model="job_fairs.image_url"></i-image>
-            </div> -->
+            <div class="col3">
+                <i-image view ng-model="job_fairs.image"></i-image>
+            </div>
 
         </fieldset>
     </div>

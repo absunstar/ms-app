@@ -1,7 +1,8 @@
-<script src="/x-js/all.js?v=##site.options.version##"></script>
-<script src="/x-js/bootstrap5.js?v=##site.options.version##"></script>
+<script src="/x-js/bootstrap-5-support.js?v=##site.options.version##"></script>
 <script>
     site.features = '##req.features##';
+    site.session = '##req.session##';
+    
     site.feature = (f)=> site.features.indexOf(f) !== -1;
 
     setTimeout(() => {

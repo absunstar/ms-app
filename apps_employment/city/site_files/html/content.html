@@ -1,0 +1,33 @@
+<div class="form">
+  <fieldset>
+    <legend>##word.basic_information##</legend>
+  <div id="basicInformation" class="">
+   
+      <div class="row">
+        <div class="col9">
+          <div class="row">
+              <i-control type="text" class="col2" ng-hide="disabledCode" ng-model="city.code" label="##word.code##"></i-control>
+              <i-control type="text" class="col4" v="r" ng-model="city.name_ar" label="##word.city_name##" ></i-control>
+              <i-control type="text" class="col4" v="r" ng-model="city.name_en" label="##word.name_en##"></i-control>
+              <i-checkbox  class="col2" label="##word.active##" ng-model="city.active">
+              </i-checkbox>
+
+          </div>
+          <div class="row" ng-show="'##query.id##' == 'undefined'">
+
+            <i-list help-id="" v="r" class="col4" label="##word.country##" ng-model="city.country"
+            display="name_##session.lang##" items="countryList" ng-search="_search.$city_country"></i-list>
+          </div>
+         
+        </div>
+
+         <div class="col3">
+          <i-image help-id="city_logo" ng-model="city.image"></i-image>
+        </div>
+
+      </div>
+    
+  </div>
+  </fieldset>
+</div>
+

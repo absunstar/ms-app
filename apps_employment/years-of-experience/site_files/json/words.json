@@ -33,8 +33,13 @@
         "name": "years_of_experience_name",
         "en": "Years Of Experience Name",
         "ar": "إسم سنوات الخبرة "
+    },
+    {
+        "name": "experience",
+        "en": "Experience",
+        "ar": "الخبرة"
     }
-
+    
 
 
 

@@ -1,0 +1,40 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <table id="basicInformationTable" class="table hover bold">
+
+                    <tr>
+                        <td class="title">##word.code##</td>
+                        <td class="center userPrint blue">{{job_subfields.code}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.job_field##</td>
+                        <td class="center">{{job_subfields.job_field.name_##session.lang##}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.job_subfields_name##</td>
+                        <td class="center">{{job_subfields.name_##session.lang##}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.status##</td>
+                        <td ng-show="job_subfields.active == true" class="green center"> ##word.active## </td>
+                        <td ng-show="job_subfields.active == false" class="red center"> ##word.not_active## </td>
+                    </tr>
+
+                </table>
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="job_subfields.image"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+
+<div x-import="job-subfields/action_info.html"></div>

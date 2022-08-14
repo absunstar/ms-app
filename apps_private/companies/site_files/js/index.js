@@ -6,7 +6,7 @@ app.controller("companies", function ($scope, $http, $timeout) {
   $scope.displayAddcompany = function () {
     $scope.error = '';
     $scope.company = {
-      image_url: '/images/company.png',
+      image: '/images/company.png',
       calender_type: 'gegorian',
       active: true,
       branch_count: 1,

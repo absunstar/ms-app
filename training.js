@@ -7,6 +7,10 @@ const site = require('isite')({
   mongodb: {
     db: 'training',
     limit: 100000,
+    events: true,
+    identity: {
+        enabled: !0,
+    },
   },
   security: {
     keys: ['e698f2679be5ba5c9c0b0031cb5b057c', '9705a3a85c1b21118532fefcee840f99'],

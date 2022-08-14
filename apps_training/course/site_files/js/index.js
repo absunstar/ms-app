@@ -6,7 +6,7 @@ app.controller('course', function ($scope, $http, $timeout) {
   $scope.displayAddCourse = function () {
     $scope.error = '';
     $scope.course = {
-      image_url: '/images/course.png',
+      image: '/images/course.png',
       active: true,
     };
 

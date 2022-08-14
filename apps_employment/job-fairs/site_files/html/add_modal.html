@@ -1,20 +1,22 @@
-
-<div class="modal" id="jobFairsAddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
+<div id="jobFairsAddModal" class="modal" fixed>
+  <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title"><i class="fas fa-plus-circle"></i> ##word.job_fairs_add## </h3>
-        <button type="button" class="btn-close" onclick="site.hideModal( '#jobFairsAddModal')" data-bs-dismiss="modal" aria-label="Close"></button>
+          <span class="close">&times;</span>
+          <h2 class="center">
+              ##word.job_fairs_add##
+              <i class="fa fa-plus "></i>
+          </h2>
+
       </div>
+
       <div class="modal-body">
-        <div x-import="job-fairs/content.html"></div>
+          <div x-import="job-fairs/content.html"></div>
       </div>
-      <div class="modal-footer">
-        <h2 class="bold text-center text-danger">{{error}}</h2>
-        <button type="button" class="btn btn-success" ng-click="addJobFairs()">##word.add##</button>
-  
-        <button type="button" class="btn btn-dark" onclick="site.hideModal( '#jobFairsAddModal')"><i class="fa fa-times" aria-hidden="true"></i> ##word.close##</button>
+
+      <div class="modal-footer center">
+          <h2 class="error"> {{error}} </h2>
+          <i-button type="add" label="##word.add##" ng-click="addJobFairs()"></i-button>
+          <i-button type="close" label="##word.close##" onclick="site.hideModal( '#jobFairsAddModal')"></i-button>
       </div>
-    </div>
   </div>
 </div>

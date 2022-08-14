@@ -37,7 +37,7 @@ app.controller("security", function ($scope, $http, $interval) {
       })
   };
 
-  $scope.user = { profile: { image_url: '/images/user.png', files: [] }, permissions: [], roles: [] };
+  $scope.user = { profile: { image: '/images/user.png', files: [] }, permissions: [], roles: [] };
 
   $scope.uploadImage = function (files) {
     var fd = new FormData();
@@ -59,7 +59,7 @@ app.controller("security", function ($scope, $http, $interval) {
     }).then(function (res) {
       if (res.data && res.data.done) {
         $scope.uploadStatus = "File Uploaded";
-        $scope.user.profile.image_url = res.data.image_url;
+        $scope.user.profile.image = res.data.image;
       }
     }, function (error) {
       $scope.uploadStatus = error;
@@ -167,7 +167,7 @@ app.controller("security", function ($scope, $http, $interval) {
     $scope.permissionEditor = false;
     $scope.imageEditor = false;
     $scope.fileEditor = false;
-    $scope.user = { profile: { image_url: '/images/user.png', files: [] }, permissions: [], roles: [] };
+    $scope.user = { profile: { image: '/images/user.png', files: [] }, permissions: [], roles: [] };
     site.showModal('#addUserModal');
   };
 
@@ -196,7 +196,7 @@ app.controller("security", function ($scope, $http, $interval) {
 
   $scope.edit = function (user) {
     $scope.view(user);
-    $scope.user = { profile: { image_url: '/images/user.png', files: [] }, permissions: [], roles: [] };
+    $scope.user = { profile: { image: '/images/user.png', files: [] }, permissions: [], roles: [] };
     site.showModal('#updateUserModal');
   };
   $scope.update = function () {
@@ -224,7 +224,7 @@ app.controller("security", function ($scope, $http, $interval) {
 
   $scope.remove = function (user) {
     $scope.view(user);
-    $scope.user = { profile: { image_url: '/images/user.png', files: [] }, permissions: [], roles: [] };
+    $scope.user = { profile: { image: '/images/user.png', files: [] }, permissions: [], roles: [] };
     site.showModal('#deleteUserModal');
   };
 
@@ -250,7 +250,7 @@ app.controller("security", function ($scope, $http, $interval) {
   };
   $scope.details = function (user) {
     $scope.view(user);
-    $scope.user = { profile: { image_url: '/images/user.png', files: [] }, permissions: [], roles: [] };
+    $scope.user = { profile: { image: '/images/user.png', files: [] }, permissions: [], roles: [] };
     site.showModal('#viewUserModal');
   };
   $scope.delete = function () {

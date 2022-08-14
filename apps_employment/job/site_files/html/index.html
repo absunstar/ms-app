@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="job_ui || job_manage" data-ng-app="myApp">
+  <head x-import="head.html"> </head>
+
+  <body class="##session.lang##" ng-controller="job">
+    <nav x-import="0/bar.html" class="sitebar" ng-controller="bar"></nav>
+
+    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
+    <div id="main-layout" class="container loaded">
+      <div class="row">
+        <div class="row">
+          <div x-permissions="job_add || job_manage" x-import="job/add_modal.html"></div>
+          <div x-permissions="job_update || job_manage" x-import="job/update_modal.html"></div>
+          <div x-permissions="job_delete || job_manage" x-import="job/delete_modal.html"></div>
+          <div x-permissions="job_view || job_manage" x-import="job/view_modal.html"></div>
+          <div x-permissions="job_search || job_manage" x-import="job/search_all_modal.html"></div>
+
+          <div class="row">
+            <h1 class="bold text-center">##word.Jobs##</h1>
+          </div>
+
+          <div class="top-actions">
+
+            <i-button x-permissions="job_add || job_manage" type="add" label="##word.job_new##" ng-click="displayAddJob()"></i-button>
+            <i-button x-permissions="job_search || job_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+
+            <h3 class="bold text-center">##word.count## : {{count}}</h3>
+            <h3 class="bold text-center text-danger">{{error}}</h3>
+          </div>
+
+          <table x-permissions="login" class="table table-striped text-center" id="t1">
+              <tr>
+                  <th class="not-print">##word.logo##</th>
+                <th>##word.code##</th>
+                <th>##word.job_name##</th>
+                <th>##word.status##</th>
+                <th class="not-print">##word.actions##</th>
+              </tr>
+            <tbody>
+              <tr ng-repeat="c in list">
+                 <td class="center not-print">
+                  <i-image view class="logo" ng-model="c.image"></i-image>
+                </td>
+                <td class="center userPrint blue">{{c.code}}</td>
+                <td class="center title">{{c.job_title}}</td>
+                <td class="center">
+                  <p ng-show="c.active ==true" class="green">##word.active##</p>
+                  <p ng-show="!c.active" class="red">##word.not_active##</p>
+                </td>
+
+                <td class="center not-print">
+
+                  <i-button x-permissions="job_view || job_manage" type="view" label="##word.details##" ng-click="displayDetailsJob(c)"></i-button>
+                  <i-button x-permissions="job_update || job_manage" type="edit" label="##word.edit##" ng-click="displayUpdateJob(c)"></i-button>
+                  <i-button x-permissions="job_update || job_manage" ng-show="!c.active" label="##word.activate##" ng-click="c.active = true; updateActivate(c)"></i-button>
+                  <i-button x-permissions="job_update || job_manage" ng-show="c.active" label="##word.deactivate##" ng-click="c.active = false; updateActivate(c)"></i-button>
+                  <i-button x-permissions="job_delete || job_manage" type="delete" label="##word.delete##" ng-click="displayDeleteJob(c)"></i-button>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="container mt-3">
+            <i-button x-permissions="job_print || job_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>        
+            <i-button x-permissions="job_print || job_manage" type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'job.xlsx')"></i-button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div x-import="0/scripts.html"></div>
+    <script x-import="job/index.js"></script>
+  </body>
+</html>

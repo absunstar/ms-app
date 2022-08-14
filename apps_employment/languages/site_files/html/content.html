@@ -4,32 +4,21 @@
       <legend>##word.basic_information##</legend>
       <div class="row">
         <div class="col9">
+
+          <div class="row">
+            <i-control type="text" class="col2" ng-hide="disabledCode" ng-model="language.code" label="##word.code##"></i-control>
+            <i-control type="text" class="col4" v="r" ng-model="language.name_ar" label="##word.languages_name##" ></i-control>
+            <i-control type="text" class="col4" v="r" ng-model="language.name_en" label="##word.name_en##"></i-control>
+            <i-checkbox  class="col2" label="##word.active##" ng-model="language.active">
+            </i-checkbox>
+
+          </div>
         
-          <div class="row g-2">
-            <div class="col">
-                <input type="text" ng-hide="disabledCode" class="form-control" ng-model="language.code" placeholder="##word.code##" aria-label="code" aria-describedby="basic-addon1" />
-            </div>
-            <div class="col">
-                <div class="form-check">
-                    <input class="form-check-input" ng-model="language.active" type="checkbox" value="" id="flexCheckDefault" />
-                    <label class="form-check-label" for="flexCheckDefault"> ##word.active## </label>
-                  </div>
-            </div>
-          </div>
-          <div class="row g-2">
-            <div class="col">
-                <input type="text" v="r" class="form-control" ng-model="language.name_ar" placeholder="##word.languages_name##" aria-label="name_ar" aria-describedby="basic-addon1" />
-            </div>
-            <div class="col">
-                <input type="text" v="r" class="form-control" ng-model="language.name_en" placeholder="##word.name_en##" aria-label="name_en" aria-describedby="basic-addon1" />
-            </div>
-          </div>
-         
         </div>
 
-        <!--  <div class="col3">
-          <i-image help-id="languages_logo" ng-model="language.image_url"></i-image>
-        </div> -->
+          <div class="col3">
+          <i-image help-id="languages_logo" ng-model="language.image"></i-image>
+        </div>
       </div>
     </fieldset>
   </div>

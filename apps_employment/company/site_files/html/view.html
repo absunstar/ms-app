@@ -21,12 +21,70 @@
                         <td ng-show="company.active == false" class="red center"> ##word.not_active## </td>
                     </tr>
 
+                    <tr>
+                        <td class="title">##word.email_address##</td>
+                        <td class="center">{{company.email_address}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.website_address##</td>
+                        <td class="center">{{company.website_address}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.phone##</td>
+                        <td class="center">{{company.phone}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.industry##</td>
+                        <td class="center">{{company.industry.name_##session.lang##}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.est_since##</td>
+                        <td class="center">{{company.est_since | date:"dd/MM/yyyy"}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.about_company##</td>
+                        <td class="center">{{company.about_company}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.facebook##</td>
+                        <td class="center">{{company.facebook}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.Twitter##</td>
+                        <td class="center">{{company.Twitter}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.linkedin##</td>
+                        <td class="center">{{company.linkedin}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.google_plus##</td>
+                        <td class="center">{{company.google_plus}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.country##</td>
+                        <td class="center">{{company.country.name_##session.lang##}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.city##</td>
+                        <td class="center">{{company.city.name_##session.lang##}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.full_address##</td>
+                        <td class="center">{{company.full_address}}</td>
+                    </tr>
+
                 </table>
             </div>
 
-         <!--    <div class="col3">
-                <i-image view ng-model="company.image_url"></i-image>
-            </div> -->
+             <div class="col3">
+                <i-image view ng-model="company.image"></i-image>
+            </div>
 
         </fieldset>
     </div>

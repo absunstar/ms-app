@@ -19,7 +19,7 @@ module.exports = function init(site) {
         code: '1-Test',
         name_ar: 'شريك إفتراضية',
         name_en: 'Default Partner',
-        image_url: '/images/partner.png',
+        image: '/images/partner.png',
         active: true,
       },
       (err, doc1) => {}

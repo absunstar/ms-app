@@ -6,7 +6,7 @@ app.controller('languages', function ($scope, $http, $timeout) {
   $scope.displayAddLanguage = function () {
     $scope.error = '';
     $scope.language = {
-      image_url: '/images/language.png',
+      image: '/images/language.png',
       active: true,
     };
 

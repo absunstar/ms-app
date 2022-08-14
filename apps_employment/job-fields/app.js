@@ -19,7 +19,7 @@ module.exports = function init(site) {
         code: '1-Test',
         name_ar: 'مجال عمل إفتراضي',
         name_en: 'Default Job Field',
-        image_url: '/images/job_fields.png',
+        image: '/images/job_fields.png',
         active: true,
       },
       (err, doc1) => {}
@@ -233,7 +233,8 @@ module.exports = function init(site) {
     };
 
     let where = req.body.where || {};
-  
+
+
     if (where['name_ar']) {
       where['name_ar'] = site.get_RegExp(where['name_ar'], 'i');
     }
@@ -241,6 +242,21 @@ module.exports = function init(site) {
     if (where['name_en']) {
       where['name_en'] = site.get_RegExp(where['name_en'], 'i');
     }
+
+    if(where['not_active']){
+      where['active'] = false;
+    }
+
+    if(where['active_search']){
+      where['active'] = true;
+    }
+
+    if(where['not_active'] && where['active_search']){
+      delete where['active'];
+    }
+
+    delete where['active_search'];
+    delete where['not_active'];
 
     $job_fields.findMany(
       {
