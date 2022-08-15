@@ -1,0 +1,17 @@
+[
+    {
+        "name": "short_listed_resumes",
+        "en": "ShortListed Resumes",
+        "ar": "السيرة الذاتية المختصرة"
+    },
+    {
+        "name": "best_short_listed_resumes",
+        "en": "ShortListed Resumes",
+        "ar": "أفضل السيرة الذاتية"
+    },
+    {
+        "name": "download_cv",
+        "en": "Download CV.",
+        "ar": "تنزيل السيرة الذاتية"
+    }
+]

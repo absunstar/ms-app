@@ -200,7 +200,7 @@ app.controller('job_subfields', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
           site.hideModal('#jobSubFieldsSearchModal');
@@ -228,7 +228,7 @@ app.controller('job_subfields', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.jobFieldsList = response.data.list;
           if ('##query.id##' != 'undefined') {
             $scope.job_field = $scope.jobFieldsList.find((_job_fields) => {

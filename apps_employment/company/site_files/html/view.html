@@ -14,7 +14,10 @@
                         <td class="title">##word.company_name##</td>
                         <td class="center">{{company.name_##session.lang##}}</td>
                     </tr>
-
+                    <tr>
+                        <td class="title">##word.approve##</td>
+                        <td class="center">{{company.##session.lang##}}</td>
+                    </tr>
                     <tr>
                         <td class="title">##word.status##</td>
                         <td ng-show="company.active == true" class="green center"> ##word.active## </td>
@@ -46,7 +49,7 @@
                     </tr>
                     <tr>
                         <td class="title">##word.about_company##</td>
-                        <td class="center">{{company.about_company}}</td>
+                        <td class="center lines_text">{{company.about_company}}</td>
                     </tr>
                     <tr>
                         <td class="title">##word.facebook##</td>
@@ -76,14 +79,50 @@
 
                     <tr>
                         <td class="title">##word.full_address##</td>
-                        <td class="center">{{company.full_address}}</td>
+                        <td class="center lines_text">{{company.full_address}}</td>
                     </tr>
 
                 </table>
+
+                <div class="row">
+
+                    <div class="row">
+                        <h2> ##word.open_position## {{jopsList.length || 0}}</h2>
+                    </div>
+                    <table  class="table table-striped text-center">
+                        <tr>
+                           <th class="not-print">##word.logo##</th>
+                          <th>##word.job_title##</th>
+                          <th>##word.application_deadline_date##</th>
+                          <th>##word.contact_information##</th>
+                          <th>##word.job_field##</th>
+                        </tr>
+                      <tbody>
+                        <tr ng-repeat="c in jopsList" ng-click="viewJob(c)">
+                            <td class="center not-print">
+                            <i-image view class="logo" ng-model="c.image"></i-image>
+                          </td>
+                          <td>
+                            {{c.job_title}}
+                          </td>
+                          <td>
+                            {{c.application_deadline_date | date:"dd/MM/yyyy"}}
+                          </td>
+                          <td>
+                            {{c.company.name_##session.lang##}} , {{c.city.name_##session.lang##}}
+                          </td>
+                          <td>
+                            {{c.job_field.name_##session.lang##}}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
             </div>
 
              <div class="col3">
                 <i-image view ng-model="company.image"></i-image>
+                <i-file view ng-model="company.company_profile"></i-file>
             </div>
 
         </fieldset>

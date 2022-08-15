@@ -1,48 +1,56 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="company_ui || company_manage" data-ng-app="myApp">
+<html lang="en"  data-ng-app="myApp" x-permissions="admin || employer">
   <head x-import="head.html"> </head>
 
-  <body class="##session.lang##" ng-controller="company">
+  <body class="##session.lang##" ng-controller="company" x-permissions="login">
     <nav x-import="0/bar.html" class="sitebar" ng-controller="bar"></nav>
 
     <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
     <div id="main-layout" class="container loaded">
       <div class="row">
         <div class="row">
-          <div x-permissions="company_add || company_manage" x-import="company/add_modal.html"></div>
-          <div x-permissions="company_update || company_manage" x-import="company/update_modal.html"></div>
-          <div x-permissions="company_delete || company_manage" x-import="company/delete_modal.html"></div>
-          <div x-permissions="company_view || company_manage" x-import="company/view_modal.html"></div>
-          <div x-permissions="company_search || company_manage" x-import="company/search_all_modal.html"></div>
+          <div x-import="company/add_modal.html"></div>
+          <div x-import="company/update_modal.html"></div>
+          <div x-import="company/delete_modal.html"></div>
+          <div x-import="company/view_modal.html"></div>
+          <div x-import="company/search_all_modal.html"></div>
+          <div x-import="job/view_modal.html"></div>
 
           <div class="row">
             <h1 class="bold text-center">##word.companies##</h1>
           </div>
 
+          <div class="row" x-permissions="employer">
+            <h3 class="bold text-center">##word.you_are_managing## {{list.length}} ##word.company##</h3>
+          </div>
+
           <div class="top-actions">
 
-            <i-button x-permissions="company_add || company_manage" type="add" label="##word.company_new##" ng-click="displayAddCompany()"></i-button>
-            <i-button x-permissions="company_search || company_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+            <i-button  type="add" label="##word.company_new##" x-permissions="employer" ng-click="displayAddCompany()"></i-button>
+            <i-button  type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
 
-            <h3 class="bold text-center">##word.count## : {{count}}</h3>
+            <h3 class="bold text-center">##word.count## : {{count || 0}}</h3>
             <h3 class="bold text-center text-danger">{{error}}</h3>
           </div>
 
-          <table x-permissions="login" class="table table-striped text-center" id="t1">
+          <table  class="table table-striped text-center" id="t1">
               <tr>
                  <th class="not-print">##word.logo##</th>
                 <th>##word.code##</th>
                 <th>##word.company_name##</th>
+                <th>##word.approve##</th>
                 <th>##word.status##</th>
                 <th class="not-print">##word.actions##</th>
               </tr>
             <tbody>
+
               <tr ng-repeat="c in list">
                   <td class="center not-print">
                   <i-image view class="logo" ng-model="c.image"></i-image>
                 </td>
                 <td class="center userPrint blue">{{c.code}}</td>
                 <td class="center title">{{c.name_##session.lang##}}</td>
+                <td class="center title">{{c.approve.##session.lang##}}</td>
                 <td class="center">
                   <p ng-show="c.active ==true" class="green">##word.active##</p>
                   <p ng-show="!c.active" class="red">##word.not_active##</p>
@@ -50,18 +58,18 @@
 
                 <td class="center not-print">
 
-                  <i-button x-permissions="company_view || company_manage" type="view" label="##word.details##" ng-click="displayDetailsCompany(c)"></i-button>
-                  <i-button x-permissions="company_update || company_manage" type="edit" label="##word.edit##" ng-click="displayUpdateCompany(c)"></i-button>
-                  <i-button x-permissions="company_update || company_manage" ng-show="!c.active" label="##word.activate##" ng-click="c.active = true; updateActivate(c)"></i-button>
-                  <i-button x-permissions="company_update || company_manage" ng-show="c.active" label="##word.deactivate##" ng-click="c.active = false; updateActivate(c)"></i-button>
-                  <i-button x-permissions="company_delete || company_manage" type="delete" label="##word.delete##" ng-click="displayDeleteCompany(c)"></i-button>
+                  <i-button  type="view" label="##word.details##" ng-click="displayDetailsCompany(c)"></i-button>
+                  <i-button  type="edit" label="##word.edit##" ng-click="displayUpdateCompany(c)"></i-button>
+                  <i-button  ng-show="!c.active" label="##word.activate##" ng-click="c.active = true; updateActivate(c)"></i-button>
+                  <i-button  ng-show="c.active" label="##word.deactivate##" ng-click="c.active = false; updateActivate(c)"></i-button>
+                  <i-button  type="delete" label="##word.delete##" ng-click="displayDeleteCompany(c)"></i-button>
 
                 </td>
               </tr>
             </tbody>
           </table>
-          <i-button x-permissions="company_print || company_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>        
-          <i-button x-permissions="company_print || company_manage" type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'company.xlsx')"></i-button>
+          <i-button type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>        
+          <i-button type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'company.xlsx')"></i-button>
         </div>
       </div>
     </div>

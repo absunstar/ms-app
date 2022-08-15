@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="qualification_ui || qualification_manage" data-ng-app="myApp">
+<html lang="en" x-permissions="admin" data-ng-app="myApp">
   <head x-import="head.html"> </head>
 
   <body class="##session.lang##" ng-controller="qualification">
@@ -10,21 +10,21 @@
     <div id="main-layout" class="container loaded">
       <div class="row">
         <div class="row">
-          <div x-permissions="qualification_add || qualification_manage" x-import="qualification/add_modal.html"></div>
-          <div x-permissions="qualification_update || qualification_manage" x-import="qualification/update_modal.html"></div>
-          <div x-permissions="qualification_delete || qualification_manage" x-import="qualification/delete_modal.html"></div>
-          <div x-permissions="qualification_view || qualification_manage" x-import="qualification/view_modal.html"></div>
-          <div x-permissions="qualification_search || qualification_manage" x-import="qualification/search_all_modal.html"></div>
+          <div  x-import="qualification/add_modal.html"></div>
+          <div  x-import="qualification/update_modal.html"></div>
+          <div  x-import="qualification/delete_modal.html"></div>
+          <div  x-import="qualification/view_modal.html"></div>
+          <div  x-import="qualification/search_all_modal.html"></div>
 
           <div class="row">
             <h1 class="bold text-center">##word.qualifications##</h1>
           </div>
 
           <div class="top-actions">
-            <i-button x-permissions="qualification_add || qualification_manage" type="add" label="##word.qualification_new##" ng-click="displayAddQualification()"></i-button>
-            <i-button x-permissions="qualification_search || qualification_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+            <i-button  type="add" label="##word.qualification_new##" ng-click="displayAddQualification()"></i-button>
+            <i-button  type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
 
-            <h3 class="bold text-center">##word.count## : {{count}}</h3>
+            <h3 class="bold text-center">##word.count## : {{count || 0}}</h3>
             <h3 class="bold text-center text-danger">{{error}}</h3>
           </div>
 
@@ -50,19 +50,19 @@
 
                 <td class="center not-print">
 
-                  <i-button x-permissions="qualification_view || qualification_manage" type="view" label="##word.details##" ng-click="displayDetailsQualification(c)"></i-button>
-                  <i-button x-permissions="qualification_update || qualification_manage" type="edit" label="##word.edit##" ng-click="displayUpdateQualification(c)"></i-button>
-                  <i-button x-permissions="qualification_update || qualification_manage" ng-show="!c.active" label="##word.activate##" ng-click="c.active = true; updateActivate(c)"></i-button>
-                  <i-button x-permissions="qualification_update || qualification_manage" ng-show="c.active" label="##word.deactivate##" ng-click="c.active = false; updateActivate(c)"></i-button>
-                  <i-button x-permissions="qualification_delete || qualification_manage" type="delete" label="##word.delete##" ng-click="displayDeleteQualification(c)"></i-button>
+                  <i-button  type="view" label="##word.details##" ng-click="displayDetailsQualification(c)"></i-button>
+                  <i-button  type="edit" label="##word.edit##" ng-click="displayUpdateQualification(c)"></i-button>
+                  <i-button  ng-show="!c.active" label="##word.activate##" ng-click="c.active = true; updateActivate(c)"></i-button>
+                  <i-button  ng-show="c.active" label="##word.deactivate##" ng-click="c.active = false; updateActivate(c)"></i-button>
+                  <i-button  type="delete" label="##word.delete##" ng-click="displayDeleteQualification(c)"></i-button>
 
                 </td>
               </tr>
             </tbody>
           </table>
 
-          <i-button x-permissions="qualification_print || qualification_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>        
-          <i-button x-permissions="qualification_print || qualification_manage" type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'qualification.xlsx')"></i-button>
+          <i-button  type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>        
+          <i-button  type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'qualification.xlsx')"></i-button>
 
         </div>
       </div>

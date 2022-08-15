@@ -32,7 +32,6 @@ module.exports = function init(site) {
       feedback_list: [],
       other_addresses_list: [],
       ip: req.ip,
-      permissions: ['user'],
       active: true,
       profile: {
         files: [],
@@ -44,13 +43,16 @@ module.exports = function init(site) {
       $req: req,
       $res: res,
     };
-   
 
-    if (site.defaultSettingDoc && site.defaultSettingDoc.stores_settings && site.defaultSettingDoc.stores_settings.maximum_stores) {
-      user.maximum_stores = site.defaultSettingDoc.stores_settings.maximum_stores;
-    } else {
-      user.maximum_stores = 10;
+    if(user.profile.type == 'admin'){
+      user.roles = [{name : 'admin'}]
+    } else if(user.profile.type == 'employer'){
+      user.roles = [{name : 'employer'}]
+    } else if(user.profile.type == 'job-seeker'){
+      user.roles = [{name : 'job_seeker'}]
+      user.short_list = [];
     }
+   
 
     site.security.register(user, function (err, doc) {
       if (!err) {

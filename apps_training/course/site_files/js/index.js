@@ -200,7 +200,7 @@ app.controller('course', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
           site.hideModal('#courseSearchModal');
@@ -228,7 +228,7 @@ app.controller('course', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.trainingCategoryList = response.data.list;
           if ('##query.id##' != 'undefined') {
             $scope.training_category = $scope.trainingCategoryList.find((_trainingCategory) => {

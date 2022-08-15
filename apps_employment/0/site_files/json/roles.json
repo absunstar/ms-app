@@ -1,9 +1,27 @@
 [{
     "module_name":"public",
-    "name": "companies_admin",
-    "en": "POS Add Admin",
+    "name": "admin",
+    "en": "Admin",
+    "ar": "مسئول",
+    "permissions": [
+        "admin"
+    ]
+},
+{
+    "module_name":"public",
+    "name": "employer",
+    "en": "Employer",
     "ar": "إدارة نقاط البيع",
     "permissions": [
-        "*"
+        "employer"
+    ]
+},
+{
+    "module_name":"public",
+    "name": "job_seeker",
+    "en": "Job Seeker",
+    "ar": "باحث عن عمل",
+    "permissions": [
+        "job_seeker"
     ]
 }]

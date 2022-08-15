@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"  data-ng-app="myApp" x-permissions="admin">
+  <head x-import="head.html"> </head>
+
+  <body class="##session.lang##" ng-controller="reportStatsJobs">
+    <nav x-import="0/bar.html" class="sitebar" ng-controller="bar"></nav>
+
+    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
+    <div id="main-layout" class="container loaded">
+      <div class="row">
+        <div class="row">
+
+          <div class="row">
+            <h1 class="bold text-center">##word.report## ##word.jobs_per_company_statistics##</h1>
+          </div>
+
+          <div class="top-actions">
+            <i-button type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+          </div>
+
+          <table x-permissions="login" class="table table-striped text-center" id="t1">
+            <tr>
+            
+              <th>##word.company_name##</th>
+              <th>##word.employment_number##</th>
+            
+            </tr>
+          <tbody>
+            <tr ng-repeat="c in list">
+
+              <td class="center">{{c.name_##session.lang##}}</td>
+              <td class="center">{{c.jobs_count || 0}}</td>
+             
+            </tr>
+          </tbody>
+          </table>
+
+
+          <i-button type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>        
+          <i-button type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'city.xlsx')"></i-button>
+        </div>
+      </div>
+    </div>
+
+    <div x-import="0/scripts.html"></div>
+    <script x-import="report-stats-jobs/index.js"></script>
+  </body>
+</html>

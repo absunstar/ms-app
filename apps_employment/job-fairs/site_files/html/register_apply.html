@@ -1,0 +1,28 @@
+<div id="registerApplyModal" class="modal" fixed>
+  <div class="modal-content">
+      <div class="modal-header">
+          <span class="close">&times;</span>
+          <h2 class="center">
+              ##word.job_fairs_add##
+              <i class="fa fa-plus "></i>
+          </h2>
+
+      </div>
+
+      <div class="modal-body">
+          <div class="row" ng-show="found_apply">
+            <b>##word.you_are_all_set_you_registered_this_job_fair_before##</b>
+            <h3>##word.fair_details## : {{job_fairs.name_##session.lang##}} ##word.at## {{job_fairs.website}} ##word.on## {{job_fairs.event_date | date:"dd/MM/yyyy"}}</h3>
+          </div>
+          <div class="row" ng-show="!found_apply">
+            <b>##word.you_are_all_set_have_been_registered_this_job_fair##</b>
+            <h3>##word.fair_details## : {{job_fairs.name_##session.lang##}} ##word.at## {{job_fairs.website}} ##word.on## {{job_fairs.event_date | date:"dd/MM/yyyy"}}</h3>
+          </div>
+      </div>
+
+      <div class="modal-footer center">
+          <h2 class="error"> {{error}} </h2>
+          <i-button type="close" label="##word.close##" onclick="site.hideModal( '#registerApplyModal')"></i-button>
+      </div>
+  </div>
+</div>

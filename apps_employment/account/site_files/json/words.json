@@ -7,7 +7,57 @@
     {
         "name": "account",
         "en": "Account",
-        "ar": "الحساب"
+        "ar": "حساب"
+    },
+    {
+        "name": "admin",
+        "en": "Admin",
+        "ar": "مسئول"
+    },
+    {
+        "name": "sure_you_want_to_activate",
+        "en": "Are you sure you want to Activate?",
+        "ar": "هل أنت متأكد أنك تريد التنشيط؟"
+    },
+    {
+        "name": "sure_you_want_to_deactivate",
+        "en": "Are you sure you want to Deactivate?",
+        "ar": "هل أنت متأكد أنك تريد إلغاء التنشيط؟"
+    },
+    {
+        "name": "create_account_admin",
+        "en": "Create an account mployer",
+        "ar": "أنشئ حساب مسئول"
+    },
+    {
+        "name": "create_account_employer",
+        "en": "Create an account Employer",
+        "ar": "أنشئ حساب صاحب شركة"
+    },
+    {
+        "name": "create_account_job_seeker",
+        "en": "Create an account Job Seeker",
+        "ar": "أنشئ حساب باحث عن عمل"
+    },
+    {
+        "name": "deactivate",
+        "en": "DeActivate",
+        "ar": "إلغاء التنشيط"
+    },
+    {
+        "name": "activate",
+        "en": "Activate",
+        "ar": "تنشيط"
+    },
+    {
+        "name": "activation",
+        "en": "Activation",
+        "ar": "رابط التنشيط"
+    },
+    {
+        "name": "unlimited_compaies",
+        "en": "Unlimited Compaies",
+        "ar": "شركات غير محدودة"
     },
     {
         "name": "account_new",

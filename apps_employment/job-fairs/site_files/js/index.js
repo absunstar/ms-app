@@ -2,19 +2,16 @@ app.controller('job_fairs', function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.job_fairs = {};
+  $scope.apply = {};
 
-  $scope.displayAttendance = function (c) {
-    $scope.error = '';
-    $scope.job_fairs = c;
-
-    site.showModal('#attendanceModal');
-  };
+ 
 
   $scope.displayAddJobFairs = function () {
     $scope.error = '';
     $scope.job_fairs = {
       image: '/images/job_fairs.png',
       active: true,
+      apply_list : []
     };
 
     site.showModal('#jobFairsAddModal');
@@ -199,7 +196,7 @@ app.controller('job_fairs', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
           site.hideModal('#jobFairsSearchModal');
@@ -211,6 +208,118 @@ app.controller('job_fairs', function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     );
+  };
+
+  $scope.getJobSeeker = function () {
+    $scope.busy = true;
+    $scope.jobSeekerList = [];
+
+    $http({
+      method: 'POST',
+      url: '/api/users/all',
+      data: {
+        where: {'profile.type' : 'job-seeker'},
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.users && response.data.users.length > 0) {
+          $scope.jobSeekerList = response.data.users;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.selectJobSeeker = function (c) {
+    $scope.error = '';
+    if(c && c.id){
+      $scope.apply.name = c.profile.name;
+      $scope.apply.email = c.email;
+    }
+  };
+
+  $scope.attendance = function (c) {
+    $scope.error = '';
+    const v = site.validated('#attendanceModal');
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
+
+    $scope.updateActivate($scope.job_fairs);
+    site.hideModal('#attendanceModal');
+
+  };
+
+  $scope.registerApplyJobSeeker = function (c) {
+    $scope.error = '';
+    $scope.job_fairs = c;
+   $scope.found_apply = false;
+    $scope.job_fairs.apply_list.forEach(_app => {
+      if(_app.id == site.toNumber('##user.id##')){
+        $scope.found_apply = true;
+      }
+    });
+
+    if($scope.found_apply) {
+      site.showModal('#registerApplyModal');
+    } else if(!$scope.found_apply) {
+      $scope.job_fairs.apply_list.push({
+        name : '##user.profile.name##',
+        job_title : '##user.profile.job_title##',
+        email : '##user.email##',
+        apply_date : new Date(),
+        id : site.toNumber('##user.id##'),
+      });
+      $scope.updateActivate(c);
+      site.showModal('#registerApplyModal');
+    }
+
+  };
+
+  $scope.registerApply = function (c) {
+    $scope.error = '';
+    const v = site.validated('#applyModal');
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
+
+    if($scope.job_seeker && $scope.job_seeker.id) {
+      c.id == $scope.job_seeker.id;
+    };
+
+    $scope.job_fairs.apply_list = $scope.job_fairs.apply_list || [];
+    $scope.job_fairs.apply_list.push(c);
+    $scope.apply = {};
+    $scope.updateActivate($scope.job_fairs);
+    site.hideModal('#applyModal');
+
+  };
+
+  $scope.displayAttendance = function (c) {
+    $scope.error = '';
+    $scope.job_fairs = c;
+    if('##user.profile.type' == 'admin'){
+      
+      site.showModal('#attendanceModal');
+    } else if('##user.profile.type' == 'job-seeker') {
+      $scope.job_fairs.apply_list = $scope.job_fairs.apply_list || [];
+      $scope.job_fairs.apply_list.push(c);
+      $scope.apply = {};
+      $scope.updateActivate($scope.job_fairs);
+    }
+  };
+
+  $scope.displayApply = function (c) {
+    $scope.error = '';
+    $scope.job_fairs = c;
+
+    site.showModal('#applyModal');
   };
 
   $scope.getNumberingAuto = function () {
@@ -242,5 +351,6 @@ app.controller('job_fairs', function ($scope, $http, $timeout) {
   };
 
   $scope.getJobFairsList();
+  $scope.getJobSeeker();
   $scope.getNumberingAuto();
 });

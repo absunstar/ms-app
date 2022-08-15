@@ -18,7 +18,8 @@
 
       <div class="modal-footer center">
           <h2 class="error"> {{error}} </h2>
-          <i-button type="edit" label="##word.edit##" ng-click="updateJob(job)"></i-button>
+          <i-button label="##word.save_draft##" ng-click="addJob(job,'add')"></i-button>
+          <i-button type="add" label="##word.save_publish##" ng-click="addJob(job,'publish')"></i-button>
           <i-button type="close" label="##word.close##" onclick="site.hideModal( '#jobUpdateModal')"></i-button>
       </div>
   </div>

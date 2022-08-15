@@ -1,0 +1,12 @@
+[
+    {
+        "name": "job_seeker_search",
+        "en": "Job Seeker Search",
+        "ar": "البحث عن مرشح"
+    },
+    {
+        "name": "view_resume",
+        "en": "View Resume",
+        "ar": "عرض الملف الشخصي"
+    }
+]

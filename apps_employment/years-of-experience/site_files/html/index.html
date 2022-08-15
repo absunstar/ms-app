@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="years_of_experience_ui || years_of_experience_manage" data-ng-app="myApp">
+<html lang="en" x-permissions="admin" data-ng-app="myApp">
   <head x-import="head.html"> </head>
 
   <body class="##session.lang##" ng-controller="years_of_experience">
@@ -10,21 +10,21 @@
     <div id="main-layout" class="container loaded">
       <div class="row">
         <div class="row">
-          <div x-permissions="years_of_experience_add || years_of_experience_manage" x-import="years-of-experience/add_modal.html"></div>
-          <div x-permissions="years_of_experience_update || years_of_experience_manage" x-import="years-of-experience/update_modal.html"></div>
-          <div x-permissions="years_of_experience_delete || years_of_experience_manage" x-import="years-of-experience/delete_modal.html"></div>
-          <div x-permissions="years_of_experience_view || years_of_experience_manage" x-import="years-of-experience/view_modal.html"></div>
-          <div x-permissions="years_of_experience_search || years_of_experience_manage" x-import="years-of-experience/search_all_modal.html"></div>
+          <div  x-import="years-of-experience/add_modal.html"></div>
+          <div  x-import="years-of-experience/update_modal.html"></div>
+          <div  x-import="years-of-experience/delete_modal.html"></div>
+          <div  x-import="years-of-experience/view_modal.html"></div>
+          <div  x-import="years-of-experience/search_all_modal.html"></div>
 
           <div class="row">
             <h1 class="bold text-center">##word.years_of_experience##</h1>
           </div>
 
           <div class="top-actions">
-            <i-button x-permissions="years_of_experience_add || years_of_experience_manage" type="add" label="##word.years_of_experience_new##" ng-click="displayAddYearsOfExperience()"></i-button>
-            <i-button x-permissions="years_of_experience_search || years_of_experience_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+            <i-button  type="add" label="##word.years_of_experience_new##" ng-click="displayAddYearsOfExperience()"></i-button>
+            <i-button  type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
 
-            <h3 class="bold text-center">##word.count## : {{count}}</h3>
+            <h3 class="bold text-center">##word.count## : {{count || 0}}</h3>
             <h3 class="bold text-center text-danger">{{error}}</h3>
           </div>
 
@@ -36,7 +36,6 @@
                 <th>##word.status##</th>
                 <th class="not-print">##word.actions##</th>
               </tr>
-            </thead>
             <tbody>
               <tr ng-repeat="c in list">
                 <td class="center not-print">
@@ -51,19 +50,19 @@
 
                 <td class="center not-print">
 
-                  <i-button x-permissions="years_of_experience_view || years_of_experience_manage" type="view" label="##word.details##" ng-click="displayDetailsYearsOfExperience(c)"></i-button>
-                  <i-button x-permissions="years_of_experience_update || years_of_experience_manage" type="edit" label="##word.edit##" ng-click="displayUpdateYearsOfExperience(c)"></i-button>
-                  <i-button x-permissions="years_of_experience_update || years_of_experience_manage" ng-show="!c.active" label="##word.activate##" ng-click="c.active = true; updateActivate(c)"></i-button>
-                  <i-button x-permissions="years_of_experience_update || years_of_experience_manage" ng-show="c.active" label="##word.deactivate##" ng-click="c.active = false; updateActivate(c)"></i-button>
-                  <i-button x-permissions="years_of_experience_delete || years_of_experience_manage" type="delete" label="##word.delete##" ng-click="displayDeleteYearsOfExperience(c)"></i-button>
+                  <i-button  type="view" label="##word.details##" ng-click="displayDetailsYearsOfExperience(c)"></i-button>
+                  <i-button  type="edit" label="##word.edit##" ng-click="displayUpdateYearsOfExperience(c)"></i-button>
+                  <i-button  ng-show="!c.active" label="##word.activate##" ng-click="c.active = true; updateActivate(c)"></i-button>
+                  <i-button  ng-show="c.active" label="##word.deactivate##" ng-click="c.active = false; updateActivate(c)"></i-button>
+                  <i-button  type="delete" label="##word.delete##" ng-click="displayDeleteYearsOfExperience(c)"></i-button>
 
                 </td>
               </tr>
             </tbody>
           </table>
 
-          <i-button x-permissions="years_of_experience_print || years_of_experience_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>        
-          <i-button x-permissions="years_of_experience_print || years_of_experience_manage" type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'qualification.xlsx')"></i-button>
+          <i-button type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>        
+          <i-button type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'qualification.xlsx')"></i-button>
 
         </div>
       </div>

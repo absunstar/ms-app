@@ -1,0 +1,27 @@
+[
+    {
+        "name": "short_listed_resumes",
+        "en": "ShortListed Resumes",
+        "ar": "السيرة الذاتية المختصرة"
+    },
+    {
+        "name": "download_cv",
+        "en": "Download CV.",
+        "ar": "تنزيل السيرة الذاتية"
+    },
+    {
+        "name": "hire",
+        "en": "Hire",
+        "ar": "توظيف"
+    },
+    {
+        "name": "unhire",
+        "en": "Unhire",
+        "ar": "ألغ التوظيف"
+    },
+    {
+        "name": "sure_you_want_to_unhire",
+        "en": "Are you sure you want to Unhire?",
+        "ar": "هل أنت متأكد أنك تريد إلغاء التوظيف"
+    }
+]

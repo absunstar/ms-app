@@ -1,8 +1,8 @@
-app.controller('login_souq', function ($scope, $http, $timeout) {
+app.controller('login', function ($scope, $http, $timeout) {
   $scope.user = {};
   $scope.login = function () {
     $scope.error = '';
-    const v = site.validated('#loginSouqModal');
+    const v = site.validated('#loginModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;

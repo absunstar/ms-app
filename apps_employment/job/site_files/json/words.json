@@ -10,6 +10,11 @@
         "ar": "الوظيفة"
     },
     {
+        "name": "job_approval",
+        "en": "Job Approval",
+        "ar": "الموافقة على الوظيفة"
+    },
+    {
         "name": "job_new",
         "en": "New Job",
         "ar": "وظيفة جديدة"
@@ -78,6 +83,42 @@
         "name": "address_location",
         "en": "Address / Location",
         "ar": "العنوان / الموقع"
+    },
+    {
+        "name": "jobs_posted",
+        "en": "Jobs Posted",
+        "ar": "وظائف تم نشرها"
+    },
+    {
+        "name": "jobs_posted",
+        "en": "Jobs Posted",
+        "ar": "وظائف تم نشرها"
+    },
+    {
+        "name": "applications",
+        "en": "Applications",
+        "ar": "التطبيقات"
+    },
+    {
+        "name": "jobs",
+        "en": "Jobs",
+        "ar": "وظائف"
+    },
+   
+    {
+        "name": "open_jobs",
+        "en": "Open Jobs",
+        "ar": "وظائف متاحة"
+    },
+    {
+        "name": "save_draft",
+        "en": "Save Draft",
+        "ar": "حفظ المسودة"
+    },
+    {
+        "name": "save_publish",
+        "en": "Save And Publish",
+        "ar": "إحفظ و أنشر"
     }
 
 ]

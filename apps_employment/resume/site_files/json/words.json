@@ -7,11 +7,31 @@
         "name": "update_your_profile_info",
         "en": "Update Your Profile Info",
         "ar": "تحديث معلومات ملف التعريف الخاص بك"
-    }, 
+    },
     {
         "name": "about_me",
         "en": "About Me",
         "ar": "نبذة عني"
+    },
+    {
+        "name": "shortlist",
+        "en": "Shortlist",
+        "ar": "قائمة مختصرة"
+    },
+    {
+        "name": "sure_you_want_to_remove_shortlist",
+        "en": "Are you sure you want to remove from the shortlist?",
+        "ar": "هل أنت متأكد أنك تريد إزالة قائمة مختصرة؟"
+    },
+    {
+        "name": "remove_shortlist",
+        "en": "Remove Shortlist",
+        "ar": "إزالة قائمة مختصرة"
+    },
+    {
+        "name": "contact_info_displayed_if_shortlist_candidate",
+        "en": "Contact info will be displayed here if you shortlist the candidate",
+        "ar": "سيتم عرض معلومات الاتصال هنا إذا قمت باختيار المرشح."
     },
     {
         "name": "education",
@@ -46,7 +66,12 @@
     {
         "name": "expiry",
         "en": "Expiry",
-        "ar": "الإنتهاء"
+        "ar": "إنتهاء الصلاحية"
+    },
+    {
+        "name": "created",
+        "en": "Created",
+        "ar": "إنشاء"
     },
     {
         "name": "joining",
@@ -82,6 +107,11 @@
         "name": "extra_curricular",
         "en": "Extra-Curricular",
         "ar": "الأنشطة"
+    },
+    {
+        "name": "my_resume",
+        "en": "My Resume",
+        "ar": "سيرتي الذاتية"
     },
     {
         "name": "enterprise_name",

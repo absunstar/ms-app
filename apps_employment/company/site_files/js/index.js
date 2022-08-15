@@ -13,6 +13,10 @@ app.controller('company', function ($scope, $http, $timeout) {
     site.showModal('#companyAddModal');
   };
 
+  if ('##query.post##' == 'true') {
+    $scope.displayAddCompany();
+  }
+
   $scope.addCompany = function () {
     $scope.error = '';
     const v = site.validated('#companyAddModal');
@@ -20,6 +24,12 @@ app.controller('company', function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
+    $scope.company.approve = {
+      id : 1,
+      en : 'Panding Approval',
+      ar : 'إنتظار الموافقة'
+
+    };
     $scope.busy = true;
     $http({
       method: 'POST',
@@ -60,6 +70,14 @@ app.controller('company', function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
+
+    company.approve = {
+      id : 1,
+      en : 'Panding Approval',
+      ar : 'إنتظار الموافقة'
+
+    };
+
     $scope.busy = true;
     $http({
       method: 'POST',
@@ -112,6 +130,7 @@ app.controller('company', function ($scope, $http, $timeout) {
   $scope.displayDetailsCompany = function (company) {
     $scope.error = '';
     $scope.viewCompany(company);
+    $scope.getJobList(company);
     $scope.company = {};
     site.showModal('#companyViewModal');
   };
@@ -130,12 +149,65 @@ app.controller('company', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.company = response.data.doc;
+
         } else {
           $scope.error = response.data.error;
         }
       },
       function (err) {
         console.log(err);
+      }
+    );
+  };
+
+  $scope.viewJob = function (job) {
+    $scope.busy = true;
+    $scope.error = '';
+    $http({
+      method: 'POST',
+      url: '/api/job/view',
+      data: {
+        id: job.id,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.job = response.data.doc;
+    site.showModal('#jobViewModal');
+  } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
+  $scope.getJobList = function (company) {
+    $scope.busy = true;
+    $scope.jopsList = [];
+    where = {};
+    where['company.id'] = company.id ;
+    
+    $http({
+      method: 'POST',
+      url: '/api/job/all',
+      data: {
+        where: where,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list && response.data.list.length > 0) {
+          $scope.jopsList = response.data.list;
+
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
       }
     );
   };
@@ -182,8 +254,10 @@ app.controller('company', function ($scope, $http, $timeout) {
   $scope.getCompanyList = function (where) {
     $scope.busy = true;
     where = where || {};
-    
-    where['add_user_info.id'] = site.toNumber('##user.id##');
+
+    if('##user.profile.type##' == 'employer'){
+      where['add_user_info.id'] = site.toNumber('##user.id##');
+    }
 
     $scope.list = [];
     $http({
@@ -195,7 +269,7 @@ app.controller('company', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
           site.hideModal('#companySearchModal');
@@ -223,7 +297,7 @@ app.controller('company', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.industryList = response.data.list;
           
         }
@@ -249,7 +323,7 @@ app.controller('company', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.countryList = response.data.list;
           
         }
@@ -275,7 +349,7 @@ app.controller('company', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.cityList = response.data.list;
           
         }

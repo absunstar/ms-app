@@ -10,9 +10,29 @@
         "ar": "الحضور في معرض الوظائف"
     },
     {
+        "name": "you_are_all_set_you_registered_this_job_fair_before",
+        "en": "You are all set. You have registered to this Job Fair before!",
+        "ar": "أنت جاهز تمامًا. لقد سجلت في معرض الوظائف هذا من قبل!"
+    },
+    {
+        "name": "you_are_all_set_have_been_registered_this_job_fair",
+        "en": "You are all set. You have been registered in the job fair",
+        "ar": "أنت جاهز تمامًا. لقد تم تسجيلك في معرض الوظائف!"
+    },
+    {
+        "name": "apply_for_job_fair",
+        "en": "Apply For Job Fair",
+        "ar": "التسجيل في معرض الوظائف"
+    },
+    {
         "name": "job_fair",
         "en": "Job Fair",
         "ar": "معرض الوظائف"
+    },
+    {
+        "name": "fair_details",
+        "en": "Fair Details",
+        "ar": "تفاصيل معرض العمل"
     },
     {
         "name": "attendance_code",
@@ -63,6 +83,56 @@
         "name": "field",
         "en": "Field",
         "ar": "مجال"
+    },
+    {
+        "name": "apply",
+        "en": "Apply",
+        "ar": "التقديم"
+    },
+    {
+        "name": "at",
+        "en": "At",
+        "ar": "في"
+    },
+    {
+        "name": "on",
+        "en": "On",
+        "ar": "على"
+    },
+    {
+        "name": "apply_date",
+        "en": "Apply Date",
+        "ar": "تاريخ التقديم"
+    },
+    {
+        "name": "job_seeker_name",
+        "en": "Job Seeker Name",
+        "ar": "إسم الباحث عن العمل"
+    },
+    {
+        "name": "job_seeker_email",
+        "en": "Job Seeker Email",
+        "ar": "البريد الإلكتروني للباحث عن العمل"
+    },
+    {
+        "name": "job_seeker_job_title",
+        "en": "Job Seeker Job Title",
+        "ar": "المسمى الوظيفي للباحث عن العمل"
+    },
+    {
+        "name": "search_for_job_seeker",
+        "en": "Search for Job Seeker",
+        "ar": "البحث عن باحث عن عمل"
+    },
+    {
+        "name": "attendance",
+        "en": "Attendance",
+        "ar": "الحضور"
+    },
+    {
+        "name": "register_to_job_fair",
+        "en": "Register to Job fair",
+        "ar": "التسجيل في معرض الوظائف"
     },
     {
         "name": "event_date",

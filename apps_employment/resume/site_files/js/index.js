@@ -4,15 +4,32 @@ app.controller('resume', function ($scope, $http, $timeout) {
   $scope.profile = {};
   $scope.viewUser = function () {
     $scope.busy = true;
+
+    let data = { id: site.toNumber('##user.id##') };
+
+    if ('##query.id##' != 'undefined' && '##user.profile.type##' == 'employer') {
+      data = { id: site.toNumber('##query.id##') }
+    };
+
     $http({
       method: "POST",
       url: "/api/user/view",
-      data: { id: site.toNumber('##user.id##') }
+      data: data,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.user = response.data.doc;
+
+          if ('##query.id##' != 'undefined' && '##user.profile.type##' == 'employer') {
+            $scope.short = false;
+            $scope.user.short_list.forEach(_sh => {
+              if(_sh == site.toNumber('##user.id##')){
+                $scope.short = true;
+              }
+            });
+          };
+
         } else {
           $scope.error = response.data.error;
         }
@@ -44,6 +61,25 @@ app.controller('resume', function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.shortList = function (user,type) {
+  
+    if(type == 'add') {
+      user.short_list.push(site.toNumber('##user.id##'));
+      $scope.short = true;
+    } else if(type == 'remove'){
+      for(let i = 0; i < user.short_list.length; i++) {
+        if(user.short_list[i] == site.toNumber('##user.id##')) {
+          user.short_list.splice(i, 1);
+          $scope.short = false;
+
+        }
+      }
+      site.hideModal('#removeShortModal');
+    };
+    $scope.update(user);
+
+  };
+
   $scope.getYearsOfExperienceListList = function () {
     $scope.busy = true;
     $scope.yearsOfExperienceList = [];
@@ -58,7 +94,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.yearsOfExperienceList = response.data.list;
           
         }
@@ -84,7 +120,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.languagesList = response.data.list;
           
         }
@@ -110,7 +146,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.qualificationList = response.data.list;
           
         }
@@ -136,7 +172,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.countryList = response.data.list;
           
         }
@@ -162,7 +198,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.cityList = response.data.list;
         }
       },

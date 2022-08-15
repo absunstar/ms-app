@@ -32,15 +32,7 @@
 <script x-import="0/bar.js"></script>
 <script x-import="0/footer.js"></script>
 <script>
-    $(document).on('keydown', 'input,select,textarea', function (e) {
-        if (e.which == 13 || e.keyCode == 13) {
-            e.preventDefault();
-            var $canfocus = $('input,select,textarea');
-            var index = $canfocus.index(document.activeElement) + 1;
-            if (index >= $canfocus.length) index = 0;
-            $canfocus.eq(index).focus();
-        }
-    });
+ 
 
     function string_to_buffer(s) {
         if (typeof ArrayBuffer !== "undefined") {

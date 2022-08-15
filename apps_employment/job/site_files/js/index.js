@@ -8,18 +8,42 @@ app.controller('job', function ($scope, $http, $timeout) {
     $scope.job = {
       image: '/images/job.png',
       active: true,
+      favorite_list : [],
+      application_list : []
     };
 
     site.showModal('#jobAddModal');
   };
 
-  $scope.addJob = function () {
+  if ('##query.post##' == 'true') {
+    $scope.displayAddJob();
+  }
+
+
+  $scope.addJob = function (type) {
     $scope.error = '';
     const v = site.validated('#jobAddModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
+
+  
+    if(type== 'add'){
+      $scope.job.approve = {
+        id : 1,
+        en: "Draft",
+        ar: "مسودة"
+      };
+  
+    } else if(type== 'publish') {
+      $scope.job.approve = {
+        id : 2,
+        en: "Published",
+        ar: "منشور"
+      };
+    };
+
     $scope.busy = true;
     $http({
       method: 'POST',
@@ -53,13 +77,28 @@ app.controller('job', function ($scope, $http, $timeout) {
     site.showModal('#jobUpdateModal');
   };
 
-  $scope.updateJob = function (job) {
+  $scope.updateJob = function (job,type) {
     $scope.error = '';
     const v = site.validated('#jobUpdateModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
+
+    if(type== 'add'){
+      job.approve = {
+        id : 1,
+        en: "Draft",
+        ar: "مسودة"
+      };
+  
+    } else if(type== 'publish') {
+      job.approve = {
+        id : 2,
+        en: "Published",
+        ar: "منشور"
+      };
+    };
     $scope.busy = true;
     $http({
       method: 'POST',
@@ -182,6 +221,10 @@ app.controller('job', function ($scope, $http, $timeout) {
   $scope.getJobList = function (where) {
     $scope.busy = true;
     $scope.list = [];
+    where = where || {};
+    if('##user.profile.type' == 'employer') {
+      where['add_user_info.id'] = site.toNumber('##user.id##') ;
+    }
     $http({
       method: 'POST',
       url: '/api/job/all',
@@ -191,8 +234,11 @@ app.controller('job', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.list = response.data.list;
+          $scope.open_jobs = response.data.open_jobs;
+          $scope.applications = response.data.applications;
+          
           $scope.count = response.data.count;
           site.hideModal('#jobSearchModal');
           $scope.search = {};
@@ -201,6 +247,32 @@ app.controller('job', function ($scope, $http, $timeout) {
       function (err) {
         $scope.busy = false;
         $scope.error = err;
+      }
+    );
+  };
+
+  $scope.viewCompany = function (company) {
+    $scope.busy = true;
+    $scope.error = '';
+    $http({
+      method: 'POST',
+      url: '/api/company/view',
+      data: {
+        id: company.id,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.company = response.data.doc;
+          site.showModal('#companyViewModal');
+
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
       }
     );
   };
@@ -219,7 +291,7 @@ app.controller('job', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.industryList = response.data.list;
           
         }
@@ -245,7 +317,7 @@ app.controller('job', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.qualificationList = response.data.list;
           
         }
@@ -261,18 +333,24 @@ app.controller('job', function ($scope, $http, $timeout) {
   $scope.getCompanyList = function () {
     $scope.busy = true;
     $scope.companyList = [];
+    where = {};
+    if('##user.profile.type##' == 'employer'){
+      where['add_user_info.id'] = site.toNumber('##user.id##');
+      where['approve.id'] = 2;
+      where['active'] = true;
+    }
 
     $http({
       method: 'POST',
       url: '/api/company/all',
       data: {
-        where: { active: true,'add_user_info.id' : site.toNumber('##user.id##') },
+        where: where,
         select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
       },
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.companyList = response.data.list;
           
         }
@@ -298,7 +376,7 @@ app.controller('job', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.yearsOfExperienceList = response.data.list;
           
         }
@@ -324,7 +402,7 @@ app.controller('job', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.countryList = response.data.list;
           
         }
@@ -350,7 +428,7 @@ app.controller('job', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.cityList = response.data.list;
           
         }
@@ -376,7 +454,7 @@ app.controller('job', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.jobFieldsList = response.data.list;
           
         }
@@ -402,7 +480,7 @@ app.controller('job', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.jobSubfieldsList = response.data.list;
           
         }
@@ -425,6 +503,25 @@ app.controller('job', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         $scope.jobTypeList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getJobStatus = function () {
+    $scope.error = "";
+    $scope.busy = true;
+    $scope.jobStatusList = [];
+    $http({
+      method: "POST",
+      url: "/api/job_status/all",
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.jobStatusList = response.data;
       },
       function (err) {
         $scope.busy = false;
@@ -463,6 +560,7 @@ app.controller('job', function ($scope, $http, $timeout) {
 
   $scope.getJobList();
   $scope.getJobType();
+  $scope.getJobStatus();
   $scope.getCompanyList();
   $scope.getIndustryList();
   $scope.getQualificationList();

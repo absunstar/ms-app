@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="city_ui || city_manage" data-ng-app="myApp">
+<html lang="en"  data-ng-app="myApp" x-permissions="admin">
   <head x-import="head.html"> </head>
 
   <body class="##session.lang##" ng-controller="city">
@@ -9,11 +9,11 @@
     <div id="main-layout" class="container loaded">
       <div class="row">
         <div class="row">
-          <div x-permissions="city_add || city_manage" x-import="city/add_modal.html"></div>
-          <div x-permissions="city_update || city_manage" x-import="city/update_modal.html"></div>
-          <div x-permissions="city_delete || city_manage" x-import="city/delete_modal.html"></div>
-          <div x-permissions="city_view || city_manage" x-import="city/view_modal.html"></div>
-          <div x-permissions="city_search || city_manage" x-import="city/search_all_modal.html"></div>
+          <div  x-import="city/add_modal.html"></div>
+          <div  x-import="city/update_modal.html"></div>
+          <div  x-import="city/delete_modal.html"></div>
+          <div  x-import="city/view_modal.html"></div>
+          <div  x-import="city/search_all_modal.html"></div>
 
           <div class="row">
             <h1 class="bold text-center">##word.city##</h1>
@@ -22,10 +22,10 @@
           <div class="top-actions">
             <h3 class="bold" ng-show="'##query.id##' != 'undefined'">##word.country## : {{country.name_##session.lang##}}</h3>
 
-            <i-button x-permissions="city_add || city_manage" type="add" label="##word.city_new##" ng-click="displayAddCity()"></i-button>
-            <i-button x-permissions="city_search || city_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+            <i-button  type="add" label="##word.city_new##" ng-click="displayAddCity()"></i-button>
+            <i-button  type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
 
-            <h3 class="bold text-center">##word.count## : {{count}}</h3>
+            <h3 class="bold text-center">##word.count## : {{count || 0}}</h3>
             <h3 class="bold text-center text-danger">{{error}}</h3>
           </div>
 
@@ -51,18 +51,18 @@
 
                 <td class="center not-print">
 
-                  <i-button x-permissions="city_view || city_manage" type="view" label="##word.details##" ng-click="displayDetailsCity(c)"></i-button>
-                  <i-button x-permissions="city_update || city_manage" type="edit" label="##word.edit##" ng-click="displayUpdateCity(c)"></i-button>
-                  <i-button x-permissions="city_update || city_manage" ng-show="!c.active" label="##word.activate##" ng-click="c.active = true; updateActivate(c)"></i-button>
-                  <i-button x-permissions="city_update || city_manage" ng-show="c.active" label="##word.deactivate##" ng-click="c.active = false; updateActivate(c)"></i-button>
-                  <i-button x-permissions="city_delete || city_manage" type="delete" label="##word.delete##" ng-click="displayDeleteCity(c)"></i-button>
+                  <i-button type="view" label="##word.details##" ng-click="displayDetailsCity(c)"></i-button>
+                  <i-button  type="edit" label="##word.edit##" ng-click="displayUpdateCity(c)"></i-button>
+                  <i-button  ng-show="!c.active" label="##word.activate##" ng-click="c.active = true; updateActivate(c)"></i-button>
+                  <i-button  ng-show="c.active" label="##word.deactivate##" ng-click="c.active = false; updateActivate(c)"></i-button>
+                  <i-button  type="delete" label="##word.delete##" ng-click="displayDeleteCity(c)"></i-button>
 
                 </td>
               </tr>
             </tbody>
           </table>
-          <i-button x-permissions="city_print || city_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>        
-          <i-button x-permissions="city_print || city_manage" type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'city.xlsx')"></i-button>
+          <i-button  type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>        
+          <i-button type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'city.xlsx')"></i-button>
         </div>
       </div>
     </div>

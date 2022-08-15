@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"  data-ng-app="myApp" x-permissions="job_seeker">
+  <head x-import="head.html"> </head>
+
+  <body class="##session.lang##" ng-controller="employerSearch" >
+    <nav x-import="0/bar.html" class="sitebar" ng-controller="bar"></nav>
+
+    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
+    <div id="main-layout" class="container loaded">
+      <div class="row">
+        <div class="row">
+
+          <div class="top-actions">
+            <div  x-import="job/view_modal.html"></div>
+            <div  x-import="employer-search/apply_modal.html"></div>
+            <i-button type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+          </div>
+
+          <div class="row" ng-repeat="j in list">
+            <div class="col2">
+              <i-image view ng-model="j.image"></i-image>
+            </div>
+            <div class="col6">
+
+              <b class="font-weight-bold">{{j.job_title}}</b>
+              <p>{{j.country.name_##session.lang##}} , {{j.city.name_##session.lang##}} <i class="fa fa-map-marker" aria-hidden="true"></i></p>
+              <p>{{j.qualification.name_##session.lang##}}</p>
+              <p>{{j.years_of_experience.name_##session.lang##}}</p>
+            </div>
+  
+            <div class="col2">
+              <i-button  type="view" label="##word.view_job##" ng-click="viewJob(j)"></i-button>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+    </div>
+
+    <div x-import="0/scripts.html"></div>
+    <script x-import="employer-search/index.js"></script>
+  </body>
+</html>

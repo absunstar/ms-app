@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "isite": "^2022.8.3",
+    "isite": "^2022.8.4",
     "zklib": "^0.2.11"
   }
 }

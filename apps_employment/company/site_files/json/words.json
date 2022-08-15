@@ -3,11 +3,21 @@
         "name": "companies",
         "en": "Companies",
         "ar": "الشركات"
-    },
+    }, 
     {
         "name": "company",
         "en": "Company",
         "ar": "الشركة"
+    },
+    {
+        "name": "open_position",
+        "en": "Open Position",
+        "ar": "الوظائف المتاحة"
+    },
+    {
+        "name": "you_are_managing",
+        "en": "You are managing",
+        "ar": "أنت تدير"
     },
     {
         "name": "company_new",

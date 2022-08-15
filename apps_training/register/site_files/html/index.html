@@ -2,13 +2,13 @@
 <html lang="en" data-ng-app="myApp">
   <head x-import="head.html"> </head>
 
-  <body class="##session.lang##" ng-controller="register_souq">
+  <body class="##session.lang##" ng-controller="register">
     <nav x-import="0/bar.html" class="sitebar" ng-controller="bar"></nav>
 
     <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
 
     <div id="main-layout" class="container">
-      <div class="row" id="registersouqModal">
+      <div class="row" id="registerModal">
         <div class="row">
           <div class="row">
             <h1 class="bold text-center">##word.register##</h1>
@@ -65,7 +65,7 @@
           </div>
 
           <div class="col">
-            <a type="button" class="btn btn-primary col" label="##word.register_now##" ng-click="registerSouq()">##word.login_now##</a>
+            <a type="button" class="btn btn-primary col" label="##word.register_now##" ng-click="register()">##word.login_now##</a>
           </div>
           <form>
             <p class="font-18">##word.existing_user## <a href="/login">##word.login_now##</a></p>

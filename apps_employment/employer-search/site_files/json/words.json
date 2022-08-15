@@ -1,0 +1,44 @@
+[
+    {
+        "name": "job_search",
+        "en": "Job Search",
+        "ar": "البحث عن عمل"
+    },
+    {
+        "name": "view_job",
+        "en": "View Job",
+        "ar": "إعرض الوظيفة"
+    },
+    {
+        "name": "apply_now",
+        "en": "Apply Now",
+        "ar": "قدم الاّن"
+    },
+    {
+        "name": "submitted",
+        "en": "Submitted",
+        "ar": "تم التقديم"
+    },
+    {
+        "name": "already_applied",
+        "en": "Already Applied",
+        "ar": "تم التطبق بالفعل"
+    },
+    {
+        "name": "favorite",
+        "en": "Favorite",
+        "ar": "مفضل"
+    },
+    {
+        "name": "remove_favorite",
+        "en": "Favorite",
+        "ar": "إزالة مفضل"
+    },
+    {
+        "name": "tell_employer_why_you_best_candidate_for_job",
+        "en": "Tell the employer why you are the best candidate for this job ! ",
+        "ar": "أخبر صاحب العمل لماذا أنت أفضل مرشح لهذه الوظيفة! "
+    }
+
+   
+]

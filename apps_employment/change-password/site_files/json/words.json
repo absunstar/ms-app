@@ -1,0 +1,28 @@
+[
+    {
+        "name": "change_password",
+        "en": "Change Password",
+        "ar": "تغيير كلمة المرور"
+    },
+    {
+        "name": "old_password",
+        "en": "Old Password",
+        "ar": "كلمة المرور القديمة"
+    },
+    {
+        "name": "new_password",
+        "en": "New Password",
+        "ar": "كلمة المرور الجديدة"
+    },
+    {
+        "name": "confirm_password",
+        "en": "Confirm Password",
+        "ar": "تأكيد كلمة المرور"
+    },  
+    {
+        "name": "current_password_incorrect",
+        "en": "The current password is incorrect",
+        "ar": "كلمة المرور الحالية غير صحيحة"
+    },
+    { "name": "password_err_match", "en": "password does not match", "ar": "كلمة السر غير متطابقة" }
+]

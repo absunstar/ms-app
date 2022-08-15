@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "job_fairs_admin",
-    "en": "Job Fairs Admin",
-    "ar": "إدارة معارض الوظائف",
-    "permissions": ["job_fairs_manage"]
-}]

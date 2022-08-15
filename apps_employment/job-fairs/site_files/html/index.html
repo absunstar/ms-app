@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="job_fairs_ui || job_fairs_manage" data-ng-app="myApp">
+<html lang="en"  x-permissions="admin || job_seeker" data-ng-app="myApp">
   <head x-import="head.html"> </head>
 
   <body class="##session.lang##" ng-controller="job_fairs">
@@ -9,22 +9,24 @@
     <div id="main-layout" class="container loaded">
       <div class="row">
         <div class="row">
-          <div x-permissions="job_fairs_add || job_fairs_manage" x-import="job-fairs/add_modal.html"></div>
-          <div x-permissions="job_fairs_update || job_fairs_manage" x-import="job-fairs/update_modal.html"></div>
-          <div x-permissions="job_fairs_update || job_fairs_manage" x-import="job-fairs/attendance.html"></div>
-          <div x-permissions="job_fairs_delete || job_fairs_manage" x-import="job-fairs/delete_modal.html"></div>
-          <div x-permissions="job_fairs_view || job_fairs_manage" x-import="job-fairs/view_modal.html"></div>
-          <div x-permissions="job_fairs_search || job_fairs_manage" x-import="job-fairs/search_all_modal.html"></div>
+          <div  x-import="job-fairs/add_modal.html"></div>
+          <div  x-import="job-fairs/update_modal.html"></div>
+          <div  x-import="job-fairs/attendance.html"></div>
+          <div  x-import="job-fairs/apply.html"></div>
+          <div  x-import="job-fairs/delete_modal.html"></div>
+          <div  x-import="job-fairs/view_modal.html"></div>
+          <div x-import="job-fairs/search_all_modal.html"></div>
+          <div x-import="job-fairs/register_apply.html"></div>
 
           <div class="row">
             <h1 class="bold text-center">##word.job_fairs##</h1>
           </div>
 
           <div class="top-actions">
-            <i-button x-permissions="job_fairs_add || job_fairs_manage" type="add" label="##word.job_fairs_new##" ng-click="displayAddJobFairs()"></i-button>
-            <i-button x-permissions="job_fairs_search || job_fairs_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+            <i-button  x-permissions="admin" type="add" label="##word.job_fairs_new##" ng-click="displayAddJobFairs()"></i-button>
+            <i-button type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
 
-            <h3 class="bold text-center">##word.count## : {{count}}</h3>
+            <h3 class="bold text-center">##word.count## : {{count || 0}}</h3>
             <h3 class="bold text-center text-danger">{{error}}</h3>
           </div>
 
@@ -53,19 +55,22 @@
 
                 <td class="center not-print">
 
-                  <i-button x-permissions="job_fairs_view || job_fairs_manage" type="view" label="##word.details##" ng-click="displayDetailsJobFairs(c)"></i-button>
-                  <i-button x-permissions="job_fairs_update || job_fairs_manage" type="edit" label="##word.edit##" ng-click="displayUpdateJobFairs(c)"></i-button>
-                  <i-button x-permissions="job_fairs_update || job_fairs_manage" ng-show="!c.active" label="##word.activate##" ng-click="c.active = true; updateActivate(c)"></i-button>
-                  <i-button x-permissions="job_fairs_update || job_fairs_manage" ng-show="c.active" label="##word.deactivate##" ng-click="c.active = false; updateActivate(c)"></i-button>
-                  <i-button x-permissions="job_fairs_delete || job_fairs_manage" type="delete" label="##word.delete##" ng-click="displayDeleteJobFairs(c)"></i-button>
-
+                  <i-button x-permissions="job_seeker" label="##word.apply##" ng-click="registerApplyJobSeeker(c)"></i-button>
+                  <i-button x-permissions="admin" label="##word.apply##" ng-click="displayApply(c)"></i-button>
+                  <i-button x-permissions="admin" label="##word.attendance##" ng-click="displayAttendance(c)"></i-button>
+                  <i-button x-permissions="admin" type="view" label="##word.details##" ng-click="displayDetailsJobFairs(c)"></i-button>
+                  <i-button x-permissions="admin" type="edit" label="##word.edit##" ng-click="displayUpdateJobFairs(c)"></i-button>
+                  <i-button x-permissions="admin" ng-show="!c.active" label="##word.activate##" ng-click="c.active = true; updateActivate(c)"></i-button>
+                  <i-button x-permissions="admin" ng-show="c.active" label="##word.deactivate##" ng-click="c.active = false; updateActivate(c)"></i-button>
+                  <i-button x-permissions="admin" type="delete" label="##word.delete##" ng-click="displayDeleteJobFairs(c)"></i-button>
+                  <i-button x-permissions="admin" type="export" label="##word.export##" onclick="export_to_xlsx('t1' , 'job_fairs.xlsx')"></i-button>
                 </td>
               </tr>
             </tbody>
           </table>
 
-          <i-button x-permissions="job_fairs_print || job_fairs_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>        
-          <i-button x-permissions="job_fairs_print || job_fairs_manage" type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'job_fairs.xlsx')"></i-button>
+          <i-button x-permissions="admin" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>        
+          <i-button x-permissions="admin" type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'job_fairs.xlsx')"></i-button>
 
         </div>
       </div>

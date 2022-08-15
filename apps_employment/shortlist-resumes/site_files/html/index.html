@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"  data-ng-app="myApp" x-permissions="employer">
+  <head x-import="head.html"> </head>
+
+  <body class="##session.lang##" ng-controller="shortListedResumes" >
+    <nav x-import="0/bar.html" class="sitebar" ng-controller="bar"></nav>
+
+    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
+
+    <div id="main-layout" class="container loaded">
+      <div class="row">
+        <div class="row">
+          <div class="row">
+            <h1 class="bold text-center">##word.best_short_listed_resumes##</h1>
+          </div>
+          <div class="top-actions">
+            <div  x-import="job/view_modal.html"></div>
+            <i-button type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+          </div>
+
+          <div class="row" ng-repeat="u in list">
+            <div class="col2">
+              <i-image view ng-model="u.image"></i-image>
+            </div>
+            <div class="col6">
+
+              <b class="font-weight-bold">{{u.profile.name}}</b>
+              <p>{{u.profile.job_title}}</p>
+              <p>{{u.profile.country.name_##session.lang##}} , {{u.profile.city.name_##session.lang##}} <i class="fa fa-map-marker" aria-hidden="true"></i></p>
+              <p>{{u.profile.qualification.name_##session.lang##}}</p>
+              <p>{{u.profile.experience.name_##session.lang##}}</p>
+            </div>
+  
+            <div class="col2">
+              <a type="button" class="btn btn-primary btn-lg" href="/Resume?id={{u.id}}">##word.view_resume##</a>
+              <i-button type="delete" ng-click="removeShortList(u)"></i-button>
+              <i-file label="##word.download_cv##" view categoty="upload_resume" ng-model="u.profile.upload_resume"></i-file>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+    </div>
+
+    <div x-import="0/scripts.html"></div>
+    <script x-import="shortlist-resumes/index.js"></script>
+  </body>
+</html>

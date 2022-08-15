@@ -148,7 +148,7 @@ app.controller('register', function ($scope, $http) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.govList = response.data.list;
         }
       },
@@ -174,7 +174,7 @@ app.controller('register', function ($scope, $http) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.cityList = response.data.list;
         }
       },
@@ -199,7 +199,7 @@ app.controller('register', function ($scope, $http) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.areaList = response.data.list;
         }
       },
@@ -221,7 +221,7 @@ app.controller('register', function ($scope, $http) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.company_list = response.data.list;
 
         }

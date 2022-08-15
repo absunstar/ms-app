@@ -280,4 +280,20 @@ module.exports = function init(site) {
       }
     );
   });
+
+  site.getCompanies = function (where, callback) {
+    callback = callback || {};
+
+     where = where || {};
+  
+    $company.findMany(
+      {
+        where: where,
+      },
+      (err, docs) => {
+        if (!err && docs) callback(docs);
+        else callback(false);
+      }
+    );
+  };
 };

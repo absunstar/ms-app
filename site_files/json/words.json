@@ -20,6 +20,11 @@
     "ar": "الاسم"
   },
   {
+    "name": "export",
+    "en": "Export",
+    "ar": "تصدير"
+  },
+  {
     "name": "logout",
     "en": "Logout",
     "ar": "تسجيل خروج"
@@ -585,6 +590,31 @@
     "ar": "الخصم"
   },
   {
+    "name": "message",
+    "en": "Message",
+    "ar": "رسالة"
+  },	
+  {
+    "name": "reject",
+    "en": "Reject",
+    "ar": "رفض"
+  },	
+  {
+    "name": "undefined_gender",
+    "en": "Undefined Gender",
+    "ar": "جنس غير محدد"
+  },
+  {
+    "name": "male",
+    "en": "Male",
+    "ar": "ذكر"
+  },
+  {
+    "name": "female",
+    "en": "Female",
+    "ar": "أنثى"
+  },
+  {
     "name": "err_stock_item",
     "en": "The Transaction Cannot Be Performed Because Items Are Under Stocking",
     "ar": "لا يمكن إجراء المعاملة لوجود أصناف تحت الجرد "
@@ -592,7 +622,7 @@
   {
     "name": "approve",
     "en": "Approve",
-    "ar": "إعتماد"
+    "ar": "الموافقة"
   },
   {
     "name": "settings_not_found",
@@ -814,6 +844,11 @@
     "name": "close",
     "en": "Close",
     "ar": "إغلاق"
+  },
+  {
+    "name": "alert",
+    "en": "Alert",
+    "ar": "تنبيه"
   },
   {
     "name": "employer",

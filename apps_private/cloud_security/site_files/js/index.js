@@ -369,7 +369,7 @@ app.controller("security", function ($scope, $http, $interval) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.company_list = response.data.list;
         }
       },

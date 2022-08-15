@@ -58,9 +58,9 @@ module.exports = function init(site) {
       res.json(response)
       return
     }
-
+    let where = req.body.where || {}
     site.security.getUsers({
-      limit: 1000
+      where: where,
     }, (err, docs, count) => {
       if (!err) {
         response.done = true
@@ -223,7 +223,6 @@ module.exports = function init(site) {
     )
   })
 
-
   site.post("/api/user/login", function (req, res) {
     let response = {
       accessToken: req.session.accessToken
@@ -240,11 +239,27 @@ module.exports = function init(site) {
     }
 
     if (site.security.isUserLogin(req, res)) {
-      response.error = "Login Error , You Are Loged "
+      response.error = "Login Error , You Are Loged"
       response.done = true
       res.json(response)
       return
     }
+
+    site.security.getUser(
+      {
+        email: req.body.email,
+      },
+      (err, doc) => {
+        if (!err) {
+          response.done = true;
+          let user = { ...doc };
+        
+      if(user.active == false) {
+        response.error = "The account is inactive"
+        response.done = true
+        res.json(response)
+        return
+      }
 
     site.security.login({
         email: req.body.email,
@@ -265,7 +280,13 @@ module.exports = function init(site) {
 
         res.json(response)
       }
+      
     )
+  } else {
+    response.error = err.message;
+  }
+}
+);
   })
 
   site.post("/api/user/logout", function (req, res) {

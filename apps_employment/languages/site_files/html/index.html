@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="languages_ui || languages_manage" data-ng-app="myApp">
+<html lang="en" x-permissions="admin" data-ng-app="myApp">
   <head x-import="head.html"> </head>
 
   <body class="##session.lang##" ng-controller="languages">
@@ -9,11 +9,11 @@
     <div id="main-layout" class="container loaded">
       <div class="row">
         <div class="row">
-          <div x-permissions="languages_add || languages_manage" x-import="languages/add_modal.html"></div>
-          <div x-permissions="languages_update || languages_manage" x-import="languages/update_modal.html"></div>
-          <div x-permissions="languages_delete || languages_manage" x-import="languages/delete_modal.html"></div>
-          <div x-permissions="languages_view || languages_manage" x-import="languages/view_modal.html"></div>
-          <div x-permissions="languages_search || languages_manage" x-import="languages/search_all_modal.html"></div>
+          <div  x-import="languages/add_modal.html"></div>
+          <div  x-import="languages/update_modal.html"></div>
+          <div  x-import="languages/delete_modal.html"></div>
+          <div  x-import="languages/view_modal.html"></div>
+          <div  x-import="languages/search_all_modal.html"></div>
 
           <div class="row">
             <h1 class="bold text-center">##word.languages##</h1>
@@ -21,10 +21,10 @@
 
           <div class="top-actions">
 
-            <i-button x-permissions="languages_add || languages_manage" type="add" label="##word.languages_new##" ng-click="displayAddLanguage()"></i-button>
-            <i-button x-permissions="languages_search || languages_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+            <i-button  type="add" label="##word.languages_new##" ng-click="displayAddLanguage()"></i-button>
+            <i-button  type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
 
-            <h3 class="bold text-center">##word.count## : {{count}}</h3>
+            <h3 class="bold text-center">##word.count## : {{count || 0}}</h3>
             <h3 class="bold text-center text-danger">{{error}}</h3>
           </div>
 
@@ -49,19 +49,19 @@
                 </td>
 
                 <td class="center not-print">
-                  <i-button x-permissions="languages_view || languages_manage" type="view" label="##word.details##" ng-click="displayDetailsLanguage(c)"></i-button>
-                  <i-button x-permissions="languages_update || languages_manage" type="edit" label="##word.edit##" ng-click="displayUpdateLanguage(c)"></i-button>
-                  <i-button x-permissions="languages_update || languages_manage" ng-show="!c.active" label="##word.activate##" ng-click="c.active = true; updateActivate(c)"></i-button>
-                  <i-button x-permissions="languages_update || languages_manage" ng-show="c.active" label="##word.deactivate##" ng-click="c.active = false; updateActivate(c)"></i-button>
-                  <i-button x-permissions="languages_delete || languages_manage" type="delete" label="##word.delete##" ng-click="displayDeleteLanguage(c)"></i-button>
+                  <i-button  type="view" label="##word.details##" ng-click="displayDetailsLanguage(c)"></i-button>
+                  <i-button  type="edit" label="##word.edit##" ng-click="displayUpdateLanguage(c)"></i-button>
+                  <i-button  ng-show="!c.active" label="##word.activate##" ng-click="c.active = true; updateActivate(c)"></i-button>
+                  <i-button  ng-show="c.active" label="##word.deactivate##" ng-click="c.active = false; updateActivate(c)"></i-button>
+                  <i-button  type="delete" label="##word.delete##" ng-click="displayDeleteLanguage(c)"></i-button>
 
                 </td>
               </tr>
             </tbody>
           </table>
 
-          <i-button x-permissions="languages_print || languages_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>        
-          <i-button x-permissions="languages_print || languages_manage" type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'languages.xlsx')"></i-button>
+          <i-button type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>        
+          <i-button type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'languages.xlsx')"></i-button>
 
         </div>
       </div>

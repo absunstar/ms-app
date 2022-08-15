@@ -50,7 +50,7 @@ app.controller('changeBranch', function ($scope, $http) {
         }).then(
             function (response) {
                 $scope.busy = false;
-                if (response.data.done && response.data.list.length > 0) {
+                if (response.data.done && response.data.list &&  response.data.list.length > 0) {
                     $scope.branch_list = response.data.list;
                     $scope.company_list = [];
                     $scope.branch_list.forEach(b => {

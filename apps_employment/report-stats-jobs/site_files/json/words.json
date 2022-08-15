@@ -1,0 +1,19 @@
+[
+    {
+        "name": "jobs_statistics",
+        "en": "Jobs Statistics",
+        "ar": "إحصائيات الوظائف"
+    },
+    {
+        "name": "employment_number",
+        "en": "Employment number",
+        "ar": "عدد التوظيف"
+    },
+    {
+        "name": "jobs_per_company_statistics",
+        "en": "Jobs Per Company Statistics",
+        "ar": "الوظائف حسب إحصائيات الشركة"
+    }
+    
+   
+]

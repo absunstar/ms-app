@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "job_fields_admin",
-    "en": "Job Fields Admin",
-    "ar": "إدارة مجالات العمل",
-    "permissions": ["job_fields_manage"]
-}]

@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "company_admin",
-    "en": "Companies Admin",
-    "ar": "إدارة الشركات",
-    "permissions": ["company_manage"]
-}]

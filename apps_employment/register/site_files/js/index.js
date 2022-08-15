@@ -1,4 +1,4 @@
-app.controller('register_souq', function ($scope, $http, $timeout) {
+app.controller('register', function ($scope, $http, $timeout) {
   $scope.user = { image: '/images/user_logo.png' };
 
   $scope.registerAsEmployer = function () {

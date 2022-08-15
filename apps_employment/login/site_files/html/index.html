@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" data-ng-app="myApp">
-  <head x-import="head.html"> </head>
+  <head x-import="head.html">
+    <style>
+      html,
+      body {
+        background: linear-gradient(to left, #dce35b, #45b649);
+      }
+    </style>
+     </head>
 
-  <body class="##session.lang##" ng-controller="login_souq">
+  <body class="##session.lang##" ng-controller="loginEmployment" x-permissions="!login">
     <nav x-import="0/bar.html" class="sitebar" ng-controller="bar"></nav>
 
     <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
-    <div id="main-layout" class="container" id="loginSouqModal">
+    <div id="main-layout" class="container loaded" id="loginModal">
       <div class="row">
         <div class="row" >
           <div class="row">
@@ -15,34 +22,27 @@
 
           <div class="row">
             <h2 class="bold red ">{{error}}</h2>
-
-          </div>
-
-          <div class="row">
-            <div class="input-group mb-3">
-              <input type="text" v="r" class="form-control" ng-model="user.email" placeholder="##word.email##" aria-label="Email" aria-describedby="basic-addon1">
-            </div>
           </div>
           <div class="row">
-            <div class="input-group mb-3">
-              <input type="text" v="r" class="form-control" ng-model="user.password" placeholder="##word.password##" aria-label="password" aria-describedby="basic-addon1">
+            <div class="employer-form">
+              <div class="row">
+                <i-control v="r" class="col5" ng-model="user.email" label="##word.email##"></i-control>
+                <i-control v="r" class="col5" ng-model="user.password" label="##word.password##"></i-control>
+              </div>
             </div>
           </div>
 
-          <div class="form-check">
-            <input class="form-check-input" ng-click="showPass()"  ng-model="show_password" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-              ##word.show_password##
-            </label>
-          </div>
 
           <div class="col">
-            <a type="button" class="btn btn-primary col" label="##word.login_now##" ng-click="login()">##word.login_now##</a>
+            <i-button class="center" label="##word.login_now##" ng-click="loginEmployment()"></i-button>
           </div>
-          <form >
-            <p >##word.not_registered## <a href="/register">##word.create_account##</a></p>
-          </form>
-
+        
+          <header class="text-center mb-5 pb-5 text-white">
+            <h1 class="display-4">
+              ##word.not_registered##
+              <p class="font-18"><a href="/register">##word.create_account## </a></p>
+            </h1>
+          </header>
 
         </div>
       </div>

@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "job_subfields_admin",
-    "en": "Job SubFields Admin",
-    "ar": "إدارة الوظائف الفرعية",
-    "permissions": ["job_subfields_manage"]
-}]

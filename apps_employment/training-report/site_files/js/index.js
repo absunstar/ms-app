@@ -216,7 +216,7 @@ app.controller('training_report', function ($scope, $http,$timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.trainingTypesList = response.data.list;
         }
       },
@@ -242,7 +242,7 @@ app.controller('training_report', function ($scope, $http,$timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.entityPartnerList = response.data.list;
         }
       },
@@ -268,7 +268,7 @@ app.controller('training_report', function ($scope, $http,$timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.entitySubPartnerList = response.data.list;
         }
       },
@@ -294,7 +294,7 @@ app.controller('training_report', function ($scope, $http,$timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.trainingCategoryList = response.data.list;
         }
       },
@@ -321,7 +321,7 @@ app.controller('training_report', function ($scope, $http,$timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
           $scope.trainersList = response.data.list;
         }
       },

@@ -10,25 +10,26 @@
             <i-control type="text" class="col4" v="r" ng-model="job.job_title" label="##word.job_title##" ></i-control>
             <i-list help-id="" v="r" class="col4" label="##word.company##" ng-model="job.company"
             display="name_##session.lang##" items="companyList" ng-search="_search.$job_company"></i-list>
-            <i-checkbox  class="col2" label="##word.active##" ng-model="job.active">
+            <i-checkbox  class="col2" label="##word.active##" ng-model="city.active">
             </i-checkbox>
+
           </div>
 
           <div class="row">
 
-            <i-textarea label="##word.job_responsibilities##" ng-model="company.job_responsibilities">
+            <i-textarea label="##word.job_responsibilities##" ng-model="job.job_responsibilities">
             </i-textarea>
           </div>
 
           <div class="row">
 
-            <i-textarea label="##word.job_required_skills##" ng-model="company.job_required_skills">
+            <i-textarea label="##word.job_required_skills##" ng-model="job.job_required_skills">
             </i-textarea>
           </div>
 
           <div class="row">
         
-            <i-textarea label="##word.job_seeker_received_benefits##" ng-model="company.job_seeker_received_benefits">
+            <i-textarea label="##word.job_seeker_received_benefits##" ng-model="job.job_seeker_received_benefits">
             </i-textarea>
           </div>
       
@@ -37,7 +38,7 @@
           <i-list help-id="" v="r" class="col5" label="##word.job_type##" ng-model="job.job_type"
             display="##session.lang##" items="jobTypeList" ng-search="_search.$job_type"></i-list>
 
-            <i-date2 class="col8" ng-model="job.application_deadline_date" label="##word.application_deadline_date##"> </i-date2>
+            <i-date class="col8" ng-model="job.application_deadline_date" label="##word.application_deadline_date##"> </i-date>
         </div>
 
         <div class="row">
@@ -79,7 +80,7 @@
         </fieldset>
         <div class="row">
 
-          <i-textarea label="##word.full_address##" ng-model="company.full_address">
+          <i-textarea label="##word.full_address##" ng-model="job.full_address">
           </i-textarea>
         </div>
       </div>

@@ -1,0 +1,31 @@
+<div id="deactivateModal" class="modal small" fixed>
+  <div class="modal-content">
+      <div class="modal-header">
+          <span class="close">&times;</span>
+          <h2 class="center">
+              ##word.deactivate##
+              <i class="fa fa-exclamation "></i>
+          </h2>
+
+      </div>
+
+      <div class="modal-body">
+          <div class="row">
+            <i class="fa fa-exclamation center" aria-hidden="true"></i>
+            <br>
+            <br>
+            <h3 class="center">##word.alert##</h3>
+            <br>
+            <br>
+            <b class="center">##word.sure_you_want_to_deactivate##</b>
+
+          </div>
+      </div>
+
+      <div class="modal-footer center">
+          <h2 class="error"> {{error}} </h2>
+          <i-button label="##word.ok##" ng-click="update(account,'deactivate')"></i-button>
+          <i-button type="close" label="##word.close##" onclick="site.hideModal( '#deactivateModal')"></i-button>
+      </div>
+  </div>
+</div>

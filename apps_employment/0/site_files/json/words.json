@@ -295,9 +295,75 @@
         "ar": "إسم المدينة "
     },
     {
+        "name": "post_job",
+        "en": "Post Job",
+        "ar": "أنشر وظيفة"
+    },
+    {
+        "name": "manage_jobs",
+        "en": "Manage Jobs",
+        "ar": "إدارة الوظائف"
+    },
+    {
+        "name": "post_new_job",
+        "en": "Post A New Job",
+        "ar": "أنشر وظيفة جديدة"
+    },
+    {
+        "name": "change_password",
+        "en": "Change Password",
+        "ar": "تغيير كلمة المرور"
+    },
+    {
+        "name": "management",
+        "en": "Management",
+        "ar": "الإدارة"
+    },
+    
+    {
+        "name": "reports",
+        "en": "Reports",
+        "ar": "تقارير"
+    },
+    {
+        "name": "report",
+        "en": "Report",
+        "ar": "تقرير"
+    },
+    {
+        "name": "job_seeker_ber_job",
+        "en": "Job Seeker Ber Job",
+        "ar": "باحث عن عمل لكل وظيفة"
+    },
+    {
+        "name": "account_management",
+        "en": "Account Management",
+        "ar": "إدارة الحسابات"
+    },
+    {
         "name": "city",
         "en": "City",
         "ar": "المدينة"
+    },
+    {
+        "name": "generic_companies",
+        "en": "Generic Companies",
+        "ar": "الشركات العامة"
+    },
+    {
+        "name": "approve",
+        "en": "Approve",
+        "ar": "الموافقة"
+    },
+    {
+        "name": "e_earning",
+        "en": "E-Learning",
+        "ar": "التعلم الإلكتروني"
+    },
+    {
+        "name": "ok",
+        "en": "Ok",
+        "ar": "موافق"
     },
     {
         "name": "area",

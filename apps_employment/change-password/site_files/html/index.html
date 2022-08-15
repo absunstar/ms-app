@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp">
+  <head x-import="head.html"> </head>
+
+  <body class="##session.lang##" ng-controller="changePassword" x-permissions="login">
+    <nav x-import="0/bar.html" class="sitebar" ng-controller="bar"></nav>
+
+    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
+    <div id="main-layout" class="container loaded">
+      <div class="row">
+        <div class="row" id="changePasswordModal">
+     
+          <div class="row">
+            <h1 class="bold text-center">##word.change_password##</h1>
+          </div>
+          <div class="top-actions">
+
+            <h3 class="bold text-center text-danger">{{error}}</h3>
+          </div>
+
+
+          <div class="row">
+            <i-control type="text" class="col6" ng-model="user.old_password" label="##word.old_password##"></i-control>
+          </div>
+          <div class="row">
+            <i-control type="text" class="col6" ng-model="user.new_password" label="##word.new_password##"></i-control>
+          
+          </div>
+          <div class="row">
+            <i-control type="text" class="col6" ng-model="user.confirm_password" label="##word.confirm_password##"></i-control>
+          </div>
+
+          <i-button  type="save" label="##word.save##" ng-click="changePassword(user)"></i-button>
+
+      </div>
+    </div>
+
+    <div x-import="0/scripts.html"></div>
+    <script x-import="change-password/index.js"></script>
+  </body>
+</html>

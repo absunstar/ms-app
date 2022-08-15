@@ -24,7 +24,7 @@
 
             <button x-permissions="exam_templates_search || exam_templates_manage" type="button" class="btn btn-primary" ng-click="displaySearchModal()"><i class="fa fa-search"></i> ##word.search_all##</button>
 
-            <h3 class="bold text-center">##word.count## : {{count}}</h3>
+            <h3 class="bold text-center">##word.count## : {{count || 0}}</h3>
             <h3 class="bold text-center text-danger">{{error}}</h3>
           </div>
 
