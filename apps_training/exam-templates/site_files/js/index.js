@@ -183,6 +183,8 @@ app.controller('exam_templates', function ($scope, $http, $timeout) {
   $scope.getExamTemplatesList = function (where) {
     $scope.busy = true;
     $scope.list = [];
+    $scope.count = 0;
+
     $http({
       method: 'POST',
       url: '/api/exam_templates/all',

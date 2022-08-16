@@ -261,7 +261,6 @@ module.exports = function init(site) {
 
     delete where['active_search'];
     delete where['not_active'];
-
     $job_subfields.findMany(
       {
         select: req.body.select || {},
@@ -273,7 +272,6 @@ module.exports = function init(site) {
       },
       (err, docs, count) => {
         if (!err) {
-
           response.done = true;
           response.list = docs;
           response.count = count;

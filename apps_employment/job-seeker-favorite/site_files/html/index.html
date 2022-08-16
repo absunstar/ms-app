@@ -9,11 +9,13 @@
     <div id="main-layout" class="container loaded">
       <div class="row">
         <div class="row">
+          <div class="row">
+            <h1 class="bold text-center">##word.favorite_jobs##</h1>
+          </div>
 
           <div class="top-actions">
             <div  x-import="job/view_modal.html"></div>
             <div  x-import="job-seeker-favorite/apply_modal.html"></div>
-            <i-button type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
           </div>
 
           <div class="row" ng-repeat="j in list">

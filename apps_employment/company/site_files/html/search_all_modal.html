@@ -12,18 +12,33 @@
             <form class="form">
                 <fieldset>
                     <legend>##word.search_all##</legend>
+
                     <div class="row">
-  
-                      <i-control class="col4" label="##word.company_name##" ng-model="search.name_ar"></i-control>
-                      <i-control class="col4" label="##word.name_en##" ng-model="search.name_en"></i-control>
-                        
+                      <i-control class="col6" label="##word.company_name##" ng-model="search.name_ar"></i-control>
+                      <i-control class="col6" label="##word.name_en##" ng-model="search.name_en"></i-control>
                     </div>
+
                     <div class="row">
-                          <i-checkbox  class="col3" label="##word.active##" ng-model="search.active_search">
-                          </i-checkbox>
-                          <i-checkbox  class="col3" label="##word.not_active##" ng-model="search.not_active">
-                          </i-checkbox>
+                        <i-list class="col6" label="##word.industry##" ng-model="search.industry"
+                        display="name_##session.lang##" items="industryList" ng-search="_search.$company_industry"></i-list>
+                        <i-control type="text" class="col6" ng-model="search.phone" label="##word.phone##" ></i-control>
                     </div>
+
+                    <div class="row">
+                        <i-list class="col6" ng-change="getCityList(search.country.id)"  label="##word.country##" ng-model="search.country"
+                        display="name_##session.lang##" items="countryList" ng-search="_search.$company_country"></i-list>
+                        <i-list class="col6"  label="##word.city##" ng-model="search.city"
+                        display="name_##session.lang##" items="cityList" ng-search="_search.$company_city"></i-list>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <i-checkbox  class="col3" label="##word.active##" ng-model="search.active_search">
+                        </i-checkbox>
+                        <i-checkbox  class="col3" label="##word.not_active##" ng-model="search.not_active">
+                        </i-checkbox>
+                    </div>
+
                 </fieldset>
             </form>
         </div>

@@ -183,6 +183,8 @@ app.controller('partner', function ($scope, $http, $timeout) {
   $scope.getPartnerList = function (where) {
     $scope.busy = true;
     $scope.list = [];
+    $scope.count = 0;
+
     $http({
       method: 'POST',
       url: '/api/partner/all',

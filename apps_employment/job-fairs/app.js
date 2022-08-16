@@ -233,7 +233,7 @@ module.exports = function init(site) {
     };
 
     let where = req.body.where || {};
-  
+
     if (where['name_ar']) {
       where['name_ar'] = site.get_RegExp(where['name_ar'], 'i');
     }
@@ -242,7 +242,13 @@ module.exports = function init(site) {
       where['name_en'] = site.get_RegExp(where['name_en'], 'i');
     }
 
-   
+    if (where['website']) {
+      where['website'] = site.get_RegExp(where['website'], 'i');
+    }
+
+    if (where['field']) {
+      where['field'] = site.get_RegExp(where['field'], 'i');
+    }
 
     if(where['not_active']){
       where['active'] = false;

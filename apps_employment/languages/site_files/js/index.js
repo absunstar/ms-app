@@ -183,6 +183,8 @@ app.controller('languages', function ($scope, $http, $timeout) {
   $scope.getLanguageList = function (where) {
     $scope.busy = true;
     $scope.list = [];
+    $scope.count = 0;
+
     $http({
       method: 'POST',
       url: '/api/languages/all',

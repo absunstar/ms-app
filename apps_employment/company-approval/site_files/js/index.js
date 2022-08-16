@@ -1,15 +1,17 @@
 app.controller('companyApproval', function ($scope, $http, $timeout) {
   $scope._search = {};
 
-  $scope.getCompanyList = function () {
+  $scope.getCompanyList = function (where) {
     $scope.busy = true;
     $scope.list = [];
+    where['active'] = true;
+    where['approve.id'] = 1;
     $scope.count = 0;
     $http({
       method: 'POST',
       url: '/api/company/all',
       data: {
-        where: { active: true,'approve.id' : 1 },
+        where: where,
       },
     }).then(
       function (response) {
@@ -80,7 +82,7 @@ app.controller('companyApproval', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.getCompanyList();
+          $scope.getCompanyList({});
         } else {
           $scope.error = response.data.error;
          
@@ -92,5 +94,97 @@ app.controller('companyApproval', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getCompanyList();
+  $scope.getIndustryList = function () {
+    $scope.busy = true;
+    $scope.industryList = [];
+
+    $http({
+      method: 'POST',
+      url: '/api/industry/all',
+      data: {
+        where: { active: true },
+        select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
+          $scope.industryList = response.data.list;
+          
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getCountryList = function () {
+    $scope.busy = true;
+    $scope.countryList = [];
+
+    $http({
+      method: 'POST',
+      url: '/api/country/all',
+      data: {
+        where: { active: true },
+        select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
+          $scope.countryList = response.data.list;
+          
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getCityList = function (id) {
+    $scope.busy = true;
+    $scope.cityList = [];
+
+    $http({
+      method: 'POST',
+      url: '/api/city/all',
+      data: {
+        where: { active: true,'country.id' : id },
+        select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
+          $scope.cityList = response.data.list;
+          
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+
+  $scope.searchAll = function () {
+    $scope.getCompanyList($scope.search);
+    site.hideModal('#companyApprovalSearchModal');
+    $scope.search = {};
+  };
+
+  $scope.displaySearchModal = function () {
+    $scope.error = '';
+    site.showModal('#companyApprovalSearchModal');
+  };
+
+  $scope.getCompanyList({});
+  $scope.getIndustryList();
+  $scope.getCountryList();
 });

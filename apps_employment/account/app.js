@@ -13,6 +13,12 @@ module.exports = function init(site) {
     compress: true,
   });
 
+  site.post({
+    name: '/api/accounts_type/all',
+    path: __dirname + '/site_files/json/accounts_type.json',
+  });
+
+
   site.post('/api/account/add', (req, res) => {
     let response = {
       done: false,

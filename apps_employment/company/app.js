@@ -50,22 +50,17 @@ module.exports = function init(site) {
       company_doc.active = true;
     }
 
-    $company.findOne(
+
+
+    $company.findMany(
       {
         where: {
-          $or: [
-            {
-              name_ar: company_doc.name_ar,
-            },
-            {
-              name_en: company_doc.name_en,
-            },
-          ],
+          'add_user_info.id' : req.session.user.id
         },
       },
-      (err, doc) => {
-        if (!err && doc) {
-          response.error = 'Name Exists';
+      (err, docs) => {
+        if (!err && docs && req.session.user.limited_companies == true) {
+          response.error = 'It is not allowed to add other companies';
           res.json(response);
         } else {
           // let d = new Date();
@@ -242,7 +237,45 @@ module.exports = function init(site) {
       where['name_en'] = site.get_RegExp(where['name_en'], 'i');
     }
 
-   
+    if (where['phone']) {
+      where['phone'] = site.get_RegExp(where['phone'], 'i');
+    }
+
+    if (where['industry'] && where['industry'].id) {
+      where['industry.id'] = where['industry'].id;
+      delete where['industry'];
+    }
+
+    if (where['country'] && where['country'].id) {
+      where['country.id'] = where['country'].id;
+      delete where['country'];
+    }
+
+    if (where['city'] && where['city'].id) {
+      where['city.id'] = where['city'].id;
+      delete where['city'];
+    }
+
+    if (where.date_from && !where.date_to) {
+      let d1 = site.toDate(where.date_from);
+      let d2 = site.toDate(where.date_from);
+      d2.setDate(d2.getDate() + 1);
+      where['add_user_info.date'] = {
+        $gte: d1,
+        $lt: d2,
+      };
+      delete where['date_from'];
+    } else if (where && where.date_to) {
+      let d1 = site.toDate(where.date_from);
+      let d2 = site.toDate(where.date_to);
+      d2.setDate(d2.getDate() + 1);
+      where['add_user_info.date'] = {
+        $gte: d1,
+        $lt: d2,
+      };
+      delete where['date_from'];
+      delete where['date_to'];
+    }
 
     if(where['not_active']){
       where['active'] = false;
@@ -281,16 +314,19 @@ module.exports = function init(site) {
     );
   });
 
-  site.getCompanies = function (where, callback) {
+  site.getCompanies = function (company, callback) {
     callback = callback || {};
-
-     where = where || {};
-  
+    let where = {}
+    if(company.id){
+      where['id'] =company.id
+    }
+    where['approve.id'] = 2
     $company.findMany(
       {
         where: where,
       },
       (err, docs) => {
+        console.log(docs.length);
         if (!err && docs) callback(docs);
         else callback(false);
       }

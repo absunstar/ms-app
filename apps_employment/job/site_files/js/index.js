@@ -221,6 +221,9 @@ app.controller('job', function ($scope, $http, $timeout) {
   $scope.getJobList = function (where) {
     $scope.busy = true;
     $scope.list = [];
+    $scope.count = 0;
+    $scope.open_jobs = 0;
+    $scope.applications = 0;
     where = where || {};
     if('##user.profile.type' == 'employer') {
       where['add_user_info.id'] = site.toNumber('##user.id##') ;

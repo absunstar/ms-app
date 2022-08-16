@@ -104,6 +104,13 @@ app.controller('account', function ($scope, $http, $timeout) {
       account.active = true;
     } else if(type == 'deactivate'){
       account.active = false;
+
+    } else if(type == 'limit'){
+      account.limited_companies = true;
+
+    } else if(type == 'unlimit'){
+      account.limited_companies = false;
+
     }
 
     $scope.busy = true;
@@ -115,8 +122,12 @@ app.controller('account', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#activateModal');
-          site.hideModal('#deactivateModal');
+          if(type == 'activate'){
+            site.hideModal('#activateModal');
+          } else if(type == 'deactivate'){
+            site.hideModal('#deactivateModal');
+          }
+
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
@@ -203,6 +214,7 @@ app.controller('account', function ($scope, $http, $timeout) {
   $scope.getAccountList = function (where) {
     $scope.busy = true;
     $scope.list = [];
+    $scope.count = 0;
     $http({
       method: 'POST',
       url: '/api/users/all',
@@ -356,10 +368,31 @@ app.controller('account', function ($scope, $http, $timeout) {
     }
   };
 
+  $scope.getAccountsType = function () {
+    $scope.error = "";
+    $scope.busy = true;
+    $scope.accountsTypeList = [];
+    $http({
+      method: "POST",
+      url: "/api/accounts_type/all",
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.accountsTypeList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#accountSearchModal');
   };
 
   $scope.getAccountList();
+  $scope.getAccountsType();
 });

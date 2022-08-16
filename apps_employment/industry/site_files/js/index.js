@@ -183,6 +183,8 @@ app.controller('industry', function ($scope, $http, $timeout) {
   $scope.getIndustryList = function (where) {
     $scope.busy = true;
     $scope.list = [];
+    $scope.count = 0;
+
     $http({
       method: 'POST',
       url: '/api/industry/all',

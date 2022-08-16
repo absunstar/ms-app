@@ -187,6 +187,8 @@ app.controller('job_subfields', function ($scope, $http, $timeout) {
   $scope.getJobSubFieldsList = function (where) {
     $scope.busy = true;
     $scope.list = [];
+    $scope.count = 0;
+
     where = where || {};
     if ('##query.id##' != 'undefined') {
       where['job_field.id'] = site.toNumber('##query.id##');

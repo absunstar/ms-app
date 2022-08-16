@@ -3,6 +3,8 @@ app.controller('jobSeekerFavorite', function ($scope, $http, $timeout) {
   $scope.getJobList = function (where) {
     $scope.busy = true;
     $scope.list = [];
+    $scope.count = 0;
+
     where = where || {};
 
     where['approve.id'] = 3 ;
@@ -43,6 +45,7 @@ app.controller('jobSeekerFavorite', function ($scope, $http, $timeout) {
     $scope.busy = true;
     job.application_list.push({
       user_id :site.toNumber('##user.id##'),
+      date : new Date(),
       message : $scope.message
     });
 

@@ -3,6 +3,8 @@ app.controller('jobSeekerSearch', function ($scope, $http, $timeout) {
   $scope.getJobSeekerList = function (where) {
     $scope.busy = true;
     $scope.list = [];
+    $scope.count = 0;
+
     where = where || {};
 
     where['profile.type'] = 'job-seeker';
@@ -26,5 +28,16 @@ app.controller('jobSeekerSearch', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getJobSeekerList();
+  $scope.searchAll = function () {
+    $scope.getJobSeekerList($scope.search);
+    site.hideModal('#jobSeekerSearchSearchModal');
+    $scope.search = {};
+  };
+
+  $scope.displaySearchModal = function () {
+    $scope.error = '';
+    site.showModal('#jobSeekerSearchSearchModal');
+  };
+
+  $scope.getJobSeekerList({});
 });

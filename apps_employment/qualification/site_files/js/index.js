@@ -183,6 +183,8 @@ app.controller('qualification', function ($scope, $http, $timeout) {
   $scope.getQualificationList = function (where) {
     $scope.busy = true;
     $scope.list = [];
+    $scope.count = 0;
+
     $http({
       method: 'POST',
       url: '/api/qualification/all',

@@ -10,6 +10,16 @@
         "ar": "حساب"
     },
     {
+        "name": "user_type",
+        "en": "User Type",
+        "ar": "نوع المستخدم"
+    },
+    {
+        "name": "user_name",
+        "en": "User Name",
+        "ar": "إسم المستخدم"
+    },
+    {
         "name": "admin",
         "en": "Admin",
         "ar": "مسئول"
@@ -55,9 +65,14 @@
         "ar": "رابط التنشيط"
     },
     {
-        "name": "unlimited_compaies",
-        "en": "Unlimited Compaies",
+        "name": "unlimited_companies",
+        "en": "Unlimited Companies",
         "ar": "شركات غير محدودة"
+    },
+    {
+        "name": "limited_companies",
+        "en": "Limited Companies",
+        "ar": "شركات محدودة"
     },
     {
         "name": "account_new",

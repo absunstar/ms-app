@@ -45,8 +45,8 @@ app.controller('company', function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
           if (response.data.error.like('*Must Enter Code*')) {
             $scope.error = '##word.must_enter_code##';
-          } else if (response.data.error.like('*Name Exists*')) {
-            $scope.error = '##word.name_already_exists##';
+          } else if (response.data.error.like('*not allowed to add other companies*')) {
+            $scope.error = '##word.not_allowed_add_other_companies##';
           }
         }
       },
@@ -260,6 +260,8 @@ app.controller('company', function ($scope, $http, $timeout) {
     }
 
     $scope.list = [];
+    $scope.count = 0;
+
     $http({
       method: 'POST',
       url: '/api/company/all',

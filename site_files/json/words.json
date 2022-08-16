@@ -10,6 +10,31 @@
     "ar": "قائمة التدريب"
   },
   {
+    "name": "start_date_cannot_bigger_than_end_date",
+    "en": "Start Date cannot be bigger than End date.",
+    "ar": "لا يمكن أن يكون تاريخ البدء أكبر من تاريخ الإنتهاء."
+  },
+  {
+    "name": "gender",
+    "en": "Gender",
+    "ar": "الجنس"
+  },
+  {
+    "name": "start_date",
+    "en": "Start Date",
+    "ar": "تاريخ البدء"
+  },
+  {
+    "name": "end_date",
+    "en": "End Date",
+    "ar": "تاريخ الإنتهاء"
+  },
+  {
+    "name": "editing",
+    "en": "Editing",
+    "ar": "تعديل"
+  },
+  {
     "name": "gender",
     "en": "Gender",
     "ar": "الجنس"

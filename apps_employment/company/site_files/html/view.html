@@ -16,7 +16,7 @@
                     </tr>
                     <tr>
                         <td class="title">##word.approve##</td>
-                        <td class="center">{{company.##session.lang##}}</td>
+                        <td class="center">{{approve.##session.lang##}}</td>
                     </tr>
                     <tr>
                         <td class="title">##word.status##</td>
@@ -98,22 +98,22 @@
                           <th>##word.job_field##</th>
                         </tr>
                       <tbody>
-                        <tr ng-repeat="c in jopsList" ng-click="viewJob(c)">
+                        <tr ng-repeat="c in jopsList"  ng-click="viewJob(c)">
                             <td class="center not-print">
-                            <i-image view class="logo" ng-model="c.image"></i-image>
-                          </td>
-                          <td>
-                            {{c.job_title}}
-                          </td>
-                          <td>
-                            {{c.application_deadline_date | date:"dd/MM/yyyy"}}
-                          </td>
-                          <td>
-                            {{c.company.name_##session.lang##}} , {{c.city.name_##session.lang##}}
-                          </td>
-                          <td>
-                            {{c.job_field.name_##session.lang##}}
-                          </td>
+                                <i-image view class="logo" ng-model="c.image"></i-image>
+                            </td>
+                            <td class="center">
+                                {{c.job_title}}
+                            </td>
+                            <td class="center">
+                                {{c.application_deadline_date | date:"dd/MM/yyyy"}}
+                            </td>
+                            <td class="center">
+                                {{c.company.name_##session.lang##}} , {{c.city.name_##session.lang##}}
+                            </td>
+                            <td class="center">
+                                {{c.job_field.name_##session.lang##}}
+                            </td>
                         </tr>
                       </tbody>
                     </table>

@@ -187,6 +187,8 @@ app.controller('course', function ($scope, $http, $timeout) {
   $scope.getCourseList = function (where) {
     $scope.busy = true;
     $scope.list = [];
+    $scope.count = 0;
+
     where = where || {};
     if ('##query.id##' != 'undefined') {
       where['training_category.id'] = site.toNumber('##query.id##');

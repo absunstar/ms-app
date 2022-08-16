@@ -20,6 +20,11 @@
         "ar": "أنت تدير"
     },
     {
+        "name": "not_allowed_add_other_companies",
+        "en": "It is not allowed to add other companies",
+        "ar": "غير مسموح بإضافة شركات أخرى"
+    },
+    {
         "name": "company_new",
         "en": "New Company",
         "ar": "شركة جديدة"

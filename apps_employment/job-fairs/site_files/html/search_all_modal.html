@@ -13,16 +13,40 @@
                 <fieldset>
                     <legend>##word.search_all##</legend>
                     <div class="row">
-                        <i-control class="col4" label="##word.job_fairs_name##" ng-model="search.name_ar"></i-control>
-                        <i-control class="col4" label="##word.name_en##" ng-model="search.name_en"></i-control>
+                        <i-control class="col6" label="##word.job_fairs_name##" ng-model="search.name_ar"></i-control>
+                        <i-control class="col6" label="##word.name_en##" ng-model="search.name_en"></i-control>
                         
-                      </div>
-                      <div class="row">
-                          <i-checkbox  class="col3" label="##word.active##" ng-model="search.active_search">
-                          </i-checkbox>
-                          <i-checkbox  class="col3" label="##word.not_active##" ng-model="search.not_active">
-                          </i-checkbox>
-                      </div>
+                    </div>
+
+                    <div class="row">
+                        <i-control type="text" class="col5" ng-model="search.website" label="##word.website## / ##word.job_fair_site##" ></i-control>
+                        <i-control type="text" class="col5" ng-model="search.field" label="##word.field## ##word.job_fair##" ></i-control>
+            
+                    </div>
+
+                        
+                    <div class="row">
+                          
+                        <div class="col6">
+                            <fieldset>
+                                <legend>##word.site## :</legend>
+                                <div class="row">
+                                      <i-radio class="col6" ng-model="search.site" label="##word.online##" ng-value="percent"> </i-radio>
+                                    <i-radio class="col6" ng-model="search.site" label="##word.offline##" ng-value="number"></i-radio>
+                                </div>
+                            </fieldset>
+                        </div>
+                             
+                        <div class="col6">
+                            <div class="row">
+                                <i-checkbox  class="col6" label="##word.active##" ng-model="search.active_search"></i-checkbox>
+                              <i-checkbox  class="col6" label="##word.not_active##" ng-model="search.not_active"></i-checkbox>
+                            </div>
+                        </div>
+                    </div>
+
+                      
+                     
                 </fieldset>
             </form>
         </div>

@@ -187,6 +187,8 @@ app.controller('training_center', function ($scope, $http, $timeout) {
   $scope.getTrainingCenterList = function (where) {
     $scope.busy = true;
     $scope.list = [];
+    $scope.count = 0;
+
     where = where || {};
     if ('##query.id##' != 'undefined') {
       where['partner.id'] = site.toNumber('##query.id##');

@@ -183,6 +183,8 @@ app.controller('job_fields', function ($scope, $http, $timeout) {
   $scope.getJobFieldsList = function (where) {
     $scope.busy = true;
     $scope.list = [];
+    $scope.count = 0;
+
     $http({
       method: 'POST',
       url: '/api/job_fields/all',

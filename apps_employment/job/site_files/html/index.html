@@ -67,8 +67,8 @@
                   <p>##word.expiry## :  {{c.application_deadline_date | date:"dd/MM/yyyy"}} </p>
 
                 </td>
-                <td class="center title">{{c.application_list.length || 0}}</td>
-                <td class="center title"> ##word.applications## {{c.approve.##session.lang##}}</td>
+                <td class="center title"> ( {{c.application_list.length || 0}} ) </td>
+                <td class="center title"> {{c.approve.##session.lang##}}</td>
                 <td class="center">
                   <p ng-show="c.active ==true" class="green">##word.active##</p>
                   <p ng-show="!c.active" class="red">##word.not_active##</p>

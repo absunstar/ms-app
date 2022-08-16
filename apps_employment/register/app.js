@@ -33,6 +33,7 @@ module.exports = function init(site) {
       other_addresses_list: [],
       ip: req.ip,
       active: true,
+      created_date: new Date(),
       profile: {
         files: [],
         name: req.body.first_name,
@@ -47,6 +48,7 @@ module.exports = function init(site) {
     if(user.profile.type == 'admin'){
       user.roles = [{name : 'admin'}]
     } else if(user.profile.type == 'employer'){
+      user.limited_companies = true;
       user.roles = [{name : 'employer'}]
     } else if(user.profile.type == 'job-seeker'){
       user.roles = [{name : 'job_seeker'}]

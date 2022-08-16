@@ -9,6 +9,7 @@
     <div id="main-layout" class="container loaded">
       <div class="row">
         <div class="row">
+          <div  x-import="job-approval/search_all_modal.html"></div>
 
           <div class="row">
             <h1 class="bold text-center">##word.job_approval##</h1>
@@ -26,10 +27,12 @@
               <tr>
                  <th class="not-print">##word.logo##</th>
                 <th>##word.code##</th>
+                <th>##word.company_name##</th>
                 <th>##word.job_name##</th>
+                <th>##word.job_title##</th>
+                <th>##word.job_subfield##</th>
                 <th>##word.industry##</th>
-                <th>##word.country##</th>
-                <th>##word.city##</th>
+             
                 <th class="not-print">##word.actions##</th>
               </tr>
             <tbody>
@@ -38,10 +41,11 @@
                   <i-image view class="logo" ng-model="c.image"></i-image>
                 </td>
                 <td class="center userPrint blue">{{c.code}}</td>
+                <td class="center title">{{c.company.name_##session.lang##}}</td>
                 <td class="center title">{{c.job_title}}</td>
+                <td class="center title">{{c.job_field.name_##session.lang##}}</td>
+                <td class="center title">{{c.job_subfield.name_##session.lang##}}</td>
                 <td class="center title">{{c.industry.name_##session.lang##}}</td>
-                <td class="center title">{{c.country.name_##session.lang##}}</td>
-                <td class="center title">{{c.city.name_##session.lang##}}</td>
 
                 <td class="center not-print">
 

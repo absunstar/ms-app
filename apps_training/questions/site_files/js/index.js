@@ -184,6 +184,8 @@ app.controller('questions', function ($scope, $http, $timeout) {
   $scope.getQuestionList = function (where) {
     $scope.busy = true;
     $scope.list = [];
+    $scope.count = 0;
+
     $http({
       method: 'POST',
       url: '/api/questions/all',

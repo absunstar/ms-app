@@ -133,8 +133,6 @@ module.exports = function init(site) {
                 res.json(response);
               }
             );
-          
-        
       
     } else {
       response.error = 'no id';
@@ -227,6 +225,11 @@ module.exports = function init(site) {
       delete where['job_field'];
     }
 
+    if (where['job_subfield'] && where['job_subfield'].id) {
+      where['job_subfield.id'] = where['job_subfield'].id;
+      delete where['job_subfield'];
+    }
+
     if (where['job_type'] && where['job_type'].id) {
       where['job_type.id'] = where['job_type'].id;
       delete where['job_type'];
@@ -235,6 +238,11 @@ module.exports = function init(site) {
     if (where['industry'] && where['industry'].id) {
       where['industry.id'] = where['industry'].id;
       delete where['industry'];
+    }
+
+    if (where['company'] && where['company'].id) {
+      where['company.id'] = where['company'].id;
+      delete where['company'];
     }
 
     if (where['country'] && where['country'].id) {
@@ -295,14 +303,38 @@ module.exports = function init(site) {
       }
     );
   });
-
+ 
   site.post('/api/job/hire', (req, res) => {
     let response = {
       done: false,
     };
 
     let where = req.body.where || {};
-  
+
+      where['active'] = true;
+      where['approve.id'] = 3
+
+    if (where.date_from) {
+      let d1 = site.toDate(where.date_from);
+      let d2 = site.toDate(where.date_from);
+      d2.setDate(d2.getDate() + 1);
+      where['application_list.date']= {
+        $gte: d1,
+        $lt: d2,
+      };
+      delete where['date_from'];
+    } else if (where && where.date_to) {
+      let d1 = site.toDate(where.date_from);
+      let d2 = site.toDate(where.date_to);
+      d2.setDate(d2.getDate() + 1);
+      where['application_list.date'] = {
+        $gte: d1,
+        $lt: d2,
+      };
+      delete where['date_from'];
+      delete where['date_to'];
+    }
+
     $job.findMany(
       {
         select: req.body.select || {},

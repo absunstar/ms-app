@@ -23,9 +23,9 @@
           </div>
 
           <div class="top-actions">
-            <button  type="button" class="btn btn-success" ng-click="displayAddAccount()"><i class="fas fa-plus-circle"></i> ##word.account_new##</button>
 
-            <button  type="button" class="btn btn-primary" ng-click="displaySearchModal()"><i class="fa fa-search"></i> ##word.search_all##</button>
+            <i-button  type="add" label="##word.account_new##" ng-click="displayAddAccount()"></i-button>
+            <i-button  type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
 
             <h3 class="bold text-center">##word.count## : {{count || 0}}</h3>
             <h3 class="bold text-center text-danger">{{error}}</h3>
@@ -64,7 +64,8 @@
                   <i-button ng-hide="c.active == false" label="##word.activation##" ng-click="displayDetailsCity(c)"></i-button>
                   <i-button ng-hide="c.active == false" type="edit" label="##word.edit##" ng-click="displayUpdateAccount(c)"></i-button>
                   <i-button ng-hide="c.active == false" label="##word.password##" ng-click="displayDetailsCity(c)"></i-button>
-                  <i-button ng-hide="c.active == false" type="edit" label="##word.unlimited_compaies##" ng-show="c.profile.type == 'employer'"></i-button>
+                  <i-button  type="edit" label="##word.unlimited_companies##" ng-click="update(c,'unlimit')" ng-show="c.profile.type == 'employer' && c.active && c.limited_companies== true"></i-button>
+                  <i-button  type="edit" label="##word.limited_companies##" ng-click="update(c,'limit')" ng-show="c.profile.type == 'employer' && c.active && !c.limited_companies"></i-button>
                 </td>
               </tr>
             </tbody>

@@ -178,15 +178,13 @@ app.controller('city', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.searchAll = function () {
-    $scope.getCityList($scope.search);
-    site.hideModal('#citySearchModal');
-    $scope.search = {};
-  };
+
 
   $scope.getCityList = function (where) {
     $scope.busy = true;
     $scope.list = [];
+    $scope.count = 0;
+
     where = where || {};
     if ('##query.id##' != 'undefined') {
       where['country.id'] = site.toNumber('##query.id##');
@@ -265,6 +263,12 @@ app.controller('city', function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     );
+  };
+
+  $scope.searchAll = function () {
+    $scope.getCityList($scope.search);
+    site.hideModal('#citySearchModal');
+    $scope.search = {};
   };
 
   $scope.displaySearchModal = function () {

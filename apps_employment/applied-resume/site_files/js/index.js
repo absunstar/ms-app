@@ -14,7 +14,7 @@ app.controller('appliedResume', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.job = response.data.doc;
-          $scope.getJobSeekerList($scope.job);
+          $scope.getJobSeekerList($scope.job , {});
         } else {
           $scope.error = response.data.error;
         }
@@ -53,11 +53,10 @@ app.controller('appliedResume', function ($scope, $http, $timeout) {
 
         if(element.user_id == user.id){
           element.hire = false;
-          user.$hire = false
+          user.$hire = false;
         }
       }
       site.hideModal('#unhireModal');
-
     }
 
     $http({
@@ -79,19 +78,20 @@ app.controller('appliedResume', function ($scope, $http, $timeout) {
 
   };
 
-  $scope.getJobSeekerList = function (job) {
+  $scope.getJobSeekerList = function (job , where) {
     $scope.busy = true;
     $scope.list = [];
-    where = {};
-    let ad_list = [];
+    where = where || {};
+    let id_list = [];
     
     for (let i = 0; i < job.application_list.length; i++) {
       let element = job.application_list[i];
-      ad_list.push(element.user_id)
+      id_list.push(element.user_id);
     }
 
     where['profile.type'] = 'job-seeker';
-    where['id'] = { $in: ad_list};
+    where['id'] = { $in: id_list};
+
     $http({
       method: 'POST',
       url: '/api/users/all',
@@ -109,11 +109,11 @@ app.controller('appliedResume', function ($scope, $http, $timeout) {
           $scope.job.application_list.forEach(_ap => {
             if(_ap.user_id == user.id && _ap.hire) {
               user.$hire = true;
-            }
+            };
           });
         
-         }
-        }
+         };
+        };
       },
       function (err) {
         $scope.busy = false;
@@ -122,8 +122,16 @@ app.controller('appliedResume', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.displaySearchModal = function () {
+    $scope.error = '';
+    site.showModal('#appliedResumeModal');
+  };
 
-
+  $scope.searchAll = function () {
+    $scope.getJobSeekerList($scope.job , $scope.search);
+    site.hideModal('#appliedResumeModal');
+    $scope.search = {};
+  };
 
   $scope.viewJob();
 });

@@ -46,7 +46,6 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images'
   })
 
-
   site.post('/api/users/all', (req, res) => {
 
     let response = {
@@ -58,7 +57,55 @@ module.exports = function init(site) {
       res.json(response)
       return
     }
+
     let where = req.body.where || {}
+
+    if (where['user_name']) {
+      where['profile.name'] = site.get_RegExp(where['user_name'], 'i');
+      delete where['user_name']
+    }
+
+    if (where['job_title']) {
+      where['profile.job_title'] = site.get_RegExp(where['job_title'], 'i');
+      delete where['job_title']
+    }
+
+    if (where['email']) {
+      where['email'] = site.get_RegExp(where['email'], 'i');
+    }
+
+    if(where['user_type'] ) {
+
+      if(where['user_type'].id == 1) {
+        where['profile.type'] = 'admin';
+
+      } else if(where['user_type'].id == 2) {
+        where['profile.type'] = 'employer';
+
+      } else if(where['user_type'].id == 3) {
+        where['profile.type'] = 'job-seeker';
+
+      }
+
+     delete where['user_type'];
+
+    }
+
+    if(where['not_active']){
+      where['active'] = false;
+    }
+
+    if(where['active_search']){
+      where['active'] = true;
+    }
+
+    if(where['not_active'] && where['active_search']){
+      delete where['active'];
+    }
+
+    delete where['active_search'];
+    delete where['not_active'];
+
     site.security.getUsers({
       where: where,
     }, (err, docs, count) => {

@@ -184,6 +184,8 @@ app.controller('years_of_experience', function ($scope, $http, $timeout) {
   $scope.getYearsOfExperienceList = function (where) {
     $scope.busy = true;
     $scope.list = [];
+    $scope.count = 0;
+
     $http({
       method: 'POST',
       url: '/api/years_of_experience/all',

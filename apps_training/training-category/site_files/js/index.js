@@ -190,6 +190,8 @@ app.controller('training_categories', function ($scope, $http, $timeout) {
   $scope.getTrainingCategoriesList = function (where) {
     $scope.busy = true;
     $scope.list = [];
+    $scope.count = 0;
+
     $http({
       method: 'POST',
       url: '/api/training_categories/all',

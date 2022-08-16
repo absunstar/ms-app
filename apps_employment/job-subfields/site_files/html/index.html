@@ -13,7 +13,7 @@
           <div x-import="job-subfields/update_modal.html"></div>
           <div x-import="job-subfields/delete_modal.html"></div>
           <div x-import="job-subfields/view_modal.html"></div>
-          <divx-import="job-subfields/search_all_modal.html"></div>
+          <div x-import="job-subfields/search_all_modal.html"></div>
 
           <div class="row">
             <h1 class="bold text-center">##word.job_subfields##</h1>
@@ -23,7 +23,7 @@
             <h3 class="bold" ng-show="'##query.id##' != 'undefined'">##word.job_field## : {{job_field.name_##session.lang##}}</h3>
 
             <i-button type="add" label="##word.job_subfields_new##" ng-click="displayAddJobSubFields()"></i-button>
-            <i-buttontype="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+            <i-button type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
 
             <h3 class="bold text-center">##word.count## : {{count || 0}}</h3>
             <h3 class="bold text-center text-danger">{{error}}</h3>

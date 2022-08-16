@@ -3,6 +3,8 @@ app.controller('jobSeekerHistory', function ($scope, $http, $timeout) {
   $scope.getJobList = function (where) {
     $scope.busy = true;
     $scope.list = [];
+    $scope.count = 0;
+
     where = where || {};
 
     where['approve.id'] = 3 ;
@@ -101,6 +103,257 @@ app.controller('jobSeekerHistory', function ($scope, $http, $timeout) {
       }
     );
   };
+
+  $scope.getIndustryList = function () {
+    $scope.busy = true;
+    $scope.industryList = [];
+
+    $http({
+      method: 'POST',
+      url: '/api/industry/all',
+      data: {
+        where: { active: true },
+        select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
+          $scope.industryList = response.data.list;
+          
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getQualificationList = function () {
+    $scope.busy = true;
+    $scope.qualificationList = [];
+
+    $http({
+      method: 'POST',
+      url: '/api/qualification/all',
+      data: {
+        where: { active: true },
+        select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
+          $scope.qualificationList = response.data.list;
+          
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getCompanyList = function () {
+    $scope.busy = true;
+    $scope.companyList = [];
+    where = {};
+   
+    where['approve.id'] = 2;
+    where['active'] = true;
+
+    $http({
+      method: 'POST',
+      url: '/api/company/all',
+      data: {
+        where: where,
+        select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
+          $scope.companyList = response.data.list;
+          
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getYearsOfExperienceList = function () {
+    $scope.busy = true;
+    $scope.yearsOfExperienceList = [];
+
+    $http({
+      method: 'POST',
+      url: '/api/years_of_experience/all',
+      data: {
+        where: { active: true },
+        select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
+          $scope.yearsOfExperienceList = response.data.list;
+          
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getCountryList = function () {
+    $scope.busy = true;
+    $scope.countryList = [];
+
+    $http({
+      method: 'POST',
+      url: '/api/country/all',
+      data: {
+        where: { active: true },
+        select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
+          $scope.countryList = response.data.list;
+          
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getCityList = function (id) {
+    $scope.busy = true;
+    $scope.cityList = [];
+
+    $http({
+      method: 'POST',
+      url: '/api/city/all',
+      data: {
+        where: { active: true,'country.id' : id },
+        select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
+          $scope.cityList = response.data.list;
+          
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getJobFieldsList = function () {
+    $scope.busy = true;
+    $scope.jobFieldsList = [];
+
+    $http({
+      method: 'POST',
+      url: '/api/job_fields/all',
+      data: {
+        where: { active: true },
+        select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
+          $scope.jobFieldsList = response.data.list;
+          
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getJobSubfieldsList = function (id) {
+    $scope.busy = true;
+    $scope.jobSubfieldsList = [];
+
+    $http({
+      method: 'POST',
+      url: '/api/job_subfields/all',
+      data: {
+        where: { active: true,'job_field.id' : id },
+        select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
+          $scope.jobSubfieldsList = response.data.list;
+          
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getJobType = function () {
+    $scope.error = "";
+    $scope.busy = true;
+    $scope.jobTypeList = [];
+    $http({
+      method: "POST",
+      url: "/api/job_type/all",
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.jobTypeList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+
+  $scope.searchAll = function () {
+    $scope.getJobList($scope.search);
+    site.hideModal('#jobSeekerHistorySearchModal');
+    $scope.search = {};
+  };
+
+  $scope.displaySearchModal = function () {
+    $scope.error = '';
+    site.showModal('#jobSeekerHistorySearchModal');
+  };
  
-  $scope.getJobList();
+  $scope.getJobList({});
+  $scope.getIndustryList();
+  $scope.getQualificationList();
+  $scope.getCompanyList();
+  $scope.getYearsOfExperienceList();
+  $scope.getCountryList();
+  $scope.getJobFieldsList();
+  $scope.getJobType();
+ 
 });

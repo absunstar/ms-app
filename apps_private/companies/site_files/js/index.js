@@ -185,7 +185,6 @@ app.controller("companies", function ($scope, $http, $timeout) {
 
   $scope.getcompanyActivityList = function () {
     $scope.busy = true;
-    $scope.list = [];
     $http({
       method: "POST",
       url: "/api/companies_activities/all",
@@ -209,7 +208,6 @@ app.controller("companies", function ($scope, $http, $timeout) {
 
   $scope.getGovList = function () {
     $scope.busy = true;
-    $scope.list = [];
     $http({
       method: "POST",
       url: "/api/goves/all",
@@ -235,7 +233,7 @@ app.controller("companies", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.busy = true;
     $scope.list = [];
-    $scope.count =0;
+    $scope.count = 0;
     $http({
       method: "POST",
       url: "/api/companies/all",
@@ -261,7 +259,6 @@ app.controller("companies", function ($scope, $http, $timeout) {
       return;
     }
     $scope.busy = true;
-    $scope.list = [];
     $http({
       method: "POST",
       url: "/api/cities/all",

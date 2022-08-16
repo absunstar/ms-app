@@ -135,6 +135,11 @@ app.controller('job_fairs', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.job_fairs = response.data.doc;
+          $scope.job_fairs_name = response.data.doc.name_ar;
+          if('##session.lang##' == 'en'){
+          $scope.job_fairs_name = response.data.doc.name_en;
+      
+          };
         } else {
           $scope.error = response.data.error;
         }
@@ -187,6 +192,8 @@ app.controller('job_fairs', function ($scope, $http, $timeout) {
   $scope.getJobFairsList = function (where) {
     $scope.busy = true;
     $scope.list = [];
+    $scope.count = 0;
+
     $http({
       method: 'POST',
       url: '/api/job_fairs/all',
@@ -239,6 +246,7 @@ app.controller('job_fairs', function ($scope, $http, $timeout) {
     if(c && c.id){
       $scope.apply.name = c.profile.name;
       $scope.apply.email = c.email;
+      $scope.apply.job_title = c.profile.job_title;
     }
   };
 

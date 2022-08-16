@@ -8,5 +8,10 @@
         "name": "view_resume",
         "en": "View Resume",
         "ar": "عرض الملف الشخصي"
+    },
+    {
+        "name": "candidate_found",
+        "en": "Candidate Found",
+        "ar": "مرشحين"
     }
 ]

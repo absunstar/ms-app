@@ -12,13 +12,13 @@
                 <fieldset>
                     <legend>##word.search_all##</legend>
                     <div class="row">
-                        <i-control class="col4" label="##word.job_subfields_name##" ng-model="search.name_ar"></i-control>
-                        <i-control class="col4" label="##word.name_en##" ng-model="search.name_en"></i-control>
+                        <i-control class="col6" label="##word.job_subfields_name##" ng-model="search.name_ar"></i-control>
+                        <i-control class="col6" label="##word.name_en##" ng-model="search.name_en"></i-control>
 
                       </div>
 
                       <div class="row" ng-show="'##query.id##' == 'undefined'">
-                        <i-list help-id="" v="r" class="col4" label="##word.job_field##" ng-model="search.job_field"
+                        <i-list help-id="" class="col4" label="##word.job_field##" ng-model="search.job_field"
                         display="name_##session.lang##" items="jobFieldsList" ng-search="_search.$city_job_field"></i-list>
                       </div>
 

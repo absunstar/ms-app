@@ -33,7 +33,7 @@
             <h3 class="bold text-center text-danger">{{error}}</h3>
           </div>
 
-          <table  class="table table-striped text-center" id="t1">
+          <table class="table table-striped text-center" id="t1">
               <tr>
                  <th class="not-print">##word.logo##</th>
                 <th>##word.code##</th>
@@ -49,7 +49,12 @@
                   <i-image view class="logo" ng-model="c.image"></i-image>
                 </td>
                 <td class="center userPrint blue">{{c.code}}</td>
-                <td class="center title">{{c.name_##session.lang##}}</td>
+                <td class="center title">
+                 <b> {{c.name_##session.lang##}}</b>
+                 <p>{{c.industry.name_##session.lang##}}</p>
+                  <p>{{c.country.name_##session.lang##}} , {{c.city.name_##session.lang##}} <i class="fa fa-map-marker" aria-hidden="true"></i></p>
+
+                </td>
                 <td class="center title">{{c.approve.##session.lang##}}</td>
                 <td class="center">
                   <p ng-show="c.active ==true" class="green">##word.active##</p>
@@ -59,10 +64,10 @@
                 <td class="center not-print">
 
                   <i-button  type="view" label="##word.details##" ng-click="displayDetailsCompany(c)"></i-button>
-                  <i-button  type="edit" label="##word.edit##" ng-click="displayUpdateCompany(c)"></i-button>
-                  <i-button  ng-show="!c.active" label="##word.activate##" ng-click="c.active = true; updateActivate(c)"></i-button>
-                  <i-button  ng-show="c.active" label="##word.deactivate##" ng-click="c.active = false; updateActivate(c)"></i-button>
-                  <i-button  type="delete" label="##word.delete##" ng-click="displayDeleteCompany(c)"></i-button>
+                  <i-button x-permissions="employer" type="edit" label="##word.edit##" ng-click="displayUpdateCompany(c)"></i-button>
+                  <i-button x-permissions="employer" ng-show="!c.active" label="##word.activate##" ng-click="c.active = true; updateActivate(c)"></i-button>
+                  <i-button x-permissions="employer" ng-show="c.active" label="##word.deactivate##" ng-click="c.active = false; updateActivate(c)"></i-button>
+                  <i-button x-permissions="employer" type="delete" label="##word.delete##" ng-click="displayDeleteCompany(c)"></i-button>
 
                 </td>
               </tr>

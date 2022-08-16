@@ -17,8 +17,41 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
+    
     let where = req.body.where || {};
+    let company = {};
+
+    if(where['company']) {
+      company = {...where['company']}
+      delete where['company']
+    }
+
+    if (where['job_field'] && where['job_field'].id) {
+      where['job_field.id'] = where['job_field'].id;
+      delete where['job_field'];
+    }
+
+
+    if (where.date_from && !where.date_to) {
+      let d1 = site.toDate(where.date_from);
+      let d2 = site.toDate(where.date_from);
+      d2.setDate(d2.getDate() + 1);
+      where['add_user_info.date'] = {
+        $gte: d1,
+        $lt: d2,
+      };
+      delete where['date_from'];
+    } else if (where && where.date_to) {
+      let d1 = site.toDate(where.date_from);
+      let d2 = site.toDate(where.date_to);
+      d2.setDate(d2.getDate() + 1);
+      where['add_user_info.date'] = {
+        $gte: d1,
+        $lt: d2,
+      };
+      delete where['date_from'];
+      delete where['date_to'];
+    }
 
     $job.findMany(
       {
@@ -30,7 +63,7 @@ module.exports = function init(site) {
         limit: req.body.limit,
       },
       (err, docs, count) => {
-        site.getCompanies({}, (companiesList) => {
+        site.getCompanies(company, (companiesList) => {
         if (!err) {
           response.done = true;
 

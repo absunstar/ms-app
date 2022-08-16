@@ -3,12 +3,11 @@ app.controller('reportStats', function ($scope, $http, $timeout) {
 
   $scope.getAccountsList = function (where) {
     $scope.busy = true;
-    $scope.list = [];
     $http({
       method: 'POST',
       url: '/api/report_stats_users/all',
       data: {
-        where: where,
+        where : where
       },
     }).then(
       function (response) {
@@ -28,13 +27,14 @@ app.controller('reportStats', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getCompanyList = function () {
-    $scope.busy = true;
+  $scope.getCompanyList = function (where) {
     $scope.companies_count = 0;
+    where['approve.id'] = 2;
+    $scope.busy = true;
     $http({
       method: 'POST',
       url: '/api/company/all',
-      data: {},
+      data: {where:where},
     }).then(
       function (response) {
         $scope.busy = false;
@@ -51,7 +51,6 @@ app.controller('reportStats', function ($scope, $http, $timeout) {
 
   $scope.getJobList = function (where) {
     $scope.busy = true;
-    $scope.list = [];
     where = where || {};
     where['approve.id'] = 3 ;
     $http({
@@ -73,7 +72,27 @@ app.controller('reportStats', function ($scope, $http, $timeout) {
       }
     );
   };
-  $scope.getJobList();
-  $scope.getCompanyList();
-  $scope.getAccountsList();
+
+  $scope.searchAll = function () {
+
+    if($scope.search.date_from && $scope.search.date_to && new Date($scope.search.date_from) > new Date($scope.search.to_date) ){
+      $scope.error = '##word.start_date_cannot_bigger_than_end_date##';
+      return;
+    };
+
+    $scope.getAccountsList({...$scope.search});
+    $scope.getCompanyList({...$scope.search});
+    $scope.getJobList({...$scope.search});
+    site.hideModal('#reportStatsModal');
+    $scope.search = {};
+  };
+
+  $scope.displaySearchModal = function () {
+    $scope.error = '';
+    site.showModal('#reportStatsModal');
+  };
+
+  $scope.getJobList({});
+  $scope.getCompanyList({});
+  $scope.getAccountsList({});
 });

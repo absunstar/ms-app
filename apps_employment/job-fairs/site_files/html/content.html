@@ -3,7 +3,14 @@
     <fieldset>
       <legend>##word.basic_information##</legend>
       <div class="row">
-        <div class="col9">
+        <div class="col10">
+          <div class="row">
+            <h4 class="bold" ng-show="!job_fairs.id"> ##word.create## : ##word.new## </h4>
+            <h4 class="bold" ng-show="job_fairs.id"> ##word.editing## : {{job_fairs_name}} </h4>
+
+          </div>
+          <br>
+          <br>
           <div class="row">
             <i-control type="text" class="col2" ng-hide="disabledCode" ng-model="job_fairs.code" label="##word.code##"></i-control>
             <i-control type="text" class="col4" v="r" ng-model="job_fairs.name_ar" label="##word.job_fairs_name##" ></i-control>
@@ -20,7 +27,7 @@
           </div>
 
           <div class="row">
-            <i-date class="col8" v="r" ng-model="job.event_date" label="##word.event_date##"> </i-date>
+            <i-date class="col10" v="r" ng-model="job_fairs.event_date" label="##word.event_date##"> </i-date>
           </div>
 
           <br>
@@ -43,19 +50,20 @@
           <br>
 
           <div class="row">
-        
             <i-textarea label="##word.job_fair_description##" ng-model="job_fairs.description">
             </i-textarea>
           </div>
       
-
         </div>
 
-      <div class="col3">
+      <div class="col2">
         <i-image help-id="job_fairs_logo" ng-model="job_fairs.image"></i-image>
       </div>
           
       </div>
     </fieldset>
+    <div class="row">
+      <h4 class="bold center">##word.after_registering_you_will_receiving_confirmation_email##</h4>
+    </div>
   </div>
 </div>

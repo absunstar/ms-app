@@ -183,6 +183,8 @@ app.controller('country', function ($scope, $http, $timeout) {
   $scope.getCountryList = function (where) {
     $scope.busy = true;
     $scope.list = [];
+    $scope.count = 0;
+
     $http({
       method: 'POST',
       url: '/api/country/all',
