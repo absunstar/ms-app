@@ -23,11 +23,21 @@
         "name": "already_applied",
         "en": "Already Applied",
         "ar": "تم التطبق بالفعل"
-    },
+    }, 
     {
         "name": "favorite",
         "en": "Favorite",
         "ar": "مفضل"
+    },
+    {
+        "name": "current_location",
+        "en": "Current Location",
+        "ar": "الموقع الحالي"
+    },
+    {
+        "name": "designations",
+        "en": "Designations",
+        "ar": "الكلمات الرئيسية"
     },
     {
         "name": "remove_favorite",
@@ -38,7 +48,21 @@
         "name": "tell_employer_why_you_best_candidate_for_job",
         "en": "Tell the employer why you are the best candidate for this job ! ",
         "ar": "أخبر صاحب العمل لماذا أنت أفضل مرشح لهذه الوظيفة! "
+    }, 
+    {
+        "name": "search_by_company",
+        "en": "Search by Company",
+        "ar": "البحث حسب إسم الشركة"
+    }, 
+    {
+        "name": "search_by_job_field",
+        "en": "Search by Job Field",
+        "ar": "البحث حسب مجال الوظيفة"
+    }, 
+    {
+        "name": "search_by_industry",
+        "en": "Search by Industry",
+        "ar": "البحث حسب الصناعة"
     }
-
    
 ]

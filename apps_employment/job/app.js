@@ -269,7 +269,101 @@ module.exports = function init(site) {
 
     delete where['active_search'];
     delete where['not_active'];
-  
+    
+    if(req.body.search){
+    if(where['companies'] && where['companies'].length > 0){
+      where.$or = where.$or || []
+      for (let i = 0; i < where['companies'].length; i++) {
+        let element = where['companies'][i];
+        where.$or.push({
+          'company.id': element.id
+        })
+      }
+    }
+
+    if(where['job_fields'] && where['job_fields'].length > 0){
+      where.$or = where.$or || []
+      for (let i = 0; i < where['job_fields'].length; i++) {
+        let element = where['job_fields'][i];
+        where.$or.push({
+          'job_field.id': element.id
+        })
+      }
+    }
+
+    if(where['industries'] && where['industries'].length > 0){
+      where.$or = where.$or || []
+      for (let i = 0; i < where['industries'].length; i++) {
+        let element = where['industries'][i];
+        where.$or.push({
+          'industry.id': element.id
+        })
+      }
+
+    }
+
+    if(where['experiences'] && where['experiences'].length > 0){
+      where.$or = where.$or || []
+      for (let i = 0; i < where['experiences'].length; i++) {
+        let element = where['experiences'][i];
+        where.$or.push({
+          'years_of_experience.id': element.id
+        })
+      }
+    }
+
+    if(where['qualifications'] && where['qualifications'].length > 0){
+      where.$or = where.$or || []
+      for (let i = 0; i < where['qualifications'].length; i++) {
+        let element = where['qualifications'][i];
+        where.$or.push({
+          'qualification.id': element.id
+        })
+      }
+
+    }
+
+    if(where['general_search']) {
+
+      where.$or = where.$or || []
+
+      where.$or.push({
+        'job_title': site.get_RegExp(where['general_search'], "i")
+      })
+      where.$or.push({
+        'company.name_ar': site.get_RegExp(where['general_search'], "i")
+      })
+      where.$or.push({
+        'company.name_en': site.get_RegExp(where['general_search'], "i")
+      })
+    }
+
+    if(where['general_locations']) {
+
+      where.$or = where.$or || []
+
+      where.$or.push({
+        'country.name_ar': site.get_RegExp(where['general_locations'], "i")
+      })
+      where.$or.push({
+        'country.name_en': site.get_RegExp(where['general_locations'], "i")
+      })
+      where.$or.push({
+        'city.name_ar': site.get_RegExp(where['general_locations'], "i")
+      })
+      where.$or.push({
+        'city.name_en': site.get_RegExp(where['general_locations'], "i")
+      })
+    }
+    
+    delete where['experiences']
+    delete where['qualifications']
+    delete where['industries']
+    delete where['companies']
+    delete where['job_fields']
+    delete where['general_search']
+    delete where['general_locations']
+  }
     $job.findMany(
       {
         select: req.body.select || {},

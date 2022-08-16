@@ -80,7 +80,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
 
   };
 
-  $scope.getYearsOfExperienceListList = function () {
+  $scope.getYearsOfExperienceList = function () {
     $scope.busy = true;
     $scope.yearsOfExperienceList = [];
 
@@ -358,7 +358,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
 
   $scope.viewUser();
   $scope.getGender();
-  $scope.getYearsOfExperienceListList();
+  $scope.getYearsOfExperienceList();
   $scope.getCountryList();
   $scope.getLanguagesList();
   $scope.getQualificationList();

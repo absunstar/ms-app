@@ -11,28 +11,59 @@
         <div class="row">
 
           <div class="top-actions">
-            <div  x-import="job/view_modal.html"></div>
-            <div  x-import="employer-search/apply_modal.html"></div>
-            <div  x-import="employer-search/search_all_modal.html"></div>
-            <i-button type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+            <div x-import="job/view_modal.html"></div>
+            <div x-import="employer-search/apply_modal.html"></div>
           </div>
 
-          <div class="row" ng-repeat="j in list">
+          <div class="row">
+            <i-control class="col5" label="##word.job_title## , ##word.company## ##word.or## ##word.designations##" ng-model="search.general_search"></i-control>
+            <i-control class="col5" label="##word.location##" ng-model="search.general_locations"></i-control>
             <div class="col2">
-              <i-image view ng-model="j.image"></i-image>
+              <i-button type="search" label="##word.search##" ng-click="getJobList(search)"> </i-button>
+              <a ng-click="currentLocation()">##word.current_location##</a>
             </div>
-            <div class="col6">
+          </div>
 
-              <b class="font-weight-bold">{{j.job_title}}</b>
-              <p>{{j.country.name_##session.lang##}} , {{j.city.name_##session.lang##}} <i class="fa fa-map-marker" aria-hidden="true"></i></p>
-              <p>{{j.qualification.name_##session.lang##}}</p>
-              <p>{{j.years_of_experience.name_##session.lang##}}</p>
-            </div>
+          <div class="col3">
+            <i-checklist label="##word.search_by_company## ({{companyList.length}})" ng-change="getJobList(search)" ng-model="search.companies"
+              display="name_##session.lang##" items="companyList" ng-search="_search.$user_profile_companies"></i-checklist>
+
+              <i-checklist label="##word.search_by_job_field## ({{jobFieldsList.length}})" ng-change="getJobList(search)" ng-model="search.job_fields"
+              display="name_##session.lang##" items="jobFieldsList" ng-search="_search.$user_profile_job_fields"></i-checklist>
+         
+              <i-checklist label="##word.search_by_industry## ({{industryList.length}})" ng-change="getJobList(search)" ng-model="search.industries"
+              display="name_##session.lang##" items="industryList" ng-search="_search.$user_profile_industries"></i-checklist>
+
+              <i-checklist label="##word.search_by_experience## ({{yearsOfExperienceList.length}})" ng-change="getJobList(search)" ng-model="search.experiences"
+              display="name_##session.lang##" items="yearsOfExperienceList" ng-search="_search.$_experience"></i-checklist>
+
+              <i-checklist label="##word.search_by_qualification## ({{qualificationList.length}})" ng-change="getJobList(search)" ng-model="search.qualifications"
+              display="name_##session.lang##" items="qualificationList" ng-search="_search.$user_profile_qualification"></i-checklist>
+
+
+            </div> 
+          <div class="col1"></div>
+          <div class="col8">
+            <div class="row" ng-repeat="j in list">
+              <div class="col3">
+                <i-image view ng-model="j.image"></i-image>
+              </div>
+              <div class="col6">
   
-            <div class="col2">
-              <i-button  type="view" label="##word.view_job##" ng-click="viewJob(j)"></i-button>
+                <b class="font-weight-bold">{{j.job_title}}</b>
+                <p>{{j.country.name_##session.lang##}} , {{j.city.name_##session.lang##}} <i class="fa fa-map-marker" aria-hidden="true"></i></p>
+                <p>{{j.qualification.name_##session.lang##}}</p>
+                <p>{{j.years_of_experience.name_##session.lang##}}</p>
+              </div>
+    
+              <div class="col3">
+                <i-button  type="view" label="##word.view_job##" ng-click="viewJob(j)"></i-button>
+              </div>
             </div>
+
           </div>
+
+      
       
         </div>
       </div>

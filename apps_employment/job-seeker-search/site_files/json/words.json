@@ -13,5 +13,30 @@
         "name": "candidate_found",
         "en": "Candidate Found",
         "ar": "مرشحين"
+    },
+    {
+        "name": "search_by_experience",
+        "en": "Search by Experience",
+        "ar": "البحث حسب سنوات الخبرة"
+    },
+    {
+        "name": "search_by_gender",
+        "en": "Search by Gender",
+        "ar": "البحث حسب الجنس"
+    },
+    {
+        "name": "search_by_language",
+        "en": "Search by Language",
+        "ar": "البحث حسب اللغة"
+    },
+    {
+        "name": "search_by_qualification",
+        "en": "Search by Qualification",
+        "ar": "البحث حسب المؤهلات"
+    },
+    {
+        "name": "search_by_country",
+        "en": "Search by Country",
+        "ar": "البحث حسب الدولة"
     }
 ]

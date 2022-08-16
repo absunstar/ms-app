@@ -10,32 +10,57 @@
     <div id="main-layout" class="container loaded">
       <div class="row">
         <div class="row">
-          <div x-import="job-seeker-search/search_all_modal.html"></div>
           <div  x-import="job/view_modal.html"></div>
           <div class="row">
             <h1 class="bold text-center">{{list.length}} ##word.candidate_found##</h1>
           </div>
           <div class="top-actions">
-            <i-button type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
           </div>
-
-          <div class="row" ng-repeat="u in list">
-            <div class="col2">
-              <i-image view ng-model="u.image"></i-image>
+          <div class="row">
+            <div class="row">
+              <i-control class="col5" label="##word.enter## ##word.job_title## ##word.or## ##word.name##" ng-model="search.general_search"></i-control>
+              <i-button class="col2" type="search" label="##word.search##" ng-click="getJobSeekerList(search)"> </i-button>
             </div>
-            <div class="col6">
+            <div class="col3">
+              
+              <i-checklist label="##word.search_by_experience## ({{yearsOfExperienceList.length}})" ng-change="getJobSeekerList(search)" ng-model="search.experiences"
+                display="name_##session.lang##" items="yearsOfExperienceList" ng-search="_search.$_experience"></i-checklist>
 
-              <b class="font-weight-bold">{{u.profile.name}}</b>
-              <p>{{u.profile.job_title}}</p>
-              <p>{{u.profile.country.name_##session.lang##}} , {{u.profile.city.name_##session.lang##}} <i class="fa fa-map-marker" aria-hidden="true"></i></p>
-              <p>{{u.profile.qualification.name_##session.lang##}}</p>
-              <p>{{u.profile.experience.name_##session.lang##}}</p>
-            </div>
-  
-            <div class="col2">
-              <a type="button" class="btn btn-primary btn-lg" href="/Resume?id={{u.id}}">##word.view_resume##</a>
+                <i-checklist label="##word.search_by_gender## ({{genderList.length}})" ng-change="getJobSeekerList(search)" ng-model="search.genders"
+                display="##session.lang##" items="genderList" ng-search="_search.$user_profile_languages"></i-checklist>
+
+                <i-checklist label="##word.search_by_language## ({{languagesList.length}})" ng-change="getJobSeekerList(search)" ng-model="search.languages"
+                display="name_##session.lang##" items="languagesList" ng-search="_search.$user_profile_languages"></i-checklist>
+
+                <i-checklist label="##word.search_by_qualification## ({{qualificationList.length}})" ng-change="getJobSeekerList(search)" ng-model="search.qualifications"
+                display="name_##session.lang##" items="qualificationList" ng-search="_search.$user_profile_qualification"></i-checklist>
+
+                <i-checklist label="##word.search_by_country## ({{countryList.length}})" ng-change="getJobSeekerList(search)" ng-model="search.countries"
+                display="name_##session.lang##" items="countryList" ng-search="_search.$user_profile_country"></i-checklist>
+
+              </div> 
+            <div class="col1"></div>
+            <div class="col8">
+              <div class="row" ng-repeat="u in list">
+                <div class="col3">
+                  <i-image view ng-model="u.image"></i-image>
+                </div>
+                <div class="col6">
+    
+                  <b class="font-weight-bold">{{u.profile.name}}</b>
+                  <p>{{u.profile.job_title}}</p>
+                  <p>{{u.profile.country.name_##session.lang##}} , {{u.profile.city.name_##session.lang##}} <i class="fa fa-map-marker" aria-hidden="true"></i></p>
+                  <p>{{u.profile.qualification.name_##session.lang##}}</p>
+                  <p>{{u.profile.experience.name_##session.lang##}}</p>
+                </div>
+      
+                <div class="col3">
+                  <a type="button" class="btn btn-primary btn-lg" href="/Resume?id={{u.id}}">##word.view_resume##</a>
+                </div>
+              </div>
             </div>
           </div>
+        
       
         </div>
       </div>

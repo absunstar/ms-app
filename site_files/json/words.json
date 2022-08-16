@@ -20,6 +20,21 @@
     "ar": "الجنس"
   },
   {
+    "name": "enter",
+    "en": "Enter",
+    "ar": "أدخل"
+  },
+  {
+    "name": "or",
+    "en": "Or",
+    "ar": "أو"
+  },
+  {
+    "name": "location",
+    "en": "Location",
+    "ar": "الموقع"
+  },
+  {
     "name": "start_date",
     "en": "Start Date",
     "ar": "تاريخ البدء"
@@ -42,7 +57,7 @@
   {
     "name": "name",
     "en": "Name",
-    "ar": "الاسم"
+    "ar": "الإسم"
   },
   {
     "name": "export",

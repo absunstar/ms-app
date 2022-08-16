@@ -103,8 +103,85 @@ module.exports = function init(site) {
       delete where['active'];
     }
 
+    if(req.body.search){
+
+
+    if(where['qualifications'] && where['qualifications'].length > 0){
+      where.$or = where.$or || []
+      for (let i = 0; i < where['qualifications'].length; i++) {
+        let element = where['qualifications'][i];
+        where.$or.push({
+          'profile.qualification.id': element.id
+        })
+      }
+    }
+
+    if(where['experiences'] && where['experiences'].length > 0){
+      where.$or = where.$or || []
+      for (let i = 0; i < where['experiences'].length; i++) {
+        let element = where['experiences'][i];
+        where.$or.push({
+          'profile.experience.id': element.id
+        })
+      }
+    }
+    
+    if(where['countries'] && where['countries'].length > 0){
+      where.$or = where.$or || []
+      for (let i = 0; i < where['countries'].length; i++) {
+        let element = where['countries'][i];
+        where.$or.push({
+          'profile.country.id': element.id
+        })
+      }
+    }
+
+    if(where['languages'] && where['languages'].length > 0){
+      where.$or = where.$or || []
+      for (let i = 0; i < where['languages'].length; i++) {
+        let element = where['languages'][i];
+        where.$or.push({
+          'profile.languages.id': element.id
+        })
+      }
+    }
+
+    if(where['genders'] && where['genders'].length > 0){
+      where.$or = where.$or || []
+      for (let i = 0; i < where['genders'].length; i++) {
+        let element = where['genders'][i];
+        where.$or.push({
+          'profile.gender.id': element.id
+        })
+      }
+    }
+
+    if(where['general_search']) {
+
+      where.$or = where.$or || []
+
+      where.$or.push({
+        'profile.job_title': site.get_RegExp(where['general_search'], "i")
+      })
+
+      where.$or.push({
+        'profile.name': site.get_RegExp(where['general_search'], "i")
+      })
+
+      where.$or.push({
+        'profile.last_name': site.get_RegExp(where['general_search'], "i")
+      })
+    }
+
     delete where['active_search'];
     delete where['not_active'];
+    delete where['qualifications'];
+    delete where['experiences'];
+    delete where['countries'];
+    delete where['languages'];
+    delete where['genders'];
+    delete where['general_search'];
+  }
 
     site.security.getUsers({
       where: where,
