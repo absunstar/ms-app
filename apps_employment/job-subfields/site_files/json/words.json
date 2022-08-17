@@ -2,42 +2,42 @@
     {
         "name": "job_subfields",
         "en": "Job SubFields",
-        "ar": "الوظائف الفرعية"
+        "ar": "مجالات العمل الفرعية"
     },
     {
         "name": "job_subfield",
         "en": "Job SubField",
-        "ar": "الوظيفة الفرعية"
+        "ar": "مجال العمل الفرعي"
     },
     {
         "name": "job_subfields_new",
         "en": "New Job SubFields",
-        "ar": "وظيفة فرعية جديدة"
+        "ar": "مجال عمل فرعي جديدة"
     },
     {
         "name": "job_subfields_add",
         "en": "Add Job SubFields",
-        "ar": "إضافة وظيفة فرعية "
+        "ar": "إضافة مجال عمل فرعي "
     },
     {
         "name": "job_subfields_edit",
         "en": "Edit Job SubFields",
-        "ar": "تعديل وظيفة فرعية "
+        "ar": "تعديل مجال عمل فرعي "
     },
     {
         "name": "job_subfields_details",
         "en": "Job SubFields Details",
-        "ar": "تفاصيل الوظيفة فرعية "
+        "ar": "تفاصيل مجال العمل فرعي"
     },
     {
         "name": "job_subfields_delete",
         "en": "Delete Job SubFields",
-        "ar": "حذف وظيفة فرعية "
+        "ar": "حذف مجال عمل فرعي "
     },
     {
         "name": "job_subfields_name",
         "en": "Job SubFields Name",
-        "ar": "إسم الوظيفة الفرعية "
+        "ar": "إسم مجال العمل الفرعي "
     }
 
 

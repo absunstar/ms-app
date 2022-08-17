@@ -26,7 +26,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/country/add', (req, res) => {
+  site.post('/api/countries/add', (req, res) => {
     let response = {
       done: false,
     };
@@ -46,9 +46,6 @@ module.exports = function init(site) {
       $res: res,
     });
 
-    if (typeof country_doc.active === 'undefined') {
-      country_doc.active = true;
-    }
 
     $country.findOne(
       {
@@ -68,23 +65,7 @@ module.exports = function init(site) {
           response.error = 'Name Exists';
           res.json(response);
         } else {
-          // let d = new Date();
-          // d.setFullYear(d.getFullYear() + 1);
-          // d.setMonth(1);
-          let num_obj = {
-            screen: 'country',
-            date: new Date(),
-          };
-
-          // let cb = site.getNumbering(num_obj);
-          // if (!country_doc.code && !cb.auto) {
-          //   response.error = 'Must Enter Code';
-          //   res.json(response);
-          //   return;
-          // } else if (cb.auto) {
-          //   country_doc.code = cb.code;
-          // }
-
+        
           $country.add(country_doc, (err, doc) => {
             if (!err) {
               response.done = true;
@@ -99,7 +80,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/country/update', (req, res) => {
+  site.post('/api/countries/update', (req, res) => {
     let response = {
       done: false,
     };
@@ -163,7 +144,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/country/view', (req, res) => {
+  site.post('/api/countries/view', (req, res) => {
     let response = {
       done: false,
     };
@@ -192,7 +173,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/country/delete', (req, res) => {
+  site.post('/api/countries/delete', (req, res) => {
     let response = {
       done: false,
     };
@@ -227,7 +208,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/country/all', (req, res) => {
+  site.post('/api/countries/all', (req, res) => {
     let response = {
       done: false,
     };

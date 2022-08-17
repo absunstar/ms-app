@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" ng-controller="bar">
   <div class="container-fluid">
+    <div  x-import="0/activate.html"></div>
+    <div  x-import="0/deactivate.html"></div>
+
     <a href="/" class="navbar-brand"> ##word.brand_tag##</a>
-    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse2">
-      <span class="navbar-toggler-icon"></span>
-    </button>
 
     <div class="collapse navbar-collapse" id="navbarCollapse2">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
@@ -20,19 +20,19 @@
         <li class="nav-item dropdown" x-permissions="admin">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> ##word.data_management## </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" x-permissions="admin" href="/Languages">##word.language## </a></li>
-            <li><a class="dropdown-item" x-permissions="admin" href="/Country">##word.country## </a></li>
-            <li><a class="dropdown-item" x-permissions="admin" href="/City">##word.city## </a></li>
-            <li><a class="dropdown-item" x-permissions="admin" href="/Industry">##word.industry## </a></li>
-            <li><a class="dropdown-item" x-permissions="admin" href="/JobFields">##word.job_field## </a></li>
-            <li><a class="dropdown-item" x-permissions="admin" href="/jobSubFields">##word.job_subfields## </a></li>
-            <li><a class="dropdown-item" x-permissions="admin" href="/Qualification">##word.qualification## </a></li>
+            <li><a class="dropdown-item" x-permissions="admin" href="/Languages">##word.languages## </a></li>
+            <li><a class="dropdown-item" x-permissions="admin" href="/Countries">##word.countries## </a></li>
+            <li><a class="dropdown-item" x-permissions="admin" href="/Cities">##word.cities## </a></li>
+            <li><a class="dropdown-item" x-permissions="admin" href="/Industries">##word.industries## </a></li>
+            <li><a class="dropdown-item" x-permissions="admin" href="/JobFields">##word.job_fields## </a></li>
+            <li><a class="dropdown-item" x-permissions="admin" href="/JobSubFields">##word.job_subfields## </a></li>
+            <li><a class="dropdown-item" x-permissions="admin" href="/Qualifications">##word.qualifications## </a></li>
             <li><a class="dropdown-item" x-permissions="admin" href="/YearsOfExperience">##word.years_experience## </a></li>
           </ul>
         </li>
 
         <li class="nav-item" x-permissions="admin">
-          <a href="/Account" class="nav-link">##word.account_management##</a>
+          <a href="/Accounts" class="nav-link">##word.accounts_management##</a>
         </li>
         <li class="nav-item" x-permissions="admin">
           <a href="/Companies" class="nav-item nav-link">##word.generic_companies##</a>
@@ -41,7 +41,7 @@
           <a href="/Jobs" class="nav-link">##word.jobs##</a>
         </li>
         <li class="nav-item" x-permissions="admin || job_seeker">
-          <a href="/JobFair" class="nav-link">##word.job_fairs##</a>
+          <a href="/JobFairs" class="nav-link">##word.job_fairs##</a>
         </li>
         <li class="nav-item" x-permissions="employer">
           <a href="/Jobs" class="nav-link">##word.employer##</a>
@@ -53,7 +53,7 @@
           <a href="/Jobs?post=true" class="nav-link">##word.post_job##</a>
         </li>
         <li class="nav-item" x-permissions="job_seeker">
-          <a href="/resume" class="nav-link">##word.my_resume##</a>
+          <a href="/Resume" class="nav-link">##word.my_resume##</a>
         </li>
 
         <li class="nav-item dropdown" x-permissions="admin">
@@ -83,15 +83,15 @@
             <li><a class="dropdown-item" x-permissions="job_seeker" href="/Resume">##word.resume## </a></li>
             <li><a class="dropdown-item" x-permissions="job_seeker" href="/JobSeekerHistory">##word.jobs_history## </a></li>
             <li><a class="dropdown-item" x-permissions="job_seeker" href="/JobSeekerFavorite">##word.favorite_jobs## </a></li>
-            <li><a class="dropdown-item" x-permissions="job_seeker" href="/changePassword">##word.change_password## </a></li>
+            <li><a class="dropdown-item" x-permissions="job_seeker" href="/ChangePassword">##word.change_password## </a></li>
           </ul>
         </li>
 
         <li class="nav-item dropdown" x-permissions="admin">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> ##word.approve## </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" x-permissions="admin" href="/JobApproval">##word.job_approval## </a></li>
-            <li><a class="dropdown-item" x-permissions="admin" href="/companyApproval">##word.company_approval## </a></li>
+            <li><a class="dropdown-item" x-permissions="admin" href="/JobsApproval">##word.jobs_approval## </a></li>
+            <li><a class="dropdown-item" x-permissions="admin" href="/CompaniesApproval">##word.companies_approval## </a></li>
           </ul>
         </li>
 

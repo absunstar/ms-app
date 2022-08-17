@@ -46,10 +46,6 @@ module.exports = function init(site) {
       $res: res,
     });
 
-    if (typeof job_fields_doc.active === 'undefined') {
-      job_fields_doc.active = true;
-    }
-
     $job_fields.findOne(
       {
         where: {
@@ -68,22 +64,7 @@ module.exports = function init(site) {
           response.error = 'Name Exists';
           res.json(response);
         } else {
-          // let d = new Date();
-          // d.setFullYear(d.getFullYear() + 1);
-          // d.setMonth(1);
-          let num_obj = {
-            screen: 'language',
-            date: new Date(),
-          };
-
-          // let cb = site.getNumbering(num_obj);
-          // if (!job_fields_doc.code && !cb.auto) {
-          //   response.error = 'Must Enter Code';
-          //   res.json(response);
-          //   return;
-          // } else if (cb.auto) {
-          //   job_fields_doc.code = cb.code;
-          // }
+        
 
           $job_fields.add(job_fields_doc, (err, doc) => {
             if (!err) {

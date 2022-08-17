@@ -279,28 +279,7 @@ app.controller('questions', function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.getNumberingAuto = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/numbering/get_automatic',
-      data: {
-        screen: 'question',
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.disabledCode = response.data.isAuto;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
+ 
 
   $scope.checkCorrect = function (index) {
     $scope.error = '';
@@ -319,5 +298,4 @@ app.controller('questions', function ($scope, $http, $timeout) {
   $scope.getQuestionList();
   $scope.getDifficulty();
   $scope.getTrainingTypeList();
-  $scope.getNumberingAuto();
 });

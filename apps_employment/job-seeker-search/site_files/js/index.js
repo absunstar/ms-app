@@ -7,7 +7,7 @@ app.controller('jobSeekerSearch', function ($scope, $http, $timeout) {
 
     where = where || {};
 
-    where['profile.type'] = 'job-seeker';
+    where['role.name'] = 'job_seeker';
     $http({
       method: 'POST',
       url: '/api/users/all',
@@ -107,7 +107,7 @@ app.controller('jobSeekerSearch', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/qualification/all',
+      url: '/api/qualifications/all',
       data: {
         where: { active: true },
         select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
@@ -133,7 +133,7 @@ app.controller('jobSeekerSearch', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/country/all',
+      url: '/api/countries/all',
       data: {
         where: { active: true },
         select: { id: 1, code: 1, name_ar: 1, name_en: 1 },

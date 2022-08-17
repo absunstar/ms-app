@@ -33,7 +33,7 @@ app.controller('reportStatsJobs', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/company/all',
+      url: '/api/companies/all',
       data: {
         where: where,
         select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
@@ -78,10 +78,10 @@ app.controller('reportStatsJobs', function ($scope, $http, $timeout) {
       }
     );
   };
-  
+
   $scope.searchAll = function () {
 
-    if($scope.search.date_from && $scope.search.date_to && new Date($scope.search.date_from) > new Date($scope.search.to_date) ){
+    if($scope.search && $scope.search.date_from && $scope.search.date_to && new Date($scope.search.date_from) > new Date($scope.search.date_to) ){
       $scope.error = '##word.start_date_cannot_bigger_than_end_date##';
       return;
     };

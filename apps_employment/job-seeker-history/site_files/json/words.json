@@ -2,12 +2,12 @@
     {
         "name": "my_jobs_history",
         "en": "My Job's History",
-        "ar": "تاريخ وظيفتي"
+        "ar": "تاريخ وظائفي"
     },
     {
         "name": "jobs_history",
-        "en": "Job's History",
-        "ar": "تاريخ الوظيفة"
+        "en": "Jobs History",
+        "ar": "تاريخ الوظائف"
     }
     
 ]

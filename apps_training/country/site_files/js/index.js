@@ -24,7 +24,7 @@ app.controller('country', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/country/add',
+      url: '/api/countries/add',
       data: $scope.country,
     }).then(
       function (response) {
@@ -64,7 +64,7 @@ app.controller('country', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/country/update',
+      url: '/api/countries/update',
       data: country,
     }).then(
       function (response) {
@@ -91,7 +91,7 @@ app.controller('country', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/country/update',
+      url: '/api/countries/update',
       data: country,
     }).then(
       function (response) {
@@ -122,7 +122,7 @@ app.controller('country', function ($scope, $http, $timeout) {
     $scope.error = '';
     $http({
       method: 'POST',
-      url: '/api/country/view',
+      url: '/api/countries/view',
       data: {
         id: country.id,
       },
@@ -154,7 +154,7 @@ app.controller('country', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/country/delete',
+      url: '/api/countries/delete',
       data: {
         id: $scope.country.id,
       },
@@ -185,7 +185,7 @@ app.controller('country', function ($scope, $http, $timeout) {
     $scope.list = [];
     $http({
       method: 'POST',
-      url: '/api/country/all',
+      url: '/api/countries/all',
       data: {
         where: where,
       },
@@ -206,28 +206,7 @@ app.controller('country', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getNumberingAuto = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/numbering/get_automatic',
-      data: {
-        screen: 'country',
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.disabledCode = response.data.isAuto;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
+ 
 
   $scope.displaySearchModal = function () {
     $scope.error = '';
@@ -235,5 +214,4 @@ app.controller('country', function ($scope, $http, $timeout) {
   };
 
   $scope.getCountryList();
-  $scope.getNumberingAuto();
 });

@@ -10,7 +10,7 @@ app.controller('employerSearch', function ($scope, $http, $timeout) {
     where['approve.id'] = 3 ;
     $http({
       method: 'POST',
-      url: '/api/job/all',
+      url: '/api/jobs/all',
       data: {
         where: where,
         search : true
@@ -74,7 +74,7 @@ app.controller('employerSearch', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/job/update',
+      url: '/api/jobs/update',
       data: job,
     }).then(
       function (response) {
@@ -101,7 +101,7 @@ app.controller('employerSearch', function ($scope, $http, $timeout) {
     $scope.error = '';
     $http({
       method: 'POST',
-      url: '/api/job/view',
+      url: '/api/jobs/view',
       data: {
         id: job.id,
       },
@@ -140,7 +140,7 @@ app.controller('employerSearch', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/industry/all',
+      url: '/api/industries/all',
       data: {
         where: { active: true },
         select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
@@ -166,7 +166,7 @@ app.controller('employerSearch', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/qualification/all',
+      url: '/api/qualifications/all',
       data: {
         where: { active: true },
         select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
@@ -196,7 +196,7 @@ app.controller('employerSearch', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/company/all',
+      url: '/api/companies/all',
       data: {
         where: where,
         select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
@@ -297,16 +297,16 @@ app.controller('employerSearch', function ($scope, $http, $timeout) {
 
   $scope.currentLocation = function () {
     if('##session.lang##' == 'ar') {
-      if('##user.profile.city##' && '##user.profile.city.id##') {
-        $scope.search.general_locations = '##user.profile.city.name_ar##'
-      } else if('##user.profile.country##' && '##user.profile.country.id##') {
-        $scope.search.general_locations = '##user.profile.country.name_ar##'
+      if('##user.city.id##' != 'undefined') {
+        $scope.search.general_locations = '##user.city.name_ar##'
+      } else if('##user.country.id##' != 'undefined') {
+        $scope.search.general_locations = '##user.country.name_ar##'
       }
     } else if('##session.lang##' == 'en') {
-      if('##user.profile.city##' && '##user.profile.city.id##') {
-        $scope.search.general_locations = '##user.profile.city.name_en##'
-      } else if('##user.profile.country##' && '##user.profile.country.id##') {
-        $scope.search.general_locations = '##user.profile.country.name_en##'
+      if('##user.city.id##' != 'undefined') {
+        $scope.search.general_locations = '##user.city.name_en##'
+      } else if('##user.country.id##' != 'undefined') {
+        $scope.search.general_locations = '##user.country.name_en##'
       }
     }
   $scope.getJobList($scope.search);

@@ -195,6 +195,16 @@
     "ar": "المدة"
   },
   {
+    "name": "type",
+    "en": "Type",
+    "ar": "النوع"
+  },
+  {
+    "name": "of",
+    "en": "Of",
+    "ar": "من"
+  },
+  {
     "name": "from",
     "en": "From",
     "ar": "من"
@@ -762,7 +772,7 @@
   {
     "name": "empty_search",
     "en": "Empty Search",
-    "ar": "تفريغ البحث"
+    "ar": "إفراغ البحث"
   },
   {
     "name": "invoice_header",
@@ -1133,7 +1143,7 @@
   {
     "name": "clear",
     "en": "Clear",
-    "ar": "تفريغ الحقول"
+    "ar": "إفراغ الحقول"
   },
   {
     "name": "in_out_name",

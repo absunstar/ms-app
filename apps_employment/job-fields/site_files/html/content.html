@@ -1,25 +1,21 @@
 <div class="form">
-  <div id="basicInformation" class="">
-    <fieldset>
-      <legend>##word.basic_information##</legend>
+  <fieldset>
+    <legend>##word.basic_information##</legend>
+    <div id="basicInformation" class="">
       <div class="row">
-        <div class="col9">
-
-          <div class="row">
-            <i-control type="text" class="col2" ng-hide="disabledCode" ng-model="job_fields.code" label="##word.code##"></i-control>
-            <i-control type="text" class="col4" v="r" ng-model="job_fields.name_ar" label="##word.job_fields_name##" ></i-control>
-            <i-control type="text" class="col4" v="r" ng-model="job_fields.name_en" label="##word.name_en##"></i-control>
-            <i-checkbox  class="col2" label="##word.active##" ng-model="job_fields.active">
-            </i-checkbox>
-
+        <div class="col2">
+          <i-image ng-model="job_fields.image"></i-image>
+          <div class="row justify-content-md-center">
+            <i-checkbox class="col" label="##word.active##" ng-model="job_fields.active"> </i-checkbox>
           </div>
-
         </div>
-
-        <div class="col3">
-          <i-image help-id="job_fields_logo" ng-model="job_fields.image"></i-image>
+        <div class="col10">
+          <div class="row">
+            <i-control type="text" class="col6" v="r" ng-model="job_fields.name_ar" label="##word.job_field_name##"></i-control>
+            <i-control type="text" class="col6" v="r" ng-model="job_fields.name_en" label="##word.name_en##"></i-control>
+          </div>
         </div>
       </div>
-    </fieldset>
-  </div>
+    </div>
+  </fieldset>
 </div>

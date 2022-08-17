@@ -163,7 +163,7 @@ app.controller('register', function ($scope, $http) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/city/all",
+      url: "/api/cities/all",
       data: {
         where: {
           'gov.id': gov.id,

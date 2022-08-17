@@ -1,0 +1,66 @@
+<div class="form">
+  <div id="basicInformation" class="">
+    <fieldset>
+      <legend>##word.basic_information##</legend>
+      <div class="row">
+        <div class="col2">
+          <i-image ng-model="company.image"></i-image>
+          <i-file label="##word.company_profile##" categoty="company_profile" ng-model="company.company_profile"></i-file>
+
+          <div class="row justify-content-md-center">
+            <i-checkbox class="col" label="##word.active##" ng-model="company.active"> </i-checkbox>
+          </div>
+        </div>
+        <div class="col10">
+          <div class="row">
+            <i-control type="text" class="col6" v="r" ng-model="company.name_ar" label="##word.company_name##"></i-control>
+            <i-control type="text" class="col6" v="r" ng-model="company.name_en" label="##word.name_en##"></i-control>
+          </div>
+
+          <div class="row">
+            <i-control type="text" class="col6" v="r" ng-model="company.email_address" label="##word.email_address##"></i-control>
+            <i-control type="text" class="col6" v="r" ng-model="company.website_address" label="##word.website_address##"></i-control>
+          </div>
+          <div class="row">
+            <i-control type="text" class="col6" v="r" ng-model="company.phone" label="##word.phone##"></i-control>
+            <i-list class="col6" v="r" label="##word.industry##" ng-model="company.industry" display="name_##session.lang##" items="industryList" ng-search="_search.$company_industry"></i-list>
+          </div>
+          <div class="row">
+            <i-date class="col8" ng-model="company.est_since" label="##word.est_since##"> </i-date>
+          </div>
+
+          <div class="row">
+            <i-textarea label="##word.about_company##" ng-model="company.about_company"> </i-textarea>
+          </div>
+
+          <div class="row">
+            <fieldset>
+              <legend>##word.social_network##</legend>
+              <div class="row">
+                <i-control type="text" class="col6" ng-model="company.facebook" label="##word.facebook##"></i-control>
+                <i-control type="text" class="col6" ng-model="company.Twitter" label="##word.Twitter##"></i-control>
+              </div>
+
+              <div class="row">
+                <i-control type="text" class="col6" ng-model="company.linkedin" label="##word.linkedin##"></i-control>
+                <i-control type="text" class="col6" ng-model="company.google_plus" label="##word.google_plus##"></i-control>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>##word.contact_information##</legend>
+              <div class="row">
+                <i-list v="r" class="col6" ng-change="getCityList(company.country.id)" label="##word.country##" ng-model="company.country" display="name_##session.lang##" items="countryList" ng-search="_search.$company_country"></i-list>
+                <i-list v="r" class="col6" label="##word.city##" ng-model="company.city" display="name_##session.lang##" items="cityList" ng-search="_search.$company_city"></i-list>
+              </div>
+            </fieldset>
+
+            <div class="row">
+              <i-textarea label="##word.full_address##" ng-model="company.full_address"> </i-textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>

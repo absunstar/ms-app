@@ -208,28 +208,7 @@ app.controller('exam_templates', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getNumberingAuto = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/numbering/get_automatic',
-      data: {
-        screen: 'exam_templates',
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.disabledCode = response.data.isAuto;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
+
 
   $scope.displaySearchModal = function () {
     $scope.error = '';
@@ -237,5 +216,4 @@ app.controller('exam_templates', function ($scope, $http, $timeout) {
   };
 
   $scope.getExamTemplatesList();
-  $scope.getNumberingAuto();
 });

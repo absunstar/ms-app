@@ -4,6 +4,11 @@
         "ar": "السيرة الذاتية"
     },
     {
+        "name": "resumes",
+        "en": "Resumes",
+        "ar": "السير الذاتية"
+    },
+    {
         "name": "update_your_profile_info",
         "en": "Update Your Profile Info",
         "ar": "تحديث معلومات ملف التعريف الخاص بك"

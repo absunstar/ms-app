@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp" x-permissions="admin || employer">
+  <head x-import="head.html"> </head>
+
+  <body class="##session.lang##" ng-controller="jobs" x-permissions="login">
+    <nav x-import="0/bar.html" class="sitebar" ng-controller="bar"></nav>
+
+    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
+    <div id="main-layout" class="container loaded">
+      <div class="row">
+        <div class="row">
+          <div  x-import="jobs/add_modal.html"></div>
+          <div  x-import="jobs/update_modal.html"></div>
+          <div  x-import="jobs/delete_modal.html"></div>
+          <div  x-import="jobs/view_modal.html"></div>
+          <div  x-import="jobs/search_all_modal.html"></div>
+          <div  x-import="companies/view_modal.html"></div>
+
+          <div class="row">
+            <h1 x-permissions="admin" class="bold text-center">##word.job_approval##</h1>
+            <h1 x-permissions="employer" class="bold text-center">##word.you_are_managing## {{list.length || 0}} ##word.jobs##</h1>
+          </div>
+
+          <div class="row" x-permissions="employer">
+            <div class="col2"></div>
+            <div class="col3">
+             <h3>##word.jobs_posted## {{list.length || 0}}</h3> 
+            </div>
+            <div class="col3">
+              <h3>##word.applications## {{applications || 0}}</h3> 
+            </div>
+            <div class="col3">
+              <h3>##word.open_jobs## {{open_jobs || 0}}</h3> 
+            </div>
+          </div>
+
+          <div class="top-actions">
+
+            <i-button type="add" label="##word.job_new##" x-permissions="employer" ng-click="displayAddJob()"></i-button>
+            <i-button type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+
+            <h3 class="bold text-center">##word.count## : {{count || 0}}</h3>
+            <h3 class="bold text-center text-danger">{{error}}</h3>
+          </div>
+
+          <table x-permissions="login" class="table hover text-center" id="t1">
+              <tr>
+                <th class="not-print">##word.logo##</th>
+                <th>##word.job_name##</th>
+                <th>##word.applications##</th>
+                <th>##word.approve##</th>
+                <th>##word.status##</th>
+                <th class="not-print">##word.actions##</th>
+              </tr>
+            <tbody>
+              <tr ng-repeat="c in list">
+                 <td class="center not-print">
+                  <i-image view class="logo" ng-model="c.image"></i-image>
+                </td>
+                <td class="center title">
+                  {{c.job_title}}
+                  <p>( {{c.company.name_##session.lang##}} )</p>
+                  <p> {{c.country.name_##session.lang##}} , {{c.city.name_##session.lang##}} </p>
+                  <p>##word.created## :  {{c.add_user_info.date | date:"dd/MM/yyyy"}} </p>
+                  <p>##word.expiry## :  {{c.application_deadline_date | date:"dd/MM/yyyy"}} </p>
+
+                </td>
+                <td class="center title"> ( {{c.application_list.length || 0}} ) </td>
+                <td class="center title"> {{c.approve.##session.lang##}}</td>
+                <td class="center">
+                  <p ng-show="c.active ==true" class="green">##word.active##</p>
+                  <p ng-show="!c.active" class="red">##word.not_active##</p>
+                </td>
+
+                <td class="center not-print">
+                  <a type="button" class="btn btn-primary btn-lg" ng-show="c.application_list.length > 0" href="/AppliedResumes?id={{c.id}}">##word.resumes##</a>
+                  <i-button  type="view" label="##word.details##" ng-click="displayDetailsJob(c)"></i-button>
+                  <i-button x-permissions="employer" type="edit" label="##word.edit##" ng-click="displayUpdateJob(c)"></i-button>
+                  <i-button  ng-show="!c.active" label="##word.activate##" ng-click="showActivationModal(c,'activate')"></i-button>
+                  <i-button  ng-show="c.active" label="##word.deactivate##" ng-click="showActivationModal(c,'deactivate')"></i-button>
+                  <i-button x-permissions="employer" type="delete" label="##word.delete##" ng-click="displayDeleteJob(c)"></i-button>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="container mt-3">
+            <i-button type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>        
+            <i-button type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'jobs.xlsx')"></i-button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div x-import="0/scripts.html"></div>
+    <script x-import="jobs/index.js"></script>
+  </body>
+</html>

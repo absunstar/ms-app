@@ -2,7 +2,7 @@
 <html lang="en" x-permissions="admin" data-ng-app="myApp">
   <head x-import="head.html"> </head>
 
-  <body class="##session.lang##" ng-controller="years_of_experience">
+  <body class="##session.lang##" ng-controller="yearsOfExperience">
     <nav x-import="0/bar.html" class="sitebar" ng-controller="bar"></nav>
 
     <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
@@ -31,7 +31,6 @@
           <table x-permissions="login" class="table hover text-center" id="t1">
               <tr>
                 <th class="not-print">##word.logo##</th>
-                <th>##word.code##</th>
                 <th>##word.years_of_experience_name##</th>
                 <th>##word.status##</th>
                 <th class="not-print">##word.actions##</th>
@@ -41,7 +40,6 @@
                 <td class="center not-print">
                   <i-image view class="logo" ng-model="c.image"></i-image>
                 </td>
-                <td class="center userPrint blue">{{c.code}}</td>
                 <td class="center title">{{c.name_##session.lang##}}</td>
                 <td class="center">
                   <p ng-show="c.active ==true" class="green">##word.active##</p>
@@ -52,8 +50,8 @@
 
                   <i-button  type="view" label="##word.details##" ng-click="displayDetailsYearsOfExperience(c)"></i-button>
                   <i-button  type="edit" label="##word.edit##" ng-click="displayUpdateYearsOfExperience(c)"></i-button>
-                  <i-button  ng-show="!c.active" label="##word.activate##" ng-click="c.active = true; updateActivate(c)"></i-button>
-                  <i-button  ng-show="c.active" label="##word.deactivate##" ng-click="c.active = false; updateActivate(c)"></i-button>
+                  <i-button  ng-show="!c.active" label="##word.activate##" ng-click="showActivationModal(c,'activate')"></i-button>
+                  <i-button  ng-show="c.active" label="##word.deactivate##" ng-click="showActivationModal(c,'deactivate')"></i-button>
                   <i-button  type="delete" label="##word.delete##" ng-click="displayDeleteYearsOfExperience(c)"></i-button>
 
                 </td>

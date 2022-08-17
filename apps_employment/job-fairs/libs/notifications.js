@@ -1,6 +1,6 @@
 module.exports = function init(site) {
 
-  let collection_name = 'JobFair'
+  let collection_name = 'JobFairs'
 
   let source = {
     en: 'Job Fairs System',

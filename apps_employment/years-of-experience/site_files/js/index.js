@@ -1,4 +1,4 @@
-app.controller('years_of_experience', function ($scope, $http, $timeout) {
+app.controller('yearsOfExperience', function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.years_of_experience = {};
@@ -87,23 +87,35 @@ app.controller('years_of_experience', function ($scope, $http, $timeout) {
     );
   };
 
-   $scope.updateActivate = function (years_of_experience) {
-    $scope.error = '';
+  $scope.showActivationModal = function (element,type) {
+    if(type == 'activate'){
+      site.showModal('#activateModal');
+    } else if(type == 'deactivate'){
+      site.showModal('#deactivateModal');
+    }
+    $scope.element = element;
+  };
 
+  $scope.updateActivate = function (element,type) {
+    $scope.error = '';
+    if(type == 'activate'){
+      element.active = true;
+    site.hideModal('#activateModal');
+    } else if(type == 'deactivate'){
+      element.active = false;
+    site.hideModal('#deactivateModal');
+    }
     $scope.busy = true;
     $http({
       method: 'POST',
       url: '/api/years_of_experience/update',
-      data: years_of_experience,
+      data: element,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
         } else {
           $scope.error = response.data.error;
-          if (response.data.error.like('*Name Exists*')) {
-            $scope.error = '##word.name_already_exists##';
-          }
         }
       },
       function (err) {
@@ -111,6 +123,7 @@ app.controller('years_of_experience', function ($scope, $http, $timeout) {
       }
     );
   };
+
  
   $scope.displayDetailsYearsOfExperience = function (years_of_experience) {
     $scope.error = '';
@@ -211,28 +224,7 @@ app.controller('years_of_experience', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getNumberingAuto = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/numbering/get_automatic',
-      data: {
-        screen: 'years_of_experience',
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.disabledCode = response.data.isAuto;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
+ 
 
   $scope.displaySearchModal = function () {
     $scope.error = '';
@@ -240,5 +232,4 @@ app.controller('years_of_experience', function ($scope, $http, $timeout) {
   };
 
   $scope.getYearsOfExperienceList();
-  $scope.getNumberingAuto();
 });

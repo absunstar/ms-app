@@ -1,5 +1,5 @@
 module.exports = function init(site) {
-  const $job_fairs = site.connectCollection('JobFair');
+  const $job_fairs = site.connectCollection('JobFairs');
 
   site.get({
     name: 'images',
@@ -7,7 +7,7 @@ module.exports = function init(site) {
   });
 
   site.get({
-    name: 'JobFair',
+    name: 'JobFairs',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,
@@ -46,9 +46,6 @@ module.exports = function init(site) {
       $res: res,
     });
 
-    if (typeof job_fairs_doc.active === 'undefined') {
-      job_fairs_doc.active = true;
-    }
 
     $job_fairs.findOne(
       {
@@ -68,22 +65,7 @@ module.exports = function init(site) {
           response.error = 'Name Exists';
           res.json(response);
         } else {
-          // let d = new Date();
-          // d.setFullYear(d.getFullYear() + 1);
-          // d.setMonth(1);
-          let num_obj = {
-            screen: 'language',
-            date: new Date(),
-          };
-
-          // let cb = site.getNumbering(num_obj);
-          // if (!job_fairs_doc.code && !cb.auto) {
-          //   response.error = 'Must Enter Code';
-          //   res.json(response);
-          //   return;
-          // } else if (cb.auto) {
-          //   job_fairs_doc.code = cb.code;
-          // }
+        
 
           $job_fairs.add(job_fairs_doc, (err, doc) => {
             if (!err) {

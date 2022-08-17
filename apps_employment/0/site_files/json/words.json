@@ -336,8 +336,8 @@
         "ar": "باحث عن عمل لكل وظيفة"
     },
     {
-        "name": "account_management",
-        "en": "Account Management",
+        "name": "accounts_management",
+        "en": "Accounts Management",
         "ar": "إدارة الحسابات"
     },
     {
@@ -356,6 +356,16 @@
         "ar": "الموافقة"
     },
     {
+        "name": "sure_want_deactivate",
+        "en": "Are you sure you want to Deactivate?",
+        "ar": "هل أنت متأكد أنك تريد إلغاء التنشيط؟"
+    },
+    {
+        "name": "sure_want_activate",
+        "en": "Are you sure you want to Activate?",
+        "ar": "هل أنت متأكد أنك تريد التنشيط؟"
+    },
+    {
         "name": "e_earning",
         "en": "E-Learning",
         "ar": "التعلم الإلكتروني"
@@ -364,16 +374,6 @@
         "name": "ok",
         "en": "Ok",
         "ar": "موافق"
-    },
-    {
-        "name": "area",
-        "en": "Area",
-        "ar": "المنطقة"
-    },
-    {
-        "name": "cities",
-        "en": "Areas",
-        "ar": "المناطق"
     }
    
 ]

@@ -1,11 +1,11 @@
-app.controller('appliedResume', function ($scope, $http, $timeout) {
+app.controller('appliedResumes', function ($scope, $http, $timeout) {
 
   $scope.viewJob = function () {
     $scope.busy = true;
     $scope.error = '';
     $http({
       method: 'POST',
-      url: '/api/job/view',
+      url: '/api/jobs/view',
       data: {
         id: site.toNumber('##query.id##'),
       },
@@ -61,7 +61,7 @@ app.controller('appliedResume', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/job/update',
+      url: '/api/jobs/update',
       data: $scope.job,
     }).then(
       function (response) {
@@ -89,7 +89,7 @@ app.controller('appliedResume', function ($scope, $http, $timeout) {
       id_list.push(element.user_id);
     }
 
-    where['profile.type'] = 'job-seeker';
+    where['role.name'] = 'job_seeker';
     where['id'] = { $in: id_list};
 
     $http({

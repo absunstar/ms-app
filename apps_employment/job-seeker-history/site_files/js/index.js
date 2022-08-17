@@ -11,7 +11,7 @@ app.controller('jobSeekerHistory', function ($scope, $http, $timeout) {
     where['application_list.user_id'] = site.toNumber('##user.id##') ;
     $http({
       method: 'POST',
-      url: '/api/job/all',
+      url: '/api/jobs/all',
       data: {
         where: where,
       },
@@ -48,7 +48,7 @@ app.controller('jobSeekerHistory', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/job/update',
+      url: '/api/jobs/update',
       data: job,
     }).then(
       function (response) {
@@ -75,7 +75,7 @@ app.controller('jobSeekerHistory', function ($scope, $http, $timeout) {
     $scope.error = '';
     $http({
       method: 'POST',
-      url: '/api/job/view',
+      url: '/api/jobs/view',
       data: {
         id: job.id,
       },
@@ -110,7 +110,7 @@ app.controller('jobSeekerHistory', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/industry/all',
+      url: '/api/industries/all',
       data: {
         where: { active: true },
         select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
@@ -136,7 +136,7 @@ app.controller('jobSeekerHistory', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/qualification/all',
+      url: '/api/qualifications/all',
       data: {
         where: { active: true },
         select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
@@ -166,7 +166,7 @@ app.controller('jobSeekerHistory', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/company/all',
+      url: '/api/companies/all',
       data: {
         where: where,
         select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
@@ -218,7 +218,7 @@ app.controller('jobSeekerHistory', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/country/all',
+      url: '/api/countries/all',
       data: {
         where: { active: true },
         select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
@@ -244,7 +244,7 @@ app.controller('jobSeekerHistory', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/city/all',
+      url: '/api/cities/all',
       data: {
         where: { active: true,'country.id' : id },
         select: { id: 1, code: 1, name_ar: 1, name_en: 1 },

@@ -7,7 +7,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
 
     let data = { id: site.toNumber('##user.id##') };
 
-    if ('##query.id##' != 'undefined' && '##user.profile.type##' == 'employer') {
+    if ('##query.id##' != 'undefined' && ('##user.role.name##' == 'employer' || '##user.role.name##' == 'admin')) {
       data = { id: site.toNumber('##query.id##') }
     };
 
@@ -21,7 +21,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
         if (response.data.done) {
           $scope.user = response.data.doc;
 
-          if ('##query.id##' != 'undefined' && '##user.profile.type##' == 'employer') {
+          if ('##query.id##' != 'undefined' && ('##user.role.name##' == 'employer' || '##user.role.name##' == 'admin')) {
             $scope.short = false;
             $scope.user.short_list.forEach(_sh => {
               if(_sh == site.toNumber('##user.id##')){
@@ -138,7 +138,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/qualification/all',
+      url: '/api/qualifications/all',
       data: {
         where: { active: true },
         select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
@@ -164,7 +164,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/country/all',
+      url: '/api/countries/all',
       data: {
         where: { active: true },
         select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
@@ -190,7 +190,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/city/all',
+      url: '/api/cities/all',
       data: {
         where: { active: true,'country.id' : id },
         select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
@@ -231,12 +231,13 @@ app.controller('resume', function ($scope, $http, $timeout) {
 
 
   $scope.editProfile = function (profile,type) {
-    
+    $scope.error = '';
+
     if(type=='edit'){
-      profile.experience =  $scope.user.profile.experience;
-      profile.age = $scope.user.profile.age;
-      profile.languages =  $scope.user.profile.languages;
-      profile.qualification = $scope.user.profile.qualification;
+      profile.experience =  $scope.user.experience;
+      profile.age = $scope.user.age;
+      profile.languages =  $scope.user.languages;
+      profile.qualification = $scope.user.qualification;
       profile.$edit_profile = true;
     } else {
       profile.$edit_profile = false;
@@ -249,10 +250,10 @@ app.controller('resume', function ($scope, $http, $timeout) {
         $scope.error = v.messages[0].ar;
         return;
       }
-      $scope.user.profile.experience = profile.experience;
-      $scope.user.profile.age = profile.age;
-      $scope.user.profile.languages = profile.languages;
-      $scope.user.profile.qualification = profile.qualification;
+      $scope.user.experience = profile.experience;
+      $scope.user.age = profile.age;
+      $scope.user.languages = profile.languages;
+      $scope.user.qualification = profile.qualification;
       $scope.update($scope.user);
     }
 
@@ -260,7 +261,8 @@ app.controller('resume', function ($scope, $http, $timeout) {
 
 
   $scope.showEducation = function (type,education) {
-    $scope.user.profile.educations_list = $scope.user.profile.educations_list || [];
+    $scope.error = '';
+    $scope.user.educations_list = $scope.user.educations_list || [];
     site.showModal('#educationModal');
     if(type == 'add'){
       $scope.education = {};
@@ -271,13 +273,21 @@ app.controller('resume', function ($scope, $http, $timeout) {
   };
 
   $scope.educationTransaction = function (education,type) {
+    $scope.error = '';
     const v = site.validated('#educationModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
-    }
+    };
+
+    if(education.joining_date && education.expiry_date && new Date(education.joining_date) > new Date(education.expiry_date) ){
+      $scope.error = '##word.start_date_cannot_bigger_than_end_date##';
+      return;
+    };
+
+
     if(type == 'add'){
-      $scope.user.profile.educations_list.push(education);
+      $scope.user.educations_list.push(education);
     }
     site.hideModal('#educationModal');
     site.resetValidated('#educationModal');
@@ -285,7 +295,8 @@ app.controller('resume', function ($scope, $http, $timeout) {
   };
 
   $scope.showWorkExperience = function (type,work_experience) {
-    $scope.user.profile.work_experience_list = $scope.user.profile.work_experience_list || [];
+    $scope.error = '';
+    $scope.user.work_experience_list = $scope.user.work_experience_list || [];
     site.showModal('#workExperienceModal');
     if(type == 'add'){
       $scope.work_experience = {};
@@ -296,13 +307,20 @@ app.controller('resume', function ($scope, $http, $timeout) {
   };
 
   $scope.workExperienceTransaction = function (work_experience,type) {
+    $scope.error = '';
     const v = site.validated('#workExperienceModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
+
+    if(work_experience.joining_date && work_experience.expiry_date && new Date(work_experience.joining_date) > new Date(work_experience.expiry_date) ){
+      $scope.error = '##word.start_date_cannot_bigger_than_end_date##';
+      return;
+    };
+
     if(type == 'add'){
-      $scope.user.profile.work_experience_list.push(work_experience);
+      $scope.user.work_experience_list.push(work_experience);
     }
     site.hideModal('#workExperienceModal');
     site.resetValidated('#workExperienceModal');
@@ -310,7 +328,8 @@ app.controller('resume', function ($scope, $http, $timeout) {
   };
 
   $scope.showCertificate = function (type,certificate) {
-    $scope.user.profile.certificates_list = $scope.user.profile.certificates_list || [];
+    $scope.error = '';
+    $scope.user.certificates_list = $scope.user.certificates_list || [];
     site.showModal('#certificateModal');
     if(type == 'add'){
       $scope.certificate = {};
@@ -326,8 +345,10 @@ app.controller('resume', function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
+
+   
     if(type == 'add'){
-      $scope.user.profile.certificates_list.push(certificate);
+      $scope.user.certificates_list.push(certificate);
     }
     site.hideModal('#certificateModal');
     site.resetValidated('#certificateModal');
@@ -335,7 +356,8 @@ app.controller('resume', function ($scope, $http, $timeout) {
   };
 
   $scope.showExtraCurricular = function (type,extra_curricular) {
-    $scope.user.profile.extra_curricular_list = $scope.user.profile.extra_curricular_list || [];
+    $scope.error = '';
+    $scope.user.extra_curricular_list = $scope.user.extra_curricular_list || [];
     site.showModal('#extraCurricularModal');
     if(type == 'add'){
       $scope.extra_curricular = {};
@@ -346,13 +368,20 @@ app.controller('resume', function ($scope, $http, $timeout) {
   };
 
   $scope.extraCurricularTransaction = function (extra_curricular,type) {
+    $scope.error = '';
     const v = site.validated('#extraCurricularModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
-    }
+    };
+
+    if(extra_curricular.joining_date && extra_curricular.expiry_date && new Date(extra_curricular.joining_date) > new Date(extra_curricular.expiry_date) ){
+      $scope.error = '##word.start_date_cannot_bigger_than_end_date##';
+      return;
+    };
+
     if(type == 'add'){
-      $scope.user.profile.extra_curricular_list.push(extra_curricular);
+      $scope.user.extra_curricular_list.push(extra_curricular);
     }
     site.hideModal('#extraCurricularModal');
     site.resetValidated('#extraCurricularModal');

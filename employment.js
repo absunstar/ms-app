@@ -48,8 +48,3 @@ site.importApp(__dirname + '/apps_private/ui-help');
 site.addFeature('employment');
 
 site.run();
-
-let aaa = site.hide({ name: 'amr barakat' });
-let bbb = site.show(aaa);
-
-console.log(aaa, bbb);

@@ -12,19 +12,6 @@ app.controller('bar', ($scope, $http) => {
     site.showModal('#registerModal');
   };
 
-  $scope.showRegisterModal = function () {
-    $scope.customer = {
-      image: '/images/customer.png',
-    };
-
-    site.showModal('#customerRegisterModal');
-  };
-
-  $scope.registerCustomer = function () {
-    $scope.user = { profile: { image: '/images/user.png', files: [] }, permissions: [], roles: [] };
-    site.showModal('#customerRegisterModal');
-  };
-
   $scope.login = function () {
     site.showModal('#loginModal');
   };

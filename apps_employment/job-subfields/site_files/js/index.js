@@ -1,4 +1,4 @@
-app.controller('job_subfields', function ($scope, $http, $timeout) {
+app.controller('jobSubfields', function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.job_subfields = {};
@@ -8,6 +8,7 @@ app.controller('job_subfields', function ($scope, $http, $timeout) {
     $scope.job_subfields = {
       image: '/images/job_subfields.png',
       active: true,
+      job_field : $scope.job_field || null
     };
 
     site.showModal('#jobSubFieldsAddModal');
@@ -91,23 +92,35 @@ app.controller('job_subfields', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.updateActivate = function (job_subfields) {
-    $scope.error = '';
+  $scope.showActivationModal = function (element,type) {
+    if(type == 'activate'){
+      site.showModal('#activateModal');
+    } else if(type == 'deactivate'){
+      site.showModal('#deactivateModal');
+    }
+    $scope.element = element;
+  };
 
+  $scope.updateActivate = function (element,type) {
+    $scope.error = '';
+    if(type == 'activate'){
+      element.active = true;
+    site.hideModal('#activateModal');
+    } else if(type == 'deactivate'){
+      element.active = false;
+    site.hideModal('#deactivateModal');
+    }
     $scope.busy = true;
     $http({
       method: 'POST',
       url: '/api/job_subfields/update',
-      data: job_subfields,
+      data: element,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
         } else {
           $scope.error = response.data.error;
-          if (response.data.error.like('*Name Exists*')) {
-            $scope.error = '##word.name_already_exists##';
-          }
         }
       },
       function (err) {
@@ -248,28 +261,7 @@ app.controller('job_subfields', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getNumberingAuto = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/numbering/get_automatic',
-      data: {
-        screen: 'job_subfields',
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.disabledCode = response.data.isAuto;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
+ 
 
   $scope.displaySearchModal = function () {
     $scope.error = '';
@@ -278,5 +270,4 @@ app.controller('job_subfields', function ($scope, $http, $timeout) {
 
   $scope.getJobSubFieldsList();
   $scope.getJobFieldsList();
-  $scope.getNumberingAuto();
 });

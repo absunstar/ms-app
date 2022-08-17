@@ -46,9 +46,6 @@ module.exports = function init(site) {
       $res: res,
     });
 
-    if (typeof exam_templates_doc.active === 'undefined') {
-      exam_templates_doc.active = true;
-    }
 
     $exam_templates.findOne(
       {
@@ -68,22 +65,7 @@ module.exports = function init(site) {
           response.error = 'Name Exists';
           res.json(response);
         } else {
-          // let d = new Date();
-          // d.setFullYear(d.getFullYear() + 1);
-          // d.setMonth(1);
-          let num_obj = {
-            screen: 'language',
-            date: new Date(),
-          };
-
-          // let cb = site.getNumbering(num_obj);
-          // if (!exam_templates_doc.code && !cb.auto) {
-          //   response.error = 'Must Enter Code';
-          //   res.json(response);
-          //   return;
-          // } else if (cb.auto) {
-          //   exam_templates_doc.code = cb.code;
-          // }
+       
 
           $exam_templates.add(exam_templates_doc, (err, doc) => {
             if (!err) {

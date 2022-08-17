@@ -51,10 +51,6 @@ module.exports = function init(site) {
       $res: res,
     });
 
-    if (typeof questions_doc.active === 'undefined') {
-      questions_doc.active = true;
-    }
-
     $questions.findOne(
       {
         where: {
@@ -73,22 +69,7 @@ module.exports = function init(site) {
           response.error = 'Name Exists';
           res.json(response);
         } else {
-          // let d = new Date();
-          // d.setFullYear(d.getFullYear() + 1);
-          // d.setMonth(1);
-          let num_obj = {
-            screen: 'question',
-            date: new Date(),
-          };
-
-          // let cb = site.getNumbering(num_obj);
-          // if (!questions_doc.code && !cb.auto) {
-          //   response.error = 'Must Enter Code';
-          //   res.json(response);
-          //   return;
-          // } else if (cb.auto) {
-          //   questions_doc.code = cb.code;
-          // }
+       
 
           $questions.add(questions_doc, (err, doc) => {
             if (!err) {

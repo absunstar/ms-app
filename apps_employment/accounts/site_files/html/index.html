@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp" x-permissions="admin">
+  <head x-import="head.html"> </head>
+
+  <body class="##session.lang##" ng-controller="accounts">
+    <nav x-import="0/bar.html" class="sitebar" ng-controller="bar"></nav>
+
+    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
+
+    <div id="main-layout" class="container loaded">
+      <div class="row">
+        <div class="row">
+          <div x-import="accounts/activate.html"></div>
+          <div x-import="accounts/deactivate.html"></div>
+          <div x-import="accounts/add_modal.html"></div>
+          <div x-import="accounts/update_modal.html"></div>
+          <div x-import="accounts/delete_modal.html"></div>
+          <div x-import="accounts/view_modal.html"></div>
+          <div x-import="accounts/search_all_modal.html"></div>
+
+          <div class="row">
+            <h1 class="bold text-center">##word.accounts##</h1>
+          </div>
+
+          <div class="top-actions">
+            <i-button type="add" label="##word.account_new##" ng-click="displayAddAccount()"></i-button>
+            <i-button type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+
+            <h3 class="bold text-center">##word.count## : {{count || 0}}</h3>
+            <h3 class="bold text-center text-danger">{{error}}</h3>
+          </div>
+
+          <table x-permissions="login" class="table hover text-center" id="t1">
+            <tr>
+              <th class="not-print">##word.logo##</th>
+              <th>##word.account_name##</th>
+              <th>##word.email##</th>
+              <th>##word.type##</th>
+              <th>##word.status##</th>
+              <th class="not-print">##word.actions##</th>
+            </tr>
+
+            <tr ng-repeat="c in list">
+              <td class="center not-print">
+                <i-image view class="logo" ng-model="c.image"></i-image>
+              </td>
+              <td class="center title">{{c.first_name}} {{c.last_name}}</td>
+              <td class="center title">{{c.email}}</td>
+              <td class="center title">
+                <p>{{c.role['##session.lang##']}}</p>
+              </td>
+              <td class="center">
+                <p ng-show="c.active" class="green">##word.active##</p>
+                <p ng-show="!c.active" class="red">##word.not_active##</p>
+              </td>
+
+              <td class="center not-print">
+                <i-button ng-hide="c.active" label="##word.activate##" ng-click="showActivateModal(c)"></i-button>
+                <i-button ng-hide="!c.active" type="close" label="##word.deactivate##" ng-click="showDeactivateModal(c)"></i-button>
+                <i-button ng-hide="!c.active" label="##word.activation##" ng-click="displayDetailsCity(c)"></i-button>
+                <i-button ng-hide="!c.active" type="edit" label="##word.edit##" ng-click="displayUpdateAccount(c)"></i-button>
+                <i-button ng-hide="!c.active" label="##word.password##" ng-click="displayDetailsCity(c)"></i-button>
+                <i-button type="edit" label="##word.unlimited_companies##" ng-click="update(c,'unlimit')" ng-show="c.role.name == 'employer' && c.active && c.limited_companies== true"></i-button>
+                <i-button type="edit" label="##word.limited_companies##" ng-click="update(c,'limit')" ng-show="c.role.name == 'employer' && c.active && !c.limited_companies"></i-button>
+                <i-button loading="busy" type="delete" label="##word.delete##" ng-click="displayDeleteAccount(c)"></i-button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div x-import="0/scripts.html"></div>
+    <script x-import="accounts/index.js"></script>
+  </body>
+</html>

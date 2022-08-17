@@ -46,10 +46,6 @@ module.exports = function init(site) {
       $res: res,
     });
 
-    if (typeof languages_doc.active === 'undefined') {
-      languages_doc.active = true;
-    }
-
     $languages.findOne(
       {
         where: {
@@ -68,22 +64,6 @@ module.exports = function init(site) {
           response.error = 'Name Exists';
           res.json(response);
         } else {
-          // let d = new Date();
-          // d.setFullYear(d.getFullYear() + 1);
-          // d.setMonth(1);
-          let num_obj = {
-            screen: 'language',
-            date: new Date(),
-          };
-
-          // let cb = site.getNumbering(num_obj);
-          // if (!languages_doc.code && !cb.auto) {
-          //   response.error = 'Must Enter Code';
-          //   res.json(response);
-          //   return;
-          // } else if (cb.auto) {
-          //   languages_doc.code = cb.code;
-          // }
 
           $languages.add(languages_doc, (err, doc) => {
             if (!err) {
@@ -149,7 +129,7 @@ module.exports = function init(site) {
                 if (!err) {
                   response.done = true;
                 } else {
-                  response.error = 'Code Already Exist';
+                  response.error = err.message;
                 }
                 res.json(response);
               }

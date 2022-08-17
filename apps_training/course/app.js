@@ -46,9 +46,6 @@ module.exports = function init(site) {
       $res: res,
     });
 
-    if (typeof course_doc.active === 'undefined') {
-      course_doc.active = true;
-    }
 
     $course.findOne(
       {
@@ -68,22 +65,7 @@ module.exports = function init(site) {
           response.error = 'Name Exists';
           res.json(response);
         } else {
-          // let d = new Date();
-          // d.setFullYear(d.getFullYear() + 1);
-          // d.setMonth(1);
-          let num_obj = {
-            screen: 'course',
-            date: new Date(),
-          };
-
-          // let cb = site.getNumbering(num_obj);
-          // if (!course_doc.code && !cb.auto) {
-          //   response.error = 'Must Enter Code';
-          //   res.json(response);
-          //   return;
-          // } else if (cb.auto) {
-          //   course_doc.code = cb.code;
-          // }
+      
 
           $course.add(course_doc, (err, doc) => {
             if (!err) {

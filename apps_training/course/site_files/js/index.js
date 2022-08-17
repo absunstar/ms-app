@@ -246,28 +246,7 @@ app.controller('course', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getNumberingAuto = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/numbering/get_automatic',
-      data: {
-        screen: 'course',
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.disabledCode = response.data.isAuto;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
+
 
   $scope.displaySearchModal = function () {
     $scope.error = '';
@@ -276,5 +255,4 @@ app.controller('course', function ($scope, $http, $timeout) {
 
   $scope.getCourseList();
   $scope.getTrainingCategoryList();
-  $scope.getNumberingAuto();
 });

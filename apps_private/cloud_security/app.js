@@ -98,11 +98,6 @@ module.exports = function init(site) {
     }, (err, docs, count) => {
       if (!err) {
         response.done = true
-        for (let i = 0; i < docs.length; i++) {
-          let u = docs[i]
-          u.profile = u.profile || {}
-          u.profile.image = u.profile.image || '/images/user.png'
-        }
         response.users = docs
         response.count = count
       }

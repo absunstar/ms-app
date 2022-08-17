@@ -28,7 +28,7 @@ app.controller('city', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/city/add',
+      url: '/api/cities/add',
       data: $scope.city,
     }).then(
       function (response) {
@@ -68,7 +68,7 @@ app.controller('city', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/city/update',
+      url: '/api/cities/update',
       data: city,
     }).then(
       function (response) {
@@ -95,7 +95,7 @@ app.controller('city', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/city/update',
+      url: '/api/cities/update',
       data: city,
     }).then(
       function (response) {
@@ -126,7 +126,7 @@ app.controller('city', function ($scope, $http, $timeout) {
     $scope.error = '';
     $http({
       method: 'POST',
-      url: '/api/city/view',
+      url: '/api/cities/view',
       data: {
         id: city.id,
       },
@@ -158,7 +158,7 @@ app.controller('city', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/city/delete',
+      url: '/api/cities/delete',
       data: {
         id: $scope.city.id,
       },
@@ -193,7 +193,7 @@ app.controller('city', function ($scope, $http, $timeout) {
     }
     $http({
       method: 'POST',
-      url: '/api/city/all',
+      url: '/api/cities/all',
       data: {
         where: where,
       },
@@ -220,7 +220,7 @@ app.controller('city', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/country/all',
+      url: '/api/countries/all',
       data: {
         where: { active: true },
         select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
@@ -244,28 +244,7 @@ app.controller('city', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getNumberingAuto = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/numbering/get_automatic',
-      data: {
-        screen: 'city',
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.disabledCode = response.data.isAuto;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
+  
 
   $scope.displaySearchModal = function () {
     $scope.error = '';
@@ -274,5 +253,4 @@ app.controller('city', function ($scope, $http, $timeout) {
 
   $scope.getCityList();
   $scope.getCountryList();
-  $scope.getNumberingAuto();
 });

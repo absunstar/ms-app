@@ -22,32 +22,32 @@
                  </div>
   
                  <div class="row" >
-                    <i-list help-id="" class="col6" label="##word.job_type##" ng-model="search.job_type"
+                    <i-list   class="col6" label="##word.job_type##" ng-model="search.job_type"
                     display="##session.lang##" items="jobTypeList" ng-search="_search.$job_type"></i-list>
-                    <i-list help-id="" class="col6" label="##word.years_of_experience##" ng-model="search.years_of_experience"
+                    <i-list   class="col6" label="##word.years_of_experience##" ng-model="search.years_of_experience"
                         display="name_##session.lang##" items="yearsOfExperienceList" ng-search="_search.$years_of_experience"></i-list>
   
                  </div>
   
                  <div class="row">
-                    <i-list help-id="" class="col6" label="##word.job_field##"  ng-change="getJobSubfieldsList(search.job_field.id)" ng-model="search.job_field"
+                    <i-list   class="col6" label="##word.job_field##"  ng-change="getJobSubfieldsList(search.job_field.id)" ng-model="search.job_field"
                         display="name_##session.lang##" items="jobFieldsList" ng-search="_search.$job_field"></i-list>
-                    <i-list help-id="" class="col6" label="##word.job_subfield##" ng-model="search.job_subfield"
+                    <i-list   class="col6" label="##word.job_subfield##" ng-model="search.job_subfield"
                         display="name_##session.lang##" items="jobSubfieldsList" ng-search="_search.$job_subfield"></i-list>
                  </div>
   
                  <div class="row">
-                    <i-list help-id="" class="col6" label="##word.industry##"  ng-model="search.industry"
+                    <i-list   class="col6" label="##word.industry##"  ng-model="search.industry"
                     display="name_##session.lang##" items="industryList" ng-search="_search.$industry"></i-list>
-                    <i-list help-id="" class="col6" label="##word.qualification##" ng-model="search.qualification"
+                    <i-list   class="col6" label="##word.qualification##" ng-model="search.qualification"
                     display="name_##session.lang##" items="qualificationList" ng-search="_search.$qualification"></i-list>
                  </div>
   
                  <div class="row">
-                    <i-list help-id="" class="col6" ng-change="getCityList(job.country.id)" label="##word.country##" ng-model="search.country"
+                    <i-list   class="col6" ng-change="getCityList(job.country.id)" label="##word.country##" ng-model="search.country"
                     display="name_##session.lang##" items="countryList" ng-search="_search.$country"></i-list>
           
-                    <i-list help-id="" class="col6" label="##word.city##"  ng-model="search.city"
+                    <i-list   class="col6" label="##word.city##"  ng-model="search.city"
                       display="name_##session.lang##" items="cityList" ng-search="_search.$city"></i-list>
           
                 </div>

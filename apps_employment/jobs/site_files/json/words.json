@@ -1,0 +1,124 @@
+[
+    {
+        "name": "Jobs",
+        "en": "Jobs",
+        "ar": "الوظائف"
+    },
+    {
+        "name": "job",
+        "en": "Job",
+        "ar": "الوظيفة"
+    },
+    {
+        "name": "job_approval",
+        "en": "Job Approval",
+        "ar": "الموافقة على الوظيفة"
+    },
+    {
+        "name": "job_new",
+        "en": "New Job",
+        "ar": "وظيفة جديدة"
+    },
+    {
+        "name": "job_add",
+        "en": "Add Job",
+        "ar": "إضافة وظيفة "
+    },
+    {
+        "name": "job_edit",
+        "en": "Edit Job",
+        "ar": "تعديل وظيفة "
+    },
+    {
+        "name": "job_details",
+        "en": "Job Details",
+        "ar": "تفاصيل الوظيفة "
+    },
+    {
+        "name": "job_delete",
+        "en": "Delete Job",
+        "ar": "حذف وظيفة "
+    },
+    {
+        "name": "job_name",
+        "en": "Job Name",
+        "ar": "إسم الوظيفة "
+    },
+    {
+        "name": "job_title",
+        "en": "Job Title",
+        "ar": "المسمى الوظيفي"
+    },
+    {
+        "name": "job_responsibilities",
+        "en": "Job Responsibilities",
+        "ar": "المسؤوليات الوظيفية"
+    },
+    {
+        "name": "job_required_skills",
+        "en": "Job Required Skills",
+        "ar": "المهارات الوظيفية المطلوبة"
+    },
+    {
+        "name": "job_seeker_received_benefits",
+        "en": "Job Seeker Received Benefits",
+        "ar": "حصل الباحث عن عمل على مزايا"
+    },
+    {
+        "name": "job_type",
+        "en": "Job Type",
+        "ar": "نوع الوظيفة"
+    },
+    {
+        "name": "application_deadline_date",
+        "en": "Application Deadline Date",
+        "ar": "تاريخ الموعد النهائي لتقديم الطلبات"
+    },
+    {
+        "name": "remuneration",
+        "en": "Remuneration",
+        "ar": "الأجر"
+    },
+    {
+        "name": "address_location",
+        "en": "Address / Location",
+        "ar": "العنوان / الموقع"
+    },
+    {
+        "name": "jobs_posted",
+        "en": "Jobs Posted",
+        "ar": "وظائف تم نشرها"
+    },
+    {
+        "name": "jobs_posted",
+        "en": "Jobs Posted",
+        "ar": "وظائف تم نشرها"
+    },
+    {
+        "name": "applications",
+        "en": "Applications",
+        "ar": "الطلبات"
+    },
+    {
+        "name": "jobs",
+        "en": "Jobs",
+        "ar": "وظائف"
+    },
+   
+    {
+        "name": "open_jobs",
+        "en": "Open Jobs",
+        "ar": "وظائف متاحة"
+    },
+    {
+        "name": "save_draft",
+        "en": "Save Draft",
+        "ar": "حفظ المسودة"
+    },
+    {
+        "name": "save_publish",
+        "en": "Save And Publish",
+        "ar": "إحفظ و أنشر"
+    }
+
+]

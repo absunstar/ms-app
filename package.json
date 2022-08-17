@@ -14,5 +14,8 @@
   "dependencies": {
     "isite": "^2022.8.5",
     "zklib": "^0.2.11"
+  },
+  "devDependencies": {
+    "prettier": "^2.7.1"
   }
 }

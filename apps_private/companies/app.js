@@ -331,7 +331,6 @@ module.exports = function init(site) {
       where['branch.code'] = site.get_branch(req).code
     }
     
-
     $companies.findMany({
       select: req.body.select || {},
       where: where,

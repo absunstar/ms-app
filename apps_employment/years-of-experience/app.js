@@ -46,10 +46,6 @@ module.exports = function init(site) {
       $res: res,
     });
 
-    if (typeof years_of_experience_doc.active === 'undefined') {
-      years_of_experience_doc.active = true;
-    }
-
     $years_of_experience.findOne(
       {
         where: {
@@ -68,22 +64,7 @@ module.exports = function init(site) {
           response.error = 'Name Exists';
           res.json(response);
         } else {
-          // let d = new Date();
-          // d.setFullYear(d.getFullYear() + 1);
-          // d.setMonth(1);
-          let num_obj = {
-            screen: 'language',
-            date: new Date(),
-          };
-
-          // let cb = site.getNumbering(num_obj);
-          // if (!years_of_experience_doc.code && !cb.auto) {
-          //   response.error = 'Must Enter Code';
-          //   res.json(response);
-          //   return;
-          // } else if (cb.auto) {
-          //   years_of_experience_doc.code = cb.code;
-          // }
+      
 
           $years_of_experience.add(years_of_experience_doc, (err, doc) => {
             if (!err) {

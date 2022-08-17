@@ -4,21 +4,21 @@ module.exports = function init(site) {
 
   let source = {
     en: 'Job SubFields System',
-    ar: 'نظام الوظائف الفرعية'
+    ar: 'نظام مجالات العمل الفرعية'
   }
 
   let image = '/images/job_subfields.png'
   let add_message = {
     en: 'New Job SubFields Added',
-    ar: 'تم إضافة وظيفة فرعية جديدة'
+    ar: 'تم إضافة مجال عمل فرعي جديدة'
   }
   let update_message = {
     en: ' Job SubFields Updated',
-    ar: 'تم تعديل وظيفة فرعية'
+    ar: 'تم تعديل مجال عمل فرعي'
   }
   let delete_message = {
     en: ' Job SubFields Deleted',
-    ar: 'تم حذف وظيفة فرعية '
+    ar: 'تم حذف مجال عمل فرعي '
   }
 
 

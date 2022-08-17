@@ -21,16 +21,18 @@
           <table x-permissions="login" class="table hover text-center" id="t1">
             <tr>
               <th>##word.job_title##</th>
-              <th>##word.employment_number##</th>
+              <th>##word.applications##</th>
               <th>##word.actions##</th>
             </tr>
           <tbody>
             <tr ng-repeat="c in list">
 
               <td class="center">{{c.job_title}}</td>
-              <td class="center">{{c.jobs_count || 0}}</td>
-              <td class="center">{{c.jobs_count || 0}}</td>
-             
+              <td class="center">{{c.application_list.length || 0}}</td>
+              <td class="center">
+                <a type="button" class="btn btn-primary btn-lg" ng-show="c.application_list.length > 0" href="/AppliedResumes?id={{c.id}}">##word.resumes##</a>
+              </td>
+
             </tr>
           </tbody>
         </table>

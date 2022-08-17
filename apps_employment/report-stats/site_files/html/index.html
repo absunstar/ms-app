@@ -9,41 +9,49 @@
     <div id="main-layout" class="container loaded">
       <div class="row">
         <div class="row">
-          <div x-import="report-stats/search_all_modal.html"></div>
 
           <div class="row">
             <h1 class="bold text-center">##word.report## ##word.statistics##</h1>
           </div>
 
           <div class="top-actions">
-            <i-button type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+            <div class="row">
+              <i-date class="col5" ng-model="search.date_from" label="##word.start_date##"> </i-date>
+              <i-date class="col5" ng-model="search.date_to" label="##word.end_date##"> </i-date>
+              <div class="col2">
+                <i-button  type="search" label="##word.search##" ng-click="searchAll()"> </i-button>
+                <i-button type="clear" label="##word.empty_search##" ng-click="search = {}"> </i-button>
+              </div>
+              </div>
           </div>
+
+          
 
         <table x-permissions="login" class="table hover bold" id="t1">
 
           <tr>
               <td class="title">##word.company##</td>
-              <td class="center">{{companies_count}}</td>
+              <td class="center">{{companies_count || 0}}</td>
           </tr>
           <tr>
             <td class="title">##word.job_seeker##</td>
-            <td class="center">{{job_seeker_count}}</td>
+            <td class="center">{{job_seeker_count || 0}}</td>
           </tr>
           <tr>
             <td class="title">##word.male##</td>
-            <td class="center">{{male_count}}</td>
+            <td class="center">{{male_count || 0}}</td>
           </tr>
           <tr>
             <td class="title">##word.female##</td>
-            <td class="center">{{female_count}}</td>
+            <td class="center">{{female_count || 0}}</td>
           </tr>
           <tr>
             <td class="title">##word.undefined_gender##</td>
-            <td class="center">{{undefined_gender_count}}</td>
+            <td class="center">{{undefined_gender_count || 0}}</td>
           </tr>
           <tr>
             <td class="title">##word.hired_job_seeker##</td>
-            <td class="center">{{hired_job_seeker_count}}</td>
+            <td class="center">{{hired_job_seeker_count || 0}}</td>
           </tr>
         </table>
 

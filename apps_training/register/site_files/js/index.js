@@ -9,7 +9,7 @@ app.controller('register', function ($scope, $http, $timeout) {
       return;
     }
     if ($scope.user) {
-      if ($scope.user.password === $scope.user.re_password) {
+      if ($scope.user.password === $scope.user.retype_password) {
         $scope.busy = true;
         $http({
           method: 'POST',

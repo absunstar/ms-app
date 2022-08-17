@@ -46,10 +46,6 @@ module.exports = function init(site) {
       $res: res,
     });
 
-    if (typeof partner_doc.active === 'undefined') {
-      partner_doc.active = true;
-    }
-
     $partner.findOne(
       {
         where: {
@@ -68,22 +64,7 @@ module.exports = function init(site) {
           response.error = 'Name Exists';
           res.json(response);
         } else {
-          // let d = new Date();
-          // d.setFullYear(d.getFullYear() + 1);
-          // d.setMonth(1);
-          let num_obj = {
-            screen: 'partner',
-            date: new Date(),
-          };
-
-          // let cb = site.getNumbering(num_obj);
-          // if (!partner_doc.code && !cb.auto) {
-          //   response.error = 'Must Enter Code';
-          //   res.json(response);
-          //   return;
-          // } else if (cb.auto) {
-          //   partner_doc.code = cb.code;
-          // }
+       
 
           $partner.add(partner_doc, (err, doc) => {
             if (!err) {

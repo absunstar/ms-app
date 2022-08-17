@@ -46,9 +46,6 @@ module.exports = function init(site) {
       $res: res,
     });
 
-    if (typeof training_center_doc.active === 'undefined') {
-      training_center_doc.active = true;
-    }
 
     $training_center.findOne(
       {
@@ -68,22 +65,7 @@ module.exports = function init(site) {
           response.error = 'Name Exists';
           res.json(response);
         } else {
-          // let d = new Date();
-          // d.setFullYear(d.getFullYear() + 1);
-          // d.setMonth(1);
-          let num_obj = {
-            screen: 'training_center',
-            date: new Date(),
-          };
-
-          // let cb = site.getNumbering(num_obj);
-          // if (!training_center_doc.code && !cb.auto) {
-          //   response.error = 'Must Enter Code';
-          //   res.json(response);
-          //   return;
-          // } else if (cb.auto) {
-          //   training_center_doc.code = cb.code;
-          // }
+       
 
           $training_center.add(training_center_doc, (err, doc) => {
             if (!err) {

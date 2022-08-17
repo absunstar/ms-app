@@ -46,10 +46,6 @@ module.exports = function init(site) {
       $res: res,
     });
 
-    if (typeof training_categories_doc.active === 'undefined') {
-      training_categories_doc.active = true;
-    }
-
     $training_categories.findOne(
       {
         where: {
@@ -68,23 +64,7 @@ module.exports = function init(site) {
           response.error = 'Name Exists';
           res.json(response);
         } else {
-          // let d = new Date();
-          // d.setFullYear(d.getFullYear() + 1);
-          // d.setMonth(1);
-          let num_obj = {
-            screen: 'language',
-            date: new Date(),
-          };
-
-          // let cb = site.getNumbering(num_obj);
-          // if (!training_categories_doc.code && !cb.auto) {
-          //   response.error = 'Must Enter Code';
-          //   res.json(response);
-          //   return;
-          // } else if (cb.auto) {
-          //   training_categories_doc.code = cb.code;
-          // }
-
+       
           $training_categories.add(training_categories_doc, (err, doc) => {
             if (!err) {
               response.done = true;

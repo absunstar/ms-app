@@ -14,7 +14,7 @@
             <h1 class="bold text-center">##word.best_short_listed_resumes##</h1>
           </div>
           <div class="top-actions">
-            <div  x-import="job/view_modal.html"></div>
+            <div  x-import="jobs/view_modal.html"></div>
           </div>
 
           <div class="row" ng-repeat="u in list">
@@ -23,17 +23,17 @@
             </div>
             <div class="col6">
 
-              <b class="font-weight-bold">{{u.profile.name}}</b>
-              <p>{{u.profile.job_title}}</p>
-              <p>{{u.profile.country.name_##session.lang##}} , {{u.profile.city.name_##session.lang##}} <i class="fa fa-map-marker" aria-hidden="true"></i></p>
-              <p>{{u.profile.qualification.name_##session.lang##}}</p>
-              <p>{{u.profile.experience.name_##session.lang##}}</p>
+              <b class="font-weight-bold">{{u.name}}</b>
+              <p>{{u.job_title}}</p>
+              <p>{{u.country.name_##session.lang##}} , {{u.city.name_##session.lang##}} <i class="fa fa-map-marker" aria-hidden="true"></i></p>
+              <p>{{u.qualification.name_##session.lang##}}</p>
+              <p>{{u.experience.name_##session.lang##}}</p>
             </div>
   
             <div class="col2">
               <a type="button" class="btn btn-primary btn-lg" href="/Resume?id={{u.id}}">##word.view_resume##</a>
               <i-button type="delete" ng-click="removeShortList(u)"></i-button>
-              <i-file label="##word.download_cv##" view categoty="upload_resume" ng-model="u.profile.upload_resume"></i-file>
+              <i-file label="##word.download_cv##" view categoty="upload_resume" ng-model="u.upload_resume"></i-file>
             </div>
           </div>
       

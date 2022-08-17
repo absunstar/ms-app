@@ -2,7 +2,7 @@
 <html lang="en"  data-ng-app="myApp" x-permissions="employer || admin">
   <head x-import="head.html"> </head>
 
-  <body class="##session.lang##" ng-controller="appliedResume" >
+  <body class="##session.lang##" ng-controller="appliedResumes" >
     <nav x-import="0/bar.html" class="sitebar" ng-controller="bar"></nav>
 
     <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
@@ -12,10 +12,9 @@
         <div class="row">
 
           <div class="top-actions">
-            <div  x-import="job/view_modal.html"></div>
+            <div  x-import="jobs/view_modal.html"></div>
             <div  x-import="applied-resume/unhire.html"></div>
             <div  x-import="applied-resume/search_all_modal.html"></div>
-            <i-button type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
           </div>
 
           <div class="row" ng-repeat="u in list">
@@ -23,11 +22,11 @@
               <i-image view ng-model="u.image"></i-image>
             </div>
             <div class="col6">
-              <b class="font-weight-bold">{{u.profile.name}}</b>
-              <p>{{u.profile.job_title}}</p>
-              <p>{{u.profile.country.name_##session.lang##}} , {{u.profile.city.name_##session.lang##}} <i class="fa fa-map-marker" aria-hidden="true"></i></p>
-              <p>{{u.profile.qualification.name_##session.lang##}}</p>
-              <p>{{u.profile.experience.name_##session.lang##}}</p>
+              <b class="font-weight-bold">{{u.name}}</b>
+              <p>{{u.job_title}}</p>
+              <p>{{u.country.name_##session.lang##}} , {{u.city.name_##session.lang##}} <i class="fa fa-map-marker" aria-hidden="true"></i></p>
+              <p>{{u.qualification.name_##session.lang##}}</p>
+              <p>{{u.experience.name_##session.lang##}}</p>
             </div>
   
             <div class="col2">

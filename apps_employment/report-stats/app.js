@@ -24,7 +24,7 @@ module.exports = function init(site) {
       return
     }
     let where = req.body.where || {};
-    where['profile.type'] = 'job-seeker'
+    where['role.name'] = 'job_seeker'
 
     if (where.date_from) {
       let d1 = site.toDate(where.date_from);
@@ -59,10 +59,10 @@ module.exports = function init(site) {
         for (let i = 0; i < docs.length; i++) {
           let u = docs[i]
             response.job_seeker_count += 1
-          if(u.profile.gender) {
-            if(u.profile.gender.id == 1){
+          if(u.gender) {
+            if(u.gender.id == 1){
               response.male_count += 1
-            } else if(u.profile.gender.id == 2){
+            } else if(u.gender.id == 2){
               response.female_count += 1
             }
           } else {

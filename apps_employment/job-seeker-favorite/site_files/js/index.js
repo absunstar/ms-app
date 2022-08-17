@@ -11,7 +11,7 @@ app.controller('jobSeekerFavorite', function ($scope, $http, $timeout) {
     where['favorite_list'] = site.toNumber('##user.id##');
     $http({
       method: 'POST',
-      url: '/api/job/all',
+      url: '/api/jobs/all',
       data: {
         where: where,
       },
@@ -75,7 +75,7 @@ app.controller('jobSeekerFavorite', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/job/update',
+      url: '/api/jobs/update',
       data: job,
     }).then(
       function (response) {
@@ -103,7 +103,7 @@ app.controller('jobSeekerFavorite', function ($scope, $http, $timeout) {
     $scope.error = '';
     $http({
       method: 'POST',
-      url: '/api/job/view',
+      url: '/api/jobs/view',
       data: {
         id: job.id,
       },

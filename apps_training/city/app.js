@@ -26,7 +26,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/city/add', (req, res) => {
+  site.post('/api/cities/add', (req, res) => {
     let response = {
       done: false,
     };
@@ -46,10 +46,6 @@ module.exports = function init(site) {
       $res: res,
     });
 
-    if (typeof city_doc.active === 'undefined') {
-      city_doc.active = true;
-    }
-
     $city.findOne(
       {
         where: {
@@ -68,22 +64,7 @@ module.exports = function init(site) {
           response.error = 'Name Exists';
           res.json(response);
         } else {
-          // let d = new Date();
-          // d.setFullYear(d.getFullYear() + 1);
-          // d.setMonth(1);
-          let num_obj = {
-            screen: 'city',
-            date: new Date(),
-          };
-
-          // let cb = site.getNumbering(num_obj);
-          // if (!city_doc.code && !cb.auto) {
-          //   response.error = 'Must Enter Code';
-          //   res.json(response);
-          //   return;
-          // } else if (cb.auto) {
-          //   city_doc.code = cb.code;
-          // }
+        
 
           $city.add(city_doc, (err, doc) => {
             if (!err) {
@@ -99,7 +80,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/city/update', (req, res) => {
+  site.post('/api/cities/update', (req, res) => {
     let response = {
       done: false,
     };
@@ -163,7 +144,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/city/view', (req, res) => {
+  site.post('/api/cities/view', (req, res) => {
     let response = {
       done: false,
     };
@@ -192,7 +173,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/city/delete', (req, res) => {
+  site.post('/api/cities/delete', (req, res) => {
     let response = {
       done: false,
     };
@@ -227,7 +208,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/city/all', (req, res) => {
+  site.post('/api/cities/all', (req, res) => {
     let response = {
       done: false,
     };
