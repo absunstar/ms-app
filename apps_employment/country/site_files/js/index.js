@@ -31,6 +31,7 @@ app.controller('country', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#countryAddModal');
+          site.resetValidated('#countryAddModal');
           $scope.getCountryList();
         } else {
           $scope.error = response.data.error;
@@ -71,6 +72,7 @@ app.controller('country', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#countryUpdateModal');
+          site.resetValidated('#countryUpdateModal');
           $scope.getCountryList();
         } else {
           $scope.error = response.data.error;

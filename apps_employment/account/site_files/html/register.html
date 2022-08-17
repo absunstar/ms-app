@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-ng-app="myApp">
-  <head x-import="head.html">
-    <style>
-      html,
-      body {
-        background: linear-gradient(to left, #dce35b, #45b649);
-      }
-    </style>
-  </head>
+  <head x-import="head.html"> </head>
 
   <body class="##session.lang##" x-permissions="!login" ng-controller="register">
     <nav x-import="0/bar.html" class="sitebar" ng-controller="bar"></nav>
@@ -67,7 +60,7 @@
                         <br />
 
                         <div class="center">
-                          <i-button class="center" label="##word.register_as_employer##" ng-click="registerAsEmployer()"></i-button>
+                          <i-button class="center" label="##word.register_as_employer##" ng-click="addEmployer()"></i-button>
                         </div>
                       </div>
                     </div>
@@ -96,7 +89,7 @@
                         <br />
 
                         <div class="center">
-                          <i-button class="center" label="##word.register_as_job_seeker##" ng-click="registerAsJobSeeker()"></i-button>
+                          <i-button class="center" label="##word.register_as_job_seeker##" ng-click="addJobSeeker()"></i-button>
                         </div>
                       </div>
                     </div>
@@ -110,6 +103,6 @@
     </div>
 
     <div x-import="0/scripts.html"></div>
-    <script x-import="register/index.js"></script>
+    <script x-import="account/register.js"></script>
   </body>
 </html>

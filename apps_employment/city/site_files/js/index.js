@@ -8,6 +8,7 @@ app.controller('city', function ($scope, $http, $timeout) {
     $scope.city = {
       image: '/images/city.png',
       active: true,
+      country : $scope.country || null
     };
 
     site.showModal('#cityAddModal');
@@ -21,10 +22,6 @@ app.controller('city', function ($scope, $http, $timeout) {
       return;
     }
 
-    if ('##query.id##' != 'undefined') {
-      $scope.city.country = $scope.country;
-    }
-
     $scope.busy = true;
     $http({
       method: 'POST',
@@ -35,6 +32,7 @@ app.controller('city', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#cityAddModal');
+          site.resetValidated('#cityAddModal');
           $scope.getCityList();
         } else {
           $scope.error = response.data.error;
@@ -75,6 +73,7 @@ app.controller('city', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#cityUpdateModal');
+          site.resetValidated('#cityUpdateModal');
           $scope.getCityList();
         } else {
           $scope.error = response.data.error;

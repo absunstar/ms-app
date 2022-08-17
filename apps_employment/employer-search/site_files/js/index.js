@@ -52,6 +52,7 @@ app.controller('employerSearch', function ($scope, $http, $timeout) {
 
     $scope.applied = true;
     site.hideModal('#applyModal');
+    site.resetValidated('#applyModal');
   };
 
   $scope.favoriteTransaction = function (job,type) {

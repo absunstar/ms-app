@@ -35,6 +35,7 @@ app.controller('job_subfields', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#jobSubFieldsAddModal');
+          site.resetValidated('#jobSubFieldsAddModal');
           $scope.getJobSubFieldsList();
         } else {
           $scope.error = response.data.error;
@@ -75,6 +76,7 @@ app.controller('job_subfields', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#jobSubFieldsUpdateModal');
+          site.resetValidated('#jobSubFieldsUpdateModal');
           $scope.getJobSubFieldsList();
         } else {
           $scope.error = response.data.error;

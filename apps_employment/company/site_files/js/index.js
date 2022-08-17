@@ -40,6 +40,7 @@ app.controller('company', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#companyAddModal');
+          site.resetValidated('#companyAddModal');
           $scope.getCompanyList();
         } else {
           $scope.error = response.data.error;
@@ -88,6 +89,7 @@ app.controller('company', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#companyUpdateModal');
+          site.resetValidated('#companyUpdateModal');
           $scope.getCompanyList();
         } else {
           $scope.error = response.data.error;

@@ -31,6 +31,7 @@ app.controller('industry', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#industryAddModal');
+          site.resetValidated('#industryAddModal');
           $scope.getIndustryList();
         } else {
           $scope.error = response.data.error;
@@ -71,6 +72,7 @@ app.controller('industry', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#industryUpdateModal');
+          site.resetValidated('#industryUpdateModal');
           $scope.getIndustryList();
         } else {
           $scope.error = response.data.error;

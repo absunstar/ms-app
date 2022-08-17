@@ -11,22 +11,18 @@ app.controller('loginEmployment', function ($scope, $http, $timeout) {
     $http({
       method: 'POST',
       url: '/api/user/login',
-      data: {
-        $encript: '123',
-        email: site.to123($scope.user.email),
-        password: site.to123($scope.user.password),
-      },
+      data: $scope.user,
     }).then(
       function (response) {
         if (response.data.error) {
           if (response.data.error.like('*account is inactive*')) {
             $scope.error = '##word.the_account_is_inactive##';
           } else {
-            $scope.error = "##word.email_or_pass_error##";
+            $scope.error = '##word.email_or_pass_error##';
           }
           $scope.busy = false;
-        } else if (response.data.done ) {
-          window.location.href = "/";
+        } else if (response.data.done) {
+          window.location.href = '/';
         }
       },
       function (err) {
@@ -36,11 +32,11 @@ app.controller('loginEmployment', function ($scope, $http, $timeout) {
     );
   };
   $scope.showPass = function () {
-    let x = document.getElementById("pass");
-    if (x.type === "password") {
-      x.type = "text";
+    let x = document.getElementById('pass');
+    if (x.type === 'password') {
+      x.type = 'text';
     } else {
-      x.type = "password";
+      x.type = 'password';
     }
-  }
+  };
 });

@@ -54,6 +54,7 @@ app.controller('job', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#jobAddModal');
+          site.resetValidated('#jobAddModal');
           $scope.getJobList();
         } else {
           $scope.error = response.data.error;
@@ -109,6 +110,7 @@ app.controller('job', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#jobUpdateModal');
+          site.resetValidated('#jobUpdateModal');
           $scope.getJobList();
         } else {
           $scope.error = response.data.error;

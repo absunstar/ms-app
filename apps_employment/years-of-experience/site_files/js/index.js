@@ -31,6 +31,7 @@ app.controller('years_of_experience', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#yearsOfExperienceAddModal');
+          site.resetValidated('#yearsOfExperienceAddModal');
           $scope.getYearsOfExperienceList();
         } else {
           $scope.error = response.data.error;
@@ -71,6 +72,7 @@ app.controller('years_of_experience', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#yearsOfExperienceUpdateModal');
+          site.resetValidated('#yearsOfExperienceUpdateModal');
           $scope.getYearsOfExperienceList();
         } else {
           $scope.error = response.data.error;

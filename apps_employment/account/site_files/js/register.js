@@ -1,7 +1,7 @@
 app.controller('register', function ($scope, $http, $timeout) {
   $scope.user = { image: '/images/user_logo.png' };
 
-  $scope.registerAsEmployer = function () {
+  $scope.addEmployer = function () {
     $scope.error = '';
     const v = site.validated('.employer-form');
     if (!v.ok) {
@@ -10,19 +10,12 @@ app.controller('register', function ($scope, $http, $timeout) {
     }
     if ($scope.user) {
       if ($scope.user.password === $scope.user.re_password) {
-        $scope.user.type = 'employer';
+        $scope.user.role = $scope.accountsTypeList[1];
         $scope.busy = true;
         $http({
           method: 'POST',
           url: '/api/register',
-          data: {
-            $encript: '123',
-            email: site.to123($scope.user.email),
-            password: site.to123($scope.user.password),
-            first_name: $scope.user.first_name,
-            last_name: $scope.user.last_name,
-            type: $scope.user.type,
-          },
+          data: $scope.user,
         }).then(
           function (response) {
             if (response.data.error) {
@@ -43,7 +36,7 @@ app.controller('register', function ($scope, $http, $timeout) {
       }
     }
   };
-  $scope.registerAsJobSeeker = function () {
+  $scope.addJobSeeker = function () {
     $scope.error = '';
     const v = site.validated('.job-seeker-form');
     if (!v.ok) {
@@ -52,19 +45,12 @@ app.controller('register', function ($scope, $http, $timeout) {
     }
     if ($scope.user) {
       if ($scope.user.password === $scope.user.re_password) {
-        $scope.user.type = 'job-seeker';
+        $scope.user.role = $scope.accountsTypeList[2];
         $scope.busy = true;
         $http({
           method: 'POST',
           url: '/api/register',
-          data: {
-            $encript: '123',
-            email: site.to123($scope.user.email),
-            password: site.to123($scope.user.password),
-            first_name: $scope.user.first_name,
-            last_name: $scope.user.last_name,
-            type: $scope.user.type,
-          },
+          data: $scope.user,
         }).then(
           function (response) {
             if (response.data.error) {
@@ -90,4 +76,26 @@ app.controller('register', function ($scope, $http, $timeout) {
       p.setAttribute('type', !$scope.show_password ? 'text' : 'password');
     });
   };
+
+  $scope.getAccountsType = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.accountsTypeList = [];
+    $http({
+      method: 'POST',
+      url: '/api/accounts_type/all',
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.accountsTypeList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getAccountsType();
+
 });

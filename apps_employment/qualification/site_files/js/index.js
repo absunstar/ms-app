@@ -31,6 +31,7 @@ app.controller('qualification', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#qualificationAddModal');
+          site.resetValidated('#qualificationAddModal');
           $scope.getQualificationList();
         } else {
           $scope.error = response.data.error;
@@ -71,6 +72,7 @@ app.controller('qualification', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#qualificationUpdateModal');
+          site.resetValidated('#qualificationUpdateModal');
           $scope.getQualificationList();
         } else {
           $scope.error = response.data.error;

@@ -280,6 +280,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
       $scope.user.profile.educations_list.push(education);
     }
     site.hideModal('#educationModal');
+    site.resetValidated('#educationModal');
     $scope.update($scope.user);
   };
 
@@ -304,6 +305,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
       $scope.user.profile.work_experience_list.push(work_experience);
     }
     site.hideModal('#workExperienceModal');
+    site.resetValidated('#workExperienceModal');
     $scope.update($scope.user);
   };
 
@@ -328,6 +330,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
       $scope.user.profile.certificates_list.push(certificate);
     }
     site.hideModal('#certificateModal');
+    site.resetValidated('#certificateModal');
     $scope.update($scope.user);
   };
 
@@ -352,6 +355,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
       $scope.user.profile.extra_curricular_list.push(extra_curricular);
     }
     site.hideModal('#extraCurricularModal');
+    site.resetValidated('#extraCurricularModal');
     $scope.update($scope.user);
   };
 

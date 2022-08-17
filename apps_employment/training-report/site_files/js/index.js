@@ -78,6 +78,7 @@ app.controller('training_report', function ($scope, $http,$timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#addTrainingListModal');
+          site.resetValidated('#addTrainingListModal');
           $scope.loadAll();
         } else {
           $scope.error = '##word.error##';

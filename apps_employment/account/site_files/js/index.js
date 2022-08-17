@@ -31,6 +31,7 @@ app.controller('account', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#accountAddModal');
+          site.reetValidated('#accountAddModal');
           $scope.getAccountList();
         } else {
           $scope.error = response.data.error;
@@ -83,6 +84,7 @@ app.controller('account', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#accountUpdateModal');
+          site.resetValidated('#accountUpdateModal');
           $scope.getAccountList();
         } else {
           $scope.error = response.data.error;
@@ -97,20 +99,17 @@ app.controller('account', function ($scope, $http, $timeout) {
     );
   };
 
-   $scope.update = function (account,type) {
+  $scope.update = function (account, type) {
     $scope.error = '';
 
-    if(type == 'activate'){
+    if (type == 'activate') {
       account.active = true;
-    } else if(type == 'deactivate'){
+    } else if (type == 'deactivate') {
       account.active = false;
-
-    } else if(type == 'limit'){
+    } else if (type == 'limit') {
       account.limited_companies = true;
-
-    } else if(type == 'unlimit'){
+    } else if (type == 'unlimit') {
       account.limited_companies = false;
-
     }
 
     $scope.busy = true;
@@ -122,12 +121,11 @@ app.controller('account', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          if(type == 'activate'){
+          if (type == 'activate') {
             site.hideModal('#activateModal');
-          } else if(type == 'deactivate'){
+          } else if (type == 'deactivate') {
             site.hideModal('#deactivateModal');
           }
-
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
@@ -140,7 +138,7 @@ app.controller('account', function ($scope, $http, $timeout) {
       }
     );
   };
- 
+
   $scope.displayDetailsAccount = function (account) {
     $scope.error = '';
     $scope.viewAccount(account);
@@ -179,15 +177,14 @@ app.controller('account', function ($scope, $http, $timeout) {
     site.showModal('#accountDeleteModal');
   };
 
-  $scope.deleteAccount = function () {
+  $scope.deleteAccount = function (account) {
     $scope.busy = true;
     $scope.error = '';
-
     $http({
       method: 'POST',
       url: '/api/user/delete',
       data: {
-        id: $scope.account.id,
+        id: account.id,
       },
     }).then(
       function (response) {
@@ -238,7 +235,7 @@ app.controller('account', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.registerAsAdmin = function () {
+  $scope.addAdmin = function () {
     $scope.error = '';
     const v = site.validated('.admin-form');
     if (!v.ok) {
@@ -247,32 +244,30 @@ app.controller('account', function ($scope, $http, $timeout) {
     }
     if ($scope.user) {
       if ($scope.user.password === $scope.user.re_password) {
-        $scope.user.type = 'admin';
+        $scope.user.role = $scope.accountsTypeList[0];
         $scope.busy = true;
         $http({
           method: 'POST',
-          url: '/api/register',
-          data: {
-            $encript: '123',
-            email: site.to123($scope.user.email),
-            password: site.to123($scope.user.password),
-            first_name: $scope.user.first_name,
-            last_name: $scope.user.last_name,
-            type: $scope.user.type,
-          },
+          url: '/api/user/add',
+          data: $scope.user,
         }).then(
           function (response) {
-            if (response.data.error) {
-              $scope.error = response.data.error;
-              $scope.busy = false;
-            }
-            if (response.data.user) {
+            $scope.busy = false;
+            if (response.data.done) {
               site.hideModal('#accountAddModal');
+              site.resetValidated('.admin-form');
+              $scope.getAccountList();
+            } else {
+              $scope.error = response.data.error;
+              if (response.data.error.like('*Must Enter Code*')) {
+                $scope.error = '##word.must_enter_code##';
+              } else if (response.data.error.like('*Name Exists*')) {
+                $scope.error = '##word.name_already_exists##';
+              }
             }
           },
           function (err) {
-            $scope.busy = false;
-            $scope.error = err;
+            console.log(err);
           }
         );
       } else {
@@ -281,7 +276,7 @@ app.controller('account', function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.registerAsEmployer = function () {
+  $scope.addEmployer = function () {
     $scope.error = '';
     const v = site.validated('.employer-form');
     if (!v.ok) {
@@ -290,33 +285,30 @@ app.controller('account', function ($scope, $http, $timeout) {
     }
     if ($scope.user) {
       if ($scope.user.password === $scope.user.re_password) {
-        $scope.user.type = 'employer';
+        $scope.user.role = $scope.accountsTypeList[1];
         $scope.busy = true;
         $http({
           method: 'POST',
-          url: '/api/register',
-          data: {
-            $encript: '123',
-            email: site.to123($scope.user.email),
-            password: site.to123($scope.user.password),
-            first_name: $scope.user.first_name,
-            last_name: $scope.user.last_name,
-            type: $scope.user.type,
-          },
+          url: '/api/user/add',
+          data: $scope.user,
         }).then(
           function (response) {
-            if (response.data.error) {
-              $scope.error = response.data.error;
-              $scope.busy = false;
-            }
-            if (response.data.user) {
+            $scope.busy = false;
+            if (response.data.done) {
               site.hideModal('#accountAddModal');
-
+              site.resetValidated('.employer-form');
+              $scope.getAccountList();
+            } else {
+              $scope.error = response.data.error;
+              if (response.data.error.like('*Must Enter Code*')) {
+                $scope.error = '##word.must_enter_code##';
+              } else if (response.data.error.like('*Name Exists*')) {
+                $scope.error = '##word.name_already_exists##';
+              }
             }
           },
           function (err) {
-            $scope.busy = false;
-            $scope.error = err;
+            console.log(err);
           }
         );
       } else {
@@ -324,7 +316,8 @@ app.controller('account', function ($scope, $http, $timeout) {
       }
     }
   };
-  $scope.registerAsJobSeeker = function () {
+
+  $scope.addJobSeeker = function () {
     $scope.error = '';
     const v = site.validated('.job-seeker-form');
     if (!v.ok) {
@@ -333,33 +326,30 @@ app.controller('account', function ($scope, $http, $timeout) {
     }
     if ($scope.user) {
       if ($scope.user.password === $scope.user.re_password) {
-        $scope.user.type = 'job-seeker';
+        $scope.user.role = $scope.accountsTypeList[2];
         $scope.busy = true;
         $http({
           method: 'POST',
-          url: '/api/register',
-          data: {
-            $encript: '123',
-            email: site.to123($scope.user.email),
-            password: site.to123($scope.user.password),
-            first_name: $scope.user.first_name,
-            last_name: $scope.user.last_name,
-            type: $scope.user.type,
-          },
+          url: '/api/user/add',
+          data: $scope.user,
         }).then(
           function (response) {
-            if (response.data.error) {
-              $scope.error = response.data.error;
-              $scope.busy = false;
-            }
-            if (response.data.user) {
+            $scope.busy = false;
+            if (response.data.done) {
               site.hideModal('#accountAddModal');
-
+              site.resetValidated('.job-seeker-form');
+              $scope.getAccountList();
+            } else {
+              $scope.error = response.data.error;
+              if (response.data.error.like('*Must Enter Code*')) {
+                $scope.error = '##word.must_enter_code##';
+              } else if (response.data.error.like('*Name Exists*')) {
+                $scope.error = '##word.name_already_exists##';
+              }
             }
           },
           function (err) {
-            $scope.busy = false;
-            $scope.error = err;
+            console.log(err);
           }
         );
       } else {
@@ -369,12 +359,12 @@ app.controller('account', function ($scope, $http, $timeout) {
   };
 
   $scope.getAccountsType = function () {
-    $scope.error = "";
+    $scope.error = '';
     $scope.busy = true;
     $scope.accountsTypeList = [];
     $http({
-      method: "POST",
-      url: "/api/accounts_type/all",
+      method: 'POST',
+      url: '/api/accounts_type/all',
     }).then(
       function (response) {
         $scope.busy = false;
@@ -386,7 +376,6 @@ app.controller('account', function ($scope, $http, $timeout) {
       }
     );
   };
-
 
   $scope.displaySearchModal = function () {
     $scope.error = '';

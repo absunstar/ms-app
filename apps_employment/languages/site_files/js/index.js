@@ -31,6 +31,7 @@ app.controller('languages', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#languageAddModal');
+          site.resetValidated('#languageAddModal');
           $scope.getLanguageList();
         } else {
           $scope.error = response.data.error;
@@ -71,6 +72,7 @@ app.controller('languages', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#languageUpdateModal');
+          site.resetValidated('#languageUpdateModal');
           $scope.getLanguageList();
         } else {
           $scope.error = response.data.error;

@@ -31,6 +31,7 @@ app.controller('job_fields', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#jobFieldsAddModal');
+          site.resetValidated('#jobFieldsAddModal');
           $scope.getJobFieldsList();
         } else {
           $scope.error = response.data.error;
@@ -71,6 +72,7 @@ app.controller('job_fields', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#jobFieldsUpdateModal');
+          site.resetValidated('#jobFieldsUpdateModal');
           $scope.getJobFieldsList();
         } else {
           $scope.error = response.data.error;

@@ -35,6 +35,7 @@ app.controller('job_fairs', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#jobFairsAddModal');
+          site.resetValidated('#jobFairsAddModal');
           $scope.getJobFairsList();
         } else {
           $scope.error = response.data.error;
@@ -75,6 +76,7 @@ app.controller('job_fairs', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#jobFairsUpdateModal');
+          site.resetValidated('#jobFairsUpdateModal');
           $scope.getJobFairsList();
         } else {
           $scope.error = response.data.error;
@@ -260,7 +262,7 @@ app.controller('job_fairs', function ($scope, $http, $timeout) {
 
     $scope.updateActivate($scope.job_fairs);
     site.hideModal('#attendanceModal');
-
+    site.resetValidated('#attendanceModal');
   };
 
   $scope.registerApplyJobSeeker = function (c) {
@@ -306,7 +308,7 @@ app.controller('job_fairs', function ($scope, $http, $timeout) {
     $scope.apply = {};
     $scope.updateActivate($scope.job_fairs);
     site.hideModal('#applyModal');
-
+    site.resetValidated('#applyModal');
   };
 
   $scope.displayAttendance = function (c) {
