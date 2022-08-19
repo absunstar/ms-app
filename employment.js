@@ -1,4 +1,4 @@
-const site = require('isite')({
+const site = require('../isite')({
   port: [80, 33001],
   lang: 'en',
   version: '1.0.13',
@@ -16,16 +16,21 @@ const site = require('isite')({
   security: {
     keys: ['e698f2679be5ba5c9c0b0031cb5b057c', '9705a3a85c1b21118532fefcee840f99'],
   },
+  require: {
+    permissions: ['login'],
+  },
 });
 
 site.get({
   name: '/',
   path: site.dir + '/',
+  public : true
 });
 
 site.get(
   {
     name: '/',
+    public : true
   },
   (req, res) => {
     res.render(

@@ -2,7 +2,7 @@
 
 <script>
     site.features = '##req.features##';
-    site.session = '##req.session##';
+    site.session = site.show('##req.#session##');
     site.feature = (f)=> site.features.indexOf(f) !== -1;
 
     setTimeout(() => {

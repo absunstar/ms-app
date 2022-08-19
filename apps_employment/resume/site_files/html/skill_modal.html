@@ -1,0 +1,30 @@
+<div id="skillsModal" class="modal small" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 class="center" ng-show="!skill.$edit">
+        ##word.add##
+        <i class="fa fa-plus"></i>
+      </h2>
+
+      <h2 class="center" ng-show="skill.$edit">
+        ##word.edit##
+        <i class="fa fa-plus"></i>
+      </h2>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <i-control type="text" class="col6" v="r" ng-model="skill.name" label="##word.name##"></i-control>
+        <i-list v="r" label="##word.years_expriance##" ng-model="skill.years" display="name_##session.lang##" items="yearsOfExperienceList"></i-list>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="error">{{error}}</h2>
+      <i-button type="add" label="##word.add##" ng-show="!skill.$edit" ng-click="skillsTransaction(skill,'add')"></i-button>
+      <i-button type="save" label="##word.save##" ng-show="skill.$edit" ng-click="skillsTransaction(skill,'upate')"></i-button>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#extraCurricularModal')"></i-button>
+    </div>
+  </div>
+</div>

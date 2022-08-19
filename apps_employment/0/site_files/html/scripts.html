@@ -1,7 +1,7 @@
 <script src="/x-js/bootstrap-5-support.js?v=##site.options.version##"></script>
 <script>
     site.features = '##req.features##';
-    site.session = '##req.session##';
+    site.session = site.show('##req.#session##');
     
     site.feature = (f)=> site.features.indexOf(f) !== -1;
 
@@ -27,9 +27,12 @@
 <div x-permission="login" x-import="security/logout_modal.html"></div>
 <div x-permission="!login" x-import="security/customer_register_modal.html"></div>
 
+<div  x-import="0/activate.html"></div>
+<div  x-import="0/deactivate.html"></div>
+
 <div x-permission="help" x-import="ui-help/index.html"></div>
 <script x-import="ui-print/index.js"></script>
-<script x-import="0/bar.js"></script>
+<script x-import="0/navbar.js"></script>
 <script x-import="0/footer.js"></script>
 <script>
  

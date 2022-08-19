@@ -3,16 +3,13 @@ module.exports = function init(site) {
 
   site.get({
     name: 'images',
-    path: __dirname + '/site_files/images/'
-  })
+    path: __dirname + '/site_files/images/',
+  });
 
   site.get({
-    name: "Resume",
-    path: __dirname + "/site_files/html/index.html",
-    parser: "html",
-    compress: true
-  })
-
- 
-
-}
+    name: 'Resume',
+    path: __dirname + '/site_files/html/index.html',
+    parser: 'html',
+    compress: true,
+  });
+};

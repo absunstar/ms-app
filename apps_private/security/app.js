@@ -111,7 +111,7 @@ module.exports = function init(site) {
       for (let i = 0; i < where['qualifications'].length; i++) {
         let element = where['qualifications'][i];
         where.$or.push({
-          'profile.qualification.id': element.id
+          'qualification.id': element.id
         })
       }
     }
@@ -161,15 +161,15 @@ module.exports = function init(site) {
       where.$or = where.$or || []
 
       where.$or.push({
-        'profile.job_title': site.get_RegExp(where['general_search'], "i")
+        'job_title': site.get_RegExp(where['general_search'], "i")
       })
 
       where.$or.push({
-        'profile.name': site.get_RegExp(where['general_search'], "i")
+        'first_name': site.get_RegExp(where['general_search'], "i")
       })
 
       where.$or.push({
-        'profile.last_name': site.get_RegExp(where['general_search'], "i")
+        'last_name': site.get_RegExp(where['general_search'], "i")
       })
     }
 
@@ -347,7 +347,7 @@ module.exports = function init(site) {
     )
   })
 
-  site.post("/api/user/login", function (req, res) {
+  site.post({name : "/api/user/login" , public : true}, function (req, res) {
     let response = {
       accessToken: req.session.accessToken
     }

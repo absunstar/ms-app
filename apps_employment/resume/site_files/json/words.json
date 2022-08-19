@@ -1,4 +1,5 @@
-[{
+[
+    {
         "name": "resume",
         "en": "Resume",
         "ar": "السيرة الذاتية"
@@ -137,6 +138,20 @@
         "name": "upload_resume",
         "en": "Upload Resume",
         "ar": "تحميل السيرة الذاتية"
+    },
+    {
+        "name": "birthdate",
+        "en": "Birth Date",
+        "ar": "تاريخ الميلاد"
+    },
+    {
+        "name": "skills",
+        "en": "Skills",
+        "ar": "المهارات"
+    },
+    {
+        "name": "years_expriance",
+        "en": "Years of Expriance",
+        "ar": "سنوات الخبرة"
     }
-    
-] 
+]

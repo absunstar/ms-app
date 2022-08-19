@@ -4,6 +4,7 @@ module.exports = function init(site) {
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/',
+    public : true
   });
 
   site.get({
@@ -18,23 +19,26 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/html/register.html',
     parser: 'html',
     compress: true,
+    public : true
   });
 
   site.get({
     name: "Login",
     path: __dirname + "/site_files/html/login.html",
     parser: "html",
-    compress: true
+    compress: true,
+    public : true
   })
 
   
   site.post({
     name: '/api/accounts_type/all',
     path: __dirname + '/site_files/json/accounts_type.json',
+    public : true
   });
 
 
-  site.post('/api/register', (req, res) => {
+  site.post({name : '/api/register' ,   public : true}, (req, res) => {
     let response = {};
 
     if (req.body.$encript) {

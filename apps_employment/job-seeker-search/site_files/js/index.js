@@ -1,5 +1,4 @@
 app.controller('jobSeekerSearch', function ($scope, $http, $timeout) {
-
   $scope.getJobSeekerList = function (where) {
     $scope.busy = true;
     $scope.list = [];
@@ -13,7 +12,7 @@ app.controller('jobSeekerSearch', function ($scope, $http, $timeout) {
       url: '/api/users/all',
       data: {
         where: where,
-        search : true,
+        search: true,
       },
     }).then(
       function (response) {
@@ -34,9 +33,8 @@ app.controller('jobSeekerSearch', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $scope.genderList = [];
     $http({
-      method: "POST",
-      url: "/api/gender/all"
-
+      method: 'POST',
+      url: '/api/gender/all',
     }).then(
       function (response) {
         $scope.busy = false;
@@ -46,7 +44,7 @@ app.controller('jobSeekerSearch', function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getYearsOfExperienceList = function () {
@@ -63,9 +61,8 @@ app.controller('jobSeekerSearch', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
+        if (response.data.done && response.data.list && response.data.list.length > 0) {
           $scope.yearsOfExperienceList = response.data.list;
-          
         }
       },
       function (err) {
@@ -89,9 +86,8 @@ app.controller('jobSeekerSearch', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
+        if (response.data.done && response.data.list && response.data.list.length > 0) {
           $scope.languagesList = response.data.list;
-          
         }
       },
       function (err) {
@@ -115,9 +111,8 @@ app.controller('jobSeekerSearch', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
+        if (response.data.done && response.data.list && response.data.list.length > 0) {
           $scope.qualificationList = response.data.list;
-          
         }
       },
       function (err) {
@@ -141,9 +136,8 @@ app.controller('jobSeekerSearch', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
+        if (response.data.done && response.data.list && response.data.list.length > 0) {
           $scope.countryList = response.data.list;
-          
         }
       },
       function (err) {
@@ -164,6 +158,10 @@ app.controller('jobSeekerSearch', function ($scope, $http, $timeout) {
     site.showModal('#jobSeekerSearchSearchModal');
   };
 
+  $scope.showResume = function (user) {
+    window.open(`/Resume?id=${user.id}`);
+  };
+  
   $scope.getJobSeekerList({});
   $scope.getGender();
   $scope.getYearsOfExperienceList();

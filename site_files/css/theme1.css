@@ -1,5 +1,15 @@
-
-
-.lines_text {
-    white-space: pre;
+.resume {
+  background: white;
+  border-radius: 15px;
+}
+.resume i {
+  margin: 3px;
+}
+.resume .info a {
+  text-align: left;
+  padding: 3px;
+  margin: 5px;
+}
+.ar .resume .info a {
+  text-align: right;
 }

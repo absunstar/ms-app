@@ -7,7 +7,7 @@ if (btn) {
 
 site.showTabs(event, '#main_tabs');
 
-app.controller('bar', ($scope, $http) => {
+app.controller('navbar', ($scope, $http) => {
   $scope.register = function () {
     site.showModal('#registerModal');
   };

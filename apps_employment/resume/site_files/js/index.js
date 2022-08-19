@@ -1,19 +1,18 @@
 app.controller('resume', function ($scope, $http, $timeout) {
   $scope.user = {};
   $scope.education = {};
-  $scope.profile = {};
   $scope.viewUser = function () {
     $scope.busy = true;
 
     let data = { id: site.toNumber('##user.id##') };
 
     if ('##query.id##' != 'undefined' && ('##user.role.name##' == 'employer' || '##user.role.name##' == 'admin')) {
-      data = { id: site.toNumber('##query.id##') }
-    };
+      data = { id: site.toNumber('##query.id##') };
+    }
 
     $http({
-      method: "POST",
-      url: "/api/user/view",
+      method: 'POST',
+      url: '/api/user/view',
       data: data,
     }).then(
       function (response) {
@@ -23,29 +22,26 @@ app.controller('resume', function ($scope, $http, $timeout) {
 
           if ('##query.id##' != 'undefined' && ('##user.role.name##' == 'employer' || '##user.role.name##' == 'admin')) {
             $scope.short = false;
-            $scope.user.short_list.forEach(_sh => {
-              if(_sh == site.toNumber('##user.id##')){
+            $scope.user.short_list.forEach((_sh) => {
+              if (_sh == site.toNumber('##user.id##')) {
                 $scope.short = true;
               }
             });
-          };
-
+          }
         } else {
           $scope.error = response.data.error;
         }
       },
-      function (err) {
-
-      }
-    )
+      function (err) {}
+    );
   };
 
   $scope.update = function (user) {
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/user/update",
-      data:user
+      method: 'POST',
+      url: '/api/user/update',
+      data: user,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -55,29 +51,24 @@ app.controller('resume', function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
         }
       },
-      function (err) {
-
-      }
-    )
+      function (err) {}
+    );
   };
 
-  $scope.shortList = function (user,type) {
-  
-    if(type == 'add') {
+  $scope.shortList = function (user, type) {
+    if (type == 'add') {
       user.short_list.push(site.toNumber('##user.id##'));
       $scope.short = true;
-    } else if(type == 'remove'){
-      for(let i = 0; i < user.short_list.length; i++) {
-        if(user.short_list[i] == site.toNumber('##user.id##')) {
+    } else if (type == 'remove') {
+      for (let i = 0; i < user.short_list.length; i++) {
+        if (user.short_list[i] == site.toNumber('##user.id##')) {
           user.short_list.splice(i, 1);
           $scope.short = false;
-
         }
       }
       site.hideModal('#removeShortModal');
-    };
+    }
     $scope.update(user);
-
   };
 
   $scope.getYearsOfExperienceList = function () {
@@ -94,9 +85,8 @@ app.controller('resume', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
+        if (response.data.done && response.data.list && response.data.list.length > 0) {
           $scope.yearsOfExperienceList = response.data.list;
-          
         }
       },
       function (err) {
@@ -120,9 +110,8 @@ app.controller('resume', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
+        if (response.data.done && response.data.list && response.data.list.length > 0) {
           $scope.languagesList = response.data.list;
-          
         }
       },
       function (err) {
@@ -146,9 +135,8 @@ app.controller('resume', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
+        if (response.data.done && response.data.list && response.data.list.length > 0) {
           $scope.qualificationList = response.data.list;
-          
         }
       },
       function (err) {
@@ -172,9 +160,8 @@ app.controller('resume', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
+        if (response.data.done && response.data.list && response.data.list.length > 0) {
           $scope.countryList = response.data.list;
-          
         }
       },
       function (err) {
@@ -192,13 +179,13 @@ app.controller('resume', function ($scope, $http, $timeout) {
       method: 'POST',
       url: '/api/cities/all',
       data: {
-        where: { active: true,'country.id' : id },
+        where: { active: true, 'country.id': id },
         select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
       },
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
+        if (response.data.done && response.data.list && response.data.list.length > 0) {
           $scope.cityList = response.data.list;
         }
       },
@@ -214,9 +201,8 @@ app.controller('resume', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $scope.genderList = [];
     $http({
-      method: "POST",
-      url: "/api/gender/all"
-
+      method: 'POST',
+      url: '/api/gender/all',
     }).then(
       function (response) {
         $scope.busy = false;
@@ -226,67 +212,54 @@ app.controller('resume', function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
-
-  $scope.editProfile = function (profile,type) {
+  $scope.editProfile = function (user, type) {
     $scope.error = '';
 
-    if(type=='edit'){
-      profile.experience =  $scope.user.experience;
-      profile.age = $scope.user.age;
-      profile.languages =  $scope.user.languages;
-      profile.qualification = $scope.user.qualification;
-      profile.$edit_profile = true;
+    if (type == 'edit') {
+      user.$edit_profile = true;
     } else {
-      profile.$edit_profile = false;
-
+      user.$edit_profile = false;
     }
 
-    if(type=='save'){
+    if (type == 'save') {
       const v = site.validated('#editProfileModal');
       if (!v.ok) {
         $scope.error = v.messages[0].ar;
         return;
       }
-      $scope.user.experience = profile.experience;
-      $scope.user.age = profile.age;
-      $scope.user.languages = profile.languages;
-      $scope.user.qualification = profile.qualification;
       $scope.update($scope.user);
     }
-
   };
 
-
-  $scope.showEducation = function (type,education) {
+  $scope.showEducation = function (type, education) {
     $scope.error = '';
     $scope.user.educations_list = $scope.user.educations_list || [];
     site.showModal('#educationModal');
-    if(type == 'add'){
+    if (type == 'add') {
       $scope.education = {};
-    } else if(type == 'edit'){
+    } else if (type == 'edit') {
       $scope.education = education;
       $scope.education.$edit = true;
     }
   };
 
-  $scope.educationTransaction = function (education,type) {
+  $scope.educationTransaction = function (education, type) {
     $scope.error = '';
     const v = site.validated('#educationModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
-    };
+    }
 
-    if(education.joining_date && education.expiry_date && new Date(education.joining_date) > new Date(education.expiry_date) ){
+    if (education.joining_date && education.expiry_date && new Date(education.joining_date) > new Date(education.expiry_date)) {
       $scope.error = '##word.start_date_cannot_bigger_than_end_date##';
       return;
-    };
+    }
 
-
-    if(type == 'add'){
+    if (type == 'add') {
       $scope.user.educations_list.push(education);
     }
     site.hideModal('#educationModal');
@@ -294,19 +267,19 @@ app.controller('resume', function ($scope, $http, $timeout) {
     $scope.update($scope.user);
   };
 
-  $scope.showWorkExperience = function (type,work_experience) {
+  $scope.showWorkExperience = function (type, work_experience) {
     $scope.error = '';
     $scope.user.work_experience_list = $scope.user.work_experience_list || [];
     site.showModal('#workExperienceModal');
-    if(type == 'add'){
+    if (type == 'add') {
       $scope.work_experience = {};
-    } else if(type == 'edit'){
+    } else if (type == 'edit') {
       $scope.work_experience = work_experience;
       $scope.work_experience.$edit = true;
     }
   };
 
-  $scope.workExperienceTransaction = function (work_experience,type) {
+  $scope.workExperienceTransaction = function (work_experience, type) {
     $scope.error = '';
     const v = site.validated('#workExperienceModal');
     if (!v.ok) {
@@ -314,12 +287,12 @@ app.controller('resume', function ($scope, $http, $timeout) {
       return;
     }
 
-    if(work_experience.joining_date && work_experience.expiry_date && new Date(work_experience.joining_date) > new Date(work_experience.expiry_date) ){
+    if (work_experience.joining_date && work_experience.expiry_date && new Date(work_experience.joining_date) > new Date(work_experience.expiry_date)) {
       $scope.error = '##word.start_date_cannot_bigger_than_end_date##';
       return;
-    };
+    }
 
-    if(type == 'add'){
+    if (type == 'add') {
       $scope.user.work_experience_list.push(work_experience);
     }
     site.hideModal('#workExperienceModal');
@@ -327,27 +300,26 @@ app.controller('resume', function ($scope, $http, $timeout) {
     $scope.update($scope.user);
   };
 
-  $scope.showCertificate = function (type,certificate) {
+  $scope.showCertificate = function (type, certificate) {
     $scope.error = '';
     $scope.user.certificates_list = $scope.user.certificates_list || [];
     site.showModal('#certificateModal');
-    if(type == 'add'){
+    if (type == 'add') {
       $scope.certificate = {};
-    } else if(type == 'edit'){
+    } else if (type == 'edit') {
       $scope.certificate = certificate;
       $scope.certificate.$edit = true;
     }
   };
 
-  $scope.certificateTransaction = function (certificate,type) {
+  $scope.certificateTransaction = function (certificate, type) {
     const v = site.validated('#certificateModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
 
-   
-    if(type == 'add'){
+    if (type == 'add') {
       $scope.user.certificates_list.push(certificate);
     }
     site.hideModal('#certificateModal');
@@ -355,39 +327,33 @@ app.controller('resume', function ($scope, $http, $timeout) {
     $scope.update($scope.user);
   };
 
-  $scope.showExtraCurricular = function (type,extra_curricular) {
+  $scope.showSkill = function (type, skill) {
     $scope.error = '';
-    $scope.user.extra_curricular_list = $scope.user.extra_curricular_list || [];
-    site.showModal('#extraCurricularModal');
-    if(type == 'add'){
-      $scope.extra_curricular = {};
-    } else if(type == 'edit'){
-      $scope.extra_curricular = extra_curricular;
-      $scope.extra_curricular.$edit = true;
+    $scope.user.skill_list = $scope.user.skill_list || [];
+    site.showModal('#skillsModal');
+    if (type == 'add') {
+      $scope.skill = {};
+    } else if (type == 'edit') {
+      $scope.skill = skill;
+      $scope.skill.$edit = true;
     }
   };
 
-  $scope.extraCurricularTransaction = function (extra_curricular,type) {
+  $scope.skillsTransaction = function (skill, type) {
     $scope.error = '';
-    const v = site.validated('#extraCurricularModal');
+    const v = site.validated('#skillsModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
-    };
-
-    if(extra_curricular.joining_date && extra_curricular.expiry_date && new Date(extra_curricular.joining_date) > new Date(extra_curricular.expiry_date) ){
-      $scope.error = '##word.start_date_cannot_bigger_than_end_date##';
-      return;
-    };
-
-    if(type == 'add'){
-      $scope.user.extra_curricular_list.push(extra_curricular);
     }
-    site.hideModal('#extraCurricularModal');
-    site.resetValidated('#extraCurricularModal');
+
+    if (type == 'add') {
+      $scope.user.skill_list.push(skill);
+    }
+    site.hideModal('#skillsModal');
+    site.resetValidated('#skillsModal');
     $scope.update($scope.user);
   };
-
 
   $scope.viewUser();
   $scope.getGender();
