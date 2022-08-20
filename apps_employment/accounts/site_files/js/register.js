@@ -71,10 +71,12 @@ app.controller('register', function ($scope, $http, $timeout) {
       }
     }
   };
-  $scope.showPass = function () {
-    document.querySelectorAll('.pass input').forEach((p) => {
-      p.setAttribute('type', !$scope.show_password ? 'text' : 'password');
-    });
+  $scope.showPassword = function () {
+    $timeout(() => {
+      document.querySelectorAll('.pass input').forEach((p) => {
+        p.setAttribute('type', $scope.show_password ? 'text' : 'password');
+      });
+    }, 100);
   };
 
   $scope.getAccountsType = function () {
@@ -97,5 +99,4 @@ app.controller('register', function ($scope, $http, $timeout) {
   };
 
   $scope.getAccountsType();
-
 });
