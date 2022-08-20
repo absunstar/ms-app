@@ -18,7 +18,7 @@
         <div class="row">
           <div class="col8">
             <div class="col3">
-              <i-image view x-permissions="job_seeker" ng-change="update(user)" ng-model="user.image"></i-image>
+              <i-image x-permissions="job_seeker" ng-change="update(user)" ng-model="user.image"></i-image>
               <i-image view x-permissions="employer || admin" ng-model="user.image"></i-image>
             </div>
             <div class="col9">
@@ -45,10 +45,10 @@
               <a href="mailto:{{user.email}}" target="_blank"><i class="fas fa-envelope"></i>{{user.email}}</a>
               <a href="{{user.linkedin}}" target="_blank"><i class="fab fa-linkedin"></i>{{user.linkedin}}</a>
             </div>
-            <i-button x-permissions="employer" ng-show="short == false" label="##word.shortlist##" ng-click="shortList(user,'add')"></i-button>
-            <i-button x-permissions="employer" ng-show="short == true" label="##word.remove_shortlist##" onclick="site.showModal( '#removeShortModal')"></i-button>
+            <i-button x-permissions="employer" ng-show="!user.$short" label="##word.shortlist##" ng-click="shortList(user,'add')"></i-button>
+            <i-button x-permissions="employer" ng-show="user.$short" label="##word.remove_shortlist##" onclick="site.showModal( '#removeShortModal')"></i-button>
 
-            <div class="row" ng-show="short == false">
+            <div class="row" x-permissions="employer" ng-show="!user.$short">
               <b>##word.contact_info_displayed_if_shortlist_candidate##</b>
             </div>
           </div>
@@ -166,10 +166,16 @@
             </div>
 
             <div class="row">
-              <fieldset>
+              <fieldset x-permissions="job_seeker">
+                <legend>##word.attachments##</legend>
+                <i-file ng-change="update(user)" label="##word.upload_cover_letter##" categoty="upload_cover_letter" ng-model="user.upload_cover_letter"></i-file>
+                <i-file ng-change="update(user)" label="##word.upload_resume##" categoty="upload_resume" ng-model="user.upload_resume"></i-file>
+              </fieldset>
+
+              <fieldset x-permissions="employer || admin">
                 <legend>##word.attachments##</legend>
                 <i-file view ng-change="update(user)" label="##word.upload_cover_letter##" categoty="upload_cover_letter" ng-model="user.upload_cover_letter"></i-file>
-                <i-file ng-change="update(user)" label="##word.upload_resume##" categoty="upload_resume" ng-model="user.upload_resume"></i-file>
+                <i-file view ng-change="update(user)" label="##word.upload_resume##" categoty="upload_resume" ng-model="user.upload_resume"></i-file>
               </fieldset>
             </div>
             <div class="row">

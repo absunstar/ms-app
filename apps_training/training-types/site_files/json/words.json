@@ -1,0 +1,50 @@
+[
+    {
+        "name": "training_types",
+        "en": "Training Types",
+        "ar": "أنواع التدريبات"
+    },
+    {
+        "name": "training_type",
+        "en": "Training Type",
+        "ar": "نوع التدريب"
+    },
+    {
+        "name": "training_type_description",
+        "en": "Training Type Description",
+        "ar": "وصف نوع التدريب"
+    },
+    {
+        "name": "training_type_new",
+        "en": "New Training Type",
+        "ar": "نوع تدريب جديد"
+    },
+    {
+        "name": "training_type_add",
+        "en": "Add Training Type",
+        "ar": "إضافة نوع تدريب "
+    },
+    {
+        "name": "training_type_edit",
+        "en": "Edit Training Type",
+        "ar": "تعديل نوع تدريب "
+    },
+    {
+        "name": "training_type_details",
+        "en": "Training Type Details",
+        "ar": "تفاصيل نوع التدريب "
+    },
+    {
+        "name": "training_type_delete",
+        "en": "Delete Training Type",
+        "ar": "حذف نوع تدريب "
+    },
+    {
+        "name": "training_type_name",
+        "en": "Training Type Name",
+        "ar": "إسم نوع التدريب "
+    }
+
+
+
+]

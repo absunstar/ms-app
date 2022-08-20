@@ -223,6 +223,21 @@ module.exports = function init(site) {
     if (where['name_en']) {
       where['name_en'] = site.get_RegExp(where['name_en'], 'i');
     }
+    
+    if (where['not_active']) {
+      where['active'] = false;
+    }
+
+    if (where['active_search']) {
+      where['active'] = true;
+    }
+
+    if (where['not_active'] && where['active_search']) {
+      delete where['active'];
+    }
+
+    delete where['active_search'];
+    delete where['not_active'];
 
     $exam_templates.findMany(
       {

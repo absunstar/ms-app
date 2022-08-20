@@ -1,17 +1,12 @@
 <div ng-hide="busy" class="row">
-  <div id="basicInformation" class="">
-    <fieldset>
-      <legend>##word.basic_information##</legend>
+  <fieldset>
+    <legend>##word.basic_information##</legend>
+    <div class="row">
       <div class="col9">
         <table id="basicInformationTable" class="table hover bold">
           <tr>
-            <td class="title">##word.code##</td>
-            <td class="center userPrint blue">{{question.code}}</td>
-          </tr>
-
-          <tr>
             <td class="title">##word.question##</td>
-            <td class="center">{{question.question}}</td>
+            <td class="center lines_text">{{question.name}}</td>
           </tr>
           <tr>
             <td class="title">##word.training_type##</td>
@@ -32,35 +27,35 @@
             <td ng-show="question.active == false" class="red center">##word.not_active##</td>
           </tr>
         </table>
+
       </div>
-
-      <div class="row">
-        <table class="table hover text-center">
-            <thead>
-              <tr>
-                <th>##word.answer##</th>
-                <th>##word.correct_answer##</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat="c in question.answers_list">
-             
-                <td class="center title">{{c.answer}}</td>
-                <td class="center">
-                  <p ng-show="c.correct ==true">##word.yes##</p>
-                  <p ng-show="!c.correct">##word.no##</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+      <div class="col3">
+        <i-image view ng-model="question.image"></i-image>
       </div>
+    </div>
 
+    <br />
+    <br />
 
-      <!--    <div class="col3">
-                <i-image view ng-model="question.image"></i-image>
-            </div> -->
-    </fieldset>
-  </div>
+    <div class="row">
+      <h2>##word.answers##</h2>
+      <table class="table hover text-center">
+        <tr>
+          <th>##word.answer##</th>
+          <th>##word.correct_answer##</th>
+        </tr>
+        <tbody>
+          <tr ng-repeat="c in question.answers_list">
+            <td class="center lines_text">{{c.answer}}</td>
+            <td class="center">
+              <p ng-show="c.correct ==true">##word.yes##</p>
+              <p ng-show="!c.correct">##word.no##</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </fieldset>
 </div>
 
 <div x-import="questions/action_info.html"></div>

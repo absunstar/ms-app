@@ -1,0 +1,33 @@
+<div ng-hide="busy" class="row">
+  <div id="basicInformation" class="">
+    <fieldset>
+      <legend>##word.basic_information##</legend>
+      <div class="col9">
+        <table id="basicInformationTable" class="table hover bold">
+          <tr>
+            <td class="title">##word.entity## ##word.partner##</td>
+            <td class="center">{{certificate_partner_generic.partner.name_##session.lang##}}</td>
+          </tr>
+
+          <tr>
+            <td class="title">##word.file_type##</td>
+            <td class="center" ng-show="certificate_partner_generic.file_type == 'trainee'">##word.trainee##</td>
+            <td class="center" ng-show="certificate_partner_generic.file_type == 'trainer'">##word.trainer##</td>
+          </tr>
+
+          <tr>
+            <td class="title">##word.status##</td>
+            <td ng-show="certificate_partner_generic.active == true" class="green center">##word.active##</td>
+            <td ng-show="certificate_partner_generic.active == false" class="red center">##word.not_active##</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="col3">
+        <i-file view ng-model="certificate_partner_generic.certificate"></i-file>
+      </div>
+    </fieldset>
+  </div>
+</div>
+
+<div x-import="certificates-generic/action_info.html"></div>

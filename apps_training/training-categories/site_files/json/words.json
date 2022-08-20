@@ -1,0 +1,50 @@
+[
+    {
+        "name": "training_categories",
+        "en": "Training Categories",
+        "ar": "فئات التدريبات"
+    },
+    {
+        "name": "training_category",
+        "en": "Training Category",
+        "ar": "فئة التدريب"
+    },
+    {
+        "name": "training_category_description",
+        "en": "Training Category Description",
+        "ar": "وصف فئة التدريب"
+    },
+    {
+        "name": "training_category_new",
+        "en": "New Training Category",
+        "ar": "فئة تدريب جديد"
+    },
+    {
+        "name": "training_category_add",
+        "en": "Add Training Category",
+        "ar": "إضافة فئة تدريب "
+    },
+    {
+        "name": "training_category_edit",
+        "en": "Edit Training Category",
+        "ar": "تعديل فئة تدريب "
+    },
+    {
+        "name": "training_category_details",
+        "en": "Training Category Details",
+        "ar": "تفاصيل فئة التدريب "
+    },
+    {
+        "name": "training_category_delete",
+        "en": "Delete Training Category",
+        "ar": "حذف فئة تدريب "
+    },
+    {
+        "name": "training_category_name",
+        "en": "Training Category Name",
+        "ar": "إسم فئة التدريب "
+    }
+
+
+
+]

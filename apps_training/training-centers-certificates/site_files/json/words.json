@@ -1,0 +1,40 @@
+[
+    {
+        "name": "training_centers_certificates",
+        "en": "Training Centers Certificates",
+        "ar": "شهادات مراكز التدريب"
+    },
+    {
+        "name": "training_center_ertificate",
+        "en": "Training Center Certificate",
+        "ar": "شهادة مركز تدريب"
+    },
+    {
+        "name": "training_center_certificate_new",
+        "en": "New Training Center Certificate",
+        "ar": "شهادة مركز تدريب جديدة"
+    },
+    {
+        "name": "training_center_certificate_add",
+        "en": "Add Training Center Certificate",
+        "ar": "إضافة شهادة مركز تدريب "
+    },
+    {
+        "name": "training_center_certificate_edit",
+        "en": "Edit Training Center Certificate",
+        "ar": "تعديل شهادة مركز تدريب "
+    },
+    {
+        "name": "training_center_certificate_details",
+        "en":  "Training Center Certificate Details",
+        "ar": "تفاصيل شهادة مركز تدريب "
+    },
+    {
+        "name": "training_center_certificate_delete",
+        "en": "Delete Training Center Certificate",
+        "ar": "حذف شهادة مركز تدريب "
+    }
+
+    
+
+]

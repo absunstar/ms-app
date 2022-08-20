@@ -220,8 +220,8 @@ module.exports = function init(site) {
 
     let where = req.body.where || {};
   
-    if (where['question']) {
-      where['question'] = site.get_RegExp(where['question'], 'i');
+    if (where['name']) {
+      where['name'] = site.get_RegExp(where['name'], 'i');
     }
 
     if (where['training_type'] && where['training_type'].id) {
@@ -238,6 +238,22 @@ module.exports = function init(site) {
       where['difficulty.id'] = where['difficulty'].id;
       delete where['difficulty'];
     }
+
+    if (where['not_active']) {
+      where['active'] = false;
+    }
+
+    if (where['active_search']) {
+      where['active'] = true;
+    }
+
+    if (where['not_active'] && where['active_search']) {
+      delete where['active'];
+    }
+
+    delete where['active_search'];
+    delete where['not_active'];
+
 
     $questions.findMany(
       {

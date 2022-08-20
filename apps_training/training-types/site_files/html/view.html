@@ -1,0 +1,27 @@
+<div ng-hide="busy" class="row">
+  <div id="basicInformation" class="">
+    <fieldset>
+      <legend>##word.basic_information##</legend>
+      <div class="col9">
+        <table id="basicInformationTable" class="table hover bold">
+          <tr>
+            <td class="title">##word.training_type_name##</td>
+            <td class="center">{{training_type.name_##session.lang##}}</td>
+          </tr>
+
+          <tr>
+            <td class="title">##word.status##</td>
+            <td ng-show="training_type.active == true" class="green center">##word.active##</td>
+            <td ng-show="training_type.active == false" class="red center">##word.not_active##</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="col3">
+        <i-image view ng-model="training_type.image"></i-image>
+      </div>
+    </fieldset>
+  </div>
+</div>
+
+<div x-import="training-types/action_info.html"></div>

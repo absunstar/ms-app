@@ -1,0 +1,97 @@
+[
+  {
+    "name": "manage",
+    "en": "Manage",
+    "ar": "إدارة"
+  }, 
+  {
+    "name": "about_edit",
+    "en": "About Edit",
+    "ar": "تعديل عنا"
+  }, 
+  {
+    "name": "editing_about_section",
+    "en": "Editing About Section",
+    "ar": "تعديل قسم عنا"
+  },
+  {
+    "name": "title",
+    "en": "Title",
+    "ar": "عنوان"
+  }, 
+  {
+    "name": "data",
+    "en": "Data",
+    "ar": "البيانات"
+  },
+  {
+    "name": "terms_conditios_edit",
+    "en": "Terms & Conditios Edit",
+    "ar": "تعديل الشروط والأحكام"
+  },
+  {
+    "name": "editing_terms_conditios_section",
+    "en": "Editing Terms & Conditios Section",
+    "ar": "تعديل قسم الشروط والأحكام"
+  },
+  {
+    "name": "policy_edit",
+    "en": "Policy Edit",
+    "ar": "تعديل السياسة"
+  },
+  {
+    "name": "editing_policy_section",
+    "en": "Editing Policy Section",
+    "ar": "تعديل قسم السياسة"
+  },
+  {
+    "name": "homepage_info_edit",
+    "en": "Homepage Info Edit",
+    "ar": "تعديل معلومات الصفحة الرئيسية"
+  },
+  {
+    "name": "editing_homepage_info_section",
+    "en": "Editing Homepage Info Section",
+    "ar": "تعديل قسم الصفحة الرئيسية"
+  },
+  {
+    "name": "portal_logo",
+    "en": "Portal Logo",
+    "ar": "شعار البوابة"
+  },
+  {
+    "name": "upload_logo",
+    "en": "Upload Logo",
+    "ar": "تحميل الشعار"
+  },
+  {
+    "name": "only_accepts_png_format",
+    "en": "Only accepts png format.",
+    "ar": "يقبل فقط تنسيق png."
+  },
+  {
+    "name": "partner_logo",
+    "en": "Partner Logo",
+    "ar": "شعار الشريك"
+  },
+  {
+    "name": "partners_logo",
+    "en": "Partners Logo",
+    "ar": "شعار الشركاء"
+  },
+  {
+    "name": "delete_partner_logo",
+    "en": "Delete partner logo",
+    "ar": "حذف شعار شريك"
+  },
+  {
+    "name": "new_partner_logo",
+    "en": "New Partner Logo",
+    "ar": "شعار شريك جديد"
+  },
+  {
+    "name": "upload_partner_logo",
+    "en": "Upload Partner Logo",
+    "ar": "تحميل شعار شريك"
+  }
+]

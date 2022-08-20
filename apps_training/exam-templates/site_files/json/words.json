@@ -10,32 +10,32 @@
         "ar": "قالب الإختبار"
     },
     {
-        "name": "exam_templates_new",
+        "name": "exam_template_new",
         "en": "New Exam Template",
         "ar": "قالب إختبار جديد"
     },
     {
-        "name": "exam_templates_add",
+        "name": "exam_template_add",
         "en": "Add Exam Template",
         "ar": "إضافة قالب إختبار "
     },
     {
-        "name": "exam_templates_edit",
+        "name": "exam_template_edit",
         "en": "Edit Exam Template",
         "ar": "تعديل قالب إختبار "
     },
     {
-        "name": "exam_templates_details",
+        "name": "exam_template_details",
         "en": "Exam Template Details",
         "ar": "تفاصيل قالب الإختبار "
     },
     {
-        "name": "exam_templates_delete",
+        "name": "exam_template_delete",
         "en": "Delete Exam Template",
         "ar": "حذف قالب إختبار "
     },
     {
-        "name": "exam_templates_name",
+        "name": "exam_template_name",
         "en": "Exam Template Name",
         "ar": "إسم قالب الإختبار "
     },

@@ -1,0 +1,40 @@
+[
+    {
+        "name": "partners_certificates",
+        "en": "Partners Certificates",
+        "ar": "شهادات الشركاء"
+    },
+    {
+        "name": "cpartner_ertificate",
+        "en": " Partner Certificate",
+        "ar": "شهادة شريك"
+    },
+    {
+        "name": "partner_certificate_new",
+        "en": "New Partner Certificate",
+        "ar": "شهادة شريك جديدة"
+    },
+    {
+        "name": "partner_certificate_add",
+        "en": "Add Partner Certificate",
+        "ar": "إضافة شهادة شريك "
+    },
+    {
+        "name": "partner_certificate_edit",
+        "en": "Edit Partner Certificate",
+        "ar": "تعديل شهادة شريك "
+    },
+    {
+        "name": "partner_certificate_details",
+        "en":  "Partner Certificate Details",
+        "ar": "تفاصيل شهادة شريك "
+    },
+    {
+        "name": "partner_certificate_delete",
+        "en": "Delete Partner Certificate",
+        "ar": "حذف شهادة شريك "
+    }
+
+    
+
+]

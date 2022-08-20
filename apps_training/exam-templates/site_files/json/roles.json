@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "exam_templates_admin",
-    "en": "Exam Templates Admin",
-    "ar": "إدارة قوالب الإختبار",
-    "permissions": ["exam_templates_manage"]
-}]

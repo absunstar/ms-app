@@ -1,0 +1,25 @@
+<div class="form">
+  <div id="basicInformation" class="">
+    <fieldset>
+      <legend>##word.basic_information##</legend>
+      <div class="row">
+        <div class="col2">
+          <i-image ng-model="course.image"></i-image>
+          <div class="row justify-content-md-center">
+            <i-checkbox class="col" label="##word.active##" ng-model="course.active"> </i-checkbox>
+          </div>
+        </div>
+        <div class="col10">
+          <div class="row">
+            <i-control type="text" class="col6" v="r" ng-model="course.name_ar" label="##word.course_name##"></i-control>
+            <i-control type="text" class="col6" v="r" ng-model="course.name_en" label="##word.name_en##"></i-control>
+          </div>
+
+          <div class="row" ng-show="'##query.id##' == 'undefined'">
+            <i-list v="r" class="col6" label="##word.training_category##" ng-model="course.training_category" display="name_##session.lang##" items="trainingCategoryList" ng-search="_search.$training_category"></i-list>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>

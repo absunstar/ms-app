@@ -6,42 +6,37 @@
                 <table id="basicInformationTable" class="table hover bold">
 
                     <tr>
-                        <td class="title">##word.code##</td>
-                        <td class="center userPrint blue">{{exam_templates.code}}</td>
-                    </tr>
-
-                    <tr>
-                        <td class="title">##word.exam_templates_name##</td>
-                        <td class="center">{{exam_templates.name_##session.lang##}}</td>
+                        <td class="title">##word.exam_template_name##</td>
+                        <td class="center">{{exam_template.name_##session.lang##}}</td>
                     </tr>
 
                     <tr>
                         <td class="title">##word.percentage## ##word.easy##</td>
-                        <td class="center">{{exam_templates.easy}}</td>
+                        <td class="center">{{exam_template.easy}}</td>
                     </tr>
 
                     <tr>
                         <td class="title">##word.percentage## ##word.medium##</td>
-                        <td class="center">{{exam_templates.medium}}</td>
+                        <td class="center">{{exam_template.medium}}</td>
                     </tr>
 
                     <tr>
                         <td class="title">##word.percentage## ##word.hard##</td>
-                        <td class="center">{{exam_templates.hard}}</td>
+                        <td class="center">{{exam_template.hard}}</td>
                     </tr>
 
                     <tr>
                         <td class="title">##word.status##</td>
-                        <td ng-show="exam_templates.active == true" class="green center"> ##word.active## </td>
-                        <td ng-show="exam_templates.active == false" class="red center"> ##word.not_active## </td>
+                        <td ng-show="exam_template.active == true" class="green center"> ##word.active## </td>
+                        <td ng-show="exam_template.active == false" class="red center"> ##word.not_active## </td>
                     </tr>
 
                 </table>
             </div>
 
-         <!--    <div class="col3">
-                <i-image view ng-model="exam_templates.image"></i-image>
-            </div> -->
+             <div class="col3">
+                <i-image view ng-model="exam_template.image"></i-image>
+            </div>
 
         </fieldset>
     </div>

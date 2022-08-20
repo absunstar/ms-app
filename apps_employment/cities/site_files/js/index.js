@@ -8,7 +8,7 @@ app.controller('city', function ($scope, $http, $timeout) {
     $scope.city = {
       image: '/images/city.png',
       active: true,
-      country : $scope.country || null
+      country: $scope.country || null,
     };
 
     site.showModal('#cityAddModal');
@@ -36,9 +36,7 @@ app.controller('city', function ($scope, $http, $timeout) {
           $scope.getCityList();
         } else {
           $scope.error = response.data.error;
-          if (response.data.error.like('*Must Enter Code*')) {
-            $scope.error = '##word.must_enter_code##';
-          } else if (response.data.error.like('*Name Exists*')) {
+          if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
           }
         }
@@ -88,23 +86,23 @@ app.controller('city', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.showActivationModal = function (element,type) {
-    if(type == 'activate'){
+  $scope.showActivationModal = function (element, type) {
+    if (type == 'activate') {
       site.showModal('#activateModal');
-    } else if(type == 'deactivate'){
+    } else if (type == 'deactivate') {
       site.showModal('#deactivateModal');
     }
     $scope.element = element;
   };
 
-  $scope.updateActivate = function (element,type) {
+  $scope.updateActivate = function (element, type) {
     $scope.error = '';
-    if(type == 'activate'){
+    if (type == 'activate') {
       element.active = true;
-    site.hideModal('#activateModal');
-    } else if(type == 'deactivate'){
+      site.hideModal('#activateModal');
+    } else if (type == 'deactivate') {
       element.active = false;
-    site.hideModal('#deactivateModal');
+      site.hideModal('#deactivateModal');
     }
     $scope.busy = true;
     $http({
@@ -189,8 +187,6 @@ app.controller('city', function ($scope, $http, $timeout) {
     );
   };
 
-
-
   $scope.getCityList = function (where) {
     $scope.busy = true;
     $scope.list = [];
@@ -237,7 +233,7 @@ app.controller('city', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
+        if (response.data.done && response.data.list && response.data.list.length > 0) {
           $scope.countryList = response.data.list;
           if ('##query.id##' != 'undefined') {
             $scope.country = $scope.countryList.find((_country) => {
@@ -252,7 +248,6 @@ app.controller('city', function ($scope, $http, $timeout) {
       }
     );
   };
-
 
   $scope.searchAll = function () {
     $scope.getCityList($scope.search);

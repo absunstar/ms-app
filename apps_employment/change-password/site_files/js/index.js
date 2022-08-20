@@ -51,10 +51,7 @@ app.controller('changePassword', function ($scope, $http, $timeout) {
         } else {
           $scope.error = response.data.error;
           console.log($scope.error);
-          if (response.data.error.like('*Must Enter Code*')) {
-            $scope.error = '##word.must_enter_code##';
-          
-          } else if (response.data.error.like('*Password does not match*')) {
+          if (response.data.error.like('*Password does not match*')) {
             $scope.error = '##word.password_err_match##';
           } else if (response.data.error.like('*Current Password Error*')) {
             $scope.error = '##word.current_password_incorrect##';

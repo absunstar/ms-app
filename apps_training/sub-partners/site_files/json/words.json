@@ -1,0 +1,43 @@
+[
+    {
+        "name": "sub_partners",
+        "en": "Sub Partners",
+        "ar": "الشركاء الثانويين"
+    },
+    {
+        "name": "sub_partner",
+        "en": "Sub Partner",
+        "ar": "الشريك الثانوي"
+    },
+    {
+        "name": "sub_partner_new",
+        "en": "New Sub Pratner",
+        "ar": "شريك ثانوي جديد"
+    },
+    {
+        "name": "sub_partner_add",
+        "en": "Add Sub Pratner",
+        "ar": "إضافة شريك ثانوي "
+    },
+    {
+        "name": "sub_partner_edit",
+        "en": "Edit Sub Pratner",
+        "ar": "تعديل شريك ثانوي "
+    },
+    {
+        "name": "sub_partner_details",
+        "en": "Sub Pratner Details",
+        "ar": "تفاصيل الشريك الثانوي "
+    },
+    {
+        "name": "sub_partner_delete",
+        "en": "Delete Sub Pratner",
+        "ar": "حذف شريك ثانوي "
+    },
+    {
+        "name": "sub_partner_name",
+        "en": "Sub Pratner Name",
+        "ar": "إسم الشريك الثانوي "
+    }
+
+]

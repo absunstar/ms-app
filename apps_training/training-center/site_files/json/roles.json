@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "training_center_admin",
-    "en": "Training Centers Admin",
-    "ar": "إدارة مراكز التدريب",
-    "permissions": ["training_center_manage"]
-}]

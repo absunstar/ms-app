@@ -51,14 +51,14 @@
                   <i-button ng-show="!c.active" label="##word.activate##" ng-click="showActivationModal(c,'activate')"></i-button>
                   <i-button ng-show="c.active" label="##word.deactivate##" ng-click="showActivationModal(c,'deactivate')"></i-button>
                   <i-button type="delete" label="##word.delete##" ng-click="displayDeleteJobFields(c)"></i-button>
-                  <a type="button" class="btn btn-primary btn-lg" href="/JobSubFields?id={{c.id}}">##word.job_subfield##</a>
+                  <a type="button" ng-show="c.active" class="btn btn-primary btn-lg" href="/JobSubFields?id={{c.id}}">##word.job_subfield##</a>
                 </td>
               </tr>
             </tbody>
           </table>
 
           <i-button type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
-          <i-button type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'training_report.xlsx')"></i-button>
+          <i-button type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'jobFields.xlsx')"></i-button>
         </div>
       </div>
     </div>

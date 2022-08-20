@@ -57,22 +57,7 @@ module.exports = function init(site) {
           response.error = 'It is not allowed to add other companies';
           res.json(response);
         } else {
-          // let d = new Date();
-          // d.setFullYear(d.getFullYear() + 1);
-          // d.setMonth(1);
-          let num_obj = {
-            screen: 'company',
-            date: new Date(),
-          };
-
-          // let cb = site.getNumbering(num_obj);
-          // if (!company_doc.code && !cb.auto) {
-          //   response.error = 'Must Enter Code';
-          //   res.json(response);
-          //   return;
-          // } else if (cb.auto) {
-          //   company_doc.code = cb.code;
-          // }
+      
 
           $company.add(company_doc, (err, doc) => {
             if (!err) {

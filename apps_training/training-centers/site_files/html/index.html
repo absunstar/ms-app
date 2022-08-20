@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="admin" data-ng-app="myApp">
+  <head x-import="head.html"> </head>
+
+  <body class="##session.lang##" ng-controller="trainingCenters">
+    <nav x-import="0/bar.html" class="sitebar" ng-controller="bar"></nav>
+
+    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
+    <div id="main-layout" class="container loaded">
+      <div class="row">
+        <div class="row">
+          <div  x-import="training-centers/add_modal.html"></div>
+          <div  x-import="training-centers/update_modal.html"></div>
+          <div  x-import="training-centers/delete_modal.html"></div>
+          <div  x-import="training-centers/view_modal.html"></div>
+          <div  x-import="training-centers/search_all_modal.html"></div>
+
+          <div class="row">
+            <h1 class="bold text-center">##word.training_centers##</h1>
+          </div>
+
+          <div class="top-actions">
+            <h3 class="bold" ng-show="'##query.id##' != 'undefined'">##word.partner## : {{partner.name_##session.lang##}}</h3>
+         
+            <i-button  type="add" label="##word.training_center_new##" ng-click="displayAddTrainingCenter()"></i-button>
+            <i-button  type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+
+            <h3 class="bold text-center">##word.count## : {{count || 0}}</h3>
+            <h3 class="bold text-center text-danger">{{error}}</h3>
+          </div>
+
+          <table x-permissions="login" class="table hover text-center" id="t1">
+            <thead>
+              <tr>
+                 <th class="not-print">##word.logo##</th>
+                <th>##word.training_center_name##</th>
+                <th>##word.phone##</th>
+                <th>##word.status##</th>
+                <th class="not-print">##word.actions##</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="c in list">
+                  <td class="center not-print">
+                  <i-image view class="logo" ng-model="c.image"></i-image>
+                </td>
+                <td class="center title">{{c.name_##session.lang##}}</td>
+                <td class="center title">{{c.phone}}</td>
+                <td class="center">
+                  <p ng-show="c.active ==true" class="green">##word.active##</p>
+                  <p ng-show="!c.active" class="red">##word.not_active##</p>
+                </td>
+
+                <td class="center not-print">
+
+                  <i-button type="view" label="##word.details##" ng-click="displayDetailsTrainingCenter(c)"></i-button>
+                  <i-button  type="edit" label="##word.edit##" ng-click="displayUpdateTrainingCenter(c)"></i-button>
+                  <i-button  ng-show="!c.active" label="##word.activate##" ng-click="showActivationModal(c,'activate')"></i-button>
+                  <i-button  ng-show="c.active" label="##word.deactivate##" ng-click="showActivationModal(c,'deactivate')"></i-button>
+                  <i-button  type="delete" label="##word.delete##" ng-click="displayDeleteTrainingCenter(c)"></i-button>
+            
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <i-button  type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>        
+          <i-button type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'training_centers.xlsx')"></i-button>
+        </div>
+      </div>
+    </div>
+
+    <div x-import="0/scripts.html"></div>
+    <script x-import="training-centers/index.js"></script>
+  </body>
+</html>

@@ -13,21 +13,24 @@
 
       <div class="modal-body">
         <div class="row">
-          <i-control type="text" class="col4" v="r" ng-model="user.first_name" label="##word.first_name##" ></i-control>
-          <i-control type="text" class="col4" v="r" ng-model="user.last_name" label="##word.last_name##" ></i-control>
-          <i-control type="text" class="col4" v="r" ng-model="user.job_title" label="##word.job_title##" ></i-control>
+          <i-control type="text" class="col6" v="r" ng-model="user.first_name" label="##word.first_name##" ></i-control>
+          <i-control type="text" class="col6" v="r" ng-model="user.last_name" label="##word.last_name##" ></i-control>
         </div>
-
         <div class="row">
+          <i-control type="text" class="col6" v="r" ng-model="user.job_title" label="##word.job_title##" ></i-control>
           <i-control type="text" class="col6" v="r" ng-model="user.email" label="##word.email##" ></i-control>
+        </div>
+        <div class="row">
           <i-control type="text" class="col6" v="r" ng-model="user.website" label="##word.website##" ></i-control>
 
+          <i-control type="text" class="col6" v="r" ng-model="user.linkedin" label="##word.linkedin##" ></i-control>
         </div>
 
         <div class="row">
           <i-control type="text" class="col6" v="r" ng-model="user.phone" label="##word.phone##" ></i-control>
-          <i-control type="text" class="col6" v="r" ng-model="user.linkedin" label="##word.linkedin##" ></i-control>
       
+          <i-list   v="r" class="col6"  label="##word.gender##" ng-model="user.gender"
+          display="##session.lang##" items="genderList" ng-search="_search.$user_profile_gender"></i-list>
         </div>
 
         <div class="row">
@@ -35,13 +38,6 @@
           display="name_##session.lang##" items="countryList" ng-search="_search.$user_profile_country"></i-list>
           <i-list   v="r" class="col6"  label="##word.city##" ng-model="user.city"
           display="name_##session.lang##" items="cityList" ng-search="_search.$user_profile_city"></i-list>
-        </div>
-
-
-        <div class="row">
-
-          <i-list   v="r" class="col6"  label="##word.gender##" ng-model="user.gender"
-          display="##session.lang##" items="genderList" ng-search="_search.$user_profile_gender"></i-list>
         </div>
 
       </div>

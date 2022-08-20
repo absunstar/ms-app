@@ -1,0 +1,48 @@
+<div id="partnerLogoDeleteModal" class="modal small">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 class="center">
+        ##word.delete_partner_logo##
+        <i class="fa fa-trash"></i>
+      </h2>
+    </div>
+
+    <div class="modal-body">
+      <div ng-hide="busy" class="row">
+        <div id="basicInformation" class="">
+          <fieldset>
+            <legend>##word.basic_information##</legend>
+            <div class="col9">
+              <table id="basicInformationTable" class="table hover bold">
+                <tr>
+                  <td class="title">##word.partner_logo##</td>
+                  <td class="center">
+                    <i-image view ng-model="partner_logo.logo"></i-image>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="title">##word.website##</td>
+                  <td class="center">{{partner_logo.website}}</td>
+                </tr>
+
+                <tr>
+                  <td class="title">##word.status##</td>
+                  <td ng-show="partner_logo.active == true" class="green center">##word.active##</td>
+                  <td ng-show="partner_logo.active == false" class="red center">##word.not_active##</td>
+                </tr>
+              </table>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="error">{{error}}</h2>
+
+    <div class="modal-footer center">
+      <i-button type="delete" label="##word.delete##" ng-click="deletePartnerLogo(partner_logo)"> </i-button>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal('#partnerLogoDeleteModal')"> </i-button>
+    </div>
+  </div>
+</div>

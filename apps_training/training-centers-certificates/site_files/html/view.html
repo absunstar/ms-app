@@ -1,0 +1,47 @@
+<div ng-hide="busy" class="row">
+  <div id="basicInformation" class="">
+    <fieldset>
+      <legend>##word.basic_information##</legend>
+      <div class="col9">
+        <table id="basicInformationTable" class="table hover bold">
+          <tr>
+            <td class="title">##word.partner##</td>
+            <td class="center">{{training_center_certificate.partner.name_##session.lang##}}</td>
+          </tr>
+          
+          <tr>
+            <td class="title">##word.training_category##</td>
+            <td class="center">{{training_center_certificate.training_category.name_##session.lang##}}</td>
+          </tr>
+
+          <tr>
+            <td class="title">##word.training_type##</td>
+            <td class="center">{{training_center_certificate.training_type.name_##session.lang##}}</td>
+          </tr>
+
+          <tr>
+            <td class="title">##word.training_category##</td>
+            <td class="center">{{training_center_certificate.training_category.name_##session.lang##}}</td>
+          </tr>
+
+          <tr>
+            <td class="title">##word.file_type##</td>
+            <td class="center" ng-show="training_center_certificate.file_type == 'trainee'">##word.trainee##</td>
+            <td class="center" ng-show="training_center_certificate.file_type == 'trainer'">##word.trainer##</td>
+          </tr>
+
+          <tr>
+            <td class="title">##word.status##</td>
+            <td ng-show="training_center_certificate.active == true" class="green center">##word.active##</td>
+            <td ng-show="training_center_certificate.active == false" class="red center">##word.not_active##</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col3">
+        <i-file view ng-model="training_center_certificate.certificate"></i-file>
+      </div>
+    </fieldset>
+  </div>
+</div>
+
+<div x-import="training-centers-certificates/action_info.html"></div>

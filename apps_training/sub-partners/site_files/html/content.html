@@ -1,0 +1,30 @@
+<div class="form">
+  <div id="basicInformation" class="">
+    <fieldset>
+      <legend>##word.basic_information##</legend>
+      <div class="row">
+        <div class="col2">
+          <i-image ng-model="sub_partner.image"></i-image>
+          <div class="row justify-content-md-center">
+            <i-checkbox class="col" label="##word.active##" ng-model="sub_partner.active"> </i-checkbox>
+          </div>
+        </div>
+        <div class="col10">
+          <div class="row">
+            <i-control type="text" class="col6" v="r" ng-model="sub_partner.name_ar" label="##word.sub_partner_name##"></i-control>
+            <i-control type="text" class="col6" v="r" ng-model="sub_partner.name_en" label="##word.name_en##"></i-control>
+          </div>
+
+          <div class="row">
+            <i-control type="number" class="col6" v="r" ng-model="sub_partner.min_hours" label="##word.min_hours##"></i-control>
+            <i-control type="number" class="col6" v="r" ng-model="sub_partner.max_hours" label="##word.max_hours##"></i-control>
+          </div>
+
+          <div class="row">
+            <i-control type="text" class="col6" v="r" ng-model="sub_partner.phone" label="##word.phone##"></i-control>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>

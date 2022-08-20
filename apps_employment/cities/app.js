@@ -66,22 +66,6 @@ module.exports = function init(site) {
           response.error = 'Name Exists';
           res.json(response);
         } else {
-          // let d = new Date();
-          // d.setFullYear(d.getFullYear() + 1);
-          // d.setMonth(1);
-          let num_obj = {
-            screen: 'city',
-            date: new Date(),
-          };
-
-          // let cb = site.getNumbering(num_obj);
-          // if (!city_doc.code && !cb.auto) {
-          //   response.error = 'Must Enter Code';
-          //   res.json(response);
-          //   return;
-          // } else if (cb.auto) {
-          //   city_doc.code = cb.code;
-          // }
 
           $cities.add(city_doc, (err, doc) => {
             if (!err) {

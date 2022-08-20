@@ -1,12 +1,12 @@
-app.controller('exam_templates', function ($scope, $http, $timeout) {
+app.controller('examTemplates', function ($scope, $http, $timeout) {
   $scope._search = {};
 
-  $scope.exam_templates = {};
+  $scope.exam_template = {};
 
   $scope.displayAddExamTemplates = function () {
     $scope.error = '';
-    $scope.exam_templates = {
-      image: '/images/exam_templates.png',
+    $scope.exam_template = {
+      image: '/images/exam_template.png',
       active: true,
     };
 
@@ -25,18 +25,17 @@ app.controller('exam_templates', function ($scope, $http, $timeout) {
     $http({
       method: 'POST',
       url: '/api/exam_templates/add',
-      data: $scope.exam_templates,
+      data: $scope.exam_template,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#examTemplatesAddModal');
+          site.resetValidated('#examTemplatesAddModal');
           $scope.getExamTemplatesList();
         } else {
           $scope.error = response.data.error;
-          if (response.data.error.like('*Must Enter Code*')) {
-            $scope.error = '##word.must_enter_code##';
-          } else if (response.data.error.like('*Name Exists*')) {
+          if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
           }
         }
@@ -47,14 +46,14 @@ app.controller('exam_templates', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.displayUpdateExamTemplates = function (exam_templates) {
+  $scope.displayUpdateExamTemplates = function (exam_template) {
     $scope.error = '';
-    $scope.viewExamTemplates(exam_templates);
-    $scope.exam_templates = {};
+    $scope.viewExamTemplates(exam_template);
+    $scope.exam_template = {};
     site.showModal('#examTemplatesUpdateModal');
   };
 
-  $scope.updateExamTemplates = function (exam_templates) {
+  $scope.updateExamTemplates = function (exam_template) {
     $scope.error = '';
     const v = site.validated('#examTemplatesUpdateModal');
     if (!v.ok) {
@@ -65,12 +64,13 @@ app.controller('exam_templates', function ($scope, $http, $timeout) {
     $http({
       method: 'POST',
       url: '/api/exam_templates/update',
-      data: exam_templates,
+      data: exam_template,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#examTemplatesUpdateModal');
+          site.resetValidated('#examTemplatesUpdateModal');
           $scope.getExamTemplatesList();
         } else {
           $scope.error = response.data.error;
@@ -85,23 +85,35 @@ app.controller('exam_templates', function ($scope, $http, $timeout) {
     );
   };
 
-   $scope.updateActivate = function (exam_templates) {
-    $scope.error = '';
+  $scope.showActivationModal = function (element,type) {
+    if(type == 'activate'){
+      site.showModal('#activateModal');
+    } else if(type == 'deactivate'){
+      site.showModal('#deactivateModal');
+    }
+    $scope.element = element;
+  };
 
+  $scope.updateActivate = function (element,type) {
+    $scope.error = '';
+    if(type == 'activate'){
+      element.active = true;
+    site.hideModal('#activateModal');
+    } else if(type == 'deactivate'){
+      element.active = false;
+    site.hideModal('#deactivateModal');
+    }
     $scope.busy = true;
     $http({
       method: 'POST',
       url: '/api/exam_templates/update',
-      data: exam_templates,
+      data: element,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
         } else {
           $scope.error = response.data.error;
-          if (response.data.error.like('*Name Exists*')) {
-            $scope.error = '##word.name_already_exists##';
-          }
         }
       },
       function (err) {
@@ -109,28 +121,28 @@ app.controller('exam_templates', function ($scope, $http, $timeout) {
       }
     );
   };
- 
-  $scope.displayDetailsExamTemplates = function (exam_templates) {
+
+  $scope.displayDetailsExamTemplates = function (exam_template) {
     $scope.error = '';
-    $scope.viewExamTemplates(exam_templates);
-    $scope.exam_templates = {};
+    $scope.viewExamTemplates(exam_template);
+    $scope.exam_template = {};
     site.showModal('#examTemplatesViewModal');
   };
 
-  $scope.viewExamTemplates = function (exam_templates) {
+  $scope.viewExamTemplates = function (exam_template) {
     $scope.busy = true;
     $scope.error = '';
     $http({
       method: 'POST',
       url: '/api/exam_templates/view',
       data: {
-        id: exam_templates.id,
+        id: exam_template.id,
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.exam_templates = response.data.doc;
+          $scope.exam_template = response.data.doc;
         } else {
           $scope.error = response.data.error;
         }
@@ -141,10 +153,10 @@ app.controller('exam_templates', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.displayDeleteExamTemplates = function (exam_templates) {
+  $scope.displayDeleteExamTemplates = function (exam_template) {
     $scope.error = '';
-    $scope.viewExamTemplates(exam_templates);
-    $scope.exam_templates = {};
+    $scope.viewExamTemplates(exam_template);
+    $scope.exam_template = {};
     site.showModal('#examTemplatesDeleteModal');
   };
 
@@ -156,7 +168,7 @@ app.controller('exam_templates', function ($scope, $http, $timeout) {
       method: 'POST',
       url: '/api/exam_templates/delete',
       data: {
-        id: $scope.exam_templates.id,
+        id: $scope.exam_template.id,
       },
     }).then(
       function (response) {

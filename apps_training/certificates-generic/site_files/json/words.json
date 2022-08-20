@@ -1,0 +1,71 @@
+[
+    {
+        "name": "certificates_generic",
+        "en": "Certificates Generic",
+        "ar": "شهادات عامة"
+    },
+    {
+        "name": "generic",
+        "en": "Generic",
+        "ar": "عامة"
+    },
+    {
+        "name": "upload_trainee_certificate",
+        "en": "Upload Trainee Certificate",
+        "ar": "تحميل شهادة المتدرب"
+    },
+    {
+        "name": "upload_trainer_certificate",
+        "en": "Upload Trainer Certificate",
+        "ar": "تحميل شهادة المدرب"
+    },
+    {
+        "name": "system_generic",
+        "en": "System generic",
+        "ar": "النظام العام"
+    },
+    {
+        "name": "upload_certificate",
+        "en": "Upload Certificate",
+        "ar": "تحميل الشهادة"
+    },
+    
+    {
+        "name": "certificates_partner_generic",
+        "en": "Certificates Partner Generic",
+        "ar": "شهادات شريك عامة"
+    },
+    {
+        "name": "certificate_partner_generic",
+        "en": "Certificate Partner Generic",
+        "ar": "شهادة شريك عامة"
+    },
+    {
+        "name": "certificate_partner_generic_new",
+        "en": "New Certificate Partner Generic",
+        "ar": "شهادة شريك عامة جديدة"
+    },
+    {
+        "name": "certificate_partner_generic_add",
+        "en": "Add Certificate Partner Generic",
+        "ar": "إضافة شهادة شريك عامة "
+    },
+    {
+        "name": "certificate_partner_generic_edit",
+        "en": "Edit Certificate Partner Generic",
+        "ar": "تعديل شهادة شريك عامة "
+    },
+    {
+        "name": "certificate_partner_generic_details",
+        "en": "Certificate Partner Generic Details",
+        "ar": "تفاصيل شهادة شريك عامة "
+    },
+    {
+        "name": "certificate_partner_generic_delete",
+        "en": "Delete Certificate Partner Generic",
+        "ar": "حذف شهادة شريك عامة "
+    }
+
+    
+
+]

@@ -1,0 +1,22 @@
+<div id="trainingCenterUpdateModal" class="modal" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 class="center">
+        ##word.question_edit##
+        <i class="fa fa-pencil"></i>
+      </h2>
+    </div>
+
+    <div class="modal-body">
+      <div x-import="training-centers/content.html"></div>
+      <div x-import="training-centers/action_info.html"></div>
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="error">{{error}}</h2>
+      <i-button type="edit" label="##word.edit##" ng-click="updateTrainingCenter(training_center)"></i-button>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#trainingCenterUpdateModal')"></i-button>
+    </div>
+  </div>
+</div>

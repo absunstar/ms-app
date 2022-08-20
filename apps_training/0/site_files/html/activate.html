@@ -1,0 +1,29 @@
+<div id="activateModal" class="modal small" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 class="center">
+        ##word.activate##
+        <i class="fa fa-exclamation"></i>
+      </h2>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <i class="fa fa-exclamation center" aria-hidden="true"></i>
+        <br />
+        <br />
+        <h3 class="center">##word.alert##</h3>
+        <br />
+        <br />
+        <b class="center">##word.sure_want_activate##</b>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="error">{{error}}</h2>
+      <i-button type="save" label="##word.save##" ng-click="updateActivate(element,'activate')"></i-button>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#activateModal')"></i-button>
+    </div>
+  </div>
+</div>

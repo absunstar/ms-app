@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "training_categories_admin",
-    "en": "Training Categories Admin",
-    "ar": "إدارة فئات التدريب",
-    "permissions": ["training_categories_manage"]
-}]

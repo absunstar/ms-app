@@ -10,11 +10,6 @@
         "ar": "تدريبات طور و غير"
     },
     {
-        "name": "delivery_inside_outside",
-        "en": "Delivery is free inside Riyadh on the same day and outside Riyadh within three working days",
-        "ar": "التوصيل مجاني داخل الرياض في نفس اليوم و خارج الرياض في خلال ثلاثة أيام عمل"
-    },
-    {
         "name": "companies_basic_information",
         "en": "Basic Informations",
         "ar": "البيانات الاساسية"
@@ -25,9 +20,9 @@
         "ar": "بيانات الاتصال"
     },
     {
-        "name": "workshop_center",
-        "en": "Workshop/center",
-        "ar": "ورشة/مركز"
+        "name": "entity_management",
+        "en": "Entity Management",
+        "ar": "إدارة الكيانات"
     },
     {
         "name": "personal",
@@ -68,11 +63,6 @@
         "name": "companies_phone",
         "en": "Phone",
         "ar": "التليفون"
-    },
-    {
-        "name": "EntityManagement",
-        "en": "Entity Management",
-        "ar": "إدارة الكيانات"
     },
     {
         "name": "companies_mobile",
@@ -300,13 +290,110 @@
         "ar": "إسم المدينة "
     },
     {
+        "name": "post_job",
+        "en": "Post Job",
+        "ar": "أنشر وظيفة"
+    },
+    {
+        "name": "manage_jobs",
+        "en": "Manage Jobs",
+        "ar": "إدارة الوظائف"
+    },
+    {
+        "name": "post_new_job",
+        "en": "Post A New Job",
+        "ar": "أنشر وظيفة جديدة"
+    },
+    {
+        "name": "change_password",
+        "en": "Change Password",
+        "ar": "تغيير كلمة المرور"
+    },
+    {
+        "name": "management",
+        "en": "Management",
+        "ar": "الإدارة"
+    },
+    
+    {
+        "name": "reports",
+        "en": "Reports",
+        "ar": "تقارير"
+    },
+    {
+        "name": "report",
+        "en": "Report",
+        "ar": "تقرير"
+    },
+    {
+        "name": "job_seeker_ber_job",
+        "en": "Job Seeker Ber Job",
+        "ar": "باحث عن عمل لكل وظيفة"
+    },
+    {
+        "name": "accounts_management",
+        "en": "Accounts Management",
+        "ar": "إدارة الحسابات"
+    },
+    {
         "name": "city",
         "en": "City",
         "ar": "المدينة"
     },
     {
-        "name": "area",
-        "en": "Area",
-        "ar": "المنطقة"
+        "name": "generic_companies",
+        "en": "Generic Companies",
+        "ar": "الشركات العامة"
+    },
+    {
+        "name": "approve",
+        "en": "Approve",
+        "ar": "الموافقة"
+    },
+    {
+        "name": "sure_want_deactivate",
+        "en": "Are you sure you want to Deactivate?",
+        "ar": "هل أنت متأكد أنك تريد إلغاء التنشيط؟"
+    },
+    {
+        "name": "sure_want_activate",
+        "en": "Are you sure you want to Activate?",
+        "ar": "هل أنت متأكد أنك تريد التنشيط؟"
+    },
+    {
+        "name": "e_earning",
+        "en": "E-Learning",
+        "ar": "التعلم الإلكتروني"
+    },
+    {
+        "name": "ok",
+        "en": "Ok",
+        "ar": "موافق"
+    },
+    {
+        "name": "certificate",
+        "en": "Certificate",
+        "ar": "شهادة"
+    },
+    {
+        "name": "certificates",
+        "en": "Certificates",
+        "ar": "الشهادات"
+    },
+    {
+        "name": "trainee",
+        "en": "Trainee",
+        "ar": "متدرب"
+    },
+    {
+        "name": "trainer",
+        "en": "Trainer",
+        "ar": "مدرب"
+    },
+    {
+        "name": "entity",
+        "en": "Entity",
+        "ar": "الكيان"
     }
+   
 ]

@@ -2,79 +2,51 @@
   <div id="basicInformation" class="container">
     <fieldset>
       <legend>##word.basic_information##</legend>
+
       <div class="row">
-        <div class="row g-2">
-          <div class="col">
-            <input type="text" ng-hide="disabledCode" class="form-control" ng-model="question.code" placeholder="##word.code##" aria-label="code" aria-describedby="basic-addon1" />
-          </div>
-          <div class="col">
-            <div class="form-check">
-              <input class="form-check-input" ng-model="question.active" type="checkbox" value="" id="flexCheckDefault" />
-              <label class="form-check-label" for="flexCheckDefault"> ##word.active## </label>
-            </div>
+        <div class="col2">
+          <i-image ng-model="question.image"></i-image>
+          <div class="row justify-content-md-center">
+            <i-checkbox class="col" label="##word.active##" ng-model="question.active"> </i-checkbox>
           </div>
         </div>
-
-        <div class="mb-3">
-          <label for="exampleFormControlTextarea1" class="form-label">##word.question##</label>
-          <textarea class="form-control" ng-model="question.question" id="exampleFormControlTextarea1"></textarea>
-        </div>
-
-        <div class="row g-2">
-          <div class="col">
-            <select class="form-select col" ng-change="getTrainingCategoryList(question.training_type)" ng-model="question.training_type" ng-options="s as (s.name_##session.lang##)   for s in trainingTypeList">
-              <option value="" selected>##word.select## (##word.training_type##)</option>
-            </select>
+        <div class="col10">
+          <div class="row">
+            <i-textarea  v="r" label="##word.question##" ng-model="question.name"> </i-textarea>
           </div>
-        </div>
 
-        <div class="row g-2">
-          <div class="col">
-            <select class="form-select col" ng-model="question.training_category" ng-options="s as (s.name_##session.lang##)   for s in trainingCategoryList">
-              <option value="" selected>##word.select## (##word.training_category##)</option>
-            </select>
+          <div class="row">
+            <i-list v="r" class="col6" label="##word.training_type##" ng-change="getTrainingCategoryList(question.training_type)" ng-model="question.training_type" display="name_##session.lang##" items="trainingTypeList" ng-search="_search.$training_type"></i-list>
+            <i-list v="r" class="col6" label="##word.training_category##" ng-model="question.training_category" display="name_##session.lang##" items="trainingCategoryList" ng-search="_search.$training_category"></i-list>
           </div>
-        </div>
 
-        <div class="row g-2">
-          <div class="col">
-            <select class="form-select col" ng-model="question.difficulty" ng-options="s as (s.##session.lang##)   for s in difficultyList">
-              <option value="" selected>##word.select## (##word.difficulty##)</option>
-            </select>
+          <div class="row">
+            <i-list v="r" class="col6" label="##word.difficulty##" ng-model="question.difficulty" display="##session.lang##" items="difficultyList" ng-search="_search.$difficulty"></i-list>
           </div>
-        </div>
-
-        <form>
           <br />
           <br />
           <fieldset>
             <legend>
-              ##word.answer##
-              <button type="button" class="btn btn-success" ng-click="question.answers_list.push({})"><i class="fas fa-plus-circle"></i> ##word.add##</button>
+              ##word.answers##
+              <i-button type="add default" ng-click="question.answers_list.push({})"></i-button>
             </legend>
 
-            <div class="row" ng-repeat="q in question.answers_list">
-              <div class="col-8">
-                <label for="exampleFormControlTextarea_{{$index}}" class="form-label">##word.answer##</label>
-                <textarea class="form-control" ng-model="q.answer" id="exampleFormControlTextarea_{{$index}}" rows="3"></textarea>
+            <div class="row" ng-repeat="q in question.answers_list track by $index">
+              <div class="col9">
+                <i-textarea v="r" label="##word.answer##" ng-model="q.answer"> </i-textarea>
               </div>
 
-              <div class="col">
+              <div class="col1"></div>
+
+              <div class="col2">
                 <br />
                 <br />
-                <div class="form-check">
-                  <input class="form-check-input" ng-change="checkCorrect($index)" ng-model="q.correct" type="checkbox" value="" id="flexCheckDefault" />
-                  <label class="form-check-label" for="flexCheckDefault"> ##word.correct_answer## </label>
-                </div>
-                <button type="button" class="btn btn-danger" ng-click="question.answers_list.splice($index,1)"><i class="fas fa-trash"></i></button>
+                <i-checkbox label="##word.correct_answer##" ng-change="checkCorrect($index)" ng-model="q.correct"> </i-checkbox>
+                <i-button type="delete default" ng-click="question.answers_list.splice($index,1)"></i-button>
               </div>
             </div>
           </fieldset>
-        </form>
-
-        <!--  <div class="col3">
-          <i-image help-id="questions_logo" ng-model="question.image"></i-image>
-        </div> -->
+        </div>
       </div>
     </fieldset>
   </div>

@@ -1,0 +1,38 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <table id="basicInformationTable" class="table hover bold">
+
+                    <tr>
+                        <td class="title">##word.country##</td>
+                        <td class="center">{{city.country.name_##session.lang##}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.city_name##</td>
+                        <td class="center">{{city.name_##session.lang##}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.status##</td>
+                        <td ng-show="city.active == true" class="green center"> ##word.active## </td>
+                        <td ng-show="city.active == false" class="red center"> ##word.not_active## </td>
+                    </tr>
+
+                </table>
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="city.image"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+
+<br>
+<br>
+
+<div x-import="cities/action_info.html"></div>

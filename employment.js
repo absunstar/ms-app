@@ -45,9 +45,6 @@ site.get(
 
 site.loadLocalApp('client-side');
 site.importApps(__dirname + '/apps_employment');
-site.importApp(__dirname + '/apps_private/security');
-site.importApp(__dirname + '/apps_private/cloud_security');
-site.importApp(__dirname + '/apps_private/ui-print');
 site.importApp(__dirname + '/apps_private/ui-help');
 
 site.addFeature('employment');

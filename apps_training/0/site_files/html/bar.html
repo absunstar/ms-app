@@ -1,38 +1,64 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-warning" ng-controller="navbar">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" ng-controller="bar">
   <div class="container-fluid">
     <a href="/" class="navbar-brand"> ##word.brand_tag##</a>
-    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse2">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+
     <div class="collapse navbar-collapse" id="navbarCollapse2">
-      <div class="navbar-nav" x-permissions="login">
-        <div class="btn-group" >
-          <!-- <a href="/training-report" data-bs-toggle="dropdown" class="nav-item nav-link">##word.training_report##</a> -->
-          <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">##word.data_management##</button>
-          <ul class="dropdown-menu" >
-            <li><a class="dropdown-item" href="/Country">##word.country## </a></li>
-            <li><a class="dropdown-item" href="/City">##word.city## </a></li>
-            <li><a class="dropdown-item" href="/TrainingType">##word.training_type## </a></li>
-            <li><a class="dropdown-item" href="/TrainingCategory">##word.training_category## </a></li>
-            <li><a class="dropdown-item" href="/Course">##word.courses## </a></li>
-            <li><a class="dropdown-item" href="/Questions">##word.questions## </a></li>
-            <li><a class="dropdown-item" href="/ExamTemplates">##word.exam_template## </a></li>
-          </ul>
-        </div>
-        <div class="btn-group">
-          <!-- <a href="/training-report" data-bs-toggle="dropdown" class="nav-item nav-link">##word.training_report##</a> -->
-          <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">##word.EntityManagement##</button>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item" x-permissions="employer || job_seeker">
+          <a href="https://mctint.com/" target="_blank" class="nav-link">##word.e_earning##</a>
+        </li>
+        <li class="nav-item" x-permissions="job_seeker">
+          <a href="/JobSeekerHistory" class="nav-link">##word.job_seeker##</a>
+        </li>
+        <li class="nav-item" x-permissions="job_seeker">
+          <a href="/EmployerSearch" class="nav-link">##word.job_search##</a>
+        </li>
+
+        <li class="nav-item dropdown" x-permissions="admin">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> ##word.data_management## </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/Partner">##word.partner## </a></li>
-            <li><a class="dropdown-item" href="/TrainingCenter">##word.training_center## </a></li>
+            <li><a class="dropdown-item" href="/Countries">##word.countries## </a></li>
+            <li><a class="dropdown-item" href="/Cities">##word.cities## </a></li>
+            <li><a class="dropdown-item" href="/TrainingTypes">##word.training_types## </a></li>
+            <li><a class="dropdown-item" href="/TrainingCategories">##word.training_categories## </a></li>
+            <li><a class="dropdown-item" href="/Courses">##word.courses## </a></li>
+            <li><a class="dropdown-item" href="/Questions">##word.questions## </a></li>
+            <li><a class="dropdown-item" href="/ExamTemplates">##word.exam_templates## </a></li>
           </ul>
-        </div>
-      </div>
-      <form class="d-flex ms-auto">
-        <a ng-click="logout()" x-permissions="login" class="btn btn-danger btn-lg"> <i class="bi bi-box-arrow-right"></i> ##word.logout## </a>
-        <a type="button" href="/Login" x-permissions="!login" class="btn btn-success btn-lg">##word.login##</a>
-        <a type="button" href="/Register" x-permissions="!login" class="btn btn-info btn-lg">##word.register##</a>
-      </form>
+        </li>
+
+        <li class="nav-item dropdown" x-permissions="admin">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> ##word.entity_management## </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/Partners">##word.partners## </a></li>
+            <li><a class="dropdown-item" href="/TrainingCenters">##word.training_centers## </a></li>
+            <li><a class="dropdown-item" href="/SubPartners">##word.sub_partners## </a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item" x-permissions="admin">
+          <a href="/Manage" class="nav-link">##word.manage##</a>
+        </li>
+
+        <li class="nav-item dropdown" x-permissions="admin">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> ##word.certificates## </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/CertificatesGeneric">##word.generic## </a></li>
+            <li><a class="dropdown-item" href="/PartnersCertificates">##word.partners## </a></li>
+            <li><a class="dropdown-item" href="/TrainingCentersCertificates">##word.training_centers## </a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item" x-permissions="login">
+          <a ng-click="logout()" class="nav-link pointer">##word.logout## <span class="bold"> [ ##user.email## ] </span></a>
+        </li>
+        <li class="nav-item" x-permissions="!login">
+          <a href="/Login" class="nav-link">##word.login##</a>
+        </li>
+        <li class="nav-item" x-permissions="!login">
+          <a href="/Register" class="nav-link">##word.register##</a>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>

@@ -28,7 +28,6 @@ app.controller('jobs', function ($scope, $http, $timeout) {
       return;
     }
 
-  
     if(type== 'add'){
       $scope.job.approve = {
         id : 1,
@@ -58,9 +57,7 @@ app.controller('jobs', function ($scope, $http, $timeout) {
           $scope.getJobList();
         } else {
           $scope.error = response.data.error;
-          if (response.data.error.like('*Must Enter Code*')) {
-            $scope.error = '##word.must_enter_code##';
-          } else if (response.data.error.like('*Name Exists*')) {
+          if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
           }
         }

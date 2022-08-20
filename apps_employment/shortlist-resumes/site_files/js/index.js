@@ -5,7 +5,7 @@ app.controller('shortListedResumes', function ($scope, $http, $timeout) {
     $scope.list = [];
     where = where || {};
 
-    where['profile.type'] = 'job-seeker';
+    where['role.name'] = 'job_seeker';
     where['short_list'] = site.toNumber('##user.id##');
     $http({
       method: 'POST',

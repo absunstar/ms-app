@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp" x-permissions="admin">
+  <head x-import="head.html"> </head>
+
+  <body class="##session.lang##" ng-controller="partnersCertificates">
+    <nav x-import="0/bar.html" class="sitebar" ng-controller="bar"></nav>
+
+    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
+    <div id="main-layout" class="container loaded">
+      <div class="row">
+        <div class="row">
+          <div x-import="partners-certificates/add_modal.html"></div>
+          <div x-import="partners-certificates/update_modal.html"></div>
+          <div x-import="partners-certificates/delete_modal.html"></div>
+          <div x-import="partners-certificates/view_modal.html"></div>
+          <div x-import="partners-certificates/search_all_modal.html"></div>
+
+          <div class="row">
+            <h1 class="bold text-center">##word.partners_certificates##</h1>
+          </div>
+
+          <div class="top-actions">
+            <i-button type="add" label="##word.partner_certificate_new##" ng-click="displayAddPartnerCertificates()"></i-button>
+            <i-button type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+
+            <h3 class="bold text-center">##word.count## : {{count || 0}}</h3>
+            <h3 class="bold text-center text-danger">{{error}}</h3>
+          </div>
+         
+          <table x-permissions="login" class="table hover text-center" id="t1">
+              <tr>
+                <th>##word.partner##</th>
+                <th>##word.training_type##</th>
+                <th>##word.training_category##</th>
+                <th>##word.file_type##</th>
+                <th>##word.upload_certificate##</th>
+                <th>##word.status##</th>
+                <th class="not-print">##word.actions##</th>
+              </tr>
+              <tr ng-repeat="c in list">
+               
+                <td class="center title">{{c.partner.name_##session.lang##}}</td>
+                <td class="center title">{{c.training_type.name_##session.lang##}}</td>
+                <td class="center title">{{c.training_category.name_##session.lang##}}</td>
+                <td class="center">
+                  <p ng-show="c.file_type == 'trainee'">##word.trainee##</p>
+                  <p ng-show="c.file_type == 'trainer'">##word.trainer##</p>
+                </td>
+                <td class="center title"><i-file view ng-model="c.certificate"></i-file></td>
+                <td class="center">
+                  <p ng-show="c.active ==true" class="green">##word.active##</p>
+                  <p ng-show="!c.active" class="red">##word.not_active##</p>
+                </td>
+                <td class="center not-print">
+                  <i-button type="view" label="##word.details##" ng-click="displayDetailsPartnerCertificates(c)"></i-button>
+                  <i-button type="edit" label="##word.edit##" ng-click="displayUpdatePartnerCertificates(c)"></i-button>
+                  <i-button ng-show="!c.active" label="##word.activate##" ng-click="showActivationModal(c,'activate')"></i-button>
+                  <i-button ng-show="c.active" label="##word.deactivate##" ng-click="showActivationModal(c,'deactivate')"></i-button>
+                  <i-button type="delete" label="##word.delete##" ng-click="displayDeletePartnerCertificates(c)"></i-button>
+                  
+                </td>
+              </tr>
+          </table>
+          <i-button type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+          <i-button type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'partnersCertificates.xlsx')"></i-button>
+        </div>
+      </div>
+    </div>
+
+    <div x-import="0/scripts.html"></div>
+    <script x-import="partners-certificates/index.js"></script>
+  </body>
+</html>

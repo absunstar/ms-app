@@ -1,0 +1,22 @@
+<div id="courseUpdateModal" class="modal" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 class="center">
+        ##word.course_edit##
+        <i class="fa fa-pencil"></i>
+      </h2>
+    </div>
+
+    <div class="modal-body">
+      <div x-import="courses/content.html"></div>
+      <div x-import="courses/action_info.html"></div>
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="error">{{error}}</h2>
+      <i-button type="edit" label="##word.edit##" ng-click="updateCourse(course)"></i-button>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#courseUpdateModal')"></i-button>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-app.controller('company', function ($scope, $http, $timeout) {
+app.controller('companies', function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.company = {};
@@ -43,9 +43,7 @@ app.controller('company', function ($scope, $http, $timeout) {
           $scope.getCompanyList();
         } else {
           $scope.error = response.data.error;
-          if (response.data.error.like('*Must Enter Code*')) {
-            $scope.error = '##word.must_enter_code##';
-          } else if (response.data.error.like('*not allowed to add other companies*')) {
+          if (response.data.error.like('*not allowed to add other companies*')) {
             $scope.error = '##word.not_allowed_add_other_companies##';
           }
         }

@@ -10,32 +10,32 @@
         "ar": "السؤال"
     },
     {
-        "name": "questions_new",
+        "name": "question_new",
         "en": "New Question",
         "ar": "سؤال جديد"
     },
     {
-        "name": "questions_add",
+        "name": "question_add",
         "en": "Add Question",
         "ar": "إضافة سؤال "
     },
     {
-        "name": "questions_edit",
+        "name": "question_edit",
         "en": "Edit Question",
         "ar": "تعديل سؤال "
     },
     {
-        "name": "questions_details",
+        "name": "question_details",
         "en": "Question Details",
         "ar": "تفاصيل السؤال "
     },
     {
-        "name": "questions_delete",
+        "name": "question_delete",
         "en": "Delete Question",
         "ar": "حذف سؤال "
     },
     {
-        "name": "questions_name",
+        "name": "question_name",
         "en": "Question Name",
         "ar": "إسم السؤال "
     },
@@ -45,9 +45,14 @@
         "ar": "الصعوبة"
     },
     {
+        "name": "answers",
+        "en": "Answers",
+        "ar": "الإجابات"
+    },
+    {
         "name": "answer",
         "en": "Answer",
-        "ar": "إجابة"
+        "ar": "الإجابة"
     },
     {
         "name": "correct_answer",

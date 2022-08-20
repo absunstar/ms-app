@@ -22,10 +22,10 @@ app.controller('resume', function ($scope, $http, $timeout) {
           $scope.user.short_list = $scope.user.short_list || [];
 
           if ('##query.id##' != 'undefined' && ('##user.role.name##' == 'employer' || '##user.role.name##' == 'admin')) {
-            $scope.short = false;
+            $scope.user.$short = false;
             $scope.user.short_list.forEach((_sh) => {
               if (_sh == site.toNumber('##user.id##')) {
-                $scope.short = true;
+                $scope.user.$short = true;
               }
             });
           }
@@ -61,12 +61,12 @@ app.controller('resume', function ($scope, $http, $timeout) {
 
     if (type == 'add') {
       user.short_list.push(site.toNumber('##user.id##'));
-      $scope.short = true;
+      $scope.user.$short = true;
     } else if (type == 'remove') {
       for (let i = 0; i < user.short_list.length; i++) {
         if (user.short_list[i] == site.toNumber('##user.id##')) {
           user.short_list.splice(i, 1);
-          $scope.short = false;
+          $scope.user.$short = false;
         }
       }
       site.hideModal('#removeShortModal');

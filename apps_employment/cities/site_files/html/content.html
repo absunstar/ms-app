@@ -15,11 +15,9 @@
             <i-control type="text" class="col6" v="r" ng-model="city.name_en" label="##word.name_en##"></i-control>
           </div>
           <div class="row" ng-show="'##query.id##' == 'undefined'">
-            <i-list   v="r" class="col6" label="##word.country##" ng-model="city.country" display="name_##session.lang##" items="countryList" ng-search="_search.$city_country"></i-list>
+            <i-list v="r" class="col6" label="##word.country##" ng-model="city.country" display="name_##session.lang##" items="countryList" ng-search="_search.$city_country"></i-list>
           </div>
         </div>
-
-        <div class="col3"></div>
       </div>
     </div>
   </fieldset>
