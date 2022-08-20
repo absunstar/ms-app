@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" ng-controller="navbar">
+  <div class="container-fluid">
+    <a href="/" class="navbar-brand"> ##word.brand_tag##</a>
+    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown" x-permissions="admin">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> ##word.data_management## </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/Countries">##word.countries## </a></li>
+            <li><a class="dropdown-item" href="/Cities">##word.cities## </a></li>
+            <li><a class="dropdown-item" href="/TrainingTypes">##word.training_types## </a></li>
+            <li><a class="dropdown-item" href="/TrainingCategories">##word.training_categories## </a></li>
+            <li><a class="dropdown-item" href="/Courses">##word.courses## </a></li>
+            <li><a class="dropdown-item" href="/Questions">##word.questions## </a></li>
+            <li><a class="dropdown-item" href="/ExamTemplates">##word.exam_templates## </a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown" x-permissions="admin">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> ##word.entity_management## </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/Partners">##word.partners## </a></li>
+            <li><a class="dropdown-item" href="/TrainingCenters">##word.training_centers## </a></li>
+            <li><a class="dropdown-item" href="/SubPartners">##word.sub_partners## </a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item" x-permissions="admin">
+          <a href="/Manage" class="nav-link">##word.manage##</a>
+        </li>
+
+        <li class="nav-item dropdown" x-permissions="admin">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> ##word.certificates## </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/CertificatesGeneric">##word.generic## </a></li>
+            <li><a class="dropdown-item" href="/PartnersCertificates">##word.partners## </a></li>
+            <li><a class="dropdown-item" href="/TrainingCentersCertificates">##word.training_centers## </a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item" x-permissions="login">
+          <a ng-click="logout()" class="nav-link pointer">##word.logout## <span class="bold"> [ ##user.email## ] </span></a>
+        </li>
+        <li class="nav-item" x-permissions="!login">
+          <a href="/Login" class="nav-link">##word.login##</a>
+        </li>
+        <li class="nav-item" x-permissions="!login">
+          <a href="/Register" class="nav-link">##word.register##</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

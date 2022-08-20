@@ -1,51 +1,16 @@
 app.controller('register', function ($scope, $http, $timeout) {
   $scope.user = { image: '/images/user_logo.png' };
 
-  $scope.addEmployer = function () {
+  $scope.addTrainee = function () {
     $scope.error = '';
-    const v = site.validated('.employer-form');
+    const v = site.validated('.trainee-form');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
     if ($scope.user) {
       if ($scope.user.password === $scope.user.retype_password) {
-        $scope.user.role = $scope.accountsTypeList[1];
-        $scope.busy = true;
-        $http({
-          method: 'POST',
-          url: '/api/register',
-          data: $scope.user,
-        }).then(
-          function (response) {
-            if (response.data.error) {
-              $scope.error = response.data.error;
-              $scope.busy = false;
-            }
-            if (response.data.user) {
-              window.location.href = '/';
-            }
-          },
-          function (err) {
-            $scope.busy = false;
-            $scope.error = err;
-          }
-        );
-      } else {
-        $scope.error = '##word.password_err_match##';
-      }
-    }
-  };
-  $scope.addJobSeeker = function () {
-    $scope.error = '';
-    const v = site.validated('.job-seeker-form');
-    if (!v.ok) {
-      $scope.error = v.messages[0].ar;
-      return;
-    }
-    if ($scope.user) {
-      if ($scope.user.password === $scope.user.retype_password) {
-        $scope.user.role = $scope.accountsTypeList[2];
+        $scope.user.role = $scope.accountsTypeList[3];
         $scope.busy = true;
         $http({
           method: 'POST',
@@ -98,5 +63,25 @@ app.controller('register', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getGender = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.genderList = [];
+    $http({
+      method: 'POST',
+      url: '/api/gender/all',
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.genderList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.getAccountsType();
+  $scope.getGender();
 });

@@ -11,7 +11,11 @@ app.controller('loginEmployment', function ($scope, $http, $timeout) {
     $http({
       method: 'POST',
       url: '/api/user/login',
-      data: $scope.user,
+      data: {
+        $encript: '123',
+        email: site.to123($scope.user.email),
+        password: site.to123($scope.user.password),
+      }
     }).then(
       function (response) {
         if (response.data.error) {

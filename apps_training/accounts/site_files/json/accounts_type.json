@@ -7,14 +7,20 @@
     },
     {
         "id": 2,
-        "name": "employer",
-        "en": "Employer",
-        "ar": "صاحب عمل"
+        "name": "trainer",
+        "en": "Trainer",
+        "ar": "مدرب"
     },
     {
         "id": 3,
-        "name": "job_seeker",
-        "en": "Job Seeker",
-        "ar": "باحث عن عمل"
+        "name": "training_center",
+        "en": "Training Center",
+        "ar": "مركز تدريب"
+    },
+    {
+        "id": 4,
+        "name": "trainee",
+        "en": "Trainee",
+        "ar": "متدرب"
     }
 ]

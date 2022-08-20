@@ -15,6 +15,21 @@
     "ar": "الجنس"
   },
   {
+    "name": "birthdate",
+    "en": "Birth Date",
+    "ar": "تاريخ الميلاد"
+  },
+  {
+    "name": "mobile",
+    "en": "Mobile",
+    "ar": "المحمول"
+  },
+  {
+    "name": "mobile_phone_number",
+    "en": "Mobile phone number",
+    "ar": "رقم الهاتف المحمول"
+  },
+  {
     "name": "enter",
     "en": "Enter",
     "ar": "أدخل"
@@ -278,12 +293,12 @@
     "name": "message",
     "en": "Message",
     "ar": "رسالة"
-  },	
+  },
   {
     "name": "reject",
     "en": "Reject",
     "ar": "رفض"
-  },	
+  },
   {
     "name": "undefined_gender",
     "en": "Undefined Gender",
@@ -535,11 +550,11 @@
     "en": "Country",
     "ar": "البلد"
   },
-  {"name" : "file_name" , "en" : "File Name" , "ar":"إسم الملف"},
-  {"name" : "ar_lang" , "en" : "اللغة العربية" , "ar":"اللغة العربية"},
-  {"name" : "en_lang" , "en" : "English" , "ar":"English"},
-  {"name" : "close" , "en" : "Close" , "ar":"أغلاق"},
-  {"name" : "entry" , "en" : "Entry" , "ar":"دخول"},
+  { "name": "file_name", "en": "File Name", "ar": "إسم الملف" },
+  { "name": "ar_lang", "en": "اللغة العربية", "ar": "اللغة العربية" },
+  { "name": "en_lang", "en": "English", "ar": "English" },
+  { "name": "close", "en": "Close", "ar": "أغلاق" },
+  { "name": "entry", "en": "Entry", "ar": "دخول" },
   {
     "name": "activate",
     "en": "Activate",
@@ -569,7 +584,7 @@
     "name": "main",
     "en": "Main",
     "ar": "الرئيسية"
-},
+  },
   {
     "name": "login",
     "en": "Login",

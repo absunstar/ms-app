@@ -65,16 +65,6 @@
         "ar": "لمتابعة طلبك استخدم الرقم المرجعي"
     },
     {
-        "name": "companies_phone",
-        "en": "Phone",
-        "ar": "التليفون"
-    },
-    {
-        "name": "companies_mobile",
-        "en": "Mobile",
-        "ar": "المحمول"
-    },
-    {
         "name": "companies_activity",
         "en": "Activity",
         "ar": "النشاط"

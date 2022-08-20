@@ -135,14 +135,19 @@
         "ar": "تسجيل الاّن"
     },
     {
-        "name": "register_as_employer",
-        "en": "Register As Employer",
-        "ar": "تسجيل الدخول كصاحب شركة"
+        "name": "register_as_trainee",
+        "en": "Register As Trainee",
+        "ar": "تسجيل الدخول كمتدرب"
     },
     {
-        "name": "register_as_job_seeker",
-        "en": "Register As Job Seeker",
-        "ar": "تسجيل الدخول كباحث عن عمل"
+        "name": "register_as_trainer",
+        "en": "Register As Trainer",
+        "ar": "تسجيل الدخول كمدرب"
+    },
+    {
+        "name": "register_as_training_center",
+        "en": "Register As Training_center",
+        "ar": "تسجيل الدخول كمركز تدريب"
     },
     {
         "name": "create_account",
@@ -203,6 +208,31 @@
         "name": "password",
         "en": "Password",
         "ar": "كلمة السر"
+    },
+    {
+        "name": "source_of_income",
+        "en": "Dource Of Income",
+        "ar": "مصدر الدخل"
+    },
+    {
+        "name": "id_number",
+        "en": "ID Number",
+        "ar": "رقم الهوية"
+    },
+    {
+        "name": "id_type",
+        "en": "ID Type",
+        "ar": "نوع الهوية"
+    },
+    {
+        "name": "national_id",
+        "en": "National ID",
+        "ar": "الهوية الوطنية"
+    },
+    {
+        "name": "passport",
+        "en": "Passport",
+        "ar": "جواز سفر"
     },
     {
         "name": "retype_password",

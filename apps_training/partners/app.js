@@ -64,8 +64,6 @@ module.exports = function init(site) {
           response.error = 'Name Exists';
           res.json(response);
         } else {
-       
-
           $partners.add(partner_doc, (err, doc) => {
             if (!err) {
               response.done = true;
@@ -208,13 +206,13 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/partners/all', (req, res) => {
+  site.post({ name: '/api/partners/all', public: true }, (req, res) => {
     let response = {
       done: false,
     };
 
     let where = req.body.where || {};
-  
+
     if (where['name_ar']) {
       where['name_ar'] = site.get_RegExp(where['name_ar'], 'i');
     }
@@ -223,7 +221,6 @@ module.exports = function init(site) {
       where['name_en'] = site.get_RegExp(where['name_en'], 'i');
     }
 
-    
     if (where['not_active']) {
       where['active'] = false;
     }
@@ -239,7 +236,6 @@ module.exports = function init(site) {
     delete where['active_search'];
     delete where['not_active'];
 
-    
     $partners.findMany(
       {
         select: req.body.select || {},

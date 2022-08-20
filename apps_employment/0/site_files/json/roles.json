@@ -11,7 +11,7 @@
     "module_name":"public",
     "name": "employer",
     "en": "Employer",
-    "ar": "إدارة نقاط البيع",
+    "ar": "صاحب عمل",
     "permissions": [
         "employer"
     ]

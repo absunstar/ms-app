@@ -1,4 +1,4 @@
-const site = require('isite')({
+const site = require('../isite')({
   port: [80, 44442],
   lang: 'en',
   version: '1.0.13',

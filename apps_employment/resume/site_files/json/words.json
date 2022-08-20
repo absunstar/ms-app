@@ -140,11 +140,6 @@
         "ar": "تحميل السيرة الذاتية"
     },
     {
-        "name": "birthdate",
-        "en": "Birth Date",
-        "ar": "تاريخ الميلاد"
-    },
-    {
         "name": "skills",
         "en": "Skills",
         "ar": "المهارات"
