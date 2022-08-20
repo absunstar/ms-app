@@ -33,7 +33,7 @@ app.controller('country', function ($scope, $http, $timeout) {
           site.hideModal('#countryAddModal');
           site.resetValidated('#countryAddModal');
           $scope.getCountryList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
            if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -72,7 +72,7 @@ app.controller('country', function ($scope, $http, $timeout) {
           site.hideModal('#countryUpdateModal');
           site.resetValidated('#countryUpdateModal');
           $scope.getCountryList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';

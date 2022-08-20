@@ -33,7 +33,7 @@ app.controller('industry', function ($scope, $http, $timeout) {
           site.hideModal('#industryAddModal');
           site.resetValidated('#industryAddModal');
           $scope.getIndustryList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -72,7 +72,7 @@ app.controller('industry', function ($scope, $http, $timeout) {
           site.hideModal('#industryUpdateModal');
           site.resetValidated('#industryUpdateModal');
           $scope.getIndustryList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';

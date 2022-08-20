@@ -274,8 +274,12 @@ module.exports = function init(site) {
     }
     let where = req.body.where || {};
 
-    where['first_name'] = site.get_RegExp(where['first_name'], 'i');
-    where['last_name'] = site.get_RegExp(where['last_name'], 'i');
+    if (where['first_name']) {
+      where['first_name'] = site.get_RegExp(where['first_name'], 'i');
+    }
+    if (where['last_name']) {
+      where['last_name'] = site.get_RegExp(where['last_name'], 'i');
+    }
 
     if (where['job_title']) {
       where['job_title'] = site.get_RegExp(where['job_title'], 'i');

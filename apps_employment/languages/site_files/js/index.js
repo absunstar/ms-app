@@ -33,7 +33,7 @@ app.controller('languages', function ($scope, $http, $timeout) {
           site.hideModal('#languageAddModal');
           site.resetValidated('#languageAddModal');
           $scope.getLanguageList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -72,7 +72,7 @@ app.controller('languages', function ($scope, $http, $timeout) {
           site.hideModal('#languageUpdateModal');
           site.resetValidated('#languageUpdateModal');
           $scope.getLanguageList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';

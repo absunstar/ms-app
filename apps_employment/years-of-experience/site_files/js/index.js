@@ -33,7 +33,7 @@ app.controller('yearsOfExperience', function ($scope, $http, $timeout) {
           site.hideModal('#yearsOfExperienceAddModal');
           site.resetValidated('#yearsOfExperienceAddModal');
           $scope.getYearsOfExperienceList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -72,7 +72,7 @@ app.controller('yearsOfExperience', function ($scope, $http, $timeout) {
           site.hideModal('#yearsOfExperienceUpdateModal');
           site.resetValidated('#yearsOfExperienceUpdateModal');
           $scope.getYearsOfExperienceList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';

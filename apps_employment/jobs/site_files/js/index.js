@@ -55,7 +55,7 @@ app.controller('jobs', function ($scope, $http, $timeout) {
           site.hideModal('#jobAddModal');
           site.resetValidated('#jobAddModal');
           $scope.getJobList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -109,7 +109,7 @@ app.controller('jobs', function ($scope, $http, $timeout) {
           site.hideModal('#jobUpdateModal');
           site.resetValidated('#jobUpdateModal');
           $scope.getJobList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';

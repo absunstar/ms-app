@@ -25,9 +25,24 @@
     "ar": "المحمول"
   },
   {
+    "name": "days",
+    "en": "Days",
+    "ar": "الأيام"
+  },
+  {
+    "name": "basic_information",
+    "en": "Basic Information",
+    "ar": "المعلومات الأساسية"
+  },
+  {
     "name": "mobile_phone_number",
     "en": "Mobile phone number",
     "ar": "رقم الهاتف المحمول"
+  },
+  {
+    "name": "phone_number",
+    "en": "phone number",
+    "ar": "رقم الهاتف"
   },
   {
     "name": "enter",

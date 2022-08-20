@@ -273,9 +273,14 @@ module.exports = function init(site) {
       return;
     }
     let where = req.body.where || {};
+    if(where['first_name']){
 
-    where['first_name'] = site.get_RegExp(where['first_name'], 'i');
-    where['last_name'] = site.get_RegExp(where['last_name'], 'i');
+      where['first_name'] = site.get_RegExp(where['first_name'], 'i');
+    }
+    if(where['last_name']){
+
+      where['last_name'] = site.get_RegExp(where['last_name'], 'i');
+    }
 
     if (where['job_title']) {
       where['job_title'] = site.get_RegExp(where['job_title'], 'i');
@@ -374,6 +379,7 @@ module.exports = function init(site) {
       delete where['genders'];
       delete where['general_search'];
     }
+
     site.security.getUsers(
       {
         where: where,

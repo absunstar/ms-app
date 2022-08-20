@@ -48,9 +48,8 @@ app.controller('changePassword', function ($scope, $http, $timeout) {
           $scope.busy = false;
 
           $scope.login(response.data.doc);
-        } else {
+        } else if(response.data.error) {
           $scope.error = response.data.error;
-          console.log($scope.error);
           if (response.data.error.like('*Password does not match*')) {
             $scope.error = '##word.password_err_match##';
           } else if (response.data.error.like('*Current Password Error*')) {

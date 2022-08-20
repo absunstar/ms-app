@@ -33,7 +33,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
           site.hideModal('#accountAddModal');
           site.reetValidated('#accountAddModal');
           $scope.getAccountList();
-        } else {
+        } else if(response.data.error) {
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -84,7 +84,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
           site.hideModal('#accountUpdateModal');
           site.resetValidated('#accountUpdateModal');
           $scope.getAccountList();
-        } else {
+        } else if(response.data.error) {
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -124,7 +124,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
           } else if (type == 'deactivate') {
             site.hideModal('#deactivateModal');
           }
-        } else {
+        } else if(response.data.error) {
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -255,7 +255,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
               site.hideModal('#accountAddModal');
               site.resetValidated('.admin-form');
               $scope.getAccountList();
-            } else {
+            } else if(response.data.error) {
               $scope.error = response.data.error;
                if (response.data.error.like('*Name Exists*')) {
                 $scope.error = '##word.name_already_exists##';
@@ -294,7 +294,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
               site.hideModal('#accountAddModal');
               site.resetValidated('.employer-form');
               $scope.getAccountList();
-            } else {
+            } else if(response.data.error) {
               $scope.error = response.data.error;
                if (response.data.error.like('*Name Exists*')) {
                 $scope.error = '##word.name_already_exists##';
@@ -333,7 +333,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
               site.hideModal('#accountAddModal');
               site.resetValidated('.job-seeker-form');
               $scope.getAccountList();
-            } else {
+            } else if(response.data.error) {
               $scope.error = response.data.error;
                if (response.data.error.like('*Name Exists*')) {
                 $scope.error = '##word.name_already_exists##';

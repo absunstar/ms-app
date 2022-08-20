@@ -36,7 +36,7 @@
     </div>
 
     <div class="modal-footer center">
-      <h2 class="error">{{error}}</h2>
+      <h2 class="bold text-center text-danger">{{error}}</h2>
       <i-button type="add" label="##word.add##" ng-show="!partner_logo.$edit" ng-click="addPartnerLogo(partner_logo)"></i-button>
       <i-button type="save" label="##word.save##" ng-show="partner_logo.$edit" ng-click="editPartnerLogo()"></i-button>
       <i-button type="close" label="##word.close##" onclick="site.hideModal( '#partnerLogoModal')"></i-button>

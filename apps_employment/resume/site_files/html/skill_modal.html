@@ -21,7 +21,7 @@
     </div>
 
     <div class="modal-footer center">
-      <h2 class="error">{{error}}</h2>
+      <h2 class="bold text-center text-danger">{{error}}</h2>
       <i-button type="add" label="##word.add##" ng-show="!skill.$edit" ng-click="skillsTransaction(skill,'add')"></i-button>
       <i-button type="save" label="##word.save##" ng-show="skill.$edit" ng-click="skillsTransaction(skill,'upate')"></i-button>
       <i-button type="close" label="##word.close##" onclick="site.hideModal( '#extraCurricularModal')"></i-button>

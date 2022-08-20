@@ -33,7 +33,7 @@ app.controller('qualifications', function ($scope, $http, $timeout) {
           site.hideModal('#qualificationAddModal');
           site.resetValidated('#qualificationAddModal');
           $scope.getQualificationList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -72,7 +72,7 @@ app.controller('qualifications', function ($scope, $http, $timeout) {
           site.hideModal('#qualificationUpdateModal');
           site.resetValidated('#qualificationUpdateModal');
           $scope.getQualificationList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';

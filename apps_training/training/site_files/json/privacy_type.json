@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "name": "public",
+        "en": "Public",
+        "ar": "عام"
+    },
+    {
+        "id": 2,
+        "name": "private",
+        "en": "Private",
+        "ar": "خاص"
+    }
+]

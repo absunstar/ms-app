@@ -33,7 +33,7 @@ app.controller('examTemplates', function ($scope, $http, $timeout) {
           site.hideModal('#examTemplatesAddModal');
           site.resetValidated('#examTemplatesAddModal');
           $scope.getExamTemplatesList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -72,7 +72,7 @@ app.controller('examTemplates', function ($scope, $http, $timeout) {
           site.hideModal('#examTemplatesUpdateModal');
           site.resetValidated('#examTemplatesUpdateModal');
           $scope.getExamTemplatesList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';

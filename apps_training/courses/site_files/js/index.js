@@ -38,7 +38,7 @@ app.controller('courses', function ($scope, $http, $timeout) {
           site.hideModal('#courseAddModal');
           site.resetValidated('#courseAddModal');
           $scope.getCourseList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
          if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -77,7 +77,7 @@ app.controller('courses', function ($scope, $http, $timeout) {
           site.hideModal('#courseUpdateModal');
           site.resetValidated('#courseUpdateModal');
           $scope.getCourseList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';

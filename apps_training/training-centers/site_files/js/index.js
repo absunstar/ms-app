@@ -38,7 +38,7 @@ app.controller('trainingCenters', function ($scope, $http, $timeout) {
           site.hideModal('#trainingCenterAddModal');
           site.resetValidated('#trainingCenterAddModal');
           $scope.getTrainingCenterList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -77,7 +77,7 @@ app.controller('trainingCenters', function ($scope, $http, $timeout) {
           site.hideModal('#trainingCenterUpdateModal');
           site.resetValidated('#trainingCenterUpdateModal');
           $scope.getTrainingCenterList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -102,7 +102,7 @@ app.controller('trainingCenters', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';

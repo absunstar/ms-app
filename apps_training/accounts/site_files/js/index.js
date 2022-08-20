@@ -33,7 +33,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
           site.hideModal('#accountAddModal');
           site.reetValidated('#accountAddModal');
           $scope.getAccountList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -84,7 +84,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
           site.hideModal('#accountUpdateModal');
           site.resetValidated('#accountUpdateModal');
           $scope.getAccountList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -124,7 +124,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
           } else if (type == 'deactivate') {
             site.hideModal('#deactivateModal');
           }
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -255,7 +255,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
               site.hideModal('#accountAddModal');
               site.resetValidated('.admin-form');
               $scope.getAccountList();
-            } else {
+            } else if(response.data.error){
               $scope.error = response.data.error;
                if (response.data.error.like('*Name Exists*')) {
                 $scope.error = '##word.name_already_exists##';
@@ -294,7 +294,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
               site.hideModal('#accountAddModal');
               site.resetValidated('.employer-form');
               $scope.getAccountList();
-            } else {
+            } else if(response.data.error){
               $scope.error = response.data.error;
                if (response.data.error.like('*Name Exists*')) {
                 $scope.error = '##word.name_already_exists##';
@@ -333,7 +333,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
               site.hideModal('#accountAddModal');
               site.resetValidated('.job-seeker-form');
               $scope.getAccountList();
-            } else {
+            } else if(response.data.error){
               $scope.error = response.data.error;
                if (response.data.error.like('*Name Exists*')) {
                 $scope.error = '##word.name_already_exists##';
@@ -369,6 +369,55 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getPartnerList = function () {
+    $scope.busy = true;
+    $scope.partnerList = [];
+
+    $http({
+      method: 'POST',
+      url: '/api/partners/all',
+      data: {
+        where: { active: true },
+        select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list && response.data.list.length > 0) {
+          $scope.partnerList = response.data.list;
+          if ('##query.id##' != 'undefined') {
+            $scope.partner = $scope.partnerList.find((_partner) => {
+              return _partner.id === site.toNumber('##query.id##');
+            });
+          }
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getGender = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.genderList = [];
+    $http({
+      method: 'POST',
+      url: '/api/gender/all',
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.genderList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#accountSearchModal');
@@ -376,4 +425,6 @@ app.controller('accounts', function ($scope, $http, $timeout) {
 
   $scope.getAccountList();
   $scope.getAccountsType();
+  $scope.getGender();
+  $scope.getPartnerList();
 });

@@ -105,6 +105,15 @@
                         </div>
 
                         <div class="row">
+                          <i-list v="r" class="col6" label="##word.partner##" ng-model="user.partner" display="name_##session.lang##" items="partnersList" ng-search="user.$partner"></i-list>
+                          <i-control v="r" class="col6" ng-model="user.phone" label="##word.phone_number##"></i-control>
+                        </div>
+
+                        <div class="row">
+                          <i-textarea ng-model="user.message" label="##word.message##"> </i-textarea>
+                        </div>
+
+                        <div class="row">
                           <h2 class="center red">{{error}}</h2>
                         </div>
                         <br />
@@ -131,6 +140,15 @@
                           <i-control v="r" type="password" class="col pass" ng-model="user.password" label="##word.password##"></i-control>
                           <i-control v="r" type="password" class="col pass" ng-model="user.retype_password" label="##word.retype_password##"></i-control>
                           <i-checkbox class="col" ng-change="showPassword()" ng-model="show_password" label="##word.show_password##"></i-checkbox>
+                        </div>
+
+                        <div class="row">
+                          <i-list v="r" class="col6" label="##word.partner##" ng-model="user.partner" display="name_##session.lang##" items="partnersList" ng-search="user.$partner"></i-list>
+                          <i-control v="r" class="col6" ng-model="user.phone" label="##word.phone_number##"></i-control>
+                        </div>
+
+                        <div class="row">
+                          <i-textarea v="r" ng-model="user.message" label="##word.message##"> </i-textarea>
                         </div>
 
                         <div class="row">

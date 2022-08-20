@@ -33,7 +33,7 @@ app.controller('jobFields', function ($scope, $http, $timeout) {
           site.hideModal('#jobFieldsAddModal');
           site.resetValidated('#jobFieldsAddModal');
           $scope.getJobFieldsList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -72,7 +72,7 @@ app.controller('jobFields', function ($scope, $http, $timeout) {
           site.hideModal('#jobFieldsUpdateModal');
           site.resetValidated('#jobFieldsUpdateModal');
           $scope.getJobFieldsList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';

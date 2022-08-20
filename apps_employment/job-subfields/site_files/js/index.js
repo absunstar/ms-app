@@ -38,7 +38,7 @@ app.controller('jobSubfields', function ($scope, $http, $timeout) {
           site.hideModal('#jobSubFieldsAddModal');
           site.resetValidated('#jobSubFieldsAddModal');
           $scope.getJobSubFieldsList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -77,7 +77,7 @@ app.controller('jobSubfields', function ($scope, $http, $timeout) {
           site.hideModal('#jobSubFieldsUpdateModal');
           site.resetValidated('#jobSubFieldsUpdateModal');
           $scope.getJobSubFieldsList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';

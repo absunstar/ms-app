@@ -33,7 +33,7 @@ app.controller('subPartners', function ($scope, $http, $timeout) {
           site.hideModal('#subPartnerAddModal');
           site.resetValidated('#subPartnerAddModal');
           $scope.getSubPartnerList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -72,7 +72,7 @@ app.controller('subPartners', function ($scope, $http, $timeout) {
           site.hideModal('#subPartnerUpdateModal');
           site.resetValidated('#subPartnerUpdateModal');
           $scope.getSubPartnerList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';

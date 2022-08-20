@@ -41,7 +41,7 @@ app.controller('companies', function ($scope, $http, $timeout) {
           site.hideModal('#companyAddModal');
           site.resetValidated('#companyAddModal');
           $scope.getCompanyList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*not allowed to add other companies*')) {
             $scope.error = '##word.not_allowed_add_other_companies##';
@@ -87,7 +87,7 @@ app.controller('companies', function ($scope, $http, $timeout) {
           site.hideModal('#companyUpdateModal');
           site.resetValidated('#companyUpdateModal');
           $scope.getCompanyList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';

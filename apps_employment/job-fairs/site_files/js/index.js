@@ -38,7 +38,7 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
           site.hideModal('#jobFairsAddModal');
           site.resetValidated('#jobFairsAddModal');
           $scope.getJobFairsList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -77,7 +77,7 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
           site.hideModal('#jobFairsUpdateModal');
           site.resetValidated('#jobFairsUpdateModal');
           $scope.getJobFairsList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';

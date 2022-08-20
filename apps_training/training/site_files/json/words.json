@@ -1,0 +1,43 @@
+[
+    {
+        "name": "training",
+        "en": "Training",
+        "ar": "التدريب"
+    },
+    {
+        "name": "training_new",
+        "en": "New Training",
+        "ar": "تدريب جديد"
+    },
+    {
+        "name": "training_add",
+        "en": "Add Training",
+        "ar": "إضافة تدريب "
+    },
+    {
+        "name": "training_edit",
+        "en": "Edit Training",
+        "ar": "تعديل تدريب "
+    },
+    {
+        "name": "training_details",
+        "en": "Training Details",
+        "ar": "تفاصيل التدريب "
+    },
+    {
+        "name": "training_delete",
+        "en": "Delete Training",
+        "ar": "حذف تدريب "
+    },
+    {
+        "name": "privacy_type",
+        "en": "Privacy Type",
+        "ar": "نوع الخصوصية"
+    },
+    {
+        "name": "category",
+        "en": "Category",
+        "ar": "الفئة"
+    }
+
+]

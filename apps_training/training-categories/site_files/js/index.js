@@ -35,7 +35,7 @@ app.controller('trainingCategories', function ($scope, $http, $timeout) {
           site.hideModal('#trainingCategoriesAddModal');
           site.resetValidated('#trainingCategoriesAddModal');
           $scope.getTrainingCategoriesList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -74,7 +74,7 @@ app.controller('trainingCategories', function ($scope, $http, $timeout) {
           site.hideModal('#trainingCategoriesUpdateModal');
           site.resetValidated('#trainingCategoriesUpdateModal');
           $scope.getTrainingCategoriesList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';

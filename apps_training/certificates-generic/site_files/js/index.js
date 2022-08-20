@@ -76,7 +76,7 @@ app.controller('certificatesGeneric', function ($scope, $http, $timeout) {
           site.hideModal('#certificatesPartnerGenericAddModal');
           site.resetValidated('#certificatesPartnerGenericAddModal');
           $scope.getCertificatesPartnerGenericList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -115,7 +115,7 @@ app.controller('certificatesGeneric', function ($scope, $http, $timeout) {
           site.hideModal('#certificatesPartnerGenericUpdateModal');
           site.resetValidated('#certificatesPartnerGenericUpdateModal');
           $scope.getCertificatesPartnerGenericList();
-        } else {
+        } else if(response.data.error){
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
