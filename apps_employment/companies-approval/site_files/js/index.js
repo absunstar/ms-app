@@ -2,6 +2,8 @@ app.controller('companiesApproval', function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.getCompanyList = function (where) {
+    where = where || {};
+
     $scope.busy = true;
     $scope.list = [];
     where['active'] = true;
@@ -16,7 +18,7 @@ app.controller('companiesApproval', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
+        if (response.data.done && response.data.list && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = $scope.list.length;
         }
@@ -53,24 +55,21 @@ app.controller('companiesApproval', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.updateCompany = function (company,type) {
+  $scope.updateCompany = function (company, type) {
     $scope.error = '';
-  
-    if(type == 'approve'){
+
+    if (type == 'approve') {
       company.approve = {
-        id : 2,
-        en : 'Been Approved',
-        ar : 'تم الموافقة'
-  
+        id: 2,
+        en: 'Been Approved',
+        ar: 'تم الموافقة',
       };
-  
-    } else if(type == 'reject'){
+    } else if (type == 'reject') {
       company.approve = {
-        id : 3,
-        en : 'Rejected',
-        ar : 'تم الرفض'
+        id: 3,
+        en: 'Rejected',
+        ar: 'تم الرفض',
       };
-  
     }
 
     $scope.busy = true;
@@ -85,7 +84,6 @@ app.controller('companiesApproval', function ($scope, $http, $timeout) {
           $scope.getCompanyList({});
         } else {
           $scope.error = response.data.error;
-         
         }
       },
       function (err) {
@@ -108,9 +106,8 @@ app.controller('companiesApproval', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
+        if (response.data.done && response.data.list && response.data.list.length > 0) {
           $scope.industryList = response.data.list;
-          
         }
       },
       function (err) {
@@ -134,9 +131,8 @@ app.controller('companiesApproval', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
+        if (response.data.done && response.data.list && response.data.list.length > 0) {
           $scope.countryList = response.data.list;
-          
         }
       },
       function (err) {
@@ -154,15 +150,14 @@ app.controller('companiesApproval', function ($scope, $http, $timeout) {
       method: 'POST',
       url: '/api/cities/all',
       data: {
-        where: { active: true,'country.id' : id },
+        where: { active: true, 'country.id': id },
         select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
       },
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
+        if (response.data.done && response.data.list && response.data.list.length > 0) {
           $scope.cityList = response.data.list;
-          
         }
       },
       function (err) {
@@ -171,7 +166,6 @@ app.controller('companiesApproval', function ($scope, $http, $timeout) {
       }
     );
   };
-
 
   $scope.searchAll = function () {
     $scope.getCompanyList($scope.search);

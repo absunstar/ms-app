@@ -19,6 +19,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.user = response.data.doc;
+          $scope.user.short_list = $scope.user.short_list || [];
 
           if ('##query.id##' != 'undefined' && ('##user.role.name##' == 'employer' || '##user.role.name##' == 'admin')) {
             $scope.short = false;
@@ -56,6 +57,8 @@ app.controller('resume', function ($scope, $http, $timeout) {
   };
 
   $scope.shortList = function (user, type) {
+    user.short_list = user.short_list || [];
+
     if (type == 'add') {
       user.short_list.push(site.toNumber('##user.id##'));
       $scope.short = true;

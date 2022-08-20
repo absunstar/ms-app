@@ -107,68 +107,68 @@ module.exports = function init(site) {
 
 
     if(where['qualifications'] && where['qualifications'].length > 0){
-      where.$or = where.$or || []
+      where.$and = where.$and || []
       for (let i = 0; i < where['qualifications'].length; i++) {
         let element = where['qualifications'][i];
-        where.$or.push({
+        where.$and.push({
           'qualification.id': element.id
         })
       }
     }
 
     if(where['experiences'] && where['experiences'].length > 0){
-      where.$or = where.$or || []
+      where.$and = where.$and || []
       for (let i = 0; i < where['experiences'].length; i++) {
         let element = where['experiences'][i];
-        where.$or.push({
-          'profile.experience.id': element.id
+        where.$and.push({
+          'experience.id': element.id
         })
       }
     }
     
     if(where['countries'] && where['countries'].length > 0){
-      where.$or = where.$or || []
+      where.$and = where.$and || []
       for (let i = 0; i < where['countries'].length; i++) {
         let element = where['countries'][i];
-        where.$or.push({
-          'profile.country.id': element.id
+        where.$and.push({
+          'country.id': element.id
         })
       }
     }
 
     if(where['languages'] && where['languages'].length > 0){
-      where.$or = where.$or || []
+      where.$and = where.$and || []
       for (let i = 0; i < where['languages'].length; i++) {
         let element = where['languages'][i];
-        where.$or.push({
-          'profile.languages.id': element.id
+        where.$and.push({
+          'languages.id': element.id
         })
       }
     }
 
     if(where['genders'] && where['genders'].length > 0){
-      where.$or = where.$or || []
+      where.$and = where.$and || []
       for (let i = 0; i < where['genders'].length; i++) {
         let element = where['genders'][i];
-        where.$or.push({
-          'profile.gender.id': element.id
+        where.$and.push({
+          'gender.id': element.id
         })
       }
     }
 
     if(where['general_search']) {
 
-      where.$or = where.$or || []
+      where.$and = where.$and || []
 
-      where.$or.push({
+      where.$and.push({
         'job_title': site.get_RegExp(where['general_search'], "i")
       })
 
-      where.$or.push({
+      where.$and.push({
         'first_name': site.get_RegExp(where['general_search'], "i")
       })
 
-      where.$or.push({
+      where.$and.push({
         'last_name': site.get_RegExp(where['general_search'], "i")
       })
     }
