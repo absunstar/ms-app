@@ -61,6 +61,7 @@ module.exports = function init(site) {
       },
       (err, doc) => {
         if (!err && doc) {
+          console.log(doc);
           response.error = 'Name Exists';
           res.json(response);
         } else {
