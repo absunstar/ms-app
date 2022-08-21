@@ -127,7 +127,7 @@
     {
         "name": "password_err_match",
         "en": "password does not match",
-        "ar": "كلمة السر غير متطابقة"
+        "ar": "كلمة المرور غير متطابقة"
     },
     {
         "name": "register_now",
@@ -197,17 +197,27 @@
     {
         "name": "show_password",
         "en": "Show Password",
-        "ar": "إظهار كلمة السر"
+        "ar": "إظهار كلمة المرور"
     },
     {
         "name": "password",
         "en": "Password",
-        "ar": "كلمة السر"
+        "ar": "كلمة المرور"
+    },
+    {
+        "name": "password_link",
+        "en": "Password Link",
+        "ar": "رابط كلمة المرور"
+    },
+    {
+        "name": "activation_link",
+        "en": "Activation Link",
+        "ar": "رابط التنشيط"
     },
     {
         "name": "retype_password",
         "en": "Retype password",
-        "ar": "إعادة كتابة كلمة السر"
+        "ar": "إعادة كتابة كلمة المرور"
     },
     {
         "name": "mobile_email",
