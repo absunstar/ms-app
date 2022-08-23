@@ -53,7 +53,7 @@ app.controller('partners', function ($scope, $http, $timeout) {
     site.showModal('#partnerUpdateModal');
   };
 
-  $scope.updatePartner = function (partner) {
+  $scope.updatePartner = function (partner,type) {
     $scope.error = '';
     const v = site.validated('#partnerUpdateModal');
     if (!v.ok) {
@@ -69,8 +69,13 @@ app.controller('partners', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#partnerUpdateModal');
-          site.resetValidated('#partnerUpdateModal');
+          if (type == 'partner') {
+            site.hideModal('#partnerUpdateModal');
+            site.resetValidated('#partnerUpdateModal');
+          } else if (type == 'account') {
+            site.hideModal('#accountsModal');
+          }
+        
           $scope.getPartnerList();
         } else if(response.data.error){
           $scope.error = response.data.error;
@@ -191,6 +196,61 @@ app.controller('partners', function ($scope, $http, $timeout) {
     $scope.getPartnerList($scope.search);
     site.hideModal('#partnerSearchModal');
     $scope.search = {};
+  };
+
+  $scope.showAccountsManagementModal = function (partner) {
+    $scope.error = '';
+    $scope.partner = partner;
+    site.showModal('#accountsModal');
+  };
+
+  $scope.addAccount = function (partner) {
+    $scope.error = '';
+    if (partner.$account_select && partner.$account_select.id) {
+      partner.accounts_list = partner.accounts_list || [];
+      let find_partner = partner.accounts_list.find((_partner) => {
+        return _partner.id === partner.$account_select.id;
+      });
+      if (!find_partner) {
+        partner.accounts_list.push(partner.$account_select);
+      }
+    } else {
+      $scope.error = '##word.partner_must_be_selected##';
+      return;
+    }
+  };
+
+  $scope.getPartnersAccountsList = function (ev) {
+    $scope.error = '';
+    $scope.busy = true;
+    if (ev.which !== 13) {
+      return;
+    }
+
+    $scope.partner.$accountsList = [];
+    $http({
+      method: 'POST',
+      url: '/api/users/all',
+      data: {
+        search: $scope.partner.$partner_search,
+        where: {
+          active: true,
+          'role.name': 'partner',
+          'partners_list.partner.id': $scope.partner.id,
+        },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.users.length > 0) {
+          $scope.partner.$accountsList = response.data.users;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
   };
 
   $scope.getPartnerList = function (where) {

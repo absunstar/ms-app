@@ -14,7 +14,8 @@
             <i-control class="col6" label="##word.name_en##" ng-model="search.name_en"></i-control>
           </div>
           <div class="row">
-            <i-list ng-show="'##query.id##' == 'undefined'" class="col6" label="##word.partner##" ng-model="search.partner" display="name_##session.lang##" items="partnerList" ng-search="_search.$partner"></i-list>
+            <i-list ng-show="'##query.id##' == 'undefined'" class="col6" label="##word.sub_partner##" ng-model="search.sub_partner" display="name_##session.lang##" items="subPartnerList" ng-search="_search.$sub_partner"></i-list>
+            <i-control type="text" class="col6" ng-model="search.phone" label="##word.phone##"></i-control>
           </div>
 
           <div class="row">

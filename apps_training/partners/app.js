@@ -212,6 +212,23 @@ module.exports = function init(site) {
     };
 
     let where = req.body.where || {};
+    let search = req.body.search || {};
+
+    if(search){
+      where.$or = [];
+
+      where.$or.push({
+        name_ar: site.get_RegExp(search, 'i'),
+      });
+
+      where.$or.push({
+        name_en: site.get_RegExp(search, 'i'),
+      });
+
+      where.$or.push({
+        phone: site.get_RegExp(search, 'i'),
+      });
+    }
 
     if (where['name_ar']) {
       where['name_ar'] = site.get_RegExp(where['name_ar'], 'i');

@@ -1,0 +1,56 @@
+<div id="accountsModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 class="center">
+        ##word.accounts##
+        <i class="fa fa-plus"></i>
+      </h2>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <i-control type="text" class="col4" ng-model="partner.$account_search" ng-keydown="getPartnersAccountsList($event)" label="##word.search##"></i-control>
+        <i-list class="col5" label="##word.account##" ng-model="partner.$account_select" display="first_name" items="partner.$accountsList" ng-search="partner.$account"></i-list>
+        <div class="col3">
+          <br>
+          <i-button type="add" label="##word.add##" ng-click="addAccount(partner)"></i-button>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <table x-permissions="login" class="table hover text-center">
+          <thead>
+            <tr>
+              <th>##word.partner##</th>
+              <th>##word.email##</th>
+              <th>##word.phone##</th>
+              <th class="not-print">##word.actions##</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="c in partner.accounts_list">
+
+              <td class="center title">{{c.first_name}}</td>
+              <td class="center title">{{c.email}}</td>
+              <td class="center title">{{c.phone}}</td>
+
+              <td class="center not-print">
+                <i-button type="delete" ng-click="partner.accounts_list.splice($index,1)"></i-button>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="bold text-center text-danger">{{error}}</h2>
+      <i-button type="save" label="##word.save##" ng-click="updatePartner(partner,'account')"></i-button>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#accountsModal')"></i-button>
+    </div>
+  </div>
+</div>

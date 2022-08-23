@@ -3,16 +3,15 @@
     <legend>##word.basic_information##</legend>
     <div id="basicInformation" class="">
       <div class="row">
-        <div class="col2">
-          <i-image ng-model="industry.image"></i-image>
-          <div class="row justify-content-md-center">
-            <i-checkbox class="col" label="##word.active##" ng-model="industry.active"> </i-checkbox>
-          </div>
-        </div>
         <div class="col10">
           <div class="row">
             <i-control type="text" class="col6" v="r" ng-model="industry.name_ar" label="##word.industry_name##"></i-control>
             <i-control type="text" class="col6" v="r" ng-model="industry.name_en" label="##word.name_en##"></i-control>
+          </div>
+          <div class="col2">
+            <div class="row justify-content-md-center">
+              <i-checkbox class="col" label="##word.active##" ng-model="industry.active"> </i-checkbox>
+            </div>
           </div>
         </div>
       </div>

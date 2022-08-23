@@ -2,11 +2,6 @@ module.exports = function init(site) {
   const $industry = site.connectCollection('Industries');
 
   site.get({
-    name: 'images',
-    path: __dirname + '/site_files/images/',
-  });
-
-  site.get({
     name: 'Industries',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',

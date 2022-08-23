@@ -10,6 +10,12 @@
         "ar": "قالب الإختبار"
     },
     {
+        "name": "percentage_sum_be_100",
+        "en": "The percentage sum has to be 100.",
+        "ar": "يجب أن يكون إجمالي النسبة 100."
+    },
+    
+    {
         "name": "exam_template_new",
         "en": "New Exam Template",
         "ar": "قالب إختبار جديد"

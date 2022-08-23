@@ -223,10 +223,13 @@ module.exports = function init(site) {
     if (where['name_en']) {
       where['name_en'] = site.get_RegExp(where['name_en'], 'i');
     }
-
-    if (where['partner']) {
-      where['partner.id'] = where['partner'].id;
-      delete where['partner'];
+    
+    if (where['phone']) {
+      where['phone'] = where['phone'];
+    }
+    if (where['sub_partner']) {
+      where['sub_partner.id'] = where['sub_partner'].id;
+      delete where['sub_partner'];
     }
 
     if(where['not_active']){

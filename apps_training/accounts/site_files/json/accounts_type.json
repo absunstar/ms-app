@@ -1,26 +1,32 @@
 [
-    {
-        "id": 1,
-        "name": "admin",
-        "en": "Admin",
-        "ar": "مسئول"
-    },
-    {
-        "id": 2,
-        "name": "trainer",
-        "en": "Trainer",
-        "ar": "مدرب"
-    },
-    {
-        "id": 3,
-        "name": "training_center",
-        "en": "Training Center",
-        "ar": "مركز تدريب"
-    },
-    {
-        "id": 4,
-        "name": "trainee",
-        "en": "Trainee",
-        "ar": "متدرب"
-    }
+  {
+    "id": 1,
+    "name": "admin",
+    "en": "Admin",
+    "ar": "مشرف"
+  },
+  {
+    "id": 2,
+    "name": "partner",
+    "en": "Partner",
+    "ar": "شريك"
+  },
+  {
+    "id": 3,
+    "name": "sub_partner",
+    "en": "Sub Partner",
+    "ar": "شريك ثانوي"
+  },
+  {
+    "id": 4,
+    "name": "trainer",
+    "en": "Trainer",
+    "ar": "مدرب"
+  },
+  {
+    "id": 5,
+    "name": "trainee",
+    "en": "Trainee",
+    "ar": "متدرب"
+  }
 ]

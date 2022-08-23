@@ -8,7 +8,7 @@ app.controller('trainingCenters', function ($scope, $http, $timeout) {
     $scope.training_center = {
       image: '/images/training_center.png',
       active: true,
-      partner: $scope.partner,
+      sub_partner: $scope.sub_partner || null,
     };
 
     site.showModal('#trainingCenterAddModal');
@@ -20,10 +20,6 @@ app.controller('trainingCenters', function ($scope, $http, $timeout) {
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
-    }
-
-    if ('##query.id##' != 'undefined') {
-      $scope.training_center.partner = $scope.partner;
     }
 
     $scope.busy = true;
@@ -192,7 +188,7 @@ app.controller('trainingCenters', function ($scope, $http, $timeout) {
 
     where = where || {};
     if ('##query.id##' != 'undefined') {
-      where['partner.id'] = site.toNumber('##query.id##');
+      where['sub_partner.id'] = site.toNumber('##query.id##');
     }
     $http({
       method: 'POST',
@@ -217,25 +213,25 @@ app.controller('trainingCenters', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getPartnerList = function () {
+  $scope.getSubPartnerList = function () {
     $scope.busy = true;
-    $scope.partnerList = [];
+    $scope.subPartnerList = [];
 
     $http({
       method: 'POST',
-      url: '/api/partners/all',
+      url: '/api/sub_partners/all',
       data: {
         where: { active: true },
-        select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
+        select: { id: 1,   name_ar: 1, name_en: 1 },
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list && response.data.list.length > 0) {
-          $scope.partnerList = response.data.list;
+          $scope.subPartnerList = response.data.list;
           if ('##query.id##' != 'undefined') {
-            $scope.partner = $scope.partnerList.find((_partner) => {
-              return _partner.id === site.toNumber('##query.id##');
+            $scope.sub_partner = $scope.subPartnerList.find((_subPartner) => {
+              return _subPartner.id === site.toNumber('##query.id##');
             });
           }
         }
@@ -253,5 +249,5 @@ app.controller('trainingCenters', function ($scope, $http, $timeout) {
   };
 
   $scope.getTrainingCenterList();
-  $scope.getPartnerList();
+  $scope.getSubPartnerList();
 });

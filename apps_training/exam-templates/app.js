@@ -41,6 +41,13 @@ module.exports = function init(site) {
     exam_templates_doc.$req = req;
     exam_templates_doc.$res = res;
 
+    if ((exam_templates_doc.easy + exam_templates_doc.medium + exam_templates_doc.hard) != 100) {
+      response.error = 'The percentage sum has to be 100';
+      res.json(response);
+      return;
+    }
+
+
     exam_templates_doc.add_user_info = site.security.getUserFinger({
       $req: req,
       $res: res,

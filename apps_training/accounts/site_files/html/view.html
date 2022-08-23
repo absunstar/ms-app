@@ -26,8 +26,8 @@
 
           <tr>
             <td class="title">##word.status##</td>
-            <td ng-show="account.active == true" class="green center">##word.active##</td>
-            <td ng-show="account.active == false" class="red center">##word.not_active##</td>
+            <td ng-show="account.active" class="green center">##word.active##</td>
+            <td ng-show="!account.active" class="red center">##word.not_active##</td>
           </tr>
         </table>
       </div>

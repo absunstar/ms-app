@@ -20,7 +20,7 @@
           </div>
 
           <div class="top-actions">
-            <h3 class="bold" ng-show="'##query.id##' != 'undefined'">##word.partner## : {{partner.name_##session.lang##}}</h3>
+            <h3 class="bold" ng-show="'##query.id##' != 'undefined'">##word.sub_partner## : {{sub_partner.name_##session.lang##}}</h3>
          
             <i-button  type="add" label="##word.training_center_new##" ng-click="displayAddTrainingCenter()"></i-button>
             <i-button  type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
@@ -34,6 +34,7 @@
               <tr>
                  <th class="not-print">##word.logo##</th>
                 <th>##word.training_center_name##</th>
+                <th>##word.sub_partner##</th>
                 <th>##word.phone##</th>
                 <th>##word.status##</th>
                 <th class="not-print">##word.actions##</th>
@@ -45,6 +46,7 @@
                   <i-image view class="logo" ng-model="c.image"></i-image>
                 </td>
                 <td class="center title">{{c.name_##session.lang##}}</td>
+                <td class="center title">{{c.sub_partner.name_##session.lang##}}</td>
                 <td class="center title">{{c.phone}}</td>
                 <td class="center">
                   <p ng-show="c.active ==true" class="green">##word.active##</p>

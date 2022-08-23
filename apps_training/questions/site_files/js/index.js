@@ -249,7 +249,7 @@ app.controller('questions', function ($scope, $http, $timeout) {
       url: '/api/training_types/all',
       data: {
         where: { active: true },
-        select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
+        select: { id: 1,   name_ar: 1, name_en: 1 },
       },
     }).then(
       function (response) {
@@ -274,7 +274,7 @@ app.controller('questions', function ($scope, $http, $timeout) {
         url: '/api/training_categories/all',
         data: {
           where: { active: true, 'training_type.id': training_type.id },
-          select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
+          select: { id: 1,   name_ar: 1, name_en: 1 },
         },
       }).then(
         function (response) {

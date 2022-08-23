@@ -301,7 +301,7 @@ app.controller('jobs', function ($scope, $http, $timeout) {
       url: '/api/industries/all',
       data: {
         where: { active: true },
-        select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
+        select: { id: 1,   name_ar: 1, name_en: 1 },
       },
     }).then(
       function (response) {
@@ -327,7 +327,7 @@ app.controller('jobs', function ($scope, $http, $timeout) {
       url: '/api/qualifications/all',
       data: {
         where: { active: true },
-        select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
+        select: { id: 1,   name_ar: 1, name_en: 1 },
       },
     }).then(
       function (response) {
@@ -360,7 +360,7 @@ app.controller('jobs', function ($scope, $http, $timeout) {
       url: '/api/companies/all',
       data: {
         where: where,
-        select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
+        select: { id: 1,   name_ar: 1, name_en: 1 },
       },
     }).then(
       function (response) {
@@ -386,7 +386,7 @@ app.controller('jobs', function ($scope, $http, $timeout) {
       url: '/api/years_of_experience/all',
       data: {
         where: { active: true },
-        select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
+        select: { id: 1,   name_ar: 1, name_en: 1 },
       },
     }).then(
       function (response) {
@@ -412,7 +412,7 @@ app.controller('jobs', function ($scope, $http, $timeout) {
       url: '/api/countries/all',
       data: {
         where: { active: true },
-        select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
+        select: { id: 1,   name_ar: 1, name_en: 1 },
       },
     }).then(
       function (response) {
@@ -438,7 +438,7 @@ app.controller('jobs', function ($scope, $http, $timeout) {
       url: '/api/cities/all',
       data: {
         where: { active: true,'country.id' : id },
-        select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
+        select: { id: 1,   name_ar: 1, name_en: 1 },
       },
     }).then(
       function (response) {
@@ -464,7 +464,7 @@ app.controller('jobs', function ($scope, $http, $timeout) {
       url: '/api/job_fields/all',
       data: {
         where: { active: true },
-        select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
+        select: { id: 1,   name_ar: 1, name_en: 1 },
       },
     }).then(
       function (response) {
@@ -490,7 +490,7 @@ app.controller('jobs', function ($scope, $http, $timeout) {
       url: '/api/job_subfields/all',
       data: {
         where: { active: true,'job_field.id' : id },
-        select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
+        select: { id: 1,   name_ar: 1, name_en: 1 },
       },
     }).then(
       function (response) {

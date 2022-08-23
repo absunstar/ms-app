@@ -6,7 +6,6 @@ app.controller('industry', function ($scope, $http, $timeout) {
   $scope.displayAddIndustry = function () {
     $scope.error = '';
     $scope.industry = {
-      image: '/images/industry.png',
       active: true,
     };
 

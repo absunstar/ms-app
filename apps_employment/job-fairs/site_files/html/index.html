@@ -32,7 +32,6 @@
 
           <table x-permissions="login" class="table hover text-center" id="t1">
               <tr>
-                  <th class="not-print">##word.logo##</th>
                 <th>##word.job_fairs_name##</th>
                 <th>##word.site##</th>
                 <th>##word.event_date##</th>
@@ -40,9 +39,6 @@
               </tr>
             <tbody>
               <tr ng-repeat="c in list">
-                <td class="center not-print">
-                  <i-image view class="logo" ng-model="c.image"></i-image>
-                </td>
                 <td class="center title">{{c.name_##session.lang##}}</td>
                 <td class="center">
                   {{c.website}}

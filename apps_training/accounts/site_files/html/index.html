@@ -60,8 +60,6 @@
                 <i-button ng-hide="!c.active" type="edit" label="##word.edit##" ng-click="displayUpdateAccount(c)"></i-button>
                 <i-button ng-hide="!c.active" label="##word.activation_link##" ng-click="displayDetailsCity(c)"></i-button>
                 <i-button ng-hide="!c.active" label="##word.password_link##" ng-click="displayDetailsCity(c)"></i-button>
-                <i-button type="edit" label="##word.unlimited_companies##" ng-click="update(c,'unlimit')" ng-show="c.role.name == 'employer' && c.active && c.limited_companies== true"></i-button>
-                <i-button type="edit" label="##word.limited_companies##" ng-click="update(c,'limit')" ng-show="c.role.name == 'employer' && c.active && !c.limited_companies"></i-button>
                 <i-button loading="busy" type="delete" label="##word.delete##" ng-click="displayDeleteAccount(c)"></i-button>
               </td>
             </tr>

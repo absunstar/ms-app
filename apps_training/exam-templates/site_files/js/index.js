@@ -37,6 +37,8 @@ app.controller('examTemplates', function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
+          } else if (response.data.error.like('*sum has to be 100*')) {
+            $scope.error = '##word.percentage_sum_be_100##';
           }
         }
       },
@@ -76,6 +78,8 @@ app.controller('examTemplates', function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
+          } else if (response.data.error.like('*sum has to be 100*')) {
+            $scope.error = '##word.percentage_sum_be_100##';
           }
         }
       },
@@ -112,8 +116,13 @@ app.controller('examTemplates', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-        } else {
+        } else if (response.data.error) {
           $scope.error = response.data.error;
+          if (response.data.error.like('*Name Exists*')) {
+            $scope.error = '##word.name_already_exists##';
+          } else if (response.data.error.like('*sum has to be 100*')) {
+            $scope.error = '##word.percentage_sum_be_100##';
+          }
         }
       },
       function (err) {

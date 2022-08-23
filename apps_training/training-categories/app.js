@@ -248,7 +248,6 @@ module.exports = function init(site) {
       },
       (err, docs, count) => {
         if (!err) {
-          console.log(docs);
           response.done = true;
           response.list = docs;
           response.count = count;

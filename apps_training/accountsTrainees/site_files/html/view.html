@@ -1,0 +1,40 @@
+<div ng-hide="busy" class="row">
+  <div id="basicInformation" class="">
+    <fieldset>
+      <legend>##word.basic_information##</legend>
+      <div class="col9">
+        <table id="basicInformationTable" class="table hover bold">
+          <tr>
+            <td class="title">##word.first_name##</td>
+            <td class="center">{{account.first_name}}</td>
+          </tr>
+
+          <tr>
+            <td class="title">##word.last_name##</td>
+            <td class="center">{{account.last_name}}</td>
+          </tr>
+
+          <tr>
+            <td class="title">##word.email##</td>
+            <td class="center">{{account.email}}</td>
+          </tr>
+
+          <tr>
+            <td class="title">##word.user_type##</td>
+            <td class="center">{{account.role.##session.lang##}}</td>
+          </tr>
+
+          <tr>
+            <td class="title">##word.status##</td>
+            <td ng-show="account.active == true" class="green center">##word.active##</td>
+            <td ng-show="account.active == false" class="red center">##word.not_active##</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="col3">
+        <i-image view ng-model="account.image"></i-image>
+      </div>
+    </fieldset>
+  </div>
+</div>

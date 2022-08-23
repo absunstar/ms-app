@@ -8,81 +8,10 @@ app.controller('register', function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    if ($scope.user) {
-      if ($scope.user.password === $scope.user.retype_password) {
-        $scope.user.role = $scope.accountsTypeList[3];
-        $scope.busy = true;
-        $http({
-          method: 'POST',
-          url: '/api/register',
-          data: $scope.user,
-        }).then(
-          function (response) {
-            if (response.data.error) {
-              $scope.error = response.data.error;
-              $scope.busy = false;
-            }
-            if (response.data.user) {
-              window.location.href = '/';
-            }
-          },
-          function (err) {
-            $scope.busy = false;
-            $scope.error = err;
-          }
-        );
-      } else {
-        $scope.error = '##word.password_err_match##';
-      }
-    }
-  };
 
-  $scope.addTrainer = function () {
-    $scope.error = '';
-    const v = site.validated('.trainer-form');
-    if (!v.ok) {
-      $scope.error = v.messages[0].ar;
-      return;
-    }
     if ($scope.user) {
       if ($scope.user.password === $scope.user.retype_password) {
-        $scope.user.role = $scope.accountsTypeList[1];
-        $scope.busy = true;
-        $http({
-          method: 'POST',
-          url: '/api/register',
-          data: $scope.user,
-        }).then(
-          function (response) {
-            if (response.data.error) {
-              $scope.error = response.data.error;
-              $scope.busy = false;
-            }
-            if (response.data.user) {
-              window.location.href = '/';
-            }
-          },
-          function (err) {
-            $scope.busy = false;
-            $scope.error = err;
-          }
-        );
-      } else {
-        $scope.error = '##word.password_err_match##';
-      }
-    }
-  };
-
-  $scope.addTrainingCenter = function () {
-    $scope.error = '';
-    const v = site.validated('.training-center-form');
-    if (!v.ok) {
-      $scope.error = v.messages[0].ar;
-      return;
-    }
-    if ($scope.user) {
-      if ($scope.user.password === $scope.user.retype_password) {
-        $scope.user.role = $scope.accountsTypeList[2];
+        $scope.user.role = $scope.accountsTypeList[4];
         $scope.busy = true;
         $http({
           method: 'POST',
@@ -136,31 +65,6 @@ app.controller('register', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getPartnerList = function () {
-    $scope.busy = true;
-    $scope.partnersList = [];
-
-    $http({
-      method: 'POST',
-      url: '/api/partners/all',
-      data: {
-        where: { active: true },
-        select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list && response.data.list.length > 0) {
-          $scope.partnersList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
   $scope.getGender = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -182,5 +86,4 @@ app.controller('register', function ($scope, $http, $timeout) {
 
   $scope.getAccountsType();
   $scope.getGender();
-  $scope.getPartnerList();
 });

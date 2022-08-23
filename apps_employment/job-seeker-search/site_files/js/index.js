@@ -56,7 +56,7 @@ app.controller('jobSeekerSearch', function ($scope, $http, $timeout) {
       url: '/api/years_of_experience/all',
       data: {
         where: { active: true },
-        select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
+        select: { id: 1,   name_ar: 1, name_en: 1 },
       },
     }).then(
       function (response) {
@@ -81,7 +81,7 @@ app.controller('jobSeekerSearch', function ($scope, $http, $timeout) {
       url: '/api/languages/all',
       data: {
         where: { active: true },
-        select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
+        select: { id: 1,   name_ar: 1, name_en: 1 },
       },
     }).then(
       function (response) {
@@ -106,7 +106,7 @@ app.controller('jobSeekerSearch', function ($scope, $http, $timeout) {
       url: '/api/qualifications/all',
       data: {
         where: { active: true },
-        select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
+        select: { id: 1,   name_ar: 1, name_en: 1 },
       },
     }).then(
       function (response) {
@@ -131,7 +131,7 @@ app.controller('jobSeekerSearch', function ($scope, $http, $timeout) {
       url: '/api/countries/all',
       data: {
         where: { active: true },
-        select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
+        select: { id: 1,   name_ar: 1, name_en: 1 },
       },
     }).then(
       function (response) {

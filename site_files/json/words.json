@@ -15,6 +15,11 @@
     "ar": "الجنس"
   },
   {
+    "name": "accounts_management",
+    "en": "Accounts Management",
+    "ar": "إدارة الحسابات"
+},
+  {
     "name": "birthdate",
     "en": "Birth Date",
     "ar": "تاريخ الميلاد"

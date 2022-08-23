@@ -223,6 +223,9 @@ module.exports = function init(site) {
       where['name_en'] = site.get_RegExp(where['name_en'], 'i');
     }
 
+    if (where['phone']) {
+      where['phone'] = where['phone'];
+    }
     
     if (where['not_active']) {
       where['active'] = false;

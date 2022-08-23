@@ -50,14 +50,19 @@
         "ar": "أنشئ حساب مسئول"
     },
     {
-        "name": "create_account_employer",
-        "en": "Create an account Employer",
-        "ar": "أنشئ حساب صاحب شركة"
+        "name": "create_account_partner",
+        "en": "Create an account Partner",
+        "ar": "أنشئ حساب شريك"
     },
     {
-        "name": "create_account_job_seeker",
-        "en": "Create an account Job Seeker",
-        "ar": "أنشئ حساب باحث عن عمل"
+        "name": "create_account_sub_partner",
+        "en": "Create an account Sub Partner",
+        "ar": "أنشئ حساب شريك ثانوي"
+    },
+    {
+        "name": "create_account_trainer",
+        "en": "Create an account Trainer",
+        "ar": "أنشئ حساب مدرب"
     },
     {
         "name": "deactivate",
@@ -148,16 +153,6 @@
         "name": "register_as_trainee",
         "en": "Register As Trainee",
         "ar": "تسجيل الدخول كمتدرب"
-    },
-    {
-        "name": "register_as_trainer",
-        "en": "Register As Trainer",
-        "ar": "تسجيل الدخول كمدرب"
-    },
-    {
-        "name": "register_as_training_center",
-        "en": "Register As Training_center",
-        "ar": "تسجيل الدخول كمركز تدريب"
     },
     {
         "name": "create_account",

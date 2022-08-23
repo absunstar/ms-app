@@ -1,143 +1,228 @@
 <div id="accountAddModal" class="modal" fixed>
   <div class="modal-content">
-      <div class="modal-header">
-          <span class="close">&times;</span>
-          <h2 class="center">
-              ##word.account_add##
-              <i class="fa fa-plus "></i>
-          </h2>
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 class="center">
+        ##word.account_add##
+        <i class="fa fa-plus"></i>
+      </h2>
+    </div>
 
-      </div>
+    <div class="modal-body">
+      <div class="row">
+        <section class="py-5">
+          <div class="container py-4">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="nav flex-column v-tabs" aria-orientation="vertical">
+                  <a class="nav-link mb-3 p-3 shadow active" id="v-admin-tab" data-toggle="pill" onclick="site.vTab('v-admin')" role="tab" aria-controls="v-admin" aria-selected="true">
+                    <i class="fa-solid fa-people-roof mr-2"></i>
+                    <span class="font-weight-bold small text-uppercase"> ##word.admin## </span></a
+                  >
 
-      <div class="modal-body">
-        <div class="row">
-            <section class="py-5">
-              <div class="container py-4">
-  
-                <div class="row">
-                  <div class="col-md-3">
-                    <div class="nav flex-column v-tabs" aria-orientation="vertical">
-                      <a class="nav-link mb-3 p-3 shadow active" id="v-admin-tab" data-toggle="pill" onclick="site.vTab('v-admin')" role="tab" aria-controls="v-admin" aria-selected="true">
-                        <i class="fa-solid fa-people-roof mr-2"></i>
-                        <span class="font-weight-bold small text-uppercase"> ##word.admin## </span></a
-                      >
-  
-                      <a class="nav-link mb-3 p-3 shadow" id="v-trainee-tab" data-toggle="pill" onclick="site.vTab('v-trainee')" role="tab" aria-controls="v-trainee" aria-selected="false">
-                        <i class="fa-solid fa-person mt-2"></i>
-                        <span class="font-weight-bold small text-uppercase">##word.trainee##</span></a
-                      >
+                  <a class="nav-link mb-3 p-3 shadow" id="v-partner-tab" data-toggle="pill" onclick="site.vTab('v-partner')" role="tab" aria-controls="v-partner" aria-selected="false">
+                    <i class="fa-solid fa-person mt-2"></i>
+                    <span class="font-weight-bold small text-uppercase">##word.partner##</span></a
+                  >
 
-                      <a class="nav-link mb-3 p-3 shadow" id="v-trainer-tab" data-toggle="pill" onclick="site.vTab('v-trainer')" role="tab" aria-controls="v-trainer" aria-selected="false">
-                        <i class="fa-solid fa-person mt-2"></i>
-                        <span class="font-weight-bold small text-uppercase">##word.trainer##</span></a
-                      >
-  
-                      <a class="nav-link mb-3 p-3 shadow" id="v-training-center-tab" data-toggle="pill" onclick="site.vTab('v-training-center')" role="tab" aria-controls="v-training-center" aria-selected="false">
-                        <i class="fa-solid fa-person mt-2"></i>
-                        <span class="font-weight-bold small text-uppercase">##word.training_center##</span></a
-                      >
-                    </div>
-                  </div>
-  
-                  <div class="col-md-9">
-                    <div class="v-contents">
+                  <a class="nav-link mb-3 p-3 shadow" id="v-sub-partner-tab" data-toggle="pill" onclick="site.vTab('v-sub-partner')" role="tab" aria-controls="v-sub-partner" aria-selected="false">
+                    <i class="fa-solid fa-person mt-2"></i>
+                    <span class="font-weight-bold small text-uppercase">##word.sub_partner##</span></a
+                  >
 
-                        <div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-admin-content" role="tabpanel" aria-labelledby="v-admin-tab">
-                            <div class="admin-form">
-                              <div class="row">
-                                <i-control v="r" class="col5" ng-model="user.first_name" label="##word.first_name##"></i-control>
-                                <i-control v="r" class="col5" ng-model="user.last_name" label="##word.last_name##"></i-control>
-                                <i-image class="col2" ng-model="user.image"></i-image>
-                              </div>
-      
-                              <i-control v="r" class="row" ng-model="user.email" label="##word.email##"></i-control>
-      
-                              <div class="row">
-                                <i-control v="r" type="password" class="col pass" ng-model="user.password" label="##word.password##"></i-control>
-                                <i-control v="r" type="password" class="col pass" ng-model="user.retype_password" label="##word.retype_password##"></i-control>
-                                <i-checkbox class="col" ng-change="showPass()" ng-model="show_password" label="##word.show_password##"></i-checkbox>
-                              </div>
-      
-                              <div class="row">
-                                <h2 class="center red">{{error}}</h2>
-                              </div>
-                              <br />
-                              <br />
-                              <br />
-      
-                              <div class="center">
-                                <i-button class="center" label="##word.create_account_admin##" ng-click="addAdmin()"></i-button>
-                              </div>
-                            </div>
-                        </div>
-
-                      <div class="tab-pane fade shadow rounded bg-white  p-5" id="v-employer-content" role="tabpanel" aria-labelledby="v-employer-tab">
-                        <div class="employer-form">
-                          <div class="row">
-                            <i-control v="r" class="col5" ng-model="user.first_name" label="##word.first_name##"></i-control>
-                            <i-control v="r" class="col5" ng-model="user.last_name" label="##word.last_name##"></i-control>
-                            <i-image class="col2" ng-model="user.image"></i-image>
-                          </div>
-  
-                          <i-control v="r" class="row" ng-model="user.email" label="##word.email##"></i-control>
-  
-                          <div class="row">
-                            <i-control v="r" type="password" class="col pass" ng-model="user.password" label="##word.password##"></i-control>
-                            <i-control v="r" type="password" class="col pass" ng-model="user.retype_password" label="##word.retype_password##"></i-control>
-                            <i-checkbox class="col" ng-change="showPass()" ng-model="show_password" label="##word.show_password##"></i-checkbox>
-                          </div>
-  
-                          <div class="row">
-                            <h2 class="center red">{{error}}</h2>
-                          </div>
-                          <br />
-                          <br />
-                          <br />
-  
-                          <div class="center">
-                            <i-button class="center" label="##word.create_account_employer##" ng-click="addEmployer()"></i-button>
-                          </div>
-                        </div>
-                      </div>
-  
-                      <div class="tab-pane fade shadow rounded bg-white p-5" id="v-job-seeker-content" role="tabpanel" aria-labelledby="v-job-seeker-tab">
-                        <div class="job-seeker-form">
-                          <div class="row">
-                            <i-control v="r" class="col5" ng-model="user.first_name" label="##word.first_name##"></i-control>
-                            <i-control v="r" class="col5" ng-model="user.last_name" label="##word.last_name##"></i-control>
-                            <i-image class="col2" ng-model="user.image"></i-image>
-                          </div>
-  
-                          <i-control v="r" class="row" ng-model="user.email" label="##word.email##"></i-control>
-  
-                          <div class="row">
-                            <i-control v="r" type="password" class="col pass" ng-model="user.password" label="##word.password##"></i-control>
-                            <i-control v="r" type="password" class="col pass" ng-model="user.retype_password" label="##word.retype_password##"></i-control>
-                            <i-checkbox class="col" ng-change="showPass()" ng-model="show_password" label="##word.show_password##"></i-checkbox>
-                          </div>
-  
-                          <div class="row">
-                            <h2 class="center red">{{error}}</h2>
-                          </div>
-                          <br />
-                          <br />
-                          <br />
-  
-                          <div class="center">
-                            <i-button class="center" label="##word.create_account_job_seeker##" ng-click="addJobSeeker()"></i-button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <a class="nav-link mb-3 p-3 shadow" id="v-trainer-tab" data-toggle="pill" onclick="site.vTab('v-trainer')" role="tab" aria-controls="v-trainer" aria-selected="false">
+                    <i class="fa-solid fa-person mt-2"></i>
+                    <span class="font-weight-bold small text-uppercase">##word.trainer##</span></a
+                  >
                 </div>
               </div>
-            </section>
-          </div>
-      </div>
 
-      <div class="modal-footer center">
-          <i-button type="close" label="##word.close##" onclick="site.hideModal( '#accountAddModal')"></i-button>
+              <div class="col-md-9">
+                <div class="v-contents">
+                  <div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-admin-content" role="tabpanel" aria-labelledby="v-admin-tab">
+                    <div class="admin-form">
+                      <div class="row">
+                        <i-image ng-model="user.image"></i-image>
+                      </div>
+
+                      <div class="row">
+                        <i-control v="r" class="col6" ng-model="user.first_name" label="##word.first_name##"></i-control>
+                        <i-control v="r" class="col6" ng-model="user.last_name" label="##word.last_name##"></i-control>
+                      </div>
+
+                      <i-control v="r" class="row" ng-model="user.email" label="##word.email##"></i-control>
+
+                      <div class="row">
+                        <i-control v="r" type="password" class="col pass" ng-model="user.password" label="##word.password##"></i-control>
+                        <i-control v="r" type="password" class="col pass" ng-model="user.retype_password" label="##word.retype_password##"></i-control>
+                        <i-checkbox class="col" ng-change="showPass()" ng-model="show_password" label="##word.show_password##"></i-checkbox>
+                      </div>
+
+                      <div class="row">
+                        <h2 class="center red">{{error}}</h2>
+                      </div>
+                      <br />
+                      <br />
+                      <br />
+
+                      <div class="center">
+                        <i-button class="center" label="##word.create_account_admin##" ng-click="createAdmin()"></i-button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="tab-pane fade shadow rounded bg-white p-5" id="v-partner-content" role="tabpanel" aria-labelledby="v-partner-tab">
+                    <div class="partner-form">
+
+                      <div class="row">
+                        <i-image ng-model="user.image"></i-image>
+                      </div>
+
+                      <div class="row">
+                        <i-control v="r" class="col6" ng-model="user.first_name" label="##word.first_name##"></i-control>
+                        <i-control v="r" class="col6" ng-model="user.last_name" label="##word.last_name##"></i-control>
+                      </div>
+
+                      <i-control v="r" class="row" ng-model="user.email" label="##word.email##"></i-control>
+
+                      <div class="row">
+                        <i-control v="r" type="password" class="col pass" ng-model="user.password" label="##word.password##"></i-control>
+                        <i-control v="r" type="password" class="col pass" ng-model="user.retype_password" label="##word.retype_password##"></i-control>
+                        <i-checkbox class="col" ng-change="showPassword()" ng-model="show_password" label="##word.show_password##"></i-checkbox>
+                      </div>
+
+                      <fieldset>
+                        <legend>
+                          ##word.partners##
+                          <i-button type="add default" ng-click="addPartner(user)"></i-button>
+                        </legend>
+
+                        <div class="row border padding margin" ng-repeat="p in user.partners_list">
+                          <i-list v="r" class="col6" label="##word.partner##" ng-model="p.partner" display="name_##session.lang##" items="partnersList" ng-search="user.$partner"></i-list>
+                        </div>
+                      </fieldset>
+                    
+                      <div class="row">
+                        <h2 class="center red">{{error}}</h2>
+                      </div>
+                      <br />
+                      <br />
+                      <br />
+
+                      <div class="center">
+                        <i-button class="center" label="##word.create_account_partner##" ng-click="createPartner()"></i-button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="tab-pane fade shadow rounded bg-white p-5" id="v-sub-partner-content" role="tabpanel" aria-labelledby="v-sub-partner-tab">
+                    <div class="sub-partner-form">
+
+                      <div class="row">
+                        <i-image ng-model="user.image"></i-image>
+                      </div>
+
+                      <div class="row">
+                        <i-control v="r" class="col6" ng-model="user.first_name" label="##word.first_name##"></i-control>
+                        <i-control v="r" class="col6" ng-model="user.last_name" label="##word.last_name##"></i-control>
+                      </div>
+
+                      <i-control v="r" class="row" ng-model="user.email" label="##word.email##"></i-control>
+
+                      <div class="row">
+                        <i-control v="r" type="password" class="col pass" ng-model="user.password" label="##word.password##"></i-control>
+                        <i-control v="r" type="password" class="col pass" ng-model="user.retype_password" label="##word.retype_password##"></i-control>
+                        <i-checkbox class="col" ng-change="showPassword()" ng-model="show_password" label="##word.show_password##"></i-checkbox>
+                      </div>
+
+                      <fieldset>
+                        <legend>
+                          ##word.partners##
+                          <i-button type="add default" ng-click="addPartner(user)"></i-button>
+                        </legend>
+
+                        <div class="row" ng-repeat="p in user.partners_list">
+                          <i-list v="r" class="col6" label="##word.partner##" ng-change="getSubPartnerList(p)" ng-model="p.partner" display="name_##session.lang##" items="partnersList" ng-search="user.$partner"></i-list>
+                          <i-checklist class="col6" label="##word.sub_partner##" ng-model="p.sub_partners" display="name_##session.lang##" items="p.$subPartnersList" ng-search="p.$sub_partner"></i-checklist>
+                        </div>
+                      </fieldset>
+                    
+                      <div class="row">
+                        <h2 class="center red">{{error}}</h2>
+                      </div>
+                      <br />
+                      <br />
+                      <br />
+
+                      <div class="center">
+                        <i-button class="center" label="##word.create_account_partner##" ng-click="createSubPartner()"></i-button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="tab-pane fade shadow rounded bg-white p-5" id="v-trainer-content" role="tabpanel" aria-labelledby="v-trainer-tab">
+                    <div class="trainer-form">
+
+                      <div class="row">
+                        <i-image ng-model="user.image"></i-image>
+                      </div>
+
+                      <div class="row">
+                        <i-control v="r" class="col6" ng-model="user.first_name" label="##word.first_name##"></i-control>
+                        <i-control v="r" class="col6" ng-model="user.last_name" label="##word.last_name##"></i-control>
+                      </div>
+
+                      <i-control v="r" class="row" ng-model="user.email" label="##word.email##"></i-control>
+
+                      <div class="row">
+                        <i-control v="r" type="password" class="col pass" ng-model="user.password" label="##word.password##"></i-control>
+                        <i-control v="r" type="password" class="col pass" ng-model="user.retype_password" label="##word.retype_password##"></i-control>
+                        <i-checkbox class="col" ng-change="showPassword()" ng-model="show_password" label="##word.show_password##"></i-checkbox>
+                      </div>
+
+                      <div class="row">
+                        <i-control v="r" class="col6" ng-model="user.phone" label="##word.phone_number##"></i-control>
+                      </div>
+
+                      <fieldset>
+                        <legend>
+                          ##word.partners##
+                          <i-button type="add default" ng-click="addPartner(user)"></i-button>
+                        </legend>
+
+                        <div class="row" ng-repeat="p in user.partners_list">
+                          <i-list v="r" class="col6" label="##word.partner##" ng-change="getSubPartnerList(p)" ng-model="p.partner" display="name_##session.lang##" items="partnersList" ng-search="user.$partner"></i-list>
+                          <i-checklist class="col6" label="##word.sub_partner##" ng-model="p.sub_partners" display="name_##session.lang##" items="p.$subPartnersList" ng-search="p.$sub_partner"></i-checklist>
+                        </div>
+                      </fieldset>
+
+                      <div class="row">
+                        <i-textarea ng-model="user.message" label="##word.message##"> </i-textarea>
+                      </div>
+
+                      <div class="row">
+                        <h2 class="center red">{{error}}</h2>
+                      </div>
+                      <br />
+                      <br />
+                      <br />
+
+                      <div class="center">
+                        <i-button class="center" label="##word.create_account_trainer##" ng-click="createTrainer()"></i-button>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
+    </div>
+
+    <div class="modal-footer center">
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#accountAddModal')"></i-button>
+    </div>
   </div>
 </div>

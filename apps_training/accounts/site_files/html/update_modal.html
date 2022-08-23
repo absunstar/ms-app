@@ -10,7 +10,13 @@
 
     <div class="modal-body">
       <div class="row">
-        <div class="col9">
+        <div class="col2">
+          <i-image ng-model="account.image"></i-image>
+          <div class="row justify-content-md-center">
+            <i-checkbox class="col" label="##word.active##" ng-model="account.active"> </i-checkbox>
+          </div>
+        </div>
+        <div class="col10">
           <div class="row">
             <i-control v="r" class="col6" ng-model="account.first_name" label="##word.first_name##"></i-control>
             <i-control v="r" class="col6" ng-model="account.last_name" label="##word.last_name##"></i-control>
@@ -19,13 +25,23 @@
           <div class="row">
             <i-control class="col6" v="r" ng-model="account.email" label="##word.email##"></i-control>
 
-            <i-list class="col6" label="##word.user_type##" ng-model="account.role" display="##session.lang##" items="accountsTypeList" ng-search="_search.$user_type"> </i-list>
+            <i-control class="col6" ng-hide="account.role.name == 'admin'" ng-model="account.phone" label="##word.phone##"></i-control>
           </div>
+
+          <fieldset ng-hide="account.role.name == 'admin">
+            <legend>
+              ##word.partners##
+              <i-button type="add default" ng-click="addPartner(account)"></i-button>
+            </legend>
+
+            <div class="row" ng-repeat="p in account.partners_list">
+              <i-list v="r" class="col6" label="##word.partner##" ng-change="getSubPartnerList(p)" ng-model="p.partner" display="name_##session.lang##" items="partnersList" ng-search="user.$partner"></i-list>
+              <i-checklist class="col6" label="##word.sub_partner##" ng-model="p.sub_partners" display="name_##session.lang##" items="p.$subPartnersList" ng-search="p.$sub_partner"></i-checklist>
+            </div>
+          </fieldset>
         </div>
 
-        <div class="col3">
-          <i-image ng-model="account.image"></i-image>
-        </div>
+       
       </div>
     </div>
 

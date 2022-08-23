@@ -33,7 +33,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
           site.hideModal('#accountAddModal');
           site.reetValidated('#accountAddModal');
           $scope.getAccountList();
-        } else if(response.data.error){
+        } else if (response.data.error) {
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -84,7 +84,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
           site.hideModal('#accountUpdateModal');
           site.resetValidated('#accountUpdateModal');
           $scope.getAccountList();
-        } else if(response.data.error){
+        } else if (response.data.error) {
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -104,10 +104,6 @@ app.controller('accounts', function ($scope, $http, $timeout) {
       account.active = true;
     } else if (type == 'deactivate') {
       account.active = false;
-    } else if (type == 'limit') {
-      account.limited_companies = true;
-    } else if (type == 'unlimit') {
-      account.limited_companies = false;
     }
 
     $scope.busy = true;
@@ -124,7 +120,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
           } else if (type == 'deactivate') {
             site.hideModal('#deactivateModal');
           }
-        } else if(response.data.error){
+        } else if (response.data.error) {
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -158,6 +154,16 @@ app.controller('accounts', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.account = response.data.doc;
+          if($scope.account.role.name == 'sub_partner' && $scope.account.role.name == 'trainer')
+          if($scope.account.partners_list && $scope.account.partners_list.length > 0){
+            $scope.account.partners_list.forEach(_p => {
+              if(_p.sub_partners && _p.sub_partners.length > 0){
+
+                $scope.getSubPartnerList(_p);
+              }
+            });
+          }
+
         } else {
           $scope.error = response.data.error;
         }
@@ -233,7 +239,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.addAdmin = function () {
+  $scope.createAdmin = function () {
     $scope.error = '';
     const v = site.validated('.admin-form');
     if (!v.ok) {
@@ -255,9 +261,9 @@ app.controller('accounts', function ($scope, $http, $timeout) {
               site.hideModal('#accountAddModal');
               site.resetValidated('.admin-form');
               $scope.getAccountList();
-            } else if(response.data.error){
+            } else if (response.data.error) {
               $scope.error = response.data.error;
-               if (response.data.error.like('*Name Exists*')) {
+              if (response.data.error.like('*Name Exists*')) {
                 $scope.error = '##word.name_already_exists##';
               }
             }
@@ -272,9 +278,9 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.addEmployer = function () {
+  $scope.createPartner = function () {
     $scope.error = '';
-    const v = site.validated('.employer-form');
+    const v = site.validated('.partner-form');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -292,11 +298,11 @@ app.controller('accounts', function ($scope, $http, $timeout) {
             $scope.busy = false;
             if (response.data.done) {
               site.hideModal('#accountAddModal');
-              site.resetValidated('.employer-form');
+              site.resetValidated('.partner-form');
               $scope.getAccountList();
-            } else if(response.data.error){
+            } else if (response.data.error) {
               $scope.error = response.data.error;
-               if (response.data.error.like('*Name Exists*')) {
+              if (response.data.error.like('*Name Exists*')) {
                 $scope.error = '##word.name_already_exists##';
               }
             }
@@ -311,9 +317,9 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.addJobSeeker = function () {
+  $scope.createSubPartner = function () {
     $scope.error = '';
-    const v = site.validated('.job-seeker-form');
+    const v = site.validated('.sub-partner-form');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -331,11 +337,50 @@ app.controller('accounts', function ($scope, $http, $timeout) {
             $scope.busy = false;
             if (response.data.done) {
               site.hideModal('#accountAddModal');
-              site.resetValidated('.job-seeker-form');
+              site.resetValidated('.sub-partner-form');
               $scope.getAccountList();
-            } else if(response.data.error){
+            } else if (response.data.error) {
               $scope.error = response.data.error;
-               if (response.data.error.like('*Name Exists*')) {
+              if (response.data.error.like('*Name Exists*')) {
+                $scope.error = '##word.name_already_exists##';
+              }
+            }
+          },
+          function (err) {
+            console.log(err);
+          }
+        );
+      } else {
+        $scope.error = '##word.password_err_match##';
+      }
+    }
+  };
+
+  $scope.createTrainer = function () {
+    $scope.error = '';
+    const v = site.validated('.trainer-form');
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
+    if ($scope.user) {
+      if ($scope.user.password === $scope.user.retype_password) {
+        $scope.user.role = $scope.accountsTypeList[1];
+        $scope.busy = true;
+        $http({
+          method: 'POST',
+          url: '/api/user/add',
+          data: $scope.user,
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              site.hideModal('#accountAddModal');
+              site.resetValidated('.trainer-form');
+              $scope.getAccountList();
+            } else if (response.data.error) {
+              $scope.error = response.data.error;
+              if (response.data.error.like('*Name Exists*')) {
                 $scope.error = '##word.name_already_exists##';
               }
             }
@@ -360,6 +405,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
+        response.data.splice(-1, 1);
         $scope.accountsTypeList = response.data;
       },
       function (err) {
@@ -371,25 +417,20 @@ app.controller('accounts', function ($scope, $http, $timeout) {
 
   $scope.getPartnerList = function () {
     $scope.busy = true;
-    $scope.partnerList = [];
+    $scope.partnersList = [];
 
     $http({
       method: 'POST',
       url: '/api/partners/all',
       data: {
         where: { active: true },
-        select: { id: 1, code: 1, name_ar: 1, name_en: 1 },
+        select: { id: 1, name_ar: 1, name_en: 1 },
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list && response.data.list.length > 0) {
-          $scope.partnerList = response.data.list;
-          if ('##query.id##' != 'undefined') {
-            $scope.partner = $scope.partnerList.find((_partner) => {
-              return _partner.id === site.toNumber('##query.id##');
-            });
-          }
+          $scope.partnersList = response.data.list;
         }
       },
       function (err) {
@@ -397,6 +438,34 @@ app.controller('accounts', function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     );
+  };
+
+  $scope.getSubPartnerList = function (p) {
+    $scope.busy = true;
+
+    if (p.partner && p.partner.id) {
+
+      p.$subPartnersList = [];
+      $http({
+        method: 'POST',
+        url: '/api/sub_partners/all',
+        data: {
+          where: { active: true, 'partners_list.id': p.partner.id },
+          select: { id: 1, name_ar: 1, name_en: 1 },
+        },
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done && response.data.list && response.data.list.length > 0) {
+            p.$subPartnersList = response.data.list;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      );
+    }
   };
 
   $scope.getGender = function () {
@@ -416,6 +485,11 @@ app.controller('accounts', function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     );
+  };
+
+  $scope.addPartner = function (user) {
+    user.partners_list = user.partners_list || [];
+    user.partners_list.push({});
   };
 
   $scope.displaySearchModal = function () {

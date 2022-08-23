@@ -74,7 +74,7 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user && req.body.type != 'customer') {
+    if (!req.session.user) {
       response.error = 'You Are Not Login';
       res.json(response);
       return;
@@ -273,12 +273,11 @@ module.exports = function init(site) {
       return;
     }
     let where = req.body.where || {};
-    if(where['first_name']){
-
+    let search = req.body.search || {};
+    if (where['first_name']) {
       where['first_name'] = site.get_RegExp(where['first_name'], 'i');
     }
-    if(where['last_name']){
-
+    if (where['last_name']) {
       where['last_name'] = site.get_RegExp(where['last_name'], 'i');
     }
 
@@ -303,81 +302,24 @@ module.exports = function init(site) {
       delete where['active'];
     }
 
-    if (req.body.search) {
-      if (where['qualifications'] && where['qualifications'].length > 0) {
-        where.$and = where.$and || [];
-        for (let i = 0; i < where['qualifications'].length; i++) {
-          let element = where['qualifications'][i];
-          where.$and.push({
-            'qualification.id': element.id,
-          });
-        }
-      }
+    if (search) {
+      where.$or = [];
 
-      if (where['experiences'] && where['experiences'].length > 0) {
-        where.$and = where.$and || [];
-        for (let i = 0; i < where['experiences'].length; i++) {
-          let element = where['experiences'][i];
-          where.$and.push({
-            'experience.id': element.id,
-          });
-        }
-      }
+      where.$or.push({
+        first_name: site.get_RegExp(search, 'i'),
+      });
 
-      if (where['countries'] && where['countries'].length > 0) {
-        where.$and = where.$and || [];
-        for (let i = 0; i < where['countries'].length; i++) {
-          let element = where['countries'][i];
-          where.$and.push({
-            'country.id': element.id,
-          });
-        }
-      }
+      where.$or.push({
+        last_name: site.get_RegExp(search, 'i'),
+      });
 
-      if (where['languages'] && where['languages'].length > 0) {
-        where.$and = where.$and || [];
-        for (let i = 0; i < where['languages'].length; i++) {
-          let element = where['languages'][i];
-          where.$and.push({
-            'languages.id': element.id,
-          });
-        }
-      }
+      where.$or.push({
+        email: site.get_RegExp(search, 'i'),
+      });
 
-      if (where['genders'] && where['genders'].length > 0) {
-        where.$and = where.$and || [];
-        for (let i = 0; i < where['genders'].length; i++) {
-          let element = where['genders'][i];
-          where.$and.push({
-            'gender.id': element.id,
-          });
-        }
-      }
-
-      if (where['general_search']) {
-        where.$and = where.$and || [];
-
-        where.$and.push({
-          job_title: site.get_RegExp(where['general_search'], 'i'),
-        });
-
-        where.$and.push({
-          first_name: site.get_RegExp(where['general_search'], 'i'),
-        });
-
-        where.$and.push({
-          last_name: site.get_RegExp(where['general_search'], 'i'),
-        });
-      }
-
-      delete where['active_search'];
-      delete where['not_active'];
-      delete where['qualifications'];
-      delete where['experiences'];
-      delete where['countries'];
-      delete where['languages'];
-      delete where['genders'];
-      delete where['general_search'];
+      where.$or.push({
+        phone: site.get_RegExp(search, 'i'),
+      });
     }
 
     site.security.getUsers(

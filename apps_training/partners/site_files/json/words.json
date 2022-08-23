@@ -11,32 +11,32 @@
     },
     {
         "name": "partner_new",
-        "en": "New Pratner",
+        "en": "New Partner",
         "ar": "شريك جديد"
     },
     {
         "name": "partner_add",
-        "en": "Add Pratner",
+        "en": "Add Partner",
         "ar": "إضافة شريك "
     },
     {
         "name": "partner_edit",
-        "en": "Edit Pratner",
+        "en": "Edit Partner",
         "ar": "تعديل شريك "
     },
     {
         "name": "partner_details",
-        "en": "Pratner Details",
+        "en": "Partner Details",
         "ar": "تفاصيل الشريك "
     },
     {
         "name": "partner_delete",
-        "en": "Delete Pratner",
+        "en": "Delete Partner",
         "ar": "حذف شريك "
     },
     {
         "name": "partner_name",
-        "en": "Pratner Name",
+        "en": "Partner Name",
         "ar": "إسم الشريك "
     },
     {

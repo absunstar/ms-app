@@ -32,6 +32,7 @@
           <table x-permissions="login" class="table hover text-center" id="t1">
               <tr>
                  <th class="not-print">##word.logo##</th>
+                <th ng-show="'##query.id##' == 'undefined'">##word.country##</th>
                 <th>##word.city_name##</th>
                 <th>##word.status##</th>
                 <th class="not-print">##word.actions##</th>
@@ -41,7 +42,8 @@
                   <td class="center not-print">
                   <i-image view class="logo" ng-model="c.image"></i-image>
                 </td>
-                <td class="center title">{{c.name_##session.lang##}}</td>
+                <td class="center" ng-show="'##query.id##' == 'undefined'">{{c.country.name_##session.lang##}}</td>
+                <td class="center">{{c.name_##session.lang##}}</td>
                 <td class="center">
                   <p ng-show="c.active ==true" class="green">##word.active##</p>
                   <p ng-show="!c.active" class="red">##word.not_active##</p>

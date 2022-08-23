@@ -14,6 +14,7 @@
           <div x-import="partners/delete_modal.html"></div>
           <div x-import="partners/view_modal.html"></div>
           <div x-import="partners/search_all_modal.html"></div>
+          <div x-import="partners/accounts_modal.html"></div>
 
           <div class="row">
             <h1 class="bold text-center">##word.partners##</h1>
@@ -52,10 +53,10 @@
                 <td class="center not-print">
                   <i-button type="view" label="##word.details##" ng-click="displayDetailsPartner(c)"></i-button>
                   <i-button type="edit" label="##word.edit##" ng-click="displayUpdatePartner(c)"></i-button>
+                  <i-button label="##word.accounts_management##" ng-click="showAccountsManagementModal(c)"></i-button>
                   <i-button ng-show="!c.active" label="##word.activate##" ng-click="showActivationModal(c,'activate')"></i-button>
                   <i-button ng-show="c.active" label="##word.deactivate##" ng-click="showActivationModal(c,'deactivate')"></i-button>
                   <i-button type="delete" label="##word.delete##" ng-click="displayDeletePartner(c)"></i-button>
-                  <a type="button" ng-show="c.active" class="btn btn-primary btn-lg" href="/TrainingCenters?id={{c.id}}">##word.training_centers##</a>
                 </td>
               </tr>
             </tbody>
