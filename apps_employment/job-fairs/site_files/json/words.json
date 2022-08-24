@@ -5,14 +5,29 @@
         "ar": "معارض الوظائف"
     },
     {
-        "name": "attendance_for_job_fair",
-        "en": "Attendance For Job Fair",
-        "ar": "الحضور في معرض الوظائف"
+        "name": "job_fairs",
+        "en": "Job Fairs",
+        "ar": "معارض الوظائف"
+    },
+    {
+        "name": "attendance_this_job_fair_before",
+        "en": "You have Attendance to this Job Fair before",
+        "ar": "لديك حضور في معرض الوظائف هذا من قبل"
+    },
+    {
+        "name": "invalid_attendance_code",
+        "en": "Invalid Attendance Code",
+        "ar": "رمز حضور غير صالح"
     },
     {
         "name": "you_are_all_set_you_registered_this_job_fair_before",
         "en": "You are all set. You have registered to this Job Fair before!",
         "ar": "أنت جاهز تمامًا. لقد سجلت في معرض الوظائف هذا من قبل!"
+    },
+    {
+        "name": "you_registered_this_job_fair_before",
+        "en": "You have registered to this Job Fair before!",
+        "ar": "لقد سجلت في معرض الوظائف هذا من قبل!"
     },
     {
         "name": "you_are_all_set_have_been_registered_this_job_fair",
@@ -44,6 +59,11 @@
         "name": "attendance_code",
         "en": "Attendance Code",
         "ar": "رمز الحضور"
+    },
+    {
+        "name": "attendance_for_job_fair",
+        "en": "Attendance For Job Fair",
+        "ar": "الحضور في معرض الوظائف"
     },
     {
         "name": "job_fair_description",

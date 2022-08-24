@@ -31,13 +31,12 @@
                 <th>##word.job_title##</th>
                 <th>##word.job_subfield##</th>
                 <th>##word.industry##</th>
-             
                 <th class="not-print">##word.actions##</th>
               </tr>
             <tbody>
               <tr ng-repeat="c in list">
                   <td class="center not-print">
-                  <i-image view class="logo" ng-model="c.image"></i-image>
+                  <i-image view class="logo" ng-model="c.company.image"></i-image>
                 </td>
                 <td class="center title">{{c.company.name_##session.lang##}}</td>
                 <td class="center title">{{c.job_title}}</td>

@@ -2,28 +2,10 @@ module.exports = function init(site) {
   const $countries = site.connectCollection('Countries');
 
   site.get({
-    name: 'images',
-    path: __dirname + '/site_files/images/',
-  });
-
-  site.get({
     name: 'Countries',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,
-  });
-
-  site.on('[company][created]', (doc) => {
-    $countries.add(
-      {
-        code: '1-Test',
-        name_ar: 'بلد إفتراضية',
-        name_en: 'Default Country',
-        image: '/images/country.png',
-        active: true,
-      },
-      (err, doc1) => {}
-    );
   });
 
   site.post('/api/countries/add', (req, res) => {

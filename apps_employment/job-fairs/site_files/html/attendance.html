@@ -12,7 +12,7 @@
       <div class="modal-body">
         <div class="row">
           <div class="col3"></div>
-          <i-control type="number" class="col6" v="r" ng-model="job_fairs.attendance_code" label="##word.attendance_code##" ></i-control>
+          <i-control type="number" class="col6" v="r" ng-model="job_fairs.$attendance_code" label="##word.attendance_code##" ></i-control>
 
         </div>
           
@@ -20,7 +20,7 @@
 
       <div class="modal-footer center">
           <h2 class="bold text-center text-danger"> {{error}} </h2>
-          <i-button type="save" label="##word.save##" ng-click="attendance()"></i-button>
+          <i-button type="save" label="##word.save##" ng-click="attendance(job_fairs)"></i-button>
           <i-button type="close" label="##word.close##" onclick="site.hideModal( '#attendanceModal')"></i-button>
       </div>
   </div>

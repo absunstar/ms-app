@@ -2,28 +2,10 @@ module.exports = function init(site) {
   const $languages = site.connectCollection('Languages');
 
   site.get({
-    name: 'images',
-    path: __dirname + '/site_files/images/',
-  });
-
-  site.get({
     name: 'Languages',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,
-  });
-
-  site.on('[company][created]', (doc) => {
-    $languages.add(
-      {
-        code: '1-Test',
-        name_ar: 'لغة إفتراضية',
-        name_en: 'Default Language',
-        image: '/images/language.png',
-        active: true,
-      },
-      (err, doc1) => {}
-    );
   });
 
   site.post('/api/languages/add', (req, res) => {

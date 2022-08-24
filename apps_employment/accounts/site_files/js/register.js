@@ -1,21 +1,21 @@
 app.controller('register', function ($scope, $http, $timeout) {
-  $scope.user = { image: '/images/user_logo.png' };
-
-  $scope.addEmployer = function () {
+/*   $scope.user = { image: '/images/user_logo.png' };
+ */
+  $scope.addEmployer = function (employer) {
     $scope.error = '';
     const v = site.validated('.employer-form');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    if ($scope.user) {
-      if ($scope.user.password === $scope.user.retype_password) {
-        $scope.user.role = $scope.accountsTypeList[1];
+    if (employer) {
+      if (employer.password === employer.retype_password) {
+        employer.role = $scope.accountsTypeList[1];
         $scope.busy = true;
         $http({
           method: 'POST',
           url: '/api/register',
-          data: $scope.user,
+          data: employer,
         }).then(
           function (response) {
             if (response.data.error) {
@@ -36,21 +36,21 @@ app.controller('register', function ($scope, $http, $timeout) {
       }
     }
   };
-  $scope.addJobSeeker = function () {
+  $scope.addJobSeeker = function (job_seeker) {
     $scope.error = '';
     const v = site.validated('.job-seeker-form');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    if ($scope.user) {
-      if ($scope.user.password === $scope.user.retype_password) {
-        $scope.user.role = $scope.accountsTypeList[2];
+    if (job_seeker) {
+      if (job_seeker.password === job_seeker.retype_password) {
+        job_seeker.role = $scope.accountsTypeList[2];
         $scope.busy = true;
         $http({
           method: 'POST',
           url: '/api/register',
-          data: $scope.user,
+          data: job_seeker,
         }).then(
           function (response) {
             if (response.data.error) {

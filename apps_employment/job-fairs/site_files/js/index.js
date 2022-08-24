@@ -2,17 +2,13 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.job_fairs = {};
-  $scope.apply = {};
-
- 
 
   $scope.displayAddJobFairs = function () {
     $scope.error = '';
     $scope.job_fairs = {
-      image: '/images/job_fairs.png',
       active: true,
-      site : "offline",
-      apply_list : []
+      site: 'offline',
+      apply_list: [],
     };
 
     site.showModal('#jobFairsAddModal');
@@ -38,7 +34,7 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
           site.hideModal('#jobFairsAddModal');
           site.resetValidated('#jobFairsAddModal');
           $scope.getJobFairsList();
-        } else if(response.data.error){
+        } else if (response.data.error) {
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -77,7 +73,7 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
           site.hideModal('#jobFairsUpdateModal');
           site.resetValidated('#jobFairsUpdateModal');
           $scope.getJobFairsList();
-        } else if(response.data.error){
+        } else if (response.data.error) {
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -90,23 +86,23 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.showActivationModal = function (element,type) {
-    if(type == 'activate'){
+  $scope.showActivationModal = function (element, type) {
+    if (type == 'activate') {
       site.showModal('#activateModal');
-    } else if(type == 'deactivate'){
+    } else if (type == 'deactivate') {
       site.showModal('#deactivateModal');
     }
     $scope.element = element;
   };
 
-  $scope.updateActivate = function (element,type) {
+  $scope.updateActivate = function (element, type) {
     $scope.error = '';
-    if(type == 'activate'){
+    if (type == 'activate') {
       element.active = true;
-    site.hideModal('#activateModal');
-    } else if(type == 'deactivate'){
+      site.hideModal('#activateModal');
+    } else if (type == 'deactivate') {
       element.active = false;
-    site.hideModal('#deactivateModal');
+      site.hideModal('#deactivateModal');
     }
     $scope.busy = true;
     $http({
@@ -149,10 +145,9 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
         if (response.data.done) {
           $scope.job_fairs = response.data.doc;
           $scope.job_fairs_name = response.data.doc.name_ar;
-          if('##session.lang##' == 'en'){
-          $scope.job_fairs_name = response.data.doc.name_en;
-      
-          };
+          if ('##session.lang##' == 'en') {
+            $scope.job_fairs_name = response.data.doc.name_en;
+          }
         } else {
           $scope.error = response.data.error;
         }
@@ -206,6 +201,7 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $scope.list = [];
     $scope.count = 0;
+    where = where || {};
 
     $http({
       method: 'POST',
@@ -216,7 +212,7 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
+        if (response.data.done && response.data.list && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
           site.hideModal('#jobFairsSearchModal');
@@ -230,15 +226,17 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getJobSeeker = function () {
+  $scope.getJobSeeker = function (ev) {
     $scope.busy = true;
     $scope.jobSeekerList = [];
-
+    if (ev.which !== 13) {
+      return;
+    }
     $http({
       method: 'POST',
       url: '/api/users/all',
       data: {
-        where: {'role.name' : 'job_seeker'},
+        where: { 'role.name': 'job_seeker', general_search: $scope.job_fairs.$apply.general_search },
       },
     }).then(
       function (response) {
@@ -254,55 +252,79 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.selectJobSeeker = function (c) {
+  $scope.selectJobSeeker = function (apply) {
     $scope.error = '';
-    if(c && c.id){
-      $scope.apply.name = c.name;
-      $scope.apply.email = c.email;
-      $scope.apply.job_title = c.job_title;
+    if (apply.job_seeker && apply.job_seeker.id) {
+      apply.first_name = apply.job_seeker.first_name;
+      apply.email = apply.job_seeker.email;
+      apply.job_title = apply.job_seeker.job_title;
+      apply.id = apply.job_seeker.id;
     }
   };
 
-  $scope.attendance = function (c) {
+  $scope.attendance = function (job_fairs) {
     $scope.error = '';
     const v = site.validated('#attendanceModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
-    }
+    } 
+    $http({
+      method: 'POST',
+      url: '/api/job_fairs/attendance',
+      data: {
+        id: job_fairs.id,
+        attendance_code: job_fairs.$attendance_code,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.job_fairs = response.data.doc;
+          site.hideModal('#attendanceModal');
+        } else {
+          $scope.error = response.data.error;
+          if (response.data.error.like('*Invalid Attend')) {
+            $scope.error = '##word.invalid_attendance_code##';
+          } else if (response.data.error.like('*Attendance to this Job Fair before')) {
+            $scope.error = '##word.attendance_this_job_fair_before##';
+          }
+        }
+        site.resetValidated('#attendanceModal');
 
-    $scope.updateActivate($scope.job_fairs);
-    site.hideModal('#attendanceModal');
-    site.resetValidated('#attendanceModal');
-  };
-
-  $scope.registerApplyJobSeeker = function (c) {
-    $scope.error = '';
-    $scope.job_fairs = c;
-   $scope.found_apply = false;
-    $scope.job_fairs.apply_list.forEach(_app => {
-      if(_app.id == site.toNumber('##user.id##')){
-        $scope.found_apply = true;
+      },
+      function (err) {
+        console.log(err);
       }
-    });
-
-    if($scope.found_apply) {
-      site.showModal('#registerApplyModal');
-    } else if(!$scope.found_apply) {
-      $scope.job_fairs.apply_list.push({
-        name : '##user.first_name##',
-        job_title : '##user.job_title##',
-        email : '##user.email##',
-        apply_date : new Date(),
-        id : site.toNumber('##user.id##'),
-      });
-      $scope.updateActivate(c);
-      site.showModal('#registerApplyModal');
-    }
-
+    );
+  
   };
 
-  $scope.registerApply = function (c) {
+  $scope.registerApplyJobSeeker = function (jF) {
+    $scope.error = '';
+    jF.$type = 'job_seeker';
+    $http({
+      method: 'POST',
+      url: '/api/job_fairs/apply',
+      data: jF,
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.job_fairs.$found_apply = response.data.found_apply;
+          site.showModal('#registerApplyModal');
+        } else {
+          $scope.job_fairs.$found_apply = response.data.found_apply;
+          site.showModal('#registerApplyModal');
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
+  $scope.registerApply = function (jF) {
     $scope.error = '';
     const v = site.validated('#applyModal');
     if (!v.ok) {
@@ -310,36 +332,41 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
       return;
     }
 
-    if($scope.job_seeker && $scope.job_seeker.id) {
-      c.id == $scope.job_seeker.id;
-    };
-
-    $scope.job_fairs.apply_list = $scope.job_fairs.apply_list || [];
-    $scope.job_fairs.apply_list.push(c);
-    $scope.apply = {};
-    $scope.updateActivate($scope.job_fairs);
-    site.hideModal('#applyModal');
-    site.resetValidated('#applyModal');
+    jF.$type = 'admin';
+    $http({
+      method: 'POST',
+      url: '/api/job_fairs/apply',
+      data: jF,
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          site.hideModal('#applyModal');
+        } else {
+          $scope.error = response.data.error;
+          if (response.data.error.like('*registered to this Job Fair before*')) {
+            $scope.error = '##word.you_registered_this_job_fair_before##';
+          }
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
   };
 
   $scope.displayAttendance = function (c) {
     $scope.error = '';
     $scope.job_fairs = c;
-    if('##user.role.name##' == 'admin'){
-      
-      site.showModal('#attendanceModal');
-    } else if('##user.role.name##' == 'job_seeker') {
-      $scope.job_fairs.apply_list = $scope.job_fairs.apply_list || [];
-      $scope.job_fairs.apply_list.push(c);
-      $scope.apply = {};
-      $scope.updateActivate($scope.job_fairs);
-    }
+    site.showModal('#attendanceModal');
   };
 
   $scope.displayApply = function (c) {
     $scope.error = '';
     $scope.job_fairs = c;
-
+    $scope.job_fairs.$apply = {
+      apply_date: new Date(),
+    };
     site.showModal('#applyModal');
   };
 
@@ -349,5 +376,4 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
   };
 
   $scope.getJobFairsList();
-  $scope.getJobSeeker();
 });

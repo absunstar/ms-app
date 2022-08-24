@@ -154,16 +154,14 @@ app.controller('accounts', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.account = response.data.doc;
-          if($scope.account.role.name == 'sub_partner' && $scope.account.role.name == 'trainer')
-          if($scope.account.partners_list && $scope.account.partners_list.length > 0){
-            $scope.account.partners_list.forEach(_p => {
-              if(_p.sub_partners && _p.sub_partners.length > 0){
-
-                $scope.getSubPartnerList(_p);
-              }
-            });
-          }
-
+          if ($scope.account.role.name == 'sub_partner' || $scope.account.role.name == 'trainer')
+            if ($scope.account.partners_list && $scope.account.partners_list.length > 0) {
+              $scope.account.partners_list.forEach((_p) => {
+                if (_p.sub_partners && _p.sub_partners.length > 0) {
+                  $scope.getSubPartnerList(_p);
+                }
+              });
+            }
         } else {
           $scope.error = response.data.error;
         }
@@ -239,21 +237,21 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.createAdmin = function () {
+  $scope.createAdmin = function (admin) {
     $scope.error = '';
     const v = site.validated('.admin-form');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    if ($scope.user) {
-      if ($scope.user.password === $scope.user.retype_password) {
-        $scope.user.role = $scope.accountsTypeList[0];
+    if (admin) {
+      if (admin.password === admin.retype_password) {
+        admin.role = $scope.accountsTypeList[0];
         $scope.busy = true;
         $http({
           method: 'POST',
           url: '/api/user/add',
-          data: $scope.user,
+          data: admin,
         }).then(
           function (response) {
             $scope.busy = false;
@@ -278,21 +276,21 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.createPartner = function () {
+  $scope.createPartner = function (partner) {
     $scope.error = '';
     const v = site.validated('.partner-form');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    if ($scope.user) {
-      if ($scope.user.password === $scope.user.retype_password) {
-        $scope.user.role = $scope.accountsTypeList[1];
+    if (partner) {
+      if (partner.password === partner.retype_password) {
+        partner.role = $scope.accountsTypeList[1];
         $scope.busy = true;
         $http({
           method: 'POST',
           url: '/api/user/add',
-          data: $scope.user,
+          data: partner,
         }).then(
           function (response) {
             $scope.busy = false;
@@ -317,21 +315,21 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.createSubPartner = function () {
+  $scope.createSubPartner = function (sub_partner) {
     $scope.error = '';
     const v = site.validated('.sub-partner-form');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    if ($scope.user) {
-      if ($scope.user.password === $scope.user.retype_password) {
-        $scope.user.role = $scope.accountsTypeList[2];
+    if (sub_partner) {
+      if (sub_partner.password === sub_partner.retype_password) {
+        sub_partner.role = $scope.accountsTypeList[2];
         $scope.busy = true;
         $http({
           method: 'POST',
           url: '/api/user/add',
-          data: $scope.user,
+          data: sub_partner,
         }).then(
           function (response) {
             $scope.busy = false;
@@ -356,21 +354,21 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.createTrainer = function () {
+  $scope.createTrainer = function (trainer) {
     $scope.error = '';
     const v = site.validated('.trainer-form');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    if ($scope.user) {
-      if ($scope.user.password === $scope.user.retype_password) {
-        $scope.user.role = $scope.accountsTypeList[1];
+    if (trainer) {
+      if (trainer.password === trainer.retype_password) {
+        trainer.role = $scope.accountsTypeList[1];
         $scope.busy = true;
         $http({
           method: 'POST',
           url: '/api/user/add',
-          data: $scope.user,
+          data: trainer,
         }).then(
           function (response) {
             $scope.busy = false;
@@ -444,7 +442,6 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     $scope.busy = true;
 
     if (p.partner && p.partner.id) {
-
       p.$subPartnersList = [];
       $http({
         method: 'POST',

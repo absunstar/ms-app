@@ -19,7 +19,7 @@
           <div x-import="accounts/search_all_modal.html"></div>
 
           <div class="row">
-            <h1 class="bold text-center">##word.accounts##</h1>
+            <h1 class="bold text-center">##word.trainees##</h1>
           </div>
 
           <div class="top-actions">
@@ -35,7 +35,8 @@
               <th class="not-print">##word.logo##</th>
               <th>##word.account_name##</th>
               <th>##word.email##</th>
-              <th>##word.type##</th>
+              <th>##word.national_id##</th>
+              <th>##word.mobile_phone##</th>
               <th>##word.status##</th>
               <th class="not-print">##word.actions##</th>
             </tr>
@@ -46,9 +47,9 @@
               </td>
               <td class="center title">{{c.first_name}} {{c.last_name}}</td>
               <td class="center title">{{c.email}}</td>
-              <td class="center title">
-                <p>{{c.role['##session.lang##']}}</p>
-              </td>
+              <td class="center title">{{c.national_id}}</td>
+              <td class="center title">{{c.mobile}}</td>
+
               <td class="center">
                 <p ng-show="c.active" class="green">##word.active##</p>
                 <p ng-show="!c.active" class="red">##word.not_active##</p>

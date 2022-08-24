@@ -8,6 +8,7 @@ app.controller('training', function ($scope, $http, $timeout) {
     $scope.training = {
       image: '/images/training.png',
       approve: false,
+      start_date : new Date(),
       location: 'offline',
     };
 

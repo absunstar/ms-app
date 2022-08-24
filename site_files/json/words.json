@@ -40,9 +40,9 @@
     "ar": "المعلومات الأساسية"
   },
   {
-    "name": "mobile_phone_number",
-    "en": "Mobile phone number",
-    "ar": "رقم الهاتف المحمول"
+    "name": "mobile_phone",
+    "en": "Mobile phone",
+    "ar": "الهاتف المحمول"
   },
   {
     "name": "phone_number",

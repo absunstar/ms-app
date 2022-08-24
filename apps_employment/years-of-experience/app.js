@@ -2,28 +2,10 @@ module.exports = function init(site) {
   const $years_of_experience = site.connectCollection('YearsOfExperience');
 
   site.get({
-    name: 'images',
-    path: __dirname + '/site_files/images/',
-  });
-
-  site.get({
     name: 'YearsOfExperience',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,
-  });
-
-  site.on('[company][created]', (doc) => {
-    $years_of_experience.add(
-      {
-        code: '1-Test',
-        name_ar: 'سنوات خبرة إفتراضية',
-        name_en: 'Default Years Of Experience',
-        image: '/images/years_of_experience.png',
-        active: true,
-      },
-      (err, doc1) => {}
-    );
   });
 
   site.post('/api/years_of_experience/add', (req, res) => {

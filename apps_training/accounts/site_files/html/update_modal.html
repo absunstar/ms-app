@@ -34,9 +34,9 @@
               <i-button type="add default" ng-click="addPartner(account)"></i-button>
             </legend>
 
-            <div class="row" ng-repeat="p in account.partners_list">
+            <div class="row border padding margin" ng-repeat="p in account.partners_list">
               <i-list v="r" class="col6" label="##word.partner##" ng-change="getSubPartnerList(p)" ng-model="p.partner" display="name_##session.lang##" items="partnersList" ng-search="user.$partner"></i-list>
-              <i-checklist class="col6" label="##word.sub_partner##" ng-model="p.sub_partners" display="name_##session.lang##" items="p.$subPartnersList" ng-search="p.$sub_partner"></i-checklist>
+              <i-checklist ng-show="account.role.name == 'trainer' || account.role.name == 'sub_partner'" class="col6" label="##word.sub_partner##" ng-model="p.sub_partners" display="name_##session.lang##" items="p.$subPartnersList" ng-search="p.$sub_partner"></i-checklist>
             </div>
           </fieldset>
         </div>

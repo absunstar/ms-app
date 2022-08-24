@@ -233,21 +233,21 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.addAdmin = function () {
+  $scope.addAdmin = function (admin) {
     $scope.error = '';
     const v = site.validated('.admin-form');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    if ($scope.user) {
-      if ($scope.user.password === $scope.user.retype_password) {
-        $scope.user.role = $scope.accountsTypeList[0];
+    if (admin) {
+      if (admin.password === admin.retype_password) {
+        admin.role = $scope.accountsTypeList[0];
         $scope.busy = true;
         $http({
           method: 'POST',
           url: '/api/user/add',
-          data: $scope.user,
+          data: admin,
         }).then(
           function (response) {
             $scope.busy = false;
@@ -272,21 +272,21 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.addEmployer = function () {
+  $scope.addEmployer = function (employer) {
     $scope.error = '';
     const v = site.validated('.employer-form');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    if ($scope.user) {
-      if ($scope.user.password === $scope.user.retype_password) {
-        $scope.user.role = $scope.accountsTypeList[1];
+    if (employer) {
+      if (employer.password === employer.retype_password) {
+        employer.role = $scope.accountsTypeList[1];
         $scope.busy = true;
         $http({
           method: 'POST',
           url: '/api/user/add',
-          data: $scope.user,
+          data: employer,
         }).then(
           function (response) {
             $scope.busy = false;
@@ -311,21 +311,21 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.addJobSeeker = function () {
+  $scope.addJobSeeker = function (job_seeker) {
     $scope.error = '';
     const v = site.validated('.job-seeker-form');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    if ($scope.user) {
-      if ($scope.user.password === $scope.user.retype_password) {
-        $scope.user.role = $scope.accountsTypeList[2];
+    if (job_seeker) {
+      if (job_seeker.password === job_seeker.retype_password) {
+        job_seeker.role = $scope.accountsTypeList[2];
         $scope.busy = true;
         $http({
           method: 'POST',
           url: '/api/user/add',
-          data: $scope.user,
+          data: job_seeker,
         }).then(
           function (response) {
             $scope.busy = false;
