@@ -6,7 +6,6 @@ app.controller('jobSubfields', function ($scope, $http, $timeout) {
   $scope.displayAddJobSubFields = function () {
     $scope.error = '';
     $scope.job_subfields = {
-      image: '/images/job_subfields.png',
       active: true,
       job_field : $scope.job_field || null
     };

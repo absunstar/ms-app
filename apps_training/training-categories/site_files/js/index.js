@@ -26,7 +26,7 @@ app.controller('trainingCategories', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/training_categories/add',
+      url: '/api/trainings_categories/add',
       data: $scope.training_category,
     }).then(
       function (response) {
@@ -65,7 +65,7 @@ app.controller('trainingCategories', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/training_categories/update',
+      url: '/api/trainings_categories/update',
       data: training_category,
     }).then(
       function (response) {
@@ -108,7 +108,7 @@ app.controller('trainingCategories', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/training_categories/update',
+      url: '/api/trainings_categories/update',
       data: element,
     }).then(
       function (response) {
@@ -136,7 +136,7 @@ app.controller('trainingCategories', function ($scope, $http, $timeout) {
     $scope.error = '';
     $http({
       method: 'POST',
-      url: '/api/training_categories/view',
+      url: '/api/trainings_categories/view',
       data: {
         id: training_category.id,
       },
@@ -168,7 +168,7 @@ app.controller('trainingCategories', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/training_categories/delete',
+      url: '/api/trainings_categories/delete',
       data: {
         id: $scope.training_category.id,
       },
@@ -201,7 +201,7 @@ app.controller('trainingCategories', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/training_categories/all',
+      url: '/api/trainings_categories/all',
       data: {
         where: where,
       },
@@ -227,7 +227,7 @@ app.controller('trainingCategories', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/training_types/all',
+      url: '/api/trainings_types/all',
       data: {
         where: { active: true },
         select: { id: 1,   name_ar: 1, name_en: 1 },

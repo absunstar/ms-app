@@ -25,7 +25,7 @@ app.controller('trainingCenters', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/training_centers/add',
+      url: '/api/trainings_centers/add',
       data: $scope.training_center,
     }).then(
       function (response) {
@@ -64,7 +64,7 @@ app.controller('trainingCenters', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/training_centers/update',
+      url: '/api/trainings_centers/update',
       data: training_center,
     }).then(
       function (response) {
@@ -92,7 +92,7 @@ app.controller('trainingCenters', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/training_centers/update',
+      url: '/api/trainings_centers/update',
       data: training_center,
     }).then(
       function (response) {
@@ -123,7 +123,7 @@ app.controller('trainingCenters', function ($scope, $http, $timeout) {
     $scope.error = '';
     $http({
       method: 'POST',
-      url: '/api/training_centers/view',
+      url: '/api/trainings_centers/view',
       data: {
         id: training_center.id,
       },
@@ -155,7 +155,7 @@ app.controller('trainingCenters', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/training_centers/delete',
+      url: '/api/trainings_centers/delete',
       data: {
         id: $scope.training_center.id,
       },
@@ -192,7 +192,7 @@ app.controller('trainingCenters', function ($scope, $http, $timeout) {
     }
     $http({
       method: 'POST',
-      url: '/api/training_centers/all',
+      url: '/api/trainings_centers/all',
       data: {
         where: where,
       },

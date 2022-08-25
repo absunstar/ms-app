@@ -6,7 +6,6 @@ app.controller('yearsOfExperience', function ($scope, $http, $timeout) {
   $scope.displayAddYearsOfExperience = function () {
     $scope.error = '';
     $scope.years_of_experience = {
-      image: '/images/years_of_experience.png',
       active: true,
     };
 

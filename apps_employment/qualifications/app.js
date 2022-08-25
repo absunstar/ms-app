@@ -2,28 +2,10 @@ module.exports = function init(site) {
   const $qualifications = site.connectCollection('Qualifications');
 
   site.get({
-    name: 'images',
-    path: __dirname + '/site_files/images/',
-  });
-
-  site.get({
     name: 'Qualifications',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,
-  });
-
-  site.on('[company][created]', (doc) => {
-    $qualifications.add(
-      {
-        code: '1-Test',
-        name_ar: 'تأهيل إفتراضي',
-        name_en: 'Default Qualification',
-        image: '/images/qualification.png',
-        active: true,
-      },
-      (err, doc1) => {}
-    );
   });
 
   site.post('/api/qualifications/add', (req, res) => {

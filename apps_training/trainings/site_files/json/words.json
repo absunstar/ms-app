@@ -1,0 +1,72 @@
+[
+  {
+    "name": "trainings",
+    "en": "Trainings",
+    "ar": "التدريبات"
+  },
+  {
+    "name": "trainees_list",
+    "en": "Trainees List",
+    "ar": "قائمة المتدربين"
+  },
+  {
+    "name": "add_trainees",
+    "en": "Add Trainees",
+    "ar": "إضافة متدربين"
+  },
+  {
+    "name": "training",
+    "en": "Training",
+    "ar": "التدريب"
+  },
+  {
+    "name": "training_new",
+    "en": "New Training",
+    "ar": "تدريب جديد"
+  },
+  {
+    "name": "training_add",
+    "en": "Add Training",
+    "ar": "إضافة تدريب "
+  },
+  {
+    "name": "training_edit",
+    "en": "Edit Training",
+    "ar": "تعديل تدريب "
+  },
+  {
+    "name": "training_details",
+    "en": "Training Details",
+    "ar": "تفاصيل التدريب "
+  },
+  {
+    "name": "training_delete",
+    "en": "Delete Training",
+    "ar": "حذف تدريب "
+  },
+  {
+    "name": "privacy_type",
+    "en": "Privacy Type",
+    "ar": "نوع الخصوصية"
+  },
+  {
+    "name": "search_for_training",
+    "en": "Search For Training",
+    "ar": "البحث عن التدريبات"
+  },
+  {
+    "name": "category",
+    "en": "Category",
+    "ar": "الفئة"
+  },
+  {
+    "name": "create_new_trainee",
+    "en": "Create New Trainee",
+    "ar": "إنشاء متدرب جديد"
+  },
+  {
+    "name": "trainee_already_there",
+    "en": "The trainee is already there",
+    "ar": "المتدرب موجود من قبل"
+  }
+]

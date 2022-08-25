@@ -3,7 +3,7 @@
   <head x-import="head.html"> </head>
 
   <body class="##session.lang##" x-permissions="!login" ng-controller="register">
-    <nav x-import="0/navbar.html" ></nav>
+    <nav x-import="0/navbar.html"></nav>
 
     <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
 
@@ -39,16 +39,25 @@
                     <div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-employer-content" role="tabpanel" aria-labelledby="v-employer-tab">
                       <div class="employer-form">
                         <div class="row">
-                          <i-control v="r" class="col5" ng-model="user.first_name" label="##word.first_name##"></i-control>
-                          <i-control v="r" class="col5" ng-model="user.last_name" label="##word.last_name##"></i-control>
-                          <i-image class="col2" ng-model="user.image"></i-image>
+                          <div class="col4">
+                            <i-image ng-model="employer.image"></i-image>
+                          </div>
+
+                          <div class="col8">
+                            <div class="row">
+                              <i-control v="r" ng-model="employer.first_name" label="##word.first_name##"></i-control>
+                            </div>
+                            <div class="row">
+                              <i-control v="r" ng-model="employer.last_name" label="##word.last_name##"></i-control>
+                            </div>
+                          </div>
                         </div>
 
-                        <i-control v="r" class="row" ng-model="user.email" label="##word.email##"></i-control>
+                        <i-control v="r" class="row" ng-model="employer.email" label="##word.email##"></i-control>
 
                         <div class="row">
-                          <i-control v="r" type="password" class="col pass" ng-model="user.password" label="##word.password##"></i-control>
-                          <i-control v="r" type="password" class="col pass" ng-model="user.retype_password" label="##word.retype_password##"></i-control>
+                          <i-control v="r" type="password" class="col pass" ng-model="employer.password" label="##word.password##"></i-control>
+                          <i-control v="r" type="password" class="col pass" ng-model="employer.retype_password" label="##word.retype_password##"></i-control>
                           <i-checkbox class="col" ng-change="showPassword()" ng-model="show_password" label="##word.show_password##"></i-checkbox>
                         </div>
 
@@ -60,7 +69,7 @@
                         <br />
 
                         <div class="center">
-                          <i-button class="center" label="##word.register_as_employer##" ng-click="addEmployer()"></i-button>
+                          <i-button class="center" label="##word.register_as_employer##" ng-click="addEmployer(employer)"></i-button>
                         </div>
                       </div>
                     </div>
@@ -68,16 +77,24 @@
                     <div class="tab-pane fade shadow rounded bg-white p-5" id="v-job-seeker-content" role="tabpanel" aria-labelledby="v-job-seeker-tab">
                       <div class="job-seeker-form">
                         <div class="row">
-                          <i-control v="r" class="col5" ng-model="user.first_name" label="##word.first_name##"></i-control>
-                          <i-control v="r" class="col5" ng-model="user.last_name" label="##word.last_name##"></i-control>
-                          <i-image class="col2" ng-model="user.image"></i-image>
-                        </div>
+                          <div class="col4">
+                            <i-image ng-model="job_seeker.image"></i-image>
+                          </div>
 
-                        <i-control v="r" class="row" ng-model="user.email" label="##word.email##"></i-control>
+                          <div class="col8">
+                            <div class="row">
+                              <i-control v="r" ng-model="job_seeker.first_name" label="##word.first_name##"></i-control>
+                            </div>
+                            <div class="row">
+                              <i-control v="r" ng-model="job_seeker.last_name" label="##word.last_name##"></i-control>
+                            </div>
+                          </div>
+                        </div>
+                        <i-control v="r" class="row" ng-model="job_seeker.email" label="##word.email##"></i-control>
 
                         <div class="row">
-                          <i-control v="r" type="password" class="col pass" ng-model="user.password" label="##word.password##"></i-control>
-                          <i-control v="r" type="password" class="col pass" ng-model="user.retype_password" label="##word.retype_password##"></i-control>
+                          <i-control v="r" type="password" class="col pass" ng-model="job_seeker.password" label="##word.password##"></i-control>
+                          <i-control v="r" type="password" class="col pass" ng-model="job_seeker.retype_password" label="##word.retype_password##"></i-control>
                           <i-checkbox class="col" ng-change="showPassword()" ng-model="show_password" label="##word.show_password##"></i-checkbox>
                         </div>
 
@@ -89,7 +106,7 @@
                         <br />
 
                         <div class="center">
-                          <i-button class="center" label="##word.register_as_job_seeker##" ng-click="addJobSeeker()"></i-button>
+                          <i-button class="center" label="##word.register_as_job_seeker##" ng-click="addJobSeeker(job_seeker)"></i-button>
                         </div>
                       </div>
                     </div>

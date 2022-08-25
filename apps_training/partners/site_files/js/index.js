@@ -238,6 +238,8 @@ app.controller('partners', function ($scope, $http, $timeout) {
           'role.name': 'partner',
           'partners_list.partner.id': $scope.partner.id,
         },
+        select: { id: 1, first_name: 1, last_name: 1, email: 1 },
+
       },
     }).then(
       function (response) {

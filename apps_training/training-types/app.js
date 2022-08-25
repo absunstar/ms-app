@@ -26,7 +26,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/training_types/add', (req, res) => {
+  site.post('/api/trainings_types/add', (req, res) => {
     let response = {
       done: false,
     };
@@ -78,7 +78,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/training_types/update', (req, res) => {
+  site.post('/api/trainings_types/update', (req, res) => {
     let response = {
       done: false,
     };
@@ -142,7 +142,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/training_types/view', (req, res) => {
+  site.post('/api/trainings_types/view', (req, res) => {
     let response = {
       done: false,
     };
@@ -171,7 +171,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/training_types/delete', (req, res) => {
+  site.post('/api/trainings_types/delete', (req, res) => {
     let response = {
       done: false,
     };
@@ -206,7 +206,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/training_types/all', (req, res) => {
+  site.post('/api/trainings_types/all', (req, res) => {
     let response = {
       done: false,
     };

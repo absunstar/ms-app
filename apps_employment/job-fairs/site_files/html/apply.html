@@ -1,44 +1,39 @@
 <div id="applyModal" class="modal" fixed>
   <div class="modal-content">
-      <div class="modal-header">
-          <span class="close">&times;</span>
-          <h2 class="center">
-              ##word.apply_for_job_fair##
-              <i class="fa fa-plus "></i>
-          </h2>
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 class="center">
+        ##word.apply_for_job_fair##
+        <i class="fa fa-plus"></i>
+      </h2>
+    </div>
 
+    <div class="modal-body">
+      <div class="row">
+        <h2>##word.apply_for_job_fair## : {{job_fairs.name_##session.lang##}} ##word.at## {{job_fairs.website}} ##word.on## {{job_fairs.event_date | date:"dd/MM/yyyy"}}</h2>
+      </div>
+      <div class="row">
+        <i-control type="text" class="col5" ng-model="job_fairs.$apply.general_search" ng-keydown="getJobSeeker($event)" label="##word.search##"></i-control>
+
+        <i-list label="##word.search_for_job_seeker##" ng-model="job_fairs.$apply.job_seeker" display="first_name" class="col7" ng-change="selectJobSeeker(job_fairs.$apply)" items="jobSeekerList" ng-search="job_fairs.$apply.$_job_seeker"></i-list>
+      </div>
+      <br />
+      <br />
+      <div class="row">
+        <i-control type="text" v="r" class="col6" ng-model="job_fairs.$apply.first_name" label="##word.job_seeker_name##"></i-control>
+        <i-control type="text" v="r" class="col6" ng-model="job_fairs.$apply.job_title" label="##word.job_seeker_job_title##"></i-control>
       </div>
 
-      <div class="modal-body">
-        <div class="row">
-          <h2>##word.apply_for_job_fair## : {{job_fairs.name_##session.lang##}} ##word.at## {{job_fairs.website}} ##word.on## {{job_fairs.event_date | date:"dd/MM/yyyy"}} </h2>
-        </div>
-        <div class="row">
-
-          <i-list   label="##word.search_for_job_seeker##" ng-model="job_seeker"
-          display="name" ng-change="selectJobSeeker(job_seeker)" items="jobSeekerList" ng-search="_search.$job_seeker"></i-list>
-
-        </div>
-        <br>
-        <br>
-        <div class="row">
-          <i-control type="text" v="r" class="col6" ng-model="apply.name" label="##word.job_seeker_name##"></i-control>
-          <i-control type="text" v="r" class="col6" ng-model="apply.job_title" label="##word.job_seeker_job_title##"></i-control>
-
-        </div>
-
-        <div class="row">
-          <i-control type="text" v="r" class="col6" ng-model="apply.email" label="##word.job_seeker_email##"></i-control>
-          <i-date class="col8" v="r" class="col6" ng-model="apply.apply_date" label="##word.apply_date##"> </i-date>
-
-        </div>
-
+      <div class="row">
+        <i-control type="text" v="r" class="col6" ng-model="job_fairs.$apply.email" label="##word.job_seeker_email##"></i-control>
+        <i-date class="col8" v="r" class="col6" ng-model="job_fairs.$apply.apply_date" label="##word.apply_date##"> </i-date>
       </div>
+    </div>
 
-      <div class="modal-footer center">
-          <h2 class="bold text-center text-danger"> {{error}} </h2>
-          <i-button type="add" label="##word.register##" ng-click="registerApply(apply)"></i-button>
-          <i-button type="close" label="##word.close##" onclick="site.hideModal( '#applyModal')"></i-button>
-      </div>
+    <div class="modal-footer center">
+      <h2 class="bold text-center text-danger">{{error}}</h2>
+      <i-button type="add" label="##word.register##" ng-click="registerApply(job_fairs)"></i-button>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#applyModal')"></i-button>
+    </div>
   </div>
 </div>

@@ -80,16 +80,6 @@
         "ar": "رابط التنشيط"
     },
     {
-        "name": "unlimited_companies",
-        "en": "Unlimited Companies",
-        "ar": "شركات غير محدودة"
-    },
-    {
-        "name": "limited_companies",
-        "en": "Limited Companies",
-        "ar": "شركات محدودة"
-    },
-    {
         "name": "account_new",
         "en": "New Account",
         "ar": "حساب جديد"
