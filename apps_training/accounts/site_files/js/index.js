@@ -13,39 +13,6 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     site.showModal('#accountAddModal');
   };
 
-  $scope.addAccount = function () {
-    $scope.error = '';
-    const v = site.validated('#accountAddModal');
-    if (!v.ok) {
-      $scope.error = v.messages[0].ar;
-      return;
-    }
-
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/user/add',
-      data: $scope.account,
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          site.hideModal('#accountAddModal');
-          site.reetValidated('#accountAddModal');
-          $scope.getAccountList();
-        } else if (response.data.error) {
-          $scope.error = response.data.error;
-          if (response.data.error.like('*Name Exists*')) {
-            $scope.error = '##word.name_already_exists##';
-          }
-        }
-      },
-      function (err) {
-        console.log(err);
-      }
-    );
-  };
-
   $scope.displayUpdateAccount = function (account) {
     $scope.error = '';
     $scope.viewAccount(account);
@@ -363,7 +330,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     }
     if (trainer) {
       if (trainer.password === trainer.retype_password) {
-        trainer.role = $scope.accountsTypeList[1];
+        trainer.role = $scope.accountsTypeList[3];
         $scope.busy = true;
         $http({
           method: 'POST',

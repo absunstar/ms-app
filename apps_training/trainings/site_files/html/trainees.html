@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp">
+  <head x-import="head.html"> </head>
+
+  <body class="##session.lang##" ng-controller="trainees" x-permissions="login">
+    <div x-import="0/navbar.html" ></div>
+
+    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
+    <div id="main-layout" class="container loaded">
+      <div x-import="trainees-accounts/add_modal.html"></div>
+      <div x-import="trainings/add_trainees_modal.html"></div>
+
+      <div class="row">
+        <h1 class="bold text-center">##word.trainees_list##</h1>
+      </div>
+
+      <div class="row">
+        <i-control class="col6" label="##word.search_for_trainees##" ng-model="trainees_search"></i-control>
+        <div class="col2">
+          <br>
+          <i-button type="search" label="##word.search##" ng-click="getTrainingList()"> </i-button>
+        </div>
+      </div>
+
+      <div class="top-actions">
+
+        <i-button  type="add" label="##word.create_new_trainee##" ng-click="displayCreateTrainee()"></i-button>
+        <i-button  label="##word.add_trainees##" onclick="site.showModal( '#addtraineeToTrainingModal')"></i-button>
+        <i-button  type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+
+        <h3 class="bold text-center">##word.count## : {{count || 0}}</h3>
+        <h3 class="bold text-center text-danger">{{error}}</h3>
+      </div>
+
+      <table x-permissions="login" class="table hover text-center" id="t1">
+        <thead>
+          <tr>
+            <th>##word.name##</th>
+            <th>##word.email##</th>
+            <th>##word.national_id##</th>
+              <th>##word.mobile_phone##</th>
+            <th class="not-print">##word.actions##</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="c in training.trainees_list">
+            <td class="center">{{c.first_name}} - {{c.partner.last_name}} </td>
+            <td class="center">{{c.email}} </td>
+            <td class="center title">{{c.id_number}}</td>
+            <td class="center title">{{c.mobile}}</td>
+
+            <td class="center not-print">
+              <i-button  type="delete" label="##word.delete##" ng-click="deleteTrainee($index)"></i-button>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div x-import="0/scripts.html"></div>
+    <script x-import="trainings/trainees.js"></script>
+  </body>
+</html>

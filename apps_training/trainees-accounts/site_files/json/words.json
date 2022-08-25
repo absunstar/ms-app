@@ -1,0 +1,48 @@
+[
+    {
+        "name": "trainees",
+        "en": "Trainees",
+        "ar": "المتدربين"
+    },
+   
+    {
+        "name": "source_of_income",
+        "en": "Dource Of Income",
+        "ar": "مصدر الدخل"
+    },
+    {
+        "name": "create_trainee_account",
+        "en": "Create a Trainee account",
+        "ar": "أنشئ حساب متدرب"
+    },
+    {
+        "name": "add_trainee",
+        "en": "Add Trainee",
+        "ar": "إضافة متدرب"
+    },
+    {
+        "name": "search_for_trainees",
+        "en": "Search For Trainees",
+        "ar": "البحث عن متدربين"
+    },
+    {
+        "name": "id_number",
+        "en": "ID Number",
+        "ar": "رقم الهوية"
+    },
+    {
+        "name": "id_type",
+        "en": "ID Type",
+        "ar": "نوع الهوية"
+    },
+    {
+        "name": "national_id",
+        "en": "National ID",
+        "ar": "الهوية الوطنية"
+    },
+    {
+        "name": "passport",
+        "en": "Passport",
+        "ar": "جواز سفر"
+    }
+]

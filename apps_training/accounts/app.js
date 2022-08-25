@@ -81,11 +81,13 @@ module.exports = function init(site) {
     }
 
     let user = req.body;
+    delete user.retype_password
     user.$req = req;
     user.$res = res;
-    site.security.addUser(user, (err, _id) => {
+    site.security.addUser(user, (err, doc) => {
       if (!err) {
         response.done = true;
+        response.doc = doc;
       } else {
         response.error = err.message;
       }
@@ -319,6 +321,10 @@ module.exports = function init(site) {
 
       where.$or.push({
         phone: site.get_RegExp(search, 'i'),
+      });
+
+      where.$or.push({
+        id_number: site.toNumber(search),
       });
     }
 

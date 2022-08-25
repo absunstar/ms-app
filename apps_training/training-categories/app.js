@@ -26,7 +26,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/training_categories/add', (req, res) => {
+  site.post('/api/trainings_categories/add', (req, res) => {
     let response = {
       done: false,
     };
@@ -79,7 +79,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/training_categories/update', (req, res) => {
+  site.post('/api/trainings_categories/update', (req, res) => {
     let response = {
       done: false,
     };
@@ -143,7 +143,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/training_categories/view', (req, res) => {
+  site.post('/api/trainings_categories/view', (req, res) => {
     let response = {
       done: false,
     };
@@ -172,7 +172,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/training_categories/delete', (req, res) => {
+  site.post('/api/trainings_categories/delete', (req, res) => {
     let response = {
       done: false,
     };
@@ -207,7 +207,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/training_categories/all', (req, res) => {
+  site.post('/api/trainings_categories/all', (req, res) => {
     let response = {
       done: false,
     };

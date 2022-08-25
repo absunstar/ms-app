@@ -26,7 +26,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/training_centers/add', (req, res) => {
+  site.post('/api/trainings_centers/add', (req, res) => {
     let response = {
       done: false,
     };
@@ -81,7 +81,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/training_centers/update', (req, res) => {
+  site.post('/api/trainings_centers/update', (req, res) => {
     let response = {
       done: false,
     };
@@ -145,7 +145,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/training_centers/view', (req, res) => {
+  site.post('/api/trainings_centers/view', (req, res) => {
     let response = {
       done: false,
     };
@@ -174,7 +174,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/training_centers/delete', (req, res) => {
+  site.post('/api/trainings_centers/delete', (req, res) => {
     let response = {
       done: false,
     };
@@ -209,7 +209,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/training_centers/all', (req, res) => {
+  site.post('/api/trainings_centers/all', (req, res) => {
     let response = {
       done: false,
     };

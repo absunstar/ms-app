@@ -236,7 +236,7 @@ app.controller('courses', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/training_categories/all',
+      url: '/api/trainings_categories/all',
       data: {
         where: { active: true },
         select: { id: 1, name_ar: 1, name_en: 1, training_type: 1 },

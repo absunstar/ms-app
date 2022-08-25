@@ -320,6 +320,7 @@ app.controller('subPartners', function ($scope, $http, $timeout) {
           'role.name': 'sub_partner',
           'partners_list.sub_partners.id': $scope.sub_partner.id,
         },
+        select: { id: 1, first_name: 1, last_name: 1, email: 1 },
       },
     }).then(
       function (response) {

@@ -1,0 +1,20 @@
+<div id="traineeAddModal" class="modal" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 class="center">
+        ##word.account_add##
+        <i class="fa fa-plus"></i>
+      </h2>
+    </div>
+
+    <div class="modal-body">
+      <div x-import="trainees-accounts/content.html"></div>
+    </div>
+
+    <div class="modal-footer center">
+      <i-button type="add" label="##word.create_trainee_account##" ng-click="createTrainee(trainee)"></i-button>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#traineeAddModal')"></i-button>
+    </div>
+  </div>
+</div>

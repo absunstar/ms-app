@@ -81,6 +81,7 @@ module.exports = function init(site) {
     }
 
     let user = req.body;
+    delete user.retype_password
     user.$req = req;
     user.$res = res;
     site.security.addUser(user, (err, _id) => {

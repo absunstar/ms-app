@@ -26,7 +26,7 @@ app.controller('trainingTypes', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/training_types/add',
+      url: '/api/trainings_types/add',
       data: $scope.training_type,
     }).then(
       function (response) {
@@ -65,7 +65,7 @@ app.controller('trainingTypes', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/training_types/update',
+      url: '/api/trainings_types/update',
       data: training_type,
     }).then(
       function (response) {
@@ -108,7 +108,7 @@ app.controller('trainingTypes', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/training_types/update',
+      url: '/api/trainings_types/update',
       data: element,
     }).then(
       function (response) {
@@ -136,7 +136,7 @@ app.controller('trainingTypes', function ($scope, $http, $timeout) {
     $scope.error = '';
     $http({
       method: 'POST',
-      url: '/api/training_types/view',
+      url: '/api/trainings_types/view',
       data: {
         id: training_type.id,
       },
@@ -168,7 +168,7 @@ app.controller('trainingTypes', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/training_types/delete',
+      url: '/api/trainings_types/delete',
       data: {
         id: $scope.training_type.id,
       },
@@ -201,7 +201,7 @@ app.controller('trainingTypes', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/training_types/all',
+      url: '/api/trainings_types/all',
       data: {
         where: where,
       },

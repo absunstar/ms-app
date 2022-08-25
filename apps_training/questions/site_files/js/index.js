@@ -246,7 +246,7 @@ app.controller('questions', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/training_types/all',
+      url: '/api/trainings_types/all',
       data: {
         where: { active: true },
         select: { id: 1,   name_ar: 1, name_en: 1 },
@@ -271,7 +271,7 @@ app.controller('questions', function ($scope, $http, $timeout) {
     if (training_type && training_type.id) {
       $http({
         method: 'POST',
-        url: '/api/training_categories/all',
+        url: '/api/trainings_categories/all',
         data: {
           where: { active: true, 'training_type.id': training_type.id },
           select: { id: 1,   name_ar: 1, name_en: 1 },

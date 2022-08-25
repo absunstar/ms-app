@@ -1,0 +1,27 @@
+<div id="addtraineeToTrainingModal" class="modal" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 class="center">
+        ##word.trainees_add## ##word.to## ##word.training##
+        <i class="fa fa-plus"></i>
+      </h2>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <i-control class="col4" label="##word.search_for_trainees##" ng-keydown="getTraineesList($event)" ng-model="training.$general_search"></i-control>
+        <i-list class="col5" label="##word.trainees##" ng-model="training.$trainee_select" display="first_name" items="training.$traineesList" ng-search="training.$trainee_search"></i-list>
+        <div class="col3">
+          <br />
+          <i-button type="add" label="##word.add##" ng-click="addTraineeToTraining(training)"></i-button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="bold text-center green">{{error}}</h2>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#addtraineeToTrainingModal') ; error = ''"></i-button>
+    </div>
+  </div>
+</div>

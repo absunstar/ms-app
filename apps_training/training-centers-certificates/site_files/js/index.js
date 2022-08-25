@@ -246,7 +246,7 @@ app.controller('trainingCentersCertificates', function ($scope, $http, $timeout)
 
     $http({
       method: 'POST',
-      url: '/api/training_types/all',
+      url: '/api/trainings_types/all',
       data: {
         where: { active: true },
         select: { id: 1, name_ar: 1, name_en: 1 },
@@ -271,7 +271,7 @@ app.controller('trainingCentersCertificates', function ($scope, $http, $timeout)
 
     $http({
       method: 'POST',
-      url: '/api/training_categories/all',
+      url: '/api/trainings_categories/all',
       data: {
         where: { active: true,'training_type.id' : id },
         select: { id: 1, name_ar: 1, name_en: 1 },
@@ -296,7 +296,7 @@ app.controller('trainingCentersCertificates', function ($scope, $http, $timeout)
 
     $http({
       method: 'POST',
-      url: '/api/training_centers/all',
+      url: '/api/trainings_centers/all',
       data: {
         where: { active: true,'partner.id' : id },
         select: { id: 1, name_ar: 1, name_en: 1 },
