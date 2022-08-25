@@ -81,7 +81,7 @@ module.exports = function init(site) {
     }
 
     let user = req.body;
-    delete user.retype_password
+    delete user.retype_password;
     user.$req = req;
     user.$res = res;
     site.security.addUser(user, (err, _id) => {
@@ -354,7 +354,6 @@ module.exports = function init(site) {
         }
       }
 
-    
       delete where['active_search'];
       delete where['not_active'];
       delete where['qualifications'];
@@ -392,14 +391,13 @@ module.exports = function init(site) {
       delete where['general_search'];
     }
 
-
     site.security.getUsers(
       {
         where: where,
       },
       (err, docs, count) => {
         if (!err) {
-    response.done = true;
+          response.done = true;
           for (let i = 0; i < docs.length; i++) {
             let u = docs[i];
             u.image = u.image || '/images/user.png';
@@ -408,6 +406,52 @@ module.exports = function init(site) {
           response.count = count;
         }
         res.json(response);
+      }
+    );
+  });
+
+  site.onPOST('/api/user/send-activation-link', (req, res) => {
+    let response = {
+      done: true,
+      user: req.data,
+    };
+    response.user.activationCode = Math.random().toString().replace('.', '');
+    site.security.updateUser(response.user, (err) => {
+      if (!err) {
+        response.done = true;
+      } else {
+        response.error = err.message;
+      }
+      response.link = `${req.headers['origin']}/api/user/activation?id=${response.user.id}&code=${response.user.activationCode}`;
+      site.sendMail({
+        to: response.user.email,
+        subject: `Activatin Link`,
+        message: `<a target="_blank" href="${response.link}"> Click Here To Activate Your Account </a>`,
+      });
+      res.json(response);
+    });
+  });
+
+  site.onGET({ name: '/api/user/activation', public: true }, (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    site.security.getUser(
+      {
+        id: req.query.id,
+      },
+      (err, doc) => {
+        if (!err && doc && doc.activationCode == req.query.code) {
+          response.done = true;
+          response.active = true;
+          doc.active = true;
+          site.security.updateUser(doc);
+          res.redirect('/login');
+        } else {
+          response.error = 'Error While Activated User';
+          res.json(response);
+        }
       }
     );
   });

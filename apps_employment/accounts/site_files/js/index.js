@@ -33,7 +33,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
           site.hideModal('#accountAddModal');
           site.reetValidated('#accountAddModal');
           $scope.getAccountList();
-        } else if(response.data.error) {
+        } else if (response.data.error) {
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -84,7 +84,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
           site.hideModal('#accountUpdateModal');
           site.resetValidated('#accountUpdateModal');
           $scope.getAccountList();
-        } else if(response.data.error) {
+        } else if (response.data.error) {
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -124,7 +124,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
           } else if (type == 'deactivate') {
             site.hideModal('#deactivateModal');
           }
-        } else if(response.data.error) {
+        } else if (response.data.error) {
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -255,9 +255,9 @@ app.controller('accounts', function ($scope, $http, $timeout) {
               site.hideModal('#accountAddModal');
               site.resetValidated('.admin-form');
               $scope.getAccountList();
-            } else if(response.data.error) {
+            } else if (response.data.error) {
               $scope.error = response.data.error;
-               if (response.data.error.like('*Name Exists*')) {
+              if (response.data.error.like('*Name Exists*')) {
                 $scope.error = '##word.name_already_exists##';
               }
             }
@@ -294,9 +294,9 @@ app.controller('accounts', function ($scope, $http, $timeout) {
               site.hideModal('#accountAddModal');
               site.resetValidated('.employer-form');
               $scope.getAccountList();
-            } else if(response.data.error) {
+            } else if (response.data.error) {
               $scope.error = response.data.error;
-               if (response.data.error.like('*Name Exists*')) {
+              if (response.data.error.like('*Name Exists*')) {
                 $scope.error = '##word.name_already_exists##';
               }
             }
@@ -333,9 +333,9 @@ app.controller('accounts', function ($scope, $http, $timeout) {
               site.hideModal('#accountAddModal');
               site.resetValidated('.job-seeker-form');
               $scope.getAccountList();
-            } else if(response.data.error) {
+            } else if (response.data.error) {
               $scope.error = response.data.error;
-               if (response.data.error.like('*Name Exists*')) {
+              if (response.data.error.like('*Name Exists*')) {
                 $scope.error = '##word.name_already_exists##';
               }
             }
@@ -372,6 +372,28 @@ app.controller('accounts', function ($scope, $http, $timeout) {
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#accountSearchModal');
+  };
+
+  $scope.sendActivationLink = function (user) {
+    user.$sendActivationLink = true;
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/user/send-activation-link',
+      data: user,
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+        } else if (response.data.error) {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
   };
 
   $scope.getAccountList();

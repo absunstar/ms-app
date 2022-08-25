@@ -28,7 +28,6 @@ module.exports = function init(site) {
       $res: res,
     });
 
-
     $countries.findOne(
       {
         where: {
@@ -47,7 +46,6 @@ module.exports = function init(site) {
           response.error = err.message;
           res.json(response);
         } else {
-       
           $countries.add(country_doc, (err, doc) => {
             if (!err) {
               response.done = true;
@@ -197,7 +195,6 @@ module.exports = function init(site) {
 
     let where = req.body.where || {};
 
-    
     if (where['name_ar']) {
       where['name_ar'] = site.get_RegExp(where['name_ar'], 'i');
     }
@@ -206,17 +203,15 @@ module.exports = function init(site) {
       where['name_en'] = site.get_RegExp(where['name_en'], 'i');
     }
 
-   
-
-    if(where['not_active']){
+    if (where['not_active']) {
       where['active'] = false;
     }
 
-    if(where['active_search']){
+    if (where['active_search']) {
       where['active'] = true;
     }
 
-    if(where['not_active'] && where['active_search']){
+    if (where['not_active'] && where['active_search']) {
       delete where['active'];
     }
 
@@ -234,6 +229,7 @@ module.exports = function init(site) {
       },
       (err, docs, count) => {
         if (!err) {
+          docs.sort((a, b) => (a.name_en.toUpperCase() < b.name_en.toUpperCase() ? -1 : 1));
           response.done = true;
           response.list = docs;
           response.count = count;

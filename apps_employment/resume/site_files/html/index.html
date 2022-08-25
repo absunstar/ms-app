@@ -5,7 +5,7 @@
   <body class="##session.lang## loaded" ng-controller="resume">
     <div x-import="0/navbar.html"></div>
 
-    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
+   
     <div id="main-layout" class="container" id="resumeModal">
       <div class="row resume">
         <div x-import="resume/profile.html"></div>
@@ -39,7 +39,7 @@
           </div>
 
           <div class="col4">
-            <div class="row info" ng-hide="'##user.role.name##' == 'employer' && short == false">
+            <div class="row info" ng-hide="'##user.role.name##' == 'employer' && !user.$short">
               <a href="{{user.website}}" target="_blank"><i class="fa fa-globe" aria-hidden="true"></i>{{user.website}}</a>
               <a href="tel:{{user.phone}}" target="_blank"><i class="fas fa-phone"></i>{{user.phone}}</a>
               <a href="mailto:{{user.email}}" target="_blank"><i class="fas fa-envelope"></i>{{user.email}}</a>
@@ -198,7 +198,7 @@
         </div>
       </div>
     </div>
-
+ <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
     <div x-import="0/scripts.html"></div>
     <script x-import="resume/index.js"></script>
   </body>

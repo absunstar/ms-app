@@ -2,11 +2,6 @@ module.exports = function init(site) {
   const $jobs = site.connectCollection('Jobs');
 
   site.get({
-    name: 'images',
-    path: __dirname + '/site_files/images/',
-  });
-
-  site.get({
     name: 'Jobs',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',

@@ -236,7 +236,7 @@ module.exports = function init(site) {
       },
       (err, docs, count) => {
         if (!err) {
-
+          docs.sort((a, b) => (a.name_en.toUpperCase() < b.name_en.toUpperCase() ? -1 : 1));
           response.done = true;
           response.list = docs;
           response.count = count;

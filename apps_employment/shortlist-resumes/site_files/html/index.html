@@ -1,11 +1,23 @@
 <!DOCTYPE html>
-<html lang="en"  data-ng-app="myApp" x-permissions="employer">
-  <head x-import="head.html"> </head>
+<html lang="en" data-ng-app="myApp" x-permissions="employer">
+  <head x-import="head.html">
+    <style>
+      .user-info {
+        padding: 5px !important;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 1px 2px 8px 5px #0000005e;
+        margin: 5px !important;
+        transition: 0.2s all ease;
+      }
+      .user-info:hover {
+        transform: scale(1.1);
+      }
+    </style>
+  </head>
 
-  <body class="##session.lang##" ng-controller="shortListedResumes" >
-    <div x-import="0/navbar.html" ></div>
-
-    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
+  <body class="##session.lang##" ng-controller="shortListedResumes">
+    <div x-import="0/navbar.html"></div>
 
     <div id="main-layout" class="container loaded">
       <div class="row">
@@ -14,33 +26,56 @@
             <h1 class="bold text-center">##word.best_short_listed_resumes##</h1>
           </div>
           <div class="top-actions">
-            <div  x-import="jobs/view_modal.html"></div>
+            <div x-import="jobs/view_modal.html"></div>
           </div>
 
-          <div class="row" ng-repeat="u in list">
+          <div class="row display-none" ng-repeat="u in list">
             <div class="col2">
               <i-image view ng-model="u.image"></i-image>
             </div>
             <div class="col6">
-
               <b class="font-weight-bold">{{u.name}}</b>
               <p>{{u.job_title}}</p>
               <p>{{u.country.name_##session.lang##}} , {{u.city.name_##session.lang##}} <i class="fa fa-map-marker" aria-hidden="true"></i></p>
               <p>{{u.qualification.name_##session.lang##}}</p>
               <p>{{u.experience.name_##session.lang##}}</p>
             </div>
-  
+
             <div class="col2">
               <a type="button" class="btn btn-primary btn-lg" href="/Resume?id={{u.id}}">##word.view_resume##</a>
               <i-button type="delete" ng-click="removeShortList(u)"></i-button>
               <i-file label="##word.download_cv##" view categoty="upload_resume" ng-model="u.upload_resume"></i-file>
             </div>
           </div>
-      
+
+          <div class="row user-info" ng-repeat="u in list">
+            <div class="col3">
+              <div class="row"><i-image view ng-model="u.image"></i-image></div>
+              <div class="row">
+                <i-button class="block" label="##word.view_resume##" ng-click="showResume(u)"></i-button>
+                <i-button class="block" type="delete" label="##word.remove_shortlist##" ng-click="removeShortList(u)"></i-button>
+              </div>
+            </div>
+            <div class="col9">
+              <h2 class="bold">
+                <i ng-show="u.gender.id == 1" class="fas fa-male"></i>
+                <i ng-show="u.gender.id == 2" class="fas fa-female"></i>
+                {{u.first_name}} {{u.last_name}}
+              </h2>
+              <p class="bold blue">{{u.job_title}} <span class="orange">{{u.experience.name_##session.lang##}}</span></p>
+
+              <p ng-show="u.country">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>{{u.country.name_##session.lang##}} , {{u.city.name_##session.lang##}} </span>
+              </p>
+
+              <p>{{u.qualification.name_##session.lang##}}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
+    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
     <div x-import="0/scripts.html"></div>
     <script x-import="shortlist-resumes/index.js"></script>
   </body>

@@ -1,5 +1,4 @@
 app.controller('shortListedResumes', function ($scope, $http, $timeout) {
-
   $scope.getJobSeekerList = function (where) {
     $scope.busy = true;
     $scope.list = [];
@@ -27,26 +26,26 @@ app.controller('shortListedResumes', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.removeShortList = function (user,type) {
+  $scope.removeShortList = function (user, type) {
     $scope.busy = true;
-      $http({
-        method: "POST",
-        url: "/api/user/remove_short",
-        data:{id :user.id},
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done) {
-            $scope.getJobSeekerList();
-          } else {
-            $scope.error = response.data.error;
-          }
-        },
-        function (err) {
-  
+    $http({
+      method: 'POST',
+      url: '/api/user/remove_short',
+      data: { id: user.id },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.getJobSeekerList();
+        } else {
+          $scope.error = response.data.error;
         }
-      )
+      },
+      function (err) {}
+    );
   };
-
+  $scope.showResume = function (user) {
+    window.open(`/Resume?id=${user.id}`);
+  };
   $scope.getJobSeekerList();
 });

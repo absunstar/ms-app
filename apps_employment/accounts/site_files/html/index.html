@@ -5,7 +5,7 @@
   <body class="##session.lang##" ng-controller="accounts">
     <nav x-import="0/navbar.html" ></nav>
 
-    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
+   
 
     <div id="main-layout" class="container loaded">
       <div class="row">
@@ -56,12 +56,12 @@
 
               <td class="center not-print">
                 <i-button ng-hide="c.active" label="##word.activate##" ng-click="showActivateModal(c)"></i-button>
-                <i-button ng-hide="!c.active" type="close" label="##word.deactivate##" ng-click="showDeactivateModal(c)"></i-button>
-                <i-button ng-hide="!c.active" type="edit" label="##word.edit##" ng-click="displayUpdateAccount(c)"></i-button>
-                <i-button ng-hide="!c.active" label="##word.activation_link##" ng-click="displayDetailsCity(c)"></i-button>
-                <i-button ng-hide="!c.active" label="##word.password_link##" ng-click="displayDetailsCity(c)"></i-button>
-                <i-button type="edit" label="##word.unlimited_companies##" ng-click="update(c,'unlimit')" ng-show="c.role.name == 'employer' && c.active && c.limited_companies== true"></i-button>
-                <i-button type="edit" label="##word.limited_companies##" ng-click="update(c,'limit')" ng-show="c.role.name == 'employer' && c.active && !c.limited_companies"></i-button>
+                <i-button  type="close" label="##word.deactivate##" ng-click="showDeactivateModal(c)"></i-button>
+                <i-button  type="edit" label="##word.edit##" ng-click="displayUpdateAccount(c)"></i-button>
+                <i-button ng-show="!c.active && !c.$sendActivationLink" label="##word.activation_link##" ng-click="sendActivationLink(c)"></i-button>
+                <i-button ng-hide="!c.active" label="##word.password_link##" ng-click="sendPasswordLink(c)"></i-button>
+                <i-button type="edit" label="##word.unlimited_companies##" ng-click="update(c,'unlimit')" ng-show="c.role.name == 'employer'  && c.limited_companies== true"></i-button>
+                <i-button type="edit" label="##word.limited_companies##" ng-click="update(c,'limit')" ng-show="c.role.name == 'employer'  && !c.limited_companies"></i-button>
                 <i-button loading="busy" type="delete" label="##word.delete##" ng-click="displayDeleteAccount(c)"></i-button>
               </td>
             </tr>
@@ -69,7 +69,7 @@
         </div>
       </div>
     </div>
-
+ <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
     <div x-import="0/scripts.html"></div>
     <script x-import="accounts/index.js"></script>
   </body>

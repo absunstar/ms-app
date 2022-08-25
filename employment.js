@@ -5,6 +5,15 @@ const site = require('../isite')({
   name: 'employment',
   theme: 'theme_paper',
   savingTime: 1,
+  mail: {
+    enabled: false,
+    host: 'smtp.office365.com',
+    port: 587,
+    username: 'ms.two@digisummits.com',
+    password: 'Fan63941',
+    type: 'smpt',
+    from: 'ms.two@digisummits.com',
+  },
   mongodb: {
     db: 'employment',
     limit: 100000,
@@ -24,13 +33,13 @@ const site = require('../isite')({
 site.get({
   name: '/',
   path: site.dir + '/',
-  public : true
+  public: true,
 });
 
 site.get(
   {
     name: '/',
-    public : true
+    public: true,
   },
   (req, res) => {
     res.render(
