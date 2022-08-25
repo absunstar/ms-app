@@ -54,13 +54,22 @@ app.controller('trainings', function ($scope, $http, $timeout) {
     site.showModal('#trainingUpdateModal');
   };
 
-  $scope.updateTraining = function (training) {
+  $scope.updateTraining = function (training, type) {
     $scope.error = '';
-    const v = site.validated('#trainingUpdateModal');
-    if (!v.ok) {
-      $scope.error = v.messages[0].ar;
-      return;
+
+    if (type == 'approve') {
+      training.approve = true;
+    } else if(type == 'update') {
+
+      
+      const v = site.validated('#trainingUpdateModal');
+      if (!v.ok) {
+        $scope.error = v.messages[0].ar;
+        return;
+      }
     }
+   
+
     $scope.busy = true;
     $http({
       method: 'POST',
@@ -70,8 +79,12 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#trainingUpdateModal');
-          site.resetValidated('#trainingUpdateModal');
+          if (type == 'attend') {
+            site.hideModal('#attendanceModal');
+          } else if(type == 'update') {
+            site.hideModal('#trainingUpdateModal');
+            site.resetValidated('#trainingUpdateModal');
+          }
           $scope.getTrainingList();
         } else if (response.data.error) {
           $scope.error = response.data.error;
@@ -176,6 +189,11 @@ app.controller('trainings', function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
+          $scope.list.forEach((_l) => {
+            if (new Date(_l.end_date) < new Date() && !_l.approve) {
+              _l.$show_approved = true;
+            }
+          });
           site.hideModal('#trainingSearchModal');
           $scope.search = {};
         }
@@ -424,6 +442,38 @@ app.controller('trainings', function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     );
+  };
+
+  $scope.displayAttendingSceduleModal = function (training) {
+    $scope.error = '';
+    $scope.training = training;
+    site.showModal('#attendingSceduleModal');
+  };
+
+  $scope.displayAttendanceModal = function (c) {
+    $scope.error = '';
+    $scope.attendance = c;
+    if (new Date($scope.attendance.date) > new Date()) {
+      $scope.error = '##word.attendance_cannot_modified_before_date##';
+      return;
+    } else {
+      site.showModal('#attendanceModal');
+    }
+  };
+
+  $scope.attendanceTraining = function (attendance, type) {
+    $scope.error = '';
+    attendance.trainees_list.forEach((_t) => {
+      if (type == 'attend') {
+        _t.attend = true;
+        attendance.$absence_all = false;
+      } else if (type == 'absence') {
+        _t.attend = false;
+        attendance.$attend_all = false;
+      }
+    });
+
+    site.showModal('#attendanceModal');
   };
 
   $scope.displaySearchModal = function () {

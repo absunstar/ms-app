@@ -6,7 +6,6 @@ app.controller('trainees_accounts', function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.trainee = {
       id_type: 'national_id',
-      triners : [],
       active: true,
     };
 

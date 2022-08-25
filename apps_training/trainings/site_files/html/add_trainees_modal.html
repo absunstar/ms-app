@@ -3,7 +3,7 @@
     <div class="modal-header">
       <span class="close">&times;</span>
       <h2 class="center">
-        ##word.trainees_add## ##word.to## ##word.training##
+        ##word.add_trainees## ##word.to## ##word.training##
         <i class="fa fa-plus"></i>
       </h2>
     </div>
@@ -21,7 +21,7 @@
 
     <div class="modal-footer center">
       <h2 class="bold text-center green">{{error}}</h2>
-      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#addtraineeToTrainingModal') ; error = ''"></i-button>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#addtraineeToTrainingModal') " ng-click="error = ''"></i-button>
     </div>
   </div>
 </div>

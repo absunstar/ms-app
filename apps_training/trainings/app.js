@@ -56,6 +56,26 @@ module.exports = function init(site) {
       return;
     }
 
+    training_doc.dates_list = [];
+    training_doc.days.forEach((_d) => {
+      let start = new Date(training_doc.start_date);
+      if (_d.code > start.getDay()) {
+        start.setTime(start.getTime() + (_d.code - start.getDay()) * 24 * 60 * 60 * 1000);
+      } else if (_d.code < start.getDay()) {
+        start.setTime(start.getTime() + (7 - start.getDay() + _d.code) * 24 * 60 * 60 * 1000);
+      }
+      first_date = new Date(start);
+      training_doc.dates_list.push({ date: first_date, day: _d, trainees_list: [] });
+
+      while (start <= new Date(training_doc.end_date)) {
+        start.setTime(start.getTime() + 7 * 24 * 60 * 60 * 1000);
+        if (start <= new Date(training_doc.end_date)) {
+          training_doc.dates_list.push({ date: new Date(start), day: _d, trainees_list: [] });
+        }
+      }
+    });
+    training_doc.dates_list.sort((a, b) => a.date.getTime() - b.date.getTime());
+
     $trainings.add(training_doc, (err, doc) => {
       if (!err) {
         response.done = true;
@@ -83,6 +103,22 @@ module.exports = function init(site) {
     training_doc.edit_user_info = site.security.getUserFinger({
       $req: req,
       $res: res,
+    });
+
+    training_doc.trainees_list.forEach((_t) => {
+      training_doc.dates_list.forEach((_d) => {
+        let found_trainee = _d.trainees_list.find((_tr) => {
+          return _tr.id === _t.id;
+        });
+        if (!found_trainee) {
+          _d.trainees_list.push({
+            id: _t.id,
+            first_name: _t.first_name,
+            email: _t.email,
+            attendance: false,
+          });
+        }
+      });
     });
 
     if (training_doc.id) {
@@ -242,7 +278,6 @@ module.exports = function init(site) {
     delete where['active_search'];
     delete where['not_active'];
 
-
     if (search) {
       where.$or = [];
 
@@ -325,10 +360,7 @@ module.exports = function init(site) {
       where.$or.push({
         'days.en': site.get_RegExp(search, 'i'),
       });
-
     }
-
-
 
     $trainings.findMany(
       {
@@ -342,6 +374,7 @@ module.exports = function init(site) {
       (err, docs, count) => {
         if (!err) {
           response.done = true;
+       
           response.list = docs;
           response.count = count;
         } else {

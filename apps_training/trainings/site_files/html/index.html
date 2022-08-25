@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="admin" data-ng-app="myApp">
-  <head x-import="head.html"> </head>
+<html lang="en" x-permissions="admin" data-ng-app="myApp" x-permissions="!trainee && login">
+  <head x-import="head.html"></head>
 
   <body class="##session.lang##" ng-controller="trainings">
     <nav x-import="0/navbar.html"></nav>
@@ -14,6 +14,8 @@
           <div x-import="trainings/delete_modal.html"></div>
           <div x-import="trainings/view_modal.html"></div>
           <div x-import="trainings/search_all_modal.html"></div>
+          <div x-import="trainings/attending_scedule_modal.html"></div>
+          <div x-import="trainings/attendance_modal.html"></div>
 
           <div class="row">
             <h1 class="bold text-center">##word.trainings##</h1>
@@ -29,7 +31,7 @@
 
           <div class="top-actions">
             <h3 class="bold" ng-show="'##query.id##' != 'undefined'">##word.training_category## : {{training_category.name_##session.lang##}}</h3>
-            <i-button type="add" label="##word.account_new##" ng-click="displayAddTrainee()"></i-button>
+            <i-button  type="add" label="##word.training_new##" ng-click="displayAddTraining()"></i-button>
 
             <i-button type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
 
@@ -57,11 +59,14 @@
                 <td class="center">
                   <p ng-show="c.approve" class="green">##word.yes##</p>
                   <p ng-show="!c.approve" class="red">##word.no##</p>
+                  <i-button ng-show="!c.approve && c.$show_approved" label="##word.approve##" ng-click="updateTraining(c,'approve')"></i-button>
+
                 </td>
 
                 <td class="center not-print">
                   <i-button type="view" label="##word.details##" ng-click="displayDetailsTraining(c)"></i-button>
                   <i-button type="edit" label="##word.edit##" ng-click="displayUpdateTraining(c)"></i-button>
+                  <i-button label="##word.attending_scedule##" ng-click="displayAttendingSceduleModal(c)"></i-button>
                   <a type="button" class="btn btn-primary btn-lg" href="/Trainees?id={{c.id}}">##word.trainees##</a>
                   <i-button type="delete" label="##word.delete##" ng-click="displayDeleteTraining(c)"></i-button>
                 </td>

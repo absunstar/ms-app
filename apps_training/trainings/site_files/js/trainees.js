@@ -5,11 +5,10 @@ app.controller('trainees', function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.trainee = {
       id_type: 'national_id',
-      triners: [],
       active: true,
     };
 
-    site.showModal('#addtraineeToTrainingModal');
+    site.showModal('#traineeAddModal');
   };
 
   $scope.createTrainee = function () {
@@ -22,7 +21,6 @@ app.controller('trainees', function ($scope, $http, $timeout) {
     if ($scope.trainee) {
       if ($scope.trainee.password === $scope.trainee.retype_password) {
         $scope.trainee.role = $scope.accountsTypeList[4];
-        $scope.trainee.trainers = [$scope.training.trainer.id];
         $scope.busy = true;
 
         $http({
@@ -67,7 +65,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
     $scope.busy = true;
     let found_trainee = false;
     if ($scope.training.$trainee_select && $scope.training.$trainee_select.id) {
-      $scope.trainee.trainees_list.forEach((_t) => {
+      $scope.training.trainees_list.forEach((_t) => {
         if (_t.id == $scope.training.$trainee_select.id) {
           found_trainee = true;
         }
@@ -76,7 +74,6 @@ app.controller('trainees', function ($scope, $http, $timeout) {
       if (found_trainee) {
         $scope.error = '##word.trainee_already_there##';
         return;
-
       } else {
         $scope.training.trainees_list.push({
           id: $scope.training.$trainee_select.id,
@@ -86,31 +83,13 @@ app.controller('trainees', function ($scope, $http, $timeout) {
           mobile: $scope.training.$trainee_select.mobile,
           id_number: $scope.training.$trainee_select.id_number,
         });
+        $scope.error = '##word.added_successfully##';
       }
-
-      $http({
-        method: 'POST',
-        url: '/api/trainings/update',
-        data: $scope.training,
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done) {
-         
-          } else if (response.data.error) {
-            $scope.error = response.data.error;
-         
-          }
-        },
-        function (err) {
-          console.log(err);
-        }
-      );
+      $scope.updateTraining($scope.training);
     }
   };
 
   $scope.updateTraining = function (training) {
-    $scope.error = '';
 
     $scope.busy = true;
     $http({
@@ -154,15 +133,21 @@ app.controller('trainees', function ($scope, $http, $timeout) {
       }
     );
   };
-
+  $scope.displayRemoveTraineeModal = function (index) {
+    $scope.error = '';
+    $scope.training.$index = index;
+    site.showModal( '#deleteTraineeModal')
+  };
   $scope.deleteTrainee = function (index) {
     $scope.error = '';
     $scope.training.trainees_list.splice(index, 1);
+    site.hideModal( '#deleteTraineeModal');
     $scope.updateTraining($scope.training);
   };
 
   $scope.getTraineesList = function (ev) {
     $scope.busy = true;
+    $scope.error = '';
     if (ev.which !== 13) {
       return;
     }
@@ -190,5 +175,45 @@ app.controller('trainees', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getAccountsType = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.accountsTypeList = [];
+    $http({
+      method: 'POST',
+      url: '/api/accounts_type/all',
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.accountsTypeList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getGender = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.genderList = [];
+    $http({
+      method: 'POST',
+      url: '/api/gender/all',
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.genderList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.getTraining();
+  $scope.getGender();
+  $scope.getAccountsType();
 });
