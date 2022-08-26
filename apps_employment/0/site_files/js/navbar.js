@@ -16,6 +16,12 @@ app.controller('navbar', ($scope, $http) => {
     site.showModal('#loginModal');
   };
 
+  $scope.goLogin = function () {
+    document.location.href = '/login';
+  };
+  $scope.goRegister = function () {
+    document.location.href = '/register';
+  };
   $scope.showBranches = function () {
     site.showModal('#branchesModal');
   };

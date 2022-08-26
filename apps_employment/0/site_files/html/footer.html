@@ -21,6 +21,23 @@
   .page-nav a:hover {
     transform: scale(1.1);
   }
+  .page-footer {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    width: 100%;
+    background: #272727;
+    min-height: 50px;
+    padding: 5px;
+    color: #fff;
+  }
+  .page-footer a {
+    color: #fff !important;
+    background: #0d6efd;
+    padding: 7px 9px;
+    border-radius: 5px;
+  }
 </style>
 <div class="page-nav" x-permission="login">
   <a x-lang="en" onclick="history.back()"> <i class="fas fa-angle-left"></i> ##word.go_back## </a>
@@ -28,7 +45,13 @@
   <a x-lang="ar" onclick="history.forward()"> <i class="fas fa-angle-right"></i> ##word.go_forward## </a>
   <a x-lang="ar" onclick="history.back()"> ##word.go_back## <i class="fas fa-angle-left"></i></a>
 </div>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom" id="mainNav" ng-controller="footer">
-  <a x-lang="ar" ng-click="changeLang('en')" class="link left btn btn-dark" type="button"> <i class="fa fa-globe"></i> ##word.en_lang## </a>
-  <a x-lang="en" ng-click="changeLang('ar')" class="link left btn btn-dark" type="button"> <i class="fa fa-globe"></i> ##word.ar_lang## </a>
-</nav>
+<div class="page-footer" ng-controller="footer">
+  <a x-lang="ar" ng-click="changeLang('en')" class="left" type="button"> <i class="fa fa-globe"></i> ##word.en_lang## </a>
+  <a x-lang="en" ng-click="changeLang('ar')" class="left" type="button"> <i class="fa fa-globe"></i> ##word.ar_lang## </a>
+
+  <div class="copyright">
+    <div class="copyright-title">
+      <p>All rights reserved 2022</p>
+    </div>
+  </div>
+</div>
