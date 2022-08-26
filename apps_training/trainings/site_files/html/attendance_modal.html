@@ -1,0 +1,46 @@
+<div id="attendanceModal" class="modal" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 class="center">
+        ##word.trainees_attendance##
+        <i class="fa fa-plus"></i>
+      </h2>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <i-checkbox class="col" label="##word.attend_all##" ng-click="attendanceTraining(attendance,'attend')" ng-model="attendance.$attend_all"> </i-checkbox>
+        <i-checkbox class="col" label="##word.absence_all##" ng-click="attendanceTraining(attendance,'absence')" ng-model="attendance.$absence_all"> </i-checkbox>
+      </div>
+      <div class="row">
+        <table x-permissions="login" class="table hover text-center" id="t1">
+          <thead>
+            <tr>
+              <th>##word.name##</th>
+              <th>##word.email##</th>
+              <th>##word.attendance##</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="c in attendance.trainees_list">
+              <td class="center">{{c.first_name}}</td>
+              <td class="center">{{c.email}}</td>
+              <td class="">
+                <div class="row justify-content-md-center">
+                  <i-checkbox class="col " ng-model="c.attend"> </i-checkbox>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="bold text-center text-danger">{{error}}</h2>
+      <i-button type="save" label="##word.save##" ng-click="updateTraining(training,'attend')"></i-button>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#attendanceModal')"></i-button>
+    </div>
+  </div>
+</div>

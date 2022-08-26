@@ -18,7 +18,7 @@
     "name": "accounts_management",
     "en": "Accounts Management",
     "ar": "إدارة الحسابات"
-},
+  },
   {
     "name": "birthdate",
     "en": "Birth Date",
@@ -188,6 +188,21 @@
     "name": "to",
     "en": "To",
     "ar": "إلى"
+  },
+  {
+    "name": "attendance",
+    "en": "Attendance",
+    "ar": "الحضور"
+  },
+  {
+    "name": "category",
+    "en": "Category",
+    "ar": "الفئة"
+  },
+  {
+    "name": "added_successfully",
+    "en": "Added Successfully",
+    "ar": "تمت الإضافة بنجاح"
   },
   {
     "name": "name_ar",

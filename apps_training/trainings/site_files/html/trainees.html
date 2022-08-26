@@ -9,7 +9,8 @@
     <div id="main-layout" class="container loaded">
       <div x-import="trainees-accounts/add_modal.html"></div>
       <div x-import="trainings/add_trainees_modal.html"></div>
-
+      <div x-import="trainings/delete_trainee_modal.html"></div>
+      
       <div class="row">
         <h1 class="bold text-center">##word.trainees_list##</h1>
       </div>
@@ -50,7 +51,7 @@
             <td class="center title">{{c.mobile}}</td>
 
             <td class="center not-print">
-              <i-button  type="delete" label="##word.delete##" ng-click="deleteTrainee($index)"></i-button>
+              <i-button  type="delete" label="##word.delete##" ng-click="displayRemoveTraineeModal($index)"></i-button>
 
             </td>
           </tr>

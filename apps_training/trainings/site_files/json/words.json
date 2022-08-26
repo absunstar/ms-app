@@ -55,9 +55,49 @@
     "ar": "البحث عن التدريبات"
   },
   {
-    "name": "category",
-    "en": "Category",
-    "ar": "الفئة"
+    "name": "attend",
+    "en": "Attend",
+    "ar": "حضور"
+  },
+  {
+    "name": "absence",
+    "en": "Absence",
+    "ar": "غياب"
+  },
+  {
+    "name": "attendance_cannot_modified_before_date",
+    "en": "Attendance can`t be modified before it`s date",
+    "ar": "لا يمكن تعديل الحضور قبل تاريخها"
+  },
+  {
+    "name": "attend_all",
+    "en": "Attend All",
+    "ar": "حضور الكل"
+  },
+  {
+    "name": "absence_all",
+    "en": "Absence All",
+    "ar": "غياب الكل"
+  },
+  {
+    "name": "attendance_edit",
+    "en": "Attendance Edit",
+    "ar": "تعديل الحضور"
+  },
+  {
+    "name": "attendance_trainees",
+    "en": "Attendance Trainees",
+    "ar": "حضور المتدربين"
+  },
+  {
+    "name": "attending_scedule",
+    "en": "Attending Scedule",
+    "ar": "جدول الحضور"
+  },
+  {
+    "name": "trainees_attendance",
+    "en": "Trainees Attendance",
+    "ar": "حضور المتدربين"
   },
   {
     "name": "create_new_trainee",
@@ -68,5 +108,15 @@
     "name": "trainee_already_there",
     "en": "The trainee is already there",
     "ar": "المتدرب موجود من قبل"
+  },
+  {
+    "name": "remove_trainee",
+    "en": "Remove Trainee",
+    "ar": "المتدرب موجود من قبل"
+  },
+  {
+    "name": "sure_you_want_to_remove_trainee",
+    "en": "Are you sure you want to remove trainee?",
+    "ar": "هل أنت متأكد أنك تريد إزالة المتدرب ؟"
   }
 ]
