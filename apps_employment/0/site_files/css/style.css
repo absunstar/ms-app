@@ -129,9 +129,10 @@ a {
     padding: 50px 50px !important;
     gap: 20px;
   }
-
-  .navbar-collapse {
+  .navbar-collapse.show {
     display: flex !important;
+  }
+  .navbar-collapse {
     flex-direction: column-reverse;
     align-items: flex-start !important;
   }
@@ -214,7 +215,7 @@ button.fill {
 }
 
 .navbar-collapse {
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 hr.hr-nav {
