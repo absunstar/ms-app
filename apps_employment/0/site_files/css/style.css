@@ -12,13 +12,13 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  font-family: 'Cairo', sans-serif;
+  font-family: 'Arabic', sans-serif;
 }
 html {
   scroll-behavior: smooth;
 }
 body {
-  font-family: 'Cairo', sans-serif;
+  font-family: 'Arabic', sans-serif;
 }
 a {
   color: black !important;
@@ -75,14 +75,14 @@ a {
 
 /* Medium devices (tablets, less than 992px) */
 @media (max-width: 991.98px) {
-  .search {
+  div.search {
     height: auto !important;
     flex-direction: column;
   }
   button.fill {
     width: -webkit-fill-available !important;
   }
-  .search {
+  div.search {
     position: absolute;
     bottom: -103px !important;
   }
@@ -273,7 +273,7 @@ ul li .nav-link {
   text-align: center;
 }
 
-.search {
+div.search {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -521,19 +521,16 @@ a.jobs-heading {
 
 .copyright {
   display: flex !important;
-  background-color: #333333;
   align-items: center;
   justify-content: center;
   padding: 0;
   margin: 0;
-  height: 50px;
 }
 
 .copyright-title a {
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  line-height: 22px;
   color: white !important;
 }
 
@@ -600,4 +597,49 @@ nav {
 }
 * {
   max-width: initial;
+}
+.user-logged {
+  padding-right: 55px;
+  padding-left: 55px;
+}
+
+.resume {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 1px 1px 8px #272727;
+  padding: 20px !important;
+}
+.resume i {
+  margin: 3px;
+}
+.resume .info a {
+  text-align: left;
+  padding: 3px;
+  margin: 5px;
+}
+.ar .resume .info a {
+  text-align: right;
+}
+.modal-header {
+  display: block !important;
+}
+.modal-header .close {
+  display: block;
+  color: #000000;
+  float: right !important;
+  text-shadow: 1px 1px 6px #ffffff;
+}
+.ar .modal-header .close {
+  float: left !important;
+}
+.job {
+  background: #fff;
+  margin: 15px !important;
+  padding: 15px !important;
+  border-radius: 15px;
+  border: 1px solid #e9ecef;
+  transition: all 0.2s ease;
+}
+.job:hover {
+  transform: scale(1.1);
 }

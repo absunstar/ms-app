@@ -18,11 +18,11 @@
             <div  x-import="job-seeker-favorite/apply_modal.html"></div>
           </div>
 
-          <div class="row" ng-repeat="j in list">
+          <div class="row job" ng-repeat="j in list">
             <div class="col2">
               <i-image view ng-model="j.company.image"></i-image>
             </div>
-            <div class="col6">
+            <div class="col8">
 
               <b class="font-weight-bold">{{j.job_title}}</b>
               <p>{{j.country.name_##session.lang##}} , {{j.city.name_##session.lang##}} <i class="fa fa-map-marker" aria-hidden="true"></i></p>
