@@ -4,7 +4,7 @@ const site = require('../isite')({
   version: '1.0.14',
   name: 'employment',
   theme: 'theme_paper',
-  savingTime: 1,
+  savingTime: 10,
   mail: {
     enabled: false,
     host: 'smtp.office365.com',
