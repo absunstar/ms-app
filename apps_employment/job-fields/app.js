@@ -208,7 +208,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/job_fields/all', (req, res) => {
+  site.post({name : '/api/job_fields/all' , public :true}, (req, res) => {
     let response = {
       done: false,
     };

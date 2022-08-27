@@ -5,6 +5,7 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,
+    public : true
   });
 
 

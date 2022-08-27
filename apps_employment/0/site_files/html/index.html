@@ -100,8 +100,12 @@
     <div x-import="0/scripts.html"></div>
     <script>
       app.controller('body', ($scope, $http) => {
+        $scope.search = '';
         $scope.goRegister = function () {
           document.location.href = '/register';
+        };
+        $scope.goJobs = function () {
+          document.location.href = '/EmployerSearch?q=' + $scope.search;
         };
         $scope.getQualificationList = function () {
           $scope.busy = true;

@@ -201,7 +201,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/companies/all', (req, res) => {
+  site.post({name : '/api/companies/all' , public:true}, (req, res) => {
     let response = {
       done: false,
     };

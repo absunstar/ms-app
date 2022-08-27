@@ -13,7 +13,7 @@
               <header class="text-center mb-5 pb-5 ">
                 <h1 class="display-4">
                   ##word.register##
-                  <span class="font-18 green">##word.existing_user## <a href="/login">##word.login_now##</a></span>
+                  <span class="font-18 green">##word.existing_user## <a class="btn link" href="/login">##word.login_now##</a></span>
                 </h1>
               </header>
 
@@ -54,8 +54,8 @@
                         <i-control v="r" class="row" ng-model="employer.email" label="##word.email##"></i-control>
 
                         <div class="row">
-                          <i-control v="r" type="password" class="col pass" ng-model="employer.password" label="##word.password##"></i-control>
-                          <i-control v="r" type="password" class="col pass" ng-model="employer.retype_password" label="##word.retype_password##"></i-control>
+                          <i-control v="r" type="password" class="col6 pass" ng-model="employer.password" label="##word.password##"></i-control>
+                          <i-control v="r" type="password" class="col6 pass" ng-model="employer.retype_password" label="##word.retype_password##"></i-control>
                           <i-checkbox class="col" ng-change="showPassword()" ng-model="show_password" label="##word.show_password##"></i-checkbox>
                         </div>
 
@@ -91,8 +91,8 @@
                         <i-control v="r" class="row" ng-model="job_seeker.email" label="##word.email##"></i-control>
 
                         <div class="row">
-                          <i-control v="r" type="password" class="col pass" ng-model="job_seeker.password" label="##word.password##"></i-control>
-                          <i-control v="r" type="password" class="col pass" ng-model="job_seeker.retype_password" label="##word.retype_password##"></i-control>
+                          <i-control v="r" type="password" class="col6 pass" ng-model="job_seeker.password" label="##word.password##"></i-control>
+                          <i-control v="r" type="password" class="col6 pass" ng-model="job_seeker.retype_password" label="##word.retype_password##"></i-control>
                           <i-checkbox class="col" ng-change="showPassword()" ng-model="show_password" label="##word.show_password##"></i-checkbox>
                         </div>
 
