@@ -643,3 +643,13 @@ nav {
 .job:hover {
   transform: scale(1.1);
 }
+input.find-job{
+  border: 1px solid #adb5bd;
+  outline: none;
+  border-radius: 10px;
+  width: 100%;
+  padding: 5px;
+  padding-left: 15px;
+  color: #198754;
+  font-size: 22px;
+}
