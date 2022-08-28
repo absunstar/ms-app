@@ -54,23 +54,14 @@ module.exports = function init(site) {
     $questions.findOne(
       {
         where: {
-          $or: [
-            {
-              name_ar: questions_doc.name_ar,
-            },
-            {
-              name_en: questions_doc.name_en,
-            },
-          ],
+          name: questions_doc.name,
         },
       },
       (err, doc) => {
         if (!err && doc) {
-          response.error = 'Name Exists';
+          response.error = 'Question Exists';
           res.json(response);
         } else {
-       
-
           $questions.add(questions_doc, (err, doc) => {
             if (!err) {
               response.done = true;
@@ -107,19 +98,12 @@ module.exports = function init(site) {
       $questions.findOne(
         {
           where: {
-            $or: [
-              {
-                name_ar: questions_doc.name_ar,
-              },
-              {
-                name_en: questions_doc.name_en,
-              },
-            ],
+            name: questions_doc.name,
           },
         },
         (err, doc) => {
           if (!err && doc && doc.id != questions_doc.id) {
-            response.error = 'Name Exists';
+            response.error = 'Question Exists';
             res.json(response);
           } else {
             $questions.edit(
@@ -219,7 +203,7 @@ module.exports = function init(site) {
     };
 
     let where = req.body.where || {};
-  
+
     if (where['name']) {
       where['name'] = site.get_RegExp(where['name'], 'i');
     }
@@ -254,7 +238,6 @@ module.exports = function init(site) {
     delete where['active_search'];
     delete where['not_active'];
 
-
     $questions.findMany(
       {
         select: req.body.select || {},
@@ -267,7 +250,9 @@ module.exports = function init(site) {
       (err, docs, count) => {
         if (!err) {
           response.done = true;
+
           response.list = docs;
+
           response.count = count;
         } else {
           response.error = err.message;
@@ -276,4 +261,42 @@ module.exports = function init(site) {
       }
     );
   });
+
+  site.getQuestionsToExam = function (data, callback) {
+    $questions.findMany(
+      {
+        where: data.where,
+        select: { id: 1, name: 1, answers_list: 1 , difficulty : 1 },
+      },
+      (err, docs) => {
+        if (!err) {
+          if (docs) {
+            let easyCount = site.toNumber(((data.exam_template.easy * data.number_questions) / 100).toFixed());
+            let mediumCount = site.toNumber(((data.exam_template.medium * data.number_questions) / 100).toFixed());
+            let hardCount = data.number_questions - (easyCount + mediumCount);
+            let easyList = docs
+              .filter((_doc) => _doc.difficulty.id == 1)
+              .sort(() => 0.5 - Math.random())
+              .slice(0, easyCount);
+            let mediumList = docs
+              .filter((_doc) => _doc.difficulty.id == 2)
+              .sort(() => 0.5 - Math.random())
+              .slice(0, 5);
+            let hardList = docs
+              .filter((_doc) => _doc.difficulty.id == 3)
+              .sort(() => 0.5 - Math.random())
+              .slice(0, hardCount);
+
+            let questionslist = easyList.concat(mediumList, hardList);
+            questionslist.forEach(_q => {
+              delete _q.difficulty
+            });
+            callback(questionslist);
+          } else {
+            callback(false);
+          }
+        }
+      }
+    );
+  };
 };

@@ -283,11 +283,6 @@ module.exports = function init(site) {
       where['last_name'] = site.get_RegExp(where['last_name'], 'i');
     }
 
-    if (where['job_title']) {
-      where['job_title'] = site.get_RegExp(where['job_title'], 'i');
-      delete where['job_title'];
-    }
-
     if (where['email']) {
       where['email'] = site.get_RegExp(where['email'], 'i');
     }

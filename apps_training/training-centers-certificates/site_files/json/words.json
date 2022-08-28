@@ -33,6 +33,11 @@
         "name": "training_center_certificate_delete",
         "en": "Delete Training Center Certificate",
         "ar": "حذف شهادة مركز تدريب "
+    },
+    {
+        "name": "file_type",
+        "en": "File Type",
+        "ar": "نوع الملف"
     }
 
     

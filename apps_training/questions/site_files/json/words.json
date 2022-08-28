@@ -58,6 +58,11 @@
         "name": "correct_answer",
         "en": "Correct Answer",
         "ar": "إجابة صحيحة"
+    },
+    {
+        "name": "question_already_exists",
+        "en": "The question already exists",
+        "ar": "السؤال موجود من قبل"
     }
 
 

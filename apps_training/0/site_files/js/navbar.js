@@ -11,7 +11,7 @@ app.controller('navbar', ($scope, $http) => {
   $scope.register = function () {
     site.showModal('#registerModal');
   };
-
+  $scope.user_id = site.toNumber('##user.id##');
   $scope.login = function () {
     site.showModal('#loginModal');
   };

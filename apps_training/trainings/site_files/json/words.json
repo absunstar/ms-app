@@ -60,6 +60,16 @@
     "ar": "حضور"
   },
   {
+    "name": "attend",
+    "en": "Attend",
+    "ar": "حضور"
+  },
+  {
+    "name": "appropriate_attendance_rate_reached_enter_examination",
+    "en": "The appropriate attendance rate was not reached to enter the examination",
+    "ar": "لم يتم الوصول لنسبة الحضور المناسبة لدخول الإمتحان"
+  },
+  {
     "name": "absence",
     "en": "Absence",
     "ar": "غياب"

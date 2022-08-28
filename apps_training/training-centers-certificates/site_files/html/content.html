@@ -18,11 +18,12 @@
             <i-list class="col6" v="r" label="##word.training_type##" ng-model="training_center_certificate.training_type" ng-change="getTrainingCategoriesList(training_center_certificate.training_type.id)" display="name_##session.lang##" items="trainingTypesList" ng-search="training_center_certificate.$training_type"></i-list>
             <i-list class="col6" v="r" label="##word.training_category##" ng-model="training_center_certificate.training_category" display="name_##session.lang##" items="trainingCategoriesList" ng-search="training_center_certificate.$training_category"></i-list>
           </div>
-       
+
           <fieldset>
-            <legend>##word.file_type## :</legend>
+            <legend>##word.file_type##</legend>
             <div class="row">
               <i-radio class="col2" ng-value="trainee" label="##word.trainee##" ng-model="training_center_certificate.file_type"> </i-radio>
+              <i-radio class="col2" ng-value="trainer" label="##word.trainer##" ng-model="training_center_certificate.file_type"> </i-radio>
             </div>
           </fieldset>
         </div>

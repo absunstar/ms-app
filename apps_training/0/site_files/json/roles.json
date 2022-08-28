@@ -1,27 +1,37 @@
-[{
-    "module_name":"public",
+[
+  {
+    "module_name": "public",
     "name": "admin",
     "en": "Admin",
     "ar": "مسئول",
-    "permissions": [
-        "admin"
-    ]
-},
-{
-    "module_name":"public",
-    "name": "employer",
-    "en": "Employer",
-    "ar": "إدارة نقاط البيع",
-    "permissions": [
-        "employer"
-    ]
-},
-{
-    "module_name":"public",
-    "name": "job_seeker",
-    "en": "Job Seeker",
-    "ar": "باحث عن عمل",
-    "permissions": [
-        "job_seeker"
-    ]
-}]
+    "permissions": ["admin"]
+  },
+  {
+    "module_name": "public",
+    "name": "partner",
+    "en": "Partner",
+    "ar": "شريك",
+    "permissions": ["partner"]
+  },
+  {
+    "module_name": "public",
+    "name": "sub_partner",
+    "en": "Sub Partner",
+    "ar": "شريك ثانوي",
+    "permissions": ["sub_partner"]
+  },
+  {
+    "module_name": "public",
+    "name": "trainer",
+    "en": "Trainer",
+    "ar": "مدرب",
+    "permissions": ["trainer"]
+  },
+  {
+    "module_name": "public",
+    "name": "trainee",
+    "en": "Trainee",
+    "ar": "متدرب",
+    "permissions": ["trainee"]
+  }
+]

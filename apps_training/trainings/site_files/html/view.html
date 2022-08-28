@@ -23,10 +23,12 @@
             <td class="title">##word.training_center##</td>
             <td class="center">{{training.training_center.name_##session.lang##}}</td>
           </tr>
+
           <tr>
             <td class="title">##word.training_type##</td>
             <td class="center">{{training.training_type.name_##session.lang##}}</td>
           </tr>
+
           <tr>
             <td class="title">##word.training_category##</td>
             <td class="center">{{training.training_category.name_##session.lang##}}</td>
@@ -45,6 +47,16 @@
           <tr>
             <td class="title">##word.city##</td>
             <td class="center">{{training.city.name_##session.lang##}}</td>
+          </tr>
+
+          <tr>
+            <td class="title">##word.exam_template##</td>
+            <td class="center">{{training.exam_template.name_##session.lang##}}</td>
+          </tr>
+
+          <tr>
+            <td class="title">##word.number_questions##</td>
+            <td class="center blue">{{training.number_questions}}</td>
           </tr>
 
           <tr>
@@ -69,14 +81,8 @@
             <td ng-show="training.location == 'online'" class="center">##word.online##</td>
             <td ng-show="training.location == 'offline'" class="center">##word.offline##</td>
           </tr>
-          <tr>
-            <td class="title">##word.status##</td>
-            <td ng-show="training.active" class="green center">##word.active##</td>
-            <td ng-show="!training.active" class="red center">##word.not_active##</td>
-          </tr>
         </table>
       </div>
-
     </fieldset>
   </div>
 </div>

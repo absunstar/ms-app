@@ -80,6 +80,11 @@
         "ar": "التعلم الإلكتروني"
     },
     {
+        "name": "certificates",
+        "en": "Certificates",
+        "ar": "الشهادات"
+    },
+    {
         "name": "ok",
         "en": "Ok",
         "ar": "موافق"

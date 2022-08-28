@@ -20,12 +20,12 @@
           </ul>
         </li>
 
-        <li class="nav-item dropdown" x-permissions="admin">
+        <li class="nav-item dropdown" x-permissions="admin || partner  || sub_partner">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> ##word.entity_management## </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/Partners">##word.partners## </a></li>
-            <li><a class="dropdown-item" href="/SubPartners">##word.sub_partners## </a></li>
-            <li><a class="dropdown-item" href="/TrainingCenters">##word.training_centers## </a></li>
+            <li x-permissions="admin || partner"><a class="dropdown-item" href="/Partners">##word.partners## </a></li>
+            <li x-permissions="admin || partner || sub_partner"><a class="dropdown-item" href="/SubPartners">##word.sub_partners## </a></li>
+            <li x-permissions="admin"><a class="dropdown-item" href="/TrainingCenters">##word.training_centers## </a></li>
           </ul>
         </li>
 
@@ -42,16 +42,33 @@
             <li><a class="dropdown-item" href="/TrainingCentersCertificates">##word.training_centers## </a></li>
           </ul>
         </li>
+
         <li class="nav-item" x-permissions="admin">
           <a href="/Accounts" class="nav-link">##word.accounts##</a>
         </li>
 
-        <li class="nav-item" x-permissions="admin">
+        <li class="nav-item" x-permissions="admin || trainer">
           <a href="/TraineesAccounts" class="nav-link">##word.trainees##</a>
         </li>
 
-        <li class="nav-item" x-permissions="admin">
+        <li class="nav-item" x-permissions="admin || trainer || partner || sub_partner">
           <a href="/Trainings" class="nav-link">##word.trainings##</a>
+        </li>
+
+        <li class="nav-item" x-permissions="trainer">
+          <a href="/TrainerCertificates" class="nav-link">##word.my_certificates##</a>
+        </li>
+
+        <li class="nav-item" x-permissions="trainee">
+          <a href="/LatestTrainings" class="nav-link">##word.latest_trainings##</a>
+        </li>
+
+        <li class="nav-item" x-permissions="trainee">
+          <a href="/MyTrainings?id={{user_id}}" class="nav-link">##word.my_trainings##</a>
+        </li>
+
+        <li class="nav-item" x-permissions="trainee">
+          <a href="/TraineeAccount" class="nav-link">##word.my_account##</a>
         </li>
 
         <li class="nav-item" x-permissions="login">

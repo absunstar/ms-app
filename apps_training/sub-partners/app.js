@@ -64,8 +64,6 @@ module.exports = function init(site) {
           response.error = 'Name Exists';
           res.json(response);
         } else {
-       
-
           $sub_partners.add(sub_partner_doc, (err, doc) => {
             if (!err) {
               response.done = true;
@@ -214,7 +212,20 @@ module.exports = function init(site) {
     };
 
     let where = req.body.where || {};
-  
+    if (req.session.user) {
+      if (req.session.user.role.name == 'trainer' || req.session.user.role.name == 'partner' || req.session.user.role.name == 'sub_partner') {
+        let subPartnersId = [];
+        req.session.user.partners_list.forEach((_p) => {
+          if (_p.sub_partners) {
+            _p.sub_partners.forEach((_s) => {
+              subPartnersId.push(_s.id);
+            });
+          }
+        });
+        where['id'] = { $in: subPartnersId };
+      }
+    }
+
     if (where['name_ar']) {
       where['name_ar'] = site.get_RegExp(where['name_ar'], 'i');
     }
@@ -226,7 +237,7 @@ module.exports = function init(site) {
     if (where['phone']) {
       where['phone'] = where['phone'];
     }
-    
+
     if (where['not_active']) {
       where['active'] = false;
     }
@@ -242,7 +253,6 @@ module.exports = function init(site) {
     delete where['active_search'];
     delete where['not_active'];
 
-    
     $sub_partners.findMany(
       {
         select: req.body.select || {},

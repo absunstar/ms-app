@@ -204,6 +204,7 @@ app.controller('subPartners', function ($scope, $http, $timeout) {
     $scope.list = [];
     $scope.count = 0;
     where = where || {};
+  
     $http({
       method: 'POST',
       url: '/api/sub_partners/all',

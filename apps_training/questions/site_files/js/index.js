@@ -36,8 +36,8 @@ app.controller('questions', function ($scope, $http, $timeout) {
           $scope.getQuestionList();
         } else if(response.data.error){
           $scope.error = response.data.error;
-          if (response.data.error.like('*Name Exists*')) {
-            $scope.error = '##word.name_already_exists##';
+          if (response.data.error.like('*Question Exist*')) {
+            $scope.error = '##word.question_already_exists##';
           }
         }
       },
@@ -75,8 +75,8 @@ app.controller('questions', function ($scope, $http, $timeout) {
           $scope.getQuestionList();
         } else if(response.data.error){
           $scope.error = response.data.error;
-          if (response.data.error.like('*Name Exists*')) {
-            $scope.error = '##word.name_already_exists##';
+          if (response.data.error.like('*Question Exist*')) {
+            $scope.error = '##word.question_already_exists##';
           }
         }
       },
@@ -293,9 +293,9 @@ app.controller('questions', function ($scope, $http, $timeout) {
 
  
 
-  $scope.checkCorrect = function (index) {
+  $scope.checkCorrect = function (answers_list,index) {
     $scope.error = '';
-    $scope.question.answers_list.forEach((_a, i) => {
+    answers_list.forEach((_a, i) => {
       if (i != index) {
         _a.correct = false;
       }

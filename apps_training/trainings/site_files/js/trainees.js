@@ -40,6 +40,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
                 email: response.data.doc.email,
                 mobile: response.data.doc.mobile,
                 id_number: response.data.doc.id_number,
+                approve: true,
               });
               $scope.updateTraining($scope.training);
             } else if (response.data.error) {
@@ -82,6 +83,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
           email: $scope.training.$trainee_select.email,
           mobile: $scope.training.$trainee_select.mobile,
           id_number: $scope.training.$trainee_select.id_number,
+          approve: true,
         });
         $scope.error = '##word.added_successfully##';
       }
@@ -90,7 +92,6 @@ app.controller('trainees', function ($scope, $http, $timeout) {
   };
 
   $scope.updateTraining = function (training) {
-
     $scope.busy = true;
     $http({
       method: 'POST',
@@ -124,6 +125,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.training = response.data.doc;
+         
         } else {
           $scope.error = response.data.error;
         }
@@ -136,12 +138,19 @@ app.controller('trainees', function ($scope, $http, $timeout) {
   $scope.displayRemoveTraineeModal = function (index) {
     $scope.error = '';
     $scope.training.$index = index;
-    site.showModal( '#deleteTraineeModal')
+    site.showModal('#deleteTraineeModal');
   };
+  $scope.approveTrainee = function (index) {
+    $scope.error = '';
+    $scope.training.trainees_list[index].approve = true;
+
+    $scope.updateTraining($scope.training);
+  };
+
   $scope.deleteTrainee = function (index) {
     $scope.error = '';
     $scope.training.trainees_list.splice(index, 1);
-    site.hideModal( '#deleteTraineeModal');
+    site.hideModal('#deleteTraineeModal');
     $scope.updateTraining($scope.training);
   };
 

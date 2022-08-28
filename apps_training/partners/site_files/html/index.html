@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="admin" data-ng-app="myApp">
+<html lang="en" x-permissions="admin || partner" data-ng-app="myApp">
   <head x-import="head.html"> </head>
 
   <body class="##session.lang##" ng-controller="partners">
@@ -21,7 +21,7 @@
           </div>
 
           <div class="top-actions">
-            <i-button type="add" label="##word.partner_new##" ng-click="displayAddPartner()"></i-button>
+            <i-button x-permissions="admin" type="add" label="##word.partner_new##" ng-click="displayAddPartner()"></i-button>
             <i-button type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
 
             <h3 class="bold text-center">##word.count## : {{count || 0}}</h3>
@@ -53,10 +53,10 @@
                 <td class="center not-print">
                   <i-button type="view" label="##word.details##" ng-click="displayDetailsPartner(c)"></i-button>
                   <i-button type="edit" label="##word.edit##" ng-click="displayUpdatePartner(c)"></i-button>
-                  <i-button label="##word.accounts_management##" ng-click="showAccountsManagementModal(c)"></i-button>
+                  <i-button x-permissions="admin" label="##word.accounts_management##" ng-click="showAccountsManagementModal(c)"></i-button>
                   <i-button ng-show="!c.active" label="##word.activate##" ng-click="showActivationModal(c,'activate')"></i-button>
                   <i-button ng-show="c.active" label="##word.deactivate##" ng-click="showActivationModal(c,'deactivate')"></i-button>
-                  <i-button type="delete" label="##word.delete##" ng-click="displayDeletePartner(c)"></i-button>
+                  <i-button x-permissions="admin" type="delete" label="##word.delete##" ng-click="displayDeletePartner(c)"></i-button>
                 </td>
               </tr>
             </tbody>

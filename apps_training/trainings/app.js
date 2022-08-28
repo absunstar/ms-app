@@ -105,12 +105,34 @@ module.exports = function init(site) {
       $res: res,
     });
 
+    if (training_doc.$edit_dates) {
+      training_doc.dates_list = [];
+      training_doc.days.forEach((_d) => {
+        let start = new Date(training_doc.start_date);
+        if (_d.code > start.getDay()) {
+          start.setTime(start.getTime() + (_d.code - start.getDay()) * 24 * 60 * 60 * 1000);
+        } else if (_d.code < start.getDay()) {
+          start.setTime(start.getTime() + (7 - start.getDay() + _d.code) * 24 * 60 * 60 * 1000);
+        }
+        first_date = new Date(start);
+        training_doc.dates_list.push({ date: first_date, day: _d, trainees_list: [] });
+
+        while (start <= new Date(training_doc.end_date)) {
+          start.setTime(start.getTime() + 7 * 24 * 60 * 60 * 1000);
+          if (start <= new Date(training_doc.end_date)) {
+            training_doc.dates_list.push({ date: new Date(start), day: _d, trainees_list: [] });
+          }
+        }
+      });
+      training_doc.dates_list.sort((a, b) => a.date.getTime() - b.date.getTime());
+    }
+
     training_doc.trainees_list.forEach((_t) => {
       training_doc.dates_list.forEach((_d) => {
         let found_trainee = _d.trainees_list.find((_tr) => {
           return _tr.id === _t.id;
         });
-        if (!found_trainee) {
+        if (!found_trainee && _t.approve) {
           _d.trainees_list.push({
             id: _t.id,
             first_name: _t.first_name,
@@ -217,6 +239,45 @@ module.exports = function init(site) {
 
     let where = req.body.where || {};
     let search = req.body.search || '';
+
+    if (!req.session.user) {
+      response.error = 'Please Login First';
+      res.json(response);
+      return;
+    }
+
+    if (where['get_partner'] && req.session.user.role.name == 'partner') {
+      let partnersId = [];
+      req.session.user.partners_list.forEach((_p) => {
+        if (_p.partner.id) {
+          partnersId.push(_p.partner.id);
+        }
+      });
+      where['partner.id'] = { $in: partnersId };
+      delete where['get_partner'];
+    }
+
+    if (where['get_sub_partner'] && req.session.user.role.name == 'sub_partner') {
+      let subPartnersId = [];
+      req.session.user.partners_list.forEach((_p) => {
+        if (_p.sub_partners) {
+          _p.sub_partners.forEach((_s) => {
+            subPartnersId.push(_s.id);
+          });
+        }
+      });
+      where['sub_partner.id'] = { $in: subPartnersId };
+      delete where['get_sub_partner'];
+    }
+
+    if (where['latest']) {
+      let new_date = new Date();
+      new_date.setDate(new_date.getDate() + 1);
+      where['start_date'] = {
+        $gt: new_date,
+      };
+      delete where['latest'];
+    }
 
     if (where['country'] && where['country'].id) {
       where['country.id'] = where['country'].id;
@@ -361,7 +422,6 @@ module.exports = function init(site) {
         'days.en': site.get_RegExp(search, 'i'),
       });
     }
-
     $trainings.findMany(
       {
         select: req.body.select || {},
@@ -374,7 +434,6 @@ module.exports = function init(site) {
       (err, docs, count) => {
         if (!err) {
           response.done = true;
-       
           response.list = docs;
           response.count = count;
         } else {
@@ -384,4 +443,185 @@ module.exports = function init(site) {
       }
     );
   });
+
+  site.post('/api/trainings/trainee_certificates', (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    let where = req.body.where || {};
+
+    if (!req.session.user) {
+      response.error = 'Please Login First';
+      res.json(response);
+      return;
+    }
+
+    where['approve'] = true;
+
+    where['trainees_list.id'] = req.body.id;
+    $trainings.findMany(
+      {
+        select: req.body.select || {},
+        where: where,
+        sort: req.body.sort || {
+          id: -1,
+        },
+        limit: req.body.limit,
+      },
+      (err, docs, count) => {
+        if (!err) {
+          response.done = true;
+          docs.forEach((_doc) => {
+            let attend_count = 0;
+            _doc.dates_list.forEach((_d) => {
+              _d.trainees_list.forEach((_t) => {
+                if (req.body.id == _t.id && _t.attend) {
+                  attend_count += 1;
+                }
+              });
+            });
+            let attendance_rate = (attend_count / _doc.dates_list.length) * 100;
+
+            if (attendance_rate >= 80) {
+              _doc.$attend_rate = true;
+            } else {
+              _doc.$attend_rate = false;
+            }
+
+            _doc.trainees_list.forEach((_t) => {
+              if (req.body.id == _t.id && _t.finish_exam) {
+                _doc.$finish_exam = true;
+              }
+            });
+          });
+          response.list = docs;
+          response.count = count;
+        } else {
+          response.error = err.message;
+        }
+        res.json(response);
+      }
+    );
+  });
+
+  site.post('/api/trainings/start_exam', (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    if (!req.session.user) {
+      response.error = 'Please Login First';
+      res.json(response);
+      return;
+    }
+
+    $trainings.findOne(
+      {
+        where: {
+          id: req.body.training_id,
+        },
+      },
+      (err, doc) => {
+        if (!err) {
+          response.done = true;
+
+          let questionsData = {
+            where: req.body.where,
+            exam_template: req.body.exam_template,
+            number_questions: req.body.number_questions,
+          };
+          doc.trainees_list.forEach((_t) => {
+            if (req.body.trainee_id == _t.id) {
+              _t.start_exam_count = _t.start_exam_count || 0;
+              if (_t.start_exam_count < 3) {
+                _t.start_exam_count = _t.start_exam_count + 1;
+              } else {
+              }
+            }
+          });
+
+          site.getQuestionsToExam(questionsData, (examCb) => {
+            $trainings.update(doc);
+            response.list = examCb;
+            res.json(response);
+          });
+        } else {
+          response.error = err.message;
+        }
+      }
+    );
+  });
+
+  site.post('/api/trainings/finish_exam', (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    if (!req.session.user) {
+      response.error = 'Please Login First';
+      res.json(response);
+      return;
+    }
+
+    $trainings.findOne(
+      {
+        where: {
+          id: req.body.training_id,
+        },
+      },
+      (err, doc) => {
+        if (!err) {
+          response.done = true;
+          let correct = 0;
+          req.body.questions_list.forEach((_q) => {
+            _q.answers_list.forEach((_a) => {
+              if (_a.correct && _a.trainee_answer) {
+                correct += 1;
+              }
+            });
+          });
+          doc.trainees_list.forEach((_t) => {
+            if (req.body.trainee_id == _t.id) {
+              _t.exam_questions_list = req.body.questions_list;
+              _t.trainee_degree = (correct / req.body.questions_list.length) * 100;
+              _t.finish_exam = true;
+            }
+          });
+          $trainings.update(doc);
+          res.json(response);
+        } else {
+          response.error = err.message;
+        }
+      }
+    );
+  });
+
+  site.getTraineesToTrainer = function (where, callback) {
+    $trainings.findMany(
+      {
+        where: where,
+      },
+      (err, docs) => {
+        if (!err) {
+          if (docs) {
+            let traineesId = [];
+            docs.forEach((_doc) => {
+              if (_doc.trainees_list && _doc.trainees_list.length > 0) {
+                _doc.trainees_list.forEach((_t) => {
+                  let foundId = traineesId.find((_id) => {
+                    return _id === _t.id;
+                  });
+                  if (!foundId) {
+                    traineesId.push(_t.id);
+                  }
+                });
+              }
+            });
+            callback(traineesId);
+          } else callback(false);
+        }
+      }
+    );
+  };
 };

@@ -28,7 +28,7 @@
               <td class="center">{{c.email}}</td>
               <td class="">
                 <div class="row justify-content-md-center">
-                  <i-checkbox class="col " ng-model="c.attend"> </i-checkbox>
+                  <i-checkbox class="col " ng-disabled="training.approve" ng-model="c.attend"> </i-checkbox>
                 </div>
               </td>
             </tr>
@@ -39,7 +39,7 @@
 
     <div class="modal-footer center">
       <h2 class="bold text-center text-danger">{{error}}</h2>
-      <i-button type="save" label="##word.save##" ng-click="updateTraining(training,'attend')"></i-button>
+      <i-button type="save" label="##word.save##" ng-hide="training.approve" ng-click="updateTraining(training,'attend')"></i-button>
       <i-button type="close" label="##word.close##" onclick="site.hideModal( '#attendanceModal')"></i-button>
     </div>
   </div>

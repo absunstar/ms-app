@@ -22,13 +22,13 @@
 
         <div class="row">
           <i-control v="r" type="password" class="col pass" ng-model="trainee.password" label="##word.password##"></i-control>
-          <i-control v="r" type="password" class="col pass" ng-model="trainee.retype_password" label="##word.retype_password##"></i-control>
+          <i-control ng-hide="trainee.id" type="password" class="col pass" ng-model="trainee.retype_password" label="##word.retype_password##"></i-control>
           <i-checkbox class="col" ng-change="showPassword()" ng-model="show_password" label="##word.show_password##"></i-checkbox>
         </div>
 
         <div class="row">
           <fieldset>
-            <legend>##word.id_type## :</legend>
+            <legend>##word.id_type## </legend>
             <div class="row">
               <i-radio class="col3" ng-value="national_id" label="##word.national_id##" ng-model="trainee.id_type"> </i-radio>
               <i-radio class="col3" ng-value="passport" label="##word.passport##" ng-model="trainee.id_type"> </i-radio>

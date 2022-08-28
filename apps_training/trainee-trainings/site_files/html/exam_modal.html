@@ -1,0 +1,34 @@
+<div id="examModal" class="modal" fixed>
+  <div class="modal-content height-auto">
+    <div class="modal-header">
+      <h1 class="bold center" id="timer">##word.remaining_time## ( 45:00 )</h1>
+    </div>
+
+    <div class="modal-body">
+
+      <br>
+      <div class="row padding margin border" ng-repeat="q in questionsList">
+        <fieldset>
+          <legend>##word.question## ##word.number## {{$index + 1}}</legend>
+          <div class="row">
+            <p class="font-20">{{q.name}}</p>
+          </div>
+
+          <div class="row border" ng-repeat="a in q.answers_list track by $index">
+            <div class="col9">
+              <p>{{a.answer}}</p>
+            </div>
+            <div class="col1"></div>
+            <div class="col2">
+              <i-checkbox ng-change="checkCorrect(q.answers_list,$index)" ng-model="a.trainee_answer"> </i-checkbox>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <i-button type="save" label="##word.finish_exam##" ng-click="finishExam(training,questionsList)"> </i-button>
+    </div>
+  </div>
+</div>

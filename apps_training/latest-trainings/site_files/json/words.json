@@ -1,0 +1,23 @@
+[
+    {
+        "name": "latest_trainings",
+        "en": "Latest Trainings",
+        "ar": "أحدث التدريبات"
+    },
+    {
+        "name": "the_registration_done",
+        "en": "The registration is done",
+        "ar": "تم التسجيل"
+    },
+    {
+        "name": "register_now",
+        "en": "Register Now",
+        "ar": "تسجيل الاّن"
+    },
+    {
+        "name": "sure_want_register_this_training",
+        "en": "Are you sure you want to register to this training?",
+        "ar": "هل أنت متأكد أنك تريد التسجيل في هذا التدريب؟"
+    }
+    
+]

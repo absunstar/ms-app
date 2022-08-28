@@ -1,0 +1,29 @@
+<div id="registerTrainingModal" class="modal small" fixed>
+  <div class="modal-content height-auto">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 class="center">
+        ##word.activate##
+        <i class="fa fa-exclamation"></i>
+      </h2>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <i class="fa fa-exclamation center" aria-hidden="true"></i>
+        <br />
+        <br />
+        <h3 class="center">##word.alert##</h3>
+        <br />
+        <br />
+        <b class="center">##word.sure_want_register_this_training##</b>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="bold text-center text-danger">{{error}}</h2>
+      <i-button type="save" label="##word.ok##" ng-click="updateTraining(training)"></i-button>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#registerTrainingModal')"></i-button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp" x-permissions="trainee">
+  <head x-import="head.html"></head>
+
+  <body class="##session.lang##" ng-controller="exams">
+    <nav x-import="0/navbar.html"></nav>
+
+    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
+
+    <div id="main-layout" class="container loaded">
+      <div class="row">
+        <div class="row">
+          <h1 class="bold text-center">##word.exams##</h1>
+        </div>
+
+        <div class="top-actions">
+          <h3 class="bold text-center">##word.count## : {{count || 0}}</h3>
+          <h3 class="bold text-center text-danger">{{error}}</h3>
+        </div>
+
+        <table x-permissions="login" class="table hover text-center">
+          <tr>
+            <th>##word.trainer## ( ##word.partner## )</th>
+            <th>##word.type## ( ##word.category## )</th>
+            <th>##word.start_date##</th>
+            <th>##word.end_date##</th>
+            <th class="not-print">##word.actions##</th>
+          </tr>
+          <tbody>
+            <tr ng-repeat="c in list">
+              <td class="center">{{c.trainer.first_name}} ( {{c.partner.name_##session.lang##}} )</td>
+              <td class="center">{{c.training_type.name_##session.lang##}} ( {{c.training_category.name_##session.lang##}} )</td>
+              <td class="center">{{c.start_date | date:"dd/MM/yyyy"}}</td>
+              <td class="center">{{c.end_date | date:"dd/MM/yyyy"}}</td>
+
+              <td class="center not-print">
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div x-import="0/scripts.html"></div>
+    <script x-import="my-trainings/index.js"></script>
+  </body>
+</html>

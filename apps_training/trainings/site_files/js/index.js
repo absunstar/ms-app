@@ -8,9 +8,12 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       approve: false,
       start_date: new Date(),
       trainees_list: [],
+      number_questions: 10,
       location: 'offline',
     };
-
+    if ('##user.role.name##' == 'trainer') {
+      $scope.getTrainersList();
+    }
     site.showModal('#trainingAddModal');
   };
 
@@ -59,16 +62,14 @@ app.controller('trainings', function ($scope, $http, $timeout) {
 
     if (type == 'approve') {
       training.approve = true;
-    } else if(type == 'update') {
-
-      
+    } else if (type == 'update') {
+      training.$edit_dates = true;
       const v = site.validated('#trainingUpdateModal');
       if (!v.ok) {
         $scope.error = v.messages[0].ar;
         return;
       }
     }
-   
 
     $scope.busy = true;
     $http({
@@ -81,7 +82,7 @@ app.controller('trainings', function ($scope, $http, $timeout) {
         if (response.data.done) {
           if (type == 'attend') {
             site.hideModal('#attendanceModal');
-          } else if(type == 'update') {
+          } else if (type == 'update') {
             site.hideModal('#trainingUpdateModal');
             site.resetValidated('#trainingUpdateModal');
           }
@@ -175,6 +176,13 @@ app.controller('trainings', function ($scope, $http, $timeout) {
     $scope.count = 0;
 
     where = where || {};
+    if ('##user.role.name##' == 'trainer') {
+      where['trainer.id'] = site.toNumber('##user.id##');
+    } else if ('##user.role.name##' == 'partner') {
+      where['get_partner'] = true;
+    } else if ('##user.role.name##' == 'sub_partner') {
+      where['get_sub_partner'] = true;
+    }
 
     $http({
       method: 'POST',
@@ -190,6 +198,9 @@ app.controller('trainings', function ($scope, $http, $timeout) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
           $scope.list.forEach((_l) => {
+            if (new Date(_l.start_date) < new Date()) {
+              _l.$hide_edit = true;
+            }
             if (new Date(_l.end_date) < new Date() && !_l.approve) {
               _l.$show_approved = true;
             }
@@ -208,7 +219,13 @@ app.controller('trainings', function ($scope, $http, $timeout) {
   $scope.getTrainersList = function (id) {
     $scope.busy = true;
     $scope.trainersList = [];
-    where = { active: true, 'role.name': 'trainer', 'partners_list.sub_partners.id': id };
+    let where = {};
+    if ('##user.role.name##' == 'trainer') {
+      where['id'] = site.toNumber('##user.id##');
+    } else {
+      where = { active: true, 'role.name': 'trainer', 'partners_list.sub_partners.id': id };
+    }
+
     $http({
       method: 'POST',
       url: '/api/users/all',
@@ -221,6 +238,9 @@ app.controller('trainings', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.users && response.data.users.length > 0) {
           $scope.trainersList = response.data.users;
+          if ('##user.role.name##' == 'trainer') {
+            $scope.training.trainer = $scope.trainersList[0];
+          }
         }
       },
       function (err) {
@@ -394,6 +414,31 @@ app.controller('trainings', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getExamTemplatesList = function () {
+    $scope.busy = true;
+    $scope.examTemplatesList = [];
+
+    $http({
+      method: 'POST',
+      url: '/api/exam_templates/all',
+      data: {
+        where: { active: true },
+        select: { id: 1, name_ar: 1, name_en: 1, easy: 1, medium: 1, hard: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list && response.data.list.length > 0) {
+          $scope.examTemplatesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.getCountryList = function () {
     $scope.busy = true;
     $scope.countryList = [];
@@ -487,4 +532,5 @@ app.controller('trainings', function ($scope, $http, $timeout) {
   $scope.getPrivacyType();
   $scope.getCountryList();
   $scope.getDays();
+  $scope.getExamTemplatesList();
 });

@@ -1,4 +1,4 @@
-app.controller('trainees_accounts', function ($scope, $http, $timeout) {
+app.controller('traineesAccounts', function ($scope, $http, $timeout) {
 
   $scope.trainee = {};
 
@@ -206,18 +206,19 @@ app.controller('trainees_accounts', function ($scope, $http, $timeout) {
     );
   };
 
-
-
   $scope.getAccountList = function (where) {
     $scope.busy = true;
     $scope.list = [];
     $scope.count = 0;
     where = where || {};
     where['role.name'] = 'trainee';
-
+    let url = '/api/users/all';
+    if('##user.role.name##' == 'trainer'){
+      url = '/api/trainees/to_trainers';
+    }
     $http({
       method: 'POST',
-      url: '/api/users/all',
+      url: url,
       data: {
         where: where,
         search: $scope.general_search,

@@ -41,7 +41,7 @@
               <div class="col2">
                 <br />
                 <br />
-                <i-checkbox label="##word.correct_answer##" ng-change="checkCorrect($index)" ng-model="q.correct"> </i-checkbox>
+                <i-checkbox label="##word.correct_answer##" ng-change="checkCorrect(question.answers_list,$index)" ng-model="q.correct"> </i-checkbox>
                 <i-button type="delete default" ng-click="question.answers_list.splice($index,1)"></i-button>
               </div>
             </div>

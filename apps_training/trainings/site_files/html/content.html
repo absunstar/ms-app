@@ -6,7 +6,7 @@
         <div class="row">
           <i-list v="r" class="col4" label="##word.partner##" ng-change="getSubPartnersList(training.partner.id)" ng-model="training.partner" display="name_##session.lang##" items="partnersList" ng-search="training.$partner"></i-list>
           <i-list v="r" class="col4" label="##word.sub_partner##" ng-model="training.sub_partner" ng-change="getTrainersList(training.sub_partner.id);getTrainingCentersList(training.sub_partner.id)" display="name_##session.lang##" items="subPartnersList" ng-search="training.$sub_partner"></i-list>
-          <i-list v="r" class="col4" label="##word.trainer##" ng-model="training.trainer" display="first_name" items="trainersList" ng-search="training.$trainer"></i-list>
+          <i-list v="r" class="col4" label="##word.trainer##" ng-model="training.trainer" display="first_name" items="trainersList" ng-search="training.$trainer" ng-hide="'##user.role.name##' == 'trainer'"></i-list>
         </div>
 
         <div class="row">
@@ -16,9 +16,14 @@
         </div>
 
         <div class="row">
-          <i-list v="r" class="col4" label="##word.privacy_type##" ng-model="training.privacy_type" display="##session.lang##" items="privacyTypesList" ng-search="_search.$training_city"></i-list>
-          <i-list v="r" class="col4" ng-change="getCityList(training.country.id)" label="##word.country##" ng-model="training.country" display="name_##session.lang##" items="countryList" ng-search="_search.$training_country"></i-list>
-          <i-list v="r" class="col4" label="##word.city##" ng-model="training.city" display="name_##session.lang##" items="cityList" ng-search="_search.$training_city"></i-list>
+          <i-list v="r" class="col4" label="##word.privacy_type##" ng-model="training.privacy_type" display="##session.lang##" items="privacyTypesList" ng-search="training.$training_city"></i-list>
+          <i-list v="r" class="col4" ng-change="getCityList(training.country.id)" label="##word.country##" ng-model="training.country" display="name_##session.lang##" items="countryList" ng-search="training.$training_country"></i-list>
+          <i-list v="r" class="col4" label="##word.city##" ng-model="training.city" display="name_##session.lang##" items="cityList" ng-search="training.$training_city"></i-list>
+        </div>
+
+        <div class="row">
+          <i-list v="r" class="col4" label="##word.exam_template##" ng-model="training.exam_template" display="name_##session.lang##" items="examTemplatesList" ng-search="training.$exam_template"></i-list>
+          <i-control v="r" class="col4" label="##word.number_questions##" ng-model="training.number_questions" type="number"></i-control>
         </div>
 
         <div class="row">
@@ -30,7 +35,7 @@
           <i-checklist v="r" class="col6" label="##word.days##" ng-model="training.days" display="##session.lang##" items="daysList" ng-search="training.$days"></i-checklist>
           <div class="col6">
             <fieldset>
-              <legend>##word.location## :</legend>
+              <legend>##word.location##</legend>
               <div class="row">
                 <i-radio class="col5" ng-value="online" label="##word.online##" ng-model="training.location"> </i-radio>
 
@@ -39,7 +44,7 @@
             </fieldset>
           </div>
         </div>
-
+      </div>
     </fieldset>
   </div>
 </div>

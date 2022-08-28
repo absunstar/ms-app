@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="admin" data-ng-app="myApp">
+<html lang="en" x-permissions="admin || partner || sub_partner" data-ng-app="myApp">
   <head x-import="head.html"> </head>
 
   <body class="##session.lang##" ng-controller="trainingCenters">
@@ -59,7 +59,7 @@
                   <i-button  type="edit" label="##word.edit##" ng-click="displayUpdateTrainingCenter(c)"></i-button>
                   <i-button  ng-show="!c.active" label="##word.activate##" ng-click="showActivationModal(c,'activate')"></i-button>
                   <i-button  ng-show="c.active" label="##word.deactivate##" ng-click="showActivationModal(c,'deactivate')"></i-button>
-                  <i-button  type="delete" label="##word.delete##" ng-click="displayDeleteTrainingCenter(c)"></i-button>
+                  <i-button x-permissions="admin" type="delete" label="##word.delete##" ng-click="displayDeleteTrainingCenter(c)"></i-button>
             
                 </td>
               </tr>

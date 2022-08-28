@@ -1,0 +1,32 @@
+[
+  {
+    "name": "my_trainings",
+    "en": "My Trainings",
+    "ar": "تدريباتي"
+  },
+  {
+    "name": "take_exam",
+    "en": "Take Exam",
+    "ar": "بدء الإختبار"
+  },
+  {
+    "name": "finish_exam",
+    "en": "Finish Exam",
+    "ar": "إنهاء الإختبار"
+  },
+  {
+    "name": "number",
+    "en": "Number",
+    "ar": "رقم"
+  },
+  {
+    "name": "remaining_time",
+    "en": "Remaining time",
+    "ar": "الزمن المتبقي"
+  },
+  {
+    "name": "minute",
+    "en": "Minute",
+    "ar": "دقيقة"
+  }
+]

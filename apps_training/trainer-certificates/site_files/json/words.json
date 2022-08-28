@@ -1,0 +1,13 @@
+[
+    {
+        "name": "my_certificates",
+        "en": "My Certificates",
+        "ar": "شهاداتي"
+    },
+    {
+        "name": "trainer_certificates",
+        "en": "Trainer Certificates",
+        "ar": "شهادات المدرب"
+    }
+    
+]
