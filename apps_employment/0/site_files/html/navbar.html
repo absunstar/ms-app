@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white" ng-controller="navbar">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="/">
       <img class="logo" src="/images/logo.png" alt="microsoft empolye" />
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,66 +8,95 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <div class="nav-link-type">
-        
-        <ul x-permissions="employer" class="empolyee navbar-nav mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">E-Learning</a>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item" x-permissions="employer || job_seeker">
+            <a href="https://mctint.com/" target="_blank" class="nav-link">##word.e_earning##</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Employer</a>
+          <li class="nav-item" x-permissions="job_seeker">
+            <a href="/JobSeekerHistory" class="nav-link">##word.job_seeker##</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Job Seeker Search</a>
+          <li class="nav-item" x-permissions="job_seeker">
+            <a href="/EmployerSearch" class="nav-link">##word.job_search##</a>
           </li>
-        </ul>
-        <ul x-permissions="admin" class="admin navbar-nav mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Lookups</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Accounts</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Companies</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Jobs</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Job Fairs</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Form Configuration</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Reports </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">statistics</a></li>
-              <li><a class="dropdown-item" href="#">jobs</a></li>
-              <li><a class="dropdown-item" href="#">job seeker per job</a></li>
+
+          <li class="nav-item dropdown" x-permissions="admin">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> ##word.data_management## </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" x-permissions="admin" href="/Languages">##word.languages## </a></li>
+              <li><a class="dropdown-item" x-permissions="admin" href="/Countries">##word.countries## </a></li>
+              <li><a class="dropdown-item" x-permissions="admin" href="/Cities">##word.cities## </a></li>
+              <li><a class="dropdown-item" x-permissions="admin" href="/Industries">##word.industries## </a></li>
+              <li><a class="dropdown-item" x-permissions="admin" href="/JobFields">##word.job_fields## </a></li>
+              <li><a class="dropdown-item" x-permissions="admin" href="/JobSubFields">##word.job_subfields## </a></li>
+              <li><a class="dropdown-item" x-permissions="admin" href="/Qualifications">##word.qualifications## </a></li>
+              <li><a class="dropdown-item" x-permissions="admin" href="/YearsOfExperience">##word.years_experience## </a></li>
             </ul>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Approve </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">job apprvel</a></li>
-              <li><a class="dropdown-item" href="#">company approvel</a></li>
+
+          <li class="nav-item" x-permissions="admin">
+            <a href="/Accounts" class="nav-link">##word.accounts_management##</a>
+          </li>
+          <li class="nav-item" x-permissions="admin">
+            <a href="/Companies" class="nav-item nav-link">##word.generic_companies##</a>
+          </li>
+          <li class="nav-item" x-permissions="admin">
+            <a href="/Jobs" class="nav-link">##word.jobs##</a>
+          </li>
+          <li class="nav-item" x-permissions="admin || job_seeker">
+            <a href="/JobFairs" class="nav-link">##word.job_fairs##</a>
+          </li>
+          <li class="nav-item" x-permissions="employer">
+            <a href="/Jobs" class="nav-link">##word.employer##</a>
+          </li>
+          <li class="nav-item" x-permissions="employer">
+            <a href="/JobSeekerSearch" class="nav-link">##word.job_seeker_search##</a>
+          </li>
+          <li class="nav-item" x-permissions="employer">
+            <a href="/Jobs?post=true" class="nav-link">##word.post_job##</a>
+          </li>
+          <li class="nav-item" x-permissions="job_seeker">
+            <a href="/Resume" class="nav-link">##word.my_resume##</a>
+          </li>
+
+          <li class="nav-item dropdown" x-permissions="admin">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> ##word.reports## </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" x-permissions="admin" href="/ReportStats">##word.statistics## </a></li>
+              <li><a class="dropdown-item" x-permissions="admin" href="/ReportStatsJobs">##word.jobs_statistics## </a></li>
+              <li><a class="dropdown-item" x-permissions="admin" href="/reportStatsJobSeekerPerJob">##word.job_seeker_ber_job## </a></li>
             </ul>
           </li>
-        </ul>
-        <ul x-permissions="job_seeker" class="job-seeker navbar-nav mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">E-Learning</a>
+
+          <li class="nav-item dropdown" x-permissions="employer">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> ##word.management## </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" x-permissions="employer" href="/Companies?post=true">##word.company_add## </a></li>
+              <li><a class="dropdown-item" x-permissions="employer" href="/Companies">##word.company_profile## </a></li>
+              <li><a class="dropdown-item" x-permissions="employer" href="/Jobs?post=true">##word.post_new_job## </a></li>
+              <li><a class="dropdown-item" x-permissions="employer" href="/Jobs">##word.manage_jobs## </a></li>
+              <li><a class="dropdown-item" x-permissions="employer" href="/ShortListResumes">##word.short_listed_resumes## </a></li>
+              <li><a class="dropdown-item" x-permissions="employer" href="/changePassword">##word.change_password## </a></li>
+            </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Job Seeker</a>
+
+          <li class="nav-item dropdown" x-permissions="job_seeker">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> ##word.management## </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" x-permissions="job_seeker" href="/Resume">##word.resume## </a></li>
+              <li><a class="dropdown-item" x-permissions="job_seeker" href="/JobSeekerHistory">##word.jobs_history## </a></li>
+              <li><a class="dropdown-item" x-permissions="job_seeker" href="/JobSeekerFavorite">##word.favorite_jobs## </a></li>
+              <li><a class="dropdown-item" x-permissions="job_seeker" href="/ChangePassword">##word.change_password## </a></li>
+            </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Job Search</a>
+
+          <li class="nav-item dropdown" x-permissions="admin">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> ##word.approve## </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" x-permissions="admin" href="/JobsApproval">##word.jobs_approval## </a></li>
+              <li><a class="dropdown-item" x-permissions="admin" href="/CompaniesApproval">##word.companies_approval## </a></li>
+            </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Job Fairs</a>
-          </li>
+         
         </ul>
       </div>
       <hr class="hr-nav" />
@@ -78,7 +107,7 @@
             ##word.register##
           </button>
         </div>
-        <button  ng-click="goLogin()" class="strock">##word.login##</button>
+        <button ng-click="goLogin()" class="strock">##word.login##</button>
       </div>
       <div x-feature="login" class="user-logged">
         <div class="user nav-item dropdown">
@@ -88,21 +117,20 @@
               <img src="##user.image.url##" onerror="this.src='/images/user_logo.png'" alt="" class="user-pictuer" />
             </div>
           </div>
-          <ul x-permissions="job_seeker" class="job-seeker dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Resume</a></li>
-            <li><a class="dropdown-item" href="#">Job's History</a></li>
-            <li><a class="dropdown-item" href="#">Favourite Jobs</a></li>
-            <li><a class="dropdown-item" href="#">Change Password</a></li>
-            <li><a class="dropdown-item" ng-click="logout()" >##word.logout## </a></li>
-          </ul>
-          <ul x-permissions="employer" class="empolyee dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Add Company</a></li>
-            <li><a class="dropdown-item" href="#">Company Profile</a></li>
-            <li><a class="dropdown-item" href="#">Post a New Job</a></li>
-            <li><a class="dropdown-item" href="#">Manage Jobs</a></li>
-            <li><a class="dropdown-item" href="#">Shortlisted Resumes</a></li>
-            <li><a class="dropdown-item" href="#">Change Password</a></li>
-            <li><a class="dropdown-item" ng-click="logout()" >##word.logout## </a></li>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" x-permissions="job_seeker" href="/Resume">##word.resume## </a></li>
+            <li><a class="dropdown-item" x-permissions="job_seeker" href="/JobSeekerHistory">##word.jobs_history## </a></li>
+            <li><a class="dropdown-item" x-permissions="job_seeker" href="/JobSeekerFavorite">##word.favorite_jobs## </a></li>
+            <li><a class="dropdown-item" x-permissions="job_seeker" href="/ChangePassword">##word.change_password## </a></li>
+
+            <li><a class="dropdown-item" x-permissions="employer" href="/Companies?post=true">##word.company_add## </a></li>
+            <li><a class="dropdown-item" x-permissions="employer" href="/Companies">##word.company_profile## </a></li>
+            <li><a class="dropdown-item" x-permissions="employer" href="/Jobs?post=true">##word.post_new_job## </a></li>
+            <li><a class="dropdown-item" x-permissions="employer" href="/Jobs">##word.manage_jobs## </a></li>
+            <li><a class="dropdown-item" x-permissions="employer" href="/ShortListResumes">##word.short_listed_resumes## </a></li>
+            <li><a class="dropdown-item" x-permissions="employer" href="/changePassword">##word.change_password## </a></li>
+
+            <li><a class="dropdown-item" ng-click="logout()">##word.logout## </a></li>
           </ul>
         </div>
       </div>

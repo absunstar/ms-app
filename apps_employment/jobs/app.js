@@ -105,16 +105,11 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/jobs/view', (req, res) => {
+  site.post({ name: '/api/jobs/view', public: true }, (req, res) => {
     let response = {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
 
     $jobs.findOne(
       {
@@ -169,7 +164,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/jobs/all', (req, res) => {
+  site.post({ name: '/api/jobs/all', public: true }, (req, res) => {
     let response = {
       done: false,
     };
@@ -293,10 +288,28 @@ module.exports = function init(site) {
           job_title: site.get_RegExp(where['general_search'], 'i'),
         });
         where.$or.push({
-          'company.name_ar': site.get_RegExp(where['general_search'], 'i'),
+          company: site.get_RegExp(where['general_search'], 'i'),
         });
         where.$or.push({
-          'company.name_en': site.get_RegExp(where['general_search'], 'i'),
+          job_field: site.get_RegExp(where['general_search'], 'i'),
+        });
+        where.$or.push({
+          job_subfield: site.get_RegExp(where['general_search'], 'i'),
+        });
+        where.$or.push({
+          years_of_experience: site.get_RegExp(where['general_search'], 'i'),
+        });
+        where.$or.push({
+          industry: site.get_RegExp(where['general_search'], 'i'),
+        });
+        where.$or.push({
+          qualification: site.get_RegExp(where['general_search'], 'i'),
+        });
+        where.$or.push({
+          country: site.get_RegExp(where['general_search'], 'i'),
+        });
+        where.$or.push({
+          city: site.get_RegExp(where['general_search'], 'i'),
         });
       }
 

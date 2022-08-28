@@ -5,17 +5,15 @@
   <body class="##session.lang##" x-permissions="!login" ng-controller="register">
     <div x-import="0/navbar.html"></div>
 
-   
-
     <div id="main-layout" class="container loaded">
       <div class="row align-items-center" id="registerModal">
         <div class="row">
           <section class="py-5 header">
             <div class="container py-4">
-              <header class="text-center mb-5 pb-5 text-white">
+              <header class="text-center mb-5 pb-5 ">
                 <h1 class="display-4">
                   ##word.register##
-                  <p class="font-18">##word.existing_user## <a href="/login">##word.login_now##</a></p>
+                  <span class="font-18 green">##word.existing_user## <a class="btn link" href="/login">##word.login_now##</a></span>
                 </h1>
               </header>
 
@@ -56,8 +54,8 @@
                         <i-control v="r" class="row" ng-model="employer.email" label="##word.email##"></i-control>
 
                         <div class="row">
-                          <i-control v="r" type="password" class="col pass" ng-model="employer.password" label="##word.password##"></i-control>
-                          <i-control v="r" type="password" class="col pass" ng-model="employer.retype_password" label="##word.retype_password##"></i-control>
+                          <i-control v="r" type="password" class="col6 pass" ng-model="employer.password" label="##word.password##"></i-control>
+                          <i-control v="r" type="password" class="col6 pass" ng-model="employer.retype_password" label="##word.retype_password##"></i-control>
                           <i-checkbox class="col" ng-change="showPassword()" ng-model="show_password" label="##word.show_password##"></i-checkbox>
                         </div>
 
@@ -93,8 +91,8 @@
                         <i-control v="r" class="row" ng-model="job_seeker.email" label="##word.email##"></i-control>
 
                         <div class="row">
-                          <i-control v="r" type="password" class="col pass" ng-model="job_seeker.password" label="##word.password##"></i-control>
-                          <i-control v="r" type="password" class="col pass" ng-model="job_seeker.retype_password" label="##word.retype_password##"></i-control>
+                          <i-control v="r" type="password" class="col6 pass" ng-model="job_seeker.password" label="##word.password##"></i-control>
+                          <i-control v="r" type="password" class="col6 pass" ng-model="job_seeker.retype_password" label="##word.retype_password##"></i-control>
                           <i-checkbox class="col" ng-change="showPassword()" ng-model="show_password" label="##word.show_password##"></i-checkbox>
                         </div>
 
@@ -118,7 +116,7 @@
         </div>
       </div>
     </div>
- <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
+    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
     <div x-import="0/scripts.html"></div>
     <script x-import="accounts/register.js"></script>
   </body>

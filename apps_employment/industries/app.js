@@ -202,7 +202,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/industries/all', (req, res) => {
+  site.post({name : '/api/industries/all',public : true}, (req, res) => {
     let response = {
       done: false,
     };

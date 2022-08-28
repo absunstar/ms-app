@@ -1,13 +1,10 @@
 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
   <div class="search container">
-    <i-list ng-model="list1"></i-list>
-    <i-list ng-model="list1"></i-list>
-    <i-list ng-model="list1"></i-list>
-
+   <input type="text" class="find-job" ng-model="search" placeholder="Search By [ Job Title - Country - Skill ] ">
     <div class="button">
-      <button class="fill button-search">
-        <i class="fa-solid fa-magnifying-glass nav-button-icon"></i>
-        Get Your Job
+      <button class="fill button-search" ng-click="goJobs()">
+        <i class="fas fa-search"></i>
+        Search Jobs
       </button>
     </div>
   </div>

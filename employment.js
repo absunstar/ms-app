@@ -1,10 +1,10 @@
 const site = require('../isite')({
   port: [80, 44441],
   lang: 'en',
-  version: '1.0.13',
+  version: '1.0.14',
   name: 'employment',
   theme: 'theme_paper',
-  savingTime: 1,
+  savingTime: 10,
   mail: {
     enabled: false,
     host: 'smtp.office365.com',

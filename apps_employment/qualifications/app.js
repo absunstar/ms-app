@@ -188,7 +188,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/qualifications/all', (req, res) => {
+  site.post({ name: '/api/qualifications/all', public: true }, (req, res) => {
     let response = {
       done: false,
     };
