@@ -87,13 +87,13 @@ app.controller('traineeTrainings', function ($scope, $http, $timeout) {
   };
 
   $scope.startExamTime = function (type) {
-    if (type == 'finish') {
-      clearInterval(timeExamInterval);
-      return;
-    }
+    
     let minute = 44;
     let secound = 59;
     const timeExamInterval = setInterval(function () {
+      if (type == 'finish') {
+        clearInterval(timeExamInterval);
+      }
       if ('##session.lang##' == 'ar') {
         document.getElementById('timer').innerHTML = '##word.remaining_time##' + ' ( ' + secound + ' : ' + minute + ' ) ';
       } else {

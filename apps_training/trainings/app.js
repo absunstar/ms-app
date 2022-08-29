@@ -1,3 +1,5 @@
+const { _logFunc } = require('nodemailer/lib/shared');
+
 module.exports = function init(site) {
   const $trainings = site.connectCollection('Trainings');
 
@@ -488,10 +490,12 @@ module.exports = function init(site) {
             } else {
               _doc.$attend_rate = false;
             }
-
+            _doc.$start_exam_count = 0;
             _doc.trainees_list.forEach((_t) => {
+              _doc.$start_exam_count = _t.start_exam_count || 0;
               if (req.body.id == _t.id && _t.finish_exam) {
                 _doc.$finish_exam = true;
+                _doc.$certificate = _t.certificate;
               }
             });
           });
@@ -570,26 +574,63 @@ module.exports = function init(site) {
           id: req.body.training_id,
         },
       },
-      (err, doc) => {
+      (err, trainingDoc) => {
         if (!err) {
-          response.done = true;
-          let correct = 0;
-          req.body.questions_list.forEach((_q) => {
-            _q.answers_list.forEach((_a) => {
-              if (_a.correct && _a.trainee_answer) {
-                correct += 1;
+          site.getCertificates({ active: true }, (certificatesCb) => {
+            response.done = true;
+            let correct = 0;
+            req.body.questions_list.forEach((_q) => {
+              _q.answers_list.forEach((_a) => {
+                if (_a.correct && _a.trainee_answer) {
+                  correct += 1;
+                }
+              });
+            });
+
+            let found_certificate = certificatesCb.find((_c) => {
+              return _c.type == 'training_centers' && _c.partner.id == trainingDoc.partner.id && _c.training_center.id == trainingDoc.training_center.id && _c.training_type.id == trainingDoc.training_type.id && _c.training_category.id == trainingDoc.training_category.id;
+            });
+
+            if (!found_certificate) {
+              found_certificate = certificatesCb.find((_c) => {
+                return _c.type == 'partners' && _c.partner.id == trainingDoc.partner.id && _c.file_type == 'trainee' && _c.training_type.id == trainingDoc.training_type.id && _c.training_category.id == trainingDoc.training_category.id;
+              });
+            }
+
+            if (!found_certificate) {
+              found_certificate = certificatesCb.find((_c) => {
+                return _c.type == 'partners_generic' && _c.partner.id == trainingDoc.partner.id && _c.file_type == 'trainee';
+              });
+            }
+
+            if (!found_certificate) {
+              found_certificate = certificatesCb.find((_c) => {
+                return _c.type == 'system_generic' && _c.file_type == 'trainee';
+              });
+            }
+
+            let file = site.fs.readFileSync(found_certificate.certificate.path);
+
+            site.pdf.PDFDocument.load(file).then((doc) => {
+              let form = doc.getForm();
+              let nameField = form.getTextField('Name');
+              nameField.setText(req.session.user.first_name);
+              doc.save().then((new_file) => {
+                site.fs.writeFileSync(__dirname + '/mct2.pdf', new_file);
+              });
+            });
+
+            trainingDoc.trainees_list.forEach((_t) => {
+              if (req.body.trainee_id == _t.id) {
+                _t.exam_questions_list = req.body.questions_list;
+                _t.trainee_degree = (correct / req.body.questions_list.length) * 100;
+                _t.certificate = found_certificate.certificate;
+                _t.finish_exam = true;
               }
             });
+            // $trainings.update(trainingDoc);
+            // res.json(response);
           });
-          doc.trainees_list.forEach((_t) => {
-            if (req.body.trainee_id == _t.id) {
-              _t.exam_questions_list = req.body.questions_list;
-              _t.trainee_degree = (correct / req.body.questions_list.length) * 100;
-              _t.finish_exam = true;
-            }
-          });
-          $trainings.update(doc);
-          res.json(response);
         } else {
           response.error = err.message;
         }

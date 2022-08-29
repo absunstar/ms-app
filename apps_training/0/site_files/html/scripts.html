@@ -16,8 +16,6 @@
   var app = app || angular.module('myApp', []);
 </script>
 
-<script src="/js/sitebar.js?v=##site.options.version##"></script>
-<script src="/js/sitebottom.js?v=##site.options.version##"></script>
 <script src="/js/FileSaver.js?v=##site.options.version##"></script>
 <script src="/js/xlsx.full.min.js?v=##site.options.version##"></script>
 
@@ -35,6 +33,7 @@
       $canfocus.eq(index).focus();
     }
   });
+
   function string_to_buffer(s) {
     if (typeof ArrayBuffer !== 'undefined') {
       var buf = new ArrayBuffer(s.length);

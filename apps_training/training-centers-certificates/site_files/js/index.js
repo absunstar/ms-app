@@ -298,7 +298,7 @@ app.controller('trainingCentersCertificates', function ($scope, $http, $timeout)
       method: 'POST',
       url: '/api/trainings_centers/all',
       data: {
-        where: { active: true,'partner.id' : id },
+        where: { active: true,'sub_partner.partners_list.id' : id },
         select: { id: 1, name_ar: 1, name_en: 1 },
       },
     }).then(

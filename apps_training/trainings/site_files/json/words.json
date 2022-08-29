@@ -60,9 +60,9 @@
     "ar": "حضور"
   },
   {
-    "name": "attend",
-    "en": "Attend",
-    "ar": "حضور"
+    "name": "number_questions",
+    "en": "Number Questions",
+    "ar": "عدد الأسئلة"
   },
   {
     "name": "appropriate_attendance_rate_reached_enter_examination",

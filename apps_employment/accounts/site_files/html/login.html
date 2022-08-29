@@ -12,22 +12,24 @@
 
       <div class="row">
         <div class="employer-form">
-          <div class="col6">
-            <i-control v="r" class="row" ng-model="user.email" label="##word.email##"></i-control>
-            <i-control v="r" class="row" type="password" ng-model="user.password" label="##word.password##"></i-control>
+          <div class="row center">
+            <i-control v="r" class="col6 center" ng-model="user.email" label="##word.email##"></i-control>
+          </div>
+          <div class="row center">
+            <i-control v="r" class="col6 center" type="password" ng-model="user.password" label="##word.password##"></i-control>
           </div>
         </div>
       </div>
 
-      <div>
-        <i-button class="center" label="##word.login_now##" ng-click="loginEmployment()"></i-button>
+      <div class="center">
+        <i-button label="##word.login_now##" ng-click="loginEmployment()"></i-button>
       </div>
       <h3 class="bold red">{{error}}</h3>
       <hr>
-      <header class="text-center mb-5 pb-5">
-        <h1 class="display-4">
+      <header class="mb-5 pb-5">
+        <h1 class="display-4 text-center">
           ##word.not_registered##
-          <span class="font-18"><a class="btn link" href="/register">##word.create_account## </a></span>
+          <span class="font-18 text-center"><a class="btn link" href="/register" style="text-decoration: underline !important">##word.create_account## </a></span>
         </h1>
       </header>
     </div>

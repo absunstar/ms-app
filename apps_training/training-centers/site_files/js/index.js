@@ -222,7 +222,7 @@ app.controller('trainingCenters', function ($scope, $http, $timeout) {
       url: '/api/sub_partners/all',
       data: {
         where: { active: true },
-        select: { id: 1,   name_ar: 1, name_en: 1 },
+        select: { id: 1,   name_ar: 1, name_en: 1 , partners_list : 1},
       },
     }).then(
       function (response) {

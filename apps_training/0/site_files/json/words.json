@@ -113,6 +113,20 @@
         "name": "entity",
         "en": "Entity",
         "ar": "الكيان"
+    },
+    {
+        "name": "ok",
+        "en": "Ok",
+        "ar": "موافق"
+    },
+    {
+        "name": "go_back",
+        "en": "Back",
+        "ar": "الصفحة السابقة"
+    },
+    {
+        "name": "go_forward",
+        "en": "Forward",
+        "ar": "الصفحة التالية"
     }
-   
 ]

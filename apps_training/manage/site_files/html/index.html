@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 
 <html lang="en" data-ng-app="myApp" x-permissions="admin">
-  <head x-import="head.html"> </head>
+  <head x-import="0/head.html"> </head>
 
   <body class="##session.lang##" ng-controller="manage">
 
     <nav x-import="0/navbar.html" ></nav>
 
-    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
     <div  x-import="manage/partner_logo.html"></div>
     <div  x-import="manage/delete_partner_logo_modal.html"></div>
 
@@ -27,6 +26,7 @@
         </div>
       </div>
     </div>
+    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
 
     <div x-import="0/scripts.html"></div>
     <script x-import="manage/index.js"></script>

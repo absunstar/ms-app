@@ -34,7 +34,7 @@ app.controller('cities', function ($scope, $http, $timeout) {
           site.hideModal('#cityAddModal');
           site.resetValidated('#cityAddModal');
           $scope.getCityList();
-        } else if(response.data.error){
+        } else if (response.data.error) {
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -74,7 +74,7 @@ app.controller('cities', function ($scope, $http, $timeout) {
           site.hideModal('#cityUpdateModal');
           site.resetValidated('#cityUpdateModal');
           $scope.getCityList();
-        } else if(response.data.error){
+        } else if (response.data.error) {
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -229,7 +229,7 @@ app.controller('cities', function ($scope, $http, $timeout) {
       url: '/api/countries/all',
       data: {
         where: { active: true },
-        select: { id: 1,   name_ar: 1, name_en: 1 },
+        select: { id: 1, name_ar: 1, name_en: 1 },
       },
     }).then(
       function (response) {

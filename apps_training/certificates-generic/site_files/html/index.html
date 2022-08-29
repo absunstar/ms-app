@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" data-ng-app="myApp" x-permissions="admin">
-  <head x-import="head.html"> </head>
+  <head x-import="0/head.html"> </head>
 
   <body class="##session.lang##" ng-controller="certificatesGeneric">
-    <nav x-import="0/navbar.html" ></nav>
+    <nav x-import="0/navbar.html"></nav>
 
-    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
     <div id="main-layout" class="container loaded">
       <div class="row">
         <div class="row">
@@ -24,21 +23,16 @@
 
           <div class="row">
             <div class="col6">
-              <i-file label="##word.upload_trainee_certificate##" ng-model="system_generic.trainee_certificate"></i-file>
-              <i-button type="add" ng-click="uploadCertificatesSystemGeneric('trainee')"></i-button>
+              <i-file label="##word.upload_trainee_certificate##" ng-change="uploadCertificatesSystemGeneric('trainee')" ng-model="system_generic.trainee_certificate"></i-file>
             </div>
 
             <div class="col6">
-              <i-file label="##word.upload_trainer_certificate##" ng-model="system_generic.trainer_certificate"></i-file>
-              <i-button type="add" ng-click="uploadCertificatesSystemGeneric('trainer')"></i-button>
+              <i-file label="##word.upload_trainer_certificate##" ng-change="uploadCertificatesSystemGeneric('trainer')" ng-model="system_generic.trainer_certificate"></i-file>
             </div>
           </div>
-          
-          <hr>
 
-          <div class="row">
-            <h2>##word.certificates_partner_generic##</h2>
-          </div>
+          <hr />
+
           <table x-permissions="login" class="table hover text-center" id="t1">
             <tr>
               <th>##word.file_type##</th>
@@ -47,7 +41,6 @@
               <th class="not-print">##word.actions##</th>
             </tr>
             <tr ng-repeat="c in certificatesSystemGenericList">
-            
               <td class="center">
                 <p ng-show="c.file_type == 'trainee'">##word.trainee##</p>
                 <p ng-show="c.file_type == 'trainer'">##word.trainer##</p>
@@ -62,10 +55,12 @@
                 <i-button ng-show="c.active" label="##word.deactivate##" ng-click="showActivationModal(c,'deactivate')"></i-button>
               </td>
             </tr>
-        </table>
+          </table>
 
-        <hr>
-
+          <hr />
+          <div class="row">
+            <h2>##word.certificates_partner_generic##</h2>
+          </div>
           <div class="top-actions">
             <i-button type="add" label="##word.certificate_partner_generic_new##" ng-click="displayAddCertificatesPartnerGeneric()"></i-button>
             <i-button type="search" label="##word.search_all##" ng-click="displaySearchPartnerModal()"></i-button>
@@ -75,39 +70,39 @@
           </div>
 
           <table x-permissions="login" class="table hover text-center" id="t2">
-              <tr>
-                <th>##word.entity## ##word.partner##</th>
-                <th>##word.file_type##</th>
-                <th>##word.upload_certificate##</th>
-                <th>##word.status##</th>
-                <th class="not-print">##word.actions##</th>
-              </tr>
-              <tr ng-repeat="c in certificatesPartnerList">
-              
-                <td class="center title">{{c.partner.name_##session.lang##}}</td>
-                <td class="center">
-                  <p ng-show="c.file_type == 'trainee'">##word.trainee##</p>
-                  <p ng-show="c.file_type == 'trainer'">##word.trainer##</p>
-                </td>
-                <td class="center title"><i-file view ng-model="c.certificate"></i-file></td>
-                <td class="center">
-                  <p ng-show="c.active" class="green">##word.active##</p>
-                  <p ng-show="!c.active" class="red">##word.not_active##</p>
-                </td>
-                <td class="center not-print">
-                  <i-button type="view" label="##word.details##" ng-click="displayDetailsCertificatesPartnerGeneric(c)"></i-button>
-                  <i-button type="edit" label="##word.edit##" ng-click="displayUpdateCertificatesPartnerGeneric(c)"></i-button>
-                  <i-button ng-show="!c.active" label="##word.activate##" ng-click="showActivationModal(c,'activate')"></i-button>
-                  <i-button ng-show="c.active" label="##word.deactivate##" ng-click="showActivationModal(c,'deactivate')"></i-button>
-                  <i-button type="delete" label="##word.delete##" ng-click="displayDeleteCertificatesPartnerGeneric(c)"></i-button>
-                </td>
-              </tr>
+            <tr>
+              <th>##word.entity## ##word.partner##</th>
+              <th>##word.file_type##</th>
+              <th>##word.upload_certificate##</th>
+              <th>##word.status##</th>
+              <th class="not-print">##word.actions##</th>
+            </tr>
+            <tr ng-repeat="c in certificatesPartnerList">
+              <td class="center title">{{c.partner.name_##session.lang##}}</td>
+              <td class="center">
+                <p ng-show="c.file_type == 'trainee'">##word.trainee##</p>
+                <p ng-show="c.file_type == 'trainer'">##word.trainer##</p>
+              </td>
+              <td class="center title"><i-file view ng-model="c.certificate"></i-file></td>
+              <td class="center">
+                <p ng-show="c.active" class="green">##word.active##</p>
+                <p ng-show="!c.active" class="red">##word.not_active##</p>
+              </td>
+              <td class="center not-print">
+                <i-button type="view" label="##word.details##" ng-click="displayDetailsCertificatesPartnerGeneric(c)"></i-button>
+                <i-button type="edit" label="##word.edit##" ng-click="displayUpdateCertificatesPartnerGeneric(c)"></i-button>
+                <i-button ng-show="!c.active" label="##word.activate##" ng-click="showActivationModal(c,'activate')"></i-button>
+                <i-button ng-show="c.active" label="##word.deactivate##" ng-click="showActivationModal(c,'deactivate')"></i-button>
+                <i-button type="delete" label="##word.delete##" ng-click="displayDeleteCertificatesPartnerGeneric(c)"></i-button>
+              </td>
+            </tr>
           </table>
           <i-button type="print" label="##word.print##" onclick="site.print('#t2')"></i-button>
           <i-button type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t2' , 'certificates_generic.xlsx')"></i-button>
         </div>
       </div>
     </div>
+    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
 
     <div x-import="0/scripts.html"></div>
     <script x-import="certificates-generic/index.js"></script>

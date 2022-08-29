@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" data-ng-app="myApp" x-permissions="trainee">
-  <head x-import="head.html"> </head>
+  <head x-import="0/head.html"> </head>
 
   <body class="##session.lang##" ng-controller="traineeAccount">
     <nav x-import="0/navbar.html" ></nav>
 
-    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
 
     <div id="main-layout" class="container loaded">
       <div class="row">
@@ -28,10 +27,12 @@
                 <div class="row">
                   <i-control v="r" ng-model="trainee.last_name" label="##word.last_name##"></i-control>
                 </div>
+                <div class="row">
+                  <i-control v="r" ng-model="trainee.email" label="##word.email##"></i-control>
+                </div>
               </div>
             </div>
     
-            <i-control v="r" class="row" ng-model="trainee.email" label="##word.email##"></i-control>
     
             <div class="row">
               <i-control v="r" type="password" class="col pass" ng-model="trainee.password" label="##word.password##"></i-control>
@@ -67,6 +68,7 @@
       </div>
     </div>
 
+    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
     <div x-import="0/scripts.html"></div>
     <script x-import="trainee-account/index.js"></script>
   </body>

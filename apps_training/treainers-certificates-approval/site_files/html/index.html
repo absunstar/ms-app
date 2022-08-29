@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp" x-permissions="admin">
+  <head x-import="0/head.html"> </head>
+
+  <body class="##session.lang##" ng-controller="trainersCertificatesApproval">
+    <div x-import="0/navbar.html"></div>
+
+    <div id="main-layout" class="container loaded">
+      <div class="row">
+        <div class="row">
+          <div x-import="companies-approval/search_all_modal.html"></div>
+
+          <div class="row">
+            <h1 class="bold text-center">##word.companies_approval##</h1>
+          </div>
+
+          <div class="top-actions">
+            <div x-import="companies/view_modal.html"></div>
+            <i-button type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+
+            <h3 class="bold text-center">##word.count## : {{count || 0}}</h3>
+            <h3 class="bold text-center text-danger">{{error}}</h3>
+          </div>
+
+          <table x-permissions="login" class="table hover text-center" id="t1">
+            <tr>
+              <th>##word.trainer##</th>
+            
+              <th class="not-print">##word.actions##</th>
+            </tr>
+            <tbody>
+              <tr ng-repeat="c in list">
+
+                <td class="center title">{{c.trainer.name_##session.lang##}}</td>
+
+                <td class="center not-print">
+                  <i-button type="add" label="##word.approve##" ng-click="updateCompany(c,'approve')"></i-button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <i-button type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+          <i-button type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'city.xlsx')"></i-button>
+        </div>
+      </div>
+    </div>
+    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
+    <div x-import="0/scripts.html"></div>
+    <script x-import="treainers-certificates-approval/index.js"></script>
+  </body>
+</html>

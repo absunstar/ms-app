@@ -20,6 +20,7 @@ app.controller('partnersCertificates', function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
+
     $scope.partner_certificate.type = 'partners';
     $scope.busy = true;
     $http({

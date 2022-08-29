@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" data-ng-app="myApp" x-permissions="login">
-  <head x-import="head.html"></head>
+  <head x-import="0/head.html"> </head>
 
   <body class="##session.lang##" ng-controller="traineeTrainings">
     <nav x-import="0/navbar.html"></nav>
-
-    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
 
     <div id="main-layout" class="container loaded">
       <div class="row">
@@ -40,14 +38,17 @@
               <td class="center">{{c.end_date | date:"dd/MM/yyyy"}}</td>
 
               <td class="center not-print">
+                <p ng-show="c.$start_exam_count >= 3 && !c.$finish_exam">##word.maximum_entrance_exam_exceeded##</p>
+                <i-file view ng-show="c.$finish_exam" label="##word.upload_trainee_certificate##" ng-model="c.$certificate"></i-file>
                 <p ng-show="!c.$attend_rate && !c.$finish_exam">##word.appropriate_attendance_rate_reached_enter_examination##</p>
-                <i-button x-permissions="trainee" ng-show="c.$attend_rate && !c.$finish_exam" type="view" label="##word.take_exam##" ng-click="startExam(c)"></i-button>
+                <i-button x-permissions="trainee" ng-show="c.$attend_rate && !c.$finish_exam && c.$start_exam_count < 3" type="view" label="##word.take_exam##" ng-click="startExam(c)"></i-button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
+    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
     <div x-import="0/scripts.html"></div>
     <script x-import="trainee-trainings/index.js"></script>
   </body>

@@ -28,5 +28,10 @@
     "name": "minute",
     "en": "Minute",
     "ar": "دقيقة"
+  },
+  {
+    "name": "maximum_entrance_exam_exceeded",
+    "en": "The maximum entrance exam has been exceeded",
+    "ar": "تم تخطي العدد الأقصى لدخول الإمتحان"
   }
 ]

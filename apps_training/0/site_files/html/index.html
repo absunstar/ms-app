@@ -1,15 +1,164 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
-  <head x-import="head.html">
-    <style></style>
+  <head x-import="0/head.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   </head>
+  <body class="##session.lang##" ng-controller="body">
+    <div x-import="0/navbar.html"></div>
+    <div x-import="0/carousel2.html"></div>
 
-  <body class="##session.lang##">
-    <nav x-import="0/navbar.html" ></nav>
+    <main class="main">
+      <div class="about-section container">
+        <div class="adout">
+          <div class="about-us">
+            <h2>Join us now whether you are looking for a job or an employee</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit augue dictum donec, tincidunt congue cras mauris accumsan dis sagittis habitant suspendisse, nibh quam posuere pharetra dapibus taciti egestas potenti quisque</p>
+            <div class="button">
+              <button class="fill button-search" ng-click="goRegister()">
+                <i class="fas fa-plus nav-button-icon"></i>
+                Join us now
+              </button>
+            </div>
+          </div>
+          <div class="about-us-number">
+            <div class="about-us-heading">
+              <h2>numbers talk about us</h2>
+            </div>
+            <div class="section-number">
+              <div class="info looking-for-job about-us-number">
+                <div class="icon"><i class="fas fa-male"></i></div>
+                <div class="number"><a>+1000</a></div>
+                <div class="head-title"><a>Looking for job</a></div>
+              </div>
+              <div class="info job-available about-us-number">
+                <div class="icon"><i class="fas fa-building"></i></div>
+                <div class="number"><a>+6000</a></div>
+                <div class="head-title"><a>Job Available</a></div>
+              </div>
+              <div class="info registered-company about-us-number">
+                <div class="icon"><i class="fas fa-briefcase"></i></div>
+                <div class="number"><a>+500</a></div>
+                <div class="head-title"><a>Registered Company</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="about-image">
+          <img src="/images/banner4.png" alt="" />
+        </div>
+      </div>
+      <div class="main-logo-section">
+        <a class="logo-heading">Jobs in the largest companies in Egypt</a>
+        <div class="logos">
+          <img src="/images/logos.png" alt="" />
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer">
+        <div class="footer-logo">
+          <div class="footer-company-logo"></div>
+          <div class="footer-partner-logo">
+            <img src="/images/logo1.png" class="logo" alt="" />
+            <img src="/images/logo2.png" alt="" />
+            <img src="/images/logo3.png" alt="" />
+          </div>
+        </div>
+        <div class="Useful-Links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li>
+              <a href="">Terms & Conditions</a>
+            </li>
+            <li>
+              <a href="">Policy</a>
+            </li>
+          </ul>
+        </div>
+        <div class="contact">
+          <h4>Contact</h4>
+          <div class="adress">
+            <i class="fas fa-map-marker-alt"></i>
+            <a>Microsoft Egypt - Citizenship Department, KM 28 Cairo Alex Desert Road,Smart Village, Giza, Egypt</a>
+          </div>
+          <div class="email">
+            <i class="fas fa-envelope"></i>
+            <a>info@getonlineegypt.com</a>
+          </div>
+          <div class="phone">
+            <i class="fas fa-phone-alt"></i>
+            <a>+2 02 3539 3333 / +2 02 3539 0303</a>
+          </div>
+        </div>
+      </div>
+    </footer>
 
     <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
-
     <div x-import="0/scripts.html"></div>
-    <script></script>
+    <script>
+      app.controller('body', ($scope, $http) => {
+        $scope.search = '';
+        $scope.goRegister = function () {
+          document.location.href = '/register';
+        };
+        $scope.goJobs = function () {
+          document.location.href = '/EmployerSearch?q=' + $scope.search;
+        };
+        $scope.getQualificationList = function () {
+          $scope.busy = true;
+          $scope.qualificationList = [];
+
+          $http({
+            method: 'POST',
+            url: '/api/qualifications/all',
+            data: {
+              where: { active: true },
+              select: { id: 1, name_ar: 1, name_en: 1 },
+            },
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              if (response.data.done && response.data.list && response.data.list.length > 0) {
+                $scope.qualificationList = response.data.list;
+              }
+            },
+            function (err) {
+              $scope.busy = false;
+              $scope.error = err;
+            }
+          );
+        };
+
+        $scope.getYearsOfExperienceList = function () {
+          $scope.busy = true;
+          $scope.yearsOfExperienceList = [];
+
+          $http({
+            method: 'POST',
+            url: '/api/years_of_experience/all',
+            data: {
+              where: { active: true },
+              select: { id: 1, name_ar: 1, name_en: 1 },
+            },
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              if (response.data.done && response.data.list && response.data.list.length > 0) {
+                $scope.yearsOfExperienceList = response.data.list;
+              }
+            },
+            function (err) {
+              $scope.busy = false;
+              $scope.error = err;
+            }
+          );
+        };
+        $scope.getYearsOfExperienceList();
+        $scope.getQualificationList();
+      });
+    </script>
   </body>
 </html>

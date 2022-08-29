@@ -220,4 +220,22 @@ module.exports = function init(site) {
       }
     );
   });
+
+  site.getCertificates = function (where, callback) {
+    $certificates.findMany(
+      {
+        where: where,
+      },
+      (err, docs) => {
+        if (!err) {
+          if (docs) {
+            callback(docs);
+          } else {
+            callback(false);
+          }
+        }
+      }
+    );
+  };
+
 };

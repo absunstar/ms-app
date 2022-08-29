@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" data-ng-app="myApp">
-  <head x-import="head.html"> </head>
+<html lang="en" data-ng-app="myApp" x-permissions="admin || trainer || partner || sub_partner">
+  <head x-import="0/head.html"> </head>
 
-  <body class="##session.lang##" ng-controller="trainees" x-permissions="admin || trainer || partner || sub_partner">
-    <div x-import="0/navbar.html"></div>
+  <body class="##session.lang##" ng-controller="trainees">
+    <nav x-import="0/navbar.html"></nav>
 
-    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
     <div id="main-layout" class="container loaded">
       <div x-import="trainees-accounts/add_modal.html"></div>
       <div x-import="trainings/add_trainees_modal.html"></div>
@@ -59,6 +58,7 @@
       </table>
     </div>
 
+    <nav class="sitebottom" x-import="0/footer.html" ng-controller="footer"></nav>
     <div x-import="0/scripts.html"></div>
     <script x-import="trainings/trainees.js"></script>
   </body>

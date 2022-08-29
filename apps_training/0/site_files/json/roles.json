@@ -3,7 +3,7 @@
     "module_name": "public",
     "name": "admin",
     "en": "Admin",
-    "ar": "مسئول",
+    "ar": "مشرف",
     "permissions": ["admin"]
   },
   {
