@@ -1,5 +1,3 @@
-const { _logFunc } = require('nodemailer/lib/shared');
-
 module.exports = function init(site) {
   const $trainings = site.connectCollection('Trainings');
 
@@ -609,27 +607,29 @@ module.exports = function init(site) {
               });
             }
 
-            let file = site.fs.readFileSync(found_certificate.certificate.path);
+            if (found_certificate) {
+              let file = site.fs.readFileSync(found_certificate.certificate.path);
 
-            site.pdf.PDFDocument.load(file).then((doc) => {
-              let form = doc.getForm();
-              let nameField = form.getTextField('Name');
-              nameField.setText(req.session.user.first_name);
-              doc.save().then((new_file) => {
-                site.fs.writeFileSync(__dirname + '/mct2.pdf', new_file);
+              site.pdf.PDFDocument.load(file).then((doc) => {
+                let form = doc.getForm();
+                let nameField = form.getTextField('Name');
+                nameField.setText(req.session.user.first_name);
+                doc.save().then((new_file) => {
+                  site.fs.writeFileSync(__dirname + '/mct3.pdf', new_file);
+                });
               });
-            });
 
-            trainingDoc.trainees_list.forEach((_t) => {
-              if (req.body.trainee_id == _t.id) {
-                _t.exam_questions_list = req.body.questions_list;
-                _t.trainee_degree = (correct / req.body.questions_list.length) * 100;
-                _t.certificate = found_certificate.certificate;
-                _t.finish_exam = true;
-              }
-            });
-            // $trainings.update(trainingDoc);
-            // res.json(response);
+              trainingDoc.trainees_list.forEach((_t) => {
+                if (req.body.trainee_id == _t.id) {
+                  _t.exam_questions_list = req.body.questions_list;
+                  _t.trainee_degree = (correct / req.body.questions_list.length) * 100;
+                  _t.certificate = found_certificate.certificate;
+                  _t.finish_exam = true;
+                }
+              });
+              // $trainings.update(trainingDoc);
+              // res.json(response);
+            }
           });
         } else {
           response.error = err.message;

@@ -214,7 +214,7 @@ module.exports = function init(site) {
     let where = req.body.where || {};
     let search = req.body.search || {};
 
-    if (req.session.user) {
+    if (req.session.user && req.session.user.role) {
       if (req.session.user.role.name == 'trainer' || req.session.user.role.name == 'partner') {
         let partnersId = [];
         req.session.user.partners_list.forEach((_p) => {

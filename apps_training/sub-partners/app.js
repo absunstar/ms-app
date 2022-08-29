@@ -212,7 +212,7 @@ module.exports = function init(site) {
     };
 
     let where = req.body.where || {};
-    if (req.session.user) {
+    if (req.session.user && req.session.user.role) {
       if (req.session.user.role.name == 'trainer' || req.session.user.role.name == 'partner' || req.session.user.role.name == 'sub_partner') {
         let subPartnersId = [];
         req.session.user.partners_list.forEach((_p) => {

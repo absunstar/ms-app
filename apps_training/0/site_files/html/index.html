@@ -11,48 +11,62 @@
 
     <main class="main">
       <div class="about-section container">
-        <div class="adout">
+        <div class="about">
           <div class="about-us">
-            <h2>Join us now whether you are looking for a job or an employee</h2>
+            <h2>numbers talk about us</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipiscing elit augue dictum donec, tincidunt congue cras mauris accumsan dis sagittis habitant suspendisse, nibh quam posuere pharetra dapibus taciti egestas potenti quisque</p>
             <div class="button">
-              <button class="fill button-search" ng-click="goRegister()">
+              <button class="fill button-search" ng-click="goRegister">
                 <i class="fas fa-plus nav-button-icon"></i>
                 Join us now
               </button>
             </div>
           </div>
-          <div class="about-us-number">
-            <div class="about-us-heading">
-              <h2>numbers talk about us</h2>
+        </div>
+        <div class="about-us-number">
+          <div class="section-number">
+            <div class="info looking-for-job about-us-number">
+              <div class="icon"><i class="fas fa-chalkboard-teacher"></i></div>
+              <div class="number"><a>+100</a></div>
+              <div class="head-title"><a>trainer</a></div>
             </div>
-            <div class="section-number">
-              <div class="info looking-for-job about-us-number">
-                <div class="icon"><i class="fas fa-male"></i></div>
-                <div class="number"><a>+1000</a></div>
-                <div class="head-title"><a>Looking for job</a></div>
-              </div>
-              <div class="info job-available about-us-number">
-                <div class="icon"><i class="fas fa-building"></i></div>
-                <div class="number"><a>+6000</a></div>
-                <div class="head-title"><a>Job Available</a></div>
-              </div>
-              <div class="info registered-company about-us-number">
-                <div class="icon"><i class="fas fa-briefcase"></i></div>
-                <div class="number"><a>+500</a></div>
-                <div class="head-title"><a>Registered Company</a></div>
-              </div>
+            <div class="info job-available about-us-number">
+              <div class="icon"><i class="fas fa-award"></i></div>
+              <div class="number"><a>+2500</a></div>
+              <div class="head-title"><a>training</a></div>
+            </div>
+            <div class="info registered-company about-us-number">
+              <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+              <div class="number"><a>+500</a></div>
+              <div class="head-title"><a>Trainee</a></div>
             </div>
           </div>
         </div>
-        <div class="about-image">
-          <img src="/images/banner4.png" alt="" />
-        </div>
       </div>
-      <div class="main-logo-section">
-        <a class="logo-heading">Jobs in the largest companies in Egypt</a>
-        <div class="logos">
-          <img src="/images/logos.png" alt="" />
+      <div class="contact-section">
+        <div class="c-section container">
+          <div class="contact-text">
+            <h2>Have a questions? contact us now</h2>
+          </div>
+          <hr class="hr-contact" />
+          <div class="contact-email">
+            <div class="email-head">
+              <i class="fas fa-at"></i>
+              <h3>By Email</h3>
+            </div>
+            <div class="email-info">
+              <a href="mailto:info@getonlineegypt.com">info@getonlineegypt.com</a>
+            </div>
+          </div>
+          <div class="contact-number">
+            <div class="number-head">
+              <i class="fas fa-phone-alt"></i>
+              <h3>Help center</h3>
+            </div>
+            <div class="number-info">
+              <a>+2 02 3539 3333 / +2 02 3539 0303</a>
+            </div>
+          </div>
         </div>
       </div>
     </main>
@@ -104,60 +118,6 @@
         $scope.goRegister = function () {
           document.location.href = '/register';
         };
-        $scope.goJobs = function () {
-          document.location.href = '/EmployerSearch?q=' + $scope.search;
-        };
-        $scope.getQualificationList = function () {
-          $scope.busy = true;
-          $scope.qualificationList = [];
-
-          $http({
-            method: 'POST',
-            url: '/api/qualifications/all',
-            data: {
-              where: { active: true },
-              select: { id: 1, name_ar: 1, name_en: 1 },
-            },
-          }).then(
-            function (response) {
-              $scope.busy = false;
-              if (response.data.done && response.data.list && response.data.list.length > 0) {
-                $scope.qualificationList = response.data.list;
-              }
-            },
-            function (err) {
-              $scope.busy = false;
-              $scope.error = err;
-            }
-          );
-        };
-
-        $scope.getYearsOfExperienceList = function () {
-          $scope.busy = true;
-          $scope.yearsOfExperienceList = [];
-
-          $http({
-            method: 'POST',
-            url: '/api/years_of_experience/all',
-            data: {
-              where: { active: true },
-              select: { id: 1, name_ar: 1, name_en: 1 },
-            },
-          }).then(
-            function (response) {
-              $scope.busy = false;
-              if (response.data.done && response.data.list && response.data.list.length > 0) {
-                $scope.yearsOfExperienceList = response.data.list;
-              }
-            },
-            function (err) {
-              $scope.busy = false;
-              $scope.error = err;
-            }
-          );
-        };
-        $scope.getYearsOfExperienceList();
-        $scope.getQualificationList();
       });
     </script>
   </body>
