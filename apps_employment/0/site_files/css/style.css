@@ -5,6 +5,9 @@
   --section-padding: 60px;
   --section-background: #f6f6f6;
   --main-duration: 0.5s;
+  --scrollbar-background-color: #adb5bd;
+  --scrollbar-color: #000000;
+  --scrollbar-box-shadow-color: #020202;
 }
 /* End Variables */
 /* Start Global Rules */
@@ -652,4 +655,10 @@ input.find-job{
   padding-left: 15px;
   color: #198754;
   font-size: 22px;
+}
+.modal-body {
+  max-height: max-content !important;
+}
+.modal::-webkit-scrollbar {
+  width: 10px;
 }
