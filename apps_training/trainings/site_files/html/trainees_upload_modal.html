@@ -1,0 +1,45 @@
+<div id="traineesUploadModal" class="modal" fixed>
+  <div class="modal-content height-auto">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 class="center">
+        ##word.training_add##
+        <i class="fa fa-plus"></i>
+      </h2>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <table x-permissions="login" class="table hover text-center" id="t1">
+          <thead>
+            <tr>
+              <th>##word.name##</th>
+              <th>##word.email##</th>
+              <th>##word.national_id##</th>
+              <th>##word.mobile_phone##</th>
+              <th class="not-print">##word.actions##</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="c in upload_trainees_list">
+              <td class="center">{{c.first_name}} - {{c.last_name}}</td>
+              <td class="center">{{c.email}}</td>
+              <td class="center title">{{c.id_number}}</td>
+              <td class="center title">{{c.mobile}}</td>
+  
+              <td class="center not-print">
+                <i-button type="add" label="##word.add##" ng-click="approveTrainee($index)"></i-button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="bold text-center text-danger">{{error}}</h2>
+      <i-button type="add" label="##word.add##" ng-click="addTraining()"></i-button>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#traineesUploadModal')"></i-button>
+    </div>
+  </div>
+</div>

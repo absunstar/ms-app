@@ -3,6 +3,11 @@
         "name": "trainers_certificates_approval",
         "en": "Trainers Certificates Approval",
         "ar": "إعتماد شهادات المدربين"
+    },
+    {
+        "name": "number_of_trainings",
+        "en": "Number Of Trainings",
+        "ar": "عدد التدريبات"
     }
-
+    
 ]

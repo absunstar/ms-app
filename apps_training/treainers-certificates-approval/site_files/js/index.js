@@ -10,7 +10,7 @@ app.controller('trainersCertificatesApproval', function ($scope, $http, $timeout
     $scope.count = 0;
     $http({
       method: 'POST',
-      url: '/api/trainings/all',
+      url: '/api/trainings/trainers_certificate',
       data: {
         where: where,
       },
@@ -19,7 +19,6 @@ app.controller('trainersCertificatesApproval', function ($scope, $http, $timeout
         $scope.busy = false;
         if (response.data.done && response.data.list && response.data.list.length > 0) {
           $scope.list = response.data.list;
-          $scope.count = $scope.list.length;
         }
       },
       function (err) {
@@ -50,17 +49,6 @@ app.controller('trainersCertificatesApproval', function ($scope, $http, $timeout
         console.log(err);
       }
     );
-  };
-
-  $scope.searchAll = function () {
-    $scope.getCompanyList($scope.search);
-    site.hideModal('#companyApprovalSearchModal');
-    $scope.search = {};
-  };
-
-  $scope.displaySearchModal = function () {
-    $scope.error = '';
-    site.showModal('#companyApprovalSearchModal');
   };
 
   $scope.getTrainingsList();
