@@ -72,7 +72,7 @@
     },
     {
         "name": "job_fair_site",
-        "en": "Job Fair Site",
+        "en": "Job Fair Location/ Link",
         "ar": "موقع معرض الوظائف"
     },
     {
@@ -164,9 +164,14 @@
         "name": "event_date",
         "en": "Event Date",
         "ar": "تاريخ الحدث"
+    },
+    {
+        "name": "job_fair_field",
+        "en": "Gob Fair Field",
+        "ar": "حقل الوظيفة"
     }
 
 
-
+    
 
 ]
