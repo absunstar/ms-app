@@ -2,7 +2,7 @@
   <div class="tabs inline-block">
     <div class="tabs-header">
       <a class="tab-link" onclick="site.showTabContent(event, '#aboutEdit')"> ##word.about_edit## </a>
-      <a class="tab-link" onclick="site.showTabContent(event, '#termsConditiosSection')"> ##word.terms_conditios_edit## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#termsConditionsSection')"> ##word.terms_conditions_edit## </a>
       <a class="tab-link" onclick="site.showTabContent(event, '#policyEdit')"> ##word.policy_edit## </a>
       <a class="tab-link" onclick="site.showTabContent(event, '#homepageInfoEdit')"> ##word.homepage_info_edit## </a>
       <a class="tab-link" onclick="site.showTabContent(event, '#portalLogo')"> ##word.portal_logo## </a>
@@ -26,16 +26,16 @@
         <i-button type="save" label="##word.save##" ng-click="saveManage(manage,'#aboutEdit')"></i-button>
       </div>
 
-      <div id="termsConditiosSection" class="tab-content">
+      <div id="termsConditionsSection" class="tab-content">
         <fieldset>
-          <legend>##word.editing_terms_conditios_section##</legend>
+          <legend>##word.editing_terms_conditions_section##</legend>
 
           <div class="row">
-            <i-textarea v="r" label="##word.data##" ng-model="manage.terms_conditios"> </i-textarea>
+            <i-textarea v="r" label="##word.data##" ng-model="manage.terms_conditions"> </i-textarea>
           </div>
         </fieldset>
 
-        <i-button type="save" label="##word.save##" ng-click="saveManage(manage,'#termsConditiosSection')"></i-button>
+        <i-button type="save" label="##word.save##" ng-click="saveManage(manage,'#termsConditionsSection')"></i-button>
       </div>
 
       <div id="policyEdit" class="tab-content">
