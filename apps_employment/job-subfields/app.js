@@ -26,11 +26,7 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
+
 
     let job_subfields_doc = req.body;
     job_subfields_doc.$req = req;
@@ -80,11 +76,7 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
+
 
     let job_subfields_doc = req.body;
 
@@ -144,11 +136,7 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
+
 
     $job_subfields.findOne(
       {
@@ -173,11 +161,7 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
+
 
     let id = req.body.id;
 

@@ -13,11 +13,7 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
+
 
     let years_of_experience_doc = req.body;
     years_of_experience_doc.$req = req;
@@ -65,11 +61,7 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
+
 
     let years_of_experience_doc = req.body;
 
@@ -129,11 +121,7 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
+
 
     $years_of_experience.findOne(
       {
@@ -158,11 +146,7 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
+
 
     let id = req.body.id;
 

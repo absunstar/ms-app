@@ -15,7 +15,7 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="nav flex-column v-tabs" aria-orientation="vertical">
-                  <a class="nav-link mb-3 p-3 shadow active" id="v-admin-tab" data-toggle="pill" onclick="site.vTab('v-admin')" role="tab" aria-controls="v-admin" aria-selected="true">
+                  <a class="nav-link mb-3 p-3 shadow " id="v-admin-tab" data-toggle="pill" onclick="site.vTab('v-admin')" role="tab" aria-controls="v-admin" aria-selected="true">
                     <i class="fa-solid fa-people-roof mr-2"></i>
                     <span class="font-weight-bold small text-uppercase"> ##word.admin## </span></a
                   >
@@ -39,7 +39,7 @@
 
               <div class="col-md-9">
                 <div class="v-contents">
-                  <div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-admin-content" role="tabpanel" aria-labelledby="v-admin-tab">
+                  <div class="tab-pane fade shadow rounded bg-white p-5" id="v-admin-content" role="tabpanel" aria-labelledby="v-admin-tab">
                     <div class="admin-form">
                       <div class="row">
                         <div class="col4">
@@ -63,7 +63,7 @@
                       <div class="row">
                         <i-control v="r" type="password" class="col pass" ng-model="admin.password" label="##word.password##"></i-control>
                         <i-control v="r" type="password" class="col pass" ng-model="admin.retype_password" label="##word.retype_password##"></i-control>
-                        <i-checkbox class="col" ng-change="showPass()" ng-model="show_password" label="##word.show_password##"></i-checkbox>
+                        <i-checkbox class="col" ng-change="showPassword()" ng-model="show_password" label="##word.show_password##"></i-checkbox>
                       </div>
 
                       <div class="row">
@@ -103,17 +103,6 @@
                         <i-control v="r" type="password" class="col pass" ng-model="partner.retype_password" label="##word.retype_password##"></i-control>
                         <i-checkbox class="col" ng-change="showPassword()" ng-model="show_password" label="##word.show_password##"></i-checkbox>
                       </div>
-
-                      <fieldset>
-                        <legend>
-                          ##word.partners##
-                          <i-button type="add default" ng-click="addPartner(partner)"></i-button>
-                        </legend>
-
-                        <div class="row border padding margin" ng-repeat="p in partner.partners_list">
-                          <i-list v="r" class="col6" label="##word.partner##" ng-model="p.partner" display="name_##session.lang##" items="partnersList" ng-search="partner.$partner"></i-list>
-                        </div>
-                      </fieldset>
 
                       <div class="row">
                         <h2 class="center red">{{error}}</h2>
@@ -173,7 +162,7 @@
                       <br />
 
                       <div class="center">
-                        <i-button class="center" label="##word.create_account_partner##" ng-click="createSubPartner()"></i-button>
+                        <i-button class="center" label="##word.create_account_sub_partner##" ng-click="createSubPartner()"></i-button>
                       </div>
                     </div>
                   </div>

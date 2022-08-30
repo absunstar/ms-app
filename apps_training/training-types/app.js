@@ -31,11 +31,7 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
+
 
     let training_types_doc = req.body;
     training_types_doc.$req = req;
@@ -83,11 +79,7 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
+
 
     let training_types_doc = req.body;
 
@@ -147,11 +139,7 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
+
 
     $training_types.findOne(
       {
@@ -176,11 +164,7 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
+
 
     let id = req.body.id;
 

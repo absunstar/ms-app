@@ -28,11 +28,7 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
+
 
     let job_fairs_doc = req.body;
     job_fairs_doc.$req = req;
@@ -80,11 +76,7 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
+
 
     let job_fairs_doc = req.body;
 
@@ -144,11 +136,7 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
+
 
     let job_fair = req.body;
 
@@ -219,11 +207,7 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
+
 
     $job_fairs.findOne(
       {
@@ -248,11 +232,7 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
+
     $job_fairs.findOne(
       {
         where: {
@@ -300,11 +280,7 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
+
 
     let id = req.body.id;
 
@@ -335,11 +311,7 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
+
 
     let where = req.body.where || {};
 

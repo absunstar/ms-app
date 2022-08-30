@@ -28,7 +28,7 @@
             <i-control class="col6" ng-hide="account.role.name == 'admin'" ng-model="account.phone" label="##word.phone##"></i-control>
           </div>
 
-          <fieldset ng-hide="account.role.name == 'admin">
+          <fieldset ng-hide="account.role.name == 'admin'">
             <legend>
               ##word.partners##
               <i-button type="add default" ng-click="addPartner(account)"></i-button>
@@ -40,8 +40,6 @@
             </div>
           </fieldset>
         </div>
-
-       
       </div>
     </div>
 

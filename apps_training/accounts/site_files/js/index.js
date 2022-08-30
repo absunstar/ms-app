@@ -2,8 +2,19 @@ app.controller('accounts', function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.account = {};
+  $scope.trainer = { partners_list: [] };
+  $scope.sub_partner = { partners_list: [] };
+
+  $scope.showPassword = function () {
+    $timeout(() => {
+      document.querySelectorAll('.pass input').forEach((p) => {
+        p.setAttribute('type', $scope.show_password ? 'text' : 'password');
+      });
+    }, 100);
+  };
 
   $scope.displayAddAccount = function () {
+    site.vTab('v-admin');
     $scope.error = '';
     $scope.account = {
       image: '/images/account.png',

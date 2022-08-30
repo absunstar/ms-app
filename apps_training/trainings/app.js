@@ -35,12 +35,6 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
-
     let training_doc = req.body;
     training_doc.$req = req;
     training_doc.$res = res;
@@ -91,12 +85,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
 
     let training_doc = req.body;
 
@@ -173,12 +161,6 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
-
     $trainings.findOne(
       {
         where: {
@@ -201,12 +183,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
 
     let id = req.body.id;
 
@@ -239,12 +215,6 @@ module.exports = function init(site) {
 
     let where = req.body.where || {};
     let search = req.body.search || '';
-
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
 
     if (where['get_partner'] && req.session.user.role.name == 'partner') {
       let partnersId = [];
@@ -451,12 +421,6 @@ module.exports = function init(site) {
 
     let where = req.body.where || {};
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
-
     where['approve'] = true;
 
     where['trainees_list.id'] = req.body.id;
@@ -512,12 +476,6 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
-
     $trainings.findOne(
       {
         where: {
@@ -559,12 +517,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
 
     $trainings.findOne(
       {
@@ -608,14 +560,14 @@ module.exports = function init(site) {
             }
 
             if (found_certificate) {
-              let file = site.fs.readFileSync(found_certificate.certificate.path);
+              let file_stream = site.fs.readFileSync(found_certificate.certificate.path);
 
-              site.pdf.PDFDocument.load(file).then((doc) => {
+              site.pdf.PDFDocument.load(file_stream).then((doc) => {
                 let form = doc.getForm();
                 let nameField = form.getTextField('Name');
                 nameField.setText(req.session.user.first_name);
-                doc.save().then((new_file) => {
-                  site.fs.writeFileSync(__dirname + '/mct3.pdf', new_file);
+                doc.save().then((new_file_stream) => {
+                  site.fs.writeFileSync(site.cwd + '/mct3.pdf', new_file_stream);
                 });
               });
 
@@ -627,13 +579,13 @@ module.exports = function init(site) {
                   _t.finish_exam = true;
                 }
               });
-              // $trainings.update(trainingDoc);
-              // res.json(response);
+              $trainings.update(trainingDoc);
             }
           });
         } else {
           response.error = err.message;
         }
+        res.json(response);
       }
     );
   });

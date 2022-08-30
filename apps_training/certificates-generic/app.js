@@ -18,11 +18,7 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
+
 
     let certificates_doc = req.body;
     certificates_doc.$req = req;
@@ -49,11 +45,7 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
+
 
     let certificates_doc = req.body;
 
@@ -92,11 +84,7 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
+
 
     $certificates.findOne(
       {
@@ -121,11 +109,7 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
+
 
     let id = req.body.id;
 

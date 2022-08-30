@@ -31,12 +31,6 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
-
     let partner_doc = req.body;
     partner_doc.$req = req;
     partner_doc.$res = res;
@@ -82,12 +76,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
 
     let partner_doc = req.body;
 
@@ -147,12 +135,6 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
-
     $partners.findOne(
       {
         where: {
@@ -175,12 +157,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
 
     let id = req.body.id;
 
@@ -212,7 +188,7 @@ module.exports = function init(site) {
     };
 
     let where = req.body.where || {};
-    let search = req.body.search || {};
+    let search = req.body.search;
 
     if (req.session.user && req.session.user.role) {
       if (req.session.user.role.name == 'trainer' || req.session.user.role.name == 'partner') {
