@@ -29,6 +29,31 @@ app.controller('employerSearch', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.viewCompany = function (company) {
+    $scope.busy = true;
+    $scope.error = '';
+    $http({
+      method: 'POST',
+      url: '/api/companies/view',
+      data: {
+        id: company.id,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.company = response.data.doc;
+          site.showModal('#companyViewModal');
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
   $scope.viewApply = function () {
     site.showModal('#applyModal');
   };
