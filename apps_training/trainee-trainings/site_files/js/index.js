@@ -72,7 +72,9 @@ app.controller('traineeCertificates', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
+        console.log(response.data,"xxxxxxxxxxxxxxxxxxxxxxxxx");
         if (response.data.done) {
+          console.log("Fffffffffffffffffffffffffff");
           $scope.startExamTime('finish');
           $scope.getTrainingsList();
         }

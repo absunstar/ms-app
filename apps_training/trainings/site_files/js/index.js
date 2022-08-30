@@ -51,6 +51,8 @@ app.controller('trainings', function ($scope, $http, $timeout) {
     );
   };
 
+
+
   $scope.displayUpdateTraining = function (training) {
     $scope.error = '';
     $scope.viewTraining(training);

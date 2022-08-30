@@ -60,6 +60,13 @@ app.controller('trainees', function ($scope, $http, $timeout) {
     }
   };
 
+  $scope.getTraineesUpload = function (uploaded_trainees) {
+    console.log(uploaded_trainees);
+
+
+    site.showModal('#traineesUploadModal');
+  };
+
   $scope.addTraineeToTraining = function () {
     $scope.error = '';
 
