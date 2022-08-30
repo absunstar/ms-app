@@ -641,7 +641,7 @@ module.exports = function init(site) {
       response.file = file;
       if (site.isFileExistsSync(file.filepath)) {
         let docs = [];
-        if (file.originalFilename.like('.xlsx|.xls')) {
+        if (file.originalFilename.contains('.xlsx|.xls')) {
           let workbook = site.xlsx.readFile(file.filepath);
           docs = site.xlsx.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
           response.docs = docs || [];
