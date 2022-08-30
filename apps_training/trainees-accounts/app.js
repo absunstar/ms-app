@@ -23,7 +23,7 @@ module.exports = function init(site) {
       return;
     }
     let where = req.body.where || {};
-    let search = req.body.search || {};
+    let search = req.body.search;
 
     if (where['first_name']) {
       where['first_name'] = site.get_RegExp(where['first_name'], 'i');
@@ -69,7 +69,7 @@ module.exports = function init(site) {
       });
 
       where.$or.push({
-        id_number: site.toNumber(search),
+        id_number: search,
       });
     }
 

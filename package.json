@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "isite": "^2022.8.5",
+    "prettier": "^2.7.1",
     "zklib": "^0.2.11"
   }
 }

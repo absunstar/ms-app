@@ -20,6 +20,11 @@
     "ar": "رقم"
   },
   {
+    "name": "Did_not_pass_exam",
+    "en": "Did not pass the exam",
+    "ar": "لم تنجح في الامتحان"
+  },
+  {
     "name": "remaining_time",
     "en": "Remaining time",
     "ar": "الزمن المتبقي"

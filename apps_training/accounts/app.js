@@ -81,7 +81,7 @@ module.exports = function init(site) {
     }
 
     let user = req.body;
-    delete user.retype_password
+    delete user.retype_password;
     user.$req = req;
     user.$res = res;
     site.security.addUser(user, (err, doc) => {
@@ -110,7 +110,6 @@ module.exports = function init(site) {
     user.$req = req;
     user.$res = res;
     delete user.$$hashKey;
-
     site.security.updateUser(user, (err) => {
       if (!err) {
         response.done = true;
@@ -275,13 +274,20 @@ module.exports = function init(site) {
       return;
     }
     let where = req.body.where || {};
-    let search = req.body.search || {};
-    if (where['first_name']) {
-      where['first_name'] = site.get_RegExp(where['first_name'], 'i');
+    let search = req.body.search;
+    if (where['user_name']) {
+      where['$or'] = [{ first_name: site.get_RegExp(where['user_name'], 'i') }, { last_name: site.get_RegExp(where['user_name'], 'i') }];
+      delete where['user_name'];
     }
     if (where['last_name']) {
       where['last_name'] = site.get_RegExp(where['last_name'], 'i');
     }
+
+    if (where['user_type']) {
+      where['role.id'] = where['user_type'].id;
+      delete where['user_type'];
+    }
+
 
     if (where['email']) {
       where['email'] = site.get_RegExp(where['email'], 'i');
@@ -319,7 +325,7 @@ module.exports = function init(site) {
       });
 
       where.$or.push({
-        id_number: site.toNumber(search),
+        id_number: search,
       });
     }
 

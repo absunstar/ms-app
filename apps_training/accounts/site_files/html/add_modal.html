@@ -15,7 +15,7 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="nav flex-column v-tabs" aria-orientation="vertical">
-                  <a class="nav-link mb-3 p-3 shadow " id="v-admin-tab" data-toggle="pill" onclick="site.vTab('v-admin')" role="tab" aria-controls="v-admin" aria-selected="true">
+                  <a class="nav-link mb-3 p-3 shadow" id="v-admin-tab" data-toggle="pill" onclick="site.vTab('v-admin')" role="tab" aria-controls="v-admin" aria-selected="true">
                     <i class="fa-solid fa-people-roof mr-2"></i>
                     <span class="font-weight-bold small text-uppercase"> ##word.admin## </span></a
                   >
@@ -103,7 +103,18 @@
                         <i-control v="r" type="password" class="col pass" ng-model="partner.retype_password" label="##word.retype_password##"></i-control>
                         <i-checkbox class="col" ng-change="showPassword()" ng-model="show_password" label="##word.show_password##"></i-checkbox>
                       </div>
+                      <fieldset>
+                        <legend>
+                          ##word.partners##
+                          <i-button type="add default" ng-click="addPartner(partner)"></i-button>
+                        </legend>
 
+                        <div class="row" ng-repeat="p in partner.partners_list">
+                          <i-list v="r" class="col6" label="##word.partner##" ng-model="p.partner" display="name_##session.lang##" items="partnersList" ng-search="sub_partner.$partner"></i-list>
+                          <div class="col3"></div>
+                          <i-button type="delete default" class="col2" ng-click="partner.partners_list.splice($index,1)"></i-button>
+                        </div>
+                      </fieldset>
                       <div class="row">
                         <h2 class="center red">{{error}}</h2>
                       </div>
@@ -162,7 +173,7 @@
                       <br />
 
                       <div class="center">
-                        <i-button class="center" label="##word.create_account_sub_partner##" ng-click="createSubPartner()"></i-button>
+                        <i-button class="center" label="##word.create_account_sub_partner##" ng-click="createSubPartner(sub_partner)"></i-button>
                       </div>
                     </div>
                   </div>
@@ -183,8 +194,10 @@
                           </div>
                         </div>
                       </div>
-
-                      <i-control v="r" class="row" ng-model="trainer.email" label="##word.email##"></i-control>
+                      <div class="row">
+                        <i-control v="r" class="col6" ng-model="trainer.email" label="##word.email##"></i-control>
+                        <i-control v="r" class="col6" ng-model="trainer.phone" label="##word.phone_number##"></i-control>
+                      </div>
 
                       <div class="row">
                         <i-control v="r" type="password" class="col pass" ng-model="trainer.password" label="##word.password##"></i-control>
@@ -193,7 +206,8 @@
                       </div>
 
                       <div class="row">
-                        <i-control v="r" class="col6" ng-model="trainer.phone" label="##word.phone_number##"></i-control>
+                        <i-list v="r" class="col6" ng-change="getCityList(trainer.country.id)" label="##word.country##" ng-model="trainer.country" display="name_##session.lang##" items="countryList" ng-search="trainer.$training_country"></i-list>
+                        <i-list v="r" class="col6" label="##word.city##" ng-model="trainer.city" display="name_##session.lang##" items="cityList" ng-search="trainer.$trainer_city"></i-list>
                       </div>
 
                       <fieldset>

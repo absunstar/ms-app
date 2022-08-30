@@ -1,3 +1,5 @@
+const { Certificate } = require("crypto");
+
 module.exports = function init(site) {
   const $trainings = site.connectCollection('Trainings');
 
@@ -214,7 +216,7 @@ module.exports = function init(site) {
     };
 
     let where = req.body.where || {};
-    let search = req.body.search || '';
+    let search = req.body.search;
 
     if (where['get_partner'] && req.session.user.role.name == 'partner') {
       let partnersId = [];
@@ -458,6 +460,7 @@ module.exports = function init(site) {
               if (req.body.id == _t.id && _t.finish_exam) {
                 _doc.$finish_exam = true;
                 _doc.$certificate = _t.certificate;
+                _doc.$trainee_degree = _t.trainee_degree
               }
             });
           });
@@ -562,12 +565,20 @@ module.exports = function init(site) {
             if (found_certificate) {
               let file_stream = site.fs.readFileSync(found_certificate.certificate.path);
 
+              found_certificate.certificate.path = found_certificate.certificate.path.split('\\');
+              found_certificate.certificate.path[found_certificate.certificate.path.length - 1] = 'xxxxxxx.pdf'
+              found_certificate.certificate.path = found_certificate.certificate.path.join('\\')
+
+              found_certificate.certificate.url = found_certificate.certificate.url.split('/');
+              found_certificate.certificate.url[found_certificate.certificate.url.length - 1] = 'xxxxxxx.pdf'
+              found_certificate.certificate.url = found_certificate.certificate.url.join('/')
+
               site.pdf.PDFDocument.load(file_stream).then((doc) => {
                 let form = doc.getForm();
                 let nameField = form.getTextField('Name');
-                nameField.setText(req.session.user.first_name);
+                nameField.setText(req.session.user.first_name + ' ' + req.session.user.last_name);
                 doc.save().then((new_file_stream) => {
-                  site.fs.writeFileSync(site.cwd + '/mct3.pdf', new_file_stream);
+                  site.fs.writeFileSync( found_certificate.certificate.path, new_file_stream);
                 });
               });
 
@@ -581,6 +592,7 @@ module.exports = function init(site) {
               });
               $trainings.update(trainingDoc);
             }
+            res.json(response);
           });
         } else {
           response.error = err.message;
@@ -617,4 +629,30 @@ module.exports = function init(site) {
       }
     );
   };
+
+
+  site.onPOST({ name: '/api/trainees/excel_upload', public: true }, (req, res) => {
+    let response = {
+      file: {},
+      done: !0,
+    };
+  
+    if ((file = req.files.fileToUpload)) {
+      response.file = file;
+      if (site.isFileExistsSync(file.filepath)) {
+        let docs = [];
+        if (file.originalFilename.like('.xlsx|.xls')) {
+          let workbook = site.xlsx.readFile(file.filepath);
+          docs = site.xlsx.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
+          response.docs = docs || [];
+          
+        }
+      }
+    } else {
+      response.done = !1;
+      response.error = 'no file uploaded';
+    }
+  
+    res.json(response);
+  });
 };

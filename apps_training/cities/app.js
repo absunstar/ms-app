@@ -13,25 +13,11 @@ module.exports = function init(site) {
     compress: true,
   });
 
-  site.on('[company][created]', (doc) => {
-    $cities.add(
-      {
-        code: '1-Test',
-        name_ar: 'مدينة إفتراضية',
-        name_en: 'Default City',
-        image: '/images/city.png',
-        active: true,
-      },
-      (err, doc1) => {}
-    );
-  });
-
+ 
   site.post('/api/cities/add', (req, res) => {
     let response = {
       done: false,
     };
-
-
 
     let city_doc = req.body;
     city_doc.$req = req;
@@ -41,8 +27,6 @@ module.exports = function init(site) {
       $req: req,
       $res: res,
     });
-
-
 
     $cities.findOne(
       {

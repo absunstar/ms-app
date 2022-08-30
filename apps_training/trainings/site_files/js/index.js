@@ -9,6 +9,7 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       start_date: new Date(),
       trainees_list: [],
       number_questions: 10,
+      success_rate : 80,
       location: 'offline',
     };
     if ('##user.role.name##' == 'trainer') {

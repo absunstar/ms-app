@@ -1,4 +1,4 @@
-app.controller('traineeTrainings', function ($scope, $http, $timeout) {
+app.controller('traineeCertificates', function ($scope, $http, $timeout) {
   $scope.search = {};
 
   $scope.getTrainingsList = function () {

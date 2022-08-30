@@ -25,6 +25,7 @@
       <div class="top-actions">
         <i-button type="add" ng-hide="training.approve" label="##word.create_new_trainee##" ng-click="displayCreateTrainee()"></i-button>
         <i-button label="##word.add_trainees##" ng-hide="training.approve" onclick="site.showModal( '#addtraineeToTrainingModal')"></i-button>
+        <i-upload class="col4" label="custom upload" api="/api/trainees/excel_upload"> </i-upload>
         <i-button type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
 
         <h3 class="bold text-center">##word.count## : {{count || 0}}</h3>

@@ -52,7 +52,7 @@ app.controller('latestTrainings', function ($scope, $http, $timeout) {
       last_name: '##user.last_name##',
       email: '##user.email##',
       mobile: '##user.mobile##',
-      id_number: site.toNumber('##user.id_number##'),
+      id_number: '##user.id_number##',
       approve: false,
     });
 

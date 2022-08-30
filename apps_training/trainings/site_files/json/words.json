@@ -125,6 +125,11 @@
     "ar": "المتدرب موجود من قبل"
   },
   {
+    "name": "success_rate",
+    "en": "Success Rate",
+    "ar": "نسبة النجاح"
+  },
+  {
     "name": "sure_you_want_to_remove_trainee",
     "en": "Are you sure you want to remove trainee?",
     "ar": "هل أنت متأكد أنك تريد إزالة المتدرب ؟"

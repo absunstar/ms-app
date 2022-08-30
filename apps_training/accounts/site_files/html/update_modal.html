@@ -28,6 +28,11 @@
             <i-control class="col6" ng-hide="account.role.name == 'admin'" ng-model="account.phone" label="##word.phone##"></i-control>
           </div>
 
+          <div class="row" ng-show="account.role.name == 'trainer'">
+            <i-list v="r" class="col6" ng-change="getCityList(account.country.id)" label="##word.country##" ng-model="account.country" display="name_##session.lang##" items="countryList" ng-search="account.$training_country"></i-list>
+            <i-list v="r" class="col6" label="##word.city##" ng-model="account.city" display="name_##session.lang##" items="cityList" ng-search="account.$trainer_city"></i-list>
+          </div>
+
           <fieldset ng-hide="account.role.name == 'admin'">
             <legend>
               ##word.partners##

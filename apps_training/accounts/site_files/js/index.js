@@ -3,6 +3,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
 
   $scope.account = {};
   $scope.trainer = { partners_list: [] };
+  $scope.partner = { partners_list: [] };
   $scope.sub_partner = { partners_list: [] };
 
   $scope.showPassword = function () {
@@ -192,6 +193,8 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $scope.list = [];
     $scope.count = 0;
+    where = where || {};
+    where['role.id'] = { $ne: 5 };
     $http({
       method: 'POST',
       url: '/api/users/all',
@@ -304,6 +307,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
       if (sub_partner.password === sub_partner.retype_password) {
         sub_partner.role = $scope.accountsTypeList[2];
         $scope.busy = true;
+        console.log('dddddddddd');
         $http({
           method: 'POST',
           url: '/api/user/add',
@@ -312,6 +316,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
           function (response) {
             $scope.busy = false;
             if (response.data.done) {
+              console.log('ffffffffffffffffffffff');
               site.hideModal('#accountAddModal');
               site.resetValidated('.sub-partner-form');
               $scope.getAccountList();
@@ -472,8 +477,59 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     site.showModal('#accountSearchModal');
   };
 
+  $scope.getCountryList = function () {
+    $scope.busy = true;
+    $scope.countryList = [];
+
+    $http({
+      method: 'POST',
+      url: '/api/countries/all',
+      data: {
+        where: { active: true },
+        select: { id: 1, name_ar: 1, name_en: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list && response.data.list.length > 0) {
+          $scope.countryList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getCityList = function (id) {
+    $scope.busy = true;
+    $scope.cityList = [];
+
+    $http({
+      method: 'POST',
+      url: '/api/cities/all',
+      data: {
+        where: { active: true, 'country.id': id },
+        select: { id: 1, name_ar: 1, name_en: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list && response.data.list.length > 0) {
+          $scope.cityList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.getAccountList();
   $scope.getAccountsType();
   $scope.getGender();
   $scope.getPartnerList();
+  $scope.getCountryList();
 });
