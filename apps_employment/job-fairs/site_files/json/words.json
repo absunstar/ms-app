@@ -39,7 +39,6 @@
         "en": "YAfter Registering, you will be receiving a confirmation email with a confirmation code which will be used to enter the event.",
         "ar": " بعد التسجيل , ستتلقى بريدًا إلكترونيًا للتأكيد مع رمز التأكيد الذي سيتم استخدامه لدخول المؤتمر."
     },
-   
     {
         "name": "apply_for_job_fair",
         "en": "Apply For Job Fair",
@@ -72,7 +71,7 @@
     },
     {
         "name": "job_fair_site",
-        "en": "Job Fair Site",
+        "en": "Job Fair Location/ Link",
         "ar": "موقع معرض الوظائف"
     },
     {
@@ -164,9 +163,10 @@
         "name": "event_date",
         "en": "Event Date",
         "ar": "تاريخ الحدث"
+    },
+    {
+        "name": "job_fair_field",
+        "en": "Gob Fair Field",
+        "ar": "حقل الوظيفة"
     }
-
-
-
-
 ]
