@@ -3,10 +3,6 @@ const { Certificate } = require('crypto');
 module.exports = function init(site) {
   const $trainings = site.connectCollection('Trainings');
 
-  site.get({
-    name: 'images',
-    path: __dirname + '/site_files/images/',
-  });
 
   site.get({
     name: 'Trainings',

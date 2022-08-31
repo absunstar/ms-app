@@ -2,11 +2,6 @@ module.exports = function init(site) {
   const $certificates = site.connectCollection('Certificates');
 
   site.get({
-    name: 'images',
-    path: __dirname + '/site_files/images/',
-  });
-
-  site.get({
     name: 'CertificatesGeneric',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',

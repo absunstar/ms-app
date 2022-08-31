@@ -1,29 +1,12 @@
 module.exports = function init(site) {
   const $job_fields = site.connectCollection('JobFields');
 
-  site.get({
-    name: 'images',
-    path: __dirname + '/site_files/images/',
-  });
 
   site.get({
     name: 'JobFields',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,
-  });
-
-  site.on('[company][created]', (doc) => {
-    $job_fields.add(
-      {
-        code: '1-Test',
-        name_ar: 'مجال عمل إفتراضي',
-        name_en: 'Default Job Field',
-        image: '/images/job_fields.png',
-        active: true,
-      },
-      (err, doc1) => {}
-    );
   });
 
   site.post('/api/job_fields/add', (req, res) => {

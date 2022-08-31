@@ -5,8 +5,6 @@ app.controller('latestTrainings', function ($scope, $http, $timeout) {
     where = where || {};
     where['privacy_type.id'] = 1;
 
-    
-  
     where['latest'] = true;
 
     $scope.busy = true;

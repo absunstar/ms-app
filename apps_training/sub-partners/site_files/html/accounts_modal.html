@@ -10,8 +10,7 @@
 
     <div class="modal-body">
       <div class="row">
-        <i-control type="text" class="col4" ng-model="sub_partner.$account_search" ng-keydown="getSubPartnersAccountsList($event)" label="##word.search##"></i-control>
-        <i-list class="col5" label="##word.account##" ng-model="sub_partner.$account_select" display="first_name" items="sub_partner.$accountsList" ng-search="sub_partner.$account"></i-list>
+        <i-list class="col5" label="##word.account##" ng-model="sub_partner.$account_select" display="first_name" items="accountsList" ng-search="sub_partner.$account"></i-list>
         <div class="col3">
           <br>
           <i-button type="add" label="##word.add##" ng-click="addAccount(sub_partner)"></i-button>
@@ -47,7 +46,7 @@
     <div class="modal-footer center">
       <h2 class="bold text-center text-danger">{{error}}</h2>
       <i-button type="save" label="##word.save##" ng-click="updateSubPartner(sub_partner,'account')"></i-button>
-      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#accountsModal')"></i-button>
+      <i-button type="close" label="##word.close##" ng-click="error = ''" onclick="site.hideModal( '#accountsModal')"></i-button>
     </div>
   </div>
 </div>

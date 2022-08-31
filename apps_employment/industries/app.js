@@ -8,18 +8,6 @@ module.exports = function init(site) {
     compress: true,
   });
 
-  site.on('[company][created]', (doc) => {
-    $industry.add(
-      {
-        code: '1-Test',
-        name_ar: 'بلد إفتراضية',
-        name_en: 'Default Industry',
-        image: '/images/industry.png',
-        active: true,
-      },
-      (err, doc1) => {}
-    );
-  });
 
   site.post('/api/industries/add', (req, res) => {
     let response = {

@@ -2,36 +2,16 @@ module.exports = function init(site) {
   const $exam_templates = site.connectCollection('ExamTemplates');
 
   site.get({
-    name: 'images',
-    path: __dirname + '/site_files/images/',
-  });
-
-  site.get({
     name: 'ExamTemplates',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,
   });
 
-  site.on('[company][created]', (doc) => {
-    $exam_templates.add(
-      {
-        code: '1-Test',
-        name_ar: 'مجال عمل إفتراضي',
-        name_en: 'Default Exam Template',
-        image: '/images/exam_templates.png',
-        active: true,
-      },
-      (err, doc1) => {}
-    );
-  });
-
   site.post('/api/exam_templates/add', (req, res) => {
     let response = {
       done: false,
     };
-
-
 
     let exam_templates_doc = req.body;
     exam_templates_doc.$req = req;

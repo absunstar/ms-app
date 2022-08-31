@@ -2,36 +2,16 @@ module.exports = function init(site) {
   const $training_types = site.connectCollection('TrainingTypes');
 
   site.get({
-    name: 'images',
-    path: __dirname + '/site_files/images/',
-  });
-
-  site.get({
     name: 'TrainingTypes',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,
   });
 
-  site.on('[company][created]', (doc) => {
-    $training_types.add(
-      {
-        code: '1-Test',
-        name_ar: 'معرض وظائف إفتراضي',
-        name_en: 'Default Training Type',
-        image: '/images/training_types.png',
-        active: true,
-      },
-      (err, doc1) => {}
-    );
-  });
-
   site.post('/api/trainings_types/add', (req, res) => {
     let response = {
       done: false,
     };
-
-
 
     let training_types_doc = req.body;
     training_types_doc.$req = req;
@@ -78,8 +58,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-
 
     let training_types_doc = req.body;
 
@@ -139,8 +117,6 @@ module.exports = function init(site) {
       done: false,
     };
 
-
-
     $training_types.findOne(
       {
         where: {
@@ -163,8 +139,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-
 
     let id = req.body.id;
 

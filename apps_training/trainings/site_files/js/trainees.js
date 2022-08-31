@@ -161,27 +161,27 @@ app.controller('trainees', function ($scope, $http, $timeout) {
     $scope.updateTraining($scope.training);
   };
 
-  $scope.getTraineesList = function (ev) {
+  $scope.getTraineesList = function () {
     $scope.busy = true;
     $scope.error = '';
-    if (ev.which !== 13) {
+  /*   if (ev.which !== 13) {
       return;
-    }
-    $scope.training.$traineesList = [];
+    } */
+    $scope.traineesList = [];
     where = { active: true, 'role.name': 'trainee' };
     $http({
       method: 'POST',
       url: '/api/users/all',
       data: {
         where: where,
-        search: $scope.training.$general_search,
-        select: { id: 1, first_name: 1, last_name: 1, email: 1, mobile: 1, id_number: 1 },
+/*         search: $scope.training.$general_search,
+ */        select: { id: 1, first_name: 1, last_name: 1, email: 1, mobile: 1, id_number: 1 },
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.users && response.data.users.length > 0) {
-          $scope.training.$traineesList = response.data.users;
+          $scope.traineesList = response.data.users;
         }
       },
       function (err) {
@@ -232,4 +232,5 @@ app.controller('trainees', function ($scope, $http, $timeout) {
   $scope.getTraining();
   $scope.getGender();
   $scope.getAccountsType();
+  $scope.getTraineesList();
 });

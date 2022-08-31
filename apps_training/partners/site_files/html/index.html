@@ -30,7 +30,6 @@
           <table x-permissions="login" class="table hover text-center" id="t1">
             <thead>
               <tr>
-                <th class="not-print">##word.logo##</th>
                 <th>##word.partner_name##</th>
                 <th>##word.phone##</th>
                 <th>##word.status##</th>
@@ -39,9 +38,6 @@
             </thead>
             <tbody>
               <tr ng-repeat="c in list">
-                <td class="center not-print">
-                  <i-image view class="logo" ng-model="c.image"></i-image>
-                </td>
                 <td class="center title">{{c.name_##session.lang##}}</td>
                 <td class="center title">{{c.phone}}</td>
                 <td class="center">

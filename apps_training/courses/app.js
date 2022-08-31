@@ -2,36 +2,16 @@ module.exports = function init(site) {
   const $courses = site.connectCollection('Courses');
 
   site.get({
-    name: 'images',
-    path: __dirname + '/site_files/images/',
-  });
-
-  site.get({
     name: 'Courses',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,
   });
 
-  site.on('[company][created]', (doc) => {
-    $courses.add(
-      {
-        code: '1-Test',
-        name_ar: 'دورة إفتراضية',
-        name_en: 'Default Course',
-        image: '/images/course.png',
-        active: true,
-      },
-      (err, doc1) => {}
-    );
-  });
-
   site.post('/api/courses/add', (req, res) => {
     let response = {
       done: false,
     };
-
-
 
     let course_doc = req.body;
     course_doc.$req = req;
@@ -41,7 +21,6 @@ module.exports = function init(site) {
       $req: req,
       $res: res,
     });
-
 
     $courses.findOne(
       {
@@ -61,8 +40,6 @@ module.exports = function init(site) {
           response.error = 'Name Exists';
           res.json(response);
         } else {
-      
-
           $courses.add(course_doc, (err, doc) => {
             if (!err) {
               response.done = true;
@@ -81,8 +58,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-
 
     let course_doc = req.body;
 
@@ -142,8 +117,6 @@ module.exports = function init(site) {
       done: false,
     };
 
-
-
     $courses.findOne(
       {
         where: {
@@ -166,8 +139,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-
 
     let id = req.body.id;
 
@@ -199,7 +170,7 @@ module.exports = function init(site) {
     };
 
     let where = req.body.where || {};
-  
+
     if (where['name_ar']) {
       where['name_ar'] = site.get_RegExp(where['name_ar'], 'i');
     }
@@ -208,7 +179,6 @@ module.exports = function init(site) {
       where['name_en'] = site.get_RegExp(where['name_en'], 'i');
     }
 
-    
     if (where['not_active']) {
       where['active'] = false;
     }
@@ -235,7 +205,6 @@ module.exports = function init(site) {
       },
       (err, docs, count) => {
         if (!err) {
-
           response.done = true;
           response.list = docs;
           response.count = count;

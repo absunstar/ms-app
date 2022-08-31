@@ -2,36 +2,16 @@ module.exports = function init(site) {
   const $training_center = site.connectCollection('TrainingCenters');
 
   site.get({
-    name: 'images',
-    path: __dirname + '/site_files/images/',
-  });
-
-  site.get({
     name: 'TrainingCenters',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,
   });
 
-  site.on('[company][created]', (doc) => {
-    $training_center.add(
-      {
-        code: '1-Test',
-        name_ar: 'مركز تدريب إفتراضي',
-        name_en: 'Default Training Center',
-        image: '/images/training_center.png',
-        active: true,
-      },
-      (err, doc1) => {}
-    );
-  });
-
   site.post('/api/trainings_centers/add', (req, res) => {
     let response = {
       done: false,
     };
-
-
 
     let training_center_doc = req.body;
     training_center_doc.$req = req;
@@ -41,7 +21,6 @@ module.exports = function init(site) {
       $req: req,
       $res: res,
     });
-
 
     $training_center.findOne(
       {
@@ -61,8 +40,6 @@ module.exports = function init(site) {
           response.error = 'Name Exists';
           res.json(response);
         } else {
-       
-
           $training_center.add(training_center_doc, (err, doc) => {
             if (!err) {
               response.done = true;
@@ -81,8 +58,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-
 
     let training_center_doc = req.body;
 
@@ -142,8 +117,6 @@ module.exports = function init(site) {
       done: false,
     };
 
-
-
     $training_center.findOne(
       {
         where: {
@@ -166,8 +139,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-
 
     let id = req.body.id;
 
@@ -207,7 +178,7 @@ module.exports = function init(site) {
     if (where['name_en']) {
       where['name_en'] = site.get_RegExp(where['name_en'], 'i');
     }
-    
+
     if (where['phone']) {
       where['phone'] = where['phone'];
     }
@@ -216,15 +187,15 @@ module.exports = function init(site) {
       delete where['sub_partner'];
     }
 
-    if(where['not_active']){
+    if (where['not_active']) {
       where['active'] = false;
     }
 
-    if(where['active_search']){
+    if (where['active_search']) {
       where['active'] = true;
     }
 
-    if(where['not_active'] && where['active_search']){
+    if (where['not_active'] && where['active_search']) {
       delete where['active'];
     }
 
@@ -242,7 +213,6 @@ module.exports = function init(site) {
       },
       (err, docs, count) => {
         if (!err) {
-
           response.done = true;
           response.list = docs;
           response.count = count;

@@ -28,16 +28,13 @@
 
           <table x-permissions="login" class="table hover text-center" id="t1">
             <tr>
-              <th class="not-print">##word.logo##</th>
               <th>##word.country_name##</th>
               <th>##word.status##</th>
               <th class="not-print">##word.actions##</th>
             </tr>
 
             <tr ng-repeat="c in list">
-              <td class="center not-print">
-                <i-image view class="logo" ng-model="c.image"></i-image>
-              </td>
+          
               <td class="center title">{{c.name_##session.lang##}}</td>
               <td class="center">
                 <p ng-show="c.active" class="green">##word.active##</p>

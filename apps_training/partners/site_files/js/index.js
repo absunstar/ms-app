@@ -6,7 +6,6 @@ app.controller('partners', function ($scope, $http, $timeout) {
   $scope.displayAddPartner = function () {
     $scope.error = '';
     $scope.partner = {
-      image: '/images/partner.png',
       active: true,
     };
 
@@ -212,6 +211,9 @@ app.controller('partners', function ($scope, $http, $timeout) {
       });
       if (!find_partner) {
         partner.accounts_list.push(partner.$account_select);
+      } else {
+        $scope.error = '##word.name_already_exists##';
+        return;
       }
     } else {
       $scope.error = '##word.partner_must_be_selected##';
@@ -219,19 +221,15 @@ app.controller('partners', function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.getPartnersAccountsList = function (ev) {
+  $scope.getPartnersAccountsList = function () {
     $scope.error = '';
     $scope.busy = true;
-    if (ev.which !== 13) {
-      return;
-    }
 
-    $scope.partner.$accountsList = [];
+    $scope.accountsList = [];
     $http({
       method: 'POST',
       url: '/api/users/all',
       data: {
-        search: $scope.partner.$partner_search,
         where: {
           active: true,
           'role.name': 'partner',
@@ -243,7 +241,7 @@ app.controller('partners', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.users.length > 0) {
-          $scope.partner.$accountsList = response.data.users;
+          $scope.accountsList = response.data.users;
         }
       },
       function (err) {
@@ -288,4 +286,5 @@ app.controller('partners', function ($scope, $http, $timeout) {
   };
 
   $scope.getPartnerList();
+  $scope.getPartnersAccountsList();
 });

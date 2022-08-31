@@ -10,8 +10,8 @@
 
     <div class="modal-body">
       <div class="row">
-        <i-control class="col4" label="##word.search_for_trainees##" ng-keydown="getTraineesList($event)" ng-model="training.$general_search"></i-control>
-        <i-list class="col5" label="##word.trainees##" ng-model="training.$trainee_select" display="first_name" items="training.$traineesList" ng-search="training.$trainee_search"></i-list>
+        <!-- <i-control class="col4" label="##word.search_for_trainees##" ng-keydown="getTraineesList($event)" ng-model="training.$general_search"></i-control> -->
+        <i-list class="col5" label="##word.trainees##" ng-model="training.$trainee_select" display="first_name" items="traineesList" ng-search="training.$trainee_search"></i-list>
         <div class="col3">
           <br />
           <i-button type="add" label="##word.add##" ng-click="addTraineeToTraining(training)"></i-button>
