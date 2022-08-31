@@ -246,7 +246,7 @@ module.exports = function init(site) {
       let new_date = new Date();
       new_date.setDate(new_date.getDate() + 1);
       where['start_date'] = {
-        $gt: new_date,
+        $gt: new Date(),
       };
       delete where['latest'];
     }
@@ -394,6 +394,7 @@ module.exports = function init(site) {
         'days.en': site.get_RegExp(search, 'i'),
       });
     }
+    console.log(where);
     $trainings.findMany(
       {
         select: req.body.select || {},
@@ -448,7 +449,6 @@ module.exports = function init(site) {
               });
             });
             let attendance_rate = (attend_count / _doc.dates_list.length) * 100;
-
             if (attendance_rate >= 80) {
               _doc.$attend_rate = true;
             } else {
