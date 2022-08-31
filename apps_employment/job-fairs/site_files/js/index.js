@@ -226,17 +226,15 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getJobSeeker = function (ev) {
+  $scope.getJobSeeker = function () {
     $scope.busy = true;
     $scope.jobSeekerList = [];
-    if (ev.which !== 13) {
-      return;
-    }
+ 
     $http({
       method: 'POST',
       url: '/api/users/all',
       data: {
-        where: { 'role.name': 'job_seeker', general_search: $scope.job_fairs.$apply.general_search },
+        where: { 'role.name': 'job_seeker' , active : true},
       },
     }).then(
       function (response) {
@@ -376,4 +374,5 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
   };
 
   $scope.getJobFairsList();
+  $scope.getJobSeeker();
 });

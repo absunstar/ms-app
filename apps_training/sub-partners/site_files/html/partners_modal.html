@@ -10,13 +10,11 @@
 
     <div class="modal-body">
       <div class="row">
-        <i-control type="text" class="col4" ng-model="sub_partner.$partner_search" ng-keydown="getPartnersList($event)" label="##word.search##"></i-control>
-        <i-list class="col5" label="##word.partner##" ng-model="sub_partner.$partner_select" display="name_##session.lang##" items="sub_partner.$partnersList" ng-search="sub_partner.$partner"></i-list>
+        <i-list class="col5" label="##word.partner##" ng-model="sub_partner.$partner_select" display="name_##session.lang##" items="partnersList" ng-search="sub_partner.$partner"></i-list>
         <div class="col3">
-          <br>
+          <br />
           <i-button type="add" label="##word.add##" ng-click="addPartner(sub_partner)"></i-button>
         </div>
-
       </div>
 
       <div class="row">
@@ -30,25 +28,22 @@
           </thead>
           <tbody>
             <tr ng-repeat="c in sub_partner.partners_list">
-
               <td class="center title">{{c.name_##session.lang##}}</td>
               <td class="center title">{{c.phone}}</td>
 
               <td class="center not-print">
                 <i-button type="delete" ng-click="sub_partner.partners_list.splice($index,1)"></i-button>
-
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-
     </div>
 
     <div class="modal-footer center">
       <h2 class="bold text-center text-danger">{{error}}</h2>
       <i-button type="save" label="##word.save##" ng-click="updateSubPartner(sub_partner,'partner')"></i-button>
-      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#partnersModal')"></i-button>
+      <i-button type="close" label="##word.close##" ng-click="error = ''" onclick="site.hideModal( '#partnersModal')"></i-button>
     </div>
   </div>
 </div>

@@ -203,7 +203,7 @@ app.controller('subPartners', function ($scope, $http, $timeout) {
     $scope.list = [];
     $scope.count = 0;
     where = where || {};
-  
+
     $http({
       method: 'POST',
       url: '/api/sub_partners/all',
@@ -248,6 +248,9 @@ app.controller('subPartners', function ($scope, $http, $timeout) {
       });
       if (!find_partner) {
         sub_partner.accounts_list.push(sub_partner.$account_select);
+      } else {
+        $scope.error = '##word.name_already_exists##';
+        return;
       }
     } else {
       $scope.error = '##word.partner_must_be_selected##';
@@ -264,6 +267,9 @@ app.controller('subPartners', function ($scope, $http, $timeout) {
       });
       if (!find_partner) {
         sub_partner.partners_list.push(sub_partner.$partner_select);
+      } else {
+        $scope.error = '##word.name_already_exists##';
+        return;
       }
     } else {
       $scope.error = '##word.partner_must_be_selected##';
@@ -271,30 +277,24 @@ app.controller('subPartners', function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.getPartnersList = function (ev) {
+  $scope.getPartnersList = function () {
     $scope.error = '';
     $scope.busy = true;
-    if (ev.which !== 13) {
-      return;
-    }
-
-    $scope.sub_partner.$partnersList = [];
+    $scope.partnersList = [];
     $http({
       method: 'POST',
       url: '/api/partners/all',
       data: {
-        search: $scope.sub_partner.$partner_search,
         where: {
           active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1 },
-
+        select: { id: 1, name_ar: 1, name_en: 1, phone: 1 },
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.sub_partner.$partnersList = response.data.list;
+          $scope.partnersList = response.data.list;
         }
       },
       function (err) {
@@ -304,19 +304,15 @@ app.controller('subPartners', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getSubPartnersAccountsList = function (ev) {
+  $scope.getSubPartnersAccountsList = function () {
     $scope.error = '';
     $scope.busy = true;
-    if (ev.which !== 13) {
-      return;
-    }
 
-    $scope.sub_partner.$accountsList = [];
+    $scope.accountsList = [];
     $http({
       method: 'POST',
       url: '/api/users/all',
       data: {
-        search: $scope.sub_partner.$partner_search,
         where: {
           active: true,
           'role.name': 'sub_partner',
@@ -328,7 +324,7 @@ app.controller('subPartners', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.users.length > 0) {
-          $scope.sub_partner.$accountsList = response.data.users;
+          $scope.accountsList = response.data.users;
         }
       },
       function (err) {
@@ -344,4 +340,6 @@ app.controller('subPartners', function ($scope, $http, $timeout) {
   };
 
   $scope.getSubPartnerList();
+  $scope.getPartnersList();
+  $scope.getSubPartnersAccountsList();
 });
