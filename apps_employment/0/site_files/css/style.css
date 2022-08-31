@@ -658,6 +658,7 @@ input.find-job{
 }
 .modal-body {
   max-height: max-content !important;
+  min-height: 50vh;
 }
 .modal::-webkit-scrollbar {
   width: 10px;
