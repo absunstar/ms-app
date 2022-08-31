@@ -30,7 +30,7 @@
           <h3 class="bold" ng-show="'##query.id##' != 'undefined'">##word.training_category## : {{training_category.name_##session.lang##}}</h3>
           <i-button type="add" label="##word.training_new##" ng-click="displayAddTraining()"></i-button>
           
-          <h3 class="bold text-center">##word.count## : {{list || 0}}</h3>
+          <h3 class="bold text-center">##word.count## : {{list.length || 0}}</h3>
           <h3 class="bold text-center text-danger">{{error}}</h3>
         </div>
 
