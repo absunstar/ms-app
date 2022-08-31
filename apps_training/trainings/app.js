@@ -394,7 +394,6 @@ module.exports = function init(site) {
         'days.en': site.get_RegExp(search, 'i'),
       });
     }
-    console.log(where);
     $trainings.findMany(
       {
         select: req.body.select || {},
