@@ -2,29 +2,13 @@ module.exports = function init(site) {
   const $partners = site.connectCollection('Partners');
 
   site.get({
-    name: 'images',
-    path: __dirname + '/site_files/images/',
-  });
-
-  site.get({
     name: 'Partners',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,
   });
 
-  site.on('[company][created]', (doc) => {
-    $partners.add(
-      {
-        code: '1-Test',
-        name_ar: 'شريك إفتراضي',
-        name_en: 'Default Partner',
-        image: '/images/partner.png',
-        active: true,
-      },
-      (err, doc1) => {}
-    );
-  });
+
 
   site.post('/api/partners/add', (req, res) => {
     let response = {

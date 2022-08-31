@@ -2,36 +2,16 @@ module.exports = function init(site) {
   const $sub_partners = site.connectCollection('SubPartners');
 
   site.get({
-    name: 'images',
-    path: __dirname + '/site_files/images/',
-  });
-
-  site.get({
     name: 'SubPartners',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,
   });
 
-  site.on('[company][created]', (doc) => {
-    $sub_partners.add(
-      {
-        code: '1-Test',
-        name_ar: 'شريك ثانوي إفتراضي',
-        name_en: 'Default Sub Partner',
-        image: '/images/partner.png',
-        active: true,
-      },
-      (err, doc1) => {}
-    );
-  });
-
   site.post('/api/sub_partners/add', (req, res) => {
     let response = {
       done: false,
     };
-
-
 
     let sub_partner_doc = req.body;
     sub_partner_doc.$req = req;
@@ -78,8 +58,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-
 
     let sub_partner_doc = req.body;
 
@@ -139,8 +117,6 @@ module.exports = function init(site) {
       done: false,
     };
 
-
-
     $sub_partners.findOne(
       {
         where: {
@@ -163,8 +139,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-
 
     let id = req.body.id;
 

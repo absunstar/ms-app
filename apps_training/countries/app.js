@@ -2,36 +2,16 @@ module.exports = function init(site) {
   const $countries = site.connectCollection('Countries');
 
   site.get({
-    name: 'images',
-    path: __dirname + '/site_files/images/',
-  });
-
-  site.get({
     name: 'Countries',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,
   });
 
-  site.on('[company][created]', (doc) => {
-    $countries.add(
-      {
-        code: '1-Test',
-        name_ar: 'بلد إفتراضية',
-        name_en: 'Default Country',
-        image: '/images/country.png',
-        active: true,
-      },
-      (err, doc1) => {}
-    );
-  });
-
   site.post('/api/countries/add', (req, res) => {
     let response = {
       done: false,
     };
-
-
 
     let country_doc = req.body;
     country_doc.$req = req;
@@ -41,7 +21,6 @@ module.exports = function init(site) {
       $req: req,
       $res: res,
     });
-
 
     $countries.findOne(
       {
@@ -61,7 +40,6 @@ module.exports = function init(site) {
           response.error = err.message;
           res.json(response);
         } else {
-       
           $countries.add(country_doc, (err, doc) => {
             if (!err) {
               response.done = true;
@@ -80,8 +58,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-
 
     let country_doc = req.body;
 
@@ -141,8 +117,6 @@ module.exports = function init(site) {
       done: false,
     };
 
-
-
     $countries.findOne(
       {
         where: {
@@ -165,8 +139,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-
 
     let id = req.body.id;
 
@@ -199,7 +171,6 @@ module.exports = function init(site) {
 
     let where = req.body.where || {};
 
-    
     if (where['name_ar']) {
       where['name_ar'] = site.get_RegExp(where['name_ar'], 'i');
     }
@@ -208,17 +179,15 @@ module.exports = function init(site) {
       where['name_en'] = site.get_RegExp(where['name_en'], 'i');
     }
 
-   
-
-    if(where['not_active']){
+    if (where['not_active']) {
       where['active'] = false;
     }
 
-    if(where['active_search']){
+    if (where['active_search']) {
       where['active'] = true;
     }
 
-    if(where['not_active'] && where['active_search']){
+    if (where['not_active'] && where['active_search']) {
       delete where['active'];
     }
 

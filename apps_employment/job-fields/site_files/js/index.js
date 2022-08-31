@@ -6,7 +6,6 @@ app.controller('jobFields', function ($scope, $http, $timeout) {
   $scope.displayAddJobFields = function () {
     $scope.error = '';
     $scope.job_fields = {
-      image: '/images/job_fields.png',
       active: true,
     };
 

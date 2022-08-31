@@ -6,7 +6,6 @@ app.controller('subPartners', function ($scope, $http, $timeout) {
   $scope.displayAddSubPartner = function () {
     $scope.error = '';
     $scope.sub_partner = {
-      image: '/images/sub_partner.png',
       active: true,
     };
 

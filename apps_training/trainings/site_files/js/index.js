@@ -4,7 +4,6 @@ app.controller('trainings', function ($scope, $http, $timeout) {
   $scope.displayAddTraining = function () {
     $scope.error = '';
     $scope.training = {
-      image: '/images/training.png',
       approve: false,
       start_date: new Date(),
       trainees_list: [],

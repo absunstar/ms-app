@@ -13,18 +13,6 @@ module.exports = function init(site) {
     compress: true,
   });
 
-  site.on('[company][created]', (doc) => {
-    $company.add(
-      {
-        code: '1-Test',
-        name_ar: 'شركة إفتراضية',
-        name_en: 'Default Company',
-        image: '/images/company.png',
-        active: true,
-      },
-      (err, doc1) => {}
-    );
-  });
 
   site.post('/api/companies/add', (req, res) => {
     let response = {

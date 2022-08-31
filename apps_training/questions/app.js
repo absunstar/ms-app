@@ -2,11 +2,6 @@ module.exports = function init(site) {
   const $questions = site.connectCollection('Questions');
 
   site.get({
-    name: 'images',
-    path: __dirname + '/site_files/images/',
-  });
-
-  site.get({
     name: 'Questions',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
@@ -18,25 +13,10 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/json/difficulty.json',
   });
 
-  site.on('[company][created]', (doc) => {
-    $questions.add(
-      {
-        code: '1-Test',
-        name_ar: 'سؤال إفتراضية',
-        name_en: 'Default Question',
-        image: '/images/question.png',
-        active: true,
-      },
-      (err, doc1) => {}
-    );
-  });
-
   site.post('/api/questions/add', (req, res) => {
     let response = {
       done: false,
     };
-
-
 
     let questions_doc = req.body;
     questions_doc.$req = req;
@@ -76,8 +56,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-
 
     let questions_doc = req.body;
 
@@ -130,8 +108,6 @@ module.exports = function init(site) {
       done: false,
     };
 
-
-
     $questions.findOne(
       {
         where: {
@@ -154,8 +130,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-
 
     let id = req.body.id;
 
@@ -250,7 +224,7 @@ module.exports = function init(site) {
     $questions.findMany(
       {
         where: data.where,
-        select: { id: 1, name: 1, answers_list: 1 , difficulty : 1 },
+        select: { id: 1, name: 1, answers_list: 1, difficulty: 1 },
       },
       (err, docs) => {
         if (!err) {
@@ -272,8 +246,8 @@ module.exports = function init(site) {
               .slice(0, hardCount);
 
             let questionslist = easyList.concat(mediumList, hardList);
-            questionslist.forEach(_q => {
-              delete _q.difficulty
+            questionslist.forEach((_q) => {
+              delete _q.difficulty;
             });
             callback(questionslist);
           } else {

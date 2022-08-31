@@ -6,7 +6,6 @@ app.controller('examTemplates', function ($scope, $http, $timeout) {
   $scope.displayAddExamTemplates = function () {
     $scope.error = '';
     $scope.exam_template = {
-      image: '/images/exam_template.png',
       active: true,
     };
 

@@ -8,25 +8,10 @@ module.exports = function init(site) {
     compress: true,
   });
 
-  site.on('[company][created]', (doc) => {
-    $job_subfields.add(
-      {
-        code: '1-Test',
-        name_ar: 'دورة إفتراضية',
-        name_en: 'Default Job SubFields',
-        image: '/images/job_subfields.png',
-        active: true,
-      },
-      (err, doc1) => {}
-    );
-  });
-
   site.post('/api/job_subfields/add', (req, res) => {
     let response = {
       done: false,
     };
-
-
 
     let job_subfields_doc = req.body;
     job_subfields_doc.$req = req;
@@ -55,8 +40,6 @@ module.exports = function init(site) {
           response.error = 'Name Exists';
           res.json(response);
         } else {
-     
-
           $job_subfields.add(job_subfields_doc, (err, doc) => {
             if (!err) {
               response.done = true;
@@ -75,8 +58,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-
 
     let job_subfields_doc = req.body;
 
@@ -136,8 +117,6 @@ module.exports = function init(site) {
       done: false,
     };
 
-
-
     $job_subfields.findOne(
       {
         where: {
@@ -160,8 +139,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-
 
     let id = req.body.id;
 
@@ -193,7 +170,7 @@ module.exports = function init(site) {
     };
 
     let where = req.body.where || {};
-  
+
     if (where['name_ar']) {
       where['name_ar'] = site.get_RegExp(where['name_ar'], 'i');
     }
@@ -207,15 +184,15 @@ module.exports = function init(site) {
       delete where['job_field'];
     }
 
-    if(where['not_active']){
+    if (where['not_active']) {
       where['active'] = false;
     }
 
-    if(where['active_search']){
+    if (where['active_search']) {
       where['active'] = true;
     }
 
-    if(where['not_active'] && where['active_search']){
+    if (where['not_active'] && where['active_search']) {
       delete where['active'];
     }
 

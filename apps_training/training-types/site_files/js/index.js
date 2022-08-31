@@ -8,7 +8,6 @@ app.controller('trainingTypes', function ($scope, $http, $timeout) {
   $scope.displayAddTrainingTypes = function () {
     $scope.error = '';
     $scope.training_type = {
-      image: '/images/training_type.png',
       active: true,
     };
 
