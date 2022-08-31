@@ -63,7 +63,6 @@ app.controller('trainees', function ($scope, $http, $timeout) {
   $scope.getTraineesUpload = function (uploaded_trainees) {
     console.log(uploaded_trainees);
 
-
     site.showModal('#traineesUploadModal');
   };
 
@@ -132,7 +131,6 @@ app.controller('trainees', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.training = response.data.doc;
-         
         } else {
           $scope.error = response.data.error;
         }
@@ -142,16 +140,31 @@ app.controller('trainees', function ($scope, $http, $timeout) {
       }
     );
   };
+
   $scope.displayRemoveTraineeModal = function (index) {
     $scope.error = '';
     $scope.training.$index = index;
     site.showModal('#deleteTraineeModal');
   };
+
   $scope.approveTrainee = function (index) {
     $scope.error = '';
     $scope.training.trainees_list[index].approve = true;
 
     $scope.updateTraining($scope.training);
+  };
+
+  $scope.searchTrainees = function (search, traineesList) {
+    $scope.error = '';
+    if (traineesList && traineesList.length > 0) {
+      traineesList.forEach((_t) => {
+        if (!_t.first_name.includes(search) && !_t.last_name.includes(search) && _t.mobile != search && _t.id_number != search) {
+          _t.$hide = true;
+        } else {
+          _t.$hide = false;
+        }
+      });
+    }
   };
 
   $scope.deleteTrainee = function (index) {
@@ -164,7 +177,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
   $scope.getTraineesList = function () {
     $scope.busy = true;
     $scope.error = '';
-  /*   if (ev.which !== 13) {
+    /*   if (ev.which !== 13) {
       return;
     } */
     $scope.traineesList = [];
@@ -174,8 +187,8 @@ app.controller('trainees', function ($scope, $http, $timeout) {
       url: '/api/users/all',
       data: {
         where: where,
-/*         search: $scope.training.$general_search,
- */        select: { id: 1, first_name: 1, last_name: 1, email: 1, mobile: 1, id_number: 1 },
+        /*         search: $scope.training.$general_search,
+         */ select: { id: 1, first_name: 1, last_name: 1, email: 1, mobile: 1, id_number: 1 },
       },
     }).then(
       function (response) {
@@ -227,6 +240,14 @@ app.controller('trainees', function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     );
+  };
+
+  $scope.showPassword = function () {
+    $timeout(() => {
+      document.querySelectorAll('.pass input').forEach((p) => {
+        p.setAttribute('type', $scope.show_password ? 'text' : 'password');
+      });
+    }, 100);
   };
 
   $scope.getTraining();

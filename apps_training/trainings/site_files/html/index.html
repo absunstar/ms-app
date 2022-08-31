@@ -58,11 +58,11 @@
               </td>
 
               <td class="center not-print">
-                <i-button type="view" ng-click="displayDetailsTraining(c)"></i-button>
-                <i-button type="edit" x-permissions="admin" ng-hide="c.$hide_edit" ng-click="displayUpdateTraining(c)"></i-button>
-                <a type="button" class="btn btn-light btn-lg" href="/Trainees?id={{c.id}}"><i class="fa fa-users" aria-hidden="true"></i></a>
-                <a label="##word.attending_scedule##" class="btn btn-success btn-lg" ng-click="displayAttendingSceduleModal(c)"><i class="fa fa-table" aria-hidden="true"></i></a>
-                <i-button type="delete" x-permissions="admin" ng-click="displayDeleteTraining(c)"></i-button>
+                <i-button type="view" data-bs-toggle="tooltip" data-bs-placement="top" title="##word.view##" ng-click="displayDetailsTraining(c)"></i-button>
+                <i-button type="edit" data-bs-toggle="tooltip" data-bs-placement="top" title="##word.update##" x-permissions="admin" ng-hide="c.$hide_edit" ng-click="displayUpdateTraining(c)"></i-button>
+                <a type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="##word.trainees##" class="btn btn-light btn-lg" href="/Trainees?id={{c.id}}"><i class="fa fa-users" aria-hidden="true"></i></a>
+                <a data-bs-toggle="tooltip" data-bs-placement="top" title="##word.attendance##" label="##word.attending_scedule##" class="btn btn-success btn-lg" ng-click="displayAttendingSceduleModal(c)"><i class="fa fa-table" aria-hidden="true"></i></a>
+                <i-button type="delete" x-permissions="admin" data-bs-toggle="tooltip" data-bs-placement="top" title="##word.delete##" ng-click="displayDeleteTraining(c)"></i-button>
               </td>
             </tr>
           </tbody>

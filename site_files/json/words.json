@@ -190,6 +190,11 @@
     "ar": "إلى"
   },
   {
+    "name": "view",
+    "en": "View",
+    "ar": "عرض"
+  },
+  {
     "name": "attendance",
     "en": "Attendance",
     "ar": "الحضور"
