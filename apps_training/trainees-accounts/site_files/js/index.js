@@ -2,6 +2,14 @@ app.controller('traineesAccounts', function ($scope, $http, $timeout) {
 
   $scope.trainee = {};
 
+  $scope.showPassword = function () {
+    $timeout(() => {
+      document.querySelectorAll('.pass input').forEach((p) => {
+        p.setAttribute('type', $scope.show_password ? 'text' : 'password');
+      });
+    }, 100);
+  };
+  
   $scope.displayAddTrainee = function () {
     $scope.error = '';
     $scope.trainee = {

@@ -22,6 +22,8 @@ app.controller('manage', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.manage = response.data.doc;
+          $scope.manage.links = $scope.manage.links || [{}];
+          $scope.manage.contact = $scope.manage.contact || {};
         } else {
           $scope.manage = {};
         }

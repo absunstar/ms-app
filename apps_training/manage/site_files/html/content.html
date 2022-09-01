@@ -1,119 +1,79 @@
 <div class="form" id="manage">
   <div class="tabs inline-block">
     <div class="tabs-header">
-      <a class="tab-link" onclick="site.showTabContent(event, '#aboutEdit')"> ##word.about_edit## </a>
-      <a class="tab-link" onclick="site.showTabContent(event, '#termsConditionsSection')"> ##word.terms_conditions_edit## </a>
-      <a class="tab-link" onclick="site.showTabContent(event, '#policyEdit')"> ##word.policy_edit## </a>
-      <a class="tab-link" onclick="site.showTabContent(event, '#homepageInfoEdit')"> ##word.homepage_info_edit## </a>
       <a class="tab-link" onclick="site.showTabContent(event, '#portalLogo')"> ##word.portal_logo## </a>
-      <a class="tab-link" onclick="site.showTabContent(event, '#partnersLogo')"> ##word.partners_logo## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#slider_edit')"> ##word.slider_edit## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#site_links')"> ##word.site_links## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#site_contact')"> ##word.site_contact## </a>
     </div>
 
     <div class="tabs-content">
-      <div id="aboutEdit" class="tab-content">
+
+      <div id="portalLogo" class="tab-content">
         <fieldset>
-          <legend>##word.editing_about_section##</legend>
+          <legend>##word.upload_logo##</legend>
+          <i-image v="r" ng-model="manage.logo"></i-image>
+        </fieldset>
+
+        <i-button type="save" label="##word.save##" ng-click="saveManage(manage,'#portalLogo')"></i-button>
+      </div>
+      <div id="slider_edit" class="tab-content">
+        <fieldset>
+          <legend>##word.edit_slider_1##</legend>
 
           <div class="row">
-            <i-control class="col8" v="r" label="##word.title##" type="text" ng-model="manage.about.title"> </i-control>
+            <i-control class="row" v="r" label="##word.title##" type="text" ng-model="manage.slider1.title"> </i-control>
+            <i-textarea v="r" label="##word.description##" ng-model="manage.slider1.description"> </i-textarea>
           </div>
+        </fieldset>
+        <fieldset>
+          <legend>##word.edit_slider_2##</legend>
 
           <div class="row">
-            <i-textarea v="r" label="##word.data##" ng-model="manage.about.data"> </i-textarea>
+            <i-control class="row" v="r" label="##word.title##" type="text" ng-model="manage.slider2.title"> </i-control>
+            <i-textarea v="r" label="##word.description##" ng-model="manage.slider2.description"> </i-textarea>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>##word.edit_slider_3##</legend>
+
+          <div class="row">
+            <i-control class="row" v="r" label="##word.title##" type="text" ng-model="manage.slider3.title"> </i-control>
+            <i-textarea v="r" label="##word.description##" ng-model="manage.slider3.description"> </i-textarea>
           </div>
         </fieldset>
 
         <i-button type="save" label="##word.save##" ng-click="saveManage(manage,'#aboutEdit')"></i-button>
       </div>
 
-      <div id="termsConditionsSection" class="tab-content">
+      <div id="site_links" class="tab-content">
         <fieldset>
-          <legend>##word.editing_terms_conditions_section##</legend>
+          <legend>##word.site_links## <i-button type="add default" ng-click="manage.links.push({})"></i-button></legend>
 
-          <div class="row">
-            <i-textarea v="r" label="##word.data##" ng-model="manage.terms_conditions"> </i-textarea>
+          <div class="row padding border margin" ng-repeat="link in manage.links">
+            <i-control label="##word.title##" ng-model="link.title"> </i-control>
+            <i-control label="##word.link##" ng-model="link.url"> </i-control>
           </div>
         </fieldset>
 
-        <i-button type="save" label="##word.save##" ng-click="saveManage(manage,'#termsConditionsSection')"></i-button>
+        <i-button type="save" label="##word.save##" ng-click="saveManage(manage,'#site_links')"></i-button>
       </div>
 
-      <div id="policyEdit" class="tab-content">
+      <div id="site_contact" class="tab-content">
         <fieldset>
-          <legend>##word.editing_policy_section##</legend>
+          <legend>##word.site_contact##</legend>
 
           <div class="row">
-            <i-textarea v="r" label="##word.data##" ng-model="manage.policy"> </i-textarea>
+            <i-control v="r" label="##word.location##" ng-model="manage.contact.location"> </i-control>
+            <i-control v="r" label="##word.email##" ng-model="manage.contact.email"> </i-control>
+            <i-control v="r" label="##word.phone##" ng-model="manage.contact.phone"> </i-control>
           </div>
         </fieldset>
 
-        <i-button type="save" label="##word.save##" ng-click="saveManage(manage,'#policyEdit')"></i-button>
+        <i-button type="save" label="##word.save##" ng-click="saveManage(manage,'#site_contact')"></i-button>
       </div>
 
-      <div id="homepageInfoEdit" class="tab-content">
-        <fieldset>
-          <legend>##word.editing_homepage_info_section##</legend>
-
-          <div class="row">
-            <i-textarea v="r" label="##word.data##" ng-model="manage.homepage_info"> </i-textarea>
-          </div>
-        </fieldset>
-
-        <i-button type="save" label="##word.save##" ng-click="saveManage(manage,'#homepageInfoEdit')"></i-button>
-      </div>
-
-      <div id="portalLogo" class="tab-content">
-        <fieldset>
-          <legend>##word.upload_logo##</legend>
-
-          <div class="row">
-            <i-image v="r" ng-model="manage.logo"></i-image>
-          </div>
-          <h2 class="red">##word.only_accepts_png_format##</h2>
-        </fieldset>
-
-        <i-button type="save" label="##word.save##" ng-click="saveManage(manage,'#portalLogo')"></i-button>
-      </div>
-
-      <div id="partnersLogo" class="tab-content">
-        <fieldset>
-          <legend>##word.partner_logo##</legend>
-
-          <div class="row">
-            <i-button type="add" label="##word.new_partner_logo##" ng-click="displayAddPartnerLogo()"></i-button>
-
-            <table x-permissions="login" class="table hover text-center" id="t1">
-              <tr>
-                <th class="not-print">##word.partner_logo##</th>
-                <th>##word.website##</th>
-                <th>##word.status##</th>
-                <th class="not-print">##word.actions##</th>
-              </tr>
-              <tbody>
-                <tr ng-repeat="c in manage.partners_logo_list track by $index">
-                  <td class="center not-print">
-                    <i-image view class="logo" ng-model="c.logo"></i-image>
-                  </td>
-                  <td class="center">{{c.website}}</td>
-                  <td class="center">
-                    <p ng-show="c.active ==true" class="green">##word.active##</p>
-                    <p ng-show="!c.active" class="red">##word.not_active##</p>
-                  </td>
-  
-                  <td class="center not-print">
-                    <i-button type="edit" label="##word.edit##" ng-click="displayEditPartnerLogo(c)"></i-button>
-                    <i-button ng-show="!c.active" label="##word.activate##" ng-click="showActivationModal(c,'activate')"></i-button>
-                    <i-button ng-show="c.active" label="##word.deactivate##" ng-click="showActivationModal(c,'deactivate')"></i-button>
-                    <i-button type="delete" label="##word.delete##" ng-click="displayDeletePartnerLogo(c,$index)"></i-button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </fieldset>
-
-        <i-button type="save" label="##word.save##" ng-click="saveManage(manage,'#partnersLogo')"></i-button>
-      </div>
+      
     </div>
   </div>
 </div>

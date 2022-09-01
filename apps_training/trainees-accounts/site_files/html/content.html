@@ -26,13 +26,13 @@
           <i-checkbox class="col" ng-change="showPassword()" ng-model="show_password" label="##word.show_password##"></i-checkbox>
         </div>
 
-        <div class="row">
+        <div class="col10">
           <fieldset>
             <legend>##word.id_type## </legend>
             <div class="row">
               <i-radio class="col3" ng-value="national_id" label="##word.national_id##" ng-model="trainee.id_type"> </i-radio>
               <i-radio class="col3" ng-value="passport" label="##word.passport##" ng-model="trainee.id_type"> </i-radio>
-              <i-control v="r" class="col6" type="text" ng-model="trainee.id_number" label="##word.id_number##"></i-control>
+              <i-control v="r" class="col4" type="text" ng-model="trainee.id_number" label="##word.id_number##"></i-control>
             </div>
           </fieldset>
         </div>

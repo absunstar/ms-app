@@ -35,7 +35,7 @@ site.get(
   (req, res) => {
     res.render(
       '0/index.html',
-      {},
+      site.manage_doc,
       {
         parser: 'html css js',
       }
