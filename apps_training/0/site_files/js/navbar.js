@@ -8,7 +8,10 @@ if (btn) {
 site.showTabs(event, '#main_tabs');
 
 app.controller('navbar', ($scope, $http) => {
-  $scope.logo_url = site.setting.logo.url;
+  if(site.setting.logo){
+
+    $scope.logo_url = site.setting.logo.url;
+  } 
   $scope.register = function () {
     site.showModal('#registerModal');
   };

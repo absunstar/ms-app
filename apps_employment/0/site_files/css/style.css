@@ -344,6 +344,10 @@ main {
   justify-content: center;
 }
 
+.lines_text {
+  white-space: pre-wrap;
+}
+
 .about-us h2 {
   font-style: normal;
   font-weight: 700;
