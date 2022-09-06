@@ -55,7 +55,7 @@
               <h3>By Email</h3>
             </div>
             <div class="email-info">
-              <a href="mailto:info@getonlineegypt.com">info@getonlineegypt.com</a>
+              <a href="mailto:{{setting.contact.email}}">{{setting.contact.email}}</a>
             </div>
           </div>
           <div class="contact-number">
@@ -64,7 +64,7 @@
               <h3>Help center</h3>
             </div>
             <div class="number-info">
-              <a>+2 02 3539 3333 / +2 02 3539 0303</a>
+              <a>{{setting.contact.phone}}</a>
             </div>
           </div>
         </div>
@@ -83,37 +83,31 @@
         </div>
         <div class="Useful-Links">
           <h4>Useful Links</h4>
-          <ul>
-            <li>
-              <a href="">Terms & Conditions</a>
-            </li>
-            <li>
-              <a href="">Policy</a>
-            </li>
-          </ul>
+          <a href="{{link.url}}" target="_blank" ng-repeat="link in setting.links"> {{link.title}} </a>
         </div>
         <div class="contact">
           <h4>Contact</h4>
           <div class="adress">
             <i class="fas fa-map-marker-alt"></i>
-            <a>Microsoft Egypt - Citizenship Department, KM 28 Cairo Alex Desert Road,Smart Village, Giza, Egypt</a>
+            <a> {{setting.contact.location}}</a>
           </div>
           <div class="email">
             <i class="fas fa-envelope"></i>
-            <a>info@getonlineegypt.com</a>
+            <a href="mailto:{{setting.contact.email}}">{{setting.contact.email}}</a>
           </div>
           <div class="phone">
             <i class="fas fa-phone-alt"></i>
-            <a>+2 02 3539 3333 / +2 02 3539 0303</a>
+            <a>{{setting.contact.phone}}</a>
           </div>
         </div>
       </div>
     </footer>
 
-    <div  x-import="0/footer.html" ></div>
+    <div x-import="0/footer.html"></div>
     <div x-import="0/scripts.html"></div>
     <script>
       app.controller('body', ($scope, $http) => {
+        $scope.setting = site.setting;
         $scope.search = '';
         $scope.goRegister = function () {
           document.location.href = '/register';

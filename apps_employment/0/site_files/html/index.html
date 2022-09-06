@@ -96,10 +96,11 @@
       </div>
     </footer>
 
-    <div  x-import="0/footer.html" ></div>
+    <div x-import="0/footer.html"></div>
     <div x-import="0/scripts.html"></div>
     <script>
       app.controller('body', ($scope, $http) => {
+      
         $scope.search = '';
         $scope.goRegister = function () {
           document.location.href = '/register';
