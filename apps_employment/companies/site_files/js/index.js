@@ -41,7 +41,7 @@ app.controller('companies', function ($scope, $http, $timeout) {
           site.hideModal('#companyAddModal');
           site.resetValidated('#companyAddModal');
           $scope.getCompanyList();
-        } else if(response.data.error){
+        } else if (response.data.error) {
           $scope.error = response.data.error;
           if (response.data.error.like('*not allowed to add other companies*')) {
             $scope.error = '##word.not_allowed_add_other_companies##';
@@ -87,7 +87,7 @@ app.controller('companies', function ($scope, $http, $timeout) {
           site.hideModal('#companyUpdateModal');
           site.resetValidated('#companyUpdateModal');
           $scope.getCompanyList();
-        } else if(response.data.error){
+        } else if (response.data.error) {
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -137,14 +137,6 @@ app.controller('companies', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.displayDetailsCompany = function (company) {
-    $scope.error = '';
-    $scope.viewCompany(company);
-    $scope.getJobList(company);
-    $scope.company = {};
-    site.showModal('#companyViewModal');
-  };
-
   $scope.viewCompany = function (company) {
     $scope.busy = true;
     $scope.error = '';
@@ -169,56 +161,7 @@ app.controller('companies', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.viewJob = function (job) {
-    $scope.busy = true;
-    $scope.error = '';
-    $http({
-      method: 'POST',
-      url: '/api/jobs/view',
-      data: {
-        id: job.id,
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.job = response.data.doc;
-          site.showModal('#jobViewModal');
-        } else {
-          $scope.error = response.data.error;
-        }
-      },
-      function (err) {
-        console.log(err);
-      }
-    );
-  };
 
-  $scope.getJobList = function (company) {
-    $scope.busy = true;
-    $scope.jopsList = [];
-    where = {};
-    where['company.id'] = company.id;
-
-    $http({
-      method: 'POST',
-      url: '/api/jobs/all',
-      data: {
-        where: where,
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list && response.data.list.length > 0) {
-          $scope.jopsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
 
   $scope.displayDeleteCompany = function (company) {
     $scope.error = '';
@@ -302,7 +245,7 @@ app.controller('companies', function ($scope, $http, $timeout) {
       url: '/api/industries/all',
       data: {
         where: { active: true },
-        select: { id: 1,   name_ar: 1, name_en: 1 },
+        select: { id: 1, name_ar: 1, name_en: 1 },
       },
     }).then(
       function (response) {
@@ -327,7 +270,7 @@ app.controller('companies', function ($scope, $http, $timeout) {
       url: '/api/countries/all',
       data: {
         where: { active: true },
-        select: { id: 1,   name_ar: 1, name_en: 1 },
+        select: { id: 1, name_ar: 1, name_en: 1 },
       },
     }).then(
       function (response) {
@@ -352,7 +295,7 @@ app.controller('companies', function ($scope, $http, $timeout) {
       url: '/api/cities/all',
       data: {
         where: { active: true, 'country.id': id },
-        select: { id: 1,   name_ar: 1, name_en: 1 },
+        select: { id: 1, name_ar: 1, name_en: 1 },
       },
     }).then(
       function (response) {

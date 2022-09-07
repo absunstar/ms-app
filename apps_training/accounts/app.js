@@ -84,6 +84,7 @@ module.exports = function init(site) {
     delete user.retype_password;
     user.$req = req;
     user.$res = res;
+
     site.security.addUser(user, (err, doc) => {
       if (!err) {
         response.done = true;

@@ -25,16 +25,13 @@
           <div class="row">
             <h1 class="bold text-center">##word.best_short_listed_resumes##</h1>
           </div>
-          <div class="top-actions">
-            <div x-import="jobs/view_modal.html"></div>
-          </div>
-
+      
           <div class="row display-none" ng-repeat="u in list">
             <div class="col2">
               <i-image view ng-model="u.image"></i-image>
             </div>
             <div class="col6">
-              <b class="font-weight-bold">{{u.name}}</b>
+              <b class="font-weight-bold">{{u.first_name}} {{u.last_name}}</b>
               <p>{{u.job_title}}</p>
               <p>{{u.country.name_##session.lang##}} , {{u.city.name_##session.lang##}} <i class="fa fa-map-marker" aria-hidden="true"></i></p>
               <p>{{u.qualification.name_##session.lang##}}</p>
@@ -42,7 +39,7 @@
             </div>
 
             <div class="col2">
-              <a type="button" class="btn btn-primary btn-lg" href="/Resume?id={{u.id}}">##word.view_resume##</a>
+              <a type="button" class="btn btn-primary btn-lg" style="font-size: inherit;color: #fff !important;" href="/Resume?id={{u.id}}">##word.view_resume##</a>
               <i-button type="delete" ng-click="removeShortList(u)"></i-button>
               <i-file label="##word.download_cv##" view categoty="upload_resume" ng-model="u.upload_resume"></i-file>
             </div>

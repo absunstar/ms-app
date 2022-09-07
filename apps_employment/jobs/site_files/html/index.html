@@ -11,9 +11,7 @@
           <div x-import="jobs/add_modal.html"></div>
           <div x-import="jobs/update_modal.html"></div>
           <div x-import="jobs/delete_modal.html"></div>
-          <div x-import="jobs/view_modal.html"></div>
           <div x-import="jobs/search_all_modal.html"></div>
-          <div x-import="companies/view_modal.html"></div>
 
           <div class="row">
             <h1 x-permissions="admin" class="bold text-center">##word.jobs##</h1>
@@ -66,8 +64,8 @@
                 </td>
 
                 <td class="center not-print">
-                  <a type="button" class="btn btn-primary btn-lg" ng-show="c.application_list.length > 0" href="/AppliedResumes?id={{c.id}}">##word.resumes##</a>
-                  <i-button type="view" label="##word.details##" ng-click="displayDetailsJob(c)"></i-button>
+                  <a type="button" class="btn btn-primary btn-lg" style="font-size: inherit;color: #fff !important;" ng-show="c.application_list.length > 0" href="/AppliedResumes?id={{c.id}}">##word.resumes##</a>
+                  <a type="button" class="btn btn-info btn-lg" style="font-size: inherit;color: #fff !important;" href="/ViewJob?id={{c.id}}"> ##word.details## <i class="fa fa-eye"></i> </a>
                   <i-button x-permissions="employer" type="edit" label="##word.edit##" ng-click="displayUpdateJob(c)"></i-button>
                   <i-button ng-show="!c.active" label="##word.activate##" ng-click="showActivationModal(c,'activate')"></i-button>
                   <i-button ng-show="c.active" label="##word.deactivate##" ng-click="showActivationModal(c,'deactivate')"></i-button>

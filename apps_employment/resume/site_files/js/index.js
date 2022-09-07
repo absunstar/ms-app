@@ -282,6 +282,8 @@ app.controller('resume', function ($scope, $http, $timeout) {
     }
   };
 
+
+
   $scope.workExperienceTransaction = function (work_experience, type) {
     $scope.error = '';
     const v = site.validated('#workExperienceModal');
@@ -330,7 +332,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
     $scope.update($scope.user);
   };
 
-  $scope.showSkill = function (type, skill) {
+/*   $scope.showSkill = function (type, skill) {
     $scope.error = '';
     $scope.user.skill_list = $scope.user.skill_list || [];
     site.showModal('#skillsModal');
@@ -357,6 +359,42 @@ app.controller('resume', function ($scope, $http, $timeout) {
     site.resetValidated('#skillsModal');
     $scope.update($scope.user);
   };
+ */
+
+  $scope.showExtraCurricular = function (type, extra_curricular) {
+    $scope.error = '';
+    $scope.user.extra_curriculars_list = $scope.user.extra_curriculars_list || [];
+    site.showModal('#extraCurricularModal');
+    if (type == 'add') {
+      $scope.extra_curricular = {};
+    } else if (type == 'edit') {
+      $scope.extra_curricular = extra_curricular;
+      $scope.extra_curricular.$edit = true;
+    }
+  };
+
+  $scope.extraCurricularTransaction = function (extra_curricular, type) {
+    $scope.error = '';
+    const v = site.validated('#extraCurricularModal');
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
+
+    if (extra_curricular.joining_date && extra_curricular.expiry_date && new Date(extra_curricular.joining_date) > new Date(extra_curricular.expiry_date)) {
+      $scope.error = '##word.start_date_cannot_bigger_than_end_date##';
+      return;
+    }
+
+    if (type == 'add') {
+      $scope.user.extra_curriculars_list.push(extra_curricular);
+    }
+    site.hideModal('#extraCurricularModal');
+    site.resetValidated('#extraCurricularModal');
+    $scope.update($scope.user);
+  };
+
+
 
   $scope.viewUser();
   $scope.getGender();

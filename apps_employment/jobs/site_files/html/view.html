@@ -98,15 +98,6 @@
 
             <div class="col3">
                 <i-image view ng-model="job.company.image"></i-image>
-                <br>
-                <br>
-                <div class="row">
-                    <i-button  type="view" label="##word.company_profile##" ng-click="viewCompany(job.company)"></i-button>
-                </div>
-                <i-button x-permissions="job_seeker" ng-show="!applied" type="add" label="##word.apply_now##" ng-click="viewApply(job)"></i-button>
-                <i-button x-permissions="job_seeker" ng-show="applied" type="view" label="##word.already_applied##"></i-button>
-                <i-button x-permissions="job_seeker" ng-show="!favorite" label="##word.favorite##" ng-click="favoriteTransaction(job,'add')"></i-button>
-                <i-button x-permissions="job_seeker" ng-show="favorite" label="##word.remove_favorite##" ng-click="favoriteTransaction(job,'remove')"></i-button>
             </div>
 
         </fieldset>

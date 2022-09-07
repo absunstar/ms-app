@@ -107,7 +107,7 @@
     {
         "name": "field",
         "en": "Field",
-        "ar": "مجال"
+        "ar": "المجال"
     },
     {
         "name": "apply",
@@ -166,7 +166,7 @@
     },
     {
         "name": "job_fair_field",
-        "en": "Gob Fair Field",
+        "en": "Job Fair Field",
         "ar": "حقل الوظيفة"
     }
 ]

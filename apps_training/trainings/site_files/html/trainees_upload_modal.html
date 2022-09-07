@@ -9,6 +9,16 @@
     </div>
 
     <div class="modal-body">
+      <br />
+      <div class="row">
+        <h4 class="center">##word.password_users_will_be## ( 123456789 )</h4>
+      </div>
+      <br />
+      <br />
+      <div class="row">
+        <i-button type="add" label="##word.add_all##" ng-click="uploadAllTrainees(upload_trainees_list)"></i-button>
+
+      </div>
       <div class="row">
         <table x-permissions="login" class="table hover text-center" id="t1">
           <thead>
@@ -26,9 +36,10 @@
               <td class="center">{{c.email}}</td>
               <td class="center title">{{c.id_number}}</td>
               <td class="center title">{{c.mobile}}</td>
-  
+
               <td class="center not-print">
-                <i-button type="add" label="##word.add##" ng-click="approveTrainee($index)"></i-button>
+                <i-button type="add" label="##word.add##" ng-hide="c.$add" ng-click="addUploadTrainee(c)"></i-button>
+                <p ng-show="c.$add" class="green">##word.add_done##</p>
               </td>
             </tr>
           </tbody>
@@ -38,8 +49,7 @@
 
     <div class="modal-footer center">
       <h2 class="bold text-center text-danger">{{error}}</h2>
-      <i-button type="add" label="##word.add##" ng-click="addTraining()"></i-button>
-      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#traineesUploadModal')"></i-button>
+      <i-button type="close" label="##word.close##" ng-click="error = ''" onclick="site.hideModal( '#traineesUploadModal')"></i-button>
     </div>
   </div>
 </div>

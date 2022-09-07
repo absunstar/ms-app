@@ -8,12 +8,7 @@
     <div id="main-layout" class="container loaded">
       <div class="row">
         <div class="row">
-          <div class="top-actions">
-            <div x-import="jobs/view_modal.html"></div>
-            <div x-import="companies/view_modal.html"></div>
-            <div x-import="employer-search/apply_modal.html"></div>
-          </div>
-
+       
           <div class="col3">
             <div class="row">
               <i-control label="##word.job_title## , ##word.company## ##word.or## ##word.designations##" ng-model="search.general_search"></i-control>
@@ -46,7 +41,8 @@
               </div>
 
               <div class="col3">
-                <i-button type="view" label="##word.view_job##" ng-click="viewJob(j)"></i-button>
+                <a type="button" class="btn btn-info btn-lg" href="/ViewJob?id={{j.id}}" style="font-size: inherit;color: #fff !important;"> ##word.view_job## <i class="fa fa-eye"></i> </a>
+
               </div>
             </div>
           </div>

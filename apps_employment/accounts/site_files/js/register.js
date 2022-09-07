@@ -71,6 +71,7 @@ app.controller('register', function ($scope, $http, $timeout) {
       }
     }
   };
+  
   $scope.showPassword = function () {
     $timeout(() => {
       document.querySelectorAll('.pass input').forEach((p) => {

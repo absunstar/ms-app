@@ -136,13 +136,10 @@ module.exports = function init(site) {
       done: false,
     };
 
-
-
     let job_fair = req.body;
 
     response.found_apply = false;
 
-    
     $job_fairs.findOne(
       {
         where: {
@@ -151,6 +148,7 @@ module.exports = function init(site) {
       },
       (err, doc) => {
         if (!err) {
+          response.done = true;
           if (job_fair.$type == 'admin') {
             doc.apply_list.forEach((_app) => {
               if (_app.id == job_fair.$apply.id) {
@@ -192,7 +190,6 @@ module.exports = function init(site) {
             res.json(response);
             return;
           }
-          response.done = true;
           $job_fairs.update(doc);
         } else {
           response.error = err.message;

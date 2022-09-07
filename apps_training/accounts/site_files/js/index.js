@@ -307,7 +307,6 @@ app.controller('accounts', function ($scope, $http, $timeout) {
       if (sub_partner.password === sub_partner.retype_password) {
         sub_partner.role = $scope.accountsTypeList[2];
         $scope.busy = true;
-        console.log('dddddddddd');
         $http({
           method: 'POST',
           url: '/api/user/add',
@@ -316,7 +315,6 @@ app.controller('accounts', function ($scope, $http, $timeout) {
           function (response) {
             $scope.busy = false;
             if (response.data.done) {
-              console.log('ffffffffffffffffffffff');
               site.hideModal('#accountAddModal');
               site.resetValidated('.sub-partner-form');
               $scope.getAccountList();

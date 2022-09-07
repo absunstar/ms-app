@@ -13,6 +13,12 @@ module.exports = function init(site) {
     compress: true,
   });
 
+  site.get({
+    name: 'ViewCompany',
+    path: __dirname + '/site_files/html/view_company.html',
+    parser: 'html',
+    compress: true,
+  });
 
   site.post('/api/companies/add', (req, res) => {
     let response = {

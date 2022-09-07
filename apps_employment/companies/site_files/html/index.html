@@ -11,9 +11,7 @@
           <div x-import="companies/add_modal.html"></div>
           <div x-import="companies/update_modal.html"></div>
           <div x-import="companies/delete_modal.html"></div>
-          <div x-import="companies/view_modal.html"></div>
           <div x-import="companies/search_all_modal.html"></div>
-          <div x-import="jobs/view_modal.html"></div>
 
           <div class="row">
             <h1 class="bold text-center">##word.companies##</h1>
@@ -56,7 +54,7 @@
                 </td>
 
                 <td class="center not-print">
-                  <i-button type="view" label="##word.details##" ng-click="displayDetailsCompany(c)"></i-button>
+                  <a type="button" class="btn btn-info btn-lg" href="/ViewCompany?id={{c.id}}" style="font-size: inherit;color: #fff !important;"> ##word.details## <i class="fa fa-eye"></i> </a>
                   <i-button x-permissions="employer" type="edit" label="##word.edit##" ng-click="displayUpdateCompany(c)"></i-button>
                   <i-button x-permissions="employer" ng-show="!c.active" label="##word.activate##" ng-click="showActivationModal(c,'activate')"></i-button>
                   <i-button x-permissions="employer" ng-show="c.active" label="##word.deactivate##" ng-click="showActivationModal(c,'deactivate')"></i-button>
@@ -70,7 +68,7 @@
         </div>
       </div>
     </div>
-    <div  x-import="0/footer.html" ></div>
+    <div x-import="0/footer.html"></div>
     <div x-import="0/scripts.html"></div>
     <script x-import="companies/index.js"></script>
   </body>

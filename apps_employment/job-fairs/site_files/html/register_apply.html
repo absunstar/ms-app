@@ -1,27 +1,40 @@
 <div id="registerApplyModal" class="modal" fixed>
   <div class="modal-content height-auto">
-      <div class="modal-header">
-          <span class="close">&times;</span>
-          <h2 class="center">
-              ##word.job_fairs_add##
-              <i class="fa fa-plus "></i>
-          </h2>
-      </div>
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 class="center">
+        ##word.job_fairs_add##
+        <i class="fa fa-plus"></i>
+      </h2>
+    </div>
 
-      <div class="modal-body">
-          <div class="row" ng-show="job_fairs.$found_apply">
-            <b>##word.you_are_all_set_you_registered_this_job_fair_before##</b>
-            <h3>##word.fair_details## : {{job_fairs.name_##session.lang##}} ##word.at## {{job_fairs.website}} ##word.on## {{job_fairs.event_date | date:"dd/MM/yyyy"}}</h3>
-          </div>
-          <div class="row" ng-show="!job_fairs.$found_apply">
-            <b>##word.you_are_all_set_have_been_registered_this_job_fair##</b>
-            <h3>##word.fair_details## : {{job_fairs.name_##session.lang##}} ##word.at## {{job_fairs.website}} ##word.on## {{job_fairs.event_date | date:"dd/MM/yyyy"}}</h3>
-          </div>
+    <div class="modal-body">
+      <div class="row">
+        <b ng-show="job_fairs.$found_apply">##word.you_are_all_set_you_registered_this_job_fair_before##</b>
+        <b ng-show="!job_fairs.$found_apply">##word.you_are_all_set_have_been_registered_this_job_fair##</b>
       </div>
+      <fieldset>
+        <legend>##word.fair_details##</legend>
+        <table x-permissions="login" class="table hover text-center">
+          <tr>
+            <th>##word.job_fairs_name##</th>
+            <th>##word.site##</th>
+            <th>##word.event_date##</th>
+            <th>##word.field##</th>
+          </tr>
+          <tr>
+            <td class="center title">{{job_fairs.name_##session.lang##}}</td>
+            <td class="center">{{job_fairs.website}}</td>
+            <td class="center">{{job_fairs.event_date | date:"dd/MM/yyyy"}}</td>
+            <td class="center">{{job_fairs.field}}</td>
+          </tr>
+        </table>
+      </fieldset>
+    </div>
 
-      <div class="modal-footer center">
-          <h2 class="bold text-center text-danger"> {{error}} </h2>
-          <i-button type="close" label="##word.close##" onclick="site.hideModal( '#registerApplyModal')"></i-button>
-      </div>
+    <div class="modal-footer center">
+      <h2 class="bold text-center text-danger">{{error}}</h2>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#registerApplyModal')"></i-button>
+    </div>
   </div>
 </div>

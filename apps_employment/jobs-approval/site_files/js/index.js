@@ -29,31 +29,6 @@ app.controller('jobsApproval', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.viewJob = function (job) {
-    $scope.busy = true;
-    $scope.error = '';
-    $http({
-      method: 'POST',
-      url: '/api/jobs/view',
-      data: {
-        id: job.id,
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.job = response.data.doc;
-          site.showModal('#jobViewModal');
-        } else {
-          $scope.error = response.data.error;
-        }
-      },
-      function (err) {
-        console.log(err);
-      }
-    );
-  };
-
   $scope.updateJob = function (job, type) {
     $scope.error = '';
 

@@ -60,9 +60,57 @@ app.controller('trainees', function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.getTraineesUpload = function (uploaded_trainees) {
-    console.log(uploaded_trainees);
+  $scope.addUploadTrainee = function (user) {
+    $scope.error = '';
 
+    user.role = $scope.accountsTypeList[4];
+    user.active = true;
+    user.id_type = 'national_id';
+    user.password = '123456789';
+    $scope.busy = true;
+
+    $http({
+      method: 'POST',
+      url: '/api/user/add',
+      data: user,
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          user.$add = true;
+          $scope.training.trainees_list.push({
+            id: response.data.doc.id,
+            first_name: response.data.doc.first_name,
+            last_name: response.data.doc.last_name,
+            email: response.data.doc.email,
+            mobile: response.data.doc.mobile,
+            id_number: response.data.doc.id_number,
+            approve: true,
+          });
+          $scope.updateTraining($scope.training);
+        } else if (response.data.error) {
+          $scope.error = response.data.error;
+          if (response.data.error.like('*User Exists*')) {
+            $scope.error = `##word.user_already_exists## ( ${user.first_name} )`;
+          }
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
+  $scope.uploadAllTrainees = function (users) {
+    for (let i = 0; i < users.length; i++) {
+      $timeout(() => {
+        $scope.addUploadTrainee(users[i]);
+      }, 1000 * i);
+    }
+  };
+
+  $scope.getTraineesUpload = function (docs) {
+    $scope.upload_trainees_list = docs;
     site.showModal('#traineesUploadModal');
   };
 

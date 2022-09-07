@@ -48,7 +48,7 @@
                   <i-button ng-show="!c.active" label="##word.activate##" ng-click="showActivationModal(c,'activate')"></i-button>
                   <i-button ng-show="c.active" label="##word.deactivate##" ng-click="showActivationModal(c,'deactivate')"></i-button>
                   <i-button type="delete" label="##word.delete##" ng-click="displayDeleteJobFields(c)"></i-button>
-                  <a type="button" ng-show="c.active" class="btn btn-primary btn-lg" href="/JobSubFields?id={{c.id}}">##word.job_subfield##</a>
+                  <a type="button" ng-show="c.active" class="btn btn-primary btn-lg" style="font-size: inherit;color: #fff !important;" href="/JobSubFields?id={{c.id}}">##word.job_subfield##</a>
                 </td>
               </tr>
             </tbody>

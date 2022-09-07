@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp">
+  <head x-import="0/head.html"> </head>
+
+  <body class="##session.lang##" ng-controller="viewCompany" x-permissions="login">
+    <div x-import="0/navbar.html"></div>
+
+    <div id="main-layout" class="container loaded">
+      <fieldset>
+        <legend>##word.basic_information##</legend>
+        <div class="row">
+
+        <div class="col9">
+          <table id="basicInformationTable" class="table hover bold">
+            <tr>
+              <td class="title">##word.company_name##</td>
+              <td class="center">{{company.name_##session.lang##}}</td>
+            </tr>
+            <tr x-permissions="employer || admin">
+              <td class="title">##word.approve##</td>
+              <td class="center">{{company.approve.##session.lang##}}</td>
+            </tr>
+            <tr x-permissions="employer || admin">
+              <td class="title">##word.status##</td>
+              <td ng-show="company.active == true" class="green center">##word.active##</td>
+              <td ng-show="company.active == false" class="red center">##word.not_active##</td>
+            </tr>
+  
+            <tr>
+              <td class="title">##word.email_address##</td>
+              <td class="center">{{company.email_address}}</td>
+            </tr>
+  
+            <tr>
+              <td class="title">##word.website_address##</td>
+              <td class="center">{{company.website_address}}</td>
+            </tr>
+  
+            <tr>
+              <td class="title">##word.phone##</td>
+              <td class="center">{{company.phone}}</td>
+            </tr>
+  
+            <tr>
+              <td class="title">##word.industry##</td>
+              <td class="center">{{company.industry.name_##session.lang##}}</td>
+            </tr>
+            <tr>
+              <td class="title">##word.est_since##</td>
+              <td class="center">{{company.est_since | date:"dd/MM/yyyy"}}</td>
+            </tr>
+            <tr>
+              <td class="title">##word.about_company##</td>
+              <td class="center lines_text">{{company.about_company}}</td>
+            </tr>
+            <tr>
+              <td class="title">##word.facebook##</td>
+              <td class="center">{{company.facebook}}</td>
+            </tr>
+            <tr>
+              <td class="title">##word.Twitter##</td>
+              <td class="center">{{company.Twitter}}</td>
+            </tr>
+            <tr>
+              <td class="title">##word.linkedin##</td>
+              <td class="center">{{company.linkedin}}</td>
+            </tr>
+            <tr>
+              <td class="title">##word.google_plus##</td>
+              <td class="center">{{company.google_plus}}</td>
+            </tr>
+            <tr>
+              <td class="title">##word.country##</td>
+              <td class="center">{{company.country.name_##session.lang##}}</td>
+            </tr>
+  
+            <tr>
+              <td class="title">##word.city##</td>
+              <td class="center">{{company.city.name_##session.lang##}}</td>
+            </tr>
+  
+            <tr>
+              <td class="title">##word.full_address##</td>
+              <td class="center lines_text">{{company.full_address}}</td>
+            </tr>
+          </table>
+  
+          <div class="row">
+            <div class="row">
+              <h2>##word.open_position## {{jopsList.length || 0}}</h2>
+            </div>
+            <table class="table hover text-center pointer" ng-show="jopsList.length > 0">
+              <tr>
+                <th>##word.job_title##</th>
+                <th>##word.application_deadline_date##</th>
+                <th>##word.contact_information##</th>
+                <th>##word.job_field##</th>
+              </tr>
+              <tbody>
+                <tr ng-repeat="c in jopsList"  ng-click="viewJob(c.id)">
+                  <td class="center">{{c.job_title}}</td>
+                  <td class="center">{{c.application_deadline_date | date:"dd/MM/yyyy"}}</td>
+                  <td class="center">{{c.company.name_##session.lang##}} , {{c.city.name_##session.lang##}}</td>
+                  <td class="center">{{c.job_field.name_##session.lang##}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+  
+        <div class="col3">
+          <i-image view ng-model="company.image"></i-image>
+          <i-file view label="##word.company_profile##" ng-model="company.company_profile"></i-file>
+        </div>
+      </div>
+    </fieldset>
+    </div>
+    <div  x-import="0/footer.html" ></div>
+    <div x-import="0/scripts.html"></div>
+    <script x-import="companies/view_company.js"></script>
+  </body>
+</html>

@@ -229,12 +229,12 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
   $scope.getJobSeeker = function () {
     $scope.busy = true;
     $scope.jobSeekerList = [];
- 
+
     $http({
       method: 'POST',
       url: '/api/users/all',
       data: {
-        where: { 'role.name': 'job_seeker' , active : true},
+        where: { 'role.name': 'job_seeker', active: true },
       },
     }).then(
       function (response) {
@@ -266,7 +266,7 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
-    } 
+    }
     $http({
       method: 'POST',
       url: '/api/job_fairs/attendance',
@@ -289,13 +289,11 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
           }
         }
         site.resetValidated('#attendanceModal');
-
       },
       function (err) {
         console.log(err);
       }
     );
-  
   };
 
   $scope.registerApplyJobSeeker = function (jF) {
@@ -309,9 +307,7 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.job_fairs.$found_apply = response.data.found_apply;
-          site.showModal('#registerApplyModal');
-        } else {
+          $scope.job_fairs = jF;
           $scope.job_fairs.$found_apply = response.data.found_apply;
           site.showModal('#registerApplyModal');
         }

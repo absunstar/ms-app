@@ -8,6 +8,13 @@ module.exports = function init(site) {
     compress: true,
   });
 
+  site.get({
+    name: 'ViewJob',
+    path: __dirname + '/site_files/html/view_job.html',
+    parser: 'html',
+    compress: true,
+  });
+
   site.post({
     name: '/api/job_type/all',
     path: __dirname + '/site_files/json/job_type.json',
