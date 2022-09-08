@@ -46,7 +46,9 @@ app.controller('trainees', function ($scope, $http, $timeout) {
             } else if (response.data.error) {
               $scope.error = response.data.error;
               if (response.data.error.like('*User Exists*')) {
-                $scope.error = `##word.user_already_exists## ( ${user.first_name} )`;
+                $scope.error = '##word.user_already_exists##';
+              } else if (response.data.error.like('*Number Id*')) {
+                $scope.error = '##word.id_number_exists## ';
               }
             }
           },
@@ -66,6 +68,18 @@ app.controller('trainees', function ($scope, $http, $timeout) {
     user.role = $scope.accountsTypeList[4];
     user.active = true;
     user.id_type = 'national_id';
+
+    if (user.id_number) {
+      user.id_number = user.id_number.toString();
+    } else {
+      $scope.error = '##word.id_number_not_exists##';
+      return;
+    }
+
+    if (user.mobile) {
+      user.mobile = user.mobile.toString();
+    }
+
     user.password = '123456789';
     $scope.busy = true;
 
@@ -76,7 +90,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done) {
+        if (response.data.done && response.data.doc) {
           user.$add = true;
           $scope.training.trainees_list.push({
             id: response.data.doc.id,
@@ -93,17 +107,17 @@ app.controller('trainees', function ($scope, $http, $timeout) {
             $http({
               method: 'POST',
               url: '/api/user/view',
-              data:{
+              data: {
                 email: user.email,
-              } ,
+              },
             }).then(function (res) {
               if (res.data.done && res.data.doc) {
                 let foundUser = $scope.training.trainees_list.find((_t) => {
                   return _t.email == user.email;
                 });
 
-                if(foundUser){
-                  user.$exists = true;
+                if (foundUser) {
+                  user.$email_exists = true;
                 } else {
                   user.$add = true;
                   $scope.training.trainees_list.push({
@@ -119,7 +133,8 @@ app.controller('trainees', function ($scope, $http, $timeout) {
                 }
               }
             });
-
+          } else if (response.data.error.like('*Number Id*')) {
+            user.$id_number_exists = true;
           } else {
             $scope.error = response.data.error;
           }
@@ -135,7 +150,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
     for (let i = 0; i < users.length; i++) {
       $timeout(() => {
         $scope.addUploadTrainee(users[i]);
-      }, 1000 * i);
+      }, 2000 * i);
     }
   };
 

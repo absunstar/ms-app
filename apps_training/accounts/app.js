@@ -84,16 +84,40 @@ module.exports = function init(site) {
     delete user.retype_password;
     user.$req = req;
     user.$res = res;
-
-    site.security.addUser(user, (err, doc) => {
-      if (!err) {
-        response.done = true;
-        response.doc = doc;
-      } else {
-        response.error = err.message;
+    site.security.getUser(
+      {
+        'role.id': 5,
+        id_number: user.id_number,
+      },
+      (err, doc) => {
+        if (!err) {
+          if (doc && doc.id) {
+            if (doc.email == user.email) {
+              response.error = 'User Exists';
+            } else if (doc.id_number == user.id_number) {
+              response.error = 'Number Id Is Exists';
+            }
+            res.json(response);
+            return;
+          } else {
+            site.security.addUser(user, (err, doc) => {
+              if (!err) {
+                response.done = true;
+                response.doc = doc;
+                res.json(response);
+              } else {
+                response.error = err.message;
+                res.json(response);
+                return;
+              }
+            });
+          }
+        } else {
+          response.error = err.message;
+          res.json(response);
+        }
       }
-      res.json(response);
-    });
+    );
   });
 
   site.post('/api/user/update', (req, res) => {

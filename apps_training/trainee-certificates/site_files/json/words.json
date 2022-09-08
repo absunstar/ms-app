@@ -10,6 +10,11 @@
     "ar": "بدء الإختبار"
   },
   {
+    "name": "there_error_while_taking_exam",
+    "en": "There is an error while taking the exam",
+    "ar": "يوجد خطأ في إجراء الإمتحان"
+  },
+  {
     "name": "finish_exam",
     "en": "Finish Exam",
     "ar": "إنهاء الإختبار"
