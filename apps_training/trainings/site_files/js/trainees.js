@@ -45,8 +45,8 @@ app.controller('trainees', function ($scope, $http, $timeout) {
               $scope.updateTraining($scope.training);
             } else if (response.data.error) {
               $scope.error = response.data.error;
-              if (response.data.error.like('*Name Exists*')) {
-                $scope.error = '##word.name_already_exists##';
+              if (response.data.error.like('*User Exists*')) {
+                $scope.error = `##word.user_already_exists## ( ${user.first_name} )`;
               }
             }
           },
@@ -89,9 +89,39 @@ app.controller('trainees', function ($scope, $http, $timeout) {
           });
           $scope.updateTraining($scope.training);
         } else if (response.data.error) {
-          $scope.error = response.data.error;
           if (response.data.error.like('*User Exists*')) {
-            $scope.error = `##word.user_already_exists## ( ${user.first_name} )`;
+            $http({
+              method: 'POST',
+              url: '/api/user/view',
+              data:{
+                email: user.email,
+              } ,
+            }).then(function (res) {
+              if (res.data.done && res.data.doc) {
+                let foundUser = $scope.training.trainees_list.find((_t) => {
+                  return _t.email == user.email;
+                });
+
+                if(foundUser){
+                  user.$exists = true;
+                } else {
+                  user.$add = true;
+                  $scope.training.trainees_list.push({
+                    id: res.data.doc.id,
+                    first_name: res.data.doc.first_name,
+                    last_name: res.data.doc.last_name,
+                    email: res.data.doc.email,
+                    mobile: res.data.doc.mobile,
+                    id_number: res.data.doc.id_number,
+                    approve: true,
+                  });
+                  $scope.updateTraining($scope.training);
+                }
+              }
+            });
+
+          } else {
+            $scope.error = response.data.error;
           }
         }
       },

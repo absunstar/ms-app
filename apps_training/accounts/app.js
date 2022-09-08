@@ -165,21 +165,24 @@ module.exports = function init(site) {
       res.json(response);
       return;
     }
+    let where = {};
 
-    site.security.getUser(
-      {
-        id: req.body.id,
-      },
-      (err, doc) => {
-        if (!err) {
-          response.done = true;
-          response.doc = doc;
-        } else {
-          response.error = err.message;
-        }
-        res.json(response);
+    if (req.body.id) {
+      where['id'] = req.body.id;
+    }
+
+    if (req.body.email) {
+      where['email'] = req.body.email;
+    }
+    site.security.getUser(where, (err, doc) => {
+      if (!err) {
+        response.done = true;
+        response.doc = doc;
+      } else {
+        response.error = err.message;
       }
-    );
+      res.json(response);
+    });
   });
 
   site.post({ name: '/api/user/login', public: true }, function (req, res) {
@@ -288,7 +291,6 @@ module.exports = function init(site) {
       where['role.id'] = where['user_type'].id;
       delete where['user_type'];
     }
-
 
     if (where['email']) {
       where['email'] = site.get_RegExp(where['email'], 'i');

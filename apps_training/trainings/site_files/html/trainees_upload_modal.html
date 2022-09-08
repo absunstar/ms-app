@@ -38,8 +38,9 @@
               <td class="center title">{{c.mobile}}</td>
 
               <td class="center not-print">
-                <i-button type="add" label="##word.add##" ng-hide="c.$add" ng-click="addUploadTrainee(c)"></i-button>
+                <i-button type="add" label="##word.add##" ng-hide="c.$add || c.$exists" ng-click="addUploadTrainee(c)"></i-button>
                 <p ng-show="c.$add" class="green">##word.add_done##</p>
+                <p ng-show="c.$exists" class="red">##word.user_already_exists##</p>
               </td>
             </tr>
           </tbody>
