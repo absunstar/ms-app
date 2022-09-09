@@ -279,6 +279,7 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.job_fairs = response.data.doc;
+          $scope.getJobFairsList();
           site.hideModal('#attendanceModal');
         } else {
           $scope.error = response.data.error;
@@ -336,6 +337,7 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#applyModal');
+          $scope.getJobFairsList();
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*registered to this Job Fair before*')) {
@@ -367,6 +369,15 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#jobFairsSearchModal');
+  };
+
+  $scope.printApplyList = function (job_fair) {
+    $scope.error = '';
+    $scope.job_fairs = job_fair;
+    $timeout(() => {
+      export_to_xlsx('a1', 'job_fairs.xlsx');
+   
+   }, 500);
   };
 
   $scope.getJobFairsList();
