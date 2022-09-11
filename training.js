@@ -42,8 +42,9 @@ site.get(
     );
   }
 );
-
 site.loadLocalApp('client-side');
+site.loadLocalApp('ui-print');
+
 site.importApps(__dirname + '/apps_training');
 site.addFeature('training');
 

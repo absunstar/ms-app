@@ -136,13 +136,10 @@ module.exports = function init(site) {
       done: false,
     };
 
-
-
     let job_fair = req.body;
 
     response.found_apply = false;
 
-    
     $job_fairs.findOne(
       {
         where: {
@@ -151,6 +148,7 @@ module.exports = function init(site) {
       },
       (err, doc) => {
         if (!err) {
+          response.done = true;
           if (job_fair.$type == 'admin') {
             doc.apply_list.forEach((_app) => {
               if (_app.id == job_fair.$apply.id) {
@@ -161,6 +159,7 @@ module.exports = function init(site) {
               doc.apply_list.push({
                 code: $job_fairs.newCode(job_fair.id, job_fair.$apply.id),
                 first_name: job_fair.$apply.first_name,
+                last_name: job_fair.$apply.last_name,
                 job_title: job_fair.$apply.job_title,
                 email: job_fair.$apply.email,
                 apply_date: job_fair.$apply.apply_date,
@@ -179,6 +178,7 @@ module.exports = function init(site) {
               doc.apply_list.push({
                 code: $job_fairs.newCode(job_fair.id, req.session.user.id),
                 first_name: req.session.user.first_name,
+                last_name: req.session.user.last_name,
                 job_title: req.session.user.job_title,
                 email: req.session.user.email,
                 apply_date: new Date(),
@@ -192,7 +192,6 @@ module.exports = function init(site) {
             res.json(response);
             return;
           }
-          response.done = true;
           $job_fairs.update(doc);
         } else {
           response.error = err.message;

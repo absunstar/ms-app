@@ -8,7 +8,6 @@
     <div id="main-layout" class="container loaded">
       <div class="row">
         <div class="row">
-          <div x-import="jobs/view_modal.html"></div>
           <div x-import="job-seeker-history/search_all_modal.html"></div>
           <div class="row">
             <h1 class="bold text-center">##word.my_jobs_history##</h1>
@@ -31,7 +30,7 @@
             </div>
 
             <div class="col2">
-              <i-button type="view" label="##word.view_job##" ng-click="viewJob(j)"></i-button>
+              <a type="button" class="btn btn-info btn-lg" style="font-size: inherit;color: #fff !important;" href="/ViewJob?id={{j.id}}"> ##word.view_job## <i class="fa fa-eye"></i> </a>
             </div>
           </div>
         </div>

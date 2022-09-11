@@ -75,9 +75,24 @@
         "ar": "إنتهاء الصلاحية"
     },
     {
+        "name": "upload_certificate",
+        "en": "Upload Certificate",
+        "ar": "تحميل الشهادة"
+    },
+    {
         "name": "created",
         "en": "Created",
         "ar": "إنشاء"
+    },
+    {
+        "name": "organization_name",
+        "en": "Organization Name",
+        "ar": "إسم المنظمة"
+    },
+    {
+        "name": "extra_curricular",
+        "en": "Extra - Curricular",
+        "ar": "أنشطة إضافية"
     },
     {
         "name": "joining",

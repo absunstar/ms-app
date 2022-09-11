@@ -17,7 +17,6 @@
           </div>
 
           <div class="top-actions">
-            <div  x-import="companies/view_modal.html"></div>
             <i-button type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
 
             <h3 class="bold text-center">##word.count## : {{count || 0}}</h3>
@@ -45,9 +44,9 @@
 
                 <td class="center not-print">
 
+                  <a type="button" class="btn btn-info btn-lg" href="/ViewCompany?id={{c.id}}" style="font-size: inherit;color: #fff !important;"> ##word.details## <i class="fa fa-eye"></i> </a>
                   <i-button type="add" label="##word.approve##" ng-click="updateCompany(c,'approve')"></i-button>
                   <i-button type="close" label="##word.reject##" ng-click="updateCompany(c,'reject')"></i-button>
-                  <i-button type="view" label="##word.details##" ng-click="viewCompany(c)"></i-button>
 
                 </td>
               </tr>

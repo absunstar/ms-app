@@ -17,6 +17,7 @@
           <div  x-import="job-fairs/view_modal.html"></div>
           <div x-import="job-fairs/search_all_modal.html"></div>
           <div x-import="job-fairs/register_apply.html"></div>
+          <div x-import="job-fairs/apply_list.html"></div>
 
           <div class="row">
             <h1 class="bold text-center">##word.job_fairs##</h1>
@@ -57,6 +58,7 @@
                   <i-button  x-permissions="admin" ng-show="!c.active" label="##word.activate##" ng-click="showActivationModal(c,'activate')"></i-button>
                   <i-button  x-permissions="admin" ng-show="c.active" label="##word.deactivate##" ng-click="showActivationModal(c,'deactivate')"></i-button>
                   <i-button x-permissions="admin" type="delete" label="##word.delete##" ng-click="displayDeleteJobFairs(c)"></i-button>
+                  <i-button x-permissions="admin" type="export" label="##word.export##" ng-click="printApplyList(c)"></i-button>
 
                 </td>
               </tr>

@@ -22,13 +22,15 @@
           <br />
           <i-button type="search" label="##word.search##" ng-click="searchTrainees(trainees_search,training.trainees_list)"> </i-button>
         </div>
-     
       </div>
 
       <div class="top-actions">
         <i-button type="add" class="col2" ng-hide="training.approve" label="##word.create_new_trainee##" ng-click="displayCreateTrainee()"></i-button>
         <i-button label="##word.add_trainees##" class="col2" ng-hide="training.approve" onclick="site.showModal( '#addtraineeToTrainingModal')"></i-button>
-        <i-upload class="col2" label="##word.upload_trainees##"  ng-hide="training.approve" on-uploaded="getTraineesUpload(uploaded_trainees)" api="/api/trainees/excel_upload"> </i-upload>
+        <i-upload class="col2" label="##word.upload_trainees##" ng-hide="training.approve" on-uploaded="getTraineesUpload(docs)" api="/api/trainees/excel_upload"> </i-upload>
+        <h4>
+          <a href="/xls/trainee.xlsx" style="color: #0038c9 !important; text-decoration: revert !important">##word.download_excel_template##</a>
+        </h4>
       </div>
       <div class="row">
         <h3 class="bold text-center">##word.count## : {{training.trainees_list.length || 0}}</h3>
@@ -47,7 +49,7 @@
         </thead>
         <tbody>
           <tr ng-repeat="c in training.trainees_list" ng-hide="c.$hide">
-            <td class="center">{{c.first_name}} - {{c.last_name}}</td>
+            <td class="center">{{c.first_name}}  {{c.last_name}}</td>
             <td class="center">{{c.email}}</td>
             <td class="center title">{{c.id_number}}</td>
             <td class="center title">{{c.mobile}}</td>
@@ -55,7 +57,7 @@
             <td class="center not-print">
               <i-button type="add" ng-show="!c.approve" label="##word.approve##" ng-click="approveTrainee($index)"></i-button>
               <i-button type="delete" label="##word.delete##" ng-hide="training.approve" ng-click="displayRemoveTraineeModal($index)"></i-button>
-              <a type="button" class="btn btn-primary btn-lg" href="/MyTrainings?id={{c.id}}">##word.certificates##</a>
+              <a type="button" class="btn btn-primary btn-lg" style="font-size: inherit;color: #fff !important;" href="/MyTrainings?id={{c.id}}">##word.certificates##</a>
             </td>
           </tr>
         </tbody>

@@ -16,7 +16,6 @@
           </div>
 
           <div class="top-actions">
-            <div  x-import="jobs/view_modal.html"></div>
             <i-button type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
 
             <h3 class="bold text-center">##word.count## : {{count || 0}}</h3>
@@ -48,7 +47,8 @@
 
                   <i-button type="add" label="##word.approve##" ng-click="updateJob(c,'approve')"></i-button>
                   <i-button type="close" label="##word.reject##" ng-click="updateJob(c,'reject')"></i-button>
-                  <i-button type="view" label="##word.details##" ng-click="viewJob(c)"></i-button>
+                <a type="button" class="btn btn-info btn-lg" style="font-size: inherit;color: #fff !important;" href="/ViewJob?id={{c.id}}"> ##word.details## <i class="fa fa-eye"></i> </a>
+
 
                 </td>
               </tr>

@@ -49,6 +49,11 @@
     "ar": "البيانات"
   },
   {
+    "name": "save_management_settings",
+    "en": "Save management settings",
+    "ar": "حفظ إعدادات الإدارة"
+  },
+  {
     "name": "terms_conditions_edit",
     "en": "Terms & Conditions",
     "ar": "تعديل الشروط والأحكام"

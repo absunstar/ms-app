@@ -369,6 +369,14 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.showPassword = function () {
+    $timeout(() => {
+      document.querySelectorAll('.pass input').forEach((p) => {
+        p.setAttribute('type', $scope.show_password ? 'text' : 'password');
+      });
+    }, 100);
+  };
+
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#accountSearchModal');

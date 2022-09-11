@@ -3,7 +3,6 @@ const { Certificate } = require('crypto');
 module.exports = function init(site) {
   const $trainings = site.connectCollection('Trainings');
 
-
   site.get({
     name: 'Trainings',
     path: __dirname + '/site_files/html/index.html',
@@ -50,19 +49,21 @@ module.exports = function init(site) {
 
     training_doc.dates_list = [];
     training_doc.days.forEach((_d) => {
-      let start = new Date(training_doc.start_date);
-      if (_d.code > start.getDay()) {
-        start.setTime(start.getTime() + (_d.code - start.getDay()) * 24 * 60 * 60 * 1000);
-      } else if (_d.code < start.getDay()) {
-        start.setTime(start.getTime() + (7 - start.getDay() + _d.code) * 24 * 60 * 60 * 1000);
+      let startDate = new Date(training_doc.start_date);
+      let endDate = new Date(training_doc.end_date);
+      if (_d.code > startDate.getDay()) {
+        startDate.setTime(startDate.getTime() + (_d.code - startDate.getDay()) * 24 * 60 * 60 * 1000);
+      } else if (_d.code < startDate.getDay()) {
+        startDate.setTime(startDate.getTime() + (7 - startDate.getDay() + _d.code) * 24 * 60 * 60 * 1000);
       }
-      first_date = new Date(start);
-      training_doc.dates_list.push({ date: first_date, day: _d, trainees_list: [] });
+      if (startDate.setHours(0,0,0,0) <= endDate.setHours(0,0,0,0)) {
+        training_doc.dates_list.push({ date: new Date(startDate), day: _d, trainees_list: [] });
+      }
 
-      while (start <= new Date(training_doc.end_date)) {
-        start.setTime(start.getTime() + 7 * 24 * 60 * 60 * 1000);
-        if (start <= new Date(training_doc.end_date)) {
-          training_doc.dates_list.push({ date: new Date(start), day: _d, trainees_list: [] });
+      while (startDate <= endDate) {
+        startDate.setTime(startDate.getTime() + 7 * 24 * 60 * 60 * 1000);
+        if (startDate.setHours(0,0,0,0) <= endDate.setHours(0,0,0,0)) {
+          training_doc.dates_list.push({ date: new Date(startDate), day: _d, trainees_list: [] });
         }
       }
     });
@@ -94,19 +95,21 @@ module.exports = function init(site) {
     if (training_doc.$edit_dates) {
       training_doc.dates_list = [];
       training_doc.days.forEach((_d) => {
-        let start = new Date(training_doc.start_date);
-        if (_d.code > start.getDay()) {
-          start.setTime(start.getTime() + (_d.code - start.getDay()) * 24 * 60 * 60 * 1000);
-        } else if (_d.code < start.getDay()) {
-          start.setTime(start.getTime() + (7 - start.getDay() + _d.code) * 24 * 60 * 60 * 1000);
+        let startDate = new Date(training_doc.start_date);
+        let endDate = new Date(training_doc.end_date);
+        if (_d.code > startDate.getDay()) {
+          startDate.setTime(startDate.getTime() + (_d.code - startDate.getDay()) * 24 * 60 * 60 * 1000);
+        } else if (_d.code < startDate.getDay()) {
+          startDate.setTime(startDate.getTime() + (7 - startDate.getDay() + _d.code) * 24 * 60 * 60 * 1000);
         }
-        first_date = new Date(start);
-        training_doc.dates_list.push({ date: first_date, day: _d, trainees_list: [] });
+        if (startDate.setHours(0,0,0,0) <= endDate.setHours(0,0,0,0)) {
+          training_doc.dates_list.push({ date: new Date(startDate), day: _d, trainees_list: [] });
+        }
 
-        while (start <= new Date(training_doc.end_date)) {
-          start.setTime(start.getTime() + 7 * 24 * 60 * 60 * 1000);
-          if (start <= new Date(training_doc.end_date)) {
-            training_doc.dates_list.push({ date: new Date(start), day: _d, trainees_list: [] });
+        while (startDate <= endDate) {
+          startDate.setTime(startDate.getTime() + 7 * 24 * 60 * 60 * 1000);
+          if (startDate.setHours(0,0,0,0) <= endDate.setHours(0,0,0,0)) {
+            training_doc.dates_list.push({ date: new Date(startDate), day: _d, trainees_list: [] });
           }
         }
       });

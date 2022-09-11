@@ -29,8 +29,8 @@
           </div>
 
           <div class="row" ng-show="account.role.name == 'trainer'">
-            <i-list v="r" class="col6" ng-change="getCityList(account.country.id)" label="##word.country##" ng-model="account.country" display="name_##session.lang##" items="countryList" ng-search="account.$training_country"></i-list>
-            <i-list v="r" class="col6" label="##word.city##" ng-model="account.city" display="name_##session.lang##" items="cityList" ng-search="account.$trainer_city"></i-list>
+            <i-list class="col6" ng-change="getCityList(account.country.id)" label="##word.country##" ng-model="account.country" display="name_##session.lang##" items="countryList" ng-search="account.$training_country"></i-list>
+            <i-list class="col6" label="##word.city##" ng-model="account.city" display="name_##session.lang##" items="cityList" ng-search="account.$trainer_city"></i-list>
           </div>
 
           <fieldset ng-hide="account.role.name == 'admin'">
@@ -40,7 +40,7 @@
             </legend>
 
             <div class="row border padding margin" ng-repeat="p in account.partners_list">
-              <i-list v="r" class="col6" label="##word.partner##" ng-change="getSubPartnerList(p)" ng-model="p.partner" display="name_##session.lang##" items="partnersList" ng-search="user.$partner"></i-list>
+              <i-list class="col6" label="##word.partner##" ng-change="getSubPartnerList(p)" ng-model="p.partner" display="name_##session.lang##" items="partnersList" ng-search="user.$partner"></i-list>
               <i-checklist ng-show="account.role.name == 'trainer' || account.role.name == 'sub_partner'" class="col6" label="##word.sub_partner##" ng-model="p.sub_partners" display="name_##session.lang##" items="p.$subPartnersList" ng-search="p.$sub_partner"></i-checklist>
             </div>
           </fieldset>

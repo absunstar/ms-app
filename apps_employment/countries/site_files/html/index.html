@@ -48,7 +48,7 @@
                 <i-button  ng-show="!c.active" label="##word.activate##" ng-click="showActivationModal(c,'activate')"></i-button>
                 <i-button  ng-show="c.active" label="##word.deactivate##" ng-click="showActivationModal(c,'deactivate')"></i-button>
                 <i-button  type="delete" label="##word.delete##" ng-click="displayDeleteCountry(c)"></i-button>
-                <a type="button" ng-show="c.active" class="btn btn-primary btn-lg" href="/Cities?id={{c.id}}">##word.cities##</a>
+                <a type="button" ng-show="c.active" style="font-size: inherit;color: #fff !important;" class="btn btn-primary btn-lg" href="/Cities?id={{c.id}}">##word.cities##</a>
               </td>
             </tr>
           </table>

@@ -1,0 +1,40 @@
+<div id="extraCurricularModal" class="modal " fixed>
+  <div class="modal-content ">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 class="center" ng-show="!extra_curricular.$edit">
+        ##word.add##
+        <i class="fa fa-plus"></i>
+      </h2>
+
+      <h2 class="center" ng-show="extra_curricular.$edit">
+        ##word.edit##
+        <i class="fa fa-plus"></i>
+      </h2>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <i-control type="text" class="col6" v="r" ng-model="extra_curricular.organization_name" label="##word.organization_name##"></i-control>
+        <i-control type="text" class="col6" v="r" ng-model="extra_curricular.job_title" label="##word.job_title##" ></i-control>
+      </div>
+      <div class="row">
+        <i-date class="col6" ng-model="extra_curricular.joining_date" label="##word.joining_date##"> </i-date>
+        <i-date class="col6" ng-model="extra_curricular.expiry_date" label="##word.expiry_date##"> </i-date>
+      </div>
+
+      <div class="row">
+        <i-textarea label="##word.description##" ng-model="extra_curricular.description">
+        </i-textarea>
+      </div>
+
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="bold text-center text-danger">{{error}}</h2>
+      <i-button type="add" label="##word.add##" ng-show="!extra_curricular.$edit" ng-click="extraCurricularTransaction(extra_curricular,'add')"></i-button>
+      <i-button type="save" label="##word.save##" ng-show="extra_curricular.$edit" ng-click="extraCurricularTransaction(extra_curricular,'upate')"></i-button>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#extraCurricularModal')"></i-button>
+    </div>
+  </div>
+</div>

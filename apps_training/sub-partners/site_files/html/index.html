@@ -3,7 +3,7 @@
   <head x-import="0/head.html"> </head>
 
   <body class="##session.lang##" ng-controller="subPartners">
-    <nav x-import="0/navbar.html" ></nav>
+    <nav x-import="0/navbar.html"></nav>
 
     <div id="main-layout" class="container loaded">
       <div class="row">
@@ -39,14 +39,13 @@
             </thead>
             <tbody>
               <tr ng-repeat="c in list">
-             
                 <td class="center title">{{c.name_##session.lang##}}</td>
                 <td class="center title">{{c.phone}}</td>
                 <td class="center">
                   <p ng-show="c.active ==true" class="green">##word.active##</p>
                   <p ng-show="!c.active" class="red">##word.not_active##</p>
                 </td>
-                
+
                 <td class="center not-print">
                   <i-button type="view" label="##word.details##" ng-click="displayDetailsSubPartner(c)"></i-button>
                   <i-button type="edit" label="##word.edit##" ng-click="displayUpdateSubPartner(c)"></i-button>
@@ -55,7 +54,7 @@
                   <i-button ng-show="!c.active" label="##word.activate##" ng-click="showActivationModal(c,'activate')"></i-button>
                   <i-button ng-show="c.active" label="##word.deactivate##" ng-click="showActivationModal(c,'deactivate')"></i-button>
                   <i-button type="delete" x-permissions="admin" label="##word.delete##" ng-click="displayDeleteSubPartner(c)"></i-button>
-                  <a type="button" ng-show="c.active" class="btn btn-primary btn-lg" href="/TrainingCenters?id={{c.id}}">##word.training_centers##</a>
+                  <a type="button" ng-show="c.active" style="font-size: inherit; color: #fff !important" class="btn btn-primary btn-lg" href="/TrainingCenters?id={{c.id}}">##word.training_centers##</a>
                 </td>
               </tr>
             </tbody>
@@ -66,7 +65,7 @@
       </div>
     </div>
 
-    <div  x-import="0/footer.html" ></div>
+    <div x-import="0/footer.html"></div>
     <div x-import="0/scripts.html"></div>
     <script x-import="sub-partners/index.js"></script>
   </body>

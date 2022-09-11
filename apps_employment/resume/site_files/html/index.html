@@ -5,23 +5,22 @@
   <body class="##session.lang## loaded" ng-controller="resume">
     <div x-import="0/navbar.html"></div>
 
-   
     <div id="main-layout" class="container" id="resumeModal">
       <div class="row resume">
         <div x-import="resume/profile.html"></div>
         <div x-import="resume/education_modal.html"></div>
         <div x-import="resume/certificate_modal.html"></div>
-        <div x-import="resume/skill_modal.html"></div>
+        <div x-import="resume/extra_curricular_modal.html"></div>
         <div x-import="resume/work_experience_modal.html"></div>
         <div x-import="resume/remove_short.html"></div>
 
-        <div class="row">
+        <div class="row bold">
           <div class="col8">
             <div class="col3">
               <i-image x-permissions="job_seeker" ng-change="update(user)" ng-model="user.image"></i-image>
               <i-image view x-permissions="employer || admin" ng-model="user.image"></i-image>
             </div>
-            <div class="col9">
+            <div class="col9 bold">
               <br />
               <br />
               <h2>
@@ -60,7 +59,7 @@
 
         <div class="row">
           <div class="col8">
-            <div class="row">
+            <div class="row bold">
               <fieldset>
                 <legend>
                   ##word.about_me##
@@ -70,11 +69,11 @@
                 </legend>
 
                 <i-textarea ng-show="user.$edit_about_me" ng-model="about_me"> </i-textarea>
-                <p ng-hide="user.$edit_about_me">{{user.about_me}}</p>
+                <p ng-hide="user.$edit_about_me" class="lines_text">{{user.about_me}}</p>
               </fieldset>
             </div>
 
-            <div class="row">
+            <div class="row bold">
               <fieldset>
                 <legend>
                   ##word.education##
@@ -83,8 +82,9 @@
                 <div class="row border margin padding" ng-repeat="e in user.educations_list">
                   <p><b>{{e.university_name}}</b> , <b>{{e.faculty_name}}</b></p>
                   <p>
-                    <span ng-show="e.joining_date">{{e.joining_date | date:"dd/MM/yyyy"}}</span>
-                    <span ng-show="e.expiry_date"> - {{e.expiry_date | date:"dd/MM/yyyy"}} </span>
+                    <span ng-show="e.joining_date" class="green">{{e.joining_date | date:"dd/MM/yyyy"}}</span>
+                    <span ng-show="e.expiry_date"> - </span>
+                    <span ng-show="e.expiry_date" class="red"> {{e.expiry_date | date:"dd/MM/yyyy"}} </span>
                   </p>
                   <p class="lines_text">{{e.description}}</p>
 
@@ -94,46 +94,70 @@
               </fieldset>
             </div>
 
-            <div class="row">
+            <div class="row bold">
               <fieldset>
                 <legend>
                   ##word.work_experience##
                   <i-button x-permissions="job_seeker" type="add default" ng-click="showWorkExperience('add')"></i-button>
                 </legend>
                 <div class="row border margin padding" ng-repeat="e in user.work_experience_list">
-                  <p><span ng-show="e.job_title">{{e.job_title}}</span> <span class="blue" ng-show="e.company_name"> @ {{e.company_name}}</span></p>
+                  <p><b ng-show="e.job_title">{{e.job_title}}</b> <b class="blue" ng-show="e.company_name"> {{e.company_name}}</b></p>
                   <p>
-                    <span ng-show="e.joining_date">{{e.joining_date | date:"dd/MM/yyyy"}}</span>
-                    <span ng-show="e.expiry_date"> - {{e.expiry_date | date:"dd/MM/yyyy"}} </span>
+                    <span ng-show="e.joining_date" class="green">{{e.joining_date | date:"dd/MM/yyyy"}}</span>
+                    <span ng-show="e.expiry_date"> - </span>
+                    <span ng-show="e.expiry_date" class="red"> {{e.expiry_date | date:"dd/MM/yyyy"}} </span>
                   </p>
-                  <p>{{e.description}}</p>
+                  <p class="lines_text">{{e.description}}</p>
                   <i-button x-permissions="job_seeker" type="edit default" ng-click="showWorkExperience('edit',e)"></i-button>
                   <i-button x-permissions="job_seeker" type="delete default" ng-click="user.work_experience_list.splice($index,1) ; update(user)"></i-button>
                 </div>
               </fieldset>
             </div>
 
-            <div class="row">
+            <div class="row bold">
               <fieldset>
                 <legend>
                   ##word.certificates##
                   <i-button x-permissions="job_seeker" type="add default" ng-click="showCertificate('add')"></i-button>
                 </legend>
                 <div class="row border padding margin" ng-repeat="e in user.certificates_list">
-                  <p><span class="bold blue"> {{e.certificate_name}} </span> <span> {{e.certificate_date | date:"dd/MM/yyyy"}} </span></p>
-                  <p>{{e.description}}</p>
+                  <i-file view label="##word.upload_certificate##" ng-model="e.upload_certificate"></i-file>
+
+                  <p><span class="bold blue"> {{e.certificate_name}} </span> <span class="green"> {{e.certificate_date | date:"dd/MM/yyyy"}} </span></p>
+                  <p class="lines_text">{{e.description}}</p>
 
                   <i-button x-permissions="job_seeker" type="edit default" ng-click="showCertificate('edit',e)"></i-button>
                   <i-button x-permissions="job_seeker" type="delete default" ng-click="user.certificates_list.splice($index,1) ; update(user)"></i-button>
                 </div>
               </fieldset>
             </div>
+
+            <div class="row bold">
+              <fieldset>
+                <legend>
+                  ##word.extra_curricular##
+                  <i-button x-permissions="job_seeker" type="add default" ng-click="showExtraCurricular('add')"></i-button>
+                </legend>
+                <div class="row border margin padding" ng-repeat="e in user.extra_curriculars_list">
+                  <p><b ng-show="e.organization_name">{{e.organization_name}}</b> <b class="blue" ng-show="e.job_title"> {{e.job_title}}</b></p>
+                  <p>
+                    <span ng-show="e.joining_date" class="green">{{e.joining_date | date:"dd/MM/yyyy"}}</span>
+                    <span ng-show="e.expiry_date"> - </span>
+                    <span ng-show="e.expiry_date" class="red"> {{e.expiry_date | date:"dd/MM/yyyy"}} </span>
+                  </p>
+                  <p class="lines_text">{{e.description}}</p>
+                  <i-button x-permissions="job_seeker" type="edit default" ng-click="showExtraCurricular('edit',e)"></i-button>
+                  <i-button x-permissions="job_seeker" type="delete default" ng-click="user.extra_curriculars_list.splice($index,1) ; update(user)"></i-button>
+                </div>
+              </fieldset>
+            </div>
           </div>
 
           <div class="col4">
-            <div class="row" id="editProfileModal">
+            <div class="row bold" id="editProfileModal">
               <fieldset>
                 <legend>
+                  ##word.edit##
                   <i-button x-permissions="job_seeker" type="edit default" ng-hide="user.$edit_profile" ng-click="editProfile(user,'edit')"></i-button>
                   <i-button x-permissions="job_seeker" type="save default" ng-show="user.$edit_profile" ng-click="editProfile(user,'save')"></i-button>
                   <i-button x-permissions="job_seeker" type="close default" ng-show="user.$edit_profile" ng-click="editProfile(user,'close')"></i-button>
@@ -165,7 +189,7 @@
               </fieldset>
             </div>
 
-            <div class="row">
+            <div class="row bold">
               <fieldset x-permissions="job_seeker">
                 <legend>##word.attachments##</legend>
                 <i-file ng-change="update(user)" label="##word.upload_cover_letter##" categoty="upload_cover_letter" ng-model="user.upload_cover_letter"></i-file>
@@ -178,7 +202,7 @@
                 <i-file view ng-change="update(user)" label="##word.upload_resume##" categoty="upload_resume" ng-model="user.upload_resume"></i-file>
               </fieldset>
             </div>
-            <div class="row">
+          <!--   <div class="row bold">
               <fieldset>
                 <legend>
                   ##word.skills##
@@ -193,12 +217,12 @@
                   <p class="lines_text">{{e.description}}</p>
                 </div>
               </fieldset>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
     </div>
- <div x-import="0/footer.html" ></div>
+    <div x-import="0/footer.html"></div>
     <div x-import="0/scripts.html"></div>
     <script x-import="resume/index.js"></script>
   </body>

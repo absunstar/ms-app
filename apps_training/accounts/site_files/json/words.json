@@ -190,6 +190,11 @@
         "ar": "الإسم الأول"
     },
     {
+        "name": "id_number_exists",
+        "en": "Id Number Exists",
+        "ar": "رقم الهوية موجود من قبل"
+    },
+    {
         "name": "last_name",
         "en": "Last Name",
         "ar": "الإسم الأخير"

@@ -49,6 +49,9 @@ app.controller('traineeCertificates', function ($scope, $http, $timeout) {
           $scope.training = training;
           $scope.startExamTime();
           site.showModal('#examModal');
+        } else {
+        $scope.error = '##word.there_error_while_taking_exam##';
+
         }
       },
       function (err) {

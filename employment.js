@@ -55,7 +55,8 @@ site.get(
 site.loadLocalApp('client-side');
 site.importApps(__dirname + '/apps_employment');
 site.importApp(__dirname + '/apps_private/ui-help');
-
+site.importApp(__dirname + '/apps_private');
+site.loadLocalApp('ui-print');
 site.addFeature('employment');
 
 site.run();

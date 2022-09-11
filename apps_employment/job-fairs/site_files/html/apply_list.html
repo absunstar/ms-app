@@ -1,0 +1,45 @@
+<div id="applyListAddModal" class="modal" fixed>
+  <div class="modal-content height-auto">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 class="center">
+        ##word.job_fairs_add##
+        <i class="fa fa-plus"></i>
+      </h2>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <table x-permissions="login" class="table hover text-center" id="a1">
+          <tr>
+            <th>S.No</th>
+            <th>##word.name##</th>
+            <th>##word.job_title##</th>
+            <th>##word.apply_date##</th>
+            <th>##word.attendance##</th>
+            <th>##word.code##</th>
+            <th>##word.email##</th>
+          </tr>
+          <tbody>
+            <tr ng-repeat="c in job_fairs.apply_list">
+              <td class="center">{{$index + 1}}</td>
+              <td class="center">{{c.first_name}}</td>
+              <td class="center">{{c.job_title}}</td>
+              <td class="center">{{c.apply_date | date:"dd/MM/yyyy"}}</td>
+              <td class="center">{{c.is_attendance}}</td>
+              <td class="center">{{c.code}}</td>
+              <td class="center">{{c.email}}</td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="bold text-center text-danger">{{error}}</h2>
+      <i-button type="add" label="##word.add##" ng-click="addJobFairs()"></i-button>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#applyListAddModal')"></i-button>
+    </div>
+  </div>
+</div>

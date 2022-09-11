@@ -35,12 +35,5 @@ app.controller('loginEmployment', function ($scope, $http, $timeout) {
       }
     );
   };
-  $scope.showPass = function () {
-    let x = document.getElementById('pass');
-    if (x.type === 'password') {
-      x.type = 'text';
-    } else {
-      x.type = 'password';
-    }
-  };
+
 });

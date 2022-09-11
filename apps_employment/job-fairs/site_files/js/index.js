@@ -229,12 +229,12 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
   $scope.getJobSeeker = function () {
     $scope.busy = true;
     $scope.jobSeekerList = [];
- 
+
     $http({
       method: 'POST',
       url: '/api/users/all',
       data: {
-        where: { 'role.name': 'job_seeker' , active : true},
+        where: { 'role.name': 'job_seeker', active: true },
       },
     }).then(
       function (response) {
@@ -266,7 +266,7 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
-    } 
+    }
     $http({
       method: 'POST',
       url: '/api/job_fairs/attendance',
@@ -279,6 +279,7 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.job_fairs = response.data.doc;
+          $scope.getJobFairsList();
           site.hideModal('#attendanceModal');
         } else {
           $scope.error = response.data.error;
@@ -289,13 +290,11 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
           }
         }
         site.resetValidated('#attendanceModal');
-
       },
       function (err) {
         console.log(err);
       }
     );
-  
   };
 
   $scope.registerApplyJobSeeker = function (jF) {
@@ -309,9 +308,7 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.job_fairs.$found_apply = response.data.found_apply;
-          site.showModal('#registerApplyModal');
-        } else {
+          $scope.job_fairs = jF;
           $scope.job_fairs.$found_apply = response.data.found_apply;
           site.showModal('#registerApplyModal');
         }
@@ -340,6 +337,7 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#applyModal');
+          $scope.getJobFairsList();
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*registered to this Job Fair before*')) {
@@ -371,6 +369,15 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#jobFairsSearchModal');
+  };
+
+  $scope.printApplyList = function (job_fair) {
+    $scope.error = '';
+    $scope.job_fairs = job_fair;
+    $timeout(() => {
+      export_to_xlsx('a1', 'job_fairs.xlsx');
+   
+   }, 500);
   };
 
   $scope.getJobFairsList();

@@ -605,6 +605,11 @@
     "en": "The name already exists",
     "ar": "الإسم موجود من قبل"
   },
+   {
+    "name": "email_already_exists",
+    "en": "The Email already exists",
+    "ar": "البريد الإلكتروني موجود من قبل"
+  },
   {
     "name": "deactivate",
     "en": "Deactivate",
@@ -914,6 +919,11 @@
     "name": "select",
     "en": " Select",
     "ar": "إضافة"
+  },
+  {
+    "name": "user_already_exists",
+    "en": " User already exists",
+    "ar": "المستخدم موجود من قبل"
   },
   {
     "name": "login_information",

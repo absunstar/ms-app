@@ -10,6 +10,31 @@
     "ar": "قائمة المتدربين"
   },
   {
+    "name": "add_all",
+    "en": "Add All",
+    "ar": "إضافة الكل"
+  },
+  {
+    "name": "add_all",
+    "en": "Add All",
+    "ar": "إضافة الكل"
+  },
+  {
+    "name": "id_number_not_exists",
+    "en": "Id Number does not Exists",
+    "ar": "رقم الهوية غير موجود"
+  },
+  {
+    "name": "password_users_will_be",
+    "en": "The password for users will be",
+    "ar": "ستكون كلمة المرور للمستخدمين هي "
+  },
+  {
+    "name": "download_excel_template",
+    "en": "Download an Excel template",
+    "ar": "تنزيل نموذج Excel"
+  },
+  {
     "name": "add_trainees",
     "en": "Add Trainees",
     "ar": "إضافة متدربين"

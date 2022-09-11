@@ -26,7 +26,7 @@ app.controller('shortListedResumes', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.removeShortList = function (user, type) {
+  $scope.removeShortList = function (user) {
     $scope.busy = true;
     $http({
       method: 'POST',

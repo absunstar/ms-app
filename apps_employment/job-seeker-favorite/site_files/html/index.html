@@ -14,8 +14,6 @@
           </div>
 
           <div class="top-actions">
-            <div  x-import="jobs/view_modal.html"></div>
-            <div  x-import="job-seeker-favorite/apply_modal.html"></div>
           </div>
 
           <div class="row job" ng-repeat="j in list">
@@ -31,7 +29,7 @@
             </div>
   
             <div class="col2">
-              <i-button type="view" label="##word.view_job##" ng-click="viewJob(j)"></i-button>
+              <a type="button" class="btn btn-info btn-lg" style="font-size: inherit;color: #fff !important;" href="/ViewJob?id={{j.id}}"> ##word.view_job## <i class="fa fa-eye"></i> </a>
               <i-button type="delete" ng-click="favoriteTransaction(j,'remove')"></i-button>
             </div>
           </div>

@@ -29,33 +29,6 @@ app.controller('jobSeekerFavorite', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.viewApply = function () {
-
-    site.showModal('#applyModal');
-  };
-
-  $scope.applyAccept = function (job) {
-
-    const v = site.validated('#applyModal');
-    if (!v.ok) {
-      $scope.error = v.messages[0].ar;
-      return;
-    }
-
-    $scope.busy = true;
-    job.application_list.push({
-      user_id :site.toNumber('##user.id##'),
-      date : new Date(),
-      message : $scope.message
-    });
-
-    $scope.updateJob(job);
-
-    $scope.applied = true;
-    site.hideModal('#applyModal');
-    site.resetValidated('#applyModal');
-  };
-
   $scope.favoriteTransaction = function (job,type) {
     if(type == 'add'){
       job.favorite_list.push(site.toNumber('##user.id##'));
@@ -69,7 +42,6 @@ app.controller('jobSeekerFavorite', function ($scope, $http, $timeout) {
     }
     $scope.updateJob(job);
   };
-
 
   $scope.updateJob = function (job) {
     $scope.busy = true;

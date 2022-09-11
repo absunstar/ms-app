@@ -16,7 +16,7 @@
 <script>
   var app = app || angular.module('myApp', []);
 </script>
-
+<script x-import="ui-print/index.js"></script>
 <script src="/js/FileSaver.js?v=##site.options.version##"></script>
 <script src="/js/xlsx.full.min.js?v=##site.options.version##"></script>
 
@@ -49,10 +49,15 @@
   }
 
   function export_to_xlsx(id, _fileName) {
+    let table = document.getElementById(id).cloneNode(true);
+    table.querySelectorAll('.not-print').forEach((el) => {
+      el.parentElement.removeChild(el);
+    });
     _fileType = 'xlsx';
-    var workbook = XLSX.utils.table_to_book(document.getElementById(id), {
+    var workbook = XLSX.utils.table_to_book(table, {
       sheet: 'Sheet JS',
     });
+
     var wbout = XLSX.write(workbook, {
       bookType: _fileType,
       bookSST: true,
