@@ -499,6 +499,8 @@ app.controller('trainings', function ($scope, $http, $timeout) {
 
   $scope.displayAttendanceModal = function (c) {
     $scope.error = '';
+    c.$absence_all = false;
+    c.$attend_all = false;
     $scope.attendance = c;
     if (new Date($scope.attendance.date) > new Date()) {
       $scope.error = '##word.attendance_cannot_modified_before_date##';
@@ -520,7 +522,6 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       }
     });
 
-    site.showModal('#attendanceModal');
   };
 
   $scope.displaySearchModal = function () {

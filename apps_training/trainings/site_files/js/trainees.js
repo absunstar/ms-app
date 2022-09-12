@@ -147,6 +147,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
   };
 
   $scope.uploadAllTrainees = function (users) {
+    $scope.error = '';
     for (let i = 0; i < users.length; i++) {
       $timeout(() => {
         $scope.addUploadTrainee(users[i]);
@@ -155,6 +156,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
   };
 
   $scope.getTraineesUpload = function (docs) {
+    $scope.error = '';
     $scope.upload_trainees_list = docs;
     site.showModal('#traineesUploadModal');
   };
@@ -191,6 +193,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
   };
 
   $scope.updateTraining = function (training) {
+    $scope.error = '';
     $scope.busy = true;
     $http({
       method: 'POST',
@@ -336,6 +339,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
   };
 
   $scope.showPassword = function () {
+    $scope.error = '';
     $timeout(() => {
       document.querySelectorAll('.pass input').forEach((p) => {
         p.setAttribute('type', $scope.show_password ? 'text' : 'password');

@@ -584,10 +584,9 @@ module.exports = function init(site) {
                 TrainingCategories.setText(trainee_degree.toString() + ' % ');
 
                 let start_date = form.getTextField('StartDate');
-                start_date.setText(`${startDate.getDay()}  /  ${startDate.getMonth()} /  ${startDate.getFullYear()}`);
-
+                start_date.setText(`${startDate.getDate()}  /  ${startDate.getMonth()+1} /  ${startDate.getFullYear()}`);
                 let end_date = form.getTextField('EndDate');
-                end_date.setText(`${endDate.getDay()}  /  ${endDate.getMonth()} /  ${endDate.getFullYear()}`);
+                end_date.setText(`${endDate.getDate()}  /  ${endDate.getMonth()+1} /  ${endDate.getFullYear()}`);
 
                 doc.save().then((new_file_stream) => {
                   site.fs.writeFileSync(found_certificate.certificate.path, new_file_stream);

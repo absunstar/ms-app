@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp">
+  <head x-import="head.html"> </head>
+
+  <body class="##session.lang##">
+    <nav class="sitebar" x-import="sitebar/index.html" ng-controller="sitebar"></nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
+
+    <div id="main-layout" class="container loaded">
+      <div class="row">
+        <div class="col" ng-controller="training_report">
+          <div x-import="training-report/add_modal.html"></div>
+          <div x-import="training-report/update_modal.html"></div>
+          <div x-import="training-report/delete_modal.html"></div>
+          <div x-import="training-report/view_modal.html"></div>
+          <br />
+          <br />
+          <br />
+
+          <div class="row">
+            <h1 class="bold text-center">##word.training_report##</h1>
+          </div>
+
+          <br />
+
+          <form action="">
+
+          <div class="container">
+            <div class="row g-2">
+              <div class="col">
+
+                <select class="form-select col" ng-model="search.partner" ng-options="s as (s.Name)   for s in entityPartnerList">
+                  <option value="" selected>##word.selected## (##word.partner##)</option>
+                </select>
+              </div>
+              <div class="col">
+
+              <select class="form-select col" ng-model="search.sub_partner" ng-options="s as (s.Name)   for s in entitySubPartnerList">
+                <option value="" selected>##word.selected## (##word.sub_partner##)</option>
+              </select>
+            </div>
+            <div class="col">
+
+              <select class="form-select col" ng-model="search.trainer" ng-options="s as (s.Name)   for s in trainersList">
+                <option value="" selected>##word.selected## (##word.trainer##)</option>
+              </select>
+            </div>
+
+          </div>
+          <br />
+            <div class="row g-2">
+          
+              <div class="col">
+
+                <select class="form-select col" ng-model="search.training_type" ng-options="s as (s.Name)   for s in trainingTypesList">
+                  <option value="" selected>##word.selected## (##word.training_type##)</option>
+                </select>
+              </div>
+                <div class="col">
+
+                  <select class="form-select col" ng-model="search.training_category" ng-options="s as (s.Name)   for s in trainingCategoryList">
+                    <option value="" selected>##word.selected## (##word.training_category##)</option>
+                  </select>
+                </div>
+                <div class="col">
+                  <a type="button" class="btn btn-primary col" ng-click="getTrainingList(search)"> <i class="fa fa-search"></i> ##word.search##</a>
+                </div>
+            </div>
+          </div>
+        </form>
+
+          <br />
+          <div class="top-actions">
+            <h3 class="bold text-center">##word.count## : {{count}}</h3>
+          </div>
+          <br />
+          <table class="table table-striped text-center" id="t1">
+            <thead>
+              <tr>
+                <th scope="col">##word.type## (##word.category##)</th>
+                <th scope="col">##word.trainer## (##word.partner##)</th>
+                <th scope="col">##word.mobile##</th>
+                <th scope="col">##word.email##</th>
+                <th scope="col">##word.city##</th>
+                <th scope="col">##word.area##</th>
+                <th scope="col">##word.succeed_trainees##</th>
+                <th scope="col">##word.start_date##</th>
+                <th scope="col">##word.end_date##</th>
+                <th scope="col" class="not-print">##word.actions##</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="c in trainingList">
+                <td>{{c.TrainingType.Name}} ({{c.TrainingCategory.Name}})</td>
+                <td>{{c.Trainer.Name}} ({{c.PartnerId.Name}})</td>
+                <td>{{c.Trainer.Mobile}}</td>
+                <td>{{c.Trainer.Email}}</td>
+                <td>{{c.CityObj.Name}}</td>
+                <td>{{c.AreaName}}</td>
+                <td>{{c.TrainerCount}}</td>
+                <td>{{c.StartDate | date:"dd - MM - yyyy"}}</td>
+                <td>{{c.EndDate | date:"dd - MM - yyyy"}}</td>
+                <td class="not-print"><a type="button" class="btn btn-light col" ng-click="displayTrainees(c)"> <i class="fa fa-file"></i> ##word.trainees##</a></td>
+              </td>
+              </tr>
+            </tbody>
+          </table>
+          <div ng-show="!trainingList.length" class="p-3 mb-2 fs-1  text-center bg-warning text-dark">##word.there_are_no_data##</div>
+          <div class="container mt-3">
+            <a type="button" class="btn btn-secondary col" onclick="export_to_xlsx('t1' , 'training_report.xlsx')">##word.export_to_excel##</a>
+            <a type="button" class="btn btn-info col" onclick="site.print('#t1')">##word.print##</a>
+          </div>
+          <br />
+          <br />
+          <br />
+
+          <div id="message" class="col- col-md-offset-1">
+
+            <div class="alert alert-danger text-center span4 offset4" role="alert" style="position: fixed; 
+            top: 200px; 
+            left: 0px; 
+            width: 100%;
+            z-index:9999; 
+            border-radius:0px;display: block; z-index: 1000005;">
+              <p class="font-weight-bolder fs-2"> ##word.there_no_trainees_for_this_course##</p>
+              
+            </div>
+          </div>
+
+          <div class="modal" id="traineesModal">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">##word.trainees##</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="site.hideModal('#traineesModal')"></button>
+                </div>
+
+                <div class="modal-body">
+                  <br />
+
+                  <table class="table table-striped text-center" id="t2">
+
+                    <thead>
+                      <tr>
+                        <th scope="col">##word.type## (##word.category##)</th>
+                        <th scope="col">##word.trainer## (##word.partner##)</th>
+                         <th scope="col">##word.trainee##</th>
+                        <th scope="col">##word.mobile##</th>
+                        <th scope="col">##word.email##</th>
+                        <th scope="col">##word.national_id##</th>
+      
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr ng-repeat="t in TraineesList">
+                        <td>{{course.TrainingType.Name}} ({{course.TrainingCategory.Name}})</td>
+                        <td>{{course.Trainer.Name}} ({{course.PartnerId.Name}})</td>
+                        <td>{{t.Name}}</td>
+                        <td>{{t.Mobile}}</td>
+                        <td>{{t.Email}}</td>
+                        <td>{{t.NationalId}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="container mt-3">
+                    <a type="button" class="btn btn-secondary col" onclick="export_to_xlsx('t2' , 'training_report.xlsx')">##word.export_to_excel##</a>
+                    <a type="button" class="btn btn-info col" onclick="site.print('#t2')">##word.print##</a>
+                  </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="site.hideModal('#traineesModal')">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+ 
+
+    <div x-import="scripts.html"></div>
+
+    <script x-import="training-report/index.js"></script>
+  </body>
+</html>
