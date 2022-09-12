@@ -371,7 +371,7 @@ main {
 }
 
 .about-section {
-  display: grid !important;
+  display: flex !important;
   grid-template-columns: 50% 50%;
   padding: 5% 0 !important;
   gap: 45px;
