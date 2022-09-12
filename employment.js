@@ -1,7 +1,7 @@
 const site = require('../isite')({
   port: [44441],
   lang: 'en',
-  version: '1.0.17',
+  version: '2022.09.12.9',
   name: 'employment',
   theme: 'theme_paper',
   savingTime: 10,

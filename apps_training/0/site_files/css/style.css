@@ -185,7 +185,8 @@ a {
  } */
 
 .logo {
-  width: 112px;
+  width: 150px;
+  height: auto;
 }
 
 .container-fluid {
@@ -213,6 +214,7 @@ button.strock {
   white-space: nowrap;
   padding: 0 60px !important;
   margin: 5px;
+  max-width: 100px;
 }
 button.fill {
   display: flex !important;
@@ -607,6 +609,7 @@ a.jobs-heading {
 img.user-pictuer {
   width: 58px;
   border-radius: 50%;
+  height: 100%;
 }
 
 .profile-pictuer {
