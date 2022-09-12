@@ -63,4 +63,59 @@ app.controller('navbar', ($scope, $http) => {
       }
     });
   };
+
+  $scope.getCompanyList = function () {
+    let where = {};
+    $scope.busy = true;
+    where['active'] = true;
+    where['approve.id'] = 1;
+    $scope.companiesCount = 0;
+    $http({
+      method: 'POST',
+      url: '/api/companies/all',
+      data: {
+        where: where,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list && response.data.list.length > 0) {
+          $scope.companiesCount = response.data.list.length;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getJobList = function () {
+    let where = {};
+    $scope.busy = true;
+    $scope.jobsCount = 0;
+    where['active'] = true;
+    where['approve.id'] = 2;
+    $http({
+      method: 'POST',
+      url: '/api/jobs/all',
+      data: {
+        where: where,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list && response.data.list.length > 0) {
+          $scope.jobsCount = response.data.list.length;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getCompanyList();
+  $scope.getJobList();
 });
