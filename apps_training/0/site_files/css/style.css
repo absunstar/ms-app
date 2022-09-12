@@ -608,6 +608,7 @@ a.jobs-heading {
 img.user-pictuer {
   width: 58px;
   border-radius: 50%;
+  height: 100%;
 }
 
 .profile-pictuer {
