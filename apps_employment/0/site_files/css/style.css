@@ -157,6 +157,7 @@ a {
 
 .logo {
   width: 150px;
+  height: auto;
 }
 
 .container-fluid {
