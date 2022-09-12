@@ -46,7 +46,7 @@
           <tr ng-repeat="c in question.answers_list">
             <td class="center lines_text">{{c.answer}}</td>
             <td class="center">
-              <p ng-show="c.correct ==true">##word.yes##</p>
+              <p ng-show="c.correct">##word.yes##</p>
               <p ng-show="!c.correct">##word.no##</p>
             </td>
           </tr>

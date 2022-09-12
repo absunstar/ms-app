@@ -10,6 +10,11 @@
         "ar": "عامة"
     },
     {
+        "name": "download_trainee_certificate",
+        "en": "Download Trainee Certificate",
+        "ar": "تنزيل شهادة المتدرب"
+    },
+    {
         "name": "upload_trainee_certificate",
         "en": "Upload Trainee Certificate",
         "ar": "تحميل شهادة المتدرب"

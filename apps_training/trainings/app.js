@@ -56,13 +56,13 @@ module.exports = function init(site) {
       } else if (_d.code < startDate.getDay()) {
         startDate.setTime(startDate.getTime() + (7 - startDate.getDay() + _d.code) * 24 * 60 * 60 * 1000);
       }
-      if (startDate.setHours(0,0,0,0) <= endDate.setHours(0,0,0,0)) {
+      if (startDate.setHours(0, 0, 0, 0) <= endDate.setHours(0, 0, 0, 0)) {
         training_doc.dates_list.push({ date: new Date(startDate), day: _d, trainees_list: [] });
       }
 
       while (startDate <= endDate) {
         startDate.setTime(startDate.getTime() + 7 * 24 * 60 * 60 * 1000);
-        if (startDate.setHours(0,0,0,0) <= endDate.setHours(0,0,0,0)) {
+        if (startDate.setHours(0, 0, 0, 0) <= endDate.setHours(0, 0, 0, 0)) {
           training_doc.dates_list.push({ date: new Date(startDate), day: _d, trainees_list: [] });
         }
       }
@@ -102,13 +102,13 @@ module.exports = function init(site) {
         } else if (_d.code < startDate.getDay()) {
           startDate.setTime(startDate.getTime() + (7 - startDate.getDay() + _d.code) * 24 * 60 * 60 * 1000);
         }
-        if (startDate.setHours(0,0,0,0) <= endDate.setHours(0,0,0,0)) {
+        if (startDate.setHours(0, 0, 0, 0) <= endDate.setHours(0, 0, 0, 0)) {
           training_doc.dates_list.push({ date: new Date(startDate), day: _d, trainees_list: [] });
         }
 
         while (startDate <= endDate) {
           startDate.setTime(startDate.getTime() + 7 * 24 * 60 * 60 * 1000);
-          if (startDate.setHours(0,0,0,0) <= endDate.setHours(0,0,0,0)) {
+          if (startDate.setHours(0, 0, 0, 0) <= endDate.setHours(0, 0, 0, 0)) {
             training_doc.dates_list.push({ date: new Date(startDate), day: _d, trainees_list: [] });
           }
         }
@@ -567,24 +567,27 @@ module.exports = function init(site) {
               found_certificate.certificate.path = found_certificate.certificate.path.split('\\');
               found_certificate.certificate.path[found_certificate.certificate.path.length - 1] = file_name;
               found_certificate.certificate.path = found_certificate.certificate.path.join('\\');
-
               found_certificate.certificate.url = found_certificate.certificate.url.split('/');
               found_certificate.certificate.url[found_certificate.certificate.url.length - 1] = file_name;
               found_certificate.certificate.url = found_certificate.certificate.url.join('/');
-              trainingDoc.start_date = new Date(trainingDoc.start_date);
-              trainingDoc.end_date = new Date(trainingDoc.end_date);
+
+              let startDate = new Date(trainingDoc.start_date);
+              let endDate = new Date(trainingDoc.end_date);
+
               site.pdf.PDFDocument.load(file_stream).then((doc) => {
                 let form = doc.getForm();
+
                 let nameField = form.getTextField('Name');
                 nameField.setText(req.session.user.first_name + ' ' + req.session.user.last_name);
+
                 let TrainingCategories = form.getTextField('TrainingCategories');
                 TrainingCategories.setText(trainee_degree.toString() + ' % ');
 
                 let start_date = form.getTextField('StartDate');
-                start_date.setText(`${trainingDoc.start_date.getDay()}  /  ${trainingDoc.start_date.getMonth()} /  ${trainingDoc.start_date.getFullYear()}`);
+                start_date.setText(`${startDate.getDay()}  /  ${startDate.getMonth()} /  ${startDate.getFullYear()}`);
 
                 let end_date = form.getTextField('EndDate');
-                end_date.setText(`${trainingDoc.end_date.getDay()}  /  ${trainingDoc.end_date.getMonth()} /  ${trainingDoc.end_date.getFullYear()}`);
+                end_date.setText(`${endDate.getDay()}  /  ${endDate.getMonth()} /  ${endDate.getFullYear()}`);
 
                 doc.save().then((new_file_stream) => {
                   site.fs.writeFileSync(found_certificate.certificate.path, new_file_stream);

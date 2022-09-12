@@ -44,7 +44,7 @@
               <th>##word.job_name##</th>
               <th>##word.applications##</th>
               <th>##word.approve##</th>
-              <th>##word.status##</th>
+              <th class="not-print">##word.status##</th>
               <th class="not-print">##word.actions##</th>
             </tr>
             <tbody>
@@ -56,13 +56,12 @@
                   <p>##word.created## : {{c.add_user_info.date | date:"dd/MM/yyyy"}}</p>
                   <p>##word.expiry## : {{c.application_deadline_date | date:"dd/MM/yyyy"}}</p>
                 </td>
-                <td class="center title">( {{c.application_list.length || 0}} )</td>
+                <td class="center title"> {{c.application_list.length}} </td>
                 <td class="center title">{{c.approve.##session.lang##}}</td>
-                <td class="center">
-                  <p ng-show="c.active ==true" class="green">##word.active##</p>
+                <td class="center not-print">
+                  <p ng-show="c.active" class="green">##word.active##</p>
                   <p ng-show="!c.active" class="red">##word.not_active##</p>
                 </td>
-
                 <td class="center not-print">
                   <a type="button" class="btn btn-primary btn-lg" style="font-size: inherit; color: #fff !important" ng-show="c.application_list.length > 0" href="/AppliedResumes?id={{c.id}}">##word.resumes##</a>
                   <a type="button" class="btn btn-info btn-lg" style="font-size: inherit; color: #fff !important" href="/ViewJob?id={{c.id}}"> ##word.details## <i class="fa fa-eye"></i> </a>

@@ -40,7 +40,7 @@
               <td class="center not-print">
                 <p class="red"  ng-show="c.$start_exam_count >= 3 && !c.$finish_exam">##word.maximum_entrance_exam_exceeded##</p>
                 <p class="red" ng-show="c.$finish_exam && c.$trainee_degree < c.success_rate">##word.Did_not_pass_exam##</p>
-                <i-file view ng-show="c.$finish_exam && c.$trainee_degree >= c.success_rate" label="##word.upload_trainee_certificate##" ng-model="c.$certificate"></i-file>
+                <i-file view ng-show="c.$finish_exam && c.$trainee_degree >= c.success_rate" label="##word.download_trainee_certificate##" ng-model="c.$certificate"></i-file>
                 <p class="red" ng-show="!c.$attend_rate && !c.$finish_exam">##word.appropriate_attendance_rate_reached_enter_examination##</p>
                 <i-button x-permissions="trainee" ng-show="c.$attend_rate && !c.$finish_exam && c.$start_exam_count < 3" type="view" label="##word.take_exam##" ng-click="startExam(c)"></i-button>
               </td>
