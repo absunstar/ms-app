@@ -13,8 +13,6 @@ module.exports = function init(site) {
       done: false,
     };
 
-
-
     let city_doc = req.body;
     city_doc.$req = req;
     city_doc.$res = res;
@@ -23,8 +21,6 @@ module.exports = function init(site) {
       $req: req,
       $res: res,
     });
-
-
 
     $cities.findOne(
       {
@@ -44,7 +40,6 @@ module.exports = function init(site) {
           response.error = 'Name Exists';
           res.json(response);
         } else {
-
           $cities.add(city_doc, (err, doc) => {
             if (!err) {
               response.done = true;
@@ -63,8 +58,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-
 
     let city_doc = req.body;
 
@@ -124,8 +117,6 @@ module.exports = function init(site) {
       done: false,
     };
 
-
-
     $cities.findOne(
       {
         where: {
@@ -148,8 +139,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-
 
     let id = req.body.id;
 
@@ -181,7 +170,7 @@ module.exports = function init(site) {
     };
 
     let where = req.body.where || {};
-  
+
     if (where['name_ar']) {
       where['name_ar'] = site.get_RegExp(where['name_ar'], 'i');
     }
@@ -195,15 +184,15 @@ module.exports = function init(site) {
       delete where['country'];
     }
 
-    if(where['not_active']){
+    if (where['not_active']) {
       where['active'] = false;
     }
 
-    if(where['active_search']){
+    if (where['active_search']) {
       where['active'] = true;
     }
 
-    if(where['not_active'] && where['active_search']){
+    if (where['not_active'] && where['active_search']) {
       delete where['active'];
     }
 

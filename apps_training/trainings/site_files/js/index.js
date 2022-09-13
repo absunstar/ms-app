@@ -50,8 +50,6 @@ app.controller('trainings', function ($scope, $http, $timeout) {
     );
   };
 
-
-
   $scope.displayUpdateTraining = function (training) {
     $scope.error = '';
     $scope.viewTraining(training);
@@ -166,12 +164,6 @@ app.controller('trainings', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.searchAll = function () {
-    $scope.getTrainingList($scope.search);
-    site.hideModal('#trainingSearchModal');
-    $scope.search = {};
-  };
-
   $scope.getTrainingList = function (where) {
     $scope.busy = true;
     $scope.list = [];
@@ -233,7 +225,7 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       url: '/api/users/all',
       data: {
         where: where,
-        select: { id: 1, first_name: 1, last_name: 1, email: 1 },
+        select: { id: 1, first_name: 1, last_name: 1, email: 1 , phone : 1 },
       },
     }).then(
       function (response) {

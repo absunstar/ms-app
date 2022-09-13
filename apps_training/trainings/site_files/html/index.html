@@ -27,9 +27,7 @@
         </div>
 
         <div class="top-actions">
-          <h3 class="bold" ng-show="'##query.id##' != 'undefined'">##word.training_category## : {{training_category.name_##session.lang##}}</h3>
           <i-button type="add" label="##word.training_new##" ng-click="displayAddTraining()"></i-button>
-
           <h3 class="bold text-center">##word.count## : {{list.length || 0}}</h3>
           <h3 class="bold text-center text-danger">{{error}}</h3>
         </div>
@@ -57,8 +55,8 @@
             <td class="center not-print">
               <i-button type="view" title="##word.view##" ng-click="displayDetailsTraining(c)"></i-button>
               <i-button type="edit" title="##word.update##" ng-hide="c.$hide_edit" x-permissions="admin" ng-click="displayUpdateTraining(c)"></i-button>
-              <a type="button" title="##word.trainees##" style="font-size: inherit;" class="btn btn-light btn-lg" href="/Trainees?id={{c.id}}"><i class="fa fa-users" aria-hidden="true"></i></a>
-              <a title="##word.attendance##" label="##word.attending_scedule##" style="font-size: inherit;" class="btn btn-success btn-lg" ng-click="displayAttendingSceduleModal(c)"><i class="fa fa-table" aria-hidden="true"></i></a>
+              <a type="button" title="##word.trainees##" style="font-size: inherit" class="btn btn-light btn-lg" href="/Trainees?id={{c.id}}"><i class="fa fa-users" aria-hidden="true"></i></a>
+              <a title="##word.attendance##" label="##word.attending_scedule##" style="font-size: inherit" class="btn btn-success btn-lg" ng-click="displayAttendingSceduleModal(c)"><i class="fa fa-table" aria-hidden="true"></i></a>
               <i-button type="delete" x-permissions="admin" title="##word.delete##" ng-click="displayDeleteTraining(c)"></i-button>
             </td>
           </tr>
