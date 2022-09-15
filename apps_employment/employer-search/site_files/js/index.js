@@ -184,7 +184,7 @@ app.controller('employerSearch', function ($scope, $http, $timeout) {
   };
 
   $scope.currentLocation = function () {
-    if ('##session.lang##' == 'ar') {
+/*     if ('##session.lang##' == 'ar') {
       if ('##user.city.id##' != 'undefined') {
         $scope.search.general_locations = '##user.city.name_ar##';
       } else if ('##user.country.id##' != 'undefined') {
@@ -196,7 +196,30 @@ app.controller('employerSearch', function ($scope, $http, $timeout) {
       } else if ('##user.country.id##' != 'undefined') {
         $scope.search.general_locations = '##user.country.name_en##';
       }
+    } */
+
+    if ('##user.city.id##' == 'undefined' && '##user.country.id##' == 'undefined') {
+      site.showModal("#alert");
+      $timeout(() => {
+        site.hideModal("#alert");
+
+      }, 2000);
+    } else {
+      if ('##user.city.id##' != 'undefined') {
+        if ('##session.lang##' == 'ar') {
+          $scope.search.general_locations = '##user.city.name_ar##';
+        } else if ('##session.lang##' == 'en') {
+          $scope.search.general_locations = '##user.city.name_en##';
+        }
+      } else if ('##user.country.id##' != 'undefined') {
+        if ('##session.lang##' == 'ar') {
+          $scope.search.general_locations = '##user.country.name_ar##';
+        } else if ('##session.lang##' == 'en') {
+          $scope.search.general_locations = '##user.country.name_en##';
+        }
+      }
     }
+
     $scope.getJobList($scope.search);
   };
 

@@ -10,6 +10,11 @@
         "ar": "إعرض الوظيفة"
     },
     {
+        "name": "must_specify_location_current_of_resume",
+        "en": "You must specify the current location of the Resume",
+        "ar": "يجب تحديد الموقع الحالي من السيرة الذاتية"
+    },
+    {
         "name": "apply_now",
         "en": "Apply Now",
         "ar": "قدم الاّن"

@@ -739,3 +739,9 @@ nav {
 .modal::-webkit-scrollbar {
   width: 10px;
 }
+.Useful-Links a{
+  text-decoration: underline !important;
+}
+.footer-company-logo img{
+  max-width: 80vw;
+}
