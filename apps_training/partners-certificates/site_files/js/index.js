@@ -17,7 +17,7 @@ app.controller('partnersCertificates', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#partnerCertificatesAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
 
@@ -55,7 +55,7 @@ app.controller('partnersCertificates', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#partnerCertificatesUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
     $scope.busy = true;

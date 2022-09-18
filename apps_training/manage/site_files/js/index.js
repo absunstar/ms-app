@@ -38,7 +38,7 @@ app.controller('manage', function ($scope, $http, $timeout) {
   $scope.saveManage = function (manage, id) {
     const v = site.validated(id);
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
 
@@ -110,7 +110,7 @@ app.controller('manage', function ($scope, $http, $timeout) {
   $scope.addPartnerLogo = function (partner_logo) {
     const v = site.validated('#partnerLogoModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
 
@@ -123,7 +123,7 @@ app.controller('manage', function ($scope, $http, $timeout) {
   $scope.editPartnerLogo = function () {
     const v = site.validated('#partnerLogoModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
     $scope.editManage($scope.manage);

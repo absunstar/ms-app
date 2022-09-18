@@ -17,7 +17,7 @@ app.controller('trainingCenters', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#trainingCenterAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
 
@@ -57,7 +57,7 @@ app.controller('trainingCenters', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#trainingCenterUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
     $scope.busy = true;

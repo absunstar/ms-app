@@ -18,7 +18,7 @@ app.controller('trainingCategories', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#trainingCategoriesAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
 
@@ -58,7 +58,7 @@ app.controller('trainingCategories', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#trainingCategoriesUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
     $scope.busy = true;

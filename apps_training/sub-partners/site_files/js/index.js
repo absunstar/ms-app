@@ -16,7 +16,7 @@ app.controller('subPartners', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#subPartnerAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
 
@@ -56,7 +56,7 @@ app.controller('subPartners', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#subPartnerUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
     $scope.busy = true;

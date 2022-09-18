@@ -48,7 +48,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#accountUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
     $scope.busy = true;
@@ -222,7 +222,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('.admin-form');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
     if (admin) {
@@ -261,7 +261,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('.partner-form');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
     if (partner) {
@@ -300,7 +300,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('.sub-partner-form');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
     if (sub_partner) {
@@ -339,7 +339,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('.trainer-form');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
     if (trainer) {

@@ -18,7 +18,7 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#jobFairsAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
 
@@ -58,7 +58,7 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#jobFairsUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
     $scope.busy = true;
@@ -264,7 +264,7 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#attendanceModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
     $http({
@@ -323,7 +323,7 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#applyModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
 

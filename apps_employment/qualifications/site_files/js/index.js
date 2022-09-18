@@ -17,7 +17,7 @@ app.controller('qualifications', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#qualificationAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
 
@@ -57,7 +57,7 @@ app.controller('qualifications', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#qualificationUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
     $scope.busy = true;

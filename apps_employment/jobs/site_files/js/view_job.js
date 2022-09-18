@@ -39,7 +39,7 @@ app.controller('viewJob', function ($scope, $http, $timeout) {
   $scope.applyAccept = function (job) {
     const v = site.validated('#applyModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
 

@@ -17,7 +17,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#accountAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
 
@@ -69,7 +69,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#accountUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
     $scope.busy = true;
@@ -237,7 +237,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('.admin-form');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
     if (admin) {
@@ -276,7 +276,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('.employer-form');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
     if (employer) {
@@ -315,7 +315,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('.job-seeker-form');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
     if (job_seeker) {
