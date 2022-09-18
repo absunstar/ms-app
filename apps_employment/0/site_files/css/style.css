@@ -156,7 +156,9 @@ a {
  } */
 
 .logo {
-  width: 150px;
+  max-width: 200px;
+  min-width: auto;
+  width: auto;
   height: auto;
 }
 
