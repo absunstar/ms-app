@@ -505,8 +505,13 @@ module.exports = function init(site) {
           });
 
           site.getQuestionsToExam(questionsData, (examCb) => {
-            $trainings.update(doc);
-            response.list = examCb;
+            if(examCb.length > 0){
+              $trainings.update(doc);
+              response.list = examCb;
+            } else {
+              response.error = 'There are no questions for the exam';
+
+            }
             res.json(response);
           });
         } else {
