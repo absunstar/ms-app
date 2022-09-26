@@ -17,7 +17,7 @@ app.controller('trainingCentersCertificates', function ($scope, $http, $timeout)
     $scope.error = '';
     const v = site.validated('#trainingCentersCertificatesAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
     $scope.training_center_certificate.type = 'training_centers';
@@ -54,7 +54,7 @@ app.controller('trainingCentersCertificates', function ($scope, $http, $timeout)
     $scope.error = '';
     const v = site.validated('#trainingCentersCertificatesUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
     $scope.busy = true;

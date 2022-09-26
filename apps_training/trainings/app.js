@@ -422,9 +422,11 @@ module.exports = function init(site) {
 
     let where = req.body.where || {};
 
-    where['approve'] = true;
+    where['$or'] = [{ $and: [{ approve: true }, { 'privacy_type.id': 2 }] },{ 'privacy_type.id': 1}];
+
 
     where['trainees_list.id'] = req.body.id;
+    where['trainees_list.approve'] = true
     $trainings.findMany(
       {
         select: req.body.select || {},
@@ -503,8 +505,13 @@ module.exports = function init(site) {
           });
 
           site.getQuestionsToExam(questionsData, (examCb) => {
-            $trainings.update(doc);
-            response.list = examCb;
+            if(examCb.length > 0){
+              $trainings.update(doc);
+              response.list = examCb;
+            } else {
+              response.error = 'There are no questions for the exam';
+
+            }
             res.json(response);
           });
         } else {
@@ -584,9 +591,9 @@ module.exports = function init(site) {
                 TrainingCategories.setText(trainee_degree.toString() + ' % ');
 
                 let start_date = form.getTextField('StartDate');
-                start_date.setText(`${startDate.getDate()}  /  ${startDate.getMonth()+1} /  ${startDate.getFullYear()}`);
+                start_date.setText(`${startDate.getDate()}  /  ${startDate.getMonth() + 1} /  ${startDate.getFullYear()}`);
                 let end_date = form.getTextField('EndDate');
-                end_date.setText(`${endDate.getDate()}  /  ${endDate.getMonth()+1} /  ${endDate.getFullYear()}`);
+                end_date.setText(`${endDate.getDate()}  /  ${endDate.getMonth() + 1} /  ${endDate.getFullYear()}`);
 
                 doc.save().then((new_file_stream) => {
                   site.fs.writeFileSync(found_certificate.certificate.path, new_file_stream);

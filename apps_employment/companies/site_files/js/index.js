@@ -21,7 +21,7 @@ app.controller('companies', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#companyAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
     $scope.company.approve = {
@@ -65,7 +65,7 @@ app.controller('companies', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#companyUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
 

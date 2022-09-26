@@ -20,6 +20,11 @@
     "ar": "إضافة الكل"
   },
   {
+    "name": "no_questions_for_exam",
+    "en": "There are no questions for the exam",
+    "ar": "لا يوجد أسئلة للإختبار"
+  },
+  {
     "name": "id_number_not_exists",
     "en": "Id Number does not Exists",
     "ar": "رقم الهوية غير موجود"

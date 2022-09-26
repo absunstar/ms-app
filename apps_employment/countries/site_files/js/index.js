@@ -16,7 +16,7 @@ app.controller('country', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#countryAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
 
@@ -56,7 +56,7 @@ app.controller('country', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#countryUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
     $scope.busy = true;

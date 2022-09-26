@@ -230,7 +230,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
     if (type == 'save') {
       const v = site.validated('#editProfileModal');
       if (!v.ok) {
-        $scope.error = v.messages[0].ar;
+        $scope.error = v.messages[0]['##session.lang##'];
         return;
       }
       $scope.update($scope.user);
@@ -253,7 +253,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#educationModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
 
@@ -288,7 +288,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#workExperienceModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
 
@@ -320,7 +320,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
   $scope.certificateTransaction = function (certificate, type) {
     const v = site.validated('#certificateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
 
@@ -348,7 +348,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#skillsModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
 
@@ -377,7 +377,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#extraCurricularModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
 

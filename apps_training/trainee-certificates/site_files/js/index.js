@@ -49,9 +49,13 @@ app.controller('traineeCertificates', function ($scope, $http, $timeout) {
           $scope.training = training;
           $scope.startExamTime();
           site.showModal('#examModal');
-        } else {
-        $scope.error = '##word.there_error_while_taking_exam##';
-
+        } else if (response.data.error) {
+          $scope.error = response.data.error;
+          if (response.data.error.like('*no questions for the exam*')) {
+            $scope.error = '##word.no_questions_for_exam##';
+          } else {
+            $scope.error = '##word.there_error_while_taking_exam##';
+          }
         }
       },
       function (err) {
@@ -90,7 +94,6 @@ app.controller('traineeCertificates', function ($scope, $http, $timeout) {
   };
 
   $scope.startExamTime = function (type) {
-    
     let minute = 44;
     let secound = 59;
     const timeExamInterval = setInterval(function () {

@@ -53,8 +53,8 @@
             </td>
 
             <td class="center not-print">
-              <i-button type="view" title="##word.view##" ng-click="displayDetailsTraining(c)"></i-button>
               <i-button type="edit" title="##word.update##" ng-hide="c.$hide_edit" x-permissions="admin" ng-click="displayUpdateTraining(c)"></i-button>
+              <i-button type="view" title="##word.view##" ng-click="displayDetailsTraining(c)"></i-button>
               <a type="button" title="##word.trainees##" style="font-size: inherit" class="btn btn-light btn-lg" href="/Trainees?id={{c.id}}"><i class="fa fa-users" aria-hidden="true"></i></a>
               <a title="##word.attendance##" label="##word.attending_scedule##" style="font-size: inherit" class="btn btn-success btn-lg" ng-click="displayAttendingSceduleModal(c)"><i class="fa fa-table" aria-hidden="true"></i></a>
               <i-button type="delete" x-permissions="admin" title="##word.delete##" ng-click="displayDeleteTraining(c)"></i-button>
