@@ -685,13 +685,36 @@ input.find-job{
   max-height: max-content !important;
   min-height: 50vh;
 }
-.modal::-webkit-scrollbar {
-  width: 10px;
-}
 
 .Useful-Links a{
   text-decoration: underline !important;
 }
 .footer-company-logo img{
   max-width: 80vw;
+}
+
+.modal::-webkit-scrollbar {
+  width: 20px;
+}
+
+.modal::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 20px 20px #fff;
+}
+
+.modal::-webkit-scrollbar-thumb {
+  background-color: #0d6efd;
+  outline: 5px solid #000;
+}
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 20px 0px #00ad5d;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #198754;
+  outline: 5px solid #000;
 }
