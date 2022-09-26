@@ -10,8 +10,8 @@
 
     <div class="modal-body">
       <div class="row">
-        <i-checkbox ng-disabled="training.approve" class="col" label="##word.attend_all##" ng-click="attendanceTraining(attendance,'attend')" ng-model="attendance.$attend_all"> </i-checkbox>
-        <i-checkbox ng-disabled="training.approve" class="col" label="##word.absence_all##" ng-click="attendanceTraining(attendance,'absence')" ng-model="attendance.$absence_all"> </i-checkbox>
+        <i-checkbox ng-hide="training.approve" class="col" label="##word.attend_all##" ng-click="attendanceTraining(attendance,'attend')" ng-model="attendance.$attend_all"> </i-checkbox>
+        <i-checkbox ng-hide="training.approve" class="col" label="##word.absence_all##" ng-click="attendanceTraining(attendance,'absence')" ng-model="attendance.$absence_all"> </i-checkbox>
       </div>
       <div class="row">
         <table x-permissions="login" class="table hover text-center" id="t1">
