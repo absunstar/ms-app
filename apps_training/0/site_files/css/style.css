@@ -744,6 +744,12 @@ nav {
   max-width: 80vw;
 }
 
+.social-media i{
+  font-size: 25px;
+}
+.social-media .fa-facebook-square{
+  color: blue;
+}
 
 .modal::-webkit-scrollbar {
   width: 20px;

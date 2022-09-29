@@ -10,6 +10,86 @@
         "ar": "تدريبات طور و غير"
     },
     {
+        "name": "site_title",
+        "en": "Site Title",
+        "ar": "اسم الموقع"
+    },
+    {
+        "name": "site_slug",
+        "en": "Site Slug",
+        "ar": "شعار الموقع"
+    },
+    {
+        "name": "site_info",
+        "en": "Site Information",
+        "ar": "المعلومات الاساسية"
+    },
+    {
+        "name": "site_numbers",
+        "en": "Site Numbers",
+        "ar": "احصائيات اللموقع"
+    },
+    {
+        "name": "trainer_number",
+        "en": "Trainer Count",
+        "ar": "عدد المدربين"
+    },
+    {
+        "name": "training_number",
+        "en": "Training Count",
+        "ar": "عدد التدريبات"
+    },
+    {
+        "name": "trainee_number",
+        "en": "Trainee Count",
+        "ar": "عدد المتدربين"
+    },
+    {
+        "name": "social_media",
+        "en": "Social Media Links",
+        "ar": "عدد المتدربين"
+    },
+    {
+        "name": "facebook",
+        "en": "Facebook",
+        "ar": "Facebook"
+    },
+    {
+        "name": "twitter",
+        "en": "Twitter",
+        "ar": "Twitter"
+    },
+    {
+        "name": "linkedin",
+        "en": "Linkedin",
+        "ar": "Linkedin"
+    },
+    {
+        "name": "logos",
+        "en": "Footer Logos",
+        "ar": "صور اسفل الموقع"
+    },
+    {
+        "name": "site_theme",
+        "en": "Theme",
+        "ar": "شكل الموقع"
+    },
+    {
+        "name": "nav_color",
+        "en": "Navbar Color",
+        "ar": "Navbar Color"
+    },
+    {
+        "name": "nav_background",
+        "en": "Navbar Background",
+        "ar": "Navbar Background"
+    },
+    {
+        "name": "site_fonts",
+        "en": "Site Fonts",
+        "ar": "Site Fonts"
+    },
+    {
         "name": "entity_management",
         "en": "Entity Management",
         "ar": "إدارة الكيانات"

@@ -7,14 +7,14 @@
   </head>
   <body class="##session.lang## loaded" ng-controller="body">
     <div x-import="0/navbar.html"></div>
-    <div x-import="0/carousel2.html"></div>
+    <div x-import="0/carousel.html"></div>
 
     <main class="main">
       <div class="about-section container">
         <div class="about">
           <div class="about-us">
-            <h2>numbers talk about us</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit augue dictum donec, tincidunt congue cras mauris accumsan dis sagittis habitant suspendisse, nibh quam posuere pharetra dapibus taciti egestas potenti quisque</p>
+            <h2>##setting.numbers_title##</h2>
+            <p>##setting.numbers_description##</p>
             <div class="button">
               <button class="fill button-search" ng-click="goRegister">
                 <i class="fas fa-plus nav-button-icon"></i>
@@ -27,17 +27,17 @@
           <div class="section-number">
             <div class="info looking-for-job about-us-number">
               <div class="icon"><i class="fas fa-chalkboard-teacher"></i></div>
-              <div class="number"><a>+100</a></div>
+              <div class="number"><a>+##setting.trainer_number##</a></div>
               <div class="head-title"><a>trainer</a></div>
             </div>
             <div class="info job-available about-us-number">
               <div class="icon"><i class="fas fa-award"></i></div>
-              <div class="number"><a>+2500</a></div>
+              <div class="number"><a>+##setting.training_number##</a></div>
               <div class="head-title"><a>training</a></div>
             </div>
             <div class="info registered-company about-us-number">
               <div class="icon"><i class="fas fa-graduation-cap"></i></div>
-              <div class="number"><a>+500</a></div>
+              <div class="number"><a>+##setting.trainee_number##</a></div>
               <div class="head-title"><a>Trainee</a></div>
             </div>
           </div>
@@ -78,9 +78,9 @@
             <img src="/images/tawer.jpg" alt="" />
           </div>
           <div class="footer-partner-logo">
-            <img src="/images/logo3.png" class="logo" alt="" />
-            <img src="/images/logo1.png" class="logo" alt="" />
-            <img src="/images/logo2.png" class="logo" alt="" />
+            <img src="##setting.logo3.url##" class="logo" alt="" />
+            <img src="##setting.logo1.url##" class="logo" alt="" />
+            <img src="##setting.logo2.url##" class="logo" alt="" />
           </div>
         </div>
         <div class="Useful-Links">
@@ -91,16 +91,22 @@
           <h4>Contact</h4>
           <div class="adress">
             <i class="fas fa-map-marker-alt"></i>
-            <a> {{setting.contact.location}}</a>
+            <a> ##setting.contact.location##</a>
           </div>
           <div class="email">
             <i class="fas fa-envelope"></i>
-            <a href="mailto:{{setting.contact.email}}">{{setting.contact.email}}</a>
+            <a href="mailto:##setting.contact.email##">##setting.contact.email##</a>
           </div>
           <div class="phone">
             <i class="fas fa-phone-alt"></i>
-            <a>{{setting.contact.phone}}</a>
+            <a>##setting.contact.phone##</a>
           </div>
+        </div>
+
+        <div class="social-media">
+          <a href="##setting.facebook##"> <i class="fab fa-facebook-square"></i> </a>
+          <a href="##setting.twitter##"> <i class="fab fa-twitter"></i> </a>
+          <a href="##setting.linkedin##"> <i class="fab fa-linkedin"></i> </a>
         </div>
       </div>
     </footer>
