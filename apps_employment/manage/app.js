@@ -1,8 +1,8 @@
 module.exports = function init(site) {
   const $manage = site.connectCollection('Manage');
   site.manage_doc = {
-    title: 'Training',
-    slug: 'Update Your Skills',
+    title: 'Employement',
+    slug: 'Find Your Job',
     nav_color: '#000000',
     nav_background: '#ffffff',
     fonts: 'Arabic, sans-serif',

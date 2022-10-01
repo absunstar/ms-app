@@ -19,6 +19,21 @@ module.exports = function init(site) {
     slider2: { title: '', description: '', logo: { url: '/images/banner1.jpg' } },
     slider3: { title: '', description: '', logo: { url: '/images/banner1.jpg' } },
     partners_logo_list: [],
+    contact: {
+      location: 'Egypt',
+      email: 'Absunstar@gmail.com',
+      phone: '01090061266',
+    },
+    links: [
+      {
+        title: 'privacy',
+        url: '#',
+      },
+      {
+        title: 'Terms & Condations',
+        url: '#',
+      },
+    ],
   };
   site.setting = { ...site.setting, ...site.manage_doc };
   $manage.findOne({}, (err, doc) => {
