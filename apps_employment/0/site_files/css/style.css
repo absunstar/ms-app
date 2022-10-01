@@ -110,7 +110,10 @@ a {
     width: 60% !important;
   }
   .about-section {
+    display: flex !important;
     flex-direction: column;
+    padding: 5% 0;
+    gap: 45px;
   }
 
   .about-us-heading h2 {
@@ -347,9 +350,9 @@ main {
 .about-us-number {
   display: flex !important;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-content: center;
-  margin-top: 104px;
+  margin-top: 0px;
 }
 
 .section-number {
@@ -408,7 +411,7 @@ main {
 
 .about-image {
   display: block;
-  width: 100%;
+  width: 40%;
 }
 
 .about-image img {
@@ -693,6 +696,12 @@ input.find-job{
   max-width: 80vw;
 }
 
+.social-media i{
+  font-size: 25px;
+}
+.social-media .fa-facebook-square{
+  color: blue;
+}
 .modal::-webkit-scrollbar {
   width: 20px;
 }

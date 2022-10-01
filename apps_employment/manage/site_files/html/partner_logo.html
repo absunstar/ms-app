@@ -1,0 +1,45 @@
+<div id="partnerLogoModal" class="modal small" fixed>
+  <div class="modal-content height-auto">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 class="center">
+        ##word.upload_partner_logo##
+        <i class="fa fa-plus"></i>
+      </h2>
+    </div>
+
+    <div class="modal-body">
+
+      <div class="form">
+        <fieldset>
+          <legend>##word.basic_information##</legend>
+          <div id="basicInformation" class="">
+            <div class="row">
+              <div class="col3">
+                <i-image ng-model="partner_logo.logo"></i-image>
+                <div v="r" class="row justify-content-md-center">
+                  <i-checkbox class="col" label="##word.active##" ng-model="partner_logo.active"> </i-checkbox>
+                </div>
+              </div>
+              <div class="col9">
+                <div class="row">
+                  <i-control type="text" v="r" ng-model="partner_logo.website" label="##word.website##"></i-control>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      
+
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="bold text-center text-danger">{{error}}</h2>
+      <i-button type="add" label="##word.add##" ng-show="!partner_logo.$edit" ng-click="addPartnerLogo(partner_logo)"></i-button>
+      <i-button type="save" label="##word.save##" ng-show="partner_logo.$edit" ng-click="editPartnerLogo()"></i-button>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#partnerLogoModal')"></i-button>
+    </div>
+  </div>
+</div>

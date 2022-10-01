@@ -1,0 +1,126 @@
+[
+  {
+    "name": "manage",
+    "en": "Manage",
+    "ar": "إدارة"
+  },
+  {
+    "name": "slider_edit",
+    "en": "Sliders",
+    "ar": "الصور المتحركة"
+  },
+  {
+    "name": "edit_slider_1",
+    "en": "Slider 1",
+    "ar": "الصورة رقم 1"
+  },
+  {
+    "name": "edit_slider_2",
+    "en": "Slider 2",
+    "ar": "الصورة رقم 2"
+  },
+  {
+    "name": "edit_slider_3",
+    "en": "Slider 3",
+    "ar": "الصورة رقم 3"
+  },
+  {
+    "name": "site_links",
+    "en": "Site Links",
+    "ar": "روابط خارحية"
+  },
+  {
+    "name": "title",
+    "en": "Title",
+    "ar": "عنوان"
+  },
+  {
+    "name": "link",
+    "en": "Link",
+    "ar": "رابط الصفحة"
+  }, {
+    "name": "site_contact",
+    "en": "Site Contact",
+    "ar": "وسائل الاتصال"
+  },
+  {
+    "name": "data",
+    "en": "Data",
+    "ar": "البيانات"
+  },
+  {
+    "name": "save_management_settings",
+    "en": "Save management settings",
+    "ar": "حفظ إعدادات الإدارة"
+  },
+  {
+    "name": "terms_conditions_edit",
+    "en": "Terms & Conditions",
+    "ar": "تعديل الشروط والأحكام"
+  },
+  {
+    "name": "editing_terms_conditions_section",
+    "en": "Terms & Conditions Section",
+    "ar": "تعديل قسم الشروط والأحكام"
+  },
+  {
+    "name": "policy_edit",
+    "en": "Policy",
+    "ar": "تعديل السياسة"
+  },
+  {
+    "name": "editing_policy_section",
+    "en": "Policy Section",
+    "ar": "تعديل قسم السياسة"
+  },
+  {
+    "name": "homepage_info_edit",
+    "en": "Homepage Info",
+    "ar": "تعديل معلومات الصفحة الرئيسية"
+  },
+  {
+    "name": "editing_homepage_info_section",
+    "en": "Homepage Info Section",
+    "ar": "تعديل قسم الصفحة الرئيسية"
+  },
+  {
+    "name": "portal_logo",
+    "en": "Portal Logo",
+    "ar": "شعار البوابة"
+  },
+  {
+    "name": "upload_logo",
+    "en": "Upload Logo",
+    "ar": "تحميل الشعار"
+  },
+  {
+    "name": "only_accepts_png_format",
+    "en": "Only accepts png format.",
+    "ar": "يقبل فقط تنسيق png."
+  },
+  {
+    "name": "partner_logo",
+    "en": "Partner Logo",
+    "ar": "شعار الشريك"
+  },
+  {
+    "name": "partners_logo",
+    "en": "Partners Logo",
+    "ar": "شعار الشركاء"
+  },
+  {
+    "name": "delete_partner_logo",
+    "en": "Delete partner logo",
+    "ar": "حذف شعار شريك"
+  },
+  {
+    "name": "new_partner_logo",
+    "en": "New Partner Logo",
+    "ar": "شعار شريك جديد"
+  },
+  {
+    "name": "upload_partner_logo",
+    "en": "Upload Partner Logo",
+    "ar": "تحميل شعار شريك"
+  }
+]

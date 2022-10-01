@@ -2,6 +2,7 @@
 <script>
   site.features = '##req.features##';
   site.session = site.show(`##req.#session##`);
+  site.setting = site.show(`##site.#setting##` || {});
 
   site.feature = (f) => site.features.indexOf(f) !== -1;
 

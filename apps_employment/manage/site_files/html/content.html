@@ -1,0 +1,138 @@
+<div class="form" id="manage">
+  <div class="tabs inline-block">
+    <div class="tabs-header">
+      <a class="tab-link" onclick="site.showTabContent(event, '#portalLogo')"> ##word.site_info## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#slider_edit')"> ##word.slider_edit## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#site_links')"> ##word.site_links## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#site_contact')"> ##word.site_contact## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#site_social_media')"> ##word.social_media## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#site_logos')"> ##word.logos## </a>
+    </div>
+
+    <div class="tabs-content">
+      <div id="portalLogo" class="tab-content">
+        <fieldset>
+          <legend>##word.site_info##</legend>
+          <div class="row">
+            <div class="col9"><i-control ng-model="manage.title" label="##word.site_title##"></i-control> <i-control ng-model="manage.slug" label="##word.site_slug##"></i-control></div>
+            <div class="col3"><i-image v="r" ng-model="manage.logo"></i-image></div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>##word.site_numbers##</legend>
+          <div class="row">
+            <div class="col4"><i-control type="number" ng-model="manage.job_number" label="##word.job_number##"></i-control></div>
+            <div class="col4"><i-control type="number" ng-model="manage.job_available_number" label="##word.job_available_number##"></i-control></div>
+            <div class="col4"><i-control type="number" ng-model="manage.company_number" label="##word.company_number##"></i-control></div>
+          </div>
+          <div class="row">
+            <i-control ng-model="manage.numbers_title" label="##word.title##"></i-control>
+            <i-control ng-model="manage.numbers_description" label="##word.description##"></i-control>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>##word.site_theme##</legend>
+          <div class="row">
+            <i-control class="col3" type="color" ng-model="manage.nav_color" label="##word.nav_color##"></i-control>
+            <i-control class="col3" type="color" ng-model="manage.nav_background" label="##word.nav_background##"></i-control>
+            <i-control class="row" type="text" ng-model="manage.fonts" label="##word.site_fonts##"></i-control>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>##word.companies_logo##</legend>
+          <div class="row">
+            <i-checkbox class="col2" ng-model="manage.allow_companies_logo" label="##word.allow_companies_logo##"></i-checkbox>
+            <i-control class="col7"  ng-model="manage.companies_logo_title" label="##word.companies_logo_title##"></i-control>
+            <i-image class="col3"  ng-model="manage.companies_logo" ></i-image>
+          </div>
+        </fieldset>
+
+        <i-button type="save" label="##word.save##" ng-click="saveManage(manage,'#portalLogo')"></i-button>
+      </div>
+      <div id="slider_edit" class="tab-content">
+        <fieldset>
+          <legend>##word.edit_slider_1##</legend>
+
+          <div class="row">
+            <div class="col9"><i-control class="row" v="r" label="##word.title##" type="text" ng-model="manage.slider1.title"> </i-control> <i-textarea v="r" label="##word.description##" ng-model="manage.slider1.description"> </i-textarea></div>
+            <div class="col3"><i-image v="r" ng-model="manage.slider1.logo"></i-image></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>##word.edit_slider_2##</legend>
+
+          <div class="row">
+            <div class="col9"><i-control class="row" v="r" label="##word.title##" type="text" ng-model="manage.slider2.title"> </i-control> <i-textarea v="r" label="##word.description##" ng-model="manage.slider2.description"> </i-textarea></div>
+            <div class="col3"><i-image v="r" ng-model="manage.slider2.logo"></i-image></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>##word.edit_slider_3##</legend>
+
+          <div class="row">
+            <div class="col9"><i-control class="row" v="r" label="##word.title##" type="text" ng-model="manage.slider3.title"> </i-control> <i-textarea v="r" label="##word.description##" ng-model="manage.slider3.description"> </i-textarea></div>
+            <div class="col3"><i-image v="r" ng-model="manage.slider3.logo"></i-image></div>
+          </div>
+        </fieldset>
+
+        <i-button type="save" label="##word.save##" ng-click="saveManage(manage,'#aboutEdit')"></i-button>
+      </div>
+
+      <div id="site_links" class="tab-content">
+        <fieldset>
+          <legend>##word.site_links## <i-button type="add default" ng-click="manage.links.push({})"></i-button></legend>
+
+          <div class="row padding border margin" ng-repeat="link in manage.links">
+            <i-control label="##word.title##" ng-model="link.title"> </i-control>
+            <i-control label="##word.link##" ng-model="link.url"> </i-control>
+          </div>
+        </fieldset>
+
+        <i-button type="save" label="##word.save##" ng-click="saveManage(manage,'#site_links')"></i-button>
+      </div>
+
+      <div id="site_contact" class="tab-content">
+        <fieldset>
+          <legend>##word.site_contact##</legend>
+
+          <div class="row">
+            <i-control v="r" label="##word.location##" ng-model="manage.contact.location"> </i-control>
+            <i-control v="r e" label="##word.email##" ng-model="manage.contact.email"> </i-control>
+            <i-control v="r ll8" label="##word.phone##" ng-model="manage.contact.phone"> </i-control>
+          </div>
+        </fieldset>
+
+        <i-button type="save" label="##word.save##" ng-click="saveManage(manage,'#site_contact')"></i-button>
+      </div>
+
+      <div id="site_social_media" class="tab-content">
+        <fieldset>
+          <legend>##word.social_media##</legend>
+
+          <div class="row">
+            <i-control label="##word.facebook##" ng-model="manage.facebook"> </i-control>
+            <i-control label="##word.twitter##" ng-model="manage.twitter"> </i-control>
+            <i-control label="##word.linkedin##" ng-model="manage.linkedin"> </i-control>
+          </div>
+        </fieldset>
+
+        <i-button type="save" label="##word.save##" ng-click="saveManage(manage,'#site_social_media')"></i-button>
+      </div>
+      <div id="site_logos" class="tab-content">
+        <fieldset>
+          <legend>##word.logos##</legend>
+
+          <div class="row">
+            <i-image ng-model="manage.logo1"></i-image>
+            <i-image ng-model="manage.logo2"></i-image>
+            <i-image ng-model="manage.logo3"></i-image>
+          </div>
+        </fieldset>
+
+        <i-button type="save" label="##word.save##" ng-click="saveManage(manage,'#site_social_media')"></i-button>
+      </div>
+    </div>
+  </div>
+</div>

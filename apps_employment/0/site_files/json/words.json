@@ -10,6 +10,101 @@
         "ar": "توظيف مصر"
     },
     {
+        "name": "site_title",
+        "en": "Site Title",
+        "ar": "اسم الموقع"
+    },
+    {
+        "name": "site_slug",
+        "en": "Site Slug",
+        "ar": "شعار الموقع"
+    },
+    {
+        "name": "site_info",
+        "en": "Site Information",
+        "ar": "المعلومات الاساسية"
+    },
+    {
+        "name": "site_numbers",
+        "en": "Site Numbers",
+        "ar": "احصائيات اللموقع"
+    },
+    {
+        "name": "social_media",
+        "en": "Social Media Links",
+        "ar": "عدد المتدربين"
+    },
+    {
+        "name": "facebook",
+        "en": "Facebook",
+        "ar": "Facebook"
+    },
+    {
+        "name": "twitter",
+        "en": "Twitter",
+        "ar": "Twitter"
+    },
+    {
+        "name": "linkedin",
+        "en": "Linkedin",
+        "ar": "Linkedin"
+    },
+    {
+        "name": "logos",
+        "en": "Footer Logos",
+        "ar": "صور اسفل الموقع"
+    },
+    {
+        "name": "site_theme",
+        "en": "Theme",
+        "ar": "شكل الموقع"
+    },
+    {
+        "name": "nav_color",
+        "en": "Navbar Color",
+        "ar": "Navbar Color"
+    },
+    {
+        "name": "nav_background",
+        "en": "Navbar Background",
+        "ar": "Navbar Background"
+    },
+    {
+        "name": "site_fonts",
+        "en": "Site Fonts",
+        "ar": "Site Fonts"
+    },
+    {
+        "name": "job_number",
+        "en": "Jobs",
+        "ar": "وظفية"
+    },
+    {
+        "name": "job_available_number",
+        "en": "Available Jobs",
+        "ar": "وظفية مقبولة"
+    },
+    {
+        "name": "company_number",
+        "en": "Companies",
+        "ar": "شركة"
+    },
+    {
+        "name": "companies_logo",
+        "en": "Companies Logo",
+        "ar": "لوجو الشركات"
+    },
+    {
+        "name": "allow_companies_logo",
+        "en": "Show Logo",
+        "ar": "عرض لوجو الشركات"
+    },
+    {
+        "name": "companies_logo_title",
+        "en": "Title",
+        "ar": "عنوان للوجو"
+    },
+    {
         "name": "delivery_inside_outside",
         "en": "Delivery is free inside Riyadh on the same day and outside Riyadh within three working days",
         "ar": "التوصيل مجاني داخل الرياض في نفس اليوم و خارج الرياض في خلال ثلاثة أيام عمل"
