@@ -463,5 +463,56 @@
         "name": "go_forward",
         "en": "Forward",
         "ar": "الصفحة التالية"
+    },
+    {
+        "name": "search_jobs",
+        "en": "Search Jobs",
+        "ar": "ابحث عن وظيفة"
+    },
+    {
+        "name": "search_jobs_placholder",
+        "en": "Search by : Job Title , Country , Skill ",
+        "ar": "ابحث بواسطة اسم الوظيفة او الدولة او المهارات"
+    },
+    {
+        "name": "looking_for_job",
+        "en": "Looking for job",
+        "ar": "وظيفة مسجلة"
+    },
+    {
+        "name": "job_available",
+        "en": "Job Available",
+        "ar": "وظيفة مقبولة"
+    },
+    {
+        "name": "registerd_company",
+        "en": "Search Jobs",
+        "ar": "شركة مسجلة"
+    },
+    {
+        "name": "join_us_now",
+        "en": "Join Us Now",
+        "ar": "انضم الينا الان"
+    }
+    ,
+    {
+        "name": "title_en",
+        "en": "Title En",
+        "ar": "العنوان بالانجليزى"
+    },
+    {
+        "name": "title_ar",
+        "en": "Tile Ar",
+        "ar": "العنوان بالعربى"
+    },
+    {
+        "name": "description_en",
+        "en": "Description En",
+        "ar": "الوصف بالانجليزى"
+    },
+    {
+        "name": "description_ar",
+        "en": "Description Ar",
+        "ar":"الوصف بالعربى"
     }
 ]

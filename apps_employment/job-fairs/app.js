@@ -310,11 +310,9 @@ module.exports = function init(site) {
       done: false,
     };
 
-
-
     let where = req.body.where || {};
 
-    if (req.session.user.role.name == 'job_seeker') {
+    if (req.session.user && req.session.user.role && req.session.user.role.name == 'job_seeker') {
       where.event_date = {
         $gte: new Date(),
       };
