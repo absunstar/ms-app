@@ -745,12 +745,24 @@ nav {
   max-width: 80vw;
 }
 
+.social-media{
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+}
 .social-media i{
-  font-size: 25px;
+  font-size: 35px;
 }
 .social-media .fa-facebook-square{
   color: blue;
 }
+.social-media .fa-twitter{
+  color: #0dcaf0;
+}
+.social-media .fa-linkedin{
+  color: blue;
+}
+
 
 .modal::-webkit-scrollbar {
   width: 20px;

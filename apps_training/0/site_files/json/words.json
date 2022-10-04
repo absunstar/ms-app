@@ -47,7 +47,7 @@
     {
         "name": "social_media",
         "en": "Social Media Links",
-        "ar": "عدد المتدربين"
+        "ar": "وسائل التواصل الاجتماعى"
     },
     {
         "name": "facebook",
@@ -208,5 +208,49 @@
         "name": "go_forward",
         "en": "Forward",
         "ar": "الصفحة التالية"
+    },
+    {
+        "name": "join_us_now",
+        "en": "Join Us Now",
+        "ar": "انضم الينا الان"
+    }
+    ,
+    {
+        "name": "title_en",
+        "en": "Title En",
+        "ar": "العنوان بالانجليزى"
+    },
+    {
+        "name": "title_ar",
+        "en": "Tile Ar",
+        "ar": "العنوان بالعربى"
+    },
+    {
+        "name": "description_en",
+        "en": "Description En",
+        "ar": "الوصف بالانجليزى"
+    },
+    {
+        "name": "description_ar",
+        "en": "Description Ar",
+        "ar":"الوصف بالعربى"
+    }
+
+    ,
+    {
+        "name": "trainer",
+        "en": "Trainer",
+        "ar":"مدرب"
+    }
+    ,
+    {
+        "name": "training",
+        "en": "Training",
+        "ar":"تدريب"
+    },
+    {
+        "name": "trainee",
+        "en": "Trainee",
+        "ar":"متدرب"
     }
 ]
