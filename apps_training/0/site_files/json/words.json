@@ -102,7 +102,7 @@
     {
         "name": "post_job",
         "en": "Post Job",
-        "ar": "أنشر وظيفة"
+        "ar": "اضافة وظيفة"
     },
     {
         "name": "manage_jobs",
@@ -112,7 +112,7 @@
     {
         "name": "post_new_job",
         "en": "Post A New Job",
-        "ar": "أنشر وظيفة جديدة"
+        "ar": "اضافة وظيفة جديدة"
     },
     {
         "name": "change_password",

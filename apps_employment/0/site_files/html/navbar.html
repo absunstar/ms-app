@@ -27,7 +27,7 @@
             <a href="https://mctint.com/" target="_blank" class="nav-link">##word.e_earning##</a>
           </li>
           <li class="nav-item" x-permissions="job_seeker">
-            <a href="/JobSeekerHistory" class="nav-link">##word.job_seeker##</a>
+            <a href="/JobSeekerHistory" class="nav-link">##word.jobs_history##</a>
           </li>
           <li class="nav-item" x-permissions="job_seeker">
             <a href="/EmployerSearch" class="nav-link">##word.job_search##</a>
@@ -90,25 +90,16 @@
               <li><a class="dropdown-item" x-permissions="employer" href="/Companies">##word.company_profile## </a></li>
               <li><a class="dropdown-item" x-permissions="employer" href="/Jobs?post=true">##word.post_new_job## </a></li>
               <li><a class="dropdown-item" x-permissions="employer" href="/Jobs">##word.manage_jobs## </a></li>
-              <li><a class="dropdown-item" x-permissions="employer" href="/ShortListResumes">##word.short_listed_resumes## </a></li>
-              <li><a class="dropdown-item" x-permissions="employer" href="/changePassword">##word.change_password## </a></li>
+            
             </ul>
           </li>
 
-          <li class="nav-item dropdown" x-permissions="job_seeker">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> ##word.management## </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" x-permissions="job_seeker" href="/Resume">##word.resume## </a></li>
-              <li><a class="dropdown-item" x-permissions="job_seeker" href="/JobSeekerHistory">##word.jobs_history## </a></li>
-              <li><a class="dropdown-item" x-permissions="job_seeker" href="/JobSeekerFavorite">##word.favorite_jobs## </a></li>
-              <li><a class="dropdown-item" x-permissions="job_seeker" href="/ChangePassword">##word.change_password## </a></li>
-            </ul>
-          </li>
+        
 
           <li class="nav-item dropdown" x-permissions="admin">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <span class="badge">{{jobsCount + companiesCount }}</span>
-              ##word.approve##
+              ##word.approval##
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" x-permissions="admin" href="/JobsApproval">##word.jobs_approval## </a></li>

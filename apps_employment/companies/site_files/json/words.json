@@ -113,10 +113,15 @@
         "name": "contact_information",
         "en": "Contact Information",
         "ar": "معلومات الاتصال"
+    },
+    {
+        "name": "approval",
+        "en": "Approval",
+        "ar": "الموافقة"
     }
    
 
 
-
+    
 
 ]

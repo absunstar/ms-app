@@ -13,10 +13,10 @@
       <div class="row">
         <div class="employer-form">
           <div class="row center">
-            <i-control v="r e" class="col6 center" ng-model="user.email" label="##word.email##"></i-control>
+            <i-control v="r e" class="col6 center" ng-model="user.email" label="##word.email##" ng-keydown="loginEmployment($event)"></i-control>
           </div>
           <div class="row center">
-            <i-control v="r" class="col6 center" type="password" ng-model="user.password" label="##word.password##"></i-control>
+            <i-control v="r" class="col6 center" type="password" ng-model="user.password" label="##word.password##" ng-keydown="loginEmployment($event)"></i-control>
           </div>
         </div>
       </div>

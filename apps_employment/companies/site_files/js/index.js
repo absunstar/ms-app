@@ -26,7 +26,7 @@ app.controller('companies', function ($scope, $http, $timeout) {
     }
     $scope.company.approve = {
       id: 1,
-      en: 'Panding Approval',
+      en: 'Pending Approval',
       ar: 'إنتظار الموافقة',
     };
     $scope.busy = true;
@@ -71,7 +71,7 @@ app.controller('companies', function ($scope, $http, $timeout) {
 
     company.approve = {
       id: 1,
-      en: 'Panding Approval',
+      en: 'Pending Approval',
       ar: 'إنتظار الموافقة',
     };
 
