@@ -149,24 +149,26 @@
         <fieldset>
           <legend>##word.email_sending_setting##</legend>
           <div class="row">
-            <i-control class="col6" label="##word.host##" type="text" ng-model="manage.email_setting.host"></i-control>
-            <i-control class="col6" label="##word.port##" type="number" ng-model="manage.email_setting.port">
+            <i-control v="r" class="col6" label="##word.host##" type="text" ng-model="manage.email_setting.host"></i-control>
+            <i-control v="r" class="col6" label="##word.port##" type="number" ng-model="manage.email_setting.port">
             </i-control>
 
           </div>
 
           <div class="row">
-            <i-control class="col6" v="e" label="##word.user_name##" type="text"
+            <i-control class="col6" v="r e" label="##word.user_name##" type="text"
               ng-model="manage.email_setting.username"></i-control>
-            <i-control class="col6" label="##word.password##" type="password" ng-model="manage.email_setting.password">
+            <i-control v="r" class="col6" label="##word.password##" type="password" ng-model="manage.email_setting.password">
             </i-control>
           </div>
 
           <div class="row">
-            <i-control class="col6" v="e" label="##word.sent_from_mail##" type="text" ng-model="manage.email_setting.from">
+            <i-control class="col6" v="r e" label="##word.sent_from_mail##" type="text" ng-model="manage.email_setting.from">
             </i-control>
           </div>
         </fieldset>
+        <i-button type="save" label="##word.save##" ng-click="saveManage(manage,'#email_setting')"></i-button>
+
       </div>
 
       <div id="site_links" class="tab-content">
