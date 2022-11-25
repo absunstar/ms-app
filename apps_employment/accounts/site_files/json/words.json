@@ -20,6 +20,21 @@
         "ar": "إسم المستخدم"
     },
     {
+        "name": "password_recovery",
+        "en": "Password Recovery",
+        "ar": "إستعادة كلمة السر"
+    },
+    {
+        "name": "new_password",
+        "en": "New Password",
+        "ar": "كلمة المرور الجديدة"
+    },
+    {
+        "name": "link_sent_your_email",
+        "en": "The link has been sent to your email",
+        "ar": "تم إرسال الرابط إلى بريدك الإلكتروني"
+    },
+    {
         "name": "admin",
         "en": "Admin",
         "ar": "مسئول"
@@ -35,18 +50,18 @@
         "ar": "هل أنت متأكد أنك تريد إلغاء التنشيط؟"
     },
     {
-        "name": "create_account_admin",
-        "en": "Create an account Admin",
+        "name": "create_admin_account",
+        "en": "Create Admin Account",
         "ar": "أنشئ حساب مسئول"
     },
     {
-        "name": "create_account_employer",
-        "en": "Create an account Employer",
+        "name": "create_employer_account",
+        "en": "Create Employer Account",
         "ar": "أنشئ حساب صاحب شركة"
     },
     {
-        "name": "create_account_job_seeker",
-        "en": "Create an account Job Seeker",
+        "name": "create_job_seeker_account",
+        "en": "Create Job Seeker Account",
         "ar": "أنشئ حساب باحث عن عمل"
     },
     {

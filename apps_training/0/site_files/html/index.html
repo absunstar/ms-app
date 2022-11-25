@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="about-us-number">
-          <div class="section-number">
+          <div class="section-number" x-setting="allow_site_numbers">
             <div class="info looking-for-job about-us-number">
               <div class="icon"><i class="fas fa-chalkboard-teacher"></i></div>
               <div class="number"><a>+##setting.trainer_number##</a></div>
@@ -84,7 +84,7 @@
           </div>
         </div>
         <div class="Useful-Links">
-          <h4>Useful Links</h4>
+          <h4>##setting.site_links_title##</h4>
           <a href="{{link.url}}" class="display-block underline" target="_blank" ng-repeat="link in setting.links"> {{link.title}} </a>
         </div>
         <div class="contact">

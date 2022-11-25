@@ -2,7 +2,6 @@ module.exports = function(site){
     site.printList = []
 
     site.post('/api/print' , (req , res)=>{
-        console.log("Fffffffffffffffffffff");
         let id = new Date().getTime()
         site.printList.push({
             id : id ,

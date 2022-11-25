@@ -45,8 +45,8 @@
         "ar": "هل أنت متأكد أنك تريد إلغاء التنشيط؟"
     },
     {
-        "name": "create_account_admin",
-        "en": "Create an account Admin",
+        "name": "create_admin_account",
+        "en": "Create Admin Account",
         "ar": "أنشئ حساب مسئول"
     },
     {
@@ -215,9 +215,24 @@
         "ar": "مصدر الدخل"
     },
     {
-        "name": "id_number",
-        "en": "ID Number",
-        "ar": "رقم الهوية"
+        "name": "how_do_know_bout",
+        "en": "How do you know a bout Tawar we Ghayar?",
+        "ar": "كيف عرفت عن طور وغير؟"
+    },
+    {
+        "name": "password_recovery",
+        "en": "Password Recovery",
+        "ar": "إستعادة كلمة السر"
+    },
+    {
+        "name": "new_password",
+        "en": "New Password",
+        "ar": "كلمة المرور الجديدة"
+    },
+    {
+        "name": "link_sent_your_email",
+        "en": "The link has been sent to your email",
+        "ar": "تم إرسال الرابط إلى بريدك الإلكتروني"
     },
     {
         "name": "id_type",
@@ -227,7 +242,7 @@
     {
         "name": "national_id",
         "en": "National ID",
-        "ar": "الهوية الوطنية"
+        "ar": "الرقم القومي"
     },
     {
         "name": "passport",

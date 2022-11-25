@@ -197,10 +197,12 @@ a {
   padding: 0 42px !important;
 }
 
-.lines_text {
+.lines-text {
   white-space: pre-wrap;
 }
-
+.underline {
+  text-decoration: underline !important;
+}
 button.strock {
   display: flex !important;
   flex-direction: row;
@@ -570,7 +572,7 @@ a.jobs-heading {
   display: flex !important;
   flex-direction: row;
   justify-content: space-around;
-  padding: 152px 0;
+  padding: 70px 0;
   align-items: flex-start;
 }
 

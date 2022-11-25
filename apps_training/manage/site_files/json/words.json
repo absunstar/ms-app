@@ -10,6 +10,31 @@
     "ar": "الصور المتحركة"
   },
   {
+    "name": "sent_from_mail",
+    "en": "Sent from email",
+    "ar": "البريد الإلكتروني المرسل منه"
+  },
+  {
+    "name": "port",
+    "en": "Port",
+    "ar": "المنفذ (port)"
+  },
+  {
+    "name": "host",
+    "en": "Host",
+    "ar": "المضيف (host)"
+  },
+  {
+    "name": "email_setting",
+    "en": "Email setting",
+    "ar": "إعداد البريد الإلكتروني"
+  },
+  {
+    "name": "email_sending_setting",
+    "en": "Email sending setting",
+    "ar": "إعداد إرسال البريد الإلكتروني"
+  },
+  {
     "name": "edit_slider_1",
     "en": "Slider 1",
     "ar": "الصورة رقم 1"
@@ -25,9 +50,19 @@
     "ar": "الصورة رقم 3"
   },
   {
+    "name": "site_links_title",
+    "en": "Site Links Title",
+    "ar": "عنوان روابط خارحية"
+  },
+  {
     "name": "site_links",
     "en": "Site Links",
     "ar": "روابط خارحية"
+  },
+  {
+    "name": "allow_site_numbers",
+    "en": "Show Site Numbers",
+    "ar": "عرض احصائيات الموقع"
   },
   {
     "name": "title",
@@ -38,7 +73,8 @@
     "name": "link",
     "en": "Link",
     "ar": "رابط الصفحة"
-  }, {
+  },
+  {
     "name": "site_contact",
     "en": "Site Contact",
     "ar": "وسائل الاتصال"

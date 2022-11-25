@@ -10,6 +10,11 @@
         "ar": "الشركة"
     },
     {
+        "name": "logo_view",
+        "en": "Logo View",
+        "ar": "عرض الشعار"
+    },
+    {
         "name": "open_position",
         "en": "Open Position",
         "ar": "الوظائف المتاحة"

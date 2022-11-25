@@ -2,10 +2,12 @@ module.exports = function init(site) {
   const $manage = site.connectCollection('Manage');
   site.manage_doc = {
     title: 'Training',
+    site_links_title: 'Useful Links',
     slug: 'Update Your Skills',
     nav_color: '#000000',
     nav_background: '#ffffff',
-    fonts: 'Arabic, sans-serif',
+    email_setting : {},
+    fonts: {id : 1 , name : 'Arabic'},
     logo: { url: '/images/logo.png' },
     logo1: { url: '/images/logo1.png' },
     logo2: { url: '/images/logo2.png' },
@@ -60,6 +62,11 @@ module.exports = function init(site) {
   site.get({
     name: '/images',
     path: __dirname + '/site_files/images',
+  });
+
+  site.post({
+    name: '/api/fonts/all',
+    path: __dirname + '/site_files/json/fonts.json',
   });
 
   site.post('/api/manage/get', (req, res) => {

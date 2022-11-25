@@ -60,9 +60,7 @@ module.exports = function init(site) {
             } else if(u.gender.id == 2){
               response.female_count += 1
             }
-          } else {
-            response.undefined_gender_count += 1
-          }
+          } 
         }
 
         response.users = docs

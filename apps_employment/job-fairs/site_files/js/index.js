@@ -299,6 +299,10 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
 
   $scope.registerApplyJobSeeker = function (jF) {
     $scope.error = '';
+    if (site.toNumber('##user.id##') < 1) {
+      window.location.href = "/login";
+      return;
+    };
     jF.$type = 'job_seeker';
     $http({
       method: 'POST',
@@ -376,10 +380,12 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
     $scope.job_fairs = job_fair;
     $timeout(() => {
       export_to_xlsx('a1', 'job_fairs.xlsx');
-   
-   }, 500);
+
+    }, 500);
   };
 
   $scope.getJobFairsList();
-  $scope.getJobSeeker();
+  if (site.toNumber('##user.id##') > 0) {
+    $scope.getJobSeeker();
+  }
 });

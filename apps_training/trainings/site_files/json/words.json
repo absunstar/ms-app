@@ -15,9 +15,9 @@
     "ar": "إضافة الكل"
   },
   {
-    "name": "add_all",
-    "en": "Add All",
-    "ar": "إضافة الكل"
+    "name": "attendance_sheets",
+    "en": "Attendance Sheets",
+    "ar": "أوراق الحضور"
   },
   {
     "name": "no_questions_for_exam",
@@ -91,7 +91,7 @@
   },
   {
     "name": "number_questions",
-    "en": "Number Questions",
+    "en": "Number Of Questions",
     "ar": "عدد الأسئلة"
   },
   {

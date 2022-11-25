@@ -93,6 +93,6 @@ app.controller('viewJob', function ($scope, $http, $timeout) {
       }
     );
   };
-  
+
   $scope.viewJob();
 });

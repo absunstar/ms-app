@@ -1,12 +1,12 @@
 [
   {
     "name": "national_id",
-    "en": "NationalID",
+    "en": "NationalID", 
     "ar": "الرقم القومي"
   },
   {
-    "name": "succeed_trainees",
-    "en": "Succeed Trainees",
+    "name": "successful_trainees",
+    "en": "Successful Trainees",
     "ar": "المتدربين الناجحين"
   },
   {

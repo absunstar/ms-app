@@ -39,7 +39,7 @@ module.exports = function init(site) {
     $company.findMany(
       {
         where: {
-          'add_user_info.id' : req.session.user.id
+          'add_user_info.id': req.session.user.id
         },
       },
       (err, docs) => {
@@ -47,7 +47,7 @@ module.exports = function init(site) {
           response.error = 'It is not allowed to add other companies';
           res.json(response);
         } else {
-      
+
 
           $company.add(company_doc, (err, doc) => {
             if (!err) {
@@ -67,8 +67,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-
 
     let company_doc = req.body;
 
@@ -105,7 +103,7 @@ module.exports = function init(site) {
                 $req: req,
                 $res: res,
               },
-              (err) => {
+              (err, result) => {
                 if (!err) {
                   response.done = true;
                 } else {
@@ -153,8 +151,6 @@ module.exports = function init(site) {
       done: false,
     };
 
-
-
     let id = req.body.id;
 
     if (id) {
@@ -179,13 +175,13 @@ module.exports = function init(site) {
     }
   });
 
-  site.post({name : '/api/companies/all' , public:true}, (req, res) => {
+  site.post({ name: '/api/companies/all', public: true }, (req, res) => {
     let response = {
       done: false,
     };
 
     let where = req.body.where || {};
-  
+
     if (where['name_ar']) {
       where['name_ar'] = site.get_RegExp(where['name_ar'], 'i');
     }
@@ -234,15 +230,15 @@ module.exports = function init(site) {
       delete where['date_to'];
     }
 
-    if(where['not_active']){
+    if (where['not_active']) {
       where['active'] = false;
     }
 
-    if(where['active_search']){
+    if (where['active_search']) {
       where['active'] = true;
     }
 
-    if(where['not_active'] && where['active_search']){
+    if (where['not_active'] && where['active_search']) {
       delete where['active'];
     }
 
@@ -271,11 +267,44 @@ module.exports = function init(site) {
     );
   });
 
+  site.post({ name: '/api/companies/logos', public: true }, (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    req.body.select = { image: 1 };
+    let where = {};
+
+    where['active'] = true;
+    where['logo_view'] = true;
+
+    $company.findMany(
+      {
+        select: req.body.select || {},
+        where: where,
+        sort: req.body.sort || {
+          id: -1,
+        },
+        limit: req.body.limit,
+      },
+      (err, docs, count) => {
+        if (!err) {
+          response.done = true;
+          response.list = docs;
+          response.count = count;
+        } else {
+          response.error = err.message;
+        }
+        res.json(response);
+      }
+    );
+  });
+
   site.getCompanies = function (company, callback) {
     callback = callback || {};
     let where = {}
-    if(company.id){
-      where['id'] =company.id
+    if (company.id) {
+      where['id'] = company.id
     }
     where['approve.id'] = 2
     $company.findMany(

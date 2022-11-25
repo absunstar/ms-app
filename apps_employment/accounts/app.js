@@ -34,6 +34,43 @@ module.exports = function init(site) {
     public: true,
   });
 
+
+  site.get({
+    name: 'ForgetPassWord',
+    path: __dirname + '/site_files/html/forget_password.html',
+    parser: 'html',
+    compress: true,
+    public: true,
+  });
+
+  site.get({
+    name: 'changePassWord',
+    parser: 'html',
+    compress: true,
+    public: true,
+  }, (req, res) => {
+
+    if (req.query.code) {
+
+      site.security.getUser(
+        {
+          forgetPasswordCode: req.query.code,
+        },
+        (err, doc) => {
+          if (!err && doc) {
+            res.render('accounts/reset_password.html' , {code : req.query.code});
+          } else {
+            res.json({ error: 'Code is invalid' })
+          }
+        }
+      );
+    } else {
+      res.json({ error: 'Code is invalid' })
+    }
+
+  });
+
+
   site.post({ name: '/api/register', public: true }, (req, res) => {
     let response = {};
 
@@ -423,7 +460,7 @@ module.exports = function init(site) {
         response.error = err.message;
       }
       response.link = `${req.headers['origin']}/api/user/activation?id=${response.user.id}&code=${response.user.activationCode}`;
-      site.sendMail({
+      site.sendMailMessage({
         to: response.user.email,
         subject: `Activatin Link`,
         message: `<a target="_blank" href="${response.link}"> Click Here To Activate Your Account </a>`,
@@ -455,4 +492,58 @@ module.exports = function init(site) {
       }
     );
   });
+
+  site.onPOST({ name: '/api/user/send-forget-password-link', public: true }, (req, res) => {
+    let response = {
+      done: true,
+      user: req.data,
+    };
+    response.user.forgetPasswordCode = Math.random().toString().replace('.', '');
+    site.security.updateUser(response.user, (err) => {
+      if (!err) {
+        response.done = true;
+      } else {
+        response.error = err.message;
+      }
+      response.link = `${req.headers['origin']}/changePassWord?code=${response.user.forgetPasswordCode}`;
+      console.log(response.link);
+      site.sendMailMessage({
+        to: response.user.email,
+        subject: `Forget Password Link`,
+        message: `<a target="_blank" href="${response.link}"> Click Here To Change Your Password </a>`,
+      });
+      res.json(response);
+    });
+  });
+
+  site.post(
+    {
+      name: '/api/user/new-password',
+      public: true
+    }, (req, res) => {
+      let response = {
+        done: false,
+      };
+
+      let user = req.body;
+
+      delete user.$$hashKey;
+
+      site.security.getUser(
+        {
+          forgetPasswordCode: user.code,
+        },
+        (err, doc) => {
+          if (!err && doc) {
+              doc.password = user.new_password;
+              site.security.updateUser(doc);
+              response.done = true;
+              res.json(response);
+          } else {
+            response.error = 'Error Email not correct';
+            res.json(response);
+          }
+        })
+
+    });
 };

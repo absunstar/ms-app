@@ -15,6 +15,16 @@
     "ar": "الجنس"
   },
   {
+    "name": "upload",
+    "en": "Upload",
+    "ar": "رفع"
+  },
+  {
+    "name": "download",
+    "en": "Download",
+    "ar": "تحميل"
+  },
+  {
     "name": "accounts_management",
     "en": "Accounts Management",
     "ar": "إدارة الحسابات"
@@ -340,9 +350,44 @@
     "ar": "رفض"
   },
   {
+    "name": "forgot_password",
+    "en": "Forgot password ?",
+    "ar": "هل نسيت كلمة المرور ؟"
+  },
+  {
     "name": "undefined_gender",
     "en": "Undefined Gender",
     "ar": "جنس غير محدد"
+  },
+  {
+    "name": "next",
+    "en": "Next",
+    "ar": "التالي"
+  },
+  {
+    "name": "recommended_size",
+    "en": "Recommended Size",
+    "ar": "الحجم الموصى به"
+  },
+  {
+    "name": "img_size_1",
+    "en": "150 * 60 px",
+    "ar": "150 * 60 px"
+  },
+  {
+    "name": "img_size_2",
+    "en": "250 * 120 px",
+    "ar": "250 * 120 px"
+  },
+  {
+    "name": "img_size_3",
+    "en": "400 * 220 px",
+    "ar": "400 * 220 px"
+  },
+  {
+    "name": "send_link",
+    "en": "Send Link",
+    "ar": "إرسال الرابط"
   },
   {
     "name": "male",
@@ -484,7 +529,11 @@
     "en": "Program Port",
     "ar": "بورت البرنامج"
   },
-  { "name": "there_are_no_data", "en": "There are no data", "ar": "لا يوجد بيانات" },
+  {
+    "name": "there_are_no_data",
+    "en": "There are no data",
+    "ar": "لا يوجد بيانات"
+  },
   {
     "name": "mobile",
     "en": "Mobile Number",
@@ -590,11 +639,31 @@
     "en": "Country",
     "ar": "البلد"
   },
-  { "name": "file_name", "en": "File Name", "ar": "إسم الملف" },
-  { "name": "ar_lang", "en": "اللغة العربية", "ar": "اللغة العربية" },
-  { "name": "en_lang", "en": "English", "ar": "English" },
-  { "name": "close", "en": "Close", "ar": "أغلاق" },
-  { "name": "entry", "en": "Entry", "ar": "دخول" },
+  {
+    "name": "file_name",
+    "en": "File Name",
+    "ar": "إسم الملف"
+  },
+  {
+    "name": "ar_lang",
+    "en": "اللغة العربية",
+    "ar": "اللغة العربية"
+  },
+  {
+    "name": "en_lang",
+    "en": "English",
+    "ar": "English"
+  },
+  {
+    "name": "close",
+    "en": "Close",
+    "ar": "أغلاق"
+  },
+  {
+    "name": "entry",
+    "en": "Entry",
+    "ar": "دخول"
+  },
   {
     "name": "activate",
     "en": "Activate",
@@ -605,7 +674,7 @@
     "en": "The name already exists",
     "ar": "الإسم موجود من قبل"
   },
-   {
+  {
     "name": "email_already_exists",
     "en": "The Email already exists",
     "ar": "البريد الإلكتروني موجود من قبل"

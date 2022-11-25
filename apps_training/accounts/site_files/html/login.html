@@ -2,10 +2,10 @@
 <html lang="en" data-ng-app="myApp">
   <head x-import="0/head.html"> </head>
 
-  <body class="##session.lang##" ng-controller="loginEmployment" x-permissions="!login">
+  <body class="##session.lang## loaded" ng-controller="loginEmployment" x-permissions="!login">
     <div x-import="0/navbar.html" ></div>
 
-    <div id="main-layout" class="container loaded" id="loginModal">
+    <div id="main-layout" class="container " id="loginModal">
       <div>
         <h1 class="bold text-center">##word.login##</h1>
       </div>
@@ -24,13 +24,14 @@
       <div class="center">
         <i-button label="##word.login_now##" ng-click="loginEmployment()"></i-button>
       </div>
-      <h3 class="bold red">{{error}}</h3>
+      <h3 class="bold center red">{{error}}</h3>
       <hr>
-      <header class="mb-5 pb-5">
+      <header class="mb-5 pb-5 center">
         <h1 class="display-4 text-center">
           ##word.not_registered##
-          <span class="font-18 text-center"><a class="btn link" href="/register" style="text-decoration: underline !important">##word.create_account## </a></span>
+          <span class="font-18 text-center"><a class="btn link underline" href="/register">##word.create_account## </a></span>
         </h1>
+        <span class="font-18"><a href="/ForgetPassWord" class="underline btn link ">##word.forgot_password##</a></span>
       </header>
     </div>
     <div  x-import="0/footer.html" ></div>

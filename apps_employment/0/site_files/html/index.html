@@ -1,163 +1,202 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
-  <head x-import="0/head.html">
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  </head>
-  <body class="##session.lang## loaded" ng-controller="body">
-    <div x-import="0/navbar.html"></div>
-    <div x-import="0/carousel.html"></div>
 
-    <main class="main">
-      <div class="about-section container">
-        <div class="about">
-          <div class="about-us">
-            <h2>{{setting.numbers_title_##session.lang##}}</h2>
-            <p>{{setting.numbers_description_##session.lang##}}</p>
+<head x-import="0/head.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
 
-            <div class="button">
-              <button class="fill button-search" ng-click="goRegister">
-                <i class="fas fa-plus nav-button-icon"></i>
-                ##word.join_us_now##
-              </button>
-            </div>
+<body class="##session.lang## loaded" ng-controller="body">
+  <div x-import="0/navbar.html"></div>
+  <div x-import="0/carousel.html"></div>
+
+  <main class="main">
+    <div class="about-section container">
+      <div class="about">
+        <div class="about-us">
+          <h2>{{setting.numbers_title_##session.lang##}}</h2>
+          <p>{{setting.numbers_description_##session.lang##}}</p>
+
+          <div class="button">
+            <button class="fill button-search" ng-click="goRegister">
+              <i class="fas fa-plus nav-button-icon"></i>
+              ##word.join_us_now##
+            </button>
           </div>
-        </div>
-        <div class="about-us-number">
-          <div class="section-number">
-            <div class="info looking-for-job about-us-number">
-              <div class="icon"><i class="fas fa-male"></i></div>
-              <div class="number"><a>##setting.job_number##</a></div>
-              <div class="head-title"><a>##word.looking_for_job##</a></div>
-            </div>
-            <div class="info job-available about-us-number">
-              <div class="icon"><i class="fas fa-building"></i></div>
-              <div class="number"><a>##setting.job_available_number##</a></div>
-              <div class="head-title"><a>##word.job_available##</a></div>
-            </div>
-            <div class="info registered-company about-us-number">
-              <div class="icon"><i class="fas fa-briefcase"></i></div>
-              <div class="number"><a>##setting.company_number##</a></div>
-              <div class="head-title"><a>##word.registerd_company##</a></div>
-            </div>
-          </div>
-        </div>
-        <div class="about-image">
-          <img src="/images/banner4.png" alt="" />
         </div>
       </div>
+      <div class="about-us-number" x-setting="allow_site_numbers">
+        <div class="section-number">
+          <div class="info looking-for-job about-us-number">
+            <div class="icon"><i class="fas fa-male"></i></div>
+            <div class="number"><a>##setting.job_number##</a></div>
+            <div class="head-title"><a>##word.looking_for_job##</a></div>
+          </div>
+          <div class="info job-available about-us-number">
+            <div class="icon"><i class="fas fa-building"></i></div>
+            <div class="number"><a>##setting.job_available_number##</a></div>
+            <div class="head-title"><a>##word.job_available##</a></div>
+          </div>
+          <div class="info registered-company about-us-number">
+            <div class="icon"><i class="fas fa-briefcase"></i></div>
+            <div class="number"><a>##setting.company_number##</a></div>
+            <div class="head-title"><a>##word.registerd_company##</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="about-image" x-setting="allow_site_numbers">
+        <img src="/images/banner4.png" alt="" />
+      </div>
+    </div>
 
-      <div class="main-logo-section" x-setting="allow_companies_logo">
-        <a class="logo-heading">##setting.companies_logo_title##</a>
+    <div class="main-logo-section" x-setting="allow_companies_logo">
+      <a class="logo-heading">##setting.companies_logo_title##</a>
+      <div ng-show="!setting.allow_registered_companies_logo">
         <div class="logos">
           <img src="##setting.companies_logo.url##" alt="" />
         </div>
       </div>
-    </main>
-
-    <footer>
-      <div class="footer">
-        <div class="footer-logo">
-          <div class="footer-company-logo"></div>
-          <div class="footer-partner-logo">
-            <img src="##setting.logo3.url##" class="logo" alt="" />
-            <img src="##setting.logo1.url##" class="logo" alt="" />
-            <img src="##setting.logo2.url##" class="logo" alt="" />
-          </div>
-        </div>
-        <div class="Useful-Links">
-          <h4>Useful Links</h4>
-          <a href="{{link.url}}" class="display-block underline" target="_blank" ng-repeat="link in setting.links"> {{link.title}} </a>
-        </div>
-        <div class="contact">
-          <h4>Contact</h4>
-          <div class="adress">
-            <i class="fas fa-map-marker-alt"></i>
-            <a> ##setting.contact.location##</a>
-          </div>
-          <div class="email">
-            <i class="fas fa-envelope"></i>
-            <a href="mailto:##setting.contact.email##">##setting.contact.email##</a>
-          </div>
-          <div class="phone">
-            <i class="fas fa-phone-alt"></i>
-            <a>##setting.contact.phone##</a>
-          </div>
-        </div>
-
-        <div class="social-media">
-          <a href="##setting.facebook##"> <i class="fab fa-facebook-square"></i> </a>
-          <a href="##setting.twitter##"> <i class="fab fa-twitter"></i> </a>
-          <a href="##setting.linkedin##"> <i class="fab fa-linkedin"></i> </a>
+      <div ng-show="setting.allow_registered_companies_logo">
+        <div class="footer-logo center">
+          <img ng-repeat="l in companiesLogosList" class="logo padding " ng-src="{{l.image.url}}" alt="" />
         </div>
       </div>
-    </footer>
+    </div>
 
-    <div x-import="0/footer.html"></div>
-    <div x-import="0/scripts.html"></div>
-    <script>
-      app.controller('body', ($scope, $http) => {
-        $scope.setting = site.setting;
-        $scope.search = '';
-        $scope.goRegister = function () {
-          document.location.href = '/register';
-        };
-        $scope.goJobs = function () {
-          document.location.href = '/EmployerSearch?q=' + $scope.search;
-        };
-        $scope.getQualificationList = function () {
-          $scope.busy = true;
-          $scope.qualificationList = [];
 
-          $http({
-            method: 'POST',
-            url: '/api/qualifications/all',
-            data: {
-              where: { active: true },
-              select: { id: 1, name_ar: 1, name_en: 1 },
-            },
-          }).then(
-            function (response) {
-              $scope.busy = false;
-              if (response.data.done && response.data.list && response.data.list.length > 0) {
-                $scope.qualificationList = response.data.list;
-              }
-            },
-            function (err) {
-              $scope.busy = false;
-              $scope.error = err;
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer">
+      <div class="footer-logo">
+        <div class="footer-company-logo"></div>
+        <div class="footer-partner-logo">
+          <img src="##setting.logo3.url##" class="logo" alt="" />
+          <img src="##setting.logo1.url##" class="logo" alt="" />
+          <img src="##setting.logo2.url##" class="logo" alt="" />
+        </div>
+      </div>
+      <div class="Useful-Links">
+        <h4>##setting.site_links_title##</h4>
+        <a href="{{link.url}}" class="display-block underline" target="_blank" ng-repeat="link in setting.links">
+          {{link.title}} </a>
+      </div>
+      <div class="contact">
+        <h4>Contact</h4>
+        <div class="adress">
+          <i class="fas fa-map-marker-alt"></i>
+          <a> ##setting.contact.location##</a>
+        </div>
+        <div class="email">
+          <i class="fas fa-envelope"></i>
+          <a href="mailto:##setting.contact.email##">##setting.contact.email##</a>
+        </div>
+        <div class="phone">
+          <i class="fas fa-phone-alt"></i>
+          <a>##setting.contact.phone##</a>
+        </div>
+      </div>
+
+      <div class="social-media">
+        <a href="##setting.facebook##"> <i class="fab fa-facebook-square"></i> </a>
+        <a href="##setting.twitter##"> <i class="fab fa-twitter"></i> </a>
+        <a href="##setting.linkedin##"> <i class="fab fa-linkedin"></i> </a>
+      </div>
+    </div>
+  </footer>
+
+  <div x-import="0/footer.html"></div>
+  <div x-import="0/scripts.html"></div>
+  <script>
+    app.controller('body', ($scope, $http) => {
+      $scope.setting = site.setting;
+      $scope.search = '';
+      $scope.goRegister = function () {
+        document.location.href = '/register';
+      };
+      $scope.goJobs = function () {
+        document.location.href = '/EmployerSearch?q=' + $scope.search;
+      };
+      $scope.getQualificationList = function () {
+        $scope.busy = true;
+        $scope.qualificationList = [];
+
+        $http({
+          method: 'POST',
+          url: '/api/qualifications/all',
+          data: {
+            where: { active: true },
+            select: { id: 1, name_ar: 1, name_en: 1 },
+          },
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done && response.data.list && response.data.list.length > 0) {
+              $scope.qualificationList = response.data.list;
             }
-          );
-        };
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          }
+        );
+      };
 
-        $scope.getYearsOfExperienceList = function () {
-          $scope.busy = true;
-          $scope.yearsOfExperienceList = [];
+      $scope.getYearsOfExperienceList = function () {
+        $scope.busy = true;
+        $scope.yearsOfExperienceList = [];
 
-          $http({
-            method: 'POST',
-            url: '/api/years_of_experience/all',
-            data: {
-              where: { active: true },
-              select: { id: 1, name_ar: 1, name_en: 1 },
-            },
-          }).then(
-            function (response) {
-              $scope.busy = false;
-              if (response.data.done && response.data.list && response.data.list.length > 0) {
-                $scope.yearsOfExperienceList = response.data.list;
-              }
-            },
-            function (err) {
-              $scope.busy = false;
-              $scope.error = err;
+        $http({
+          method: 'POST',
+          url: '/api/years_of_experience/all',
+          data: {
+            where: { active: true },
+            select: { id: 1, name_ar: 1, name_en: 1 },
+          },
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done && response.data.list && response.data.list.length > 0) {
+              $scope.yearsOfExperienceList = response.data.list;
             }
-          );
-        };
-        $scope.getYearsOfExperienceList();
-        $scope.getQualificationList();
-      });
-    </script>
-  </body>
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          }
+        );
+      };
+
+      $scope.getCompaniesLogos = function () {
+        $scope.busy = true;
+        $scope.companiesLogosList = [];
+
+        $http({
+          method: 'POST',
+          url: '/api/companies/logos',
+          data: {},
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done && response.data.list && response.data.list.length > 0) {
+              $scope.companiesLogosList = response.data.list;
+              console.log($scope.companiesLogosList[0]);
+            }
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          }
+        );
+      };
+
+      $scope.getYearsOfExperienceList();
+      $scope.getQualificationList();
+      $scope.getCompaniesLogos();
+    });
+  </script>
+</body>
+
 </html>

@@ -10,6 +10,31 @@
     "ar": "الصور المتحركة"
   },
   {
+    "name": "sent_from_mail",
+    "en": "Sent from email",
+    "ar": "البريد الإلكتروني المرسل منه"
+  },
+  {
+    "name": "port",
+    "en": "Port",
+    "ar": "المنفذ (port)"
+  },
+  {
+    "name": "host",
+    "en": "Host",
+    "ar": "المضيف (host)"
+  },
+  {
+    "name": "email_setting",
+    "en": "Email setting",
+    "ar": "إعداد البريد الإلكتروني"
+  },
+  {
+    "name": "email_sending_setting",
+    "en": "Email sending setting",
+    "ar": "إعداد إرسال البريد الإلكتروني"
+  },
+  {
     "name": "edit_slider_1",
     "en": "Slider 1",
     "ar": "الصورة رقم 1"
@@ -33,6 +58,16 @@
     "name": "title",
     "en": "Title",
     "ar": "عنوان"
+  },
+  {
+    "name": "site_links_title",
+    "en": "Site Links Title",
+    "ar": "عنوان روابط خارحية"
+  },
+  {
+    "name": "useful_links_title",
+    "en": "Useful Links Title",
+    "ar": "عنوان روابط مفيدة"
   },
   {
     "name": "link",

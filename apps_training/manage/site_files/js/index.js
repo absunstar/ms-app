@@ -177,5 +177,25 @@ app.controller('manage', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getFonts = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.fontsList = [];
+    $http({
+      method: 'POST',
+      url: '/api/fonts/all',
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.fontsList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.loadManage();
+  $scope.getFonts();
 });

@@ -2,7 +2,7 @@
 <html lang="en" data-ng-app="myApp">
   <head x-import="0/head.html"> </head>
 
-  <body class="##session.lang##" ng-controller="viewJob" x-permissions="login">
+  <body class="##session.lang##" ng-controller="viewJob">
     <div x-import="0/navbar.html"></div>
 
     <div id="main-layout" class="container loaded">
@@ -36,17 +36,17 @@
 
                 <tr>
                   <td class="title">##word.job_responsibilities##</td>
-                  <td class="center lines_text">{{job.job_responsibilities}}</td>
+                  <td class="center lines-text">{{job.job_responsibilities}}</td>
                 </tr>
 
                 <tr>
                   <td class="title">##word.job_required_skills##</td>
-                  <td class="center lines_text">{{job.job_required_skills}}</td>
+                  <td class="center lines-text">{{job.job_required_skills}}</td>
                 </tr>
 
                 <tr>
                   <td class="title">##word.job_seeker_received_benefits##</td>
-                  <td class="center lines_text">{{job.job_seeker_received_benefits}}</td>
+                  <td class="center lines-text">{{job.job_seeker_received_benefits}}</td>
                 </tr>
 
                 <tr>
@@ -96,7 +96,7 @@
                 </tr>
                 <tr>
                   <td class="title">##word.full_address##</td>
-                  <td class="center lines_text">{{job.full_address}}</td>
+                  <td class="center lines-text">{{job.full_address}}</td>
                 </tr>
               </table>
             </div>

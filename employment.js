@@ -5,15 +5,6 @@ const site = require('../isite')({
   name: 'employment',
   theme: 'theme_paper',
   savingTime: 10,
-  mail: {
-    enabled: false,
-    host: 'smtp.office365.com',
-    port: 587,
-    username: 'ms.two@digisummits.com',
-    password: 'Fan63941',
-    type: 'smpt',
-    from: 'ms.two@digisummits.com',
-  },
   mongodb: {
     db: 'employment',
     limit: 100000,
@@ -39,12 +30,12 @@ site.get({
 site.get(
   {
     name: '/',
-    public: true,
+    public: true
   },
   (req, res) => {
     res.render(
       '0/index.html',
-      {},
+      site.manage_doc,
       {
         parser: 'html css js',
       }
@@ -60,3 +51,25 @@ site.loadLocalApp('ui-print');
 site.addFeature('employment');
 
 site.run();
+
+
+site.sendMailMessage = function (obj) {
+  if (site.setting.email_setting
+    && site.setting.email_setting.host
+    && site.setting.email_setting.port
+    && site.setting.email_setting.username
+    && site.setting.email_setting.password
+    && site.setting.email_setting.from
+  ) {
+
+    obj.enabled = true;
+    obj.type = 'smpt';
+    obj.host = site.setting.email_setting.host;
+    obj.port = site.setting.email_setting.port;
+    obj.username = site.setting.email_setting.username;
+    obj.password = site.setting.email_setting.password;
+    obj.from = site.setting.email_setting.from;
+
+    site.sendMail(obj);
+  };
+}

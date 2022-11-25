@@ -10,8 +10,16 @@
 
     <div class="modal-body">
       <div class="row">
-        <i-checkbox ng-hide="training.approve" class="col" label="##word.attend_all##" ng-click="attendanceTraining(attendance,'attend')" ng-model="attendance.$attend_all"> </i-checkbox>
-        <i-checkbox ng-hide="training.approve" class="col" label="##word.absence_all##" ng-click="attendanceTraining(attendance,'absence')" ng-model="attendance.$absence_all"> </i-checkbox>
+        <div class="col6">
+
+          <i-checkbox ng-hide="training.approve" class="col" label="##word.absence_all##" ng-click="attendanceTraining(attendance,'absence')" ng-model="attendance.$absence_all"> </i-checkbox>
+          <i-checkbox ng-hide="training.approve" class="col" label="##word.attend_all##" ng-click="attendanceTraining(attendance,'attend')" ng-model="attendance.$attend_all"> </i-checkbox>
+        </div>
+        <div class="col1"></div>
+        <div class="col5">
+          <i-file ng-hide="training.approve" label="##word.upload## ##word.attendance_sheets##" ng-model="attendance.file"></i-file>
+          <i-file ng-show="attendance.file" view label="##word.download## ##word.attendance_sheets##" ng-model="attendance.file"></i-file>
+        </div>
       </div>
       <div class="row">
         <table x-permissions="login" class="table hover text-center" id="t1">
@@ -28,7 +36,7 @@
               <td class="center">{{c.email}}</td>
               <td class="">
                 <div class="row justify-content-md-center">
-                  <i-checkbox class="col " ng-disabled="training.approve" ng-model="c.attend"> </i-checkbox>
+                  <i-checkbox class="col" ng-model="c.attend"> </i-checkbox>
                 </div>
               </td>
             </tr>

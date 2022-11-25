@@ -6,10 +6,10 @@
     color: ##setting.nav_color## !important;
   }
   :root{
-    --font-family: ##setting.fonts## !important;
+    --font-family: ##setting.fonts.name## !important;
   }
   *{
-    font-family: ##setting.fonts## ;
+    font-family: ##setting.fonts.name## ;
   }
 </style>
 <nav class="navbar navbar-expand-lg navbar-light bg-white" ng-controller="navbar">
@@ -58,7 +58,7 @@
           <li class="nav-item" x-permissions="admin">
             <a href="/Jobs" class="nav-link">##word.jobs##</a>
           </li>
-          <li class="nav-item" x-permissions="admin || job_seeker">
+          <li class="nav-item" x-permissions="admin || job_seeker || !login">
             <a href="/JobFairs" class="nav-link">##word.job_fairs##</a>
           </li>
           <li class="nav-item" x-permissions="employer">

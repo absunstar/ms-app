@@ -595,6 +595,8 @@ module.exports = function init(site) {
                 let end_date = form.getTextField('EndDate');
                 end_date.setText(`${endDate.getDate()}  /  ${endDate.getMonth() + 1} /  ${endDate.getFullYear()}`);
 
+                form.flatten();
+
                 doc.save().then((new_file_stream) => {
                   site.fs.writeFileSync(found_certificate.certificate.path, new_file_stream);
                 });

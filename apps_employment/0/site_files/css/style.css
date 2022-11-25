@@ -368,7 +368,7 @@ main {
   justify-content: center;
 }
 
-.lines_text {
+.lines-text {
   white-space: pre-wrap;
 }
 
@@ -689,7 +689,9 @@ input.find-job{
   max-height: max-content !important;
   min-height: 50vh;
 }
-
+.underline {
+  text-decoration: underline !important;
+}
 .Useful-Links a{
   text-decoration: underline !important;
 }

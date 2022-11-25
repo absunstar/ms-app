@@ -27,12 +27,17 @@
     {
         "name": "site_numbers",
         "en": "Site Numbers",
-        "ar": "احصائيات اللموقع"
+        "ar": "احصائيات الموقع"
+    },
+    {
+        "name": "allow_site_numbers",
+        "en": "Show Site Numbers",
+        "ar": "عرض احصائيات الموقع"
     },
     {
         "name": "social_media",
         "en": "Social Media Links",
-        "ar": "عدد المتدربين"
+        "ar": "روابط وسائل التواصل"
     },
     {
         "name": "facebook",
@@ -96,8 +101,13 @@
     },
     {
         "name": "allow_companies_logo",
-        "en": "Show Logo",
+        "en": "Show Companies Logo",
         "ar": "عرض لوجو الشركات"
+    },
+    {
+        "name": "allow_registered_companies_logo",
+        "en": "Show Registered Companies Logo",
+        "ar": "عرض لوجو الشركات المسجلة"
     },
     {
         "name": "companies_logo_title",
@@ -482,11 +492,11 @@
     {
         "name": "job_available",
         "en": "Job Available",
-        "ar": "وظيفة مقبولة"
+        "ar": "وظيفة متاحة"
     },
     {
         "name": "registerd_company",
-        "en": "Search Jobs",
+        "en": "Employer",
         "ar": "شركة مسجلة"
     },
     {

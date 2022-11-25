@@ -4,12 +4,6 @@
         "en": "Trainees",
         "ar": "المتدربين"
     },
-   
-    {
-        "name": "source_of_income",
-        "en": "Source Of Income",
-        "ar": "مصدر الدخل"
-    },
     {
         "name": "create_trainee_account",
         "en": "Create a Trainee account",
@@ -38,7 +32,7 @@
     {
         "name": "national_id",
         "en": "National ID",
-        "ar": "الهوية الوطنية"
+        "ar": "الرقم القومي"
     },
     {
         "name": "passport",

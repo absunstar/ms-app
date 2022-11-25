@@ -6,7 +6,7 @@
         <table id="basicInformationTable" class="table hover bold">
           <tr>
             <td class="title">##word.question##</td>
-            <td class="center lines_text">{{question.name}}</td>
+            <td class="center lines-text">{{question.name}}</td>
           </tr>
           <tr>
             <td class="title">##word.training_type##</td>
@@ -44,7 +44,7 @@
         </tr>
         <tbody>
           <tr ng-repeat="c in question.answers_list">
-            <td class="center lines_text">{{c.answer}}</td>
+            <td class="center lines-text">{{c.answer}}</td>
             <td class="center">
               <p ng-show="c.correct">##word.yes##</p>
               <p ng-show="!c.correct">##word.no##</p>

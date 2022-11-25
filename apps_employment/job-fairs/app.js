@@ -6,6 +6,7 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,
+    public: true,
   });
 
   function addZero(code, number) {
@@ -136,6 +137,12 @@ module.exports = function init(site) {
       done: false,
     };
 
+    if (!req.session.user) {
+      response.error = 'You Are Not Login';
+      res.json(response);
+      return;
+    }
+
     let job_fair = req.body;
 
     response.found_apply = false;
@@ -173,7 +180,7 @@ module.exports = function init(site) {
                 response.found_apply = true;
               }
             });
-      
+
             if (!response.found_apply) {
               doc.apply_list.push({
                 code: $job_fairs.newCode(job_fair.id, req.session.user.id),
@@ -305,7 +312,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/job_fairs/all', (req, res) => {
+  site.post({ name: '/api/job_fairs/all', public: true }, (req, res) => {
     let response = {
       done: false,
     };

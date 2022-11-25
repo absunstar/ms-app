@@ -24,13 +24,13 @@ const site = require('../isite')({
 site.get({
   name: '/',
   path: site.dir + '/',
-  public : true
+  public: true
 });
 
 site.get(
   {
     name: '/',
-    public : true
+    public: true
   },
   (req, res) => {
     res.render(
@@ -49,3 +49,24 @@ site.importApps(__dirname + '/apps_training');
 site.addFeature('training');
 
 site.run();
+
+site.sendMailMessage = function (obj) {
+  if (site.setting.email_setting
+    && site.setting.email_setting.host
+    && site.setting.email_setting.port
+    && site.setting.email_setting.username
+    && site.setting.email_setting.password
+    && site.setting.email_setting.from
+  ) {
+
+    obj.enabled = true;
+    obj.type = 'smpt';
+    obj.host = site.setting.email_setting.host;
+    obj.port = site.setting.email_setting.port;
+    obj.username = site.setting.email_setting.username;
+    obj.password = site.setting.email_setting.password;
+    obj.from = site.setting.email_setting.from;
+
+    site.sendMail(obj);
+  };
+}

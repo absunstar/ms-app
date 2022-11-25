@@ -16,7 +16,6 @@ app.controller('reportStats', function ($scope, $http, $timeout) {
           $scope.job_seeker_count = response.data.job_seeker_count;
           $scope.male_count = response.data.male_count;
           $scope.female_count = response.data.female_count;
-          $scope.undefined_gender_count = response.data.undefined_gender_count;
         }
       
       },

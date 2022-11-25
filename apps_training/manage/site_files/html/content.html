@@ -3,6 +3,7 @@
     <div class="tabs-header">
       <a class="tab-link" onclick="site.showTabContent(event, '#portalLogo')"> ##word.site_info## </a>
       <a class="tab-link" onclick="site.showTabContent(event, '#slider_edit')"> ##word.slider_edit## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#email_setting')"> ##word.email_setting## </a>
       <a class="tab-link" onclick="site.showTabContent(event, '#site_links')"> ##word.site_links## </a>
       <a class="tab-link" onclick="site.showTabContent(event, '#site_contact')"> ##word.site_contact## </a>
       <a class="tab-link" onclick="site.showTabContent(event, '#site_social_media')"> ##word.social_media## </a>
@@ -14,23 +15,41 @@
         <fieldset>
           <legend>##word.site_info##</legend>
           <div class="row">
-            <div class="col9"><i-control ng-model="manage.title" label="##word.site_title##"></i-control> <i-control ng-model="manage.slug" label="##word.site_slug##"></i-control></div>
-            <div class="col3"><i-image v="r" ng-model="manage.logo"></i-image></div>
+            <div class="col9">
+              <i-control ng-model="manage.title" label="##word.site_title##"></i-control>
+              <i-control ng-model="manage.slug" label="##word.site_slug##"></i-control>
+            </div>
+            <div class="col3">
+              <i-image v="r" ng-model="manage.logo"></i-image>
+              <i class="fa fa-exclamation-circle" aria-hidden="true"> <span> ##word.recommended_size## :
+                  ##word.img_size_1##</span></i>
+            </div>
           </div>
         </fieldset>
 
         <fieldset>
           <legend>##word.site_numbers##</legend>
           <div class="row">
-            <div class="col4"><i-control type="number" ng-model="manage.trainer_number" label="##word.trainer_number##"></i-control></div>
-            <div class="col4"><i-control type="number" ng-model="manage.training_number" label="##word.training_number##"></i-control></div>
-            <div class="col4"><i-control type="number" ng-model="manage.trainee_number" label="##word.trainee_number##"></i-control></div>
+            <i-checkbox ng-model="manage.allow_site_numbers" label="##word.allow_site_numbers##"></i-checkbox>
+          </div>
+          <div class="row">
+            <div class="col4">
+              <i-control type="number" ng-model="manage.trainer_number" label="##word.trainer_number##"></i-control>
+            </div>
+            <div class="col4">
+              <i-control type="number" ng-model="manage.training_number" label="##word.training_number##"></i-control>
+            </div>
+            <div class="col4">
+              <i-control type="number" ng-model="manage.trainee_number" label="##word.trainee_number##"></i-control>
+            </div>
           </div>
           <div class="row">
             <i-control class="col6" ng-model="manage.numbers_title_en" label="##word.title_en##"></i-control>
             <i-control class="col6" ng-model="manage.numbers_title_ar" label="##word.title_ar##"></i-control>
-            <i-control class="col6" ng-model="manage.numbers_description_en" label="##word.description_en##"></i-control>
-            <i-control class="col6" ng-model="manage.numbers_description_ar" label="##word.description_ar##"></i-control>
+            <i-control class="col6" ng-model="manage.numbers_description_en" label="##word.description_en##">
+            </i-control>
+            <i-control class="col6" ng-model="manage.numbers_description_ar" label="##word.description_ar##">
+            </i-control>
           </div>
         </fieldset>
 
@@ -38,8 +57,12 @@
           <legend>##word.site_theme##</legend>
           <div class="row">
             <i-control class="col3" type="color" ng-model="manage.nav_color" label="##word.nav_color##"></i-control>
-            <i-control class="col3" type="color" ng-model="manage.nav_background" label="##word.nav_background##"></i-control>
-            <i-control class="row" type="text" ng-model="manage.fonts" label="##word.site_fonts##"></i-control>
+            <i-control class="col3" type="color" ng-model="manage.nav_background" label="##word.nav_background##">
+            </i-control>
+          </div>
+          <div class="row">
+            <i-list v="r" class="col6" label="##word.site_fonts##" ng-model="manage.fonts" display="name"
+              items="fontsList" ng-search="manage.$fonts_search"></i-list>
           </div>
         </fieldset>
 
@@ -50,37 +73,104 @@
           <legend>##word.edit_slider_1##</legend>
 
           <div class="row">
-            <div class="col9"><i-control class="row" v="r" label="##word.title##" type="text" ng-model="manage.slider1.title"> </i-control> <i-textarea v="r" label="##word.description##" ng-model="manage.slider1.description"> </i-textarea></div>
-            <div class="col3"><i-image v="r" ng-model="manage.slider1.logo"></i-image></div>
+            <div class="col9">
+              <i-control class="row" v="r" label="##word.title##" type="text" ng-model="manage.slider1.title">
+              </i-control>
+              <i-textarea v="r" label="##word.description##" ng-model="manage.slider1.description"> </i-textarea>
+            </div>
+            <div class="col3">
+              <i-image v="r" ng-model="manage.slider1.logo"></i-image>
+              <i class="fa fa-exclamation-circle" aria-hidden="true"> <span> ##word.recommended_size## :
+                  ##word.img_size_2##</span></i>
+            </div>
           </div>
         </fieldset>
         <fieldset>
           <legend>##word.edit_slider_2##</legend>
 
           <div class="row">
-            <div class="col9"><i-control class="row" v="r" label="##word.title##" type="text" ng-model="manage.slider2.title"> </i-control> <i-textarea v="r" label="##word.description##" ng-model="manage.slider2.description"> </i-textarea></div>
-            <div class="col3"><i-image v="r" ng-model="manage.slider2.logo"></i-image></div>
+            <div class="col9">
+              <i-control class="row" v="r" label="##word.title##" type="text" ng-model="manage.slider2.title">
+              </i-control>
+              <i-textarea v="r" label="##word.description##" ng-model="manage.slider2.description"> </i-textarea>
+            </div>
+            <div class="col3">
+              <i-image v="r" ng-model="manage.slider2.logo"></i-image>
+              <i class="fa fa-exclamation-circle" aria-hidden="true"> <span> ##word.recommended_size## :
+                  ##word.img_size_2##</span></i>
+            </div>
           </div>
         </fieldset>
         <fieldset>
           <legend>##word.edit_slider_3##</legend>
 
           <div class="row">
-            <div class="col9"><i-control class="row" v="r" label="##word.title##" type="text" ng-model="manage.slider3.title"> </i-control> <i-textarea v="r" label="##word.description##" ng-model="manage.slider3.description"> </i-textarea></div>
-            <div class="col3"><i-image v="r" ng-model="manage.slider3.logo"></i-image></div>
+            <div class="col9">
+              <i-control class="row" v="r" label="##word.title##" type="text" ng-model="manage.slider3.title">
+              </i-control>
+              <i-textarea v="r" label="##word.description##" ng-model="manage.slider3.description"> </i-textarea>
+            </div>
+            <div class="col3">
+              <i-image v="r" ng-model="manage.slider3.logo"></i-image>
+              <i class="fa fa-exclamation-circle" aria-hidden="true"> <span> ##word.recommended_size## :
+                  ##word.img_size_2##</span></i>
+            </div>
           </div>
         </fieldset>
 
         <i-button type="save" label="##word.save##" ng-click="saveManage(manage,'#aboutEdit')"></i-button>
       </div>
 
+      <div id="email_setting" class="tab-content">
+        <fieldset>
+          <legend>##word.email_sending_setting##</legend>
+          <div class="row">
+            <i-control class="col6" label="##word.host##" type="text" ng-model="manage.email_setting.host"></i-control>
+            <i-control class="col6" label="##word.port##" type="number" ng-model="manage.email_setting.port">
+            </i-control>
+
+          </div>
+
+          <div class="row">
+            <i-control class="col6" v="e" label="##word.user_name##" type="text"
+              ng-model="manage.email_setting.username"></i-control>
+            <i-control class="col6" label="##word.password##" type="password" ng-model="manage.email_setting.password">
+            </i-control>
+          </div>
+
+          <div class="row">
+            <i-control class="col6" v="e" label="##word.sent_from_mail##" type="text" ng-model="manage.email_setting.from">
+            </i-control>
+          </div>
+        </fieldset>
+      </div>
+
       <div id="site_links" class="tab-content">
         <fieldset>
-          <legend>##word.site_links## <i-button type="add default" ng-click="manage.links.push({})"></i-button></legend>
+          <legend> ##word.title## </legend>
+
+          <div class="row">
+            <i-control label="##word.site_links_title##" ng-model="manage.site_links_title"> </i-control>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>##word.site_links## <i-button type="add default" ng-click="manage.links.push({})"></i-button>
+          </legend>
 
           <div class="row padding border margin" ng-repeat="link in manage.links">
-            <i-control label="##word.title##" ng-model="link.title"> </i-control>
-            <i-control label="##word.link##" ng-model="link.url"> </i-control>
+            <div class="col9">
+
+              <i-control label="##word.title##" ng-model="link.title"> </i-control>
+              <i-control label="##word.link##" ng-model="link.url"> </i-control>
+            </div>
+            <div class="col1"></div>
+            <div class="col2">
+              <br>
+              <br>
+              <i-button type="delete" label="##word.delete##" ng-click="manage.links.splice($index,1)">
+              </i-button>
+            </div>
           </div>
         </fieldset>
 
@@ -123,6 +213,9 @@
             <i-image ng-model="manage.logo2"></i-image>
             <i-image ng-model="manage.logo3"></i-image>
           </div>
+          <i class="fa fa-exclamation-circle" aria-hidden="true"> <span> ##word.recommended_size## :
+              ##word.img_size_3##</span></i>
+
         </fieldset>
 
         <i-button type="save" label="##word.save##" ng-click="saveManage(manage,'#site_social_media')"></i-button>

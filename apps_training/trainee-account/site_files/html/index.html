@@ -51,7 +51,7 @@
                 <div class="row">
                   <i-radio class="col3" ng-value="national_id" label="##word.national_id##" ng-model="trainee.id_type"> </i-radio>
                   <i-radio class="col3" ng-value="passport" label="##word.passport##" ng-model="trainee.id_type"> </i-radio>
-                  <i-control v="r" class="col4" type="text" ng-model="trainee.id_number" label="##word.id_number##"></i-control>
+                  <i-control v="r" class="col4" type="text" ng-model="trainee.id_number" label="##word.national_id##"></i-control>
                 </div>
               </fieldset>
             </div>
@@ -61,7 +61,7 @@
             </div>
             <div class="row">
               <i-list v="r" class="col6" label="##word.gender##" ng-model="trainee.gender" display="##session.lang##" items="genderList" ng-search="trainee.$gender"></i-list>
-              <i-control v="r" class="col6" ng-model="trainee.source_of_income" label="##word.source_of_income##"></i-control>
+              <i-control v="r" class="col6" ng-model="trainee.how_do_know_bout" label="##word.how_do_know_bout##"></i-control>
             </div>
             <div class="center">
               <i-button class="center" type="save" label="##word.save##" ng-click="updateAccount(trainee)"></i-button>

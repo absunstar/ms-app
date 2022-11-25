@@ -13,6 +13,7 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/html/view_job.html',
     parser: 'html',
     compress: true,
+    public:true,
   });
 
   site.post({
@@ -109,7 +110,6 @@ module.exports = function init(site) {
       done: false,
     };
 
-
     $jobs.findOne(
       {
         where: {
@@ -132,8 +132,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-
 
     let id = req.body.id;
 
@@ -169,7 +167,6 @@ module.exports = function init(site) {
     if (where['job_title']) {
       where['job_title'] = site.get_RegExp(where['job_title'], 'i');
     }
-
     if (where['job_status'] && where['job_status'].id) {
       where['approve.id'] = where['job_status'].id;
       delete where['job_status'];

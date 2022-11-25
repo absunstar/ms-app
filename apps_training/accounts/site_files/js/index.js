@@ -525,6 +525,28 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.sendActivationLink = function (user) {
+    user.$sendActivationLink = true;
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/user/send-activation-link',
+      data: user,
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+        } else if (response.data.error) {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
   $scope.getAccountList();
   $scope.getAccountsType();
   $scope.getGender();
