@@ -58,7 +58,7 @@
               </td>
 
               <td class="center not-print">
-                <i-checkbox class="col2" x-permissions="admin" ng-click="updateActivate(c)" ng-model="c.logo_view" label="##word.logo_view##">
+                <i-checkbox class="col2" x-permissions="admin" ng-change="updateActivate(c)" ng-model="c.logo_view" label="##word.logo_view##">
                 </i-checkbox>
                 <a type="button" class="btn btn-info btn-lg" href="/ViewCompany?id={{c.id}}"
                   style="font-size: inherit;color: #fff !important;"> ##word.details## <i class="fa fa-eye"></i> </a>
