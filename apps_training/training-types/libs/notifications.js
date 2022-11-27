@@ -4,21 +4,21 @@ module.exports = function init(site) {
 
   let source = {
     en: 'Training Types System',
-    ar: 'نظام أنواع التدريب'
+    ar: 'نظام مجالات التدريب'
   }
 
   let image = '/images/training_types.png'
   let add_message = {
     en: 'New Training Type Added',
-    ar: 'تم إضافة نوع تدريب جديد'
+    ar: 'تم إضافة مجال تدريب جديد'
   }
   let update_message = {
     en: ' Training Type Updated',
-    ar: 'تم تعديل نوع تدريب'
+    ar: 'تم تعديل مجال تدريب'
   }
   let delete_message = {
     en: ' Training Type Deleted',
-    ar: 'تم حذف نوع تدريب '
+    ar: 'تم حذف مجال تدريب '
   }
 
 
