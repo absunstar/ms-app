@@ -418,10 +418,12 @@ main {
 .about-image img {
   width: inherit;
 }
-
+.company-logo-footer {
+  height: 120px;
+}
 .main-logo-section {
   background-color: white;
-  padding: 5% 0;
+  padding: 1% 5% 2% 5%;
 }
 
 a.logo-heading {

@@ -15,25 +15,26 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="nav flex-column v-tabs" aria-orientation="vertical">
-                  <a class="nav-link mb-3 p-3 shadow active" id="v-admin-tab" data-toggle="pill" onclick="site.vTab('v-admin')" role="tab" aria-controls="v-admin" aria-selected="true">
+                  <a class="nav-link mb-3 p-3 shadow active" id="v-admin-tab" data-toggle="pill"
+                    onclick="site.vTab('v-admin')" role="tab" aria-controls="v-admin" aria-selected="true">
                     <i class="fa-solid fa-people-roof mr-2"></i>
-                    <span class="font-weight-bold small text-uppercase"> ##word.admin## </span></a
-                  >
-                  <a class="nav-link mb-3 p-3 shadow" id="v-employer-tab" data-toggle="pill" onclick="site.vTab('v-employer')" role="tab" aria-controls="v-employer" aria-selected="false">
+                    <span class="font-weight-bold small text-uppercase"> ##word.admin## </span></a>
+                  <a class="nav-link mb-3 p-3 shadow" id="v-employer-tab" data-toggle="pill"
+                    onclick="site.vTab('v-employer')" role="tab" aria-controls="v-employer" aria-selected="false">
                     <i class="fa-solid fa-people-roof mr-2"></i>
-                    <span class="font-weight-bold small text-uppercase"> ##word.employer## </span></a
-                  >
+                    <span class="font-weight-bold small text-uppercase"> ##word.employer## </span></a>
 
-                  <a class="nav-link mb-3 p-3 shadow" id="v-job-seeker-tab" data-toggle="pill" onclick="site.vTab('v-job-seeker')" role="tab" aria-controls="v-job-seeker" aria-selected="false">
+                  <a class="nav-link mb-3 p-3 shadow" id="v-job-seeker-tab" data-toggle="pill"
+                    onclick="site.vTab('v-job-seeker')" role="tab" aria-controls="v-job-seeker" aria-selected="false">
                     <i class="fa-solid fa-person mt-2"></i>
-                    <span class="font-weight-bold small text-uppercase">##word.job_seeker##</span></a
-                  >
+                    <span class="font-weight-bold small text-uppercase">##word.job_seeker##</span></a>
                 </div>
               </div>
 
               <div class="col-md-9">
                 <div class="v-contents">
-                  <div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-admin-content" role="tabpanel" aria-labelledby="v-admin-tab">
+                  <div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-admin-content"
+                    role="tabpanel" aria-labelledby="v-admin-tab">
                     <div class="admin-form">
                       <div class="row">
                         <div class="col4">
@@ -54,9 +55,12 @@
                       <i-control v="r e" class="row" ng-model="admin.email" label="##word.email##"></i-control>
 
                       <div class="row">
-                        <i-control v="r" type="password" class="col pass" ng-model="admin.password" label="##word.password##"></i-control>
-                        <i-control v="r" type="password" class="col pass" ng-model="admin.retype_password" label="##word.retype_password##"></i-control>
-                        <i-checkbox class="col" ng-change="showPassword()" ng-model="show_password" label="##word.show_password##"></i-checkbox>
+                        <i-control v="r" type="password" class="col pass" ng-model="admin.password"
+                          label="##word.password##"></i-control>
+                        <i-control v="r" type="password" class="col pass" ng-model="admin.retype_password"
+                          label="##word.retype_password##"></i-control>
+                        <i-checkbox class="col" ng-change="showPassword()" ng-model="show_password"
+                          label="##word.show_password##"></i-checkbox>
                       </div>
 
                       <div class="row">
@@ -67,12 +71,14 @@
                       <br />
 
                       <div class="center">
-                        <i-button class="center" label="##word.create_admin_account##" ng-click="addAdmin(admin)"></i-button>
+                        <i-button class="center" label="##word.create_admin_account##" ng-click="addAdmin(admin)">
+                        </i-button>
                       </div>
                     </div>
                   </div>
 
-                  <div class="tab-pane fade shadow rounded bg-white p-5" id="v-employer-content" role="tabpanel" aria-labelledby="v-employer-tab">
+                  <div class="tab-pane fade shadow rounded bg-white p-5" id="v-employer-content" role="tabpanel"
+                    aria-labelledby="v-employer-tab">
                     <div class="employer-form">
                       <div class="row">
                         <div class="col4">
@@ -92,9 +98,12 @@
                       <i-control v="r e" class="row" ng-model="employer.email" label="##word.email##"></i-control>
 
                       <div class="row">
-                        <i-control v="r" type="password" class="col pass" ng-model="employer.password" label="##word.password##"></i-control>
-                        <i-control v="r" type="password" class="col pass" ng-model="employer.retype_password" label="##word.retype_password##"></i-control>
-                        <i-checkbox class="col" ng-change="showPassword()" ng-model="show_password" label="##word.show_password##"></i-checkbox>
+                        <i-control v="r" type="password" class="col pass" ng-model="employer.password"
+                          label="##word.password##"></i-control>
+                        <i-control v="r" type="password" class="col pass" ng-model="employer.retype_password"
+                          label="##word.retype_password##"></i-control>
+                        <i-checkbox class="col" ng-change="showPassword()" ng-model="show_password"
+                          label="##word.show_password##"></i-checkbox>
                       </div>
 
                       <div class="row">
@@ -105,12 +114,14 @@
                       <br />
 
                       <div class="center">
-                        <i-button class="center" label="##word.create_employer_account##" ng-click="addEmployer(employer)"></i-button>
+                        <i-button class="center" label="##word.create_employer_account##"
+                          ng-click="addEmployer(employer)"></i-button>
                       </div>
                     </div>
                   </div>
 
-                  <div class="tab-pane fade shadow rounded bg-white p-5" id="v-job-seeker-content" role="tabpanel" aria-labelledby="v-job-seeker-tab">
+                  <div class="tab-pane fade shadow rounded bg-white p-5" id="v-job-seeker-content" role="tabpanel"
+                    aria-labelledby="v-job-seeker-tab">
                     <div class="job-seeker-form">
                       <div class="row">
                         <div class="col4">
@@ -127,13 +138,21 @@
                         </div>
                       </div>
 
-
                       <i-control v="r e" class="row" ng-model="job_seeker.email" label="##word.email##"></i-control>
 
                       <div class="row">
-                        <i-control v="r" type="password" class="col pass" ng-model="job_seeker.password" label="##word.password##"></i-control>
-                        <i-control v="r" type="password" class="col pass" ng-model="job_seeker.retype_password" label="##word.retype_password##"></i-control>
-                        <i-checkbox class="col" ng-change="showPassword()" ng-model="show_password" label="##word.show_password##"></i-checkbox>
+
+                        <i-list v="r" class="col6" label="##word.gender##" ng-model="job_seeker.gender"
+                          display="##session.lang##" items="genderList" ng-search="job_seeker.$gender"></i-list>
+                      </div>
+
+                      <div class="row">
+                        <i-control v="r" type="password" class="col pass" ng-model="job_seeker.password"
+                          label="##word.password##"></i-control>
+                        <i-control v="r" type="password" class="col pass" ng-model="job_seeker.retype_password"
+                          label="##word.retype_password##"></i-control>
+                        <i-checkbox class="col" ng-change="showPassword()" ng-model="show_password"
+                          label="##word.show_password##"></i-checkbox>
                       </div>
 
                       <div class="row">
@@ -144,7 +163,8 @@
                       <br />
 
                       <div class="center">
-                        <i-button class="center" label="##word.create_job_seeker_account##" ng-click="addJobSeeker(job_seeker)"></i-button>
+                        <i-button class="center" label="##word.create_job_seeker_account##"
+                          ng-click="addJobSeeker(job_seeker)"></i-button>
                       </div>
                     </div>
                   </div>

@@ -99,5 +99,25 @@ app.controller('register', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getGender = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.genderList = [];
+    $http({
+      method: 'POST',
+      url: '/api/gender/all',
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.genderList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.getAccountsType();
+  $scope.getGender();
 });

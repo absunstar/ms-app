@@ -20,6 +20,11 @@
     "ar": "أوراق الحضور"
   },
   {
+    "name": "download_attendance_sheets_per_day",
+    "en": "Download Attendance Sheets Per Day",
+    "ar": "تحميل أوراق الحضور يوميا"
+  },
+  {
     "name": "no_questions_for_exam",
     "en": "There are no questions for the exam",
     "ar": "لا يوجد أسئلة للإختبار"

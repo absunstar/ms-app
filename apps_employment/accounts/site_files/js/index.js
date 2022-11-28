@@ -382,6 +382,25 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     site.showModal('#accountSearchModal');
   };
 
+  $scope.getGender = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.genderList = [];
+    $http({
+      method: 'POST',
+      url: '/api/gender/all',
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.genderList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.sendActivationLink = function (user) {
     user.$sendActivationLink = true;
     $scope.error = '';
@@ -406,4 +425,5 @@ app.controller('accounts', function ($scope, $http, $timeout) {
 
   $scope.getAccountList();
   $scope.getAccountsType();
+  $scope.getGender();
 });

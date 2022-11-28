@@ -30,17 +30,20 @@
         <div class="section-number">
           <div class="info looking-for-job about-us-number">
             <div class="icon"><i class="fas fa-male"></i></div>
-            <div class="number"><a>##setting.job_number##</a></div>
+            <div class="number" x-lang="en"><a>##setting.job_number##+</a></div>
+            <div class="number" x-lang="ar"><a>+##setting.job_number##</a></div>
             <div class="head-title"><a>##word.looking_for_job##</a></div>
           </div>
           <div class="info job-available about-us-number">
             <div class="icon"><i class="fas fa-building"></i></div>
-            <div class="number"><a>##setting.job_available_number##</a></div>
+            <div class="number" x-lang="en"><a>##setting.job_available_number##+</a></div>
+            <div class="number" x-lang="ar"><a>+##setting.job_available_number##</a></div>
             <div class="head-title"><a>##word.job_available##</a></div>
           </div>
           <div class="info registered-company about-us-number">
             <div class="icon"><i class="fas fa-briefcase"></i></div>
-            <div class="number"><a>##setting.company_number##</a></div>
+            <div class="number" x-lang="en"><a>##setting.company_number##+</a></div>
+            <div class="number" x-lang="ar"><a>+##setting.company_number##</a></div>
             <div class="head-title"><a>##word.registerd_company##</a></div>
           </div>
         </div>
@@ -58,8 +61,8 @@
         </div>
       </div>
       <div ng-show="setting.allow_registered_companies_logo">
-        <div class="footer-logo center">
-          <img ng-repeat="l in companiesLogosList" class="logo padding " ng-src="{{l.image.url}}" alt="" />
+        <div class="center">
+          <img ng-repeat="l in companiesLogosList" class="company-logo-footer padding" ng-src="{{l.image.url}}" alt="" />
         </div>
       </div>
     </div>
@@ -73,9 +76,9 @@
       <div class="footer-logo">
         <div class="footer-company-logo"></div>
         <div class="footer-partner-logo">
-          <img src="##setting.logo3.url##" class="logo" alt="" />
           <img src="##setting.logo1.url##" class="logo" alt="" />
           <img src="##setting.logo2.url##" class="logo" alt="" />
+          <img src="##setting.logo3.url##" class="logo" alt="" />
         </div>
       </div>
       <div class="Useful-Links">
@@ -182,7 +185,6 @@
             $scope.busy = false;
             if (response.data.done && response.data.list && response.data.list.length > 0) {
               $scope.companiesLogosList = response.data.list;
-              console.log($scope.companiesLogosList[0]);
             }
           },
           function (err) {

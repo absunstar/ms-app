@@ -89,7 +89,11 @@
                           </div>
                         </div>
                         <i-control v="r e" class="row" ng-model="job_seeker.email" label="##word.email##"></i-control>
+                        <div class="row">
 
+                          <i-list v="r" class="col6" label="##word.gender##" ng-model="job_seeker.gender"
+                            display="##session.lang##" items="genderList" ng-search="job_seeker.$gender"></i-list>
+                        </div>
                         <div class="row">
                           <i-control v="r" type="password" class="col6 pass" ng-model="job_seeker.password" label="##word.password##"></i-control>
                           <i-control v="r" type="password" class="col6 pass" ng-model="job_seeker.retype_password" label="##word.retype_password##"></i-control>
