@@ -10,7 +10,7 @@
                         <td class="center">{{job_fairs.name_##session.lang##}}</td>
                     </tr>
 
-                    <tr>
+                    <tr x-permissions="admin">
                         <td class="title">##word.status##</td>
                         <td ng-show="job_fairs.active == true" class="green center"> ##word.active## </td>
                         <td ng-show="job_fairs.active == false" class="red center"> ##word.not_active## </td>
@@ -20,7 +20,7 @@
                         <td class="title">##word.website##</td>
                         <td class="center">{{job_fairs.website}}</td>
                     </tr>
-                    
+
                     <tr>
                         <td class="title">##word.field##</td>
                         <td class="center">{{job_fairs.field}}</td>
@@ -49,4 +49,4 @@
     </div>
 </div>
 
-<div x-import="job-fairs/action_info.html"></div>
+<div x-permissions="admin" x-import="job-fairs/action_info.html"></div>

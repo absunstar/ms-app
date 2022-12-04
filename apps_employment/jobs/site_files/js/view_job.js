@@ -36,6 +36,14 @@ app.controller('viewJob', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.showApply = function () {
+    if('##user.id##' > 0){
+      site.showModal( '#applyModal')
+    } else {
+      document.location.href = '/login';
+    }
+  };
+
   $scope.applyAccept = function (job) {
     const v = site.validated('#applyModal');
     if (!v.ok) {

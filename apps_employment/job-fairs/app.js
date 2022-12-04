@@ -208,7 +208,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/job_fairs/view', (req, res) => {
+  site.post({ name: '/api/job_fairs/view', public: true }, (req, res) => {
     let response = {
       done: false,
     };
@@ -320,6 +320,10 @@ module.exports = function init(site) {
     let where = req.body.where || {};
 
     if (req.session.user && req.session.user.role && req.session.user.role.name == 'job_seeker') {
+      where.event_date = {
+        $gte: new Date(),
+      };
+    } else if (!req.session.user) {
       where.event_date = {
         $gte: new Date(),
       };

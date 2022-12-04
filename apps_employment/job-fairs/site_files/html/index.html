@@ -53,7 +53,7 @@
                   <i-button x-permissions="job_seeker || !login" label="##word.apply##" ng-click="registerApplyJobSeeker(c)"></i-button>
                   <i-button x-permissions="admin" label="##word.apply##" ng-click="displayApply(c)"></i-button>
                   <i-button x-permissions="admin" label="##word.attendance##" ng-click="displayAttendance(c)"></i-button>
-                  <i-button x-permissions="admin" type="view" label="##word.details##" ng-click="displayDetailsJobFairs(c)"></i-button>
+                  <i-button type="view" label="##word.details##" ng-click="displayDetailsJobFairs(c)"></i-button>
                   <i-button x-permissions="admin" type="edit" label="##word.edit##" ng-click="displayUpdateJobFairs(c)"></i-button>
                   <i-button  x-permissions="admin" ng-show="!c.active" label="##word.activate##" ng-click="showActivationModal(c,'activate')"></i-button>
                   <i-button  x-permissions="admin" ng-show="c.active" label="##word.deactivate##" ng-click="showActivationModal(c,'deactivate')"></i-button>

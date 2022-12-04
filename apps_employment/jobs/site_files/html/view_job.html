@@ -1,124 +1,136 @@
 <!DOCTYPE html>
 <html lang="en" data-ng-app="myApp">
-  <head x-import="0/head.html"> </head>
 
-  <body class="##session.lang##" ng-controller="viewJob">
-    <div x-import="0/navbar.html"></div>
+<head x-import="0/head.html"> </head>
 
-    <div id="main-layout" class="container loaded">
+<body class="##session.lang##" ng-controller="viewJob">
+  <div x-import="0/navbar.html"></div>
+
+  <div id="main-layout" class="container loaded">
+    <div class="row">
+      <div x-import="jobs/apply_modal.html"></div>
+
       <div class="row">
-        <div x-import="jobs/apply_modal.html"></div>
-
-        <fieldset>
-          <legend>##word.basic_information##</legend>
-          <div class="row">
-            <div class="col9">
-              <table id="basicInformationTable" class="table hover bold">
-                <tr>
-                  <td class="title">##word.job_title##</td>
-                  <td class="center">{{job.job_title}}</td>
-                </tr>
-
-                <tr>
-                  <td class="title">##word.company##</td>
-                  <td class="center">{{job.company.name_##session.lang##}}</td>
-                </tr>
-
-                <tr>
-                  <td class="title">##word.approve##</td>
-                  <td class="center">{{job.approve.##session.lang##}}</td>
-                </tr>
-                <tr>
-                  <td class="title">##word.status##</td>
-                  <td ng-show="job.active == true" class="green center">##word.active##</td>
-                  <td ng-show="job.active == false" class="red center">##word.not_active##</td>
-                </tr>
-
-                <tr>
-                  <td class="title">##word.job_responsibilities##</td>
-                  <td class="center lines-text">{{job.job_responsibilities}}</td>
-                </tr>
-
-                <tr>
-                  <td class="title">##word.job_required_skills##</td>
-                  <td class="center lines-text">{{job.job_required_skills}}</td>
-                </tr>
-
-                <tr>
-                  <td class="title">##word.job_seeker_received_benefits##</td>
-                  <td class="center lines-text">{{job.job_seeker_received_benefits}}</td>
-                </tr>
-
-                <tr>
-                  <td class="title">##word.job_type##</td>
-                  <td class="center">{{job.job_type.##session.lang##}}</td>
-                </tr>
-
-                <tr>
-                  <td class="title">##word.application_deadline_date##</td>
-                  <td class="center">{{job.application_deadline_date | date:"dd/MM/yyyy"}}</td>
-                </tr>
-
-                <tr>
-                  <td class="title">##word.job_field##</td>
-                  <td class="center">{{job.job_field.name_##session.lang##}}</td>
-                </tr>
-
-                <tr>
-                  <td class="title">##word.job_subfield##</td>
-                  <td class="center">{{job.job_subfield.name_##session.lang##}}</td>
-                </tr>
-
-                <tr>
-                  <td class="title">##word.years_of_experience##</td>
-                  <td class="center">{{job.years_of_experience.name_##session.lang##}}</td>
-                </tr>
-                <tr>
-                  <td class="title">##word.industry##</td>
-                  <td class="center">{{job.industry.name_##session.lang##}}</td>
-                </tr>
-                <tr>
-                  <td class="title">##word.qualification##</td>
-                  <td class="center">{{job.qualification.name_##session.lang##}}</td>
-                </tr>
-
-                <tr>
-                  <td class="title">##word.salary##</td>
-                  <td class="center">{{job.salary}}</td>
-                </tr>
-                <tr>
-                  <td class="title">##word.country##</td>
-                  <td class="center">{{job.country.name_##session.lang##}}</td>
-                </tr>
-                <tr>
-                  <td class="title">##word.city##</td>
-                  <td class="center">{{job.city.name_##session.lang##}}</td>
-                </tr>
-                <tr>
-                  <td class="title">##word.full_address##</td>
-                  <td class="center lines-text">{{job.full_address}}</td>
-                </tr>
-              </table>
-            </div>
-
-            <div class="col3">
-              <i-image view ng-model="job.company.image"></i-image>
-              <br />
-              <br />
-              <div class="row">
-                <a type="button" class="btn btn-info btn-lg" style="font-size: inherit; color: #fff !important" href="/ViewCompany?id={{job.company.id}}"> ##word.company_profile## <i class="fa fa-eye"></i> </a>
-              </div>
-              <i-button x-permissions="job_seeker" ng-show="!applied" type="add" label="##word.apply_now##" onclick="site.showModal( '#applyModal')"></i-button>
-              <i-button x-permissions="job_seeker" ng-show="applied" type="view" label="##word.already_applied##"></i-button>
-              <i-button x-permissions="job_seeker" ng-show="!favorite" label="##word.favorite##" ng-click="favoriteTransaction(job,'add')"></i-button>
-              <i-button x-permissions="job_seeker" ng-show="favorite" label="##word.remove_favorite##" ng-click="favoriteTransaction(job,'remove')"></i-button>
-            </div>
-          </div>
-        </fieldset>
+        <h1 class="bold text-center">##word.job_details##</h1>
       </div>
+
+      <fieldset>
+        <legend>##word.basic_information##</legend>
+        <div class="row">
+          <div class="col9">
+            <table id="basicInformationTable" class="table hover bold">
+
+              <tr>
+                <td class="title">##word.job_title##</td>
+                <td class="center">{{job.job_title}}</td>
+              </tr>
+
+              <tr>
+                <td class="title">##word.company##</td>
+                <td class="center">{{job.company.name_##session.lang##}}</td>
+              </tr>
+
+              <tr>
+                <td class="title">##word.approve##</td>
+                <td class="center">{{job.approve.##session.lang##}}</td>
+              </tr>
+              <tr>
+                <td class="title">##word.status##</td>
+                <td ng-show="job.active == true" class="green center">##word.active##</td>
+                <td ng-show="job.active == false" class="red center">##word.not_active##</td>
+              </tr>
+
+              <tr>
+                <td class="title">##word.job_responsibilities##</td>
+                <td class="center lines-text">{{job.job_responsibilities}}</td>
+              </tr>
+
+              <tr>
+                <td class="title">##word.job_required_skills##</td>
+                <td class="center lines-text">{{job.job_required_skills}}</td>
+              </tr>
+
+              <tr>
+                <td class="title">##word.job_seeker_received_benefits##</td>
+                <td class="center lines-text">{{job.job_seeker_received_benefits}}</td>
+              </tr>
+
+              <tr>
+                <td class="title">##word.job_type##</td>
+                <td class="center">{{job.job_type.##session.lang##}}</td>
+              </tr>
+
+              <tr>
+                <td class="title">##word.application_deadline_date##</td>
+                <td class="center">{{job.application_deadline_date | date:"dd/MM/yyyy"}}</td>
+              </tr>
+
+              <tr>
+                <td class="title">##word.job_field##</td>
+                <td class="center">{{job.job_field.name_##session.lang##}}</td>
+              </tr>
+
+              <tr>
+                <td class="title">##word.job_subfield##</td>
+                <td class="center">{{job.job_subfield.name_##session.lang##}}</td>
+              </tr>
+
+              <tr>
+                <td class="title">##word.years_of_experience##</td>
+                <td class="center">{{job.years_of_experience.name_##session.lang##}}</td>
+              </tr>
+              <tr>
+                <td class="title">##word.industry##</td>
+                <td class="center">{{job.industry.name_##session.lang##}}</td>
+              </tr>
+              <tr>
+                <td class="title">##word.qualification##</td>
+                <td class="center">{{job.qualification.name_##session.lang##}}</td>
+              </tr>
+
+              <tr>
+                <td class="title">##word.salary##</td>
+                <td class="center">{{job.salary}}</td>
+              </tr>
+              <tr>
+                <td class="title">##word.country##</td>
+                <td class="center">{{job.country.name_##session.lang##}}</td>
+              </tr>
+              <tr>
+                <td class="title">##word.city##</td>
+                <td class="center">{{job.city.name_##session.lang##}}</td>
+              </tr>
+              <tr>
+                <td class="title">##word.full_address##</td>
+                <td class="center lines-text">{{job.full_address}}</td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="col3 center">
+            <i-image view ng-model="job.company.image"></i-image>
+            <br />
+            <div class="row">
+              <a type="button" class="btn btn-info btn-lg" style="font-size: inherit; color: #fff !important"
+                href="/ViewCompany?id={{job.company.id}}"> ##word.company_profile## <i class="fa fa-eye"></i> </a>
+            </div>
+            <br />
+            <i-button x-permissions="job_seeker || !login" ng-show="!applied" type="add" label="##word.apply_now##"
+              ng-click="showApply()"></i-button>
+            <i-button x-permissions="job_seeker" ng-show="applied" type="view" label="##word.already_applied##">
+            </i-button>
+            <i-button x-permissions="job_seeker" ng-show="!favorite" label="##word.favorite##"
+              ng-click="favoriteTransaction(job,'add')"></i-button>
+            <i-button x-permissions="job_seeker" ng-show="favorite" label="##word.remove_favorite##"
+              ng-click="favoriteTransaction(job,'remove')"></i-button>
+          </div>
+        </div>
+      </fieldset>
     </div>
-    <div x-import="0/footer.html"></div>
-    <div x-import="0/scripts.html"></div>
-    <script x-import="jobs/view_job.js"></script>
-  </body>
+  </div>
+  <div x-import="0/footer.html"></div>
+  <div x-import="0/scripts.html"></div>
+  <script x-import="jobs/view_job.js"></script>
+</body>
+
 </html>
