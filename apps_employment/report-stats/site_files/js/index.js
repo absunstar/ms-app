@@ -1,5 +1,5 @@
 app.controller('reportStats', function ($scope, $http, $timeout) {
-  $scope._search = {};
+  $scope.report_state = {};
 
   $scope.getAccountsList = function (where) {
     $scope.busy = true;
@@ -13,9 +13,10 @@ app.controller('reportStats', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.users && response.data.users.length > 0) {
-          $scope.job_seeker_count = response.data.job_seeker_count;
-          $scope.male_count = response.data.male_count;
-          $scope.female_count = response.data.female_count;
+          $scope.report_state.job_seeker_count = response.data.job_seeker_count;
+          $scope.report_state.male_count = response.data.male_count;
+          $scope.report_state.female_count = response.data.female_count;
+          $scope.report_state.undefined_gender_count = response.data.undefined_gender_count;
         }
       
       },
@@ -38,7 +39,7 @@ app.controller('reportStats', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list &&  response.data.list.length > 0) {
-          $scope.companies_count = response.data.list.length;
+          $scope.report_state.companies_count = response.data.list.length;
         }
       },
       function (err) {
@@ -62,7 +63,7 @@ app.controller('reportStats', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.hired_job_seeker_count = response.data.hired_job_seeker_count;
+          $scope.report_state.hired_job_seeker_count = response.data.hired_job_seeker_count;
         }
       },
       function (err) {

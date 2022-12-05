@@ -60,6 +60,11 @@
     "ar": "عنوان"
   },
   {
+    "name": "undefined_gender_activation",
+    "en": "Undefined gender activation",
+    "ar": "تفعيل جنس غير محدد"
+  },
+  {
     "name": "site_links_title",
     "en": "Site Links Title",
     "ar": "عنوان روابط خارحية"

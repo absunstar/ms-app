@@ -26,23 +26,27 @@
           <table x-permissions="login" class="table hover bold" id="t1">
             <tr>
               <td class="title">##word.company##</td>
-              <td class="center">{{companies_count || 0}}</td>
+              <td class="center">{{report_state.companies_count || 0}}</td>
             </tr>
             <tr>
               <td class="title">##word.job_seeker##</td>
-              <td class="center">{{job_seeker_count || 0}}</td>
+              <td class="center">{{report_state.job_seeker_count || 0}}</td>
             </tr>
             <tr>
               <td class="title">##word.male##</td>
-              <td class="center">{{male_count || 0}}</td>
+              <td class="center">{{report_state.male_count || 0}}</td>
             </tr>
             <tr>
               <td class="title">##word.female##</td>
-              <td class="center">{{female_count || 0}}</td>
+              <td class="center">{{report_state.female_count || 0}}</td>
+            </tr>
+            <tr x-setting="undefined_gender_activation">
+              <td class="title">##word.undefined_gender##</td>
+              <td class="center">{{report_state.undefined_gender_count || 0}}</td>
             </tr>
             <tr>
               <td class="title">##word.hired_job_seeker##</td>
-              <td class="center">{{hired_job_seeker_count || 0}}</td>
+              <td class="center">{{report_state.hired_job_seeker_count || 0}}</td>
             </tr>
           </table>
 
