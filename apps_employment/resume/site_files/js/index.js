@@ -33,12 +33,20 @@ app.controller('resume', function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
         }
       },
-      function (err) {}
+      function (err) { }
     );
   };
 
-  $scope.update = function (user) {
+  $scope.update = function (user, type) {
+    $scope.error = '';
     $scope.busy = true;
+    if (type == 'profile') {
+      const v = site.validated('#profileModal');
+      if (!v.ok) {
+        $scope.error = v.messages[0]['##session.lang##'];
+        return;
+      }
+    }
     $http({
       method: 'POST',
       url: '/api/user/update',
@@ -52,7 +60,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
         }
       },
-      function (err) {}
+      function (err) { }
     );
   };
 
@@ -83,7 +91,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
       url: '/api/years_of_experience/all',
       data: {
         where: { active: true },
-        select: { id: 1,   name_ar: 1, name_en: 1 },
+        select: { id: 1, name_ar: 1, name_en: 1 },
       },
     }).then(
       function (response) {
@@ -108,7 +116,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
       url: '/api/languages/all',
       data: {
         where: { active: true },
-        select: { id: 1,   name_ar: 1, name_en: 1 },
+        select: { id: 1, name_ar: 1, name_en: 1 },
       },
     }).then(
       function (response) {
@@ -133,7 +141,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
       url: '/api/qualifications/all',
       data: {
         where: { active: true },
-        select: { id: 1,   name_ar: 1, name_en: 1 },
+        select: { id: 1, name_ar: 1, name_en: 1 },
       },
     }).then(
       function (response) {
@@ -158,7 +166,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
       url: '/api/countries/all',
       data: {
         where: { active: true },
-        select: { id: 1,   name_ar: 1, name_en: 1 },
+        select: { id: 1, name_ar: 1, name_en: 1 },
       },
     }).then(
       function (response) {
@@ -183,7 +191,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
       url: '/api/cities/all',
       data: {
         where: { active: true, 'country.id': id },
-        select: { id: 1,   name_ar: 1, name_en: 1 },
+        select: { id: 1, name_ar: 1, name_en: 1 },
       },
     }).then(
       function (response) {
@@ -332,34 +340,34 @@ app.controller('resume', function ($scope, $http, $timeout) {
     $scope.update($scope.user);
   };
 
-/*   $scope.showSkill = function (type, skill) {
-    $scope.error = '';
-    $scope.user.skill_list = $scope.user.skill_list || [];
-    site.showModal('#skillsModal');
-    if (type == 'add') {
-      $scope.skill = {};
-    } else if (type == 'edit') {
-      $scope.skill = skill;
-      $scope.skill.$edit = true;
-    }
-  };
-
-  $scope.skillsTransaction = function (skill, type) {
-    $scope.error = '';
-    const v = site.validated('#skillsModal');
-    if (!v.ok) {
-      $scope.error = v.messages[0]['##session.lang##'];
-      return;
-    }
-
-    if (type == 'add') {
-      $scope.user.skill_list.push(skill);
-    }
-    site.hideModal('#skillsModal');
-    site.resetValidated('#skillsModal');
-    $scope.update($scope.user);
-  };
- */
+  /*   $scope.showSkill = function (type, skill) {
+      $scope.error = '';
+      $scope.user.skill_list = $scope.user.skill_list || [];
+      site.showModal('#skillsModal');
+      if (type == 'add') {
+        $scope.skill = {};
+      } else if (type == 'edit') {
+        $scope.skill = skill;
+        $scope.skill.$edit = true;
+      }
+    };
+  
+    $scope.skillsTransaction = function (skill, type) {
+      $scope.error = '';
+      const v = site.validated('#skillsModal');
+      if (!v.ok) {
+        $scope.error = v.messages[0]['##session.lang##'];
+        return;
+      }
+  
+      if (type == 'add') {
+        $scope.user.skill_list.push(skill);
+      }
+      site.hideModal('#skillsModal');
+      site.resetValidated('#skillsModal');
+      $scope.update($scope.user);
+    };
+   */
 
   $scope.showExtraCurricular = function (type, extra_curricular) {
     $scope.error = '';

@@ -1,14 +1,13 @@
 app.controller('reportStatsJobSeekerPerJob', function ($scope, $http, $timeout) {
   $scope._search = {};
 
-  $scope.getJobsList = function () {
+  $scope.getJobsList = function (where) {
     $scope.busy = true;
     $scope.list = [];
+    where = where || {};
+    where['approve.id'] = 3;
+    where['application_list'] = { $exists: true, $ne: [] };
 
-    let where = {
-      'approve.id': 3,
-      application_list: { $exists: true, $ne: [] },
-    };
     $http({
       method: 'POST',
       url: '/api/jobs/all',
@@ -25,6 +24,23 @@ app.controller('reportStatsJobSeekerPerJob', function ($scope, $http, $timeout) 
         $scope.error = err;
       }
     );
+  };
+
+  $scope.searchAll = function () {
+
+    if ($scope.search && $scope.search.date_from && $scope.search.date_to && new Date($scope.search.date_from) > new Date($scope.search.date_to)) {
+      $scope.error = '##word.start_date_cannot_bigger_than_end_date##';
+      return;
+    };
+
+    $scope.getJobsList({ ...$scope.search });
+    site.hideModal('#reportStatsPerJobModal');
+    $scope.search = {};
+  };
+
+  $scope.displaySearchModal = function () {
+    $scope.error = '';
+    site.showModal('#reportStatsPerJobModal');
   };
 
   $scope.getJobsList();

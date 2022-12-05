@@ -1,56 +1,40 @@
-<div id="citySearchModal" class="modal small">
-  <div class="modal-content height-auto">
-      <div class="modal-header">
-          <span class="close">&times;</span>
-          <h2 class="center">
-              ##word.search_all## <i class="fa fa-search"></i>
+<div id="reportStatsPerJobModal" class="modal small">
+    <div class="modal-content height-auto">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2 class="center">
+                ##word.search_all## <i class="fa fa-search"></i>
 
-          </h2>
-      </div>
+            </h2>
+        </div>
 
-      <div class="modal-body">
-          <form class="form">
-              <fieldset>
-                  <legend>##word.search_all##</legend>
-                  <div class="row">
-
-                      <i-list   class="col4" label="##word.goves_name##" ng-model="search.gov" display="name_##session.lang##"
-                          items="countryList" ng-search="_search.$city_gov"></i-list>
-
-                      <i-control class="col4" label="##word.city_name##" ng-model="search.name_ar"></i-control>
-                      <i-control class="col4" label="##word.name_en##" ng-model="search.name_en"></i-control>
-
-                    </div>
-
-                    <div class="row" ng-show="'##query.id##' == 'undefined'">
-
-                        <i-list   v="r" class="col4" label="##word.country##" ng-model="search.country"
-                        display="name_##session.lang##" items="countryList" ng-search="_search.$search_country"></i-list>
-                      </div>
-
+        <div class="modal-body">
+            <form class="form">
+                <fieldset>
+                    <legend>##word.search_all##</legend>
                     <div class="row">
-                        <i-checkbox  class="col3" label="##word.active##" ng-model="search.active_search">
-                        </i-checkbox>
-                        <i-checkbox  class="col3" label="##word.not_active##" ng-model="search.not_active">
-                        </i-checkbox>
+
+                        <i-control type="text" ng-model="search.job_title" label="##word.job_title##"></i-control>
+
                     </div>
-              </fieldset>
-          </form>
-      </div>
+                </fieldset>
+            </form>
+        </div>
 
-      <br>
-      <br>
+        <br>
+        <br>
 
-      <h2 class="bold text-center text-danger">{{error}}</h2>
+        <h2 class="bold text-center text-danger">{{error}}</h2>
 
-      <div class="modal-footer center">
+        <div class="modal-footer center">
 
-          <i-button type="search" label="##word.search##" ng-click="searchAll()"> </i-button>
+            <i-button type="search" label="##word.search##" ng-click="searchAll()"> </i-button>
 
-          <i-button type="clear" label="##word.empty_search##" ng-click="search = {}"> </i-button>
+            <i-button type="clear" label="##word.empty_search##" ng-click="search = {}"> </i-button>
 
-          <i-button type="close" label="##word.close##" onclick="site.hideModal('#citySearchModal')"> </i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#reportStatsPerJobModal')">
+            </i-button>
 
-      </div>
-  </div>
+        </div>
+    </div>
 </div>
