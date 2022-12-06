@@ -12,7 +12,7 @@
   <div x-import="0/carousel.html"></div>
 
   <main class="main">
-    <div class="about-section container">
+    <div class="about-section container" x-setting="allow_site_numbers">
       <div class="about">
         <div class="about-us">
           <h2>{{setting.numbers_title_##session.lang##}}</h2>
@@ -26,7 +26,7 @@
           </div>
         </div>
       </div>
-      <div class="about-us-number" x-setting="allow_site_numbers">
+      <div class="about-us-number" >
         <div class="section-number">
           <div class="info looking-for-job about-us-number">
             <div class="icon"><i class="fas fa-male"></i></div>
@@ -48,7 +48,7 @@
           </div>
         </div>
       </div>
-      <div class="about-image" x-setting="allow_site_numbers">
+      <div class="about-image" >
         <img src="/images/banner4.png" alt="" />
       </div>
     </div>
