@@ -218,6 +218,33 @@ app.controller('countries', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.setCountryMigration = function (where) {
+    $scope.busy = true;
+    $scope.list = [];
+    $scope.count = 0;
+
+    $http({
+      method: 'POST',
+      url: '/api/countries/migration',
+      data: {
+        where: where,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list &&  response.data.list.length > 0) {
+          $scope.list = response.data.list;
+          $scope.count = response.data.count;
+         
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#countrySearchModal');

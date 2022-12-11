@@ -1,5 +1,6 @@
 module.exports = function init(site) {
   const $partners = site.connectCollection('Partners');
+  const $oldPartners = site.connectCollection({ db: 'Tadrebat', collection: 'EntityPartner', identity: { enabled: false } })
 
   site.get({
     name: 'Partners',
@@ -7,8 +8,6 @@ module.exports = function init(site) {
     parser: 'html',
     compress: true,
   });
-
-
 
   site.post('/api/partners/add', (req, res) => {
     let response = {
@@ -246,4 +245,35 @@ module.exports = function init(site) {
       }
     );
   });
+
+  site.migrationPartners = function () {
+    $oldPartners.findMany(
+      {},
+      (err, docs, count) => {
+        if (!err && docs) {
+          docs.forEach((_doc, i) => {
+
+            $partners.add({
+              _id: _doc._id,
+              active: _doc.IsActive,
+              name_en: _doc.Name,
+              name_ar: _doc.Name,
+              min_hours: _doc.MinHours,
+              max_hours: _doc.MaxHours,
+              phone: _doc.Phone,
+              add_user_info: {
+                date: _doc.CreatedAt,
+              }
+            }, (err) => {
+              if (err) {
+                console.log(err, 'Partners');
+              }
+            })
+          });
+        }
+      }
+    );
+  };
+
+  // site.migrationPartners();
 };

@@ -1,5 +1,6 @@
 module.exports = function init(site) {
   const $training_types = site.connectCollection('TrainingTypes');
+  const $oldTrainingTypes = site.connectCollection({ db: 'Tadrebat', collection: 'TrainingType', identity: { enabled: false } })
 
   site.get({
     name: 'TrainingTypes',
@@ -215,4 +216,32 @@ module.exports = function init(site) {
       }
     );
   });
+
+  site.migrationTrainingTypes = function () {
+    $oldTrainingTypes.findMany(
+      {},
+      (err, docs, count) => {
+        if (!err && docs) {
+          docs.forEach((_doc, i) => {
+
+            $training_types.add({
+              _id: _doc._id,
+              active: _doc.IsActive,
+              name_en: _doc.Name ? _doc.Name : _doc.Name2,
+              name_ar: _doc.Name2 ? _doc.Name2 : _doc.Name,
+              add_user_info: {
+                date: _doc.CreatedAt,
+              }
+            }, (err) => {
+              if (err) {
+                console.log(err, 'training_types');
+              }
+            })
+          });
+        }
+      }
+    );
+  };
+  //  site.migrationTrainingTypes();
+
 };

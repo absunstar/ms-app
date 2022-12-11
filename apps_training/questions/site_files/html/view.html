@@ -41,6 +41,7 @@
         <tr>
           <th>##word.answer##</th>
           <th>##word.correct_answer##</th>
+          <th>##word.status##</th>
         </tr>
         <tbody>
           <tr ng-repeat="c in question.answers_list">
@@ -48,6 +49,10 @@
             <td class="center">
               <p ng-show="c.correct">##word.yes##</p>
               <p ng-show="!c.correct">##word.no##</p>
+            </td>
+            <td class="center">
+              <p ng-show="c.active">##word.yes##</p>
+              <p ng-show="!c.active">##word.no##</p>
             </td>
           </tr>
         </tbody>

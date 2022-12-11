@@ -1,5 +1,6 @@
 module.exports = function init(site) {
   const $exam_templates = site.connectCollection('ExamTemplates');
+  const $oldExamTemplates = site.connectCollection({ db: 'Tadrebat', collection: 'ExamTemplate', identity: { enabled: false } })
 
   site.get({
     name: 'ExamTemplates',
@@ -231,4 +232,35 @@ module.exports = function init(site) {
       }
     );
   });
+
+  site.migrationExamTemplates = function () {
+    $oldExamTemplates.findMany(
+      {},
+      (err, docs, count) => {
+        if (!err && docs) {
+          docs.forEach((_doc, i) => {
+
+            $exam_templates.add({
+              _id: _doc._id,
+              active: _doc.IsActive,
+              name_en: _doc.Name,
+              name_ar: _doc.Name,
+              easy: _doc.Easy,
+              medium: _doc.Medium,
+              hard: _doc.Hard,
+              add_user_info: {
+                date: _doc.CreatedAt,
+              }
+            }, (err) => {
+              if (err) {
+                console.log(err, 'exam_templates');
+              }
+            })
+          });
+        }
+      }
+    );
+  };
+  // site.migrationExamTemplates();
+
 };

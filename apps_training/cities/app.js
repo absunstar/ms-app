@@ -1,5 +1,7 @@
 module.exports = function init(site) {
   const $cities = site.connectCollection('Cities');
+  const $countries = site.connectCollection('Countries');
+  const $oldCountries = site.connectCollection({ db: 'Tadrebat', collection: 'City', identity: { enabled: false } })
 
   site.get({
     name: 'Cities',
@@ -8,7 +10,7 @@ module.exports = function init(site) {
     compress: true,
   });
 
- 
+
   site.post('/api/cities/add', (req, res) => {
     let response = {
       done: false,
@@ -178,7 +180,7 @@ module.exports = function init(site) {
     };
 
     let where = req.body.where || {};
-  
+
     if (where['name_ar']) {
       where['name_ar'] = site.get_RegExp(where['name_ar'], 'i');
     }
@@ -192,15 +194,15 @@ module.exports = function init(site) {
       delete where['country'];
     }
 
-    if(where['not_active']){
+    if (where['not_active']) {
       where['active'] = false;
     }
 
-    if(where['active_search']){
+    if (where['active_search']) {
       where['active'] = true;
     }
 
-    if(where['not_active'] && where['active_search']){
+    if (where['not_active'] && where['active_search']) {
       delete where['active'];
     }
 
@@ -227,4 +229,54 @@ module.exports = function init(site) {
       }
     );
   });
+
+  site.migrationCities = function () {
+    $oldCountries.findMany(
+      {},
+      (err, docs) => {
+        if (!err && docs) {
+
+          $countries.findMany({}, (err, countries) => {
+            if (!err && countries) {
+
+              docs.forEach((_doc) => {
+                let country = countries.find((_country) => {
+                  return _country._id.toString() === _doc._id.toString();
+                });
+
+                if (_doc.areas) {
+
+                  _doc.areas.forEach(_area => {
+
+                    $cities.add({
+                      _id: _area._id,
+                      active: _area.IsActive,
+                      name_en: _area.Name ? _area.Name : _area.Name2,
+                      name_ar: _area.Name2 ? _area.Name2 : _area.Name,
+                      country: {
+                        _id: country._id,
+                        name_en: country.name_en,
+                        name_ar: country.name_ar,
+                        id: country.id,
+                      },
+                      add_user_info: {
+                        date: _area.CreatedAt,
+                      }
+                    }, (err) => {
+                      if (err) {
+                        console.log(err, 'cities');
+                      }
+                    })
+                  });
+                }
+
+              });
+            }
+          });
+        }
+      }
+    );
+  };
+
+  // site.migrationCities();
 };

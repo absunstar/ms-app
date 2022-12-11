@@ -1,6 +1,8 @@
 module.exports = function init(site) {
   const $countries = site.connectCollection('Countries');
 
+  const $oldCountries = site.connectCollection({ db: 'Tadrebat', collection: 'City', identity: { enabled: false } })
+
   site.get({
     name: 'Countries',
     path: __dirname + '/site_files/html/index.html',
@@ -9,9 +11,13 @@ module.exports = function init(site) {
   });
 
   site.post('/api/countries/add', (req, res) => {
+
+
     let response = {
       done: false,
     };
+
+
 
     let country_doc = req.body;
     country_doc.$req = req;
@@ -215,4 +221,74 @@ module.exports = function init(site) {
       }
     );
   });
+
+
+  site.migrationCountries = function () {
+    $oldCountries.findMany(
+      {},
+      (err, docs, count) => {
+        if (!err && docs) {
+          docs.forEach((_doc, i) => {
+
+            $countries.add({
+              _id: _doc._id,
+              active: _doc.IsActive,
+              name_en: _doc.Name ? _doc.Name : _doc.Name2,
+              name_ar:_doc.Name2 ? _doc.Name2 : _doc.Name,
+              add_user_info: {
+                date: _doc.CreatedAt,
+              }
+            }, (err) => {
+              if (err) {
+                console.log(err, 'Countries');
+              }
+            })
+          });
+        }
+      }
+    );
+  };
+
+  // site.migrationCountries();
+
+  // site.post('/api/countries/migration', (req, res) => {
+
+  //   let response = {
+  //     done: false,
+  //   };
+
+  //   if (!req.session.user) {
+  //     response.error = 'You Are Not Login';
+  //     res.json(response);
+  //     return;
+  //   }
+
+  //   $oldCountries.findMany(
+  //     {},
+  //     (err, docs, count) => {
+  //       if (!err && docs) {
+  //         docs.forEach((_doc, i) => {
+
+  //           $countries.add({
+  //             _id: _doc._id,
+  //             active: _doc.IsActive,
+  //             name_en: _doc.Name ? _doc.Name : _doc.Name2,
+  //             name_ar:_doc.Name2 ? _doc.Name2 : _doc.Name,
+  //             add_user_info: {
+  //               date: _doc.CreatedAt,
+  //             }
+  //           }, (err) => {
+  //             console.log(err);
+  //           })
+  //         });
+  //         response.done = true;
+  //         response.list = docs;
+  //         response.count = count;
+  //       } else {
+  //         response.error = err.message;
+  //       }
+  //       res.json(response);
+  //     }
+  //   );
+  // });
 };

@@ -1,5 +1,7 @@
 module.exports = function init(site) {
   const $sub_partners = site.connectCollection('SubPartners');
+  const $oldSubPartners = site.connectCollection({ db: 'Tadrebat', collection: 'EntitySubPartner', identity: { enabled: false } })
+  const $partners = site.connectCollection('Partners');
 
   site.get({
     name: 'SubPartners',
@@ -232,4 +234,59 @@ module.exports = function init(site) {
       }
     );
   });
+
+  site.migrationSubPartners = function () {
+    $oldSubPartners.findMany(
+      {},
+      (err, docs) => {
+        if (!err && docs) {
+
+          $partners.findMany({}, (err, partners) => {
+            if (!err && partners) {
+
+              docs.forEach((_doc) => {
+
+                let subPartner = {
+                  _id: _doc._id,
+                  active: _doc.IsActive,
+                  phone: _doc.Phone,
+                  name_en: _doc.Name ? _doc.Name : _doc.Name2,
+                  name_ar: _doc.Name2 ? _doc.Name2 : _doc.Name,
+                  partners_list : [],
+                  TrainingCenterIds : _doc.TrainingCenterIds,
+                  add_user_info: {
+                    date: _doc.CreatedAt,
+                  }
+                };
+
+                if(_doc.PartnerIds && _doc.PartnerIds.length > 0) {
+                  _doc.PartnerIds.forEach(_partnerId => {
+                    let partner = partners.find((_partner) => {
+                      return _partner._id.toString() === _partnerId.toString();
+                    });
+                    subPartner.partners_list.push({
+                      name_ar : partner.name_ar,
+                      name_en : partner.name_en,
+                      phone : partner.phone,
+                      id : partner.id,
+                      _id : partner._id,
+                    })
+                  });
+                }
+
+                $sub_partners.add(subPartner, (err) => {
+                  if (err) {
+                    console.log(err, 'sub_partners');
+                  }
+                })
+
+              });
+            }
+          });
+        }
+      }
+    );
+  };
+
+    // site.migrationSubPartners();
 };
