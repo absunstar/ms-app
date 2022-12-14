@@ -1,7 +1,6 @@
 module.exports = function init(site) {
   const $cities = site.connectCollection('Cities');
-  const $countries = site.connectCollection('Countries');
-  const $oldCountries = site.connectCollection({ db: 'Tadrebat', collection: 'City', identity: { enabled: false } })
+
 
   site.get({
     name: 'Cities',
@@ -230,53 +229,19 @@ module.exports = function init(site) {
     );
   });
 
-  site.migrationCities = function () {
-    $oldCountries.findMany(
-      {},
-      (err, docs) => {
-        if (!err && docs) {
-
-          $countries.findMany({}, (err, countries) => {
-            if (!err && countries) {
-
-              docs.forEach((_doc) => {
-                let country = countries.find((_country) => {
-                  return _country._id.toString() === _doc._id.toString();
-                });
-
-                if (_doc.areas) {
-
-                  _doc.areas.forEach(_area => {
-
-                    $cities.add({
-                      _id: _area._id,
-                      active: _area.IsActive,
-                      name_en: _area.Name ? _area.Name : _area.Name2,
-                      name_ar: _area.Name2 ? _area.Name2 : _area.Name,
-                      country: {
-                        _id: country._id,
-                        name_en: country.name_en,
-                        name_ar: country.name_ar,
-                        id: country.id,
-                      },
-                      add_user_info: {
-                        date: _area.CreatedAt,
-                      }
-                    }, (err) => {
-                      if (err) {
-                        console.log(err, 'cities');
-                      }
-                    })
-                  });
-                }
-
-              });
-            }
-          });
-        }
-      }
-    );
+  site.getCities = function (obj, callback) {
+    callback = callback || function () { };
+    $cities.findMany({ where: obj.where || {}, select: obj.select || {} }, (err, cities) => {
+     callback(cities);
+    })
   };
 
-  // site.migrationCities();
+  site.addCities = function (obj) {
+    $cities.add(obj, (err) => {
+      if (err) {
+        console.log(err, 'cities');
+      }
+    })
+  };
+ 
 };

@@ -224,4 +224,23 @@ module.exports = function init(site) {
       }
     );
   });
+
+  site.addCountries = function (obj) {
+    $countries.add(obj, (err) => {
+      if (err) {
+        console.log(err, 'Countries');
+      } else {
+        return;
+      }
+    })
+  };
+
+  site.getCountries = function (obj, callback) {
+    callback = callback || function () { };
+
+    $countries.findMany({ where: obj.where || {}, select: obj.select || {} }, (err, countries) => {
+     callback(countries);
+    })
+
+  };
 };

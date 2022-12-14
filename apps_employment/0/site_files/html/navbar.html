@@ -120,7 +120,7 @@
 
           <li class="nav-item dropdown" x-permissions="admin">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <span class="badge">{{jobsCount + companiesCount }}</span>
+              <span class="badge" ng-show="(jobsCount + companiesCount) > 0">{{jobsCount + companiesCount }}</span>
               ##word.approval##
             </a>
             <ul class="dropdown-menu">

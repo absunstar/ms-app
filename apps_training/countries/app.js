@@ -1,7 +1,6 @@
 module.exports = function init(site) {
   const $countries = site.connectCollection('Countries');
 
-  const $oldCountries = site.connectCollection({ db: 'Tadrebat', collection: 'City', identity: { enabled: false } })
 
   site.get({
     name: 'Countries',
@@ -222,34 +221,25 @@ module.exports = function init(site) {
     );
   });
 
-
-  site.migrationCountries = function () {
-    $oldCountries.findMany(
-      {},
-      (err, docs, count) => {
-        if (!err && docs) {
-          docs.forEach((_doc, i) => {
-
-            $countries.add({
-              _id: _doc._id,
-              active: _doc.IsActive,
-              name_en: _doc.Name ? _doc.Name : _doc.Name2,
-              name_ar:_doc.Name2 ? _doc.Name2 : _doc.Name,
-              add_user_info: {
-                date: _doc.CreatedAt,
-              }
-            }, (err) => {
-              if (err) {
-                console.log(err, 'Countries');
-              }
-            })
-          });
-        }
+  site.addCountries = function (obj) {
+    $countries.add(obj, (err) => {
+      if (err) {
+        console.log(err, 'Countries');
+      } else {
+        return;
       }
-    );
+    })
   };
 
-  // site.migrationCountries();
+  site.getCountries = function (obj, callback) {
+    callback = callback || function () { };
+
+    $countries.findMany({ where: obj.where || {}, select: obj.select || {} }, (err, countries) => {
+     callback(countries);
+    })
+
+  };
+ 
 
   // site.post('/api/countries/migration', (req, res) => {
 

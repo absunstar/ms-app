@@ -223,4 +223,22 @@ module.exports = function init(site) {
       }
     );
   });
+
+  site.addQualifications = function (obj) {
+    $qualifications.add(obj, (err) => {
+      if (err) {
+        console.log(err, 'Qualifications');
+      } else {
+        return;
+      }
+    })
+  };
+
+  site.getQualifications = function (obj, callback) {
+    callback = callback || function () { };
+    $qualifications.findMany({ where: obj.where || {}, select: obj.select || {} }, (err, Qualifications) => {
+     callback(Qualifications);
+    })
+  };
+
 };

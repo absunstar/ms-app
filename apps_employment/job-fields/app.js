@@ -227,4 +227,23 @@ module.exports = function init(site) {
       }
     );
   });
+
+  site.addJobFields = function (obj) {
+    $job_fields.add(obj, (err) => {
+      if (err) {
+        console.log(err, 'JobFields');
+      } else {
+        return;
+      }
+    })
+  };
+
+  site.getJobFields = function (obj, callback) {
+    callback = callback || function () { };
+
+    $job_fields.findMany({ where: obj.where || {}, select: obj.select || {} }, (err, JobFields) => {
+     callback(JobFields);
+    })
+
+  };
 };

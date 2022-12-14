@@ -13,8 +13,6 @@ module.exports = function init(site) {
       done: false,
     };
 
-
-
     let years_of_experience_doc = req.body;
     years_of_experience_doc.$req = req;
     years_of_experience_doc.$res = res;
@@ -223,4 +221,23 @@ module.exports = function init(site) {
       }
     );
   });
+
+  site.addYearsOfExperiences = function (obj) {
+    $years_of_experience.add(obj, (err) => {
+      if (err) {
+        console.log(err, 'YearsOfExperiences');
+      } else {
+        return;
+      }
+    })
+  };
+
+  site.getYearsOfExperiences = function (obj, callback) {
+    callback = callback || function () { };
+
+    $years_of_experience.findMany({ where: obj.where || {}, select: obj.select || {} }, (err, YearsOfExperiences) => {
+     callback(YearsOfExperiences);
+    })
+
+  };
 };

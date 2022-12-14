@@ -1,7 +1,5 @@
 module.exports = function init(site) {
   const $training_center = site.connectCollection('TrainingCenters');
-  const $sub_partners = site.connectCollection('SubPartners');
-  const $oldPartners = site.connectCollection({ db: 'Tadrebat', collection: 'EntityPartner', identity: { enabled: false } })
 
   site.get({
     name: 'TrainingCenters',
@@ -226,65 +224,25 @@ module.exports = function init(site) {
     );
   });
 
+  site.getTrainingCenter = function (obj, callback) {
+    callback = callback || function () { };
 
-  site.migrationTrainingCenter = function () {
-    $oldPartners.findMany(
-      {},
-      (err, docs, count) => {
+    $training_center.findMany({ where: obj.where || {}, select: obj.select || {} }, (err, sub_partners) => {
+      callback(sub_partners);
+    })
 
-        if (!err && docs) {
+  };
 
-          $sub_partners.findMany({}, (err, sub_partners) => {
-            if (!err && sub_partners) {
-
-
-
-              docs.forEach(_doc => {
-
-                _doc.TrainingCenters.forEach(_trainingC => {
-
-                  let trainingCenter = {
-                    _id: _trainingC._id,
-                    active: _trainingC.IsActive,
-                    name_en: _trainingC.Name,
-                    name_ar: _trainingC.Name,
-                    phone: _trainingC.Phone,
-                    add_user_info: {
-                      date: _trainingC.CreatedAt,
-                    }
-
-                  };
-
-                  for (let i = 0; i < sub_partners.length; i++) {
-
-                    sub_partners[i].TrainingCenterIds.forEach(_tcId => {
-                        if(_tcId.toString() == _trainingC._id.toString()) {
-                          trainingCenter.sub_partner = {
-                            _id : sub_partners[i]._id,
-                            name_ar : sub_partners[i].name_ar,
-                            name_en : sub_partners[i].name_en,
-                            partners_list : sub_partners[i].partners_list,
-                            id : sub_partners[i].id,
-                          }
-                        }
-                    });
-                    
-                  }
-
-                  $training_center.add(trainingCenter, (err) => {
-                    if (err) {
-                      console.log(err, 'training_center');
-                    }
-                  })
-                });
-              });
-            }
-          });
-        }
+  site.addTrainingCenter = function (obj) {
+    $training_center.add(obj, (err) => {
+      if (err) {
+        console.log(err, 'TrainingCenter');
+      } else {
+        return;
       }
-    );
+    })
   };
 
 
-   site.migrationTrainingCenter();
+
 };

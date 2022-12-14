@@ -34,6 +34,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
               site.hideModal('#traineeAddModal');
               site.resetValidated('traineeAddModal');
               $scope.training.trainees_list.push({
+                _id: response.data.doc._id,
                 id: response.data.doc.id,
                 first_name: response.data.doc.first_name,
                 last_name: response.data.doc.last_name,
@@ -93,6 +94,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
         if (response.data.done && response.data.doc) {
           user.$add = true;
           $scope.training.trainees_list.push({
+            _id: response.data.doc._id,
             id: response.data.doc.id,
             first_name: response.data.doc.first_name,
             last_name: response.data.doc.last_name,
@@ -121,6 +123,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
                 } else {
                   user.$add = true;
                   $scope.training.trainees_list.push({
+                    _id: res.data.doc._id,
                     id: res.data.doc.id,
                     first_name: res.data.doc.first_name,
                     last_name: res.data.doc.last_name,
@@ -178,6 +181,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
         return;
       } else {
         $scope.training.trainees_list.push({
+          _id: $scope.training.$trainee_select._id,
           id: $scope.training.$trainee_select.id,
           first_name: $scope.training.$trainee_select.first_name,
           last_name: $scope.training.$trainee_select.last_name,

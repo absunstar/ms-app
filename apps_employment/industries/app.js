@@ -225,4 +225,23 @@ module.exports = function init(site) {
       }
     );
   });
+
+  site.addIndustries = function (obj) {
+    $industry.add(obj, (err) => {
+      if (err) {
+        console.log(err, 'Industries');
+      } else {
+        return;
+      }
+    })
+  };
+
+  site.getIndustries = function (obj, callback) {
+    callback = callback || function () { };
+    $industry.findMany({ where: obj.where || {}, select: obj.select || {} }, (err, Industries) => {
+     callback(Industries);
+    })
+  };
+
+
 };

@@ -1,4 +1,6 @@
 module.exports = function init(site) {
+
+
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/',
@@ -121,7 +123,7 @@ module.exports = function init(site) {
     user.$res = res;
     site.security.getUser(
       {
-        'role.id': 5,
+        'role.name': 'trainee',
         id_number: user.id_number,
       },
       (err, doc) => {
@@ -394,6 +396,7 @@ module.exports = function init(site) {
     site.security.getUsers(
       {
         where: where,
+        limit: req.body.limit || {},
       },
       (err, docs, count) => {
         if (!err) {
@@ -509,4 +512,11 @@ module.exports = function init(site) {
         })
 
     });
+
+
+ 
+
+
+  
+
 };

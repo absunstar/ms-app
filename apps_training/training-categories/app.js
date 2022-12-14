@@ -1,7 +1,6 @@
 module.exports = function init(site) {
   const $training_categories = site.connectCollection('TrainingCategories');
   const $training_types = site.connectCollection('TrainingTypes');
-  const $oldTrainingCategories = site.connectCollection({ db: 'Tadrebat', collection: 'TrainingCategory' , identity: { enabled: false }})
 
   site.get({
     name: 'TrainingCategories',
@@ -217,49 +216,22 @@ module.exports = function init(site) {
     );
   });
 
-  site.migrationTrainingCategories = function () {
-    $oldTrainingCategories.findMany(
-      {},
-      (err, docs) => {
-        if (!err && docs) {
-          $training_types.findMany({}, (err, trainingTypes) => {
-            if (!err && trainingTypes) {
-
-              docs.forEach((_doc) => {
-                if (_doc.TrainingTypeId) {
-
-                  let trainingType = trainingTypes.find((_t) => {
-                    return _t._id.toString() === _doc.TrainingTypeId.toString();
-                  });
-
-                  $training_categories.add({
-                    _id: _doc._id,
-                    active: _doc.IsActive,
-                    name_en: _doc.Name ? _doc.Name : _doc.Name2,
-                    name_ar:_doc.Name2 ? _doc.Name2 : _doc.Name,
-                    training_type: {
-                      _id: trainingType._id,
-                      name_en: trainingType.name_en,
-                      name_ar: trainingType.name_ar,
-                      id: trainingType.id,
-                    },
-                    add_user_info: {
-                      date: _doc.CreatedAt,
-                    }
-                  }, (err) => {
-                    if (err) {
-                      console.log(err, 'training_categories');
-                    }
-                  })
-                }
-
-              });
-            }
-          });
-        }
+  site.addTrainingCategories = function (obj) {
+    $training_categories.add(obj, (err) => {
+      if (err) {
+        console.log(err, 'TrainingCategories');
+      } else {
+        return;
       }
-    );
+    })
   };
 
-  //  site.migrationTrainingCategories();
+  site.getTrainingCategories = function (obj, callback) {
+    callback = callback || function () { };
+
+    $training_categories.findMany({ where: obj.where || {}, select: obj.select || {} }, (err, trainingCategories) => {
+      callback(trainingCategories);
+    })
+
+  };
 };

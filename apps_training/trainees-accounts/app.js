@@ -1,4 +1,5 @@
 module.exports = function init(site) {
+
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/',
@@ -72,13 +73,13 @@ module.exports = function init(site) {
         id_number: search,
       });
     }
-
     site.getTraineesToTrainer({ 'trainer.id': req.session.user.id }, (traineesIdCb) => {
       where['id'] = { $in: traineesIdCb };
 
       site.security.getUsers(
         {
           where: where,
+          limit: req.body.limit || {},
         },
         (err, docs, count) => {
           if (!err) {
@@ -92,4 +93,6 @@ module.exports = function init(site) {
       );
     });
   });
+
+ 
 };

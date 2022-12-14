@@ -194,7 +194,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     $scope.list = [];
     $scope.count = 0;
     where = where || {};
-    where['role.id'] = { $ne: 5 };
+    where['role.name'] = { $ne: 'trainee' };
     $http({
       method: 'POST',
       url: '/api/users/all',
@@ -204,7 +204,6 @@ app.controller('accounts', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-
         if (response.data.done && response.data.users && response.data.users.length > 0) {
           $scope.list = response.data.users;
           $scope.count = response.data.count;

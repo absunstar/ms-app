@@ -1,8 +1,6 @@
 module.exports = function init(site) {
   const $questions = site.connectCollection('Questions');
-  const $training_types = site.connectCollection('TrainingTypes');
-  const $training_categories = site.connectCollection('TrainingCategories');
-  const $oldQuestion = site.connectCollection({ db: 'Tadrebat', collection: 'Question', identity: { enabled: false } })
+
   site.get({
     name: 'Questions',
     path: __dirname + '/site_files/html/index.html',
@@ -230,7 +228,7 @@ module.exports = function init(site) {
       },
       (err, docs) => {
         if (!err) {
-          if (docs) {
+          if (docs && data.exam_template) {
             let easyCount = site.toNumber(((data.exam_template.easy * data.number_questions) / 100).toFixed());
             let mediumCount = site.toNumber(((data.exam_template.medium * data.number_questions) / 100).toFixed());
             let hardCount = data.number_questions - (easyCount + mediumCount);
@@ -260,94 +258,23 @@ module.exports = function init(site) {
     );
   };
 
-  site.migrationQuestion = function () {
-    $oldQuestion.findMany(
-      {},
-      (err, docs) => {
-        if (!err && docs) {
-          $training_types.findMany({}, (err, trainingTypes) => {
-            if (!err && trainingTypes) {
-              $training_categories.findMany({}, (err, trainingCategories) => {
-                if (!err && trainingTypes) {
-
-                  docs.forEach((_doc) => {
-
-                    let trainingType = trainingTypes.find((_t) => {
-                      return _t._id.toString() === _doc.TrainingTypeId.toString();
-                    });
-
-                    let trainingCategory = trainingCategories.find((_c) => {
-                      return _c._id.toString() === _doc.TrainingCategoryId.toString();
-                    });
-
-                    let question = {
-                      _id: _doc._id,
-                      active: _doc.IsActive,
-                      name: _doc.Name,
-                      training_type: {
-                        _id: trainingType._id,
-                        name_en: trainingType.name_en,
-                        name_ar: trainingType.name_ar,
-                        id: trainingType.id,
-                      },
-                      training_category: {
-                        _id: trainingCategory._id,
-                        name_en: trainingCategory.name_en,
-                        name_ar: trainingCategory.name_ar,
-                        id: trainingCategory.id,
-                      },
-                      answers_list: [],
-                      add_user_info: {
-                        date: _doc.CreatedAt,
-                      }
-                    };
-
-                    if (_doc.Difficulty == 1) {
-                      question.difficulty = {
-                        id: 1,
-                        ar: 'سهل',
-                        en: 'Easy',
-                      }
-
-                    } else if (_doc.Difficulty == 2) {
-                      question.difficulty = {
-                        id: 2,
-                        ar: 'متوسط',
-                        en: 'Medium',
-                      }
-
-                    } else if (_doc.Difficulty == 3) {
-                      question.difficulty = {
-                        id: 3,
-                        ar: 'صعب',
-                        en: 'Hard',
-                      }
-                    }
-                    if (_doc.Answer && _doc.Answer.length > 0) {
-                      for (let i = 0; i < _doc.Answer.length; i++) {
-                        question.answers_list.push({
-                          answer: _doc.Answer[i].Name,
-                          correct: _doc.Answer[i].IsCorrectAnswer,
-                          create_date: _doc.Answer[i].CreatedAt,
-                          active: _doc.Answer[i].IsActive,
-                        })
-                      }
-                    }
-
-                    $questions.add(question, (err) => {
-                      if (err) {
-                        console.log(err, 'training_categories');
-                      }
-                    })
-                  });
-                }
-              });
-            }
-          });
-        }
+  site.addQuestions = function (obj) {
+    $questions.add(obj, (err) => {
+      if (err) {
+        console.log(err, 'Questions');
+      } else {
+        return;
       }
-    );
+    })
   };
 
-  // site.migrationQuestion();
+  site.getQuestions = function (obj, callback) {
+    callback = callback || function () { };
+
+    $questions.findMany({ where: obj.where || {}, select: obj.select || {} }, (err, Question) => {
+     callback(Question);
+    })
+
+  };
+ 
 };

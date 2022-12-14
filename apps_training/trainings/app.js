@@ -123,10 +123,11 @@ module.exports = function init(site) {
         });
         if (!found_trainee && _t.approve) {
           _d.trainees_list.push({
+            _id: _t._id,
             id: _t.id,
             first_name: _t.first_name,
             email: _t.email,
-            attendance: false,
+            attend: false,
           });
         }
       });
@@ -422,7 +423,7 @@ module.exports = function init(site) {
 
     let where = req.body.where || {};
 
-    where['$or'] = [{ $and: [{ approve: true }, { 'privacy_type.id': 2 }] },{ 'privacy_type.id': 1}];
+    where['$or'] = [{ $and: [{ approve: true }, { 'privacy_type.id': 2 }] }, { 'privacy_type.id': 1 }];
 
 
     where['trainees_list.id'] = req.body.id;
@@ -505,7 +506,7 @@ module.exports = function init(site) {
           });
 
           site.getQuestionsToExam(questionsData, (examCb) => {
-            if(examCb.length > 0){
+            if (examCb.length > 0) {
               $trainings.update(doc);
               response.list = examCb;
             } else {
@@ -539,6 +540,8 @@ module.exports = function init(site) {
             let correct = 0;
             req.body.questions_list.forEach((_q) => {
               _q.answers_list.forEach((_a) => {
+                delete _a.active;
+                delete _a.create_date;
                 if (_a.correct && _a.trainee_answer) {
                   correct += 1;
                 }
@@ -673,4 +676,28 @@ module.exports = function init(site) {
 
     res.json(response);
   });
+
+  site.getTrainings = function (obj, callback) {
+    callback = callback || function () { };
+
+    $trainings.findMany({ where: obj.where || {}, select: obj.select || {} }, (err, trainings) => {
+      callback(trainings);
+    })
+
+  };
+
+  site.addTrainings = function (obj) {
+
+    $trainings.add(obj, (err) => {
+
+      
+      if (err) {
+        console.log(err, 'trainings');
+      }
+    })
+  };
+
+
+ 
+
 };

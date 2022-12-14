@@ -223,4 +223,23 @@ module.exports = function init(site) {
       }
     );
   });
+
+  site.addLanguages = function (obj) {
+    $languages.add(obj, (err) => {
+      if (err) {
+        console.log(err, 'Languages');
+      } else {
+        return;
+      }
+    })
+  };
+
+  site.getLanguages = function (obj, callback) {
+    callback = callback || function () { };
+
+    $languages.findMany({ where: obj.where || {}, select: obj.select || {} }, (err, languages) => {
+     callback(languages);
+    })
+
+  };
 };

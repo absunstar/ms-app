@@ -219,4 +219,23 @@ module.exports = function init(site) {
       }
     );
   });
+
+  site.addJobSubFields = function (obj) {
+    $job_subfields.add(obj, (err) => {
+      if (err) {
+        console.log(err, 'JobSubFields');
+      } else {
+        return;
+      }
+    })
+  };
+
+  site.getJobSubFields = function (obj, callback) {
+    callback = callback || function () { };
+
+    $job_subfields.findMany({ where: obj.where || {}, select: obj.select || {} }, (err, JobSubFields) => {
+     callback(JobSubFields);
+    })
+
+  };
 };

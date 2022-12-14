@@ -52,9 +52,10 @@ app.controller('partners', function ($scope, $http, $timeout) {
     site.showModal('#partnerUpdateModal');
   };
 
-  $scope.updatePartner = function (partner, type) {
+  $scope.updatePartner = function (partner, type, modal) {
     $scope.error = '';
-    const v = site.validated('#partnerUpdateModal');
+
+    const v = site.validated(modal);
     if (!v.ok) {
       $scope.error = v.messages[0]['##session.lang##'];
       return;
@@ -199,7 +200,9 @@ app.controller('partners', function ($scope, $http, $timeout) {
   $scope.showAccountsManagementModal = function (partner) {
     $scope.error = '';
     $scope.partner = partner;
+    $scope.getPartnersAccountsList(partner.id);
     site.showModal('#accountsModal');
+
   };
 
   $scope.addAccount = function (partner) {
@@ -221,7 +224,7 @@ app.controller('partners', function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.getPartnersAccountsList = function () {
+  $scope.getPartnersAccountsList = function (partnerId) {
     $scope.error = '';
     $scope.busy = true;
 
@@ -233,7 +236,7 @@ app.controller('partners', function ($scope, $http, $timeout) {
         where: {
           active: true,
           'role.name': 'partner',
-          'partners_list.partner.id': $scope.partner.id,
+          'partners_list.partner.id': partnerId,
         },
         select: { id: 1, first_name: 1, last_name: 1, email: 1 },
       },
@@ -286,5 +289,4 @@ app.controller('partners', function ($scope, $http, $timeout) {
   };
 
   $scope.getPartnerList();
-  $scope.getPartnersAccountsList();
 });

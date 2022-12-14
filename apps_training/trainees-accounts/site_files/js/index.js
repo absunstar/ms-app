@@ -229,6 +229,7 @@ app.controller('traineesAccounts', function ($scope, $http, $timeout) {
       url: url,
       data: {
         where: where,
+        limit : 2000,
         search: $scope.general_search,
       },
     }).then(

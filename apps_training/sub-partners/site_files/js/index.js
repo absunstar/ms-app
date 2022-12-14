@@ -52,9 +52,10 @@ app.controller('subPartners', function ($scope, $http, $timeout) {
     site.showModal('#subPartnerUpdateModal');
   };
 
-  $scope.updateSubPartner = function (sub_partner, type) {
+
+  $scope.updateSubPartner = function (sub_partner, type,modal) {
     $scope.error = '';
-    const v = site.validated('#subPartnerUpdateModal');
+    const v = site.validated(modal);
     if (!v.ok) {
       $scope.error = v.messages[0]['##session.lang##'];
       return;
@@ -236,7 +237,9 @@ app.controller('subPartners', function ($scope, $http, $timeout) {
   $scope.showAccountsManagementModal = function (sub_partner) {
     $scope.error = '';
     $scope.sub_partner = sub_partner;
+    $scope.getSubPartnersAccountsList(sub_partner.id); 
     site.showModal('#accountsModal');
+
   };
 
   $scope.addAccount = function (sub_partner) {
@@ -288,7 +291,7 @@ app.controller('subPartners', function ($scope, $http, $timeout) {
         where: {
           active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1, phone: 1 },
+        select: { id: 1, name_ar: 1, name_en: 1, mobile: 1 },
       },
     }).then(
       function (response) {
@@ -304,7 +307,7 @@ app.controller('subPartners', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getSubPartnersAccountsList = function () {
+  $scope.getSubPartnersAccountsList = function (subPartnerId) {
     $scope.error = '';
     $scope.busy = true;
 
@@ -316,7 +319,7 @@ app.controller('subPartners', function ($scope, $http, $timeout) {
         where: {
           active: true,
           'role.name': 'sub_partner',
-          'partners_list.sub_partners.id': $scope.sub_partner.id,
+          'partners_list.sub_partners.id': subPartnerId,
         },
         select: { id: 1, first_name: 1, last_name: 1, email: 1 },
       },
@@ -341,5 +344,4 @@ app.controller('subPartners', function ($scope, $http, $timeout) {
 
   $scope.getSubPartnerList();
   $scope.getPartnersList();
-  $scope.getSubPartnersAccountsList();
 });
