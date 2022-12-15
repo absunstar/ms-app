@@ -245,22 +245,15 @@ module.exports = function init(site) {
     );
   });
 
-  site.addPartners = function (obj) {
-    $partners.add(obj, (err) => {
-      if (err) {
-        console.log(err, 'Partners');
-      } else {
-        return;
-      }
-    })
+  site.addPartners = function (obj, callback) {
+    $partners.add(obj, callback);
   };
 
   site.getPartners = function (obj, callback) {
-    callback = callback || function () { };
+    callback = callback || function () {};
 
     $partners.findMany({ where: obj.where || {}, select: obj.select || {} }, (err, partners) => {
-     callback(partners);
-    })
-
+      callback(partners);
+    });
   };
 };

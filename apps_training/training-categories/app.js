@@ -216,22 +216,15 @@ module.exports = function init(site) {
     );
   });
 
-  site.addTrainingCategories = function (obj) {
-    $training_categories.add(obj, (err) => {
-      if (err) {
-        console.log(err, 'TrainingCategories');
-      } else {
-        return;
-      }
-    })
+  site.addTrainingCategories = function (obj, callback) {
+    $training_categories.add(obj, callback);
   };
 
   site.getTrainingCategories = function (obj, callback) {
-    callback = callback || function () { };
+    callback = callback || function () {};
 
     $training_categories.findMany({ where: obj.where || {}, select: obj.select || {} }, (err, trainingCategories) => {
       callback(trainingCategories);
-    })
-
+    });
   };
 };

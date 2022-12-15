@@ -225,24 +225,14 @@ module.exports = function init(site) {
   });
 
   site.getTrainingCenter = function (obj, callback) {
-    callback = callback || function () { };
+    callback = callback || function () {};
 
     $training_center.findMany({ where: obj.where || {}, select: obj.select || {} }, (err, sub_partners) => {
       callback(sub_partners);
-    })
-
+    });
   };
 
-  site.addTrainingCenter = function (obj) {
-    $training_center.add(obj, (err) => {
-      if (err) {
-        console.log(err, 'TrainingCenter');
-      } else {
-        return;
-      }
-    })
+  site.addTrainingCenter = function (obj, callback) {
+    $training_center.add(obj, callback);
   };
-
-
-
 };

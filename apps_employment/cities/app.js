@@ -221,21 +221,15 @@ module.exports = function init(site) {
     );
   });
 
-  
   site.getCities = function (obj, callback) {
-    callback = callback || function () { };
+    callback = callback || function () {};
 
     $cities.findMany({ where: obj.where || {}, select: obj.select || {} }, (err, cities) => {
-     callback(cities);
-    })
-
+      callback(cities);
+    });
   };
 
-  site.addCities = function (obj) {
-    $cities.add(obj, (err) => {
-      if (err) {
-        console.log(err, 'cities');
-      }
-    })
+  site.addCities = function (obj, callback) {
+    $cities.add(obj, callback);
   };
 };

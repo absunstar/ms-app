@@ -216,23 +216,15 @@ module.exports = function init(site) {
     );
   });
 
-  site.addTrainingTypes = function (obj) {
-    $training_types.add(obj, (err) => {
-      if (err) {
-        console.log(err, 'TrainingTypes');
-      } else {
-        return;
-      }
-    })
+  site.addTrainingTypes = function (obj, callback) {
+    $training_types.add(obj, callback);
   };
 
   site.getTrainingTypes = function (obj, callback) {
-    callback = callback || function () { };
+    callback = callback || function () {};
 
     $training_types.findMany({ where: obj.where || {}, select: obj.select || {} }, (err, trainingTypes) => {
-     callback(trainingTypes);
-    })
-
+      callback(trainingTypes);
+    });
   };
-
 };

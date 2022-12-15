@@ -1,5 +1,3 @@
-const { Certificate } = require('crypto');
-
 module.exports = function init(site) {
   const $trainings = site.connectCollection('Trainings');
 
@@ -425,9 +423,8 @@ module.exports = function init(site) {
 
     where['$or'] = [{ $and: [{ approve: true }, { 'privacy_type.id': 2 }] }, { 'privacy_type.id': 1 }];
 
-
     where['trainees_list.id'] = req.body.id;
-    where['trainees_list.approve'] = true
+    where['trainees_list.approve'] = true;
     $trainings.findMany(
       {
         select: req.body.select || {},
@@ -511,7 +508,6 @@ module.exports = function init(site) {
               response.list = examCb;
             } else {
               response.error = 'There are no questions for the exam';
-
             }
             res.json(response);
           });
@@ -549,12 +545,24 @@ module.exports = function init(site) {
             });
 
             let found_certificate = certificatesCb.find((_c) => {
-              return _c.type == 'training_centers' && _c.partner.id == trainingDoc.partner.id && _c.training_center.id == trainingDoc.training_center.id && _c.training_type.id == trainingDoc.training_type.id && _c.training_category.id == trainingDoc.training_category.id;
+              return (
+                _c.type == 'training_centers' &&
+                _c.partner.id == trainingDoc.partner.id &&
+                _c.training_center.id == trainingDoc.training_center.id &&
+                _c.training_type.id == trainingDoc.training_type.id &&
+                _c.training_category.id == trainingDoc.training_category.id
+              );
             });
 
             if (!found_certificate) {
               found_certificate = certificatesCb.find((_c) => {
-                return _c.type == 'partners' && _c.partner.id == trainingDoc.partner.id && _c.file_type == 'trainee' && _c.training_type.id == trainingDoc.training_type.id && _c.training_category.id == trainingDoc.training_category.id;
+                return (
+                  _c.type == 'partners' &&
+                  _c.partner.id == trainingDoc.partner.id &&
+                  _c.file_type == 'trainee' &&
+                  _c.training_type.id == trainingDoc.training_type.id &&
+                  _c.training_category.id == trainingDoc.training_category.id
+                );
               });
             }
 
@@ -678,26 +686,14 @@ module.exports = function init(site) {
   });
 
   site.getTrainings = function (obj, callback) {
-    callback = callback || function () { };
+    callback = callback || function () {};
 
     $trainings.findMany({ where: obj.where || {}, select: obj.select || {} }, (err, trainings) => {
       callback(trainings);
-    })
-
+    });
   };
 
-  site.addTrainings = function (obj) {
-
-    $trainings.add(obj, (err) => {
-
-      
-      if (err) {
-        console.log(err, 'trainings');
-      }
-    })
+  site.addTrainings = function (obj, callback) {
+    $trainings.add(obj, callback);
   };
-
-
- 
-
 };

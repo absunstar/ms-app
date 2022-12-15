@@ -13,8 +13,6 @@ module.exports = function init(site) {
       done: false,
     };
 
-
-
     let country_doc = req.body;
     country_doc.$req = req;
     country_doc.$res = res;
@@ -60,8 +58,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-
 
     let country_doc = req.body;
 
@@ -121,8 +117,6 @@ module.exports = function init(site) {
       done: false,
     };
 
-
-
     $countries.findOne(
       {
         where: {
@@ -145,8 +139,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-
 
     let id = req.body.id;
 
@@ -225,22 +217,15 @@ module.exports = function init(site) {
     );
   });
 
-  site.addCountries = function (obj) {
-    $countries.add(obj, (err) => {
-      if (err) {
-        console.log(err, 'Countries');
-      } else {
-        return;
-      }
-    })
+  site.addCountries = function (obj, callback) {
+    $countries.add(obj, callback);
   };
 
   site.getCountries = function (obj, callback) {
-    callback = callback || function () { };
+    callback = callback || function () {};
 
     $countries.findMany({ where: obj.where || {}, select: obj.select || {} }, (err, countries) => {
-     callback(countries);
-    })
-
+      callback(countries);
+    });
   };
 };

@@ -233,23 +233,15 @@ module.exports = function init(site) {
     );
   });
 
-  site.addSubPartners = function (obj) {
-    $sub_partners.add(obj, (err) => {
-      if (err) {
-        console.log(err, 'SubPartners');
-      } else {
-        return;
-      }
-    })
+  site.addSubPartners = function (obj, callback) {
+    $sub_partners.add(obj, callback);
   };
 
   site.getSubPartners = function (obj, callback) {
-    callback = callback || function () { };
+    callback = callback || function () {};
 
     $sub_partners.findMany({ where: obj.where || {}, select: obj.select || {} }, (err, subPartners) => {
-     callback(subPartners);
-    })
-
+      callback(subPartners);
+    });
   };
-
 };

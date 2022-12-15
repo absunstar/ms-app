@@ -17,18 +17,16 @@ module.exports = function init(site) {
     exam_templates_doc.$req = req;
     exam_templates_doc.$res = res;
 
-    if ((exam_templates_doc.easy + exam_templates_doc.medium + exam_templates_doc.hard) != 100) {
+    if (exam_templates_doc.easy + exam_templates_doc.medium + exam_templates_doc.hard != 100) {
       response.error = 'The percentage sum has to be 100';
       res.json(response);
       return;
     }
 
-
     exam_templates_doc.add_user_info = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
-
 
     $exam_templates.findOne(
       {
@@ -48,8 +46,6 @@ module.exports = function init(site) {
           response.error = 'Name Exists';
           res.json(response);
         } else {
-       
-
           $exam_templates.add(exam_templates_doc, (err, doc) => {
             if (!err) {
               response.done = true;
@@ -68,8 +64,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-
 
     let exam_templates_doc = req.body;
 
@@ -129,8 +123,6 @@ module.exports = function init(site) {
       done: false,
     };
 
-
-
     $exam_templates.findOne(
       {
         where: {
@@ -153,8 +145,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-
 
     let id = req.body.id;
 
@@ -186,7 +176,7 @@ module.exports = function init(site) {
     };
 
     let where = req.body.where || {};
-  
+
     if (where['name_ar']) {
       where['name_ar'] = site.get_RegExp(where['name_ar'], 'i');
     }
@@ -194,7 +184,7 @@ module.exports = function init(site) {
     if (where['name_en']) {
       where['name_en'] = site.get_RegExp(where['name_en'], 'i');
     }
-    
+
     if (where['not_active']) {
       where['active'] = false;
     }
@@ -233,23 +223,14 @@ module.exports = function init(site) {
   });
 
   site.getExamTemplates = function (obj, callback) {
-    callback = callback || function () { };
+    callback = callback || function () {};
 
     $exam_templates.findMany({ where: obj.where || {}, select: obj.select || {} }, (err, exam_templates) => {
       callback(exam_templates);
-    })
-
+    });
   };
 
-  site.addExamTemplates = function (obj) {
-    $exam_templates.add(obj, (err) => {
-      if (err) {
-        console.log(err, 'ExamTemplates');
-      } else {
-        return;
-      }
-    })
+  site.addExamTemplates = function (obj, callback) {
+    $exam_templates.add(obj, callback);
   };
-
-
 };

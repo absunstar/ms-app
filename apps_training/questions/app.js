@@ -258,23 +258,15 @@ module.exports = function init(site) {
     );
   };
 
-  site.addQuestions = function (obj) {
-    $questions.add(obj, (err) => {
-      if (err) {
-        console.log(err, 'Questions');
-      } else {
-        return;
-      }
-    })
+  site.addQuestions = function (obj, callback) {
+    $questions.add(obj, callback);
   };
 
   site.getQuestions = function (obj, callback) {
-    callback = callback || function () { };
+    callback = callback || function () {};
 
     $questions.findMany({ where: obj.where || {}, select: obj.select || {} }, (err, Question) => {
-     callback(Question);
-    })
-
+      callback(Question);
+    });
   };
- 
 };
