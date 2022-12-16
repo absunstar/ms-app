@@ -215,12 +215,14 @@ app.controller('accounts', function ($scope, $http, $timeout) {
       url: '/api/users/all',
       data: {
         where: where,
+        limit : 1000
       },
     }).then(
       function (response) {
         $scope.busy = false;
 
         if (response.data.done && response.data.users && response.data.users.length > 0) {
+          console.log(response.data.users.length);
           $scope.list = response.data.users;
           $scope.count = response.data.count;
           $scope.search = {};

@@ -265,7 +265,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
       return;
     }
 
-    if (education.joining_date && education.expiry_date && new Date(education.joining_date) > new Date(education.expiry_date)) {
+    if (education.joining_date && education.end_date && new Date(education.joining_date) > new Date(education.end_date)) {
       $scope.error = '##word.start_date_cannot_bigger_than_end_date##';
       return;
     }
@@ -300,7 +300,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
       return;
     }
 
-    if (work_experience.joining_date && work_experience.expiry_date && new Date(work_experience.joining_date) > new Date(work_experience.expiry_date)) {
+    if (work_experience.joining_date && work_experience.end_date && new Date(work_experience.joining_date) > new Date(work_experience.end_date)) {
       $scope.error = '##word.start_date_cannot_bigger_than_end_date##';
       return;
     }
@@ -389,7 +389,7 @@ app.controller('resume', function ($scope, $http, $timeout) {
       return;
     }
 
-    if (extra_curricular.joining_date && extra_curricular.expiry_date && new Date(extra_curricular.joining_date) > new Date(extra_curricular.expiry_date)) {
+    if (extra_curricular.joining_date && extra_curricular.end_date && new Date(extra_curricular.joining_date) > new Date(extra_curricular.end_date)) {
       $scope.error = '##word.start_date_cannot_bigger_than_end_date##';
       return;
     }

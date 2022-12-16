@@ -65,7 +65,7 @@
         "ar": "تاريخ التخرج"
     },
     {
-        "name": "expiry_date",
+        "name": "end_date",
         "en": "Expiry Date",
         "ar": "تاريخ الإنتهاء"
     },

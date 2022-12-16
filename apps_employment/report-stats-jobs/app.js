@@ -58,7 +58,7 @@ module.exports = function init(site) {
         limit: req.body.limit,
       },
       (err, docs, count) => {
-        site.getCompanies(company, (companiesList) => {
+        site.getCompaniesApproved(company, (companiesList) => {
         if (!err) {
           response.done = true;
 

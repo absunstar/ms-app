@@ -10,12 +10,10 @@ module.exports = function init(site) {
   var examTemplates = [];
   var trainingTypes = [];
   var questions = [];
-
   var oldExams = [];
   var oldTrainings = [];
 
   var $trainings = null;
-
   var $oldCountries = null;
   var $oldTrainingTypes = null;
   var $oldTrainingCategories = null;
@@ -491,112 +489,102 @@ module.exports = function init(site) {
   site.migrationAccounts = function () {
     $oldAccounts.findMany({}, (err, accounts) => {
       if (!err && accounts) {
-        if (partners) {
-          if (sub_partners) {
-            if (countries) {
-              if (cities) {
-                accounts.forEach((_account, i) => {
-                  let account = {
-                    _id: _account._id,
-                    email: _account.Email,
-                    password: '12345',
-                    active: _account.IsActive,
-                    first_name: _account.Name,
-                    partners_list: [],
-                    message: _account.TrainerTrainingDetails,
-                    add_user_info: {
-                      date: _account.CreatedAt,
-                    },
-                  };
 
-                  if (_account.Type == 1) {
-                    account.role = {
-                      module_name: 'public',
-                      name: 'admin',
-                      en: 'Admin',
-                      ar: 'مشرف',
-                      permissions: ['admin'],
-                    };
-                  } else if (_account.Type == 2) {
-                    account.role = {
-                      module_name: 'public',
-                      name: 'partner',
-                      en: 'Partner',
-                      ar: 'شريك',
-                      permissions: ['partner'],
-                    };
-                  } else if (_account.Type == 3) {
-                    account.role = {
-                      module_name: 'public',
-                      name: 'sub_partner',
-                      en: 'Sub Partner',
-                      ar: 'شريك ثانوي',
-                      permissions: ['sub_partner'],
-                    };
-                  } else if (_account.Type == 4) {
-                    account.role = {
-                      module_name: 'public',
-                      name: 'trainer',
-                      en: 'Trainer',
-                      ar: 'مدرب',
-                      permissions: ['trainer'],
-                    };
-                  }
+        accounts.forEach((_account, i) => {
+          let account = {
+            _id: _account._id,
+            email: _account.Email,
+            password: '12345',
+            active: _account.IsActive,
+            first_name: _account.Name,
+            partners_list: [],
+            message: _account.TrainerTrainingDetails,
+            add_user_info: {
+              date: _account.CreatedAt,
+            },
+          };
 
-                  if (_account.MyPartnerListIds) {
-                    _account.MyPartnerListIds.forEach((_partner) => {
-                      for (let i = 0; i < partners.length; i++) {
-                        if (partners[i]._id.toString() == _partner.toString()) {
-                          account.partners_list.push({ partner: partners[i] });
-                        }
-                      }
-                    });
-                  }
+          if (_account.Type == 1) {
+            account.role = {
+              id: 1,
+              name: "admin",
+              en: "Admin",
+              ar: "مشرف"
+            };
+          } else if (_account.Type == 2) {
+            account.role = {
+              id: 2,
+              name: "partner",
+              en: "Partner",
+              ar: "شريك"
+            };
+          } else if (_account.Type == 3) {
+            account.role = {
+              id: 3,
+              name: "sub_partner",
+              en: "Sub Partner",
+              ar: "شريك ثانوي"
+            };
+          } else if (_account.Type == 4) {
+            account.role = {
+              id: 4,
+              name: "trainer",
+              en: "Trainer",
+              ar: "مدرب"
+            };
+          }
 
-                  if (_account.MySubPartnerListIds) {
-                    _account.MySubPartnerListIds.forEach((_subPartner) => {
-                      for (let i = 0; i < sub_partners.length; i++) {
-                        if (sub_partners[i]._id.toString() == _subPartner.toString()) {
-                          account.partners_list.forEach((_p) => {
-                            if (sub_partners[i].partners_list && _p.partner && sub_partners[i].partners_list.some((p) => p._id.toString() == _p.partner._id.toString())) {
-                              _p.sub_partners = _p.sub_partners || [];
-                              _p.sub_partners.push({
-                                _id: sub_partners[i]._id,
-                                id: sub_partners[i].id,
-                                name_ar: sub_partners[i].name_ar,
-                                name_en: sub_partners[i].name_en,
-                              });
-                            }
-                          });
-                        }
-                      }
-                    });
-                  }
+          if (_account.MyPartnerListIds) {
+            _account.MyPartnerListIds.forEach((_partner) => {
+              for (let i = 0; i < partners.length; i++) {
+                if (partners[i]._id.toString() == _partner.toString()) {
+                  account.partners_list.push({ partner: partners[i] });
+                }
+              }
+            });
+          }
 
-                  if (_account.CityId) {
-                    for (let i = 0; i < countries.length; i++) {
-                      if (countries[i]._id.toString() == _account.CityId.toString()) {
-                        account.country = countries[i];
-                      }
+          if (_account.MySubPartnerListIds) {
+            _account.MySubPartnerListIds.forEach((_subPartner) => {
+              for (let i = 0; i < sub_partners.length; i++) {
+                if (sub_partners[i]._id.toString() == _subPartner.toString()) {
+                  account.partners_list.forEach((_p) => {
+                    if (sub_partners[i].partners_list && _p.partner && sub_partners[i].partners_list.some((p) => p._id.toString() == _p.partner._id.toString())) {
+                      _p.sub_partners = _p.sub_partners || [];
+                      _p.sub_partners.push({
+                        _id: sub_partners[i]._id,
+                        id: sub_partners[i].id,
+                        name_ar: sub_partners[i].name_ar,
+                        name_en: sub_partners[i].name_en,
+                      });
                     }
-                  }
-
-                  if (_account.AreaId) {
-                    for (let i = 0; i < cities.length; i++) {
-                      if (cities[i]._id.toString() == _account.AreaId.toString()) {
-                        account.city = cities[i];
-                      }
-                    }
-                  }
-
-                  site.security.addUser(account, (err, doc) => {
-                    console.log(err || 'user : ' + doc.id);
                   });
-                });
+                }
+              }
+            });
+          }
+
+          if (_account.CityId) {
+            for (let i = 0; i < countries.length; i++) {
+              if (countries[i]._id.toString() == _account.CityId.toString()) {
+                account.country = countries[i];
               }
             }
           }
-        }
+
+          if (_account.AreaId) {
+            for (let i = 0; i < cities.length; i++) {
+              if (cities[i]._id.toString() == _account.AreaId.toString()) {
+                account.city = cities[i];
+              }
+            }
+          }
+
+          site.security.addUser(account, (err, doc) => {
+            console.log(err || 'user : ' + doc.id);
+          });
+        });
+
       }
     });
   };
@@ -614,11 +602,10 @@ module.exports = function init(site) {
             id_number: _account.NationalId,
             birthdate: _account.DOB,
             role: {
-              module_name: 'public',
-              name: 'trainee',
-              en: 'Trainee',
-              ar: 'متدرب',
-              permissions: ['trainee'],
+              id: 5,
+              name: "trainee",
+              en: "Trainee",
+              ar: "متدرب"
             },
             first_name: _account.Name,
             add_user_info: {
@@ -648,7 +635,7 @@ module.exports = function init(site) {
 
           if (_account.CityId) {
             for (let i = 0; i < countries.length; i++) {
-              if (countries[i]._id == _account.CityId) {
+              if (countries[i]._id.toString() == _account.CityId.toString()) {
                 account.country = countries[i];
               }
             }
@@ -656,7 +643,7 @@ module.exports = function init(site) {
 
           if (_account.AreaId) {
             for (let i = 0; i < cities.length; i++) {
-              if (cities[i]._id == _account.CityId) {
+              if (cities[i]._id.toString() == _account.AreaId.toString()) {
                 account.city = cities[i];
               }
             }
@@ -908,60 +895,70 @@ module.exports = function init(site) {
       done: true,
     });
   });
+
   site.onPOST('x-api/migration/TrainingTypes', (req, res) => {
     site.migrationTrainingTypes();
     res.json({
       done: true,
     });
   });
+
   site.onPOST('x-api/migration/TrainingCategories', (req, res) => {
     site.migrationTrainingCategories();
     res.json({
       done: true,
     });
   });
+
   site.onPOST('x-api/migration/ExamTemplates', (req, res) => {
     site.migrationExamTemplates();
     res.json({
       done: true,
     });
   });
+
   site.onPOST('x-api/migration/Question', (req, res) => {
     site.migrationQuestion();
     res.json({
       done: true,
     });
   });
+
   site.onPOST('x-api/migration/Partners', (req, res) => {
     site.migrationPartners();
     res.json({
       done: true,
     });
   });
+
   site.onPOST('x-api/migration/SubPartners', (req, res) => {
     site.migrationSubPartners();
     res.json({
       done: true,
     });
   });
+
   site.onPOST('x-api/migration/TrainingCenter', (req, res) => {
     site.migrationTrainingCenter();
     res.json({
       done: true,
     });
   });
+
   site.onPOST('x-api/migration/Accounts', (req, res) => {
     site.migrationAccounts();
     res.json({
       done: true,
     });
   });
+
   site.onPOST('x-api/migration/Trainees', (req, res) => {
     site.migrationTrainees();
     res.json({
       done: true,
     });
   });
+
   site.onPOST('x-api/migration/Trainings', (req, res) => {
     site.migrationTrainings();
     res.json({
@@ -980,4 +977,5 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/json/gender.json',
     public: true,
   });
+
 };

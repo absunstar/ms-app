@@ -1,0 +1,256 @@
+{
+	"info": {
+		"_postman_id": "34e0c15d-1b34-4d40-b9dc-f81f172e2679",
+		"name": "Training-Migration-Tool",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Migration Redy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{server_url}}/x-api/migration/ready",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"x-api",
+						"migration",
+						"ready"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Countries",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{server_url}}/x-api/migration/countries",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"x-api",
+						"migration",
+						"countries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "City",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{server_url}}/x-api/migration/Cities",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"x-api",
+						"migration",
+						"Cities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TrainingTypes",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{server_url}}/x-api/migration/TrainingTypes",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"x-api",
+						"migration",
+						"TrainingTypes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TrainingCategories",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{server_url}}/x-api/migration/TrainingCategories",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"x-api",
+						"migration",
+						"TrainingCategories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ExamTemplates",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{server_url}}/x-api/migration/ExamTemplates",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"x-api",
+						"migration",
+						"ExamTemplates"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Question",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{server_url}}/x-api/migration/Question",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"x-api",
+						"migration",
+						"Question"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Partners",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{server_url}}/x-api/migration/Partners",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"x-api",
+						"migration",
+						"Partners"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SubPartners",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{server_url}}/x-api/migration/SubPartners",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"x-api",
+						"migration",
+						"SubPartners"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TrainingCenter",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{server_url}}/x-api/migration/TrainingCenter",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"x-api",
+						"migration",
+						"TrainingCenter"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Accounts",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{server_url}}/x-api/migration/Accounts",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"x-api",
+						"migration",
+						"Accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trainees",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{server_url}}/x-api/migration/Trainees",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"x-api",
+						"migration",
+						"Trainees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trainings",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{server_url}}/x-api/migration/Trainings",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"x-api",
+						"migration",
+						"Trainings"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

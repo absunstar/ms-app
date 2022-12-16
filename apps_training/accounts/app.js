@@ -349,7 +349,7 @@ module.exports = function init(site) {
     }
 
     if (where['user_type']) {
-      where['role.id'] = where['user_type'].id;
+      where['role.name'] = where['user_type'].name;
       delete where['user_type'];
     }
 

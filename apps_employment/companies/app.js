@@ -300,7 +300,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.getCompanies = function (company, callback) {
+  site.getCompaniesApproved = function (company, callback) {
     callback = callback || {};
     let where = {}
     if (company.id) {
@@ -317,4 +317,17 @@ module.exports = function init(site) {
       }
     );
   };
+
+  site.addCompanies = function (obj, callback) {
+    $company.add(obj, callback);
+  };
+
+  site.getCompanies = function (obj, callback) {
+    callback = callback || function () {};
+
+    $company.findMany({ where: obj.where || {}, select: obj.select || {} }, (err, company) => {
+      callback(company);
+    });
+  };
+
 };

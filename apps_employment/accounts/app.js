@@ -315,6 +315,7 @@ module.exports = function init(site) {
     if (where['first_name']) {
       where['first_name'] = site.get_RegExp(where['first_name'], 'i');
     }
+
     if (where['last_name']) {
       where['last_name'] = site.get_RegExp(where['last_name'], 'i');
     }
@@ -326,6 +327,11 @@ module.exports = function init(site) {
 
     if (where['email']) {
       where['email'] = site.get_RegExp(where['email'], 'i');
+    }
+
+    if (where['user_type']) {
+      where['role.id'] = where['user_type'].id;
+      delete where['user_type'];
     }
 
     if (where['not_active']) {
@@ -399,6 +405,7 @@ module.exports = function init(site) {
       delete where['languages'];
       delete where['genders'];
     }
+
     if (where['general_search']) {
       where.$or = where.$or || [];
 
@@ -425,12 +432,15 @@ module.exports = function init(site) {
       where.$or.push({
         phone: site.get_RegExp(where['general_search'], 'i'),
       });
+
       delete where['general_search'];
     }
 
     site.security.getUsers(
       {
         where: where,
+        limit: req.body.limit || {},
+
       },
       (err, docs, count) => {
         if (!err) {

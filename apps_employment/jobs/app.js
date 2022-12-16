@@ -425,4 +425,16 @@ module.exports = function init(site) {
       }
     );
   });
+
+  site.getJobs = function (obj, callback) {
+    callback = callback || function () {};
+
+    $jobs.findMany({ where: obj.where || {}, select: obj.select || {} }, (err, jobs) => {
+      callback(jobs);
+    });
+  };
+
+  site.addJobs = function (obj, callback) {
+    $jobs.add(obj, callback);
+  };
 };

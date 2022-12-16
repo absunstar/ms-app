@@ -56,8 +56,8 @@
 
               <td class="center not-print">
                 <i-button ng-hide="c.active" label="##word.activate##" ng-click="showActivateModal(c)"></i-button>
-                <i-button  type="close" label="##word.deactivate##" ng-click="showDeactivateModal(c)"></i-button>
-                <i-button  type="edit" label="##word.edit##" ng-click="displayUpdateAccount(c)"></i-button>
+                <i-button ng-hide="!c.active" type="close" label="##word.deactivate##" ng-click="showDeactivateModal(c)"></i-button>
+                <i-button ng-hide="!c.active" type="edit" label="##word.edit##" ng-click="displayUpdateAccount(c)"></i-button>
                 <i-button ng-show="!c.active && !c.$sendActivationLink" label="##word.activation_link##" ng-click="sendActivationLink(c)"></i-button>
                 <i-button ng-hide="!c.active" label="##word.password_link##" ng-click="sendPasswordLink(c)"></i-button>
                 <i-button type="edit" label="##word.unlimited_companies##" ng-click="update(c,'unlimit')" ng-show="c.role.name == 'employer'  && c.limited_companies== true"></i-button>
