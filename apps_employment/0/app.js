@@ -1,6 +1,15 @@
 module.exports = function init(site) {
 
 
+  function addZero(code, number) {
+    let c = number - code.toString().length;
+    for (let i = 0; i < c; i++) {
+      code = '0' + code.toString();
+    }
+    return code;
+  }
+
+  var companies = [];
   var countries = [];
   var languages = [];
   var yearsOfExperiences = [];
@@ -11,6 +20,7 @@ module.exports = function init(site) {
   var employers = [];
   var jobSeekers = [];
   var favourites = [];
+  var applies = [];
 
   var $oldCountries = null;
   var $oldLanguages = null;
@@ -21,26 +31,35 @@ module.exports = function init(site) {
   var $oldJobSeekers = null;
   var $oldAccounts = null;
   var $oldCompanies = null;
+  var $oldJobFairs = null;
   var $oldJobs = null;
-  var $oldFavourite = null;
+  var $oldFavourites = null;
+  var $oldApplies = null;
+  var $job_fairs = null;
 
+  site.migrationReady = function () {
 
-  $oldCountries = site.connectCollection({ db: 'TawzeefMasrDB', collection: 'Country', identity: { enabled: false } })
-  $oldLanguages = site.connectCollection({ db: 'TawzeefMasrDB', collection: 'Languages', identity: { enabled: false } })
-  $oldYearsOfExperiences = site.connectCollection({ db: 'TawzeefMasrDB', collection: 'YearsOfExperience', identity: { enabled: false } })
-  $oldQualifications = site.connectCollection({ db: 'TawzeefMasrDB', collection: 'Qualification', identity: { enabled: false } })
-  $oldIndustries = site.connectCollection({ db: 'TawzeefMasrDB', collection: 'Industry', identity: { enabled: false } })
-  $oldJobFields = site.connectCollection({ db: 'TawzeefMasrDB', collection: 'JobFields', identity: { enabled: false } })
-  $oldJobSeekers = site.connectCollection({ db: 'TawzeefMasrDB', collection: 'JobSeeker', identity: { enabled: false } })
-  $oldAccounts = site.connectCollection({ db: 'TawzeefMasrDB', collection: 'UserProfile', identity: { enabled: false } });
-  $oldCompanies = site.connectCollection({ db: 'TawzeefMasrDB', collection: 'Company', identity: { enabled: false } });
-  $oldJobs = site.connectCollection({ db: 'TawzeefMasrDB', collection: 'Job', identity: { enabled: false } });
-  $oldFavourite = site.connectCollection({ db: 'TawzeefMasrDB', collection: 'Favourite', identity: { enabled: false } });
+    $oldCountries = site.connectCollection({ db: 'TawzeefMasrDB', collection: 'Country', identity: { enabled: false } })
+    $oldLanguages = site.connectCollection({ db: 'TawzeefMasrDB', collection: 'Languages', identity: { enabled: false } })
+    $oldYearsOfExperiences = site.connectCollection({ db: 'TawzeefMasrDB', collection: 'YearsOfExperience', identity: { enabled: false } })
+    $oldQualifications = site.connectCollection({ db: 'TawzeefMasrDB', collection: 'Qualification', identity: { enabled: false } })
+    $oldIndustries = site.connectCollection({ db: 'TawzeefMasrDB', collection: 'Industry', identity: { enabled: false } })
+    $oldJobFields = site.connectCollection({ db: 'TawzeefMasrDB', collection: 'JobFields', identity: { enabled: false } })
+    $oldJobSeekers = site.connectCollection({ db: 'TawzeefMasrDB', collection: 'JobSeeker', identity: { enabled: false } })
+    $oldAccounts = site.connectCollection({ db: 'TawzeefMasrDB', collection: 'UserProfile', identity: { enabled: false } });
+    $oldCompanies = site.connectCollection({ db: 'TawzeefMasrDB', collection: 'Company', identity: { enabled: false } });
+    $oldJobFairs = site.connectCollection({ db: 'TawzeefMasrDB', collection: 'JobFair', identity: { enabled: false } });
+    $oldJobs = site.connectCollection({ db: 'TawzeefMasrDB', collection: 'Job', identity: { enabled: false } });
+    $oldFavourites = site.connectCollection({ db: 'TawzeefMasrDB', collection: 'Favourite', identity: { enabled: false } });
+    $oldApplies = site.connectCollection({ db: 'TawzeefMasrDB', collection: 'Apply', identity: { enabled: false } });
+    $job_fairs = site.connectCollection('JobFairs');
 
-  setTimeout(() => {
-
-    $oldFavourite.findMany({ limit: 1000000 }, (err, favourite) => {
+    $oldFavourites.findMany({ limit: 1000000 }, (err, favourite) => {
       favourites = favourite;
+    });
+
+    $oldApplies.findMany({ limit: 1000000 }, (err, apply) => {
+      applies = apply;
     });
 
     site.security.getUsers({ 'role.name': 'employer' }, (errEmployers, employer) => {
@@ -50,6 +69,10 @@ module.exports = function init(site) {
     site.security.getUsers({ 'role.name': 'job_seeker' }, (errEmployers, job_seeker) => {
       jobSeekers = job_seeker;
     });
+
+    site.getCompanies({ where: {}, select: { id: 1, name_ar: 1, name_en: 1 } }, (cpmpany) => {
+      companies = cpmpany;
+    })
 
     site.getCountries({ where: {}, select: { id: 1, name_ar: 1, name_en: 1 } }, (country) => {
       countries = country;
@@ -83,7 +106,7 @@ module.exports = function init(site) {
       jobSubFields = jobSubField;
     })
 
-  }, 1000 * 3);
+  }
 
   site.migrationCountries = function () {
     $oldCountries.findMany(
@@ -336,6 +359,7 @@ module.exports = function init(site) {
             extra_curriculars_list: [],
             work_experience_list: [],
             certificates_list: [],
+            short_list: [],
             website: _account.Website,
             linkedin: _account.SocialLinkedin,
             role: {
@@ -369,6 +393,14 @@ module.exports = function init(site) {
               ar: 'أنثى',
             };
           }
+
+          favourites.forEach(_f => {
+            for (let i = 0; i < employers.length; i++) {
+              if (_f.UserId == employers[i]._id.toString() && _f.Type == 1) {
+                account.short_list.push(employers[i].id)
+              }
+            }
+          });
 
           if (_account.Languages && _account.Languages.length > 0) {
 
@@ -495,6 +527,7 @@ module.exports = function init(site) {
             active: _account.IsActive,
             first_name: _account.Name,
             last_name: _account.Name2,
+            limited_companies: _account.IsEmployerLimitedCompanies,
             add_user_info: {
               date: _account.CreatedAt,
             }
@@ -595,7 +628,6 @@ module.exports = function init(site) {
                   }
                 }
               }
-              
 
               site.addCompanies(
                 company,
@@ -609,6 +641,60 @@ module.exports = function init(site) {
     );
   };
 
+  site.migrationJobFairs = function () {
+    $oldJobFairs.findMany(
+      {},
+      (err, docs) => {
+        if (!err && docs) {
+          docs.forEach((_doc, i) => {
+            let jobFair = {
+              _id: _doc._id,
+              active: _doc.IsActive,
+              name_en: _doc.Name ? _doc.Name : _doc.Name2,
+              name_ar: _doc.Name2 ? _doc.Name2 : _doc.Name,
+              description: _doc.ShortDescription,
+              field: _doc.Field,
+              apply_list: [],
+              event_date: _doc.EventDate,
+              site: _doc.Location,
+              site: _doc.IsOnline ? 'online' : 'offline',
+              add_user_info: {
+                date: _doc.CreatedAt,
+              }
+            }
+
+            if (_doc.Registered && _doc.Registered.length > 0) {
+
+              for (let i = 0; i < _doc.Registered.length; i++) {
+                let js = jobSeekers.find((_js) => {
+                  return _js.email === _doc.Registered[i].Email;
+                });
+                if (_doc.Registered[i].Email == js.email) {
+                  jobFair.apply_list.push({
+                    id: js.id,
+                    code: $job_fairs.newCode(jobFair.id, js.id),
+                    first_name: js.first_name,
+                    last_name: js.last_name,
+                    email: js.email,
+                    job_title: js.job_title,
+                    is_attendance: js.IsAttendance,
+                    apply_date: _doc.Registered[i].CreatedAt,
+                  });
+                }
+              }
+            }
+
+
+            site.addJobFairs(jobFair,
+              (err, doc) => {
+                console.log(err || 'JobFairs : ' + doc.id);
+              })
+          });
+        }
+      }
+    );
+  };
+
   site.migrationJobs = function () {
     $oldJobs.findMany({}, (err, docs) => {
       if (!err && docs) {
@@ -616,15 +702,14 @@ module.exports = function init(site) {
           let job = {
             _id: _job._id,
             active: _job.IsActive,
-            name_en: _job.Name ? _job.Name : _job.Name2,
-            name_ar: _job.Name2 ? _job.Name2 : _job.Name,
             job_title: _job.Name,
-            favorite_list : [],
+            favorite_list: [],
+            application_list: [],
             job_responsibilities: _job.Description,
             job_seeker_received_benefits: _job.Benefits,
             job_required_skills: _job.Skills,
             application_deadline_date: _job.Deadline,
-            full_address : _job.Address,
+            full_address: _job.Address,
             salary: 0,
             add_user_info: {
               date: _job.CreatedAt,
@@ -633,8 +718,20 @@ module.exports = function init(site) {
 
           for (let i = 0; i < jobSeekers.length; i++) {
             favourites.forEach(_f => {
-              if(_f.UserId == jobSeekers[i]._id.toString() && _f.EntityId == jobSeekers[i]._id.toString()) {
+              if (_f.UserId == jobSeekers[i]._id.toString() && _f.EntityId == job._id.toString() && _f.Type == 2) {
                 job.favorite_list.push(jobSeekers[i].id)
+              }
+            });
+
+            applies.forEach(_a => {
+              if (_a.JobSeeker._id.toString() == jobSeekers[i]._id.toString()) {
+
+                job.application_list.push({
+                  user_id: jobSeekers[i].id,
+                  date: _a.CreatedAt,
+                  message: _a.Message,
+                })
+
               }
             });
           }
@@ -667,6 +764,19 @@ module.exports = function init(site) {
             for (let i = 0; i < jobSubFields.length; i++) {
               if (jobSubFields[i]._id.toString() == _job.JobSubField._id.toString()) {
                 job.job_subfield = jobSubFields[i];
+              }
+            }
+          }
+
+          if (_job.Company && _job.Company._id) {
+            for (let i = 0; i < companies.length; i++) {
+              if (companies[i]._id.toString() == _job.Company._id.toString()) {
+                job.company = {
+                  _id: companies[i]._id,
+                  name_ar: companies[i].name_ar,
+                  name_en: companies[i].name_en,
+                  id: companies[i].id,
+                };
               }
             }
           }
@@ -706,20 +816,103 @@ module.exports = function init(site) {
     });
   };
 
-  setTimeout(() => {
-    // site.migrationCountries();
-    // site.migrationCities();
-    // site.migrationLanguages();
-    // site.migrationYearsOfExperiences(); 
-    // site.migrationQualifications();
-    // site.migrationIndustries();
-    // site.migrationJobFields();
-    // site.migrationJobSubFields();
-    // site.migrationJobSeekers();
-    //  site.migrationAccounts();
-    // site.migrationCompanies();
-    // site.migrationJobs();
-  }, 1000 * 10);
+  site.onPOST('x-api/migration/ready', (req, res) => {
+    site.migrationReady();
+    res.json({
+      done: true,
+    });
+  });
+
+  site.onPOST('x-api/migration/Countries', (req, res) => {
+    site.migrationCountries();
+    res.json({
+      done: true,
+    });
+  });
+
+  site.onPOST('x-api/migration/Cities', (req, res) => {
+    site.migrationCities();
+    res.json({
+      done: true,
+    });
+  });
+
+  site.onPOST('x-api/migration/Languages', (req, res) => {
+    site.migrationLanguages();
+    res.json({
+      done: true,
+    });
+  });
+
+  site.onPOST('x-api/migration/YearsOfExperiences', (req, res) => {
+    site.migrationYearsOfExperiences();
+    res.json({
+      done: true,
+    });
+  });
+
+  site.onPOST('x-api/migration/Qualifications', (req, res) => {
+    site.migrationQualifications();
+    res.json({
+      done: true,
+    });
+  });
+
+  site.onPOST('x-api/migration/Industries', (req, res) => {
+    site.migrationIndustries();
+    res.json({
+      done: true,
+    });
+  });
+
+  site.onPOST('x-api/migration/JobFields', (req, res) => {
+    site.migrationJobFields();
+    res.json({
+      done: true,
+    });
+  });
+
+  site.onPOST('x-api/migration/JobSubFields', (req, res) => {
+    site.migrationJobSubFields();
+    res.json({
+      done: true,
+    });
+  });
+
+  site.onPOST('x-api/migration/JobSeekers', (req, res) => {
+    site.migrationJobSeekers();
+    res.json({
+      done: true,
+    });
+  });
+
+  site.onPOST('x-api/migration/Accounts', (req, res) => {
+    site.migrationAccounts();
+    res.json({
+      done: true,
+    });
+  });
+
+  site.onPOST('x-api/migration/Companies', (req, res) => {
+    site.migrationCompanies();
+    res.json({
+      done: true,
+    });
+  });
+
+  site.onPOST('x-api/migration/JobFairs', (req, res) => {
+    site.migrationJobFairs();
+    res.json({
+      done: true,
+    });
+  });
+
+  site.onPOST('x-api/migration/Jobs', (req, res) => {
+    site.migrationJobs();
+    res.json({
+      done: true,
+    });
+  });
 
   site.get({
     name: '/',

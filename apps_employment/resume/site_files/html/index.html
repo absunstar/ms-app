@@ -27,7 +27,7 @@
                 <i ng-show="user.gender.id == 1" class="fas fa-male"></i>
                 <i ng-show="user.gender.id == 2" class="fas fa-female"></i>
                 {{user.first_name}} {{user.last_name}}
-                <i-button type="edit default" onclick="site.showModal('#profileModal')"></i-button>
+                <i-button type="edit default" x-permissions="job_seeker" onclick="site.showModal('#profileModal')"></i-button>
               </h2>
               <p class="bold blue">{{user.job_title}}</p>
               <p ng-show="user.country">

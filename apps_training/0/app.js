@@ -882,7 +882,7 @@ module.exports = function init(site) {
     });
   });
 
-  site.onPOST('x-api/migration/countries', (req, res) => {
+  site.onPOST('x-api/migration/Countries', (req, res) => {
     site.migrationCountries();
     res.json({
       done: true,

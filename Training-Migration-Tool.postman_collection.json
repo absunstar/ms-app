@@ -30,14 +30,14 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{server_url}}/x-api/migration/countries",
+					"raw": "{{server_url}}/x-api/migration/Countries",
 					"host": [
 						"{{server_url}}"
 					],
 					"path": [
 						"x-api",
 						"migration",
-						"countries"
+						"Countries"
 					]
 				}
 			},

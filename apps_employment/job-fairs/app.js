@@ -337,8 +337,8 @@ module.exports = function init(site) {
       where['name_en'] = site.get_RegExp(where['name_en'], 'i');
     }
 
-    if (where['website']) {
-      where['website'] = site.get_RegExp(where['website'], 'i');
+    if (where['site']) {
+      where['site'] = site.get_RegExp(where['site'], 'i');
     }
 
     if (where['field']) {
@@ -381,4 +381,23 @@ module.exports = function init(site) {
       }
     );
   });
+
+  site.addJobFairs = function (obj) {
+    $job_fairs.add(obj, (err) => {
+      if (err) {
+        console.log(err, 'JobFairs');
+      } else {
+        return;
+      }
+    })
+  };
+
+  site.getJobFairs = function (obj, callback) {
+    callback = callback || function () { };
+
+    $job_fairs.findMany({ where: obj.where || {}, select: obj.select || {} }, (err, JobFairs) => {
+     callback(JobFairs);
+    })
+
+  };
 };

@@ -30,14 +30,14 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{server_url}}/x-api/migration/countries",
+					"raw": "{{server_url}}/x-api/migration/Countries",
 					"host": [
 						"{{server_url}}"
 					],
 					"path": [
 						"x-api",
 						"migration",
-						"countries"
+						"Countries"
 					]
 				}
 			},
@@ -63,133 +63,133 @@
 			"response": []
 		},
 		{
-			"name": "TrainingTypes",
+			"name": "Languages",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{server_url}}/x-api/migration/TrainingTypes",
+					"raw": "{{server_url}}/x-api/migration/Languages",
 					"host": [
 						"{{server_url}}"
 					],
 					"path": [
 						"x-api",
 						"migration",
-						"TrainingTypes"
+						"Languages"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "TrainingCategories",
+			"name": "YearsOfExperiences",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{server_url}}/x-api/migration/TrainingCategories",
+					"raw": "{{server_url}}/x-api/migration/YearsOfExperiences",
 					"host": [
 						"{{server_url}}"
 					],
 					"path": [
 						"x-api",
 						"migration",
-						"TrainingCategories"
+						"YearsOfExperiences"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "ExamTemplates",
+			"name": "Qualifications",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{server_url}}/x-api/migration/ExamTemplates",
+					"raw": "{{server_url}}/x-api/migration/Qualifications",
 					"host": [
 						"{{server_url}}"
 					],
 					"path": [
 						"x-api",
 						"migration",
-						"ExamTemplates"
+						"Qualifications"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Question",
+			"name": "Industries",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{server_url}}/x-api/migration/Question",
+					"raw": "{{server_url}}/x-api/migration/Industries",
 					"host": [
 						"{{server_url}}"
 					],
 					"path": [
 						"x-api",
 						"migration",
-						"Question"
+						"Industries"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Partners",
+			"name": "JobFields",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{server_url}}/x-api/migration/Partners",
+					"raw": "{{server_url}}/x-api/migration/JobFields",
 					"host": [
 						"{{server_url}}"
 					],
 					"path": [
 						"x-api",
 						"migration",
-						"Partners"
+						"JobFields"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "SubPartners",
+			"name": "JobSubFields",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{server_url}}/x-api/migration/SubPartners",
+					"raw": "{{server_url}}/x-api/migration/JobSubFields",
 					"host": [
 						"{{server_url}}"
 					],
 					"path": [
 						"x-api",
 						"migration",
-						"SubPartners"
+						"JobSubFields"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "TrainingCenter",
+			"name": "JobSeekers",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{server_url}}/x-api/migration/TrainingCenter",
+					"raw": "{{server_url}}/x-api/migration/JobSeekers",
 					"host": [
 						"{{server_url}}"
 					],
 					"path": [
 						"x-api",
 						"migration",
-						"TrainingCenter"
+						"JobSeekers"
 					]
 				}
 			},
@@ -215,38 +215,57 @@
 			"response": []
 		},
 		{
-			"name": "Trainees",
+			"name": "Companies",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{server_url}}/x-api/migration/Trainees",
+					"raw": "{{server_url}}/x-api/migration/Companies",
 					"host": [
 						"{{server_url}}"
 					],
 					"path": [
 						"x-api",
 						"migration",
-						"Trainees"
+						"Companies"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Trainings",
+			"name": "JobFairs",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{server_url}}/x-api/migration/Trainings",
+					"raw": "{{server_url}}/x-api/migration/JobFairs",
 					"host": [
 						"{{server_url}}"
 					],
 					"path": [
 						"x-api",
 						"migration",
-						"Trainings"
+						"JobFairs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Jobs",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{server_url}}/x-api/migration/Jobs",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"x-api",
+						"migration",
+						"Jobs"
 					]
 				}
 			},
