@@ -28,6 +28,32 @@ app.controller('traineeCertificates', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.createCertificate = function (training) {
+    $scope.error = '';
+    $http({
+      method: 'POST',
+      url: '/api/trainings/create_certificates',
+      data: {
+        where: { active: true,'training_type.id': training.training_type.id },
+        training_id: training.id,
+        trainee_id: site.toNumber('##user.id##'),
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.getTrainingsList();
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+
+    site.hideModal('#examModal');
+  };
+
   $scope.startExam = function (training) {
     $scope.error = '';
     $scope.questionsList = [];
@@ -35,7 +61,7 @@ app.controller('traineeCertificates', function ($scope, $http, $timeout) {
       method: 'POST',
       url: '/api/trainings/start_exam',
       data: {
-        where: { active: true, 'training_type.id': training.training_type.id, 'training_type.id': training.training_type.id },
+        where: { active: true, 'training_type.id': training.training_type.id },
         training_id: training.id,
         trainee_id: site.toNumber('##user.id##'),
         exam_template: training.exam_template,

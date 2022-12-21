@@ -665,6 +665,7 @@ module.exports = function init(site) {
       end_date: _training.EndDate,
       location: _training.IsOnline ? 'online' : 'offline',
       approve: _training.IsAdminApproved,
+      success_rate : 80,
       days: [],
       trainees_list: [],
       add_user_info: {
@@ -752,7 +753,6 @@ module.exports = function init(site) {
         };
 
         if (exam) {
-          console.log("exam found");
           trainee_obj.exam_questions_list = [];
 
           for (let i = 0; i < exam.ExamTemplate.length; i++) {
@@ -771,15 +771,7 @@ module.exports = function init(site) {
           trainee_obj.start_exam_count = 1;
           trainee_obj.trainee_degree = exam.Score;
           trainee_obj.finish_exam = true;
-          if (exam.IsPass) {
-            trainee_obj.certificate = {
-              name: js._id,
-              path: _jSeeker.CoverLetterFile,
-              url: '/old-path/file/' + _jSeeker.CoverLetterFile,
-              size: 1024,
-            };
-          }
-          trainee_obj.certificate = {};
+
         }
 
         training.trainees_list.push(trainee_obj);

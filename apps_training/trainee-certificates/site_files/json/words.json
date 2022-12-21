@@ -10,6 +10,11 @@
     "ar": "بدء الإختبار"
   },
   {
+    "name": "create_certificate",
+    "en": "Create a certificate",
+    "ar": "إنشاء شهادة"
+  },
+  {
     "name": "there_error_while_taking_exam",
     "en": "There is an error while taking the exam",
     "ar": "يوجد خطأ في إجراء الإمتحان"

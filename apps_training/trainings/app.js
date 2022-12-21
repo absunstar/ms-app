@@ -518,6 +518,106 @@ module.exports = function init(site) {
     );
   });
 
+  site.post('/api/trainings/create_certificates', (req, res) => {
+    let response = {
+      done: false,
+    };
+    $trainings.findOne(
+      {
+        where: {
+          id: req.body.training_id,
+        },
+      },
+      (err, trainingDoc) => {
+        if (!err) {
+          site.getCertificates({ active: true }, (certificatesCb) => {
+            response.done = true;
+
+            let found_certificate = certificatesCb.find((_c) => {
+              return (
+                _c.type == 'training_centers' &&
+                _c.partner.id == trainingDoc.partner.id &&
+                _c.training_center.id == trainingDoc.training_center.id &&
+                _c.training_type.id == trainingDoc.training_type.id &&
+                _c.training_category.id == trainingDoc.training_category.id
+              );
+            });
+
+            if (!found_certificate) {
+              found_certificate = certificatesCb.find((_c) => {
+                return (
+                  _c.type == 'partners' &&
+                  _c.partner.id == trainingDoc.partner.id &&
+                  _c.file_type == 'trainee' &&
+                  _c.training_type.id == trainingDoc.training_type.id &&
+                  _c.training_category.id == trainingDoc.training_category.id
+                );
+              });
+            }
+
+            if (!found_certificate) {
+              found_certificate = certificatesCb.find((_c) => {
+                return _c.type == 'partners_generic' && _c.partner.id == trainingDoc.partner.id && _c.file_type == 'trainee';
+              });
+            }
+
+            if (!found_certificate) {
+              found_certificate = certificatesCb.find((_c) => {
+                return _c.type == 'system_generic' && _c.file_type == 'trainee';
+              });
+            }
+
+            if (found_certificate) {
+              trainingDoc.trainees_list.forEach((_t) => {
+                if (req.body.trainee_id == _t.id) {
+                  let file_stream = site.fs.readFileSync(found_certificate.certificate.path);
+                  let file_name = req.body.trainee_id.toString() + '_' + Math.floor(Math.random() * 1000).toString() + '.pdf';
+                  found_certificate.certificate.path = found_certificate.certificate.path.split('\\');
+                  found_certificate.certificate.path[found_certificate.certificate.path.length - 1] = file_name;
+                  found_certificate.certificate.path = found_certificate.certificate.path.join('\\');
+                  found_certificate.certificate.url = found_certificate.certificate.url.split('/');
+                  found_certificate.certificate.url[found_certificate.certificate.url.length - 1] = file_name;
+                  found_certificate.certificate.url = found_certificate.certificate.url.join('/');
+
+                  let startDate = new Date(trainingDoc.start_date);
+                  let endDate = new Date(trainingDoc.end_date);
+
+                  site.pdf.PDFDocument.load(file_stream).then((doc) => {
+                    let form = doc.getForm();
+
+                    let nameField = form.getTextField('Name');
+                    nameField.setText(req.session.user.first_name + ' ' + (req.session.user.last_name || ''));
+
+                    let TrainingCategories = form.getTextField('TrainingCategories');
+                    TrainingCategories.setText(_t.trainee_degree.toString() + ' % ');
+
+                    let start_date = form.getTextField('StartDate');
+                    start_date.setText(`${startDate.getDate()}  /  ${startDate.getMonth() + 1} /  ${startDate.getFullYear()}`);
+                    let end_date = form.getTextField('EndDate');
+                    end_date.setText(`${endDate.getDate()}  /  ${endDate.getMonth() + 1} /  ${endDate.getFullYear()}`);
+
+                    form.flatten();
+
+                    doc.save().then((new_file_stream) => {
+                      site.fs.writeFileSync(found_certificate.certificate.path, new_file_stream);
+                    });
+                  });
+
+                  _t.certificate = found_certificate.certificate;
+                }
+              });
+              $trainings.update(trainingDoc);
+            }
+            res.json(response);
+          });
+        } else {
+          response.error = err.message;
+          res.json(response);
+        }
+      }
+    );
+  });
+
   site.post('/api/trainings/finish_exam', (req, res) => {
     let response = {
       done: false,
@@ -531,7 +631,7 @@ module.exports = function init(site) {
       },
       (err, trainingDoc) => {
         if (!err) {
-          site.getCertificates({ active: true }, (certificatesCb) => { 
+          site.getCertificates({ active: true }, (certificatesCb) => {
             response.done = true;
             let correct = 0;
             req.body.questions_list.forEach((_q) => {
@@ -617,7 +717,7 @@ module.exports = function init(site) {
                 if (req.body.trainee_id == _t.id) {
                   _t.exam_questions_list = req.body.questions_list;
                   _t.trainee_degree = trainee_degree;
-                  _t.certificate = found_certificate.certificate;
+                  // _t.certificate = found_certificate.certificate;
                   _t.finish_exam = true;
                 }
               });
