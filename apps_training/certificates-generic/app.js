@@ -212,6 +212,9 @@ module.exports = function init(site) {
           } else {
             callback(false);
           }
+        } else {
+          callback(err);
+
         }
       }
     );

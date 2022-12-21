@@ -531,7 +531,7 @@ module.exports = function init(site) {
       },
       (err, trainingDoc) => {
         if (!err) {
-          site.getCertificates({ active: true }, (certificatesCb) => {
+          site.getCertificates({ active: true }, (certificatesCb) => { 
             response.done = true;
             let correct = 0;
             req.body.questions_list.forEach((_q) => {
@@ -580,7 +580,7 @@ module.exports = function init(site) {
 
             if (found_certificate) {
               let file_stream = site.fs.readFileSync(found_certificate.certificate.path);
-              let file_name = req.body.trainee_id.toString() + '_' + trainingDoc.id.toString() + '.pdf';
+              let file_name = req.body.trainee_id.toString() + '_' + Math.floor(Math.random() * 1000).toString() + '.pdf';
               let trainee_degree = site.toNumber((correct / req.body.questions_list.length) * 100);
               found_certificate.certificate.path = found_certificate.certificate.path.split('\\');
               found_certificate.certificate.path[found_certificate.certificate.path.length - 1] = file_name;
@@ -596,7 +596,7 @@ module.exports = function init(site) {
                 let form = doc.getForm();
 
                 let nameField = form.getTextField('Name');
-                nameField.setText(req.session.user.first_name + ' ' + req.session.user.last_name);
+                nameField.setText(req.session.user.first_name + ' ' + (req.session.user.last_name || ''));
 
                 let TrainingCategories = form.getTextField('TrainingCategories');
                 TrainingCategories.setText(trainee_degree.toString() + ' % ');

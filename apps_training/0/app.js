@@ -770,7 +770,7 @@ module.exports = function init(site) {
 
           trainee_obj.start_exam_count = 1;
           trainee_obj.trainee_degree = exam.Score;
-          trainee_obj.finish_exam = exam.IsPass;
+          trainee_obj.finish_exam = true;
           if (exam.IsPass) {
             trainee_obj.certificate = {
               name: js._id,
