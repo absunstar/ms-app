@@ -177,25 +177,6 @@
 			"response": []
 		},
 		{
-			"name": "JobSeekers",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "{{server_url}}/x-api/migration/JobSeekers",
-					"host": [
-						"{{server_url}}"
-					],
-					"path": [
-						"x-api",
-						"migration",
-						"JobSeekers"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Accounts",
 			"request": {
 				"method": "POST",
@@ -209,6 +190,25 @@
 						"x-api",
 						"migration",
 						"Accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JobSeekers",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{server_url}}/x-api/migration/JobSeekers",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"x-api",
+						"migration",
+						"JobSeekers"
 					]
 				}
 			},

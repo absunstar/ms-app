@@ -105,7 +105,8 @@
       <div x-feature="login" class="user-logged">
         <div class="user nav-item dropdown">
           <div class="username nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <a> ##user.first_name## ##user.last_name##</a>
+            <a> ##user.first_name## <span ng-show="'##user.last_name##' != 'undefined'">##user.last_name##</span></a>
+
             <div class="profile-pictuer">
               <img src="##user.image.url##" onerror="this.src='/images/user_logo.png'" alt="" class="user-pictuer" />
             </div>

@@ -494,7 +494,7 @@ module.exports = function init(site) {
           let account = {
             _id: _account._id,
             email: _account.Email,
-            password: '12345',
+            password: _account.Email,
             active: _account.IsActive,
             first_name: _account.Name,
             partners_list: [],
@@ -598,7 +598,7 @@ module.exports = function init(site) {
             active: _account.IsActive,
             email: _account.Email,
             mobile: _account.Mobile,
-            password: '12345',
+            password: _account.NationalId || _account.Mobile || _account.Email,
             id_number: _account.NationalId,
             birthdate: _account.DOB,
             role: {
@@ -752,6 +752,7 @@ module.exports = function init(site) {
         };
 
         if (exam) {
+          console.log("exam found");
           trainee_obj.exam_questions_list = [];
 
           for (let i = 0; i < exam.ExamTemplate.length; i++) {
@@ -770,6 +771,14 @@ module.exports = function init(site) {
           trainee_obj.start_exam_count = 1;
           trainee_obj.trainee_degree = exam.Score;
           trainee_obj.finish_exam = exam.IsPass;
+          if (exam.IsPass) {
+            trainee_obj.certificate = {
+              name: js._id,
+              path: _jSeeker.CoverLetterFile,
+              url: '/old-path/file/' + _jSeeker.CoverLetterFile,
+              size: 1024,
+            };
+          }
           trainee_obj.certificate = {};
         }
 
