@@ -215,7 +215,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
       url: '/api/users/all',
       data: {
         where: where,
-        limit : 1000
+        limit : 100
       },
     }).then(
       function (response) {
