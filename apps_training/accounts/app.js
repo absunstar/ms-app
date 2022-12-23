@@ -396,7 +396,7 @@ module.exports = function init(site) {
     site.security.getUsers(
       {
         where: where,
-        limit: req.body.limit || {},
+        limit: req.body.limit || 100,
       },
       (err, docs, count) => {
         if (!err) {
