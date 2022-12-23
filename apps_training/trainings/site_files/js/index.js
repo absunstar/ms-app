@@ -191,14 +191,7 @@ app.controller('trainings', function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
-          $scope.list.forEach((_l) => {
-            if (new Date(_l.start_date) < new Date()) {
-              _l.$hide_edit = true;
-            }
-            if (new Date(_l.end_date) < new Date() && !_l.approve) {
-              _l.$show_approved = true;
-            }
-          });
+          
           site.hideModal('#trainingSearchModal');
           $scope.search = {};
         }

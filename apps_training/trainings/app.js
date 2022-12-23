@@ -404,6 +404,14 @@ module.exports = function init(site) {
       (err, docs, count) => {
         if (!err) {
           response.done = true;
+          docs.forEach((_l) => {
+            if (new Date(_l.start_date) < new Date()) {
+              _l.$hide_edit = true;
+            }
+            if (new Date(_l.end_date) < new Date() && !_l.approve) {
+              _l.$show_approved = true;
+            }
+          });
           response.list = docs;
           response.count = count;
         } else {

@@ -851,7 +851,7 @@ module.exports = function init(site) {
 
     if (_training.AreaId) {
       for (let i = 0; i < cities.length; i++) {
-        if (cities[i]._id == _training.CityId) {
+        if (cities[i]._id == _training.AreaId) {
           training.city = cities[i];
         }
       }
