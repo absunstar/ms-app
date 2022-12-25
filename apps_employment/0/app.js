@@ -60,7 +60,7 @@ module.exports = function init(site) {
     }
 
     if (oldJsAccount.length === 0) {
-      $oldAccounts.findMany({ where: { Type: 3 }, limit: 500 }, (err, jsAccount) => {
+      $oldAccounts.findMany({ where: { Type: 3 }, limit: 1000000 }, (err, jsAccount) => {
         oldJsAccount = jsAccount;
       });
     }
@@ -150,7 +150,7 @@ module.exports = function init(site) {
               return _country._id.toString() === _doc._id.toString();
             });
 
-            if (_doc.subItems) {
+            if (_doc.subItems && country) {
               _doc.subItems.forEach((_c) => {
                 site.addCities(
                   {
@@ -207,7 +207,7 @@ module.exports = function init(site) {
     $oldYearsOfExperiences.findMany({}, (err, docs) => {
       if (!err && docs) {
         docs.forEach((_doc, i) => {
-          site.addYearsOfExperience(
+          site.addYearsOfExperiences(
             {
               _id: _doc._id,
               active: _doc.IsActive,
@@ -304,7 +304,7 @@ module.exports = function init(site) {
               return _jobField._id.toString() === _doc._id.toString();
             });
 
-            if (_doc.subItems) {
+            if (_doc.subItems && jobField) {
               _doc.subItems.forEach((_f) => {
                 site.addJobSubFields(
                   {

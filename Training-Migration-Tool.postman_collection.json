@@ -196,6 +196,25 @@
 			"response": []
 		},
 		{
+			"name": "Certificate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{server_url}}/x-api/migration/Certificate",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"x-api",
+						"migration",
+						"Certificate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Accounts",
 			"request": {
 				"method": "POST",

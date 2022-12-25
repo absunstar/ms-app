@@ -220,4 +220,15 @@ module.exports = function init(site) {
     );
   };
 
+  site.addCertificates = function (obj) {
+    $certificates.add(obj, (err) => {
+      if (err) {
+        console.log(err, 'Certificates');
+      } else {
+        return;
+      }
+    })
+  };
+
+
 };

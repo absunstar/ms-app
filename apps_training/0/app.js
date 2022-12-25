@@ -15,6 +15,7 @@ module.exports = function init(site) {
 
   var $trainings = null;
   var $oldCountries = null;
+  var $oldCertificates = null;
   var $oldTrainingTypes = null;
   var $oldTrainingCategories = null;
   var $oldPartners = null;
@@ -81,6 +82,7 @@ module.exports = function init(site) {
   site.migrationReady = function () {
     $trainings = site.connectCollection('Trainings');
 
+    $oldCertificates = site.connectCollection({ db: 'Tadrebat', collection: 'Certificate', identity: { enabled: false } });
     $oldCountries = site.connectCollection({ db: 'Tadrebat', collection: 'City', identity: { enabled: false } });
     $oldTrainingTypes = site.connectCollection({ db: 'Tadrebat', collection: 'TrainingType', identity: { enabled: false } });
     $oldTrainingCategories = site.connectCollection({ db: 'Tadrebat', collection: 'TrainingCategory', identity: { enabled: false } });
@@ -489,7 +491,6 @@ module.exports = function init(site) {
   site.migrationAccounts = function () {
     $oldAccounts.findMany({}, (err, accounts) => {
       if (!err && accounts) {
-
         accounts.forEach((_account, i) => {
           let account = {
             _id: _account._id,
@@ -507,30 +508,30 @@ module.exports = function init(site) {
           if (_account.Type == 1) {
             account.role = {
               id: 1,
-              name: "admin",
-              en: "Admin",
-              ar: "مشرف"
+              name: 'admin',
+              en: 'Admin',
+              ar: 'مشرف',
             };
           } else if (_account.Type == 2) {
             account.role = {
               id: 2,
-              name: "partner",
-              en: "Partner",
-              ar: "شريك"
+              name: 'partner',
+              en: 'Partner',
+              ar: 'شريك',
             };
           } else if (_account.Type == 3) {
             account.role = {
               id: 3,
-              name: "sub_partner",
-              en: "Sub Partner",
-              ar: "شريك ثانوي"
+              name: 'sub_partner',
+              en: 'Sub Partner',
+              ar: 'شريك ثانوي',
             };
           } else if (_account.Type == 4) {
             account.role = {
               id: 4,
-              name: "trainer",
-              en: "Trainer",
-              ar: "مدرب"
+              name: 'trainer',
+              en: 'Trainer',
+              ar: 'مدرب',
             };
           }
 
@@ -584,7 +585,6 @@ module.exports = function init(site) {
             console.log(err || 'user : ' + doc.id);
           });
         });
-
       }
     });
   };
@@ -603,9 +603,9 @@ module.exports = function init(site) {
             birthdate: _account.DOB,
             role: {
               id: 5,
-              name: "trainee",
-              en: "Trainee",
-              ar: "متدرب"
+              name: 'trainee',
+              en: 'Trainee',
+              ar: 'متدرب',
             },
             first_name: _account.Name,
             add_user_info: {
@@ -657,6 +657,51 @@ module.exports = function init(site) {
     });
   };
 
+  site.migrationCertificate = function () {
+    $oldCertificates.findMany({}, (err, docs) => {
+      if (!err && docs) {
+        docs.forEach((_certificate, i) => {
+          let certificate = {
+            _id: _certificate._id,
+            active: _certificate.IsActive,
+            file_type : 'trainee',
+            type : 'partners',
+            add_user_info: {
+              date: _certificate.CreatedAt,
+            },
+          };
+
+          certificate.certificate = {
+            name: _certificate._id,
+            path: _certificate.FileName,
+            url: '/old-path/file/' + _certificate.FileName,
+            size: 1024,
+          };
+
+          if ((partner = partners.find((p) => p._id.toString() == _certificate.PartnerId.toString()))) {
+            certificate.partner = {
+              _id : partner._id,
+              id : partner.id,
+              name_ar : partner.name_ar,
+              name_en : partner.name_en,
+            };
+          }
+          if ((trainingType = trainingTypes.find((p) => p._id.toString() == _certificate.TrainingTypeId.toString()))) {
+            certificate.training_type = trainingType;
+          }
+
+          if ((trainingCategorie = trainingCategories.find((p) => p._id.toString() == _certificate.TrainingCategoryId.toString()))) {
+            certificate.training_category = trainingCategorie;
+          }
+
+          site.addCertificates(certificate, (err, doc) => {
+            console.log(err || 'Certificates : ' + doc.id);
+          });
+        });
+      }
+    });
+  };
+
   site.migrationTraining = function (_training, callback) {
     let training = {
       _id: _training._id,
@@ -665,7 +710,7 @@ module.exports = function init(site) {
       end_date: _training.EndDate,
       location: _training.IsOnline ? 'online' : 'offline',
       approve: _training.IsAdminApproved,
-      success_rate : 80,
+      success_rate: 80,
       days: [],
       trainees_list: [],
       add_user_info: {
@@ -771,7 +816,6 @@ module.exports = function init(site) {
           trainee_obj.start_exam_count = 1;
           trainee_obj.trainee_degree = exam.Score;
           trainee_obj.finish_exam = true;
-
         }
 
         training.trainees_list.push(trainee_obj);
@@ -946,6 +990,13 @@ module.exports = function init(site) {
     });
   });
 
+  site.onPOST('x-api/migration/Certificate', (req, res) => {
+    site.migrationCertificate();
+    res.json({
+      done: true,
+    });
+  });
+
   site.onPOST('x-api/migration/Accounts', (req, res) => {
     site.migrationAccounts();
     res.json({
@@ -978,5 +1029,4 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/json/gender.json',
     public: true,
   });
-
 };
