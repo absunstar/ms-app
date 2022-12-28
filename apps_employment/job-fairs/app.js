@@ -382,14 +382,8 @@ module.exports = function init(site) {
     );
   });
 
-  site.addJobFairs = function (obj) {
-    $job_fairs.add(obj, (err) => {
-      if (err) {
-        console.log(err, 'JobFairs');
-      } else {
-        return;
-      }
-    })
+  site.addJobFairs = function (obj , callback) {
+    $job_fairs.add(obj, callback)
   };
 
   site.getJobFairs = function (obj, callback) {

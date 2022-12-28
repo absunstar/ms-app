@@ -228,14 +228,8 @@ module.exports = function init(site) {
     );
   });
 
-  site.addJobFields = function (obj) {
-    $job_fields.add(obj, (err) => {
-      if (err) {
-        console.log(err, 'JobFields');
-      } else {
-        return;
-      }
-    })
+  site.addJobFields = function (obj , callback) {
+    $job_fields.add(obj, callback)
   };
 
   site.getJobFields = function (obj, callback) {

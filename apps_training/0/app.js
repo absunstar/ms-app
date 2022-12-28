@@ -674,7 +674,7 @@ module.exports = function init(site) {
           certificate.certificate = {
             name: _certificate._id,
             path: _certificate.FileName,
-            url: '/old-path/file/' + _certificate.FileName,
+            url: '/api/old-path/Certificate/' + _certificate.FileName,
             size: 1024,
           };
 

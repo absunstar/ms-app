@@ -222,14 +222,8 @@ module.exports = function init(site) {
     );
   });
 
-  site.addYearsOfExperiences = function (obj) {
-    $years_of_experience.add(obj, (err) => {
-      if (err) {
-        console.log(err, 'YearsOfExperiences');
-      } else {
-        return;
-      }
-    })
+  site.addYearsOfExperiences = function (obj , callback) {
+    $years_of_experience.add(obj, callback)
   };
 
   site.getYearsOfExperiences = function (obj, callback) {

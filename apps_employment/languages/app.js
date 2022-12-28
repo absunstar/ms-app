@@ -224,14 +224,8 @@ module.exports = function init(site) {
     );
   });
 
-  site.addLanguages = function (obj) {
-    $languages.add(obj, (err) => {
-      if (err) {
-        console.log(err, 'Languages');
-      } else {
-        return;
-      }
-    })
+  site.addLanguages = function (obj , callback) {
+    $languages.add(obj, callback)
   };
 
   site.getLanguages = function (obj, callback) {
