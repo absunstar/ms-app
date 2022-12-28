@@ -562,7 +562,7 @@ module.exports = function init(site) {
               console.log(err || 'JobSeeker : ' + doc.id);
               setTimeout(() => {
                 callback();
-              }, 1000);
+              }, 100);
             });
           }
         });
@@ -836,7 +836,7 @@ module.exports = function init(site) {
       console.log(err || 'Job : ' + doc.id);
       setTimeout(() => {
         callback();
-      }, 1000);
+      }, 100);
     });
   };
 
