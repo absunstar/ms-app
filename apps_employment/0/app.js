@@ -422,7 +422,7 @@ module.exports = function init(site) {
               js.image = {
                 name: js._id,
                 path: _jSeeker.ProfilePicture,
-                url: '/old-path/image/' + _jSeeker.ProfilePicture,
+                url: '/api/old-path/ProfilePicture/' + _jSeeker.ProfilePicture,
                 size: 1024,
               };
             }
@@ -431,7 +431,7 @@ module.exports = function init(site) {
               js.upload_cover_letter = {
                 name: js._id,
                 path: _jSeeker.CoverLetterFile,
-                url: '/old-path/file/' + _jSeeker.CoverLetterFile,
+                url: '/api/old-path/CoverLetterFile/' + _jSeeker.CoverLetterFile,
                 size: 1024,
               };
             }
@@ -441,7 +441,7 @@ module.exports = function init(site) {
               js.upload_resume = {
                 name: js._id,
                 path: _jSeeker.ResumeFile,
-                url: '/old-path/file/' + _jSeeker.ResumeFile,
+                url: '/api/old-path/Resume/' + _jSeeker.ResumeFile,
                 size: 1024,
               };
             }
@@ -562,7 +562,7 @@ module.exports = function init(site) {
               console.log(err || 'JobSeeker : ' + doc.id);
               setTimeout(() => {
                 callback();
-              }, 1000);
+              }, 100);
             });
           }
         });
@@ -573,7 +573,6 @@ module.exports = function init(site) {
   site.migrationCompanies = function () {
     $oldCompanies.findMany({}, (err, docs) => {
       if (!err && docs) {
-        console.log(docs.length);
         docs.forEach((_company, i) => {
           let employer = {};
 
@@ -618,7 +617,7 @@ module.exports = function init(site) {
               company.image = {
                 name: company._id,
                 path: _company.CompanyLogo,
-                url: '/old-path/image/' + _company.CompanyLogo,
+                url: '/api/old-path/CompanyLogo/' + _company.CompanyLogo,
                 size: 1024,
               };
             }
@@ -690,7 +689,7 @@ module.exports = function init(site) {
             field: _doc.Field,
             apply_list: [],
             event_date: _doc.EventDate,
-            site: _doc.Location,
+            location: _doc.Location,
             site: _doc.IsOnline ? 'online' : 'offline',
             add_user_info: {
               date: _doc.CreatedAt,
@@ -700,7 +699,7 @@ module.exports = function init(site) {
           if (_doc.Registered && _doc.Registered.length > 0) {
             for (let i = 0; i < _doc.Registered.length; i++) {
               let js = jobSeekers.find((_js) => {
-                return _js.userId.toString() === _doc.Registered[i].UserId.toString();
+                return _doc.Registered[i].UserId && _js.userId.toString() === _doc.Registered[i].UserId.toString();
               });
               if (_doc.Registered[i] && js && _doc.Registered[i].UserId.toString() == js.userId.toString()) {
                 jobFair.apply_list.push({
@@ -837,7 +836,7 @@ module.exports = function init(site) {
       console.log(err || 'Job : ' + doc.id);
       setTimeout(() => {
         callback();
-      }, 1000);
+      }, 100);
     });
   };
 

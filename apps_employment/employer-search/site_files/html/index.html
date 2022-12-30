@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-ng-app="myApp" >
+<html lang="en" data-ng-app="myApp">
   <head x-import="0/head.html"> </head>
 
   <body class="##session.lang##" ng-controller="employerSearch">
@@ -8,8 +8,7 @@
     <div id="main-layout" class="container loaded">
       <div class="row">
         <div class="row">
-       
-          <div class="col3">
+          <div class="col4">
             <div class="row">
               <i-control label="##word.job_title## , ##word.company## ##word.or## ##word.designations##" ng-model="search.general_search"></i-control>
               <i-control label="##word.location##" ng-model="search.general_locations"></i-control>
@@ -17,17 +16,56 @@
               <i-button type="search" label="##word.search##" ng-click="getJobList(search)"> </i-button>
               <i-button label="##word.current_location##" ng-click="currentLocation()"></i-button>
             </div>
-            <i-checklist label="##word.search_by_company## ({{companyList.length}})" ng-change="getJobList(search)" ng-model="search.companies" display="name_##session.lang##" items="companyList" ng-search="_search.$user_profile_companies"></i-checklist>
 
-            <i-checklist label="##word.search_by_job_field## ({{jobFieldsList.length}})" ng-change="getJobList(search)" ng-model="search.job_fields" display="name_##session.lang##" items="jobFieldsList" ng-search="_search.$user_profile_job_fields"></i-checklist>
+            <i-checklist
+              class2="col6"
+              label="##word.search_by_job_field## ({{jobFieldsList.length}})"
+              ng-change="getJobList(search)"
+              ng-model="search.job_fields"
+              display="name_##session.lang##"
+              items="jobFieldsList"
+              ng-search="_search.$user_profile_job_fields"
+            ></i-checklist>
 
-            <i-checklist label="##word.search_by_industry## ({{industryList.length}})" ng-change="getJobList(search)" ng-model="search.industries" display="name_##session.lang##" items="industryList" ng-search="_search.$user_profile_industries"></i-checklist>
+            <i-checklist
+              class2="col6"
+              label="##word.search_by_industry## ({{industryList.length}})"
+              ng-change="getJobList(search)"
+              ng-model="search.industries"
+              display="name_##session.lang##"
+              items="industryList"
+              ng-search="_search.$user_profile_industries"
+            ></i-checklist>
 
-            <i-checklist label="##word.search_by_experience## ({{yearsOfExperienceList.length}})" ng-change="getJobList(search)" ng-model="search.experiences" display="name_##session.lang##" items="yearsOfExperienceList" ng-search="_search.$_experience"></i-checklist>
+            <i-checklist
+              class2="col6"
+              label="##word.search_by_experience## ({{yearsOfExperienceList.length}})"
+              ng-change="getJobList(search)"
+              ng-model="search.experiences"
+              display="name_##session.lang##"
+              items="yearsOfExperienceList"
+              ng-search="_search.$_experience"
+            ></i-checklist>
 
-            <i-checklist label="##word.search_by_qualification## ({{qualificationList.length}})" ng-change="getJobList(search)" ng-model="search.qualifications" display="name_##session.lang##" items="qualificationList" ng-search="_search.$user_profile_qualification"></i-checklist>
+            <i-checklist
+              class2="col6"
+              label="##word.search_by_qualification## ({{qualificationList.length}})"
+              ng-change="getJobList(search)"
+              ng-model="search.qualifications"
+              display="name_##session.lang##"
+              items="qualificationList"
+              ng-search="_search.$user_profile_qualification"
+            ></i-checklist>
+            <i-checklist
+              class2="col6"
+              label="##word.search_by_company## ({{companyList.length}})"
+              ng-change="getJobList(search)"
+              ng-model="search.companies"
+              display="name_##session.lang##"
+              items="companyList"
+              ng-search="_search.$user_profile_companies"
+            ></i-checklist>
           </div>
-          <div class="col1"></div>
           <div class="col8">
             <div class="row job" ng-repeat="j in list">
               <div class="col3">
@@ -41,8 +79,7 @@
               </div>
 
               <div class="col3">
-                <a type="button" class="btn btn-info btn-lg" href="/ViewJob?id={{j.id}}" style="font-size: inherit;color: #fff !important;"> ##word.view_job## <i class="fa fa-eye"></i> </a>
-
+                <a type="button" class="btn btn-info btn-lg" href="/ViewJob?id={{j.id}}" style="font-size: inherit; color: #fff !important"> ##word.view_job## <i class="fa fa-eye"></i> </a>
               </div>
             </div>
           </div>
@@ -56,7 +93,7 @@
         </div>
       </div>
     </div>
-    <div  x-import="0/footer.html" ></div>
+    <div x-import="0/footer.html"></div>
     <div x-import="0/scripts.html"></div>
     <script x-import="employer-search/index.js"></script>
   </body>

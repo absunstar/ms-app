@@ -224,14 +224,8 @@ module.exports = function init(site) {
     );
   });
 
-  site.addQualifications = function (obj) {
-    $qualifications.add(obj, (err) => {
-      if (err) {
-        console.log(err, 'Qualifications');
-      } else {
-        return;
-      }
-    })
+  site.addQualifications = function (obj , callback) {
+    $qualifications.add(obj, callback)
   };
 
   site.getQualifications = function (obj, callback) {

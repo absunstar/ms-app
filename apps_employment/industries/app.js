@@ -226,14 +226,8 @@ module.exports = function init(site) {
     );
   });
 
-  site.addIndustries = function (obj) {
-    $industry.add(obj, (err) => {
-      if (err) {
-        console.log(err, 'Industries');
-      } else {
-        return;
-      }
-    })
+  site.addIndustries = function (obj , callback) {
+    $industry.add(obj, callback)
   };
 
   site.getIndustries = function (obj, callback) {
