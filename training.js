@@ -6,7 +6,7 @@ const site = require('../isite')({
   theme: 'theme_paper',
   savingTime: 1,
   mongodb: {
-    db: 'training1',
+    db: 'training',
     limit: 100000,
     events: true,
     identity: {
