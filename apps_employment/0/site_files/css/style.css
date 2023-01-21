@@ -231,7 +231,7 @@ button.fill {
 
 hr.hr-nav {
   height: 65px !important;
-  width: 1px;
+  width: 1px !important;
   margin-right: 15px;
   color: var(--secondary-color);
 }
