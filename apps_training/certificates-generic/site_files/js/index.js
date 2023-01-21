@@ -8,8 +8,8 @@ app.controller('certificatesGeneric', function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.certificate_partner_generic = {
       active: true,
-      file_type: 'trainee',
       type: 'partners_generic',
+      certificate_list: [{ file_type: 'trainee' }],
     };
 
     site.showModal('#certificatesPartnerGenericAddModal');
@@ -67,7 +67,7 @@ app.controller('certificatesGeneric', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/certificates/add',
+      url: '/api/certificates/transaction',
       data: $scope.certificate_partner_generic,
     }).then(
       function (response) {
@@ -76,7 +76,7 @@ app.controller('certificatesGeneric', function ($scope, $http, $timeout) {
           site.hideModal('#certificatesPartnerGenericAddModal');
           site.resetValidated('#certificatesPartnerGenericAddModal');
           $scope.getCertificatesPartnerGenericList();
-        } else if(response.data.error){
+        } else if (response.data.error) {
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -106,7 +106,7 @@ app.controller('certificatesGeneric', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/certificates/update',
+      url: '/api/certificates/transaction',
       data: certificate_partner_generic,
     }).then(
       function (response) {
@@ -115,7 +115,7 @@ app.controller('certificatesGeneric', function ($scope, $http, $timeout) {
           site.hideModal('#certificatesPartnerGenericUpdateModal');
           site.resetValidated('#certificatesPartnerGenericUpdateModal');
           $scope.getCertificatesPartnerGenericList();
-        } else if(response.data.error){
+        } else if (response.data.error) {
           $scope.error = response.data.error;
           if (response.data.error.like('*Name Exists*')) {
             $scope.error = '##word.name_already_exists##';
@@ -179,7 +179,7 @@ app.controller('certificatesGeneric', function ($scope, $http, $timeout) {
       method: 'POST',
       url: '/api/certificates/view',
       data: {
-        id: certificate_partner_generic.id,
+        where: { id: certificate_partner_generic.id },
       },
     }).then(
       function (response) {
@@ -194,6 +194,38 @@ app.controller('certificatesGeneric', function ($scope, $http, $timeout) {
         console.log(err);
       }
     );
+  };
+
+  $scope.getCertificatesPartnerGeneric = function (certificate_partner_generic) {
+    $scope.busy = true;
+    $scope.error = '';
+    if (certificate_partner_generic.partner && certificate_partner_generic.partner.id)
+      $http({
+        method: 'POST',
+        url: '/api/certificates/view',
+        data: {
+          where: { 'partner.id': certificate_partner_generic.partner.id, type: 'partners_generic' },
+        },
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            $scope.certificate_partner_generic = response.data.doc;
+          } else {
+            $scope.certificate_partner_generic = {
+              active: true,
+              partner: certificate_partner_generic.partner,
+              type: 'partners_generic',
+              certificate_list: [{ file_type: 'trainee' }],
+            };
+            return;
+          }
+     
+        },
+        function (err) {
+          console.log(err);
+        }
+      );
   };
 
   $scope.displayDeleteCertificatesPartnerGeneric = function (certificate_partner_generic) {
@@ -252,7 +284,7 @@ app.controller('certificatesGeneric', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list && response.data.list.length > 0) {
           $scope.certificatesPartnerList = response.data.list;
-          $scope.count = response.data.count;
+          $scope.count = response.data.list.length;
           $scope.search = {};
         }
       },
@@ -268,7 +300,6 @@ app.controller('certificatesGeneric', function ($scope, $http, $timeout) {
     $scope.certificatesSystemGenericList = [];
     where = where || {};
     where.type = 'system_generic';
-    $scope.count = 0;
     $http({
       method: 'POST',
       url: '/api/certificates/all',
@@ -280,7 +311,6 @@ app.controller('certificatesGeneric', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list && response.data.list.length > 0) {
           $scope.certificatesSystemGenericList = response.data.list;
-          $scope.count = response.data.count;
           $scope.search = {};
         }
       },

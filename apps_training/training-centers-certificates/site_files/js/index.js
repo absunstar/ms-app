@@ -7,7 +7,7 @@ app.controller('trainingCentersCertificates', function ($scope, $http, $timeout)
     $scope.error = '';
     $scope.training_center_certificate = {
       active: true,
-      file_type: 'trainee',
+      certificate_list: [{ file_type: 'trainee' }],
     };
 
     site.showModal('#trainingCentersCertificatesAddModal');
@@ -24,7 +24,7 @@ app.controller('trainingCentersCertificates', function ($scope, $http, $timeout)
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/certificates/add',
+      url: '/api/certificates/transaction',
       data: $scope.training_center_certificate,
     }).then(
       function (response) {
@@ -60,7 +60,7 @@ app.controller('trainingCentersCertificates', function ($scope, $http, $timeout)
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/certificates/update',
+      url: '/api/certificates/transaction',
       data: training_center_certificate,
     }).then(
       function (response) {
@@ -130,7 +130,7 @@ app.controller('trainingCentersCertificates', function ($scope, $http, $timeout)
       method: 'POST',
       url: '/api/certificates/view',
       data: {
-        id: training_center_certificate.id,
+        where: { id: training_center_certificate.id },
       },
     }).then(
       function (response) {
@@ -178,6 +178,56 @@ app.controller('trainingCentersCertificates', function ($scope, $http, $timeout)
         console.log(err);
       }
     );
+  };
+
+  $scope.getCertificatesTrainingCentersGeneric = function (training_center_certificate) {
+    $scope.busy = true;
+    $scope.error = '';
+    if (
+      training_center_certificate.partner &&
+      training_center_certificate.partner.id &&
+      training_center_certificate.training_center &&
+      training_center_certificate.training_center.id &&
+      training_center_certificate.training_type &&
+      training_center_certificate.training_type.id &&
+      training_center_certificate.training_category &&
+      training_center_certificate.training_category.id
+    ) {
+      $http({
+        method: 'POST',
+        url: '/api/certificates/view',
+        data: {
+          where: {
+            'partner.id': training_center_certificate.partner.id,
+            'training_center.id': training_center_certificate.training_center.id,
+            'training_type.id': training_center_certificate.training_type.id,
+            'training_category.id': training_center_certificate.training_category.id,
+            type: 'training_centers',
+          },
+        },
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            $scope.training_center_certificate = response.data.doc;
+          } else {
+            $scope.training_center_certificate = {
+              active: true,
+              partner: training_center_certificate.partner,
+              training_center: training_center_certificate.training_center,
+              training_type: training_center_certificate.training_type,
+              training_category: training_center_certificate.training_category,
+              type: 'training_centers',
+              certificate_list: [{ file_type: 'trainee' }],
+            };
+            return;
+          }
+        },
+        function (err) {
+          console.log(err);
+        }
+      );
+    }
   };
 
   $scope.searchAll = function () {
@@ -273,7 +323,7 @@ app.controller('trainingCentersCertificates', function ($scope, $http, $timeout)
       method: 'POST',
       url: '/api/trainings_categories/all',
       data: {
-        where: { active: true,'training_type.id' : id },
+        where: { active: true, 'training_type.id': id },
         select: { id: 1, name_ar: 1, name_en: 1 },
       },
     }).then(
@@ -298,7 +348,7 @@ app.controller('trainingCentersCertificates', function ($scope, $http, $timeout)
       method: 'POST',
       url: '/api/trainings_centers/all',
       data: {
-        where: { active: true,'sub_partner.partners_list.id' : id },
+        where: { active: true, 'sub_partner.partners_list.id': id },
         select: { id: 1, name_ar: 1, name_en: 1 },
       },
     }).then(

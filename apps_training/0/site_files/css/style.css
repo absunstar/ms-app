@@ -23,6 +23,11 @@ html {
 body {
   font-family: 'Arabic', sans-serif;
 }
+hr {
+  width: 98% !important;
+  top: 15px;
+  position: relative;
+}
 a {
   color: black !important;
   text-decoration: none !important;

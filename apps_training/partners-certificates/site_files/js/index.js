@@ -7,7 +7,7 @@ app.controller('partnersCertificates', function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.partner_certificate = {
       active: true,
-      file_type: 'trainee',
+      certificate_list: [{ file_type: 'trainee' }],
     };
 
     site.showModal('#partnerCertificatesAddModal');
@@ -25,7 +25,7 @@ app.controller('partnersCertificates', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/certificates/add',
+      url: '/api/certificates/transaction',
       data: $scope.partner_certificate,
     }).then(
       function (response) {
@@ -61,7 +61,7 @@ app.controller('partnersCertificates', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/certificates/update',
+      url: '/api/certificates/transaction',
       data: partner_certificate,
     }).then(
       function (response) {
@@ -131,7 +131,7 @@ app.controller('partnersCertificates', function ($scope, $http, $timeout) {
       method: 'POST',
       url: '/api/certificates/view',
       data: {
-        id: partner_certificate.id,
+        where: { id: partner_certificate.id },
       },
     }).then(
       function (response) {
@@ -179,6 +179,52 @@ app.controller('partnersCertificates', function ($scope, $http, $timeout) {
         console.log(err);
       }
     );
+  };
+
+  $scope.getCertificatesPartnersGeneric = function (partner_certificate) {
+    $scope.busy = true;
+    $scope.error = '';
+    if (
+      partner_certificate.partner &&
+      partner_certificate.partner.id &&
+      partner_certificate.training_type &&
+      partner_certificate.training_type.id &&
+      partner_certificate.training_category &&
+      partner_certificate.training_category.id
+    ) {
+      $http({
+        method: 'POST',
+        url: '/api/certificates/view',
+        data: {
+          where: {
+            'partner.id': partner_certificate.partner.id,
+            'training_type.id': partner_certificate.training_type.id,
+            'training_category.id': partner_certificate.training_category.id,
+            type: 'partners',
+          },
+        },
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            $scope.partner_certificate = response.data.doc;
+          } else {
+            $scope.partner_certificate = {
+              active: true,
+              partner: partner_certificate.partner,
+              training_type: partner_certificate.training_type,
+              training_category: partner_certificate.training_category,
+              type: 'partners',
+              certificate_list: [{ file_type: 'trainee' }],
+            };
+            return;
+          }
+        },
+        function (err) {
+          console.log(err);
+        }
+      );
+    }
   };
 
   $scope.searchAll = function () {
@@ -274,7 +320,7 @@ app.controller('partnersCertificates', function ($scope, $http, $timeout) {
       method: 'POST',
       url: '/api/trainings_categories/all',
       data: {
-        where: { active: true,'training_type.id' : id },
+        where: { active: true, 'training_type.id': id },
         select: { id: 1, name_ar: 1, name_en: 1 },
       },
     }).then(

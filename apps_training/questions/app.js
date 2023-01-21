@@ -228,6 +228,15 @@ module.exports = function init(site) {
       },
       (err, docs) => {
         if (!err) {
+          if (!data.exam_template) {
+            data.exam_template = {
+              easy: 100,
+            };
+          }
+          if (!data.number_questions) {
+            data.number_questions = 10;
+          }
+
           if (docs && data.exam_template) {
             let easyCount = site.toNumber(((data.exam_template.easy * data.number_questions) / 100).toFixed());
             let mediumCount = site.toNumber(((data.exam_template.medium * data.number_questions) / 100).toFixed());
