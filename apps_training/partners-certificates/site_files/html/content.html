@@ -3,29 +3,72 @@
     <legend>##word.basic_information##</legend>
     <div id="basicInformation" class="">
       <div class="row">
-        <div class="col3">
-          <i-file label="##word.upload_certificate##" ng-model="partner_certificate.certificate"></i-file>
-          <div class="row justify-content-md-center">
+        <div class="row">
+          <i-list
+            class="col6"
+            v="r"
+            label="##word.partner##"
+            ng-model="partner_certificate.partner"
+            ng-change="getCertificatesPartnersGeneric(partner_certificate)"
+            display="name_##session.lang##"
+            items="partnersList"
+            ng-search="partner_certificate.$partner"
+          ></i-list>
+          <div class="col3 justify-content-md-center">
             <i-checkbox class="col" label="##word.active##" ng-model="partner_certificate.active"> </i-checkbox>
           </div>
         </div>
-        <div class="col9">
-          <div class="row">
-            <i-list class="col6" v="r" label="##word.partner##" ng-model="partner_certificate.partner" display="name_##session.lang##" items="partnersList" ng-search="partner_certificate.$partner"></i-list>
-          </div>
-          <div class="row">
-            <i-list class="col6" v="r" label="##word.training_type##" ng-model="partner_certificate.training_type" ng-change="getTrainingCategoriesList(partner_certificate.training_type.id)" display="name_##session.lang##" items="trainingTypesList" ng-search="partner_certificate.$training_type"></i-list>
-            <i-list class="col6" v="r" label="##word.training_category##" ng-model="partner_certificate.training_category" display="name_##session.lang##" items="trainingCategoriesList" ng-search="partner_certificate.$training_category"></i-list>
-          </div>
-       
-          <fieldset>
-            <legend>##word.file_type## </legend>
-            <div class="row">
-              <i-radio class="col2" ng-value="trainee" label="##word.trainee##" ng-model="partner_certificate.file_type"> </i-radio>
-              <i-radio class="col2" ng-value="trainer" label="##word.trainer##" ng-model="partner_certificate.file_type"> </i-radio>
-            </div>
-          </fieldset>
+        <div class="row">
+          <i-list
+            class="col6"
+            v="r"
+            label="##word.training_type##"
+            ng-model="partner_certificate.training_type"
+            ng-change="getTrainingCategoriesList(partner_certificate.training_type.id) ; getCertificatesPartnersGeneric(partner_certificate)"
+            display="name_##session.lang##"
+            items="trainingTypesList"
+            ng-search="partner_certificate.$training_type"
+          ></i-list>
+          <i-list
+            class="col6"
+            v="r"
+            ng-change="getCertificatesPartnersGeneric(partner_certificate)"
+            label="##word.training_category##"
+            ng-model="partner_certificate.training_category"
+            display="name_##session.lang##"
+            items="trainingCategoriesList"
+            ng-search="partner_certificate.$training_category"
+          ></i-list>
         </div>
+
+        <fieldset>
+          <legend>
+            ##word.certificates##
+            <i-button type="add default" ng-click="partner_certificate.certificate_list.push({file_type: 'trainee'})"></i-button>
+          </legend>
+          <div class="row" ng-repeat="c in partner_certificate.certificate_list">
+            <div class="row">
+              <i-date ng-model="c.start_date" class="col6" label="##word.start_date##"></i-date>
+              <i-date ng-model="c.end_date" class="col6" label="##word.end_date##"></i-date>
+            </div>
+            <div class="row">
+              <fieldset class="col5">
+                <legend>##word.file_type##</legend>
+                <div class="row">
+                  <i-radio class="col6" ng-value="trainee" label="##word.trainee##" ng-model="c.file_type"> </i-radio>
+                  <i-radio class="col6" ng-value="trainer" label="##word.trainer##" ng-model="c.file_type"> </i-radio>
+                </div>
+              </fieldset>
+              <div class="col1"></div>
+              <div class="col5">
+                <br />
+                <i-file label="##word.upload_certificate##" ng-model="c.certificate"></i-file>
+              </div>
+              <i-button type="delete default" class="col1" ng-click="partner_certificate.certificate_list.splice($index,1)"></i-button>
+            </div>
+            <hr />
+          </div>
+        </fieldset>
       </div>
     </div>
   </fieldset>

@@ -10,12 +10,6 @@
           </tr>
 
           <tr>
-            <td class="title">##word.file_type##</td>
-            <td class="center" ng-show="certificate_partner_generic.file_type == 'trainee'">##word.trainee##</td>
-            <td class="center" ng-show="certificate_partner_generic.file_type == 'trainer'">##word.trainer##</td>
-          </tr>
-
-          <tr>
             <td class="title">##word.status##</td>
             <td ng-show="certificate_partner_generic.active == true" class="green center">##word.active##</td>
             <td ng-show="certificate_partner_generic.active == false" class="red center">##word.not_active##</td>
@@ -23,8 +17,27 @@
         </table>
       </div>
 
-      <div class="col3">
-        <i-file view ng-model="certificate_partner_generic.certificate"></i-file>
+      <div class="row">
+        <table class="table hover text-center">
+          <tr>
+            <th>##word.start_date##</th>
+            <th>##word.end_date##</th>
+            <th>##word.file_type##</th>
+            <th>##word.download_certificate##</th>
+          </tr>
+          <tr ng-repeat="c in certificate_partner_generic.certificate_list">
+            <td class="center title">{{c.start_date |date:"dd / MM / yyyy"}}</td>
+            <td class="center title">{{c.end_date |date:"dd / MM / yyyy"}}</td>
+            <td>
+              <p class="center" ng-show="c.file_type == 'trainee'">##word.trainee##</p>
+              <p class="center" ng-show="c.file_type == 'trainer'">##word.trainer##</p>
+            </td>
+
+            <td>
+              <i-file view ng-model="c.certificate"></i-file>
+            </td>
+          </tr>
+        </table>
       </div>
     </fieldset>
   </div>

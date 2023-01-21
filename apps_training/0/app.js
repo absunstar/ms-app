@@ -686,6 +686,7 @@ module.exports = function init(site) {
               name_en : partner.name_en,
             };
           }
+
           if ((trainingType = trainingTypes.find((p) => p._id.toString() == _certificate.TrainingTypeId.toString()))) {
             certificate.training_type = trainingType;
           }

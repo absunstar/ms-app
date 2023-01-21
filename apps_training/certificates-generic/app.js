@@ -13,8 +13,6 @@ module.exports = function init(site) {
       done: false,
     };
 
-
-
     let certificates_doc = req.body;
     certificates_doc.$req = req;
     certificates_doc.$res = res;
@@ -39,8 +37,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-
 
     let certificates_doc = req.body;
 
@@ -74,24 +70,66 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/certificates/view', (req, res) => {
+  site.post('/api/certificates/transaction', (req, res) => {
     let response = {
       done: false,
     };
 
+    let certificates_doc = req.body;
+    certificates_doc.$req = req;
+    certificates_doc.$res = res;
 
-
-    $certificates.findOne(
-      {
-        where: {
-          id: req.body.id,
+    if (certificates_doc.id) {
+      $certificates.edit(
+        {
+          where: {
+            id: certificates_doc.id,
+          },
+          set: certificates_doc,
+          $req: req,
+          $res: res,
         },
-      },
-      (err, doc) => {
+        (err) => {
+          if (!err) {
+            response.done = true;
+          } else {
+            response.error = err.message;
+          }
+          res.json(response);
+        }
+      );
+    } else {
+      certificates_doc.add_user_info = site.security.getUserFinger({
+        $req: req,
+        $res: res,
+      });
+
+      $certificates.add(certificates_doc, (err, doc) => {
         if (!err) {
           response.done = true;
           response.doc = doc;
         } else {
+          response.error = err.message;
+        }
+        res.json(response);
+      });
+    }
+  });
+
+  site.post('/api/certificates/view', (req, res) => {
+    let response = {
+      done: false,
+    };
+    let where = req.body.where || {};
+    $certificates.findOne(
+      {
+        where: where,
+      },
+      (err, doc) => {
+        if (!err && doc) {
+          response.done = true;
+          response.doc = doc;
+        } else if (err) {
           response.error = err.message;
         }
         res.json(response);
@@ -103,8 +141,6 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-
 
     let id = req.body.id;
 
@@ -200,21 +236,64 @@ module.exports = function init(site) {
     );
   });
 
-  site.getCertificates = function (where, callback) {
+  site.getCertificatesToExam = function (trainingDoc, callback) {
     $certificates.findMany(
       {
-        where: where,
+        where: { active: true },
       },
       (err, docs) => {
         if (!err) {
           if (docs) {
-            callback(docs);
+            let found_certificate = docs.find((_c) => {
+              return (
+                _c.type == 'training_centers' &&
+                _c.partner.id == trainingDoc.partner.id &&
+                _c.training_center.id == trainingDoc.training_center.id &&
+                _c.training_type.id == trainingDoc.training_type.id &&
+                _c.training_category.id == trainingDoc.training_category.id
+              );
+            });
+
+            if (!found_certificate) {
+              found_certificate = docs.find((_c) => {
+                return (
+                  _c.type == 'partners' &&
+                  _c.partner.id == trainingDoc.partner.id &&
+                  _c.file_type == 'trainee' &&
+                  _c.training_type.id == trainingDoc.training_type.id &&
+                  _c.training_category.id == trainingDoc.training_category.id
+                );
+              });
+            }
+
+            if (!found_certificate) {
+              found_certificate = docs.find((_c) => {
+                return _c.type == 'partners_generic' && _c.partner.id == trainingDoc.partner.id && _c.file_type == 'trainee';
+              });
+            }
+
+            if (!found_certificate) {
+              found_certificate = docs.find((_c) => {
+                return _c.type == 'system_generic' && _c.file_type == 'trainee';
+              });
+            }
+            if (found_certificate.certificate_list && found_certificate.certificate_list.length) {
+              found_certificate.certificate_list.forEach((_c) => {
+                if (new Date(_c.start_date) <= new Date(trainingDoc.start_date) && new Date(_c.end_date) <= new Date(trainingDoc.end_date)) {
+                  found_certificate.certificate = _c.certificate;
+                }
+              });
+            }
+            if (found_certificate && found_certificate.certificate) {
+              callback(found_certificate);
+            } else {
+              callback(false);
+            }
           } else {
             callback(false);
           }
         } else {
           callback(err);
-
         }
       }
     );
@@ -227,8 +306,6 @@ module.exports = function init(site) {
       } else {
         return;
       }
-    })
+    });
   };
-
-
 };

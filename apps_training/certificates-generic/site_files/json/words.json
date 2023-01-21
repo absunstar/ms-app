@@ -34,7 +34,11 @@
         "en": "Upload Certificate",
         "ar": "تحميل الشهادة"
     },
-    
+    {
+        "name": "download_certificate",
+        "en": "Download Certificate",
+        "ar": "تنزيل الشهادة"
+    },
     {
         "name": "certificates_partner_generic",
         "en": "Certificates Partner Generic",

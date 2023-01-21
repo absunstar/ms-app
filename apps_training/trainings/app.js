@@ -538,54 +538,21 @@ module.exports = function init(site) {
       },
       (err, trainingDoc) => {
         if (!err) {
-          site.getCertificates({ active: true }, (certificatesCb) => {
+          site.getCertificatesToExam(trainingDoc, (certificatesCb) => {
             response.done = true;
 
-            let found_certificate = certificatesCb.find((_c) => {
-              return (
-                _c.type == 'training_centers' &&
-                _c.partner.id == trainingDoc.partner.id &&
-                _c.training_center.id == trainingDoc.training_center.id &&
-                _c.training_type.id == trainingDoc.training_type.id &&
-                _c.training_category.id == trainingDoc.training_category.id
-              );
-            });
 
-            if (!found_certificate) {
-              found_certificate = certificatesCb.find((_c) => {
-                return (
-                  _c.type == 'partners' &&
-                  _c.partner.id == trainingDoc.partner.id &&
-                  _c.file_type == 'trainee' &&
-                  _c.training_type.id == trainingDoc.training_type.id &&
-                  _c.training_category.id == trainingDoc.training_category.id
-                );
-              });
-            }
-
-            if (!found_certificate) {
-              found_certificate = certificatesCb.find((_c) => {
-                return _c.type == 'partners_generic' && _c.partner.id == trainingDoc.partner.id && _c.file_type == 'trainee';
-              });
-            }
-
-            if (!found_certificate) {
-              found_certificate = certificatesCb.find((_c) => {
-                return _c.type == 'system_generic' && _c.file_type == 'trainee';
-              });
-            }
-
-            if (found_certificate) {
+            if (certificatesCb) {
               trainingDoc.trainees_list.forEach((_t) => {
                 if (req.body.trainee_id == _t.id) {
-                  let file_stream = site.fs.readFileSync(found_certificate.certificate.path);
+                  let file_stream = site.fs.readFileSync(certificatesCb.certificate.path);
                   let file_name = req.body.trainee_id.toString() + '_' + Math.floor(Math.random() * 1000).toString() + '.pdf';
-                  found_certificate.certificate.path = found_certificate.certificate.path.split('\\');
-                  found_certificate.certificate.path[found_certificate.certificate.path.length - 1] = file_name;
-                  found_certificate.certificate.path = found_certificate.certificate.path.join('\\');
-                  found_certificate.certificate.url = found_certificate.certificate.url.split('/');
-                  found_certificate.certificate.url[found_certificate.certificate.url.length - 1] = file_name;
-                  found_certificate.certificate.url = found_certificate.certificate.url.join('/');
+                  certificatesCb.certificate.path = certificatesCb.certificate.path.split('\\');
+                  certificatesCb.certificate.path[certificatesCb.certificate.path.length - 1] = file_name;
+                  certificatesCb.certificate.path = certificatesCb.certificate.path.join('\\');
+                  certificatesCb.certificate.url = certificatesCb.certificate.url.split('/');
+                  certificatesCb.certificate.url[certificatesCb.certificate.url.length - 1] = file_name;
+                  certificatesCb.certificate.url = certificatesCb.certificate.url.join('/');
 
                   let startDate = new Date(trainingDoc.start_date);
                   let endDate = new Date(trainingDoc.end_date);
@@ -607,11 +574,11 @@ module.exports = function init(site) {
                     form.flatten();
 
                     doc.save().then((new_file_stream) => {
-                      site.fs.writeFileSync(found_certificate.certificate.path, new_file_stream);
+                      site.fs.writeFileSync(certificatesCb.certificate.path, new_file_stream);
                     });
                   });
 
-                  _t.certificate = found_certificate.certificate;
+                  _t.certificate = certificatesCb.certificate;
                 }
               });
               $trainings.update(trainingDoc);
@@ -639,7 +606,7 @@ module.exports = function init(site) {
       },
       (err, trainingDoc) => {
         if (!err) {
-          site.getCertificates({ active: true }, (certificatesCb) => {
+          site.getCertificatesToExam(trainingDoc, (certificatesCb) => {
             response.done = true;
             let correct = 0;
             req.body.questions_list.forEach((_q) => {
@@ -652,50 +619,16 @@ module.exports = function init(site) {
               });
             });
 
-            let found_certificate = certificatesCb.find((_c) => {
-              return (
-                _c.type == 'training_centers' &&
-                _c.partner.id == trainingDoc.partner.id &&
-                _c.training_center.id == trainingDoc.training_center.id &&
-                _c.training_type.id == trainingDoc.training_type.id &&
-                _c.training_category.id == trainingDoc.training_category.id
-              );
-            });
-
-            if (!found_certificate) {
-              found_certificate = certificatesCb.find((_c) => {
-                return (
-                  _c.type == 'partners' &&
-                  _c.partner.id == trainingDoc.partner.id &&
-                  _c.file_type == 'trainee' &&
-                  _c.training_type.id == trainingDoc.training_type.id &&
-                  _c.training_category.id == trainingDoc.training_category.id
-                );
-              });
-            }
-
-            if (!found_certificate) {
-              found_certificate = certificatesCb.find((_c) => {
-                return _c.type == 'partners_generic' && _c.partner.id == trainingDoc.partner.id && _c.file_type == 'trainee';
-              });
-            }
-
-            if (!found_certificate) {
-              found_certificate = certificatesCb.find((_c) => {
-                return _c.type == 'system_generic' && _c.file_type == 'trainee';
-              });
-            }
-
-            if (found_certificate) {
-              let file_stream = site.fs.readFileSync(found_certificate.certificate.path);
+            if (certificatesCb) {
+              let file_stream = site.fs.readFileSync(certificatesCb.certificate.path);
               let file_name = req.body.trainee_id.toString() + '_' + Math.floor(Math.random() * 1000).toString() + '.pdf';
               let trainee_degree = site.toNumber((correct / req.body.questions_list.length) * 100);
-              found_certificate.certificate.path = found_certificate.certificate.path.split('\\');
-              found_certificate.certificate.path[found_certificate.certificate.path.length - 1] = file_name;
-              found_certificate.certificate.path = found_certificate.certificate.path.join('\\');
-              found_certificate.certificate.url = found_certificate.certificate.url.split('/');
-              found_certificate.certificate.url[found_certificate.certificate.url.length - 1] = file_name;
-              found_certificate.certificate.url = found_certificate.certificate.url.join('/');
+              certificatesCb.certificate.path = certificatesCb.certificate.path.split('\\');
+              certificatesCb.certificate.path[certificatesCb.certificate.path.length - 1] = file_name;
+              certificatesCb.certificate.path = certificatesCb.certificate.path.join('\\');
+              certificatesCb.certificate.url = certificatesCb.certificate.url.split('/');
+              certificatesCb.certificate.url[certificatesCb.certificate.url.length - 1] = file_name;
+              certificatesCb.certificate.url = certificatesCb.certificate.url.join('/');
 
               let startDate = new Date(trainingDoc.start_date);
               let endDate = new Date(trainingDoc.end_date);
@@ -717,7 +650,7 @@ module.exports = function init(site) {
                 form.flatten();
 
                 doc.save().then((new_file_stream) => {
-                  site.fs.writeFileSync(found_certificate.certificate.path, new_file_stream);
+                  site.fs.writeFileSync(certificatesCb.certificate.path, new_file_stream);
                 });
               });
 
@@ -725,7 +658,7 @@ module.exports = function init(site) {
                 if (req.body.trainee_id == _t.id) {
                   _t.exam_questions_list = req.body.questions_list;
                   _t.trainee_degree = trainee_degree;
-                  // _t.certificate = found_certificate.certificate;
+                  // _t.certificate = certificatesCb.certificate;
                   _t.finish_exam = true;
                 }
               });
