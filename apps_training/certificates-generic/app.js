@@ -268,27 +268,29 @@ module.exports = function init(site) {
               });
             }
 
-            console.log(found_certificate);
             if (found_certificate.certificate_list && found_certificate.certificate_list.length) {
               found_certificate.certificate_list.forEach((_c) => {
-                console.log(new Date(_c.start_date) <= new Date(trainingDoc.start_date) , new Date(_c.end_date) >= new Date(trainingDoc.end_date) , _c.file_type == 'trainee');
                 if (new Date(_c.start_date) <= new Date(trainingDoc.start_date) && new Date(_c.end_date) >= new Date(trainingDoc.end_date) && _c.file_type == 'trainee') {
                   found_certificate.certificate = _c.certificate;
                 }
               });
             }
             if (found_certificate && found_certificate.certificate) {
+              console.log(found_certificate.certificate.path,"Gggggggggggggg");
               callback(found_certificate);
             } else {
               found_certificate = docs.find((_c) => {
                 return _c.type == 'system_generic';
               });
               callback(found_certificate);
+              console.log("xxxxxxxxxxxxxx");
             }
           } else {
+            console.log("hhhhhhhhhhhhhhhhhhhhhh");
             callback(false);
           }
         } else {
+          console.log("eeeeeeeeeeeeeeeeeeeeeee");
           callback(err);
         }
       }

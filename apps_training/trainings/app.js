@@ -526,14 +526,14 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/trainings/create_certificates', (req, res) => {
+  site.get('/api/trainings/create_certificates', (req, res) => {
     let response = {
       done: false,
     };
     $trainings.findOne(
       {
         where: {
-          id: req.body.training_id,
+          id: req.query.training_id,
         },
       },
       (err, trainingDoc) => {
@@ -543,48 +543,58 @@ module.exports = function init(site) {
 
             if (certificatesCb) {
               trainingDoc.trainees_list.forEach((_t) => {
-                if (req.body.trainee_id == _t.id) {
-                  let file_stream = site.fs.readFileSync(certificatesCb.certificate.path);
-                  let file_name = req.body.trainee_id.toString() + '_' + Math.floor(Math.random() * 1000).toString() + '.pdf';
-                  certificatesCb.certificate.path = certificatesCb.certificate.path.split('\\');
-                  certificatesCb.certificate.path[certificatesCb.certificate.path.length - 1] = file_name;
-                  certificatesCb.certificate.path = certificatesCb.certificate.path.join('\\');
-                  certificatesCb.certificate.url = certificatesCb.certificate.url.split('/');
-                  certificatesCb.certificate.url[certificatesCb.certificate.url.length - 1] = file_name;
-                  certificatesCb.certificate.url = certificatesCb.certificate.url.join('/');
-
+                if (req.query.trainee_id == _t.id) {
+              
                   let startDate = new Date(trainingDoc.start_date);
                   let endDate = new Date(trainingDoc.end_date);
-
-                  site.pdf.PDFDocument.load(file_stream).then((doc) => {
+                  site.loadPDF({path :certificatesCb.certificate.path}, (doc, font) => {
                     let form = doc.getForm();
+                    if ((nameField = form.getTextField('Name'))) {
+                      let name = req.session.user.first_name + ' ' + (req.session.user.last_name || '') ;
+                      nameField.setText(name);
+                      nameField.updateAppearances(font);
+                    }
 
-                    let nameField = form.getTextField('Name');
-                    nameField.setText(req.session.user.first_name + ' ' + (req.session.user.last_name || ''));
+                    try {
+                      if ((TrainingCategories = form.getTextField('TrainingCategories'))) {
+                        TrainingCategories.setText(_t.trainee_degree.toString() + ' % ');
+                      }
+                    } catch (error) {
+                      console.log(error);
+                    }
 
-                    let TrainingCategories = form.getTextField('TrainingCategories');
-                    TrainingCategories.setText(_t.trainee_degree.toString() + ' % ');
+                    if ((start_date = form.getTextField('StartDate'))) {
+                      start_date.setText(`${startDate.getDate()}  /  ${startDate.getMonth() + 1} /  ${startDate.getFullYear()}`);
+                    }
 
-                    let start_date = form.getTextField('StartDate');
-                    start_date.setText(`${startDate.getDate()}  /  ${startDate.getMonth() + 1} /  ${startDate.getFullYear()}`);
-                    let end_date = form.getTextField('EndDate');
-                    end_date.setText(`${endDate.getDate()}  /  ${endDate.getMonth() + 1} /  ${endDate.getFullYear()}`);
+                    if ((end_date = form.getTextField('EndDate'))) {
+                      end_date.setText(`${endDate.getDate()}  /  ${endDate.getMonth() + 1} /  ${endDate.getFullYear()}`);
+                    }
 
                     form.flatten();
 
                     doc.save().then((new_file_stream) => {
+                      let file_name = req.query.trainee_id.toString() + '_' + trainingDoc.id.toString() + '.pdf';
+                      certificatesCb.certificate.path = certificatesCb.certificate.path.split('\\');
+                      certificatesCb.certificate.path[certificatesCb.certificate.path.length - 1] = file_name;
+                      certificatesCb.certificate.path = certificatesCb.certificate.path.join('\\');
+                      certificatesCb.certificate.url = certificatesCb.certificate.url.split('/');
+                      certificatesCb.certificate.url[certificatesCb.certificate.url.length - 1] = file_name;
+                      certificatesCb.certificate.url = certificatesCb.certificate.url.join('/');
+    
                       site.fs.writeFileSync(certificatesCb.certificate.path, new_file_stream);
+                      res.download(certificatesCb.certificate.path , 'test.pdf')
                     });
                   });
 
                   _t.certificate = certificatesCb.certificate;
                 }
               });
-               $trainings.update(trainingDoc);
+              //  $trainings.update(trainingDoc);
             } else {
               response.error = 'There are no Certificates';
+              res.json(response);
             }
-            res.json(response);
           });
         } else {
           response.error = err.message;

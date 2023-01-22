@@ -31,14 +31,10 @@ app.controller('traineeCertificates', function ($scope, $http, $timeout) {
 
   $scope.createCertificate = function (training) {
     $scope.error = '';
-    $http({
-      method: 'POST',
-      url: '/api/trainings/create_certificates',
-      data: {
-        where: { active: true,'training_type.id': training.training_type.id },
-        training_id: training.id,
-        trainee_id: site.toNumber('##user.id##'),
-      },
+    window.open(`/api/trainings/create_certificates?training_id=${training.id}&trainee_id=${site.toNumber('##user.id##')}&training_type_id=${training.training_type.id}`);
+    /*   $http({
+      method: 'GET',
+      url: `/api/trainings/create_certificates?training_id=${training.id}&trainee_id=${site.toNumber('##user.id##') }&training_type_id=${training.training_type.id}` ,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -50,7 +46,7 @@ app.controller('traineeCertificates', function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    );
+    ); */
 
     site.hideModal('#examModal');
   };
