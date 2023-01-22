@@ -541,7 +541,6 @@ module.exports = function init(site) {
           site.getCertificatesToExam(trainingDoc, (certificatesCb) => {
             response.done = true;
 
-
             if (certificatesCb) {
               trainingDoc.trainees_list.forEach((_t) => {
                 if (req.body.trainee_id == _t.id) {
@@ -581,7 +580,9 @@ module.exports = function init(site) {
                   _t.certificate = certificatesCb.certificate;
                 }
               });
-              $trainings.update(trainingDoc);
+               $trainings.update(trainingDoc);
+            } else {
+              response.error = 'There are no Certificates';
             }
             res.json(response);
           });

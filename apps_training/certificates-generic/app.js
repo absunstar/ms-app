@@ -257,29 +257,22 @@ module.exports = function init(site) {
             if (!found_certificate) {
               found_certificate = docs.find((_c) => {
                 return (
-                  _c.type == 'partners' &&
-                  _c.partner.id == trainingDoc.partner.id &&
-                  _c.file_type == 'trainee' &&
-                  _c.training_type.id == trainingDoc.training_type.id &&
-                  _c.training_category.id == trainingDoc.training_category.id
+                  _c.type == 'partners' && _c.partner.id == trainingDoc.partner.id && _c.training_type.id == trainingDoc.training_type.id && _c.training_category.id == trainingDoc.training_category.id
                 );
               });
             }
 
             if (!found_certificate) {
               found_certificate = docs.find((_c) => {
-                return _c.type == 'partners_generic' && _c.partner.id == trainingDoc.partner.id && _c.file_type == 'trainee';
+                return _c.type == 'partners_generic' && _c.partner.id == trainingDoc.partner.id;
               });
             }
 
-            if (!found_certificate) {
-              found_certificate = docs.find((_c) => {
-                return _c.type == 'system_generic' && _c.file_type == 'trainee';
-              });
-            }
+            console.log(found_certificate);
             if (found_certificate.certificate_list && found_certificate.certificate_list.length) {
               found_certificate.certificate_list.forEach((_c) => {
-                if (new Date(_c.start_date) <= new Date(trainingDoc.start_date) && new Date(_c.end_date) <= new Date(trainingDoc.end_date)) {
+                console.log(new Date(_c.start_date) <= new Date(trainingDoc.start_date) , new Date(_c.end_date) >= new Date(trainingDoc.end_date) , _c.file_type == 'trainee');
+                if (new Date(_c.start_date) <= new Date(trainingDoc.start_date) && new Date(_c.end_date) >= new Date(trainingDoc.end_date) && _c.file_type == 'trainee') {
                   found_certificate.certificate = _c.certificate;
                 }
               });
@@ -287,7 +280,10 @@ module.exports = function init(site) {
             if (found_certificate && found_certificate.certificate) {
               callback(found_certificate);
             } else {
-              callback(false);
+              found_certificate = docs.find((_c) => {
+                return _c.type == 'system_generic';
+              });
+              callback(found_certificate);
             }
           } else {
             callback(false);
