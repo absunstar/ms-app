@@ -516,7 +516,6 @@ module.exports = function init(site) {
         response.error = err.message;
       }
       response.link = `${req.headers['origin']}/changePassWord?code=${response.user.forgetPasswordCode}`;
-      console.log(response.link);
       site.sendMailMessage({
         to: response.user.email,
         subject: `Forget Password Link`,
