@@ -8,7 +8,7 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       start_date: new Date(),
       trainees_list: [],
       number_questions: 10,
-      success_rate : 80,
+      success_rate: 80,
       location: 'offline',
     };
     if ('##user.role.name##' == 'trainer') {
@@ -166,7 +166,6 @@ app.controller('trainings', function ($scope, $http, $timeout) {
 
   $scope.getTrainingList = function (where) {
     $scope.busy = true;
-    $scope.list = [];
     $scope.count = 0;
 
     where = where || {};
@@ -189,9 +188,15 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list && response.data.list.length > 0) {
-          $scope.list = response.data.list;
-          $scope.count = response.data.count;
-          
+          if (!where.more) {
+            $scope.list = [];
+            $scope.count = response.data.count;
+          }
+          response.data.list.forEach((doc) => {
+            $scope.list.push(doc);
+          });
+          $scope.count += response.data.count;
+
           site.hideModal('#trainingSearchModal');
           $scope.search = {};
         }
@@ -218,7 +223,7 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       url: '/api/users/all',
       data: {
         where: where,
-        select: { id: 1, first_name: 1, last_name: 1, email: 1 , phone : 1 },
+        select: { id: 1, first_name: 1, last_name: 1, email: 1, phone: 1 },
       },
     }).then(
       function (response) {
@@ -506,7 +511,6 @@ app.controller('trainings', function ($scope, $http, $timeout) {
         attendance.$attend_all = false;
       }
     });
-
   };
 
   $scope.displaySearchModal = function () {

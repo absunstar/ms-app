@@ -1,6 +1,9 @@
 app.controller('loginEmployment', function ($scope, $http, $timeout) {
   $scope.user = {};
-  $scope.loginEmployment = function () {
+  $scope.loginEmployment = function (ev) {
+    if (ev && ev.which !== 13) {
+      return;
+    }
     $scope.error = '';
     const v = site.validated('#loginEmploymentModal');
     if (!v.ok) {
@@ -15,7 +18,7 @@ app.controller('loginEmployment', function ($scope, $http, $timeout) {
         $encript: '123',
         email: site.to123($scope.user.email),
         password: site.to123($scope.user.password),
-      }
+      },
     }).then(
       function (response) {
         if (response.data.error) {
@@ -35,5 +38,4 @@ app.controller('loginEmployment', function ($scope, $http, $timeout) {
       }
     );
   };
-
 });

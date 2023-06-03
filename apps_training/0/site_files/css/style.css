@@ -111,6 +111,10 @@ a {
     transition: transform 0.6s ease-in-out;
   }
 
+  .carousel-item.active {
+    display: contents;
+  }
+
   .carousel-caption {
     transform: translate(19%, 0%) !important;
     width: 60% !important;
@@ -341,7 +345,6 @@ ul li .nav-link {
   background: #000000d6;
   padding: 10px;
   border-radius: 5px;
-
 }
 
 div.search {
@@ -746,10 +749,10 @@ nav {
   margin-bottom: 0;
 }
 
-.Useful-Links a{
+.Useful-Links a {
   text-decoration: underline !important;
 }
-.footer-company-logo img{
+.footer-company-logo img {
   max-width: 80vw;
 }
 
@@ -763,24 +766,23 @@ nav {
   margin-right: 15px;
 }
 
-.social-media{
+.social-media {
   background: #fff;
   padding: 10px;
   border-radius: 10px;
 }
-.social-media i{
+.social-media i {
   font-size: 35px;
 }
-.social-media .fa-facebook-square{
+.social-media .fa-facebook-square {
   color: blue;
 }
-.social-media .fa-twitter{
+.social-media .fa-twitter {
   color: #0dcaf0;
 }
-.social-media .fa-linkedin{
+.social-media .fa-linkedin {
   color: blue;
 }
-
 
 .modal::-webkit-scrollbar {
   width: 20px;

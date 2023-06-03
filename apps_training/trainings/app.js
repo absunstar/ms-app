@@ -1,5 +1,7 @@
 module.exports = function init(site) {
   const $trainings = site.connectCollection('Trainings');
+  $trainings.skip = 0;
+  $trainings.count = 0;
 
   site.get({
     name: 'Trainings',
@@ -353,6 +355,13 @@ module.exports = function init(site) {
       });
 
       where.$or.push({
+        'trainer.first_name': site.get_RegExp(search, 'i'),
+      });
+
+      where.$or.push({
+        'trainer.email': site.get_RegExp(search, 'i'),
+      });
+      where.$or.push({
         'training_center.name_ar': site.get_RegExp(search, 'i'),
       });
 
@@ -392,6 +401,13 @@ module.exports = function init(site) {
         'days.en': site.get_RegExp(search, 'i'),
       });
     }
+    if(where['more'] == true){
+      $trainings.skip += $trainings.count;
+      delete where['more'];
+    }else{
+      $trainings.skip = 0;
+    }
+
     $trainings.findMany(
       {
         select: req.body.select || {},
@@ -399,11 +415,13 @@ module.exports = function init(site) {
         sort: req.body.sort || {
           id: -1,
         },
-        limit: req.body.limit || 100,
+        limit: req.body.limit || 30,
+        skip: $trainings.skip || 0,
       },
       (err, docs, count) => {
         if (!err) {
           response.done = true;
+          $trainings.count = docs.length;
           docs.forEach((_l) => {
             if (new Date(_l.start_date) < new Date()) {
               _l.$hide_edit = true;
@@ -544,13 +562,12 @@ module.exports = function init(site) {
             if (certificatesCb) {
               trainingDoc.trainees_list.forEach((_t) => {
                 if (req.query.trainee_id == _t.id) {
-              
                   let startDate = new Date(trainingDoc.start_date);
                   let endDate = new Date(trainingDoc.end_date);
-                  site.loadPDF({path :certificatesCb.certificate.path}, (doc, font) => {
+                  site.loadPDF({ path: certificatesCb.certificate.path }, (doc, font) => {
                     let form = doc.getForm();
                     if ((nameField = form.getTextField('Name'))) {
-                      let name = req.session.user.first_name + ' ' + (req.session.user.last_name || '') ;
+                      let name = req.session.user.first_name + ' ' + (req.session.user.last_name || '');
                       nameField.setText(name);
                       nameField.updateAppearances(font);
                     }
@@ -581,9 +598,9 @@ module.exports = function init(site) {
                       certificatesCb.certificate.url = certificatesCb.certificate.url.split('/');
                       certificatesCb.certificate.url[certificatesCb.certificate.url.length - 1] = file_name;
                       certificatesCb.certificate.url = certificatesCb.certificate.url.join('/');
-    
+
                       site.fs.writeFileSync(certificatesCb.certificate.path, new_file_stream);
-                      res.download(certificatesCb.certificate.path , 'test.pdf')
+                      res.download(certificatesCb.certificate.path, 'test.pdf');
                     });
                   });
 
