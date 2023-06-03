@@ -389,6 +389,10 @@ module.exports = function init(site) {
       });
 
       where.$or.push({
+        mobile: site.get_RegExp(search, 'i'),
+      });
+
+      where.$or.push({
         id_number: search,
       });
     }
