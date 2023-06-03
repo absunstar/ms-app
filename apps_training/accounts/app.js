@@ -1,6 +1,4 @@
 module.exports = function init(site) {
-
-
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/',
@@ -38,32 +36,32 @@ module.exports = function init(site) {
     public: true,
   });
 
-  site.get({
-    name: 'changePassWord',
-    parser: 'html',
-    compress: true,
-    public: true,
-  }, (req, res) => {
-
-    if (req.query.code) {
-
-      site.security.getUser(
-        {
-          forgetPasswordCode: req.query.code,
-        },
-        (err, doc) => {
-          if (!err && doc) {
-            res.render('accounts/reset_password.html', { code: req.query.code });
-          } else {
-            res.json({ error: 'Code is invalid' })
+  site.get(
+    {
+      name: 'changePassWord',
+      parser: 'html',
+      compress: true,
+      public: true,
+    },
+    (req, res) => {
+      if (req.query.code) {
+        site.security.getUser(
+          {
+            forgetPasswordCode: req.query.code,
+          },
+          (err, doc) => {
+            if (!err && doc) {
+              res.render('accounts/reset_password.html', { code: req.query.code });
+            } else {
+              res.json({ error: 'Code is invalid' });
+            }
           }
-        }
-      );
-    } else {
-      res.json({ error: 'Code is invalid' })
+        );
+      } else {
+        res.json({ error: 'Code is invalid' });
+      }
     }
-
-  });
+  );
 
   site.post({
     name: '/api/accounts_type/all',
@@ -359,15 +357,15 @@ module.exports = function init(site) {
 
     if (where['not_active']) {
       where['active'] = false;
+      delete where['not_active'];
     }
 
     if (where['active_search']) {
       where['active'] = true;
+      delete where['active_search'];
     }
 
-    if (where['not_active'] && where['active_search']) {
-      delete where['active'];
-    }
+   
 
     if (search) {
       where.$or = [];
@@ -463,7 +461,6 @@ module.exports = function init(site) {
     );
   });
 
-
   site.onPOST({ name: '/api/user/send-forget-password-link', public: true }, (req, res) => {
     let response = {
       done: true,
@@ -489,8 +486,9 @@ module.exports = function init(site) {
   site.post(
     {
       name: '/api/user/new-password',
-      public: true
-    }, (req, res) => {
+      public: true,
+    },
+    (req, res) => {
       let response = {
         done: false,
       };
@@ -513,14 +511,8 @@ module.exports = function init(site) {
             response.error = 'Error Email not correct';
             res.json(response);
           }
-        })
-
-    });
-
-
- 
-
-
-  
-
+        }
+      );
+    }
+  );
 };
