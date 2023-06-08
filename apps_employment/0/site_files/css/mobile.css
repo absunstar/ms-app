@@ -3,23 +3,5 @@
     .h1{
         font-size: 12px;
     }
-    .modal::-webkit-scrollbar {
-        width: 5px;
-        height: 5px;
-    }
-    .modal::-webkit-scrollbar-thumb {
-        background-color: #ffc107;
-        outline: 5px solid #000;
-    }
-    ::-webkit-scrollbar-thumb {
-        background-color: #198754;
-        outline: 1px solid #000;
-    }
-    ::-webkit-scrollbar {
-        width: 5px;
-        height: 5px;
-    }
-    .company-logo-footer {
-        height: 110px;
-      }
+  
 }

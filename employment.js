@@ -1,14 +1,15 @@
+require('dotenv').config();
 const site = require('../isite')({
   port: [44441],
   lang: 'en',
-  version: '3.155.32',
+  version: '3.177.66',
   name: 'EmploymentV2',
   theme: 'theme_paper',
   savingTime: 10,
   oldPath0: 'D:\\microsoft\\cdn\\',
   oldPath: 'D:\\Web\\TawzeefMasrFiles\\',
   mongodb: {
-    db: 'EmploymentV2',
+    db: process.env['EMPLOYMENTDB'],
     limit: 100000,
     events: true,
     identity: {
@@ -61,26 +62,40 @@ site.onGET('/api/old-path/Resume/:name', (req, res) => {
   res.download(site.options.oldPath + 'Resume//' + req.params.name.split('.')[0] + '//' + req.params.name);
 });
 
-
 site.run();
 
-site.sendMailMessage = function (obj) {
-  if (
-    site.setting.email_setting &&
-    site.setting.email_setting.host &&
-    site.setting.email_setting.port &&
-    site.setting.email_setting.username &&
-    site.setting.email_setting.password &&
-    site.setting.email_setting.from
-  ) {
-    obj.enabled = true;
-    obj.type = 'smpt';
-    obj.host = site.setting.email_setting.host;
-    obj.port = site.setting.email_setting.port;
-    obj.username = site.setting.email_setting.username;
-    obj.password = site.setting.email_setting.password;
-    obj.from = site.setting.email_setting.from;
+site.sendMailMessage = function (options) {
+  site.sendMailAzure(options);
+};
 
-    site.sendMail(obj);
+site.sendMailAzure = function (options) {
+  const { EmailClient } = require('@azure/communication-email');
+
+  const connectionString = process.env['COMMUNICATION_SERVICES_CONNECTION_STRING'];
+  const emailClient = new EmailClient(connectionString);
+
+  try {
+    const message = {
+      senderAddress: 'donotreply@twg-training.org',
+      content: {
+        subject: options.subject,
+        html: options.message,
+      },
+      recipients: {
+        to: [
+          {
+            address: options.to,
+          },
+        ],
+      },
+    };
+
+    emailClient.beginSend(message).then((poller) => {
+      poller.pollUntilDone().then((res) => {
+        console.log(res);
+      });
+    });
+  } catch (e) {
+    console.log(e);
   }
 };
