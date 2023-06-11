@@ -344,7 +344,7 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
           $scope.getJobFairsList();
         } else {
           $scope.error = response.data.error;
-          if (response.data.error.like('*registered to this Job Fair before*')) {
+          if (response.data.error.like('*You have registered to this Job Fair before*')) {
             $scope.error = '##word.you_registered_this_job_fair_before##';
           }
         }

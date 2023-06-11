@@ -196,6 +196,7 @@ module.exports = function init(site) {
           }
           if (response.found_apply) {
             response.error = 'You have registered to this Job Fair before';
+            response.done = false;
             res.json(response);
             return;
           }
