@@ -158,9 +158,10 @@ app.controller('trainees', function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.getTraineesUpload = function (docs) {
+  $scope.getTraineesUpload = function (data) {
     $scope.error = '';
-    $scope.upload_trainees_list = docs;
+    $scope.upload_trainees_list = data.docs;
+    console.log(data.docs);
     site.showModal('#traineesUploadModal');
   };
 

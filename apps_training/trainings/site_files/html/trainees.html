@@ -27,7 +27,7 @@
       <div class="top-actions">
         <i-button type="add" class="col2" ng-hide="training.approve" label="##word.create_new_trainee##" ng-click="displayCreateTrainee()"></i-button>
         <i-button label="##word.add_trainees##" class="col2" ng-hide="training.approve" onclick="site.showModal( '#addtraineeToTrainingModal')"></i-button>
-        <i-upload class="col2" label="##word.upload_trainees##" ng-hide="training.approve" on-uploaded="getTraineesUpload(docs)" api="/api/trainees/excel_upload"> </i-upload>
+        <i-upload class="col2" label="##word.upload_trainees##" ng-hide="training.approve" on-uploaded="getTraineesUpload($data)" api="/api/trainees/excel_upload"> </i-upload>
         <h4>
           <a href="/xls/trainee.xlsx" style="color: #0038c9 !important; text-decoration: revert !important">##word.download_excel_template##</a>
         </h4>
