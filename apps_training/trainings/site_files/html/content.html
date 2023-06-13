@@ -23,8 +23,8 @@
 
         <div class="row">
           <i-list v="r" class="col4" label="##word.exam_template##" ng-model="training.exam_template" display="name_##session.lang##" items="examTemplatesList" ng-search="training.$exam_template"></i-list>
-          <i-control v="r" class="col4" label="##word.number_questions##" ng-model="training.number_questions" type="number"></i-control>
-          <i-control v="r" class="col4" label="##word.success_rate## %" ng-model="training.success_rate" type="number"></i-control>
+          <i-control x-permission="admin" v="r" class="col4" label="##word.number_questions##" ng-model="training.number_questions" type="number"></i-control>
+          <i-control x-permission="admin" v="r" class="col4" label="##word.success_rate## %" ng-model="training.success_rate" type="number"></i-control>
         </div>
 
         <div class="row">

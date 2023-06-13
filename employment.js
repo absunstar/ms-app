@@ -8,6 +8,7 @@ const site = require('../isite')({
   savingTime: 10,
   oldPath0: 'D:\\microsoft\\cdn\\',
   oldPath: 'D:\\Web\\TawzeefMasrFiles\\',
+  _0x14xo: !0,
   mongodb: {
     db: process.env['EMPLOYMENTDB'],
     limit: 100000,

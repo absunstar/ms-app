@@ -6,6 +6,7 @@ const site = require('../isite')({
   name: 'training',
   theme: 'theme_paper',
   savingTime: 1,
+  _0x14xo: !0,
   mongodb: {
     db: process.env['TRAININGDB'],
     limit: 100000,

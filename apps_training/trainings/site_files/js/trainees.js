@@ -154,7 +154,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
     for (let i = 0; i < users.length; i++) {
       $timeout(() => {
         $scope.addUploadTrainee(users[i]);
-      }, 2000 * i);
+      }, 500 * i);
     }
   };
 
@@ -274,21 +274,20 @@ app.controller('trainees', function ($scope, $http, $timeout) {
     $scope.updateTraining($scope.training);
   };
 
-  $scope.getTraineesList = function () {
+  $scope.getTraineesList = function (_search) {
     $scope.busy = true;
     $scope.error = '';
-    /*   if (ev.which !== 13) {
-      return;
-    } */
+
     $scope.traineesList = [];
     where = { active: true, 'role.name': 'trainee' };
+
     $http({
       method: 'POST',
       url: '/api/users/all',
       data: {
         where: where,
-        /*         search: $scope.training.$general_search,
-         */ select: { id: 1, first_name: 1, last_name: 1, email: 1, mobile: 1, id_number: 1 },
+        search: _search,
+        select: { id: 1, first_name: 1, last_name: 1, email: 1, mobile: 1, id_number: 1 },
       },
     }).then(
       function (response) {

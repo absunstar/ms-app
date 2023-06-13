@@ -435,7 +435,7 @@ module.exports = function init(site) {
 
       delete where['general_search'];
     }
-
+    
     site.security.getUsers(
       {
         where: where,
