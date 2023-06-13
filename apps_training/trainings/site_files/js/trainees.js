@@ -144,7 +144,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -213,7 +213,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -237,7 +237,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };

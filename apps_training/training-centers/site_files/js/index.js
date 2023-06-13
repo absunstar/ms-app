@@ -41,7 +41,7 @@ app.controller('trainingCenters', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -80,7 +80,7 @@ app.controller('trainingCenters', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -105,7 +105,7 @@ app.controller('trainingCenters', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -136,7 +136,7 @@ app.controller('trainingCenters', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -169,7 +169,7 @@ app.controller('trainingCenters', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };

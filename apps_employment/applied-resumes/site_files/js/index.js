@@ -20,7 +20,7 @@ app.controller('appliedResumes', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -72,7 +72,7 @@ app.controller('appliedResumes', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
 

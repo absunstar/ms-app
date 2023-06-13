@@ -40,7 +40,7 @@ app.controller('partners', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -85,7 +85,7 @@ app.controller('partners', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -122,7 +122,7 @@ app.controller('partners', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -153,7 +153,7 @@ app.controller('partners', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -186,7 +186,7 @@ app.controller('partners', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };

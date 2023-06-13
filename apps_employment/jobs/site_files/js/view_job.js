@@ -31,7 +31,7 @@ app.controller('viewJob', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -97,7 +97,7 @@ app.controller('viewJob', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };

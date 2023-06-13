@@ -38,7 +38,7 @@ app.controller('trainingCentersCertificates', function ($scope, $http, $timeout)
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -74,7 +74,7 @@ app.controller('trainingCentersCertificates', function ($scope, $http, $timeout)
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -111,7 +111,7 @@ app.controller('trainingCentersCertificates', function ($scope, $http, $timeout)
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -142,7 +142,7 @@ app.controller('trainingCentersCertificates', function ($scope, $http, $timeout)
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -175,7 +175,7 @@ app.controller('trainingCentersCertificates', function ($scope, $http, $timeout)
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };

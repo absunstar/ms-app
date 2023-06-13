@@ -106,7 +106,7 @@ app.controller('traineesAccounts', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -146,7 +146,7 @@ app.controller('traineesAccounts', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -177,7 +177,7 @@ app.controller('traineesAccounts', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -209,7 +209,7 @@ app.controller('traineesAccounts', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };

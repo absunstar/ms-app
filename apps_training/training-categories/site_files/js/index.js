@@ -42,7 +42,7 @@ app.controller('trainingCategories', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -81,7 +81,7 @@ app.controller('trainingCategories', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -118,7 +118,7 @@ app.controller('trainingCategories', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -149,7 +149,7 @@ app.controller('trainingCategories', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -182,7 +182,7 @@ app.controller('trainingCategories', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };

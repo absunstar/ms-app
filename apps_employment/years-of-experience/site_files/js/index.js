@@ -40,7 +40,7 @@ app.controller('yearsOfExperience', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -79,7 +79,7 @@ app.controller('yearsOfExperience', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -116,7 +116,7 @@ app.controller('yearsOfExperience', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -149,7 +149,7 @@ app.controller('yearsOfExperience', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -182,7 +182,7 @@ app.controller('yearsOfExperience', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };

@@ -27,7 +27,7 @@ app.controller('traineeAccount', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -51,7 +51,7 @@ app.controller('traineeAccount', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };

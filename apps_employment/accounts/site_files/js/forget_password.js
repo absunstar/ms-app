@@ -20,14 +20,11 @@ app.controller('forgetPassword', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.doneSend = '##word.link_sent_your_email##';
-
         } else if (response.data.error) {
           $scope.error = response.data.error;
         }
       },
-      function (err) {
-        console.log(err);
-      }
+      function (err) {}
     );
   };
 
@@ -48,14 +45,12 @@ app.controller('forgetPassword', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          document.location.href = '/login'
+          document.location.href = '/login';
         } else if (response.data.error) {
           $scope.error = response.data.error;
         }
       },
-      function (err) {
-        console.log(err);
-      }
+      function (err) {}
     );
   };
 });

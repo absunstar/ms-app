@@ -45,7 +45,7 @@ app.controller('jobSubfields', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -84,7 +84,7 @@ app.controller('jobSubfields', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -121,7 +121,7 @@ app.controller('jobSubfields', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -152,7 +152,7 @@ app.controller('jobSubfields', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -185,7 +185,7 @@ app.controller('jobSubfields', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };

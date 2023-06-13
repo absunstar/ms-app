@@ -172,7 +172,7 @@ app.controller('manage', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };

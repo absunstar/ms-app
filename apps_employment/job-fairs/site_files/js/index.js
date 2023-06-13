@@ -42,7 +42,7 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -81,7 +81,7 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -118,7 +118,7 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -153,7 +153,7 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -186,7 +186,7 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -292,7 +292,7 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
         site.resetValidated('#attendanceModal');
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -318,7 +318,7 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -350,7 +350,7 @@ app.controller('jobFairs', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };

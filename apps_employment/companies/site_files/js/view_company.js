@@ -20,7 +20,7 @@ app.controller('viewCompany', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };

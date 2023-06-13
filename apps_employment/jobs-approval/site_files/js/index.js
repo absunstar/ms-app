@@ -61,7 +61,7 @@ app.controller('jobsApproval', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };

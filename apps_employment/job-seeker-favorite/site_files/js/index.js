@@ -64,7 +64,7 @@ app.controller('jobSeekerFavorite', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -103,7 +103,7 @@ app.controller('jobSeekerFavorite', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };

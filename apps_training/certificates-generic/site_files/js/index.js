@@ -52,7 +52,7 @@ app.controller('certificatesGeneric', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -84,7 +84,7 @@ app.controller('certificatesGeneric', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -123,7 +123,7 @@ app.controller('certificatesGeneric', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -160,7 +160,7 @@ app.controller('certificatesGeneric', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -191,7 +191,7 @@ app.controller('certificatesGeneric', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
@@ -256,7 +256,7 @@ app.controller('certificatesGeneric', function ($scope, $http, $timeout) {
         }
       },
       function (err) {
-        console.log(err);
+       
       }
     );
   };
