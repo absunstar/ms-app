@@ -71,7 +71,7 @@ app.controller('traineeAccount', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };

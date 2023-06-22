@@ -30,7 +30,7 @@ app.controller('manage', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };
@@ -61,7 +61,7 @@ app.controller('manage', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };
@@ -81,7 +81,7 @@ app.controller('manage', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };
@@ -191,7 +191,7 @@ app.controller('manage', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };

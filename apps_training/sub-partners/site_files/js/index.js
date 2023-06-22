@@ -223,7 +223,7 @@ app.controller('subPartners', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };
@@ -302,7 +302,7 @@ app.controller('subPartners', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };
@@ -332,7 +332,7 @@ app.controller('subPartners', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };

@@ -224,7 +224,7 @@ app.controller('courses', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };
@@ -254,7 +254,7 @@ app.controller('courses', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };

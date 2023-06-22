@@ -299,7 +299,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };
@@ -318,7 +318,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };
@@ -337,7 +337,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };

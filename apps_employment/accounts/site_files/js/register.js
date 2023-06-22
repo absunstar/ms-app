@@ -28,7 +28,7 @@ app.controller('register', function ($scope, $http, $timeout) {
           },
           function (err) {
             $scope.busy = false;
-            $scope.error = err;
+            
           }
         );
       } else {
@@ -63,7 +63,7 @@ app.controller('register', function ($scope, $http, $timeout) {
           },
           function (err) {
             $scope.busy = false;
-            $scope.error = err;
+            
           }
         );
       } else {
@@ -94,7 +94,7 @@ app.controller('register', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };
@@ -113,7 +113,7 @@ app.controller('register', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };

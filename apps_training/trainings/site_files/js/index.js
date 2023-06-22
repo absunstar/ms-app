@@ -1,6 +1,28 @@
 app.controller('trainings', function ($scope, $http, $timeout) {
   $scope.training = {};
 
+  $scope.createAllCertificate = function (training) {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: `/api/trainings/create_all_certificates?training_id=${training.id}&training_type_id=${training.training_type.id}`,
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.path) {
+          window.open('/api/download-certificate?path=' + response.data.path + '&name=' + response.data.name);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+      }
+    );
+
+    site.hideModal('#examModal');
+  };
+
+
   $scope.displayAddTraining = function () {
     $scope.error = '';
     $scope.training = {
@@ -203,7 +225,7 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };
@@ -237,7 +259,7 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };
@@ -262,7 +284,7 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };
@@ -288,7 +310,7 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };
@@ -313,7 +335,7 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };
@@ -338,7 +360,7 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };
@@ -363,7 +385,7 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };
@@ -382,7 +404,7 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };
@@ -401,7 +423,7 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };
@@ -426,7 +448,7 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };
@@ -451,7 +473,7 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };
@@ -476,7 +498,7 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };

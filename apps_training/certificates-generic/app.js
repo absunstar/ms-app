@@ -242,55 +242,48 @@ module.exports = function init(site) {
         where: { active: true },
       },
       (err, docs) => {
-        if (!err) {
-          if (docs) {
-            let found_certificate = docs.find((_c) => {
+        if (!err && docs) {
+          let found_certificate = docs.find((_c) => {
+            return (
+              _c.type == 'training_centers' &&
+              _c.partner.id == trainingDoc.partner.id &&
+              _c.training_center.id == trainingDoc.training_center.id &&
+              _c.training_type.id == trainingDoc.training_type.id &&
+              _c.training_category.id == trainingDoc.training_category.id
+            );
+          });
+
+          if (!found_certificate) {
+            found_certificate = docs.find((_c) => {
               return (
-                _c.type == 'training_centers' &&
-                _c.partner.id == trainingDoc.partner.id &&
-                _c.training_center.id == trainingDoc.training_center.id &&
-                _c.training_type.id == trainingDoc.training_type.id &&
-                _c.training_category.id == trainingDoc.training_category.id
+                _c.type == 'partners' && _c.partner.id == trainingDoc.partner.id && _c.training_type.id == trainingDoc.training_type.id && _c.training_category.id == trainingDoc.training_category.id
               );
             });
+          }
 
-            if (!found_certificate) {
-              found_certificate = docs.find((_c) => {
-                return (
-                  _c.type == 'partners' && _c.partner.id == trainingDoc.partner.id && _c.training_type.id == trainingDoc.training_type.id && _c.training_category.id == trainingDoc.training_category.id
-                );
-              });
-            }
+          if (!found_certificate) {
+            found_certificate = docs.find((_c) => {
+              return _c.type == 'partners_generic' && _c.partner.id == trainingDoc.partner.id;
+            });
+          }
 
-            if (!found_certificate) {
-              found_certificate = docs.find((_c) => {
-                return _c.type == 'partners_generic' && _c.partner.id == trainingDoc.partner.id;
-              });
-            }
+          if (found_certificate && found_certificate.certificate_list && found_certificate.certificate_list.length) {
+            found_certificate.certificate_list.forEach((_c) => {
+              if (new Date(_c.start_date) <= new Date(trainingDoc.start_date) && new Date(_c.end_date) >= new Date(trainingDoc.end_date) && _c.file_type == 'trainee') {
+                found_certificate.certificate = _c.certificate;
+              }
+            });
+          }
 
-            if (found_certificate.certificate_list && found_certificate.certificate_list.length) {
-              found_certificate.certificate_list.forEach((_c) => {
-                if (new Date(_c.start_date) <= new Date(trainingDoc.start_date) && new Date(_c.end_date) >= new Date(trainingDoc.end_date) && _c.file_type == 'trainee') {
-                  found_certificate.certificate = _c.certificate;
-                }
-              });
-            }
-            if (found_certificate && found_certificate.certificate) {
-              console.log(found_certificate.certificate.path,"Gggggggggggggg");
-              callback(found_certificate);
-            } else {
-              found_certificate = docs.find((_c) => {
-                return _c.type == 'system_generic';
-              });
-              callback(found_certificate);
-              console.log("xxxxxxxxxxxxxx");
-            }
+          if (found_certificate && found_certificate.certificate) {
+            callback(null, {...found_certificate});
           } else {
-            console.log("hhhhhhhhhhhhhhhhhhhhhh");
-            callback(false);
+            found_certificate = docs.find((_c) => {
+              return _c.type == 'system_generic';
+            });
+            callback(null, {...found_certificate});
           }
         } else {
-          console.log("eeeeeeeeeeeeeeeeeeeeeee");
           callback(err);
         }
       }

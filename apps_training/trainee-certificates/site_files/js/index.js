@@ -24,29 +24,46 @@ app.controller('traineeCertificates', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
       }
     );
   };
 
   $scope.createCertificate = function (training) {
     $scope.error = '';
-    window.open(`/api/trainings/create_certificates?training_id=${training.id}&trainee_id=${site.toNumber('##user.id##')}&training_type_id=${training.training_type.id}`);
-    /*   $http({
-      method: 'GET',
-      url: `/api/trainings/create_certificates?training_id=${training.id}&trainee_id=${site.toNumber('##user.id##') }&training_type_id=${training.training_type.id}` ,
+    $http({
+      method: 'POST',
+      url: `/api/trainings/create_certificates?training_id=${training.id}&trainee_id=${site.toNumber('##req.query.id##')}&training_type_id=${training.training_type.id}`,
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done) {
-          $scope.getTrainingsList();
+        if (response.data.done && response.data.path) {
+          window.open('/api/download-certificate?path=' + response.data.path + '&name=' + response.data.name);
         }
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
       }
-    ); */
+    );
+
+    site.hideModal('#examModal');
+  };
+  $scope.createAllCertificate = function (training) {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: `/api/trainings/create_all_certificates?training_id=${training.id}&training_type_id=${training.training_type.id}`,
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.path) {
+          window.open('/api/download-certificate?path=' + response.data.path + '&name=' + response.data.name);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+      }
+    );
 
     site.hideModal('#examModal');
   };
@@ -83,7 +100,6 @@ app.controller('traineeCertificates', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
       }
     );
   };
@@ -109,7 +125,6 @@ app.controller('traineeCertificates', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
       }
     );
 
@@ -129,7 +144,7 @@ app.controller('traineeCertificates', function ($scope, $http, $timeout) {
         document.getElementById('timer').innerHTML = '##word.remaining_time##' + ' ( ' + minute + ' : ' + secound + ' ) ';
       }
       secound--;
-      if (secound == 00) {
+      if (secound == 0) {
         if (secound <= 1 && minute < 1) {
           clearInterval(timeExamInterval);
         }
@@ -165,9 +180,7 @@ app.controller('traineeCertificates', function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
         }
       },
-      function (err) {
-       
-      }
+      function (err) {}
     );
   };
 

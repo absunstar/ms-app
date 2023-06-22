@@ -401,10 +401,10 @@ module.exports = function init(site) {
         'days.en': site.get_RegExp(search, 'i'),
       });
     }
-    if(where['more'] == true){
+    if (where['more'] == true) {
       $trainings.skip += $trainings.count;
       delete where['more'];
-    }else{
+    } else {
       $trainings.skip = 0;
     }
 
@@ -440,7 +440,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/trainings/trainee_certificates', (req, res) => {
+  site.post('/api/trainings/traineetrainee.certificates', (req, res) => {
     let response = {
       done: false,
     };
@@ -544,7 +544,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.get('/api/trainings/create_certificates', (req, res) => {
+  site.post('/api/trainings/createtrainee.certificates', (req, res) => {
     let response = {
       done: false,
     };
@@ -556,58 +556,64 @@ module.exports = function init(site) {
       },
       (err, trainingDoc) => {
         if (!err) {
-          site.getCertificatesToExam(trainingDoc, (certificatesCb) => {
-            response.done = true;
-
+          site.getCertificatesToExam(trainingDoc, (err, certificatesCb) => {
             if (certificatesCb) {
-              trainingDoc.trainees_list.forEach((_t) => {
-                if (req.query.trainee_id == _t.id) {
-                  let startDate = new Date(trainingDoc.start_date);
-                  let endDate = new Date(trainingDoc.end_date);
-                  site.loadPDF({ path: certificatesCb.certificate.path }, (doc, font) => {
-                    let form = doc.getForm();
-                    if ((nameField = form.getTextField('Name'))) {
-                      let name = req.session.user.first_name + ' ' + (req.session.user.last_name || '');
-                      nameField.setText(name);
-                      nameField.updateAppearances(font);
-                    }
+              let trainee = trainingDoc.trainees_list.find((t) => t.id == req.query.trainee_id);
 
-                    try {
-                      if ((TrainingCategories = form.getTextField('TrainingCategories'))) {
-                        TrainingCategories.setText(_t.trainee_degree.toString() + ' % ');
-                      }
-                    } catch (error) {
-                      console.log(error);
-                    }
+              if (trainee) {
+                let startDate = new Date(trainingDoc.start_date);
+                let endDate = new Date(trainingDoc.end_date);
+                site.loadPDF({ path: certificatesCb.certificate.path }, (doc, font) => {
+                  let form = doc.getForm();
+                  if ((nameField = form.getTextField('Name'))) {
+                    let name = trainee.first_name + ' ' + (trainee.last_name || '');
+                    nameField.setText(name);
+                    nameField.updateAppearances(font);
+                  }
 
+                  try {
+                    if ((TrainingCategories = form.getTextField('TrainingCategories'))) {
+                      TrainingCategories.setText(trainee.trainee_degree.toString() + ' % ');
+                    }
+                  } catch (error) {}
+
+                  try {
                     if ((start_date = form.getTextField('StartDate'))) {
                       start_date.setText(`${startDate.getDate()}  /  ${startDate.getMonth() + 1} /  ${startDate.getFullYear()}`);
                     }
+                  } catch (error) {}
 
+                  try {
                     if ((end_date = form.getTextField('EndDate'))) {
                       end_date.setText(`${endDate.getDate()}  /  ${endDate.getMonth() + 1} /  ${endDate.getFullYear()}`);
                     }
+                  } catch (error) {}
 
-                    form.flatten();
+                  form.flatten();
 
-                    doc.save().then((new_file_stream) => {
-                      let file_name = req.query.trainee_id.toString() + '_' + trainingDoc.id.toString() + '.pdf';
-                      certificatesCb.certificate.path = certificatesCb.certificate.path.split('\\');
-                      certificatesCb.certificate.path[certificatesCb.certificate.path.length - 1] = file_name;
-                      certificatesCb.certificate.path = certificatesCb.certificate.path.join('\\');
-                      certificatesCb.certificate.url = certificatesCb.certificate.url.split('/');
-                      certificatesCb.certificate.url[certificatesCb.certificate.url.length - 1] = file_name;
-                      certificatesCb.certificate.url = certificatesCb.certificate.url.join('/');
+                  doc.save().then((new_file_stream) => {
+                    let file_name = trainee.id.toString() + '_' + trainingDoc.id.toString() + '.pdf';
+                    certificatesCb.certificate.path = certificatesCb.certificate.path.split('\\');
+                    certificatesCb.certificate.path[certificatesCb.certificate.path.length - 1] = file_name;
+                    certificatesCb.certificate.path = certificatesCb.certificate.path.join('\\');
+                    certificatesCb.certificate.url = certificatesCb.certificate.url.split('/');
+                    certificatesCb.certificate.url[certificatesCb.certificate.url.length - 1] = file_name;
+                    certificatesCb.certificate.url = certificatesCb.certificate.url.join('/');
+                    certificatesCb.certificate.name = file_name;
 
-                      site.fs.writeFileSync(certificatesCb.certificate.path, new_file_stream);
-                      res.download(certificatesCb.certificate.path, 'test.pdf');
-                    });
+                    site.fs.writeFileSync(certificatesCb.certificate.path, new_file_stream);
+                    trainee.certificate = certificatesCb.certificate;
+                    response.done = true;
+                    response.path = trainee.certificate.path;
+                    response.name = trainee.certificate.name;
+                    res.json(response);
                   });
-
-                  _t.certificate = certificatesCb.certificate;
-                }
-              });
-              //  $trainings.update(trainingDoc);
+                });
+              } else {
+                response.error = 'trainee not exists in training list';
+                response.trainingDoc = trainingDoc;
+                res.json(response);
+              }
             } else {
               response.error = 'There are no Certificates';
               res.json(response);
@@ -619,6 +625,125 @@ module.exports = function init(site) {
         }
       }
     );
+  });
+
+  site.post('/api/trainings/create_all_certificates', (req, res) => {
+    let response = {
+      done: false,
+    };
+    $trainings.findOne(
+      {
+        where: {
+          id: req.query.training_id,
+        },
+      },
+      (err, trainingDoc) => {
+        if (!err && trainingDoc) {
+          site.getCertificatesToExam(trainingDoc, (err, certificatesCb) => {
+            if (!err && certificatesCb) {
+              let folderName = trainingDoc.name ?? 'training' + '.zip';
+              let folderPath = certificatesCb.certificate.path.split('\\');
+              folderPath[folderPath.length - 1] = folderName;
+              folderPath = folderPath.join('\\');
+              let traineeList = [];
+
+              trainingDoc.trainees_list.forEach((_trainee, index) => {
+                let trainee = { ..._trainee };
+                if (trainee) {
+                  trainee.certificate = { ...certificatesCb.certificate };
+                  trainee.certificate.name = trainingDoc.id.toString() + '_' + trainee.id.toString() + '.pdf';
+
+                  trainee.startDate = new Date(trainingDoc.start_date);
+                  trainee.endDate = new Date(trainingDoc.end_date);
+                  site.loadPDF({ path: trainee.certificate.path }, (doc, font) => {
+                    let form = doc.getForm();
+                    if ((nameField = form.getTextField('Name'))) {
+                      let name = trainee.first_name + ' ' + (trainee.last_name || '');
+                      nameField.setText(name);
+                      nameField.updateAppearances(font);
+                    }
+
+                    try {
+                      if ((TrainingCategories = form.getTextField('TrainingCategories'))) {
+                        TrainingCategories.setText(trainee.trainee_degree.toString() + ' % ');
+                      }
+                    } catch (error) {}
+
+                    try {
+                      if ((start_date = form.getTextField('StartDate'))) {
+                        start_date.setText(`${trainee.startDate.getDate()}  /  ${trainee.startDate.getMonth() + 1} /  ${trainee.startDate.getFullYear()}`);
+                      }
+                    } catch (error) {}
+
+                    try {
+                      if ((end_date = form.getTextField('EndDate'))) {
+                        end_date.setText(`${trainee.endDate.getDate()}  /  ${trainee.endDate.getMonth() + 1} /  ${trainee.endDate.getFullYear()}`);
+                      }
+                    } catch (error) {}
+
+                    form.flatten();
+
+                    doc.save().then((new_file_stream) => {
+                      trainee.certificate.path = trainee.certificate.path.split('\\');
+                      trainee.certificate.path[trainee.certificate.path.length - 1] = trainee.certificate.name;
+                      trainee.certificate.path = trainee.certificate.path.join('\\');
+                      trainee.certificate.url = trainee.certificate.url.split('/');
+                      trainee.certificate.url[trainee.certificate.url.length - 1] = trainee.certificate.name;
+                      trainee.certificate.url = trainee.certificate.url.join('/');
+                      site.fs.writeFileSync(trainee.certificate.path, new_file_stream);
+                      traineeList.push(trainee);
+                    });
+                  });
+                }
+              });
+              let ii = setInterval(() => {
+                if (traineeList.length == trainingDoc.trainees_list.length) {
+                  clearInterval(ii);
+
+                  let output = site.fs.createWriteStream(folderPath);
+                  let archive = site.archiver('zip', {
+                    zlib: {
+                      level: 9,
+                    },
+                  });
+                  output.on('close', function () {
+                    response.done = true;
+                    response.path = folderPath;
+                    response.name = folderName;
+                    res.json(response);
+                  });
+
+                  archive.on('error', function (err) {
+                    response.err = err.message;
+                    res.json(response);
+                  });
+
+                  archive.pipe(output);
+
+                  traineeList.forEach((t) => {
+                    archive.file(t.certificate.path, {
+                      name: t.certificate.name,
+                    });
+                  });
+
+                  archive.finalize();
+                }
+              }, 1000);
+            } else {
+              response.error = 'There are no Certificates';
+              res.json(response);
+            }
+          });
+        } else {
+          response.error = err.message;
+          res.json(response);
+        }
+      }
+    );
+  });
+
+  site.get('/api/download-certificate', (req, res) => {
+    res.download(req.query.path, req.query.name || 'certificate.pdf');
   });
 
   site.post('/api/trainings/finish_exam', (req, res) => {
@@ -634,7 +759,7 @@ module.exports = function init(site) {
       },
       (err, trainingDoc) => {
         if (!err) {
-          site.getCertificatesToExam(trainingDoc, (certificatesCb) => {
+          site.getCertificatesToExam(trainingDoc, (err, certificatesCb) => {
             response.done = true;
             let correct = 0;
             req.body.questions_list.forEach((_q) => {

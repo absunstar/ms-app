@@ -49,7 +49,7 @@ app.controller('navbar', ($scope, $http) => {
       },
       function (error) {
         $scope.busy = false;
-        $scope.error = error;
+        
       }
     );
   };

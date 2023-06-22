@@ -21,7 +21,7 @@ app.controller('shortListedResumes', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };

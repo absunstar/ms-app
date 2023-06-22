@@ -215,7 +215,7 @@ app.controller('questions', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };
@@ -234,7 +234,7 @@ app.controller('questions', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };
@@ -259,7 +259,7 @@ app.controller('questions', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };
@@ -284,7 +284,7 @@ app.controller('questions', function ($scope, $http, $timeout) {
         },
         function (err) {
           $scope.busy = false;
-          $scope.error = err;
+          
         }
       );
     }

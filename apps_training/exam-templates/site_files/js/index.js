@@ -223,7 +223,7 @@ app.controller('examTemplates', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };

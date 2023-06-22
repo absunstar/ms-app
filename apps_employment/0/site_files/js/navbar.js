@@ -45,7 +45,7 @@ app.controller('navbar', ($scope, $http) => {
       },
       function (error) {
         $scope.busy = false;
-        $scope.error = error;
+        
       }
     );
   };
@@ -85,7 +85,7 @@ app.controller('navbar', ($scope, $http) => {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };
@@ -111,7 +111,7 @@ app.controller('navbar', ($scope, $http) => {
       },
       function (err) {
         $scope.busy = false;
-        $scope.error = err;
+        
       }
     );
   };
