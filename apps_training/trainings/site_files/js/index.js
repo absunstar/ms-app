@@ -22,7 +22,6 @@ app.controller('trainings', function ($scope, $http, $timeout) {
     site.hideModal('#examModal');
   };
 
-
   $scope.displayAddTraining = function () {
     $scope.error = '';
     $scope.training = {
@@ -66,9 +65,7 @@ app.controller('trainings', function ($scope, $http, $timeout) {
           }
         }
       },
-      function (err) {
-       
-      }
+      function (err) {}
     );
   };
 
@@ -92,7 +89,6 @@ app.controller('trainings', function ($scope, $http, $timeout) {
         return;
       }
     }
-
     $scope.busy = true;
     $http({
       method: 'POST',
@@ -116,9 +112,7 @@ app.controller('trainings', function ($scope, $http, $timeout) {
           }
         }
       },
-      function (err) {
-       
-      }
+      function (err) {}
     );
   };
 
@@ -147,9 +141,7 @@ app.controller('trainings', function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
         }
       },
-      function (err) {
-       
-      }
+      function (err) {}
     );
   };
 
@@ -180,13 +172,11 @@ app.controller('trainings', function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
         }
       },
-      function (err) {
-       
-      }
+      function (err) {}
     );
   };
 
-  $scope.getTrainingList = function (where) {
+  $scope.getTrainingList = function (where, more) {
     $scope.busy = true;
     $scope.count = 0;
 
@@ -204,13 +194,14 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       url: '/api/trainings/all',
       data: {
         where: where,
+        more: more,
         search: $scope.general_search,
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list && response.data.list.length > 0) {
-          if (!where.more) {
+          if (!more) {
             $scope.list = [];
             $scope.count = response.data.count;
           }
@@ -220,12 +211,12 @@ app.controller('trainings', function ($scope, $http, $timeout) {
           $scope.count += response.data.count;
 
           site.hideModal('#trainingSearchModal');
-          $scope.search = {};
+        } else if (!more) {
+          $scope.list = [];
         }
       },
       function (err) {
         $scope.busy = false;
-        
       }
     );
   };
@@ -259,7 +250,6 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        
       }
     );
   };
@@ -284,7 +274,6 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        
       }
     );
   };
@@ -310,7 +299,6 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        
       }
     );
   };
@@ -335,7 +323,6 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        
       }
     );
   };
@@ -360,7 +347,6 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        
       }
     );
   };
@@ -385,74 +371,11 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        
       }
     );
   };
 
-  $scope.getPrivacyType = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $scope.privacyTypesList = [];
-    $http({
-      method: 'POST',
-      url: '/api/privacy_type/all',
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.privacyTypesList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        
-      }
-    );
-  };
-
-  $scope.getDays = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $scope.daysList = [];
-    $http({
-      method: 'POST',
-      url: '/api/days/all',
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.daysList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        
-      }
-    );
-  };
-
-  $scope.getExamTemplatesList = function () {
-    $scope.busy = true;
-    $scope.examTemplatesList = [];
-
-    $http({
-      method: 'POST',
-      url: '/api/exam_templates/all',
-      data: {
-        where: { active: true },
-        select: { id: 1, name_ar: 1, name_en: 1, easy: 1, medium: 1, hard: 1 },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list && response.data.list.length > 0) {
-          $scope.examTemplatesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        
-      }
-    );
-  };
-
+  
   $scope.getCountryList = function () {
     $scope.busy = true;
     $scope.countryList = [];
@@ -473,7 +396,6 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        
       }
     );
   };
@@ -498,10 +420,70 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        
       }
     );
   };
+
+  $scope.getPrivacyType = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.privacyTypesList = [];
+    $http({
+      method: 'POST',
+      url: '/api/privacy_type/all',
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.privacyTypesList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+      }
+    );
+  };
+
+  $scope.getDays = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.daysList = [];
+    $http({
+      method: 'POST',
+      url: '/api/days/all',
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.daysList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+      }
+    );
+  };
+
+  $scope.getExamTemplatesList = function () {
+    $scope.busy = true;
+    $scope.examTemplatesList = [];
+
+    $http({
+      method: 'POST',
+      url: '/api/exam_templates/all',
+      data: {
+        where: { active: true },
+        select: { id: 1, name_ar: 1, name_en: 1, easy: 1, medium: 1, hard: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list && response.data.list.length > 0) {
+          $scope.examTemplatesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+      }
+    );
+  };
+
 
   $scope.displayAttendingSceduleModal = function (training) {
     $scope.error = '';
@@ -514,10 +496,24 @@ app.controller('trainings', function ($scope, $http, $timeout) {
     c.$absence_all = false;
     c.$attend_all = false;
     $scope.attendance = c;
-    if (new Date($scope.attendance.date) > new Date()) {
+    if (new Date(c.date) > new Date()) {
       $scope.error = '##word.attendance_cannot_modified_before_date##';
       return;
     } else {
+      if (!$scope.attendance.trainees_list.some((_attend) => _attend.attend == true)) {
+        $scope.attendance.trainees_list = [];
+        $scope.training.trainees_list.forEach((_t) => {
+          if (_t.approve) {
+            $scope.attendance.trainees_list.push({
+              _id: _t._id,
+              id: _t.id,
+              first_name: _t.first_name,
+              email: _t.email,
+              attend: false,
+            });
+          }
+        });
+      }
       site.showModal('#attendanceModal');
     }
   };
@@ -543,8 +539,8 @@ app.controller('trainings', function ($scope, $http, $timeout) {
   $scope.getTrainingList();
   $scope.getPartnersList();
   $scope.getTrainingTypesList();
-  $scope.getPrivacyType();
   $scope.getCountryList();
+  $scope.getPrivacyType();
   $scope.getDays();
   $scope.getExamTemplatesList();
 });

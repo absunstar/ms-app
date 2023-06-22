@@ -114,24 +114,22 @@ module.exports = function init(site) {
         }
       });
       training_doc.dates_list.sort((a, b) => a.date.getTime() - b.date.getTime());
-    }
 
-    training_doc.trainees_list.forEach((_t) => {
       training_doc.dates_list.forEach((_d) => {
-        let found_trainee = _d.trainees_list.find((_tr) => {
-          return _tr.id === _t.id;
+        _d.trainees_list = [];
+        training_doc.trainees_list.forEach((_t) => {
+          if (_t.approve) {
+            _d.trainees_list.push({
+              _id: _t._id,
+              id: _t.id,
+              first_name: _t.first_name,
+              email: _t.email,
+              attend: false,
+            });
+          }
         });
-        if (!found_trainee && _t.approve) {
-          _d.trainees_list.push({
-            _id: _t._id,
-            id: _t.id,
-            first_name: _t.first_name,
-            email: _t.email,
-            attend: false,
-          });
-        }
       });
-    });
+    }
 
     if (training_doc.id) {
       $trainings.edit(
@@ -401,13 +399,11 @@ module.exports = function init(site) {
         'days.en': site.get_RegExp(search, 'i'),
       });
     }
-    if (where['more'] == true) {
+    if (req.body.more == true) {
       $trainings.skip += $trainings.count;
-      delete where['more'];
     } else {
       $trainings.skip = 0;
     }
-
     $trainings.findMany(
       {
         select: req.body.select || {},

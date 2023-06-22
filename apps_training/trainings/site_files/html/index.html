@@ -18,14 +18,29 @@
           <h1 class="bold text-center">##word.trainings##</h1>
         </div>
 
+     
+        <div class="row">
+          <i-list class="col3" label="##word.partner##" ng-change="getSubPartnersList(search.partner.id)" ng-model="search.partner" display="name_##session.lang##" items="partnersList" ng-search="search.$partner"></i-list>
+          <i-list class="col3" label="##word.sub_partner##" ng-model="search.sub_partner" ng-change="getTrainersList(search.sub_partner.id);getTrainingCentersList(search.sub_partner.id)" display="name_##session.lang##" items="subPartnersList" ng-search="search.$sub_partner"></i-list>
+          <i-list class="col3" label="##word.trainer##" ng-model="search.trainer" display="first_name" items="trainersList" ng-search="search.$trainer" ng-hide="'##user.role.name##' == 'trainer'"></i-list>
+          <i-list class="col3" label="##word.training_center##" ng-model="search.training_center" display="name_##session.lang##" items="trainingCentersList" ng-search="search.$partner"></i-list>
+        </div>
+
+        <div class="row">
+          <i-list class="col3" label="##word.training_type##" ng-model="search.training_type" ng-change="getTrainingCategoriesList(search.training_type.id)" display="name_##session.lang##" items="trainingTypesList" ng-search="search.$training_type"></i-list>
+          <i-list class="col3" label="##word.training_category##" ng-model="search.training_category" display="name_##session.lang##" items="trainingCategoriesList" ng-search="search.$training_category"></i-list>
+          <i-list class="col3" ng-change="getCityList(search.country.id)" label="##word.country##" ng-model="search.country" display="name_##session.lang##" items="countryList" ng-search="search.$training_country"></i-list>
+          <i-list class="col3" label="##word.city##" ng-model="search.city" display="name_##session.lang##" items="cityList" ng-search="search.$training_city"></i-list>
+        </div>
+
+     
         <div class="row">
           <i-control class="col6" label="##word.search_for_training##" ng-model="general_search"></i-control>
           <div class="col2">
             <br />
-            <i-button type="search" label="##word.search##" ng-click="getTrainingList()"> </i-button>
+            <i-button type="search" label="##word.search##" ng-click="getTrainingList(search)"> </i-button>
           </div>
         </div>
-
         <div class="top-actions">
           <i-button type="add" label="##word.training_new##" ng-click="displayAddTraining()"></i-button>
           <h3 class="bold text-center text-danger">{{error}}</h3>
@@ -69,7 +84,7 @@
 
         <div class="center">
           <img ng-show="busy" src="/images/loading.gif" alt="" />
-          <i-button ng-hide="busy" type="search" label="##word.load More##" ng-click="getTrainingList({more : true})"> </i-button>
+          <i-button ng-hide="busy" type="search" label="##word.load More##" ng-click="getTrainingList(search,true)"> </i-button>
         </div>
         <i-button type="print" label="##word.print##" onclick="site.print('#t2')"></i-button>
         <i-button type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t2' , 'trainings.xlsx')"></i-button>
