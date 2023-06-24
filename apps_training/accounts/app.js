@@ -137,26 +137,40 @@ module.exports = function init(site) {
             res.json(response);
             return;
           } else {
-            site.security.addUser(user, (err, doc) => {
-              if (!err) {
-                response.done = true;
-                response.doc = doc;
-                res.json(response);
-                doc.activationCode = Math.random().toString().replace('.', '');
-                site.security.updateUser(doc, (err) => {
-                  doc.activeLink = `${req.headers['origin']}/api/user/activation?id=${doc.id}&code=${doc.activationCode}`;
-                  site.sendMailMessage({
-                    to: doc.email,
-                    subject: `Activatin Link`,
-                    message: `<a target="_blank" href="${doc.activeLink}"> Click Here To Activate Your Account </a>`,
-                  });
+            $users.findOne(
+              {
+                where: {
+                  email: user.email,
+                },
+              },
+              (err, doc) => {
+                if (doc && doc.id) {
+                  response.error = 'Email Is Exist';
+                  res.json(response);
+                  return;
+                }
+                $users.add(user, (err, doc) => {
+                  if (!err) {
+                    response.done = true;
+                    response.doc = doc;
+                    res.json(response);
+                    doc.activationCode = Math.random().toString().replace('.', '');
+                    site.security.updateUser(doc, (err) => {
+                      doc.activeLink = `${req.headers['origin']}/api/user/activation?id=${doc.id}&code=${doc.activationCode}`;
+                      site.sendMailMessage({
+                        to: doc.email,
+                        subject: `Activatin Link`,
+                        message: `<a target="_blank" href="${doc.activeLink}"> Click Here To Activate Your Account </a>`,
+                      });
+                    });
+                  } else {
+                    response.error = err.message;
+                    res.json(response);
+                    return;
+                  }
                 });
-              } else {
-                response.error = err.message;
-                res.json(response);
-                return;
               }
-            });
+            );
           }
         } else {
           response.error = err.message;

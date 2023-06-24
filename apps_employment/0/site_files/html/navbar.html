@@ -116,9 +116,13 @@
       <hr class="hr-nav" />
       <div x-feature="!login" class="nav-button-group">
         <div class="button nav-button">
-          <button ng-click="goRegister()" class="fill">
+          <button ng-click="goRegister('employer')" class="fill">
             <i class="fas fa-user-plus"></i>
-            ##word.register##
+            ##word.employer## ##word.register##
+          </button>
+          <button ng-click="goRegister('job_seeker')" class="fill">
+            <i class="fas fa-user-plus"></i>
+            ##word.job_seeker## ##word.register##
           </button>
         </div>
         <button ng-click="goLogin()" class="strock">##word.login##</button>

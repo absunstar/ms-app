@@ -19,8 +19,8 @@ app.controller('navbar', ($scope, $http) => {
   $scope.goLogin = function () {
     document.location.href = '/login';
   };
-  $scope.goRegister = function () {
-    document.location.href = '/register';
+  $scope.goRegister = function (type) {
+    document.location.href = `/register?type=${type}`;
   };
   $scope.showBranches = function () {
     site.showModal('#branchesModal');

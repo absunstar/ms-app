@@ -76,7 +76,11 @@ app.controller('trainees', function ($scope, $http, $timeout) {
       $scope.error = '##word.id_number_not_exists##';
       return;
     }
-
+    if (user.gender == 'male' || user.gender == 'Male') {
+      user.gender = $scope.genderList[0];
+    } else if (user.gender == 'female' || user.gender == 'Female') {
+      user.gender = $scope.genderList[1];
+    }
     if (user.mobile) {
       user.mobile = user.mobile.toString();
     }
@@ -159,7 +163,6 @@ app.controller('trainees', function ($scope, $http, $timeout) {
   $scope.getTraineesUpload = function (data) {
     $scope.error = '';
     $scope.upload_trainees_list = data.docs;
-    console.log(data.docs);
     site.showModal('#traineesUploadModal');
   };
 
@@ -245,6 +248,12 @@ app.controller('trainees', function ($scope, $http, $timeout) {
     site.showModal('#deleteTraineeModal');
   };
 
+  $scope.displayApologyTrainee = function (id) {
+    $scope.error = '';
+    $scope.training.$traineeId = id;
+    site.showModal('#apologyTraineeModal');
+  };
+
   $scope.approveTrainee = function (index) {
     $scope.error = '';
     $scope.training.trainees_list[index].approve = true;
@@ -264,6 +273,30 @@ app.controller('trainees', function ($scope, $http, $timeout) {
         }
       });
     }
+  };
+
+  $scope.apologyTrainee = function () {
+    $scope.error = '';
+
+    $http({
+      method: 'POST',
+      url: '/api/trainings/apologyTrainee',
+      data: {
+        id: site.toNumber('##query.id##'),
+        traineeId: $scope.training.$traineeId,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          site.hideModal('#apologyTraineeModal');
+          $scope.training = response.data.doc;
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {}
+    );
   };
 
   $scope.deleteTrainee = function () {

@@ -156,6 +156,46 @@ module.exports = function init(site) {
     }
   });
 
+  site.post('/api/trainings/apologyTrainee', (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    $trainings.findOne(
+      {
+        where: {
+          id: req.body.id,
+        },
+      },
+      (err, doc) => {
+        if (!err) {
+          doc.dates_list.forEach((_d) => {
+            if (_d.trainees_list && _d.trainees_list.length > 0) {
+              let i = _d.trainees_list.findIndex((itm) => itm.id == req.body.traineeId);
+              if (i !== -1) {
+                _d.trainees_list[i].apology = true;
+              }
+            }
+          });
+
+          let index = doc.trainees_list.findIndex((itm) => itm.id == req.body.traineeId);
+          if (index !== -1) {
+            doc.trainees_list[index].apology = true;
+          }
+
+          $trainings.update(doc, (err1, result) => {
+            response.done = true;
+            response.doc = result.doc;
+            res.json(response);
+          });
+        } else {
+          response.error = err.message;
+          res.json(response);
+        }
+      }
+    );
+  });
+
   site.post('/api/trainings/deleteTrainee', (req, res) => {
     let response = {
       done: false,
@@ -185,7 +225,7 @@ module.exports = function init(site) {
           });
 
           if (found) {
-            response.error = 'The student can`t be deleted';
+            response.error = 'The trainee cannot be deleted due to attendance';
             res.json(response);
             return;
           }
@@ -222,6 +262,9 @@ module.exports = function init(site) {
       (err, doc) => {
         if (!err) {
           response.done = true;
+          if (new Date(doc.start_date) < new Date()) {
+            doc.$startTraining = true;
+          }
           response.doc = doc;
         } else {
           response.error = err.message;

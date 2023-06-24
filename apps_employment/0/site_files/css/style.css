@@ -190,7 +190,7 @@ button.strock {
   max-width: 100px;
 }
 button.fill {
-  display: flex !important;
+  display: inline-flex !important;
   flex-direction: row;
   justify-content: center;
   align-items: center;

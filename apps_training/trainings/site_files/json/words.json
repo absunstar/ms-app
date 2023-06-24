@@ -5,6 +5,11 @@
     "ar": "التدريبات"
   },
   {
+    "name": "apology",
+    "en": "Apology",
+    "ar": "إعتذر"
+  },
+  {
     "name": "trainees_list",
     "en": "Trainees List",
     "ar": "قائمة المتدربين"
@@ -173,5 +178,15 @@
     "name": "sure_you_want_to_remove_trainee",
     "en": "Are you sure you want to remove trainee?",
     "ar": "هل أنت متأكد أنك تريد إزالة المتدرب ؟"
+  },
+  {
+    "name": "apologize_trainee",
+    "en": "Apologize Trainee",
+    "ar": "إعتذار متدرب"
+  },
+  {
+    "name": "sure_you_want_to_apologize_trainee",
+    "en": "Are you sure that the trainee wants to apologize for the training?",
+    "ar": "هل أنت متأكد أن المتدرب يريد الإعتذار عن التدريب"
   }
 ]

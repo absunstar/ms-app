@@ -1,9 +1,9 @@
-<div id="deleteTraineeModal" class="modal small" fixed>
+<div id="apologyTraineeModal" class="modal small" fixed>
   <div class="modal-content">
     <div class="modal-header">
       <span class="close">&times;</span>
       <h2 class="center">
-        ##word.remove_trainee##
+        ##word.apologize_trainee##
         <i class="fa fa-exclamation"></i>
       </h2>
     </div>
@@ -16,14 +16,14 @@
         <h3 class="center">##word.alert##</h3>
         <br />
         <br />
-        <b class="center">##word.sure_you_want_to_remove_trainee##</b>
+        <b class="center">##word.sure_you_want_to_apologize_trainee##</b>
       </div>
     </div>
 
     <div class="modal-footer center">
       <h2 class="bold text-center text-danger">{{error}}</h2>
-      <i-button type="delete" label="##word.delete##" ng-click="deleteTrainee()"></i-button>
-      <i-button type="close" label="##word.close##" ng-click="error = ''" onclick="site.hideModal( '#deleteTraineeModal')"></i-button>
+      <i-button type="save" label="##word.apology##" ng-click="apologyTrainee()"></i-button>
+      <i-button type="close" label="##word.close##" ng-click="error = ''" onclick="site.hideModal( '#apologyTraineeModal')"></i-button>
     </div>
   </div>
 </div>

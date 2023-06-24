@@ -11,7 +11,6 @@
     <div class="modal-body">
       <div class="row">
         <div class="col6">
-
           <i-checkbox ng-hide="training.approve" class="col" label="##word.absence_all##" ng-click="attendanceTraining(attendance,'absence')" ng-model="attendance.$absence_all"> </i-checkbox>
           <i-checkbox ng-hide="training.approve" class="col" label="##word.attend_all##" ng-click="attendanceTraining(attendance,'attend')" ng-model="attendance.$attend_all"> </i-checkbox>
         </div>
@@ -37,9 +36,11 @@
               <td class="center">{{c.email}}</td>
               <td class="">
                 <div class="row justify-content-md-center">
-                  <i-checkbox class="col" ng-show="!training.approve" ng-model="c.attend"> </i-checkbox>
+                  <i-checkbox class="col" ng-show="!training.approve && !c.apology" ng-model="c.attend"> </i-checkbox>
                   <p class="green" ng-show="c.attend && training.approve">##word.attend##</p>
                   <p class="red" ng-show="!c.attend && training.approve">##word.absence##</p>
+                  <p ng-show="c.apology">##word.apology##</p>
+
                 </div>
               </td>
             </tr>

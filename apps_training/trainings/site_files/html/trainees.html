@@ -11,6 +11,7 @@
       <div x-import="trainings/delete_trainee_modal.html"></div>
       <div x-import="trainings/delete_trainee_modal.html"></div>
       <div x-import="trainings/trainees_upload_modal.html"></div>
+      <div x-import="trainings/apology_trainee_modal.html"></div>
 
       <div class="row">
         <h1 class="bold text-center">##word.trainees_list##</h1>
@@ -25,13 +26,14 @@
       </div>
 
       <div class="top-actions">
-        <i-button type="add" class="col2" ng-hide="training.approve" label="##word.create_new_trainee##" ng-click="displayCreateTrainee()"></i-button>
-        <i-button label="##word.add_trainees##" class="col2" ng-hide="training.approve" onclick="site.showModal( '#addtraineeToTrainingModal')"></i-button>
-        <i-upload class="col2" label="##word.upload_trainees##" ng-hide="training.approve" on-uploaded="getTraineesUpload($data)" api="/api/trainees/excel_upload"> </i-upload>
-        <h4>
+        <i-button type="add" class="col2" ng-hide="training.approve || training.$startTraining" label="##word.create_new_trainee##" ng-click="displayCreateTrainee()"></i-button>
+        <i-button label="##word.add_trainees##" class="col2" ng-hide="training.approve || training.$startTraining" onclick="site.showModal( '#addtraineeToTrainingModal')"></i-button>
+        <i-upload class="col2" label="##word.upload_trainees##" ng-hide="training.approve || training.$startTraining" on-uploaded="getTraineesUpload($data)" api="/api/trainees/excel_upload"> </i-upload>
+        <h4 ng-hide="training.approve || training.$startTraining">
           <a href="/xls/trainee.xlsx" style="color: #0038c9 !important; text-decoration: revert !important">##word.download_excel_template##</a>
         </h4>
       </div>
+
       <div class="row">
         <h3 class="bold text-center">##word.count## : {{training.trainees_list.length || 0}}</h3>
         <h3 class="bold text-center text-danger">{{error}}</h3>
@@ -55,6 +57,8 @@
             <td class="center title">{{c.mobile}}</td>
 
             <td class="center not-print">
+              <span ng-show="c.apology" class="font-18 bold">##word.apology##</span>
+              <i-button ng-show="!training.approve && !c.apology" label="##word.apology##" ng-click="displayApologyTrainee(c.id)"></i-button>
               <i-button type="add" ng-show="!c.approve" label="##word.approve##" ng-click="approveTrainee($index)"></i-button>
               <i-button type="delete" label="##word.delete##" ng-hide="training.approve" ng-click="displayRemoveTraineeModal(c.id)"></i-button>
               <a type="button" class="btn btn-primary btn-lg" style="font-size: inherit; color: #fff !important" href="/MyTrainings?id={{c.id}}">##word.certificates##</a>

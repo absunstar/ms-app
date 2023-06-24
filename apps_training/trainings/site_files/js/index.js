@@ -498,6 +498,7 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       $scope.error = '##word.attendance_cannot_modified_before_date##';
       return;
     } else {
+
       /*       if (!$scope.attendance.trainees_list.some((_attend) => _attend.attend == true)) {
         $scope.attendance.trainees_list = [];
         $scope.training.trainees_list.forEach((_t) => {
@@ -523,6 +524,7 @@ app.controller('trainings', function ($scope, $http, $timeout) {
             first_name: _t.first_name,
             email: _t.email,
             attend: false,
+            apology: _t.apology,
           });
         }
       });
