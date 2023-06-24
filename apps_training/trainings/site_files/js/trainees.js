@@ -143,9 +143,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
           }
         }
       },
-      function (err) {
-       
-      }
+      function (err) {}
     );
   };
 
@@ -212,9 +210,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
         }
       },
-      function (err) {
-       
-      }
+      function (err) {}
     );
   };
 
@@ -236,15 +232,13 @@ app.controller('trainees', function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
         }
       },
-      function (err) {
-       
-      }
+      function (err) {}
     );
   };
 
-  $scope.displayRemoveTraineeModal = function (index) {
+  $scope.displayRemoveTraineeModal = function (id) {
     $scope.error = '';
-    $scope.training.$index = index;
+    $scope.training.$traineeId = id;
     site.showModal('#deleteTraineeModal');
   };
 
@@ -259,6 +253,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
     $scope.error = '';
     if (traineesList && traineesList.length > 0) {
       traineesList.forEach((_t) => {
+        _t.last_name = _t.last_name || '';
         if (!_t.first_name.includes(search) && !_t.last_name.includes(search) && _t.mobile != search && _t.id_number != search) {
           _t.$hide = true;
         } else {
@@ -268,11 +263,28 @@ app.controller('trainees', function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.deleteTrainee = function (index) {
+  $scope.deleteTrainee = function () {
     $scope.error = '';
-    $scope.training.trainees_list.splice(index, 1);
-    site.hideModal('#deleteTraineeModal');
-    $scope.updateTraining($scope.training);
+
+    $http({
+      method: 'POST',
+      url: '/api/trainings/deleteTrainee',
+      data: {
+        id: site.toNumber('##query.id##'),
+        traineeId: $scope.training.$traineeId,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          site.hideModal('#deleteTraineeModal');
+          $scope.training = response.data.doc;
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {}
+    );
   };
 
   $scope.getTraineesList = function (_search) {
@@ -299,7 +311,6 @@ app.controller('trainees', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        
       }
     );
   };
@@ -318,7 +329,6 @@ app.controller('trainees', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        
       }
     );
   };
@@ -337,7 +347,6 @@ app.controller('trainees', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        
       }
     );
   };

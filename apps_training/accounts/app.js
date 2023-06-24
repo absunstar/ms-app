@@ -179,13 +179,21 @@ module.exports = function init(site) {
     user.$req = req;
     user.$res = res;
     delete user.$$hashKey;
-    site.security.updateUser(user, (err) => {
-      if (!err) {
-        response.done = true;
-      } else {
-        response.error = err.message;
+    site.security.isUserExists(user, function (err, user_found) {
+      console.log(user_found);
+      if (user_found && user.id != user_found.id) {
+        response.error = 'Email Is Exist';
+        res.json(response);
+        return;
       }
-      res.json(response);
+      site.security.updateUser(user, (err) => {
+        if (!err) {
+          response.done = true;
+        } else {
+          response.error = err.message;
+        }
+        res.json(response);
+      });
     });
   });
 

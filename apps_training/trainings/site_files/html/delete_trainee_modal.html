@@ -23,7 +23,7 @@
     <div class="modal-footer center">
       <h2 class="bold text-center text-danger">{{error}}</h2>
       <i-button type="delete" label="##word.delete##" ng-click="deleteTrainee(training.$index)"></i-button>
-      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#deleteTraineeModal')"></i-button>
+      <i-button type="close" label="##word.close##" ng-click="error = ''" onclick="site.hideModal( '#deleteTraineeModal')"></i-button>
     </div>
   </div>
 </div>

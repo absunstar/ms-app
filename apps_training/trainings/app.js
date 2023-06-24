@@ -156,6 +156,58 @@ module.exports = function init(site) {
     }
   });
 
+  site.post('/api/trainings/deleteTrainee', (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    $trainings.findOne(
+      {
+        where: {
+          id: req.body.id,
+        },
+      },
+      (err, doc) => {
+        if (!err) {
+          let found = false;
+
+          doc.dates_list.forEach((_d) => {
+            if (_d.trainees_list && _d.trainees_list.length > 0) {
+              if (_d.trainees_list.some((_attend) => _attend.attend && _attend.id == req.body.traineeId)) {
+                found = true;
+              } else {
+                let i = _d.trainees_list.findIndex((itm) => itm.id == req.body.traineeId);
+                if (i !== -1) {
+                  _d.trainees_list.splice(i, 1);
+                }
+              }
+            }
+          });
+
+          if (found) {
+            response.error = 'The student can`t be deleted';
+            res.json(response);
+            return;
+          }
+
+          let index = doc.trainees_list.findIndex((itm) => itm.id == req.body.traineeId);
+          if (index !== -1) {
+            doc.trainees_list.splice(index, 1);
+          }
+
+          $trainings.update(doc, (err1, result) => {
+            response.done = true;
+            response.doc = result.doc;
+            res.json(response);
+          });
+        } else {
+          response.error = err.message;
+          res.json(response);
+        }
+      }
+    );
+  });
+
   site.post('/api/trainings/view', (req, res) => {
     let response = {
       done: false,

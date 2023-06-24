@@ -375,7 +375,6 @@ app.controller('trainings', function ($scope, $http, $timeout) {
     );
   };
 
-  
   $scope.getCountryList = function () {
     $scope.busy = true;
     $scope.countryList = [];
@@ -484,7 +483,6 @@ app.controller('trainings', function ($scope, $http, $timeout) {
     );
   };
 
-
   $scope.displayAttendingSceduleModal = function (training) {
     $scope.error = '';
     $scope.training = training;
@@ -500,7 +498,7 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       $scope.error = '##word.attendance_cannot_modified_before_date##';
       return;
     } else {
-      if (!$scope.attendance.trainees_list.some((_attend) => _attend.attend == true)) {
+      /*       if (!$scope.attendance.trainees_list.some((_attend) => _attend.attend == true)) {
         $scope.attendance.trainees_list = [];
         $scope.training.trainees_list.forEach((_t) => {
           if (_t.approve) {
@@ -513,7 +511,21 @@ app.controller('trainings', function ($scope, $http, $timeout) {
             });
           }
         });
-      }
+      } */
+      $scope.training.trainees_list.forEach((_t) => {
+        let found_trainee = $scope.attendance.trainees_list.find((_tr) => {
+          return _tr.id === _t.id;
+        });
+        if (!found_trainee && _t.approve) {
+          $scope.attendance.trainees_list.push({
+            _id: _t._id,
+            id: _t.id,
+            first_name: _t.first_name,
+            email: _t.email,
+            attend: false,
+          });
+        }
+      });
       site.showModal('#attendanceModal');
     }
   };

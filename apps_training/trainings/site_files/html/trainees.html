@@ -49,15 +49,15 @@
         </thead>
         <tbody>
           <tr ng-repeat="c in training.trainees_list" ng-hide="c.$hide">
-            <td class="center">{{c.first_name}}  {{c.last_name}}</td>
+            <td class="center">{{c.first_name}} {{c.last_name}}</td>
             <td class="center">{{c.email}}</td>
             <td class="center title">{{c.id_number}}</td>
             <td class="center title">{{c.mobile}}</td>
 
             <td class="center not-print">
               <i-button type="add" ng-show="!c.approve" label="##word.approve##" ng-click="approveTrainee($index)"></i-button>
-              <i-button type="delete" label="##word.delete##" ng-hide="training.approve" ng-click="displayRemoveTraineeModal($index)"></i-button>
-              <a type="button" class="btn btn-primary btn-lg" style="font-size: inherit;color: #fff !important;" href="/MyTrainings?id={{c.id}}">##word.certificates##</a>
+              <i-button type="delete" label="##word.delete##" ng-hide="training.approve" ng-click="displayRemoveTraineeModal(c.id)"></i-button>
+              <a type="button" class="btn btn-primary btn-lg" style="font-size: inherit; color: #fff !important" href="/MyTrainings?id={{c.id}}">##word.certificates##</a>
             </td>
           </tr>
         </tbody>

@@ -43,15 +43,13 @@
               </div>
             </div>
 
-        
-
             <div class="row">
               <fieldset class="col10">
                 <legend>##word.id_type##</legend>
                 <div class="row">
                   <i-radio class="col3" ng-value="national_id" label="##word.national_id##" ng-model="trainee.id_type"> </i-radio>
                   <i-radio class="col3" ng-value="passport" label="##word.passport##" ng-model="trainee.id_type"> </i-radio>
-                  <i-control v="r" class="col4" type="text" ng-model="trainee.id_number" label="##word.national_id##"></i-control>
+                  <i-control v="r" class="col4" disabled type="text" ng-model="trainee.id_number" label="##word.national_id##"></i-control>
                 </div>
               </fieldset>
             </div>
@@ -74,7 +72,7 @@
       </div>
     </div>
 
-    <div  x-import="0/footer.html" ></div>
+    <div x-import="0/footer.html"></div>
     <div x-import="0/scripts.html"></div>
     <script x-import="trainee-account/index.js"></script>
   </body>
