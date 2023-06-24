@@ -189,7 +189,10 @@ app.controller('trainees', function ($scope, $http, $timeout) {
           id_number: $scope.training.$trainee_select.id_number,
           approve: true,
         });
-        $scope.error = '##word.added_successfully##';
+        $scope.training.$doneAddTrainee = '##word.added_successfully##';
+        $timeout(() => {
+          $scope.training.$doneAddTrainee = '';
+        }, 2000);
       }
       $scope.updateTraining($scope.training);
     }

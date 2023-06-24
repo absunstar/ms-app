@@ -69,6 +69,8 @@ module.exports = function init(site) {
     public: true,
   });
 
+  const $users = site.connectCollection('users_info');
+
   site.post({ name: '/api/register', public: true }, (req, res) => {
     let response = {};
 
@@ -179,22 +181,36 @@ module.exports = function init(site) {
     user.$req = req;
     user.$res = res;
     delete user.$$hashKey;
-    site.security.isUserExists(user, function (err, user_found) {
-      console.log(user_found);
+    /*     site.security.isUserExists(user, function (err, user_found) {
       if (user_found && user.id != user_found.id) {
         response.error = 'Email Is Exist';
         res.json(response);
         return;
       }
-      site.security.updateUser(user, (err) => {
-        if (!err) {
-          response.done = true;
-        } else {
-          response.error = err.message;
+ */
+    $users.findOne(
+      {
+        where: {
+          email: user.email,
+        },
+      },
+      (err, doc) => {
+        if (doc && user.id != doc.id) {
+          response.error = 'Email Is Exist';
+          res.json(response);
+          return;
         }
-        res.json(response);
-      });
-    });
+
+        site.security.updateUser(user, (err) => {
+          if (!err) {
+            response.done = true;
+          } else {
+            response.error = err.message;
+          }
+          res.json(response);
+        });
+      }
+    );
   });
 
   site.post('/api/user/delete', (req, res) => {

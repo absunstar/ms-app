@@ -8,8 +8,8 @@ const site = require('../isite')({
   savingTime: 1,
   _0x14xo: !0,
   mongodb: {
-    // db: process.env['TRAININGDB'],
-    db: 'training',
+    db: process.env['TRAININGDB'],
+    // db: 'training',
     limit: 100000,
     events: true,
     identity: {

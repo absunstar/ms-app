@@ -18,22 +18,67 @@
           <h1 class="bold text-center">##word.trainings##</h1>
         </div>
 
-     
         <div class="row">
-          <i-list class="col3" label="##word.partner##" ng-change="getSubPartnersList(search.partner.id)" ng-model="search.partner" display="name_##session.lang##" items="partnersList" ng-search="search.$partner"></i-list>
-          <i-list class="col3" label="##word.sub_partner##" ng-model="search.sub_partner" ng-change="getTrainersList(search.sub_partner.id);getTrainingCentersList(search.sub_partner.id)" display="name_##session.lang##" items="subPartnersList" ng-search="search.$sub_partner"></i-list>
-          <i-list class="col3" label="##word.trainer##" ng-model="search.trainer" display="first_name" items="trainersList" ng-search="search.$trainer" ng-hide="'##user.role.name##' == 'trainer'"></i-list>
+          <i-list
+            class="col3"
+            label="##word.partner##"
+            ng-change="getSubPartnersList(search.partner.id)"
+            ng-model="search.partner"
+            display="name_##session.lang##"
+            items="partnersList"
+            ng-search="search.$partner"
+          ></i-list>
+          <i-list
+            class="col3"
+            label="##word.sub_partner##"
+            ng-model="search.sub_partner"
+            ng-change="getTrainersList(search.sub_partner.id);getTrainingCentersList(search.sub_partner.id)"
+            display="name_##session.lang##"
+            items="subPartnersList"
+            ng-search="search.$sub_partner"
+          ></i-list>
+          <i-list
+            class="col3"
+            label="##word.trainer##"
+            ng-model="search.trainer"
+            display="first_name"
+            items="trainersList"
+            ng-search="search.$trainer"
+            ng-hide="'##user.role.name##' == 'trainer'"
+          ></i-list>
           <i-list class="col3" label="##word.training_center##" ng-model="search.training_center" display="name_##session.lang##" items="trainingCentersList" ng-search="search.$partner"></i-list>
         </div>
 
         <div class="row">
-          <i-list class="col3" label="##word.training_type##" ng-model="search.training_type" ng-change="getTrainingCategoriesList(search.training_type.id)" display="name_##session.lang##" items="trainingTypesList" ng-search="search.$training_type"></i-list>
-          <i-list class="col3" label="##word.training_category##" ng-model="search.training_category" display="name_##session.lang##" items="trainingCategoriesList" ng-search="search.$training_category"></i-list>
-          <i-list class="col3" ng-change="getCityList(search.country.id)" label="##word.country##" ng-model="search.country" display="name_##session.lang##" items="countryList" ng-search="search.$training_country"></i-list>
+          <i-list
+            class="col3"
+            label="##word.training_type##"
+            ng-model="search.training_type"
+            ng-change="getTrainingCategoriesList(search.training_type.id)"
+            display="name_##session.lang##"
+            items="trainingTypesList"
+            ng-search="search.$training_type"
+          ></i-list>
+          <i-list
+            class="col3"
+            label="##word.training_category##"
+            ng-model="search.training_category"
+            display="name_##session.lang##"
+            items="trainingCategoriesList"
+            ng-search="search.$training_category"
+          ></i-list>
+          <i-list
+            class="col3"
+            ng-change="getCityList(search.country.id)"
+            label="##word.country##"
+            ng-model="search.country"
+            display="name_##session.lang##"
+            items="countryList"
+            ng-search="search.$training_country"
+          ></i-list>
           <i-list class="col3" label="##word.city##" ng-model="search.city" display="name_##session.lang##" items="cityList" ng-search="search.$training_city"></i-list>
         </div>
 
-     
         <div class="row">
           <i-control class="col6" label="##word.search_for_training##" ng-model="general_search"></i-control>
           <div class="col2">
@@ -45,49 +90,49 @@
           <i-button type="add" label="##word.training_new##" ng-click="displayAddTraining()"></i-button>
           <h3 class="bold text-center text-danger">{{error}}</h3>
         </div>
+        <div class="table-responsive">
+          <table x-permissions="login" class="table hover text-center" id="trainingTable">
+            <tr>
+              <th>##word.index##</th>
+              <th>##word.trainer## ( ##word.partner## )</th>
+              <th>##word.field## ( ##word.category## )</th>
+              <th>##word.start_date##</th>
+              <th>##word.end_date##</th>
+              <th>##word.approve##</th>
+              <th class="not-print">##word.actions##</th>
+            </tr>
+            <tr ng-repeat="c in list">
+              <td class="center bold">{{$index +1}}</td>
+              <td class="center">{{c.trainer.first_name}} ( {{c.partner.name_##session.lang##}} )</td>
+              <td class="center">{{c.training_type.name_##session.lang##}} ( {{c.training_category.name_##session.lang##}} )</td>
+              <td class="center">{{c.start_date | date:"dd/MM/yyyy"}}</td>
+              <td class="center">{{c.end_date | date:"dd/MM/yyyy"}}</td>
+              <td class="center">
+                <p class="green">{{c.approve?'##word.yes##':'##word.no##'}}</p>
+                <i-button x-permissions="admin" class="not-print" ng-show="!c.approve && c.$show_approved" label="##word.approve##" ng-click="updateTraining(c,'approve')"></i-button>
+              </td>
 
-        <table x-permissions="login" class="table hover text-center" id="t2">
-          <tr>
-            <th>##word.index##</th>
-            <th>##word.trainer## ( ##word.partner## )</th>
-            <th>##word.field## ( ##word.category## )</th>
-            <th>##word.start_date##</th>
-            <th>##word.end_date##</th>
-            <th class="not-print">##word.approve##</th>
-            <th class="not-print">##word.actions##</th>
-          </tr>
-          <tr ng-repeat="c in list">
-            <td class="center bold">{{$index +1}}</td>
-            <td class="center">{{c.trainer.first_name}} ( {{c.partner.name_##session.lang##}} )</td>
-            <td class="center">{{c.training_type.name_##session.lang##}} ( {{c.training_category.name_##session.lang##}} )</td>
-            <td class="center">{{c.start_date | date:"dd/MM/yyyy"}}</td>
-            <td class="center">{{c.end_date | date:"dd/MM/yyyy"}}</td>
-            <td class="center" class="not-print">
-              <p ng-show="c.approve" class="green">##word.yes##</p>
-              <p ng-show="!c.approve" class="red">##word.no##</p>
-              <i-button x-permissions="admin" ng-show="!c.approve && c.$show_approved" label="##word.approve##" ng-click="updateTraining(c,'approve')"></i-button>
-            </td>
+              <td class="center not-print">
+                <i-button ng-hide="busy" title="##word.Download All Certificate##" type="download" ng-click="createAllCertificate(c)"></i-button>
 
-            <td class="center not-print">
-              <i-button ng-hide="busy" title="##word.Download All Certificate##" type="download"  ng-click="createAllCertificate(c)"></i-button>
-
-              <i-button type="edit" title="##word.update##" ng-hide="c.$hide_edit" x-permissions="admin" ng-click="displayUpdateTraining(c)"></i-button>
-              <i-button type="view" title="##word.view##" ng-click="displayDetailsTraining(c)"></i-button>
-              <a type="button" title="##word.trainees##" style="font-size: inherit" class="btn btn-light btn-lg" href="/Trainees?id={{c.id}}"><i class="fa fa-users" aria-hidden="true"></i></a>
-              <a title="##word.attendance##" label="##word.attending_scedule##" style="font-size: inherit" class="btn btn-success btn-lg" ng-click="displayAttendingSceduleModal(c)"
-                ><i class="fa fa-table" aria-hidden="true"></i
-              ></a>
-              <i-button type="delete" x-permissions="admin" title="##word.delete##" ng-click="displayDeleteTraining(c)"></i-button>
-            </td>
-          </tr>
-        </table>
+                <i-button type="edit" title="##word.update##" ng-hide="c.$hide_edit" x-permissions="admin" ng-click="displayUpdateTraining(c)"></i-button>
+                <i-button type="view" title="##word.view##" ng-click="displayDetailsTraining(c)"></i-button>
+                <a type="button" title="##word.trainees##" style="font-size: inherit" class="btn btn-light btn-lg" href="/Trainees?id={{c.id}}"><i class="fa fa-users" aria-hidden="true"></i></a>
+                <a title="##word.attendance##" label="##word.attending_scedule##" style="font-size: inherit" class="btn btn-success btn-lg" ng-click="displayAttendingSceduleModal(c)"
+                  ><i class="fa fa-table" aria-hidden="true"></i
+                ></a>
+                <i-button type="delete" x-permissions="admin" title="##word.delete##" ng-click="displayDeleteTraining(c)"></i-button>
+              </td>
+            </tr>
+          </table>
+        </div>
 
         <div class="center">
           <img ng-show="busy" src="/images/loading.gif" alt="" />
           <i-button ng-hide="busy" type="search" label="##word.load More##" ng-click="getTrainingList(search,true)"> </i-button>
         </div>
-        <i-button type="print" label="##word.print##" onclick="site.print('#t2')"></i-button>
-        <i-button type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t2' , 'trainings.xlsx')"></i-button>
+        <i-button type="print" label="##word.print##" onclick="site.print('#trainingTable')"></i-button>
+        <i-button type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('trainingTable' , 'trainings.xlsx')"></i-button>
       </div>
     </div>
 
