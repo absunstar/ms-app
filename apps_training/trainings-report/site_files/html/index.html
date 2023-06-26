@@ -8,24 +8,73 @@
     <div id="main-layout" class="container loaded">
       <div class="row">
         <div x-import="trainings-report/trainees_modal.html"></div>
-      
 
         <div class="row">
           <h1 class="bold text-center">##word.trainings_report##</h1>
         </div>
-        <div class="row">
-          <i-list class="col3" label="##word.partner##" ng-change="getSubPartnersList(search.partner.id)" ng-model="search.partner" display="name_##session.lang##" items="partnersList" ng-search="search.$partner"></i-list>
-          <i-list class="col3" label="##word.sub_partner##" ng-model="search.sub_partner" ng-change="getTrainersList(search.sub_partner.id);getTrainingCentersList(search.sub_partner.id)" display="name_##session.lang##" items="subPartnersList" ng-search="search.$sub_partner"></i-list>
-          <i-list class="col3" label="##word.trainer##" ng-model="search.trainer" display="first_name" items="trainersList" ng-search="search.$trainer" ng-hide="'##user.role.name##' == 'trainer'"></i-list>
-          <i-list class="col3" label="##word.training_center##" ng-model="search.training_center" display="name_##session.lang##" items="trainingCentersList" ng-search="search.$partner"></i-list>
+        <div x-feature="test">
+          <div class="row">
+            <i-list
+              class="col3"
+              label="##word.partner##"
+              ng-change="getSubPartnersList(search.partner.id)"
+              ng-model="search.partner"
+              display="name_##session.lang##"
+              items="partnersList"
+              ng-search="search.$partner"
+            ></i-list>
+            <i-list
+              class="col3"
+              label="##word.sub_partner##"
+              ng-model="search.sub_partner"
+              ng-change="getTrainersList(search.sub_partner.id);getTrainingCentersList(search.sub_partner.id)"
+              display="name_##session.lang##"
+              items="subPartnersList"
+              ng-search="search.$sub_partner"
+            ></i-list>
+            <i-list
+              class="col3"
+              label="##word.trainer##"
+              ng-model="search.trainer"
+              display="first_name"
+              items="trainersList"
+              ng-search="search.$trainer"
+              ng-hide="'##user.role.name##' == 'trainer'"
+            ></i-list>
+            <i-list class="col3" label="##word.training_center##" ng-model="search.training_center" display="name_##session.lang##" items="trainingCentersList" ng-search="search.$partner"></i-list>
+          </div>
+
+          <div class="row">
+            <i-list
+              class="col3"
+              label="##word.training_type##"
+              ng-model="search.training_type"
+              ng-change="getTrainingCategoriesList(search.training_type.id)"
+              display="name_##session.lang##"
+              items="trainingTypesList"
+              ng-search="search.$training_type"
+            ></i-list>
+            <i-list
+              class="col3"
+              label="##word.training_category##"
+              ng-model="search.training_category"
+              display="name_##session.lang##"
+              items="trainingCategoriesList"
+              ng-search="search.$training_category"
+            ></i-list>
+            <i-list
+              class="col3"
+              ng-change="getCityList(search.country.id)"
+              label="##word.country##"
+              ng-model="search.country"
+              display="name_##session.lang##"
+              items="countryList"
+              ng-search="search.$training_country"
+            ></i-list>
+            <i-list class="col3" label="##word.city##" ng-model="search.city" display="name_##session.lang##" items="cityList" ng-search="search.$training_city"></i-list>
+          </div>
         </div>
 
-        <div class="row">
-          <i-list class="col3" label="##word.training_type##" ng-model="search.training_type" ng-change="getTrainingCategoriesList(search.training_type.id)" display="name_##session.lang##" items="trainingTypesList" ng-search="search.$training_type"></i-list>
-          <i-list class="col3" label="##word.training_category##" ng-model="search.training_category" display="name_##session.lang##" items="trainingCategoriesList" ng-search="search.$training_category"></i-list>
-          <i-list class="col3" ng-change="getCityList(search.country.id)" label="##word.country##" ng-model="search.country" display="name_##session.lang##" items="countryList" ng-search="search.$training_country"></i-list>
-          <i-list class="col3" label="##word.city##" ng-model="search.city" display="name_##session.lang##" items="cityList" ng-search="search.$training_city"></i-list>
-        </div>
         <div class="row">
           <i-control class="col6" label="##word.search_for_training##" ng-model="general_search"></i-control>
           <div class="col2">
@@ -35,7 +84,6 @@
         </div>
 
         <div class="top-actions">
-
           <h3 class="bold text-center">##word.count## : {{list.length || 0}}</h3>
           <h3 class="bold text-center text-danger">{{error}}</h3>
         </div>
@@ -60,7 +108,7 @@
             <td class="center">{{c.trainer.email}}</td>
             <td class="center">{{c.country.name_##session.lang##}}</td>
             <td class="center">{{c.city.name_##session.lang##}}</td>
-            <td class="center">{{c.succeed_trainees}}</td>
+            <td class="center"><span class="bold green">{{c.succeed_trainees}} </span> / <span class="bold"> {{c.trainees_list.length}} </span></td>
             <td class="center">{{c.start_date | date:"dd/MM/yyyy"}}</td>
             <td class="center">{{c.end_date | date:"dd/MM/yyyy"}}</td>
             <td class="center not-print">

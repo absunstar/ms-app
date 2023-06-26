@@ -70,9 +70,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
           }
         }
       },
-      function (err) {
-       
-      }
+      function (err) {}
     );
   };
 
@@ -106,9 +104,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
           }
         }
       },
-      function (err) {
-       
-      }
+      function (err) {}
     );
   };
 
@@ -145,9 +141,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
         }
       },
-      function (err) {
-       
-      }
+      function (err) {}
     );
   };
 
@@ -177,9 +171,7 @@ app.controller('accounts', function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
         }
       },
-      function (err) {
-       
-      }
+      function (err) {}
     );
   };
 
@@ -212,7 +204,6 @@ app.controller('accounts', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        
       }
     );
   };
@@ -388,7 +379,6 @@ app.controller('accounts', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        
       }
     );
   };
@@ -413,7 +403,6 @@ app.controller('accounts', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        
       }
     );
   };
@@ -439,7 +428,6 @@ app.controller('accounts', function ($scope, $http, $timeout) {
         },
         function (err) {
           $scope.busy = false;
-          
         }
       );
     }
@@ -459,7 +447,6 @@ app.controller('accounts', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        
       }
     );
   };
@@ -494,7 +481,6 @@ app.controller('accounts', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        
       }
     );
   };
@@ -519,7 +505,6 @@ app.controller('accounts', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        
       }
     );
   };
@@ -536,13 +521,33 @@ app.controller('accounts', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
+          alert('Activation Link Send To Mail ');
         } else if (response.data.error) {
           $scope.error = response.data.error;
         }
       },
-      function (err) {
-       
-      }
+      function (err) {}
+    );
+  };
+
+  $scope.sendPasswordLink = function (user) {
+    user.$sendActivationLink = true;
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/user/send-forget-password-link',
+      data: user,
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          alert('Password Link Send To Mail ');
+        } else if (response.data.error) {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {}
     );
   };
 

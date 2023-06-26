@@ -531,7 +531,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/trainings/traineetrainee.certificates', (req, res) => {
+  site.post('/api/trainings/trainee_certificates', (req, res) => {
     let response = {
       done: false,
     };
