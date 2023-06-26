@@ -9,7 +9,7 @@ const site = require('../isite')({
   _0x14xo: !0,
   mongodb: {
     // db: process.env['TRAININGDB'],
-     db: 'training',
+    db: 'training',
     limit: 100000,
     events: true,
     identity: {
@@ -19,8 +19,8 @@ const site = require('../isite')({
   security: {
     keys: ['e698f2679be5ba5c9c0b0031cb5b057c', '9705a3a85c1b21118532fefcee840f99'],
   },
-  session : {
-    timeout : 0
+  session: {
+    timeout: 0,
   },
   require: {
     permissions: ['login'],
@@ -83,15 +83,25 @@ site.sendPerMinute = 0;
 site.sendPerHour = 0;
 site.sendPerDay = 0;
 setInterval(() => {
-  if(site.setting.email_setting) {
-    if(site.sendPerDay > site.setting.email_setting.day_limit){
+  console.log(site.msgList.length,"hhhhhhhhhhhhh");
+  if (site.setting.email_setting) {
+    if (site.sendPerDay > site.setting.email_setting.day_limit) {
       return;
-    } else if(site.sendPerHour > site.setting.email_setting.day_hour){
+    } else if (site.sendPerHour > site.setting.email_setting.day_hour) {
       return;
     }
-    let arr = site.msgList.slice(0,site.setting.email_setting.minute_limit);
+    let arr = site.msgList.slice(0, site.setting.email_setting.minute_limit);
+    if (arr.length > 0) {
+      site.sendPerMinute += arr.length;
+      site.sendPerHour += arr.length;
+      site.sendPerDay += arr.length;
+      arr.forEach(msg => {
+        // site.sendMailAzure(msg);
+      });
+    }
+    console.log(site.msgList.length);
   }
-}, 1000 *60);
+}, 1000 * 60);
 
 site.sendMailMandrill = function (obj) {
   site
@@ -129,7 +139,6 @@ site.sendMailMandrill = function (obj) {
 
 site.sendMailAzure = function (options) {
   const { EmailClient } = require('@azure/communication-email');
-  
 
   const connectionString = process.env['COMMUNICATION_SERVICES_CONNECTION_STRING'];
   const emailClient = new EmailClient(connectionString);
