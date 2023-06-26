@@ -50,6 +50,7 @@ site.loadLocalApp('charts');
 
 site.importApps(__dirname + '/apps_training');
 site.addFeature('training');
+site.addFeature('chart-test');
 
 site.run();
 

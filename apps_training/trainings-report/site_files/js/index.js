@@ -5,59 +5,56 @@ app.controller('trainingsReport', function ($scope, $http, $timeout) {
   $scope.displayChart = function (t) {
     $timeout(() => {
       let data1 = {
-        series: [
-          {
-            type: 'PieSeries',
-            dataFields: {
-              value: 'Count',
-              category: 'Gender',
-            },
-          },
-        ],
-
         data: [
           {
             Gender: 'Male',
             Count: t.maleCount,
+            Color: am4core.color('#2196f3'),
           },
           {
             Gender: 'Female',
             Count: t.femaleCount,
+            Color: am4core.color('#ffeb3b'),
           },
         ],
-
-        legend: {},
       };
 
       let data2 = {
-        series: [
-          {
-            type: 'PieSeries',
-            dataFields: {
-              value: 'Count',
-              category: 'Trainees',
-            },
-          },
-        ],
-
+        
         data: [
           {
             Trainees: 'Succeed',
             Count: t.succeed_trainees,
+            Color: am4core.color('#4caf50'),
           },
           {
-            Trainees: 'Total',
-            Count: t.trainees_list.length,
+            Trainees: 'Not Pass',
+            Count: t.trainees_list.length - t.succeed_trainees,
+            Color: am4core.color('#f44336'),
           },
         ],
-
-        legend: {},
       };
 
       am4core.useTheme(am4themes_animated);
+      let chart1 = am4core.createFromConfig(data1, 'chart1_' + t.id, am4charts.PieChart);
+      let chart2 = am4core.createFromConfig(data2, 'chart2_' + t.id, am4charts.PieChart);
 
-      am4core.createFromConfig(data1, 'chart1_' + t.id, am4charts.PieChart);
-      am4core.createFromConfig(data2, 'chart2_' + t.id, am4charts.PieChart);
+      var pieSeries = chart1.series.push(new am4charts.PieSeries());
+      pieSeries.dataFields.value = 'Count';
+      pieSeries.dataFields.category = 'Gender';
+      pieSeries.slices.template.propertyFields.fill = 'Color';
+      pieSeries.labels.template.disabled = true;
+      pieSeries.ticks.template.disabled = true;
+      chart1.legend = new am4charts.Legend();
+
+      var pieSeries = chart2.series.push(new am4charts.PieSeries());
+      pieSeries.dataFields.value = 'Count';
+      pieSeries.dataFields.category = 'Trainees';
+      pieSeries.slices.template.propertyFields.fill = 'Color';
+      pieSeries.labels.template.disabled = true;
+      pieSeries.ticks.template.disabled = true;
+      chart2.legend = new am4charts.Legend();
+
     }, 1000);
   };
   $scope.getTrainingList = function (where) {

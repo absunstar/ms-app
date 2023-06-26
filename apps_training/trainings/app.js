@@ -753,20 +753,20 @@ module.exports = function init(site) {
     };
     res.json(response);
 
-    $trainings.findMany({ limit: 100000 }, (err, tDocs) => {
-      if (!err && tDocs) {
-        $users.findMany({ limit: 100000, where: { 'role.name': 'trainee' }, select: { id: 1, gender: 1 } }, (err, uDocs) => {
-          if (!err && uDocs) {
-            for (let i = 0; i < tDocs.length; i++) {
-              if (tDocs[i].trainees_list) {
-                tDocs[i].trainees_list.forEach((_t) => {
-                  let index = uDocs.findIndex((itm) => itm.id == _t.id);
+    $trainings.findMany({ limit: 100000 }, (err, trainingDocs) => {
+      if (!err && trainingDocs) {
+        $users.findMany({ limit: 100000, where: { 'role.name': 'trainee' }, select: { id: 1, gender: 1 } }, (err, TraineeDocs) => {
+          if (!err && TraineeDocs) {
+            for (let i = 0; i < trainingDocs.length; i++) {
+              if (trainingDocs[i].trainees_list) {
+                trainingDocs[i].trainees_list.forEach((_t) => {
+                  let index = TraineeDocs.findIndex((itm) => itm.id == _t.id);
                   if (index !== -1) {
-                    _t.gender = uDocs[index].gender;
+                    _t.gender = TraineeDocs[index].gender;
                   }
                 });
               }
-              $trainings.update(tDocs[i], (err, result) => {
+              $trainings.update(trainingDocs[i], (err, result) => {
                 console.log('Update Training Id : ' + result.doc.id);
               });
             }
