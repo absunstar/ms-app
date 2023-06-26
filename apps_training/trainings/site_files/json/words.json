@@ -6,7 +6,7 @@
   },
   {
     "name": "apology",
-    "en": "Apology",
+    "en": "Drop",
     "ar": "إعتذر"
   },
   {
@@ -28,6 +28,11 @@
     "name": "download_attendance_sheets_per_day",
     "en": "Download Attendance Sheets Per Day",
     "ar": "تحميل أوراق الحضور يوميا"
+  },
+  {
+    "name": "upload_attendance_sheets_per_day",
+    "en": "Upload Attendance Sheets Per Day",
+    "ar": "رفع أوراق الحضور يوميا"
   },
   {
     "name": "no_questions_for_exam",

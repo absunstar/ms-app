@@ -16,11 +16,15 @@
         </div>
 
         <div class="col1"></div>
-        <div class="col5">
-          <i-file ng-show="!training.approve" label="##word.download_attendance_sheets_per_day##" ng-model="attendance.file"></i-file>
-          <i-file ng-show="training.approve" view label="##word.download_attendance_sheets_per_day##" ng-model="attendance.file"></i-file>
+        <div class="col5" ng-show="!training.approve">
+          <i-file ng-show="!attendance.file.url" label="##word.upload_attendance_sheets_per_day##" ng-model="attendance.file"></i-file>
+          <i-file ng-show="attendance.file.url" label="##word.download_attendance_sheets_per_day##" ng-model="attendance.file"></i-file>
+        </div>
+        <div class="col5" ng-show="training.approve">
+          <i-file view label="##word.download_attendance_sheets_per_day##" ng-model="attendance.file"></i-file>
         </div>
       </div>
+
       <div class="row">
         <table x-permissions="login" class="table hover text-center" id="t1">
           <thead>
@@ -40,7 +44,6 @@
                   <p class="green" ng-show="c.attend && training.approve">##word.attend##</p>
                   <p class="red" ng-show="!c.attend && training.approve">##word.absence##</p>
                   <p ng-show="c.apology">##word.apology##</p>
-
                 </div>
               </td>
             </tr>

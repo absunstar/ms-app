@@ -49,15 +49,18 @@
           <h3 class="bold text-center text-danger">{{error}}</h3>
         </div>
 
-        <div class="chart-box" ng-repeat="c in list">
+        <div class="row">
+          <i-list ng-model="trainingSelected" class="col6" items="list" display="trainer.first_name" display2="partner.name_##session.lang##" label="##word.Select Trainig##" ng-change="displayChart(trainingSelected)"></i-list>
+        </div>
+
+        <div class="chart-box">
           <div class="row">
             <div class="row">
-              <h1 class="bold text-center">{{c.trainer.first_name}} ( {{c.partner.name_##session.lang##}} )</h1>
+              <h1 class="bold text-center">{{trainingSelected.trainer.first_name}} ( {{trainingSelected.partner.name_##session.lang##}} )</h1>
 
               <div class="row">
-               
-                <p class="col6 text-center"><span class="bold"> Start Date </span> : {{c.start_date | date:"dd/MM/yyyy"}}</p>
-                <p class="col6 text-center"><span class="bold"> End Date </span> : {{c.end_date | date:"dd/MM/yyyy"}}</p>
+                <p class="col6 text-center"><span class="bold"> Start Date </span> : {{trainingSelected.start_date | date:"dd/MM/yyyy"}}</p>
+                <p class="col6 text-center"><span class="bold"> End Date </span> : {{trainingSelected.end_date | date:"dd/MM/yyyy"}}</p>
               </div>
             </div>
 
@@ -66,25 +69,25 @@
                 <table class="table hover">
                   <tr>
                     <td class="bold">Total Trainee</td>
-                    <td class="text-center bold">{{c.trainees_list.length}}</td>
+                    <td class="text-center bold">{{trainingSelected.trainees_list.length}}</td>
                   </tr>
                   <tr>
                     <td class="bold">Succeed</td>
-                    <td class="text-center bold green">{{c.succeed_trainees}}</td>
+                    <td class="text-center bold green">{{trainingSelected.succeed_trainees}}</td>
                   </tr>
 
                   <tr>
                     <td class="bold">Male</td>
-                    <td class="text-center bold blue">{{c.maleCount}}</td>
+                    <td class="text-center bold blue">{{trainingSelected.maleCount}}</td>
                   </tr>
                   <tr>
                     <td class="bold">Female</td>
-                    <td class="text-center bold orange">{{c.femaleCount}}</td>
+                    <td class="text-center bold orange">{{trainingSelected.femaleCount}}</td>
                   </tr>
                 </table>
               </div>
-              <div class="col4"><div id="chart1_{{c.id}}"></div></div>
-              <div class="col4"><div id="chart2_{{c.id}}"></div></div>
+              <div class="col4"><div id="chart1_{{trainingSelected.id}}"></div></div>
+              <div class="col4"><div id="chart2_{{trainingSelected.id}}"></div></div>
             </div>
           </div>
 

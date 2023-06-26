@@ -40,6 +40,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
                 last_name: response.data.doc.last_name,
                 email: response.data.doc.email,
                 mobile: response.data.doc.mobile,
+                gender: response.data.doc.gender,
                 id_number: response.data.doc.id_number,
                 approve: true,
               });
@@ -199,6 +200,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
           last_name: $scope.training.$trainee_select.last_name,
           email: $scope.training.$trainee_select.email,
           mobile: $scope.training.$trainee_select.mobile,
+          gender: $scope.training.$trainee_select.gender,
           id_number: $scope.training.$trainee_select.id_number,
           approve: true,
         });
@@ -230,6 +232,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
       function (err) {}
     );
   };
+
 
   $scope.getTraining = function () {
     $scope.busy = true;
@@ -347,7 +350,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
       data: {
         where: where,
         search: _search,
-        select: { id: 1, first_name: 1, last_name: 1, email: 1, mobile: 1, id_number: 1 },
+        select: { id: 1, first_name: 1, last_name: 1, email: 1, gender: 1, mobile: 1, id_number: 1 },
       },
     }).then(
       function (response) {

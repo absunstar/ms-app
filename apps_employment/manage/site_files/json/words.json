@@ -5,6 +5,21 @@
     "ar": "إدارة"
   },
   {
+    "name": "per_minute",
+    "en": "Per Minute",
+    "ar": "لكل دقيقة"
+  },
+  {
+    "name": "per_hour",
+    "en": "Per Hour",
+    "ar": "لكل ساعة"
+  },
+  {
+    "name": "per_day",
+    "en": "Per Day",
+    "ar": "لكل يوم"
+  },
+  {
     "name": "slider_edit",
     "en": "Sliders",
     "ar": "الصور المتحركة"

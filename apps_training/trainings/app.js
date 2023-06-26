@@ -1,5 +1,6 @@
 module.exports = function init(site) {
   const $trainings = site.connectCollection('Trainings');
+  const $users = site.connectCollection('users_info');
   $trainings.skip = 0;
   $trainings.count = 0;
 
@@ -746,6 +747,34 @@ module.exports = function init(site) {
       }
     );
   });
+  site.post('/api/trainings/genderToTraining', (req, res) => {
+    let response = {
+      done: true,
+    };
+    res.json(response);
+
+    $trainings.findMany({ limit: 100000 }, (err, tDocs) => {
+      if (!err && tDocs) {
+        $users.findMany({ limit: 100000, where: { 'role.name': 'trainee' }, select: { id: 1, gender: 1 } }, (err, uDocs) => {
+          if (!err && uDocs) {
+            for (let i = 0; i < tDocs.length; i++) {
+              if (tDocs[i].trainees_list) {
+                tDocs[i].trainees_list.forEach((_t) => {
+                  let index = uDocs.findIndex((itm) => itm.id == _t.id);
+                  if (index !== -1) {
+                    _t.gender = uDocs[index].gender;
+                  }
+                });
+              }
+              $trainings.update(tDocs[i], (err, result) => {
+                console.log('Update Training Id : ' + result.doc.id);
+              });
+            }
+          }
+        });
+      }
+    });
+  });
 
   site.post('/api/trainings/create_all_certificates', (req, res) => {
     let response = {
@@ -769,7 +798,7 @@ module.exports = function init(site) {
 
               trainingDoc.trainees_list.forEach((_trainee, index) => {
                 let trainee = { ..._trainee };
-                if (trainee) {
+                if (trainee && trainee.trainee_degree >= trainingDoc.success_rate) {
                   trainee.certificate = { ...certificatesCb.certificate };
                   trainee.certificate.name = trainingDoc.id.toString() + '_' + trainee.id.toString() + '.pdf';
 
@@ -817,7 +846,7 @@ module.exports = function init(site) {
                 }
               });
               let ii = setInterval(() => {
-                if (traineeList.length == trainingDoc.trainees_list.length) {
+                if (traineeList.length == trainingDoc.trainees_list.filter((_t) => _t.trainee_degree >= trainingDoc.success_rate).length) {
                   clearInterval(ii);
 
                   let output = site.fs.createWriteStream(folderPath);

@@ -1,5 +1,4 @@
 app.controller('traineesAccounts', function ($scope, $http, $timeout) {
-
   $scope.trainee = {};
 
   $scope.showPassword = function () {
@@ -9,7 +8,7 @@ app.controller('traineesAccounts', function ($scope, $http, $timeout) {
       });
     }, 100);
   };
-  
+
   $scope.displayAddTrainee = function () {
     $scope.error = '';
     $scope.trainee = {
@@ -28,35 +27,31 @@ app.controller('traineesAccounts', function ($scope, $http, $timeout) {
       return;
     }
     if ($scope.trainee) {
-      if ($scope.trainee.password === $scope.trainee.retype_password) {
-        $scope.trainee.role = $scope.accountsTypeList[4];
-        $scope.busy = true;
+      $scope.trainee.role = $scope.accountsTypeList[4];
+      $scope.busy = true;
 
-        $http({
-          method: 'POST',
-          url: '/api/user/add',
-          data: $scope.trainee,
-        }).then(
-          function (response) {
-            $scope.busy = false;
-            if (response.data.done) {
-              site.hideModal('#traineeAddModal');
-              site.resetValidated('traineeAddModal');
-              $scope.getAccountList();
-            } else if (response.data.error) {
-              $scope.error = response.data.error;
-              if (response.data.error.like('*Name Exists*')) {
-                $scope.error = '##word.name_already_exists##';
-              }
+      $http({
+        method: 'POST',
+        url: '/api/user/add',
+        data: $scope.trainee,
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            site.hideModal('#traineeAddModal');
+            site.resetValidated('traineeAddModal');
+            $scope.getAccountList();
+          } else if (response.data.error) {
+            $scope.error = response.data.error;
+            if (response.data.error.like('*Name Exists*')) {
+              $scope.error = '##word.name_already_exists##';
             }
-          },
-          function (err) {
-            console.log(err);
           }
-        );
-      } else {
-        $scope.error = '##word.password_err_match##';
-      }
+        },
+        function (err) {
+          console.log(err);
+        }
+      );
     }
   };
 
@@ -105,9 +100,7 @@ app.controller('traineesAccounts', function ($scope, $http, $timeout) {
           }
         }
       },
-      function (err) {
-       
-      }
+      function (err) {}
     );
   };
 
@@ -145,9 +138,7 @@ app.controller('traineesAccounts', function ($scope, $http, $timeout) {
           }
         }
       },
-      function (err) {
-       
-      }
+      function (err) {}
     );
   };
 
@@ -176,9 +167,7 @@ app.controller('traineesAccounts', function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
         }
       },
-      function (err) {
-       
-      }
+      function (err) {}
     );
   };
 
@@ -208,9 +197,7 @@ app.controller('traineesAccounts', function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
         }
       },
-      function (err) {
-       
-      }
+      function (err) {}
     );
   };
 
@@ -221,7 +208,7 @@ app.controller('traineesAccounts', function ($scope, $http, $timeout) {
     where = where || {};
     where['role.name'] = 'trainee';
     let url = '/api/users/all';
-    if('##user.role.name##' == 'trainer'){
+    if ('##user.role.name##' == 'trainer') {
       url = '/api/trainees/to_trainers';
     }
     $http({
@@ -229,7 +216,7 @@ app.controller('traineesAccounts', function ($scope, $http, $timeout) {
       url: url,
       data: {
         where: where,
-        limit : 100,
+        limit: 100,
         search: $scope.general_search,
       },
     }).then(
@@ -243,7 +230,6 @@ app.controller('traineesAccounts', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        
       }
     );
   };
@@ -262,7 +248,6 @@ app.controller('traineesAccounts', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        
       }
     );
   };
@@ -281,7 +266,6 @@ app.controller('traineesAccounts', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        
       }
     );
   };

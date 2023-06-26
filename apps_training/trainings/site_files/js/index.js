@@ -22,6 +22,8 @@ app.controller('trainings', function ($scope, $http, $timeout) {
     site.hideModal('#examModal');
   };
 
+
+
   $scope.displayAddTraining = function () {
     $scope.error = '';
     $scope.training = {
@@ -550,6 +552,23 @@ app.controller('trainings', function ($scope, $http, $timeout) {
     site.showModal('#trainingSearchModal');
   };
 
+  $scope.genderToTraining = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/trainings/genderToTraining',
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+        } else if (response.data.error) {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {}
+    );
+  };
   $scope.getTrainingList();
   $scope.getPartnersList();
   $scope.getTrainingTypesList();

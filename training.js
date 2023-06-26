@@ -8,8 +8,8 @@ const site = require('../isite')({
   savingTime: 1,
   _0x14xo: !0,
   mongodb: {
-    // db: process.env['TRAININGDB'],
-    db: 'training',
+    db: process.env['TRAININGDB'],
+    // db: 'training',
     limit: 100000,
     events: true,
     identity: {
@@ -50,6 +50,7 @@ site.loadLocalApp('charts');
 
 site.importApps(__dirname + '/apps_training');
 site.addFeature('training');
+site.addFeature('test');
 
 site.run();
 
@@ -75,6 +76,7 @@ site.sendMailSMPT = function (obj) {
 };
 
 site.sendMailMessage = function (msg) {
+  msg.id = site.guid();
   console.log(msg);
   site.msgList.push(msg);
   // site.sendMailAzure(msg);
@@ -95,13 +97,23 @@ setInterval(() => {
       site.sendPerMinute += arr.length;
       site.sendPerHour += arr.length;
       site.sendPerDay += arr.length;
-      arr.forEach(msg => {
+      arr.forEach((msg) => {
+        let index = site.msgList.findIndex((_m) => _m.id == msg.id);
+        if (index !== -1) {
+          site.msgList.splice(index, 1);
+        }
         // site.sendMailAzure(msg);
       });
     }
   }
 }, 1000 * 60);
 
+setInterval(() => {
+  site.sendPerHour = 0;
+}, 1000 * 60 * 60);
+setInterval(() => {
+  site.sendPerDay = 0;
+}, 1000 * 60 * 60 * 24);
 site.sendMailMandrill = function (obj) {
   site
     .fetch(' https://mandrillapp.com/api/1.0/messages/send', {

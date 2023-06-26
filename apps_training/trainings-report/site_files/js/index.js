@@ -82,7 +82,6 @@ app.controller('trainingsReport', function ($scope, $http, $timeout) {
       data: {
         where: where,
         search: $scope.general_search,
-        limit: window.isChart ? 1 : 100,
       },
     }).then(
       function (response) {

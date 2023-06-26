@@ -5,6 +5,11 @@
     "ar": "الرقم القومي"
   },
   {
+    "name": "Select Trainig",
+    "en": "Select Trainig", 
+    "ar": "تحديد التدريب"
+  },
+  {
     "name": "search_using_filter",
     "en": "Search Using Filter", 
     "ar": "بحث متقدم "
