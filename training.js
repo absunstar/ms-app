@@ -2,7 +2,7 @@ require('dotenv').config();
 const site = require('../isite')({
   port: [44442],
   lang: 'en',
-  version: '3.156.30',
+  version: '3.156.35',
   name: 'training',
   theme: 'theme_paper',
   savingTime: 1,
@@ -50,7 +50,6 @@ site.loadLocalApp('charts');
 
 site.importApps(__dirname + '/apps_training');
 site.addFeature('training');
-site.addFeature('test');
 
 site.run();
 
