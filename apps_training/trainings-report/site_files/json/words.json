@@ -5,6 +5,11 @@
     "ar": "الرقم القومي"
   },
   {
+    "name": "search_using_filter",
+    "en": "Search Using Filter", 
+    "ar": "بحث متقدم "
+  },
+  {
     "name": "successful_trainees",
     "en": "Successful Trainees",
     "ar": "المتدربين الناجحين"

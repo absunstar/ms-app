@@ -54,7 +54,6 @@ app.controller('trainees', function ($scope, $http, $timeout) {
             }
           },
           function (err) {
-            console.log(err);
           }
         );
       } else {
@@ -76,6 +75,16 @@ app.controller('trainees', function ($scope, $http, $timeout) {
       $scope.error = '##word.id_number_not_exists##';
       return;
     }
+    if (user.birthdate) {
+      try {
+        let arr = user.birthdate.split('/');
+        if(arr.length == 3) {
+
+          user.birthdate = new Date(arr[2],arr[1],arr[0],0,0,0);
+        }
+      } catch (error) {}
+    }
+
     if (user.gender == 'male' || user.gender == 'Male') {
       user.gender = $scope.genderList[0];
     } else if (user.gender == 'female' || user.gender == 'Female') {
@@ -180,6 +189,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
 
       if (found_trainee) {
         $scope.error = '##word.trainee_already_there##';
+        $scope.training.$trainee_select = null;
         return;
       } else {
         $scope.training.trainees_list.push({
@@ -192,6 +202,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
           id_number: $scope.training.$trainee_select.id_number,
           approve: true,
         });
+        $scope.training.$trainee_select = null;
         $scope.training.$doneAddTrainee = '##word.added_successfully##';
         $timeout(() => {
           $scope.training.$doneAddTrainee = '';

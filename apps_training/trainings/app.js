@@ -531,7 +531,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/trainings/trainee_certificates', (req, res) => {
+  site.post('/api/trainings/trainee_trainings', (req, res) => {
     let response = {
       done: false,
     };
@@ -555,6 +555,7 @@ module.exports = function init(site) {
         if (!err) {
           response.done = true;
           docs.forEach((_doc) => {
+            console.log(_doc.id);
             let attend_count = 0;
             _doc.dates_list.forEach((_d) => {
               _d.trainees_list.forEach((_t) => {
@@ -570,14 +571,31 @@ module.exports = function init(site) {
               _doc.$attend_rate = false;
             }
             _doc.$start_exam_count = 0;
-            _doc.trainees_list.forEach((_t) => {
-              _doc.$start_exam_count = _t.start_exam_count || 0;
-              if (req.body.id == _t.id && _t.finish_exam) {
-                _doc.$finish_exam = true;
-                _doc.$certificate = _t.certificate;
-                _doc.$trainee_degree = _t.trainee_degree;
+            let index = _doc.trainees_list.findIndex((_t) => req.body.id == _t.id);
+            if (index > -1) {
+              _doc.$start_exam_count = _doc.trainees_list[index].start_exam_count || 0;
+              if (_doc.$start_exam_count > 2) {
+                _doc.$can_exam = false;
+              } else {
+                _doc.$can_exam = true;
               }
-            });
+              if (_doc.trainees_list[index].finish_exam) {
+                _doc.$finish_exam = true;
+                _doc.$trainee_degree = _doc.trainees_list[index].trainee_degree;
+              }
+              if (_doc.trainees_list[index].certificate) {
+                _doc.$certificate = _doc.trainees_list[index].certificate;
+              }
+            }
+
+            // _doc.trainees_list.forEach((_t) => {
+            //   _doc.$start_exam_count = _t.start_exam_count || 0;
+            //   if (req.body.id == _t.id && _t.finish_exam) {
+            //     _doc.$finish_exam = true;
+            //     _doc.$certificate = _t.certificate;
+            //     _doc.$trainee_degree = _t.trainee_degree;
+            //   }
+            // });
           });
           response.list = docs;
           response.count = count;
@@ -609,19 +627,30 @@ module.exports = function init(site) {
             exam_template: req.body.exam_template,
             number_questions: req.body.number_questions,
           };
-          doc.trainees_list.forEach((_t) => {
-            if (req.body.trainee_id == _t.id) {
-              _t.start_exam_count = _t.start_exam_count || 0;
-              if (_t.start_exam_count < 3) {
-                _t.start_exam_count = _t.start_exam_count + 1;
-              } else {
-              }
+          let index = doc.trainees_list.findIndex((_t) => req.body.trainee_id == _t.id);
+          if (index > -1) {
+            doc.trainees_list[index].start_exam_count = doc.trainees_list[index].start_exam_count || 0;
+            if (doc.trainees_list[index].start_exam_count < 3) {
+              doc.trainees_list[index].start_exam_count = doc.trainees_list[index].start_exam_count + 1;
+            } else {
+              response.error = 'You Excute Three Times Of Exam';
+              res.json(response);
+              return;
             }
-          });
+          }
+          // doc.trainees_list.forEach((_t) => {
+          //   if (req.body.trainee_id == _t.id) {
+          //     _t.start_exam_count = _t.start_exam_count || 0;
+          //     if (_t.start_exam_count < 3) {
+          //       _t.start_exam_count = _t.start_exam_count + 1;
+          //     } else {
+          //     }
+          //   }
+          // });
 
           site.getQuestionsToExam(questionsData, (examCb) => {
             if (examCb.length > 0) {
-              $trainings.update(doc);
+              $trainings.update(doc, (err, result) => {});
               response.list = examCb;
             } else {
               response.error = 'There are no questions for the exam';

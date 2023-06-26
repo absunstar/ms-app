@@ -9,7 +9,7 @@ app.controller('traineeCertificates', function ($scope, $http, $timeout) {
     $scope.count = 0;
     $http({
       method: 'POST',
-      url: '/api/trainings/trainee_certificates',
+      url: '/api/trainings/trainee_trainings',
       data: {
         id: site.toNumber('##query.id##'),
       },

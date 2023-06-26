@@ -8,6 +8,7 @@ app.controller('manage', function ($scope, $http, $timeout) {
   $scope.partner_logo = {};
 
   $scope.loadManage = function (where) {
+    $scope.error = '';
     $scope.manage = {};
     $scope.busy = true;
 
@@ -36,6 +37,7 @@ app.controller('manage', function ($scope, $http, $timeout) {
   };
 
   $scope.saveManage = function (manage, id) {
+    $scope.error = '';
     const v = site.validated(id);
     if (!v.ok) {
       $scope.error = v.messages[0]['##session.lang##'];
@@ -67,6 +69,7 @@ app.controller('manage', function ($scope, $http, $timeout) {
   };
 
   $scope.editManage = function (manage) {
+    $scope.error = '';
     $scope.busy = true;
     $http({
       method: 'POST',
@@ -87,6 +90,7 @@ app.controller('manage', function ($scope, $http, $timeout) {
   };
 
   $scope.displayAddPartnerLogo = function () {
+    $scope.error = '';
     $scope.partner_logo = {
       active: true,
     };
@@ -95,6 +99,7 @@ app.controller('manage', function ($scope, $http, $timeout) {
   };
 
   $scope.displayEditPartnerLogo = function (partner_logo) {
+    $scope.error = '';
     $scope.partner_logo = partner_logo;
     $scope.partner_logo.$edit = true;
     site.resetValidated('#partnerLogoModal');
@@ -102,12 +107,14 @@ app.controller('manage', function ($scope, $http, $timeout) {
   };
 
   $scope.displayDeletePartnerLogo = function (partner_logo, index) {
+    $scope.error = '';
     $scope.partner_logo = partner_logo;
     $scope.partner_logo.$index = index;
     site.showModal('#partnerLogoDeleteModal');
   };
 
   $scope.addPartnerLogo = function (partner_logo) {
+    $scope.error = '';
     const v = site.validated('#partnerLogoModal');
     if (!v.ok) {
       $scope.error = v.messages[0]['##session.lang##'];
@@ -121,6 +128,7 @@ app.controller('manage', function ($scope, $http, $timeout) {
   };
 
   $scope.editPartnerLogo = function () {
+    $scope.error = '';
     const v = site.validated('#partnerLogoModal');
     if (!v.ok) {
       $scope.error = v.messages[0]['##session.lang##'];
@@ -132,6 +140,7 @@ app.controller('manage', function ($scope, $http, $timeout) {
   };
 
   $scope.deletePartnerLogo = function (partner_logo) {
+    $scope.error = '';
     $scope.manage.partners_logo_list.splice(partner_logo.$index, 1);
     $scope.editManage($scope.manage);
 
@@ -139,6 +148,7 @@ app.controller('manage', function ($scope, $http, $timeout) {
   };
 
   $scope.showActivationModal = function (element, type) {
+    $scope.error = '';
     if (type == 'activate') {
       site.showModal('#activateModal');
     } else if (type == 'deactivate') {

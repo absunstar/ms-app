@@ -1,4 +1,5 @@
 module.exports = function init(site) {
+  const $users = site.connectCollection('users_info');
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/',
@@ -69,7 +70,6 @@ module.exports = function init(site) {
     public: true,
   });
 
-  const $users = site.connectCollection('users_info');
 
   site.post({ name: '/api/register', public: true }, (req, res) => {
     let response = {};
@@ -508,24 +508,39 @@ module.exports = function init(site) {
 
   site.onPOST({ name: '/api/user/send-forget-password-link', public: true }, (req, res) => {
     let response = {
-      done: true,
       user: req.data,
     };
-    response.user.forgetPasswordCode = Math.random().toString().replace('.', '');
-    site.security.updateUser(response.user, (err) => {
-      if (!err) {
-        response.done = true;
-      } else {
-        response.error = err.message;
+    $users.findOne(
+      {
+        where: {
+          email: response.user.email,
+        },
+      },
+      (err, doc) => {
+        if (!doc) {
+          response.error = 'Email Not Exist';
+          res.json(response);
+          return;
+        }
+
+        doc.forgetPasswordCode = Math.random().toString().replace('.', '');
+        $users.update(doc, (err) => {
+          if (!err) {
+            response.done = true;
+
+            response.link = `${req.headers['origin']}/changePassWord?code=${doc.forgetPasswordCode}`;
+            site.sendMailMessage({
+              to: doc.email,
+              subject: `Forget Password Link`,
+              message: `<a target="_blank" href="${response.link}"> Click Here To Change Your Password </a>`,
+            });
+          } else {
+            response.error = err.message;
+          }
+          res.json(response);
+        });
       }
-      response.link = `${req.headers['origin']}/changePassWord?code=${response.user.forgetPasswordCode}`;
-      site.sendMailMessage({
-        to: response.user.email,
-        subject: `Forget Password Link`,
-        message: `<a target="_blank" href="${response.link}"> Click Here To Change Your Password </a>`,
-      });
-      res.json(response);
-    });
+    );
   });
 
   site.post(

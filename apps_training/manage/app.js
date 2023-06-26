@@ -6,7 +6,11 @@ module.exports = function init(site) {
     slug: 'Update Your Skills',
     nav_color: '#000000',
     nav_background: '#ffffff',
-    email_setting : {},
+    email_setting : {
+      minute_limit : 30,
+      hour_limit : 250,
+      day_limit : 1000,
+    },
     fonts: {id : 1 , name : 'Arabic'},
     logo: { url: '/images/logo.png' },
     logo1: { url: '/images/logo1.png' },

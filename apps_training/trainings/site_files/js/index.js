@@ -31,6 +31,7 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       number_questions: 10,
       success_rate: 80,
       location: 'offline',
+      exam_template: $scope.examTemplatesList[0],
     };
     if ('##user.role.name##' == 'trainer') {
       $scope.getTrainersList();
@@ -498,7 +499,6 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       $scope.error = '##word.attendance_cannot_modified_before_date##';
       return;
     } else {
-
       /*       if (!$scope.attendance.trainees_list.some((_attend) => _attend.attend == true)) {
         $scope.attendance.trainees_list = [];
         $scope.training.trainees_list.forEach((_t) => {

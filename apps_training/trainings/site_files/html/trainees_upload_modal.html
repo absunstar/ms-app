@@ -33,7 +33,7 @@
               <td class="center title">{{c.id_number}}</td>
               <td class="center title">{{c.mobile}}</td>
               <td class="center title">{{c.birthdate|date:"dd - MM - yyyy" }}</td>
-              <td class="center title">{{c.gender}}</td>
+              <td class="center title">{{c.gender.##session.lang## || c.gender}}</td>
 
               <td class="center not-print">
                 <i-button type="add" label="##word.add##" ng-hide="c.$add || c.$email_exists || c.$id_number_exists" ng-click="addUploadTrainee(c)"></i-button>

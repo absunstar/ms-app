@@ -7,8 +7,12 @@ module.exports = function init(site) {
     slug: 'Find Your Job',
     nav_color: '#000000',
     nav_background: '#ffffff',
-    email_setting : {},
-    fonts: {id : 1 , name : 'Arabic'},
+    email_setting: {
+      minute_limit: 30,
+      hour_limit: 250,
+      day_limit: 1000,
+    },
+    fonts: { id: 1, name: 'Arabic' },
     logo: { url: '/images/logo.png' },
     logo1: { url: '/images/logo1.png' },
     logo2: { url: '/images/logo2.png' },
@@ -41,7 +45,7 @@ module.exports = function init(site) {
       },
     ],
   };
-  
+
   site.setting = { ...site.setting, ...site.manage_doc };
   $manage.findOne({}, (err, doc) => {
     if (!err && doc) {

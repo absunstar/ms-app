@@ -220,6 +220,49 @@ app.controller('trainingsReport', function ($scope, $http, $timeout) {
       }
     );
   };
+  $scope.getTrainersList = function (id) {
+    $scope.busy = true;
+    $scope.trainersList = [];
+    let where = {};
+    if ('##user.role.name##' == 'trainer') {
+      where['id'] = site.toNumber('##user.id##');
+    } else {
+      where = { active: true, 'role.name': 'trainer', 'partners_list.sub_partners.id': id };
+    }
+
+    $http({
+      method: 'POST',
+      url: '/api/users/all',
+      data: {
+        where: where,
+        select: { id: 1, first_name: 1, last_name: 1, email: 1, phone: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.users && response.data.users.length > 0) {
+          $scope.trainersList = response.data.users;
+          if ('##user.role.name##' == 'trainer') {
+            $scope.training.trainer = $scope.trainersList[0];
+          }
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+      }
+    );
+  };
+
+  $scope.searchAll = function () {
+    $scope.getTrainingList($scope.search);
+    site.hideModal('#trainingReportSearchModal');
+    $scope.search = {};
+  };
+
+  $scope.displaySearchModal = function () {
+    $scope.error = '';
+    site.showModal('#trainingReportSearchModal');
+  };
 
   $scope.getTrainingList();
   $scope.getPartnersList();

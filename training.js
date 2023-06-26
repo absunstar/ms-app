@@ -8,8 +8,8 @@ const site = require('../isite')({
   savingTime: 1,
   _0x14xo: !0,
   mongodb: {
-    db: process.env['TRAININGDB'],
-    // db: 'training',
+    // db: process.env['TRAININGDB'],
+     db: 'training',
     limit: 100000,
     events: true,
     identity: {
@@ -73,9 +73,25 @@ site.sendMailSMPT = function (obj) {
   }
 };
 
-site.sendMailMessage = function (options) {
-  site.sendMailAzure(options);
+site.sendMailMessage = function (msg) {
+  console.log(msg);
+  site.msgList.push(msg);
+  // site.sendMailAzure(msg);
 };
+site.msgList = [];
+site.sendPerMinute = 0;
+site.sendPerHour = 0;
+site.sendPerDay = 0;
+setInterval(() => {
+  if(site.setting.email_setting) {
+    if(site.sendPerDay > site.setting.email_setting.day_limit){
+      return;
+    } else if(site.sendPerHour > site.setting.email_setting.day_hour){
+      return;
+    }
+    let arr = site.msgList.slice(0,site.setting.email_setting.minute_limit);
+  }
+}, 1000 *60);
 
 site.sendMailMandrill = function (obj) {
   site
