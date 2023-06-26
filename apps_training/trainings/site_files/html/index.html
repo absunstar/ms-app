@@ -119,7 +119,7 @@
               </td>
 
               <td class="center not-print">
-                <i-button ng-hide="busy" ng-show="c.approve" title="##word.Download All Certificate##" type="download" ng-click="createAllCertificate(c)"></i-button>
+                <i-button ng-show="c.approve" title="##word.Download All Certificate##" type="download" ng-click="createAllCertificate(c)"></i-button>
 
                 <i-button type="edit" title="##word.update##" ng-hide="c.$hide_edit" x-permissions="admin || trainer" ng-click="displayUpdateTraining(c)"></i-button>
                 <i-button type="view" title="##word.view##" ng-click="displayDetailsTraining(c)"></i-button>
