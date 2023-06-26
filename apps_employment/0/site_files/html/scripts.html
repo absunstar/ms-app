@@ -1,8 +1,8 @@
 <script src="/x-js/bootstrap-5-support.js?v=##site.options.version##"></script>
 <script>
-  site.features = '##req.features##';
-  site.session = site.show(`##req.#session##`);
-  site.setting = site.show(`##site.#setting##` || {});
+  site.features = site.showObject('##req.#features##');
+  site.session = site.showObject(`##req.#session##`);
+  site.setting = site.showObject(`##site.#setting##`);
 
   site.feature = (f) => site.features.indexOf(f) !== -1;
 

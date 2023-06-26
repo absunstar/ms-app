@@ -1,6 +1,65 @@
 app.controller('trainingsReport', function ($scope, $http, $timeout) {
   $scope.training = {};
+  $scope.chartTime = 1;
 
+  $scope.displayChart = function (t) {
+    $timeout(() => {
+      let data1 = {
+        series: [
+          {
+            type: 'PieSeries',
+            dataFields: {
+              value: 'Count',
+              category: 'Gender',
+            },
+          },
+        ],
+
+        data: [
+          {
+            Gender: 'Male',
+            Count: t.maleCount,
+          },
+          {
+            Gender: 'Female',
+            Count: t.femaleCount,
+          },
+        ],
+
+        legend: {},
+      };
+
+      let data2 = {
+        series: [
+          {
+            type: 'PieSeries',
+            dataFields: {
+              value: 'Count',
+              category: 'Trainees',
+            },
+          },
+        ],
+
+        data: [
+          {
+            Trainees: 'Succeed',
+            Count: t.succeed_trainees,
+          },
+          {
+            Trainees: 'Total',
+            Count: t.trainees_list.length,
+          },
+        ],
+
+        legend: {},
+      };
+
+      am4core.useTheme(am4themes_animated);
+
+      am4core.createFromConfig(data1, 'chart1_' + t.id, am4charts.PieChart);
+      am4core.createFromConfig(data2, 'chart2_' + t.id, am4charts.PieChart);
+    }, 1000);
+  };
   $scope.getTrainingList = function (where) {
     $scope.busy = true;
     $scope.list = [];
@@ -23,6 +82,7 @@ app.controller('trainingsReport', function ($scope, $http, $timeout) {
       data: {
         where: where,
         search: $scope.general_search,
+        limit: window.isChart ? 1 : 100,
       },
     }).then(
       function (response) {
@@ -32,9 +92,19 @@ app.controller('trainingsReport', function ($scope, $http, $timeout) {
           $scope.count = response.data.count;
           $scope.list.forEach((_l) => {
             _l.succeed_trainees = 0;
+            _l.maleCount = 0;
+            _l.femaleCount = 0;
             _l.trainees_list.forEach((_t) => {
+              if (_t.gender && _t.gender.id == 1) {
+                _l.femaleCount++;
+              } else {
+                _l.maleCount++;
+              }
               if (_t.trainee_degree >= _l.success_rate) {
                 _l.succeed_trainees += 1;
+              }
+              if (window.isChart) {
+                $scope.displayChart({ ..._l });
               }
             });
           });
@@ -42,7 +112,6 @@ app.controller('trainingsReport', function ($scope, $http, $timeout) {
       },
       function (err) {
         $scope.busy = false;
-        
       }
     );
   };

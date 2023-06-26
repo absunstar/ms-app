@@ -46,6 +46,7 @@ site.get(
 );
 site.loadLocalApp('client-side');
 site.loadLocalApp('ui-print');
+site.loadLocalApp('charts');
 
 site.importApps(__dirname + '/apps_training');
 site.addFeature('training');
@@ -83,7 +84,6 @@ site.sendPerMinute = 0;
 site.sendPerHour = 0;
 site.sendPerDay = 0;
 setInterval(() => {
-  console.log(site.msgList.length,"hhhhhhhhhhhhh");
   if (site.setting.email_setting) {
     if (site.sendPerDay > site.setting.email_setting.day_limit) {
       return;
@@ -99,7 +99,6 @@ setInterval(() => {
         // site.sendMailAzure(msg);
       });
     }
-    console.log(site.msgList.length);
   }
 }, 1000 * 60);
 

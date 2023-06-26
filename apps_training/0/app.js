@@ -664,8 +664,8 @@ module.exports = function init(site) {
           let certificate = {
             _id: _certificate._id,
             active: _certificate.IsActive,
-            file_type : 'trainee',
-            type : 'partners',
+            file_type: 'trainee',
+            type: 'partners',
             add_user_info: {
               date: _certificate.CreatedAt,
             },
@@ -680,10 +680,10 @@ module.exports = function init(site) {
 
           if ((partner = partners.find((p) => p._id.toString() == _certificate.PartnerId.toString()))) {
             certificate.partner = {
-              _id : partner._id,
-              id : partner.id,
-              name_ar : partner.name_ar,
-              name_en : partner.name_en,
+              _id: partner._id,
+              id: partner.id,
+              name_ar: partner.name_ar,
+              name_en: partner.name_en,
             };
           }
 
@@ -795,6 +795,7 @@ module.exports = function init(site) {
           email: trainee.email,
           mobile: trainee.mobile,
           id_number: trainee.id_number,
+          gender: trainee.gender,
           approve: _t.IsApproved,
         };
 
@@ -843,6 +844,7 @@ module.exports = function init(site) {
                     id: train.id,
                     first_name: train.first_name,
                     email: train.email,
+                    gender: train.gender,
                     attend: _a.IsAttendant,
                   });
                 }
