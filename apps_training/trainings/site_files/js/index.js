@@ -214,10 +214,10 @@ app.controller('trainings', function ($scope, $http, $timeout) {
           });
           $scope.count += response.data.count;
 
-          site.hideModal('#trainingSearchModal');
         } else if (!more) {
           $scope.list = [];
         }
+        site.hideModal('#trainingSearchModal');
       },
       function (err) {
         $scope.busy = false;
@@ -551,6 +551,11 @@ app.controller('trainings', function ($scope, $http, $timeout) {
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#trainingSearchModal');
+  };
+  $scope.searchAll = function () {
+    $scope.getTrainingList($scope.search);
+    site.hideModal('#trainingReportSearchModal');
+    $scope.search = {};
   };
 
   $scope.genderToTraining = function () {

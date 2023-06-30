@@ -10,6 +10,7 @@
         <div x-import="trainings/add_modal.html"></div>
         <div x-import="trainings/update_modal.html"></div>
         <div x-import="trainings/delete_modal.html"></div>
+        <div x-import="trainings/search_all_modal.html"></div>
         <div x-import="trainings/view_modal.html"></div>
         <div x-import="trainings/attending_scedule_modal.html"></div>
         <div x-import="trainings/attendance_modal.html"></div>
@@ -18,7 +19,23 @@
           <h1 class="bold text-center">##word.trainings##</h1>
         </div>
 
-        <div x-feature="test" class="filter">
+        <div class="row">
+          <i-control class="col6" label="##word.search_for_training##" ng-model="general_search"></i-control>
+          <div class="col2">
+            <br />
+            <i-button type="search" label="##word.search##" ng-click="getTrainingList()"> </i-button>
+          </div>
+          <div class="col2">
+            <br />
+            <i-button type="search" label="##word.search_using_filter##" ng-click="displaySearchModal()"></i-button>
+          </div>
+          <div class="col2" x-feature="chart-test">
+            <br />
+            <i-button label="##word.Set Gender To Training##" ng-click="genderToTraining()"> </i-button>
+          </div>
+        </div>
+
+      <!--   <div x-feature="test" class="filter">
           <div class="row">
             <i-list
               class="col3"
@@ -91,7 +108,7 @@
             <br />
             <i-button label="##word.Set Gender To Training##" ng-click="genderToTraining()"> </i-button>
           </div>
-        </div>
+        </div> -->
         <div class="top-actions">
           <i-button type="add" label="##word.training_new##" ng-click="displayAddTraining()"></i-button>
           <h3 class="bold text-center text-danger">{{error}}</h3>
