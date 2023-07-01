@@ -185,3 +185,11 @@ site.sendMailAzure = function (options) {
 //   subject: `Activatin Link`,
 //   message: `<a target="_blank" href="https://egytag.com"> Click Here To Activate Your Account </a>`,
 // });
+
+// for (let index = 0; index < 100; index++) {
+//   console.log(`
+//   Send Email TO User${index + 1}@egytag.com
+//   with subjct "Rest Password Request"
+//   message : "Click This Link To Reset Your Password"
+//   `);
+// }
