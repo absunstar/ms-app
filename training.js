@@ -85,6 +85,10 @@ site.sendPerMinute = 0;
 site.sendPerHour = 0;
 site.sendPerDay = 0;
 setInterval(() => {
+  site.setting.email_setting = site.setting.email_setting || {};
+  site.setting.email_setting.day_limit = site.setting.email_setting.day_limit || 5000;
+  site.setting.email_setting.day_hour = site.setting.email_setting.day_hour || 1000;
+  
   if (site.setting.email_setting) {
     if (site.sendPerDay > site.setting.email_setting.day_limit) {
       return;
