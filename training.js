@@ -77,9 +77,8 @@ site.sendMailSMPT = function (obj) {
 
 site.sendMailMessage = function (msg) {
   msg.id = site.guid();
-  console.log(msg);
-  site.msgList.push(msg);
-  // site.sendMailAzure(msg);
+  // site.msgList.push(msg);
+  site.sendMailAzure(msg);
 };
 site.msgList = [];
 site.sendPerMinute = 0;
@@ -100,9 +99,9 @@ setInterval(() => {
       arr.forEach((msg) => {
         let index = site.msgList.findIndex((_m) => _m.id == msg.id);
         if (index !== -1) {
+          site.sendMailAzure(site.msgList[i]);
           site.msgList.splice(index, 1);
         }
-        // site.sendMailAzure(msg);
       });
     }
   }
