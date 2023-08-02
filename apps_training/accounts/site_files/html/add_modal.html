@@ -110,9 +110,9 @@
                         </legend>
 
                         <div class="row" ng-repeat="p in partner.partners_list">
-                          <i-list v="r" class="col6" label="##word.partner##" ng-model="p.partner" display="name_##session.lang##" items="partnersList" ng-search="sub_partner.$partner"></i-list>
+                          <i-list v="r" class="col5" label="##word.partner##" ng-model="p.partner" display="name_##session.lang##" items="partnersList" ng-search="sub_partner.$partner"></i-list>
                           <div class="col3"></div>
-                          <i-button type="delete default" class="col2" ng-click="partner.partners_list.splice($index,1)"></i-button>
+                          <i-button type="delete default" class="col1" ng-click="partner.partners_list.splice($index,1)"></i-button>
                         </div>
                       </fieldset>
                       <div class="row">
@@ -160,8 +160,9 @@
                         </legend>
 
                         <div class="row" ng-repeat="p in sub_partner.partners_list">
-                          <i-list v="r" class="col6" label="##word.partner##" ng-change="getSubPartnerList(p)" ng-model="p.partner" display="name_##session.lang##" items="partnersList" ng-search="sub_partner.$partner"></i-list>
+                          <i-list v="r" class="col5" label="##word.partner##" ng-change="getSubPartnerList(p)" ng-model="p.partner" display="name_##session.lang##" items="partnersList" ng-search="sub_partner.$partner"></i-list>
                           <i-checklist class="col6" label="##word.sub_partner##" ng-model="p.sub_partners" display="name_##session.lang##" items="p.$subPartnersList" ng-search="p.$sub_partner"></i-checklist>
+                          <i-button type="delete default" class="col1" ng-click="sub_partner.partners_list.splice($index,1)"></i-button>
                         </div>
                       </fieldset>
 
@@ -217,8 +218,10 @@
                         </legend>
 
                         <div class="row" ng-repeat="p in trainer.partners_list">
-                          <i-list v="r" class="col6" label="##word.partner##" ng-change="getSubPartnerList(p)" ng-model="p.partner" display="name_##session.lang##" items="partnersList" ng-search="trainer.$partner"></i-list>
+                          <i-list v="r" class="col5" label="##word.partner##" ng-change="getSubPartnerList(p)" ng-model="p.partner" display="name_##session.lang##" items="partnersList" ng-search="trainer.$partner"></i-list>
                           <i-checklist class="col6" label="##word.sub_partner##" ng-model="p.sub_partners" display="name_##session.lang##" items="p.$subPartnersList" ng-search="p.$sub_partner"></i-checklist>
+                       
+                          <i-button type="delete default" class="col1" ng-click="trainer.partners_list.splice($index,1)"></i-button>
                         </div>
                       </fieldset>
 
