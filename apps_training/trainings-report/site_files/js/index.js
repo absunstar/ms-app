@@ -92,9 +92,9 @@ app.controller('trainingsReport', function ($scope, $http, $timeout) {
             _l.femaleCount = 0;
             _l.trainees_list.forEach((_t) => {
               if (_t.gender && _t.gender.id == 1) {
-                _l.femaleCount++;
-              } else {
                 _l.maleCount++;
+              } else {
+                _l.femaleCount++;
               }
               if (_t.trainee_degree >= _l.success_rate) {
                 _l.succeed_trainees += 1;
