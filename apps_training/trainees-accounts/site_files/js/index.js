@@ -14,6 +14,7 @@ app.controller('traineesAccounts', function ($scope, $http, $timeout) {
     $scope.trainee = {
       id_type: 'national_id',
       active: true,
+      birthdate: new Date(),
     };
 
     site.showModal('#traineeAddModal');
