@@ -57,8 +57,8 @@ app.controller('trainingsReport', function ($scope, $http, $timeout) {
       if (document.querySelector('body.ar')) {
         chart1.rtl = true;
         chart2.rtl = true;
-        chart1.legend.position = 'right';
-        chart2.legend.position = 'right';
+        chart1.legend.position = 'left';
+        chart2.legend.position = 'left';
         chart1.legend.labels.template.textAlign = 'end';
         chart2.legend.labels.template.textAlign = 'end';
         pieSeries.alignLabels = false;
