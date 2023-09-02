@@ -20,7 +20,6 @@ app.controller('trainingsReport', function ($scope, $http, $timeout) {
       };
 
       let data2 = {
-        
         data: [
           {
             Trainees: 'Succeed',
@@ -39,6 +38,11 @@ app.controller('trainingsReport', function ($scope, $http, $timeout) {
       let chart1 = am4core.createFromConfig(data1, 'chart1_' + t.id, am4charts.PieChart);
       let chart2 = am4core.createFromConfig(data2, 'chart2_' + t.id, am4charts.PieChart);
 
+      if (document.querySelector('body.ar')) {
+        chart1.rtl = true;
+        chart2.rtl = true;
+      }
+
       var pieSeries = chart1.series.push(new am4charts.PieSeries());
       pieSeries.dataFields.value = 'Count';
       pieSeries.dataFields.category = 'Gender';
@@ -54,7 +58,6 @@ app.controller('trainingsReport', function ($scope, $http, $timeout) {
       pieSeries.labels.template.disabled = true;
       pieSeries.ticks.template.disabled = true;
       chart2.legend = new am4charts.Legend();
-
     }, 1000);
   };
   $scope.getTrainingList = function (where) {
