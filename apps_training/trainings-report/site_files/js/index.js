@@ -4,15 +4,27 @@ app.controller('trainingsReport', function ($scope, $http, $timeout) {
 
   $scope.displayChart = function (t) {
     $timeout(() => {
+      let male = 'Male';
+      let female = 'Female';
+      let pass = 'Succeed';
+      let notPass = 'Not Pass';
+
+      if (document.querySelector('body.ar')) {
+        male = 'ذكر';
+        female = 'أنثى';
+        pass = 'نجاح';
+        notPass = 'رسوب';
+      }
+
       let data1 = {
         data: [
           {
-            Gender: 'Male',
+            Gender: male,
             Count: t.maleCount,
             Color: am4core.color('#2196f3'),
           },
           {
-            Gender: 'Female',
+            Gender: female,
             Count: t.femaleCount,
             Color: am4core.color('#ffeb3b'),
           },
@@ -22,12 +34,12 @@ app.controller('trainingsReport', function ($scope, $http, $timeout) {
       let data2 = {
         data: [
           {
-            Trainees: 'Succeed',
+            Trainees: pass,
             Count: t.succeed_trainees,
             Color: am4core.color('#4caf50'),
           },
           {
-            Trainees: 'Not Pass',
+            Trainees: notPass,
             Count: t.trainees_list.length - t.succeed_trainees,
             Color: am4core.color('#f44336'),
           },
@@ -54,16 +66,14 @@ app.controller('trainingsReport', function ($scope, $http, $timeout) {
       pieSeries2.ticks.template.disabled = true;
       chart2.legend = new am4charts.Legend();
 
-      if (document.querySelector('body.ar')) {
-        chart1.rtl = true;
-        chart2.rtl = true;
-        chart1.legend.position = 'left';
-        chart2.legend.position = 'left';
-        chart1.legend.labels.template.textAlign = 'end';
-        chart2.legend.labels.template.textAlign = 'end';
-        pieSeries.alignLabels = false;
-        pieSeries2.alignLabels = false;
-      }
+      chart1.rtl = true;
+      chart2.rtl = true;
+      chart1.legend.position = 'left';
+      chart2.legend.position = 'left';
+      chart1.legend.labels.template.textAlign = 'end';
+      chart2.legend.labels.template.textAlign = 'end';
+      pieSeries.alignLabels = false;
+      pieSeries2.alignLabels = false;
     }, 1000);
   };
   $scope.getTrainingList = function (where) {

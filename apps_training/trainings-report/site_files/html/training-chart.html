@@ -70,8 +70,8 @@
               <h2 class="blue text-center">{{trainingSelected.trainer.first_name}}</h2>
 
               <div class="row">
-                <p class="col6 text-center"><span class="bold"> Start Date </span> : {{trainingSelected.start_date | date:"dd/MM/yyyy"}}</p>
-                <p class="col6 text-center"><span class="bold"> End Date </span> : {{trainingSelected.end_date | date:"dd/MM/yyyy"}}</p>
+                <p class="col6 text-center"><span class="bold"> ##word.Start Date## </span> : {{trainingSelected.start_date | date:"dd/MM/yyyy"}}</p>
+                <p class="col6 text-center"><span class="bold"> ##word.End Date## </span> : {{trainingSelected.end_date | date:"dd/MM/yyyy"}}</p>
               </div>
             </div>
 
@@ -79,20 +79,20 @@
               <div class="col2">
                 <table class="table hover">
                   <tr>
-                    <td class="bold">Total Trainee</td>
+                    <td class="bold">##word.Total Trainee##</td>
                     <td class="text-center bold">{{trainingSelected.trainees_list.length}}</td>
                   </tr>
                   <tr>
-                    <td class="bold">Succeed</td>
+                    <td class="bold">##word.Succeed##</td>
                     <td class="text-center bold green">{{trainingSelected.succeed_trainees}}</td>
                   </tr>
 
                   <tr>
-                    <td class="bold">Male</td>
+                    <td class="bold">##word.Male##</td>
                     <td class="text-center bold blue">{{trainingSelected.maleCount}}</td>
                   </tr>
                   <tr>
-                    <td class="bold">Female</td>
+                    <td class="bold">##word.Female##</td>
                     <td class="text-center bold orange">{{trainingSelected.femaleCount}}</td>
                   </tr>
                 </table>
