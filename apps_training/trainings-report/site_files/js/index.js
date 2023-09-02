@@ -38,7 +38,7 @@ app.controller('trainingsReport', function ($scope, $http, $timeout) {
       let chart1 = am4core.createFromConfig(data1, 'chart1_' + t.id, am4charts.PieChart);
       let chart2 = am4core.createFromConfig(data2, 'chart2_' + t.id, am4charts.PieChart);
 
-      var pieSeries = chart1.series.push(new am4charts.PieSeries());
+      let pieSeries = chart1.series.push(new am4charts.PieSeries());
       pieSeries.dataFields.value = 'Count';
       pieSeries.dataFields.category = 'Gender';
       pieSeries.slices.template.propertyFields.fill = 'Color';
@@ -46,21 +46,24 @@ app.controller('trainingsReport', function ($scope, $http, $timeout) {
       pieSeries.ticks.template.disabled = true;
       chart1.legend = new am4charts.Legend();
 
-      var pieSeries = chart2.series.push(new am4charts.PieSeries());
-      pieSeries.dataFields.value = 'Count';
-      pieSeries.dataFields.category = 'Trainees';
-      pieSeries.slices.template.propertyFields.fill = 'Color';
-      pieSeries.labels.template.disabled = true;
-      pieSeries.ticks.template.disabled = true;
+      let pieSeries2 = chart2.series.push(new am4charts.PieSeries());
+      pieSeries2.dataFields.value = 'Count';
+      pieSeries2.dataFields.category = 'Trainees';
+      pieSeries2.slices.template.propertyFields.fill = 'Color';
+      pieSeries2.labels.template.disabled = true;
+      pieSeries2.ticks.template.disabled = true;
       chart2.legend = new am4charts.Legend();
 
       if (document.querySelector('body.ar')) {
         chart1.rtl = true;
         chart2.rtl = true;
-        chart1.legend.position = "right";
-        chart2.legend.position = "right";
+        chart1.legend.position = 'right';
+        chart2.legend.position = 'right';
+        chart1.legend.labels.template.textAlign = 'end';
+        chart2.legend.labels.template.textAlign = 'end';
+        pieSeries.alignLabels = false;
+        pieSeries2.alignLabels = false;
       }
-
     }, 1000);
   };
   $scope.getTrainingList = function (where) {
