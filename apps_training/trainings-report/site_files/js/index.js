@@ -41,6 +41,8 @@ app.controller('trainingsReport', function ($scope, $http, $timeout) {
       if (document.querySelector('body.ar')) {
         chart1.rtl = true;
         chart2.rtl = true;
+        console.log(chart1);
+        console.log(chart2);
       }
 
       var pieSeries = chart1.series.push(new am4charts.PieSeries());
