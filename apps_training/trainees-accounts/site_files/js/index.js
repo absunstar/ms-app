@@ -164,6 +164,9 @@ app.controller('traineesAccounts', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.trainee = response.data.doc;
+          if (!$scope.trainee.birthdate) {
+            $scope.trainee.birthdate = new Date();
+          }
         } else {
           $scope.error = response.data.error;
         }
