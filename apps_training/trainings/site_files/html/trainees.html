@@ -36,7 +36,7 @@
         <i-button label="##word.add_trainees##" class="col2" ng-hide="training.approve" onclick="site.showModal( '#addtraineeToTrainingModal')"></i-button>
         <i-upload class="col2" label="##word.upload_trainees##" ng-hide="training.approve" on-uploaded="getTraineesUpload($data)" api="/api/trainees/excel_upload"> </i-upload>
         <h4 ng-hide="training.approve">
-          <a href="/xls/trainee.xlsx" style="color: #0038c9 !important; text-decoration: revert !important">##word.download_excel_template##</a>
+          <a href="/api/trainee.xlsx" style="color: #0038c9 !important; text-decoration: revert !important">##word.download_excel_template##</a>
         </h4>
       </div>
 

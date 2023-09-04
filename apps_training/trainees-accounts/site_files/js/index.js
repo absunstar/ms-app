@@ -279,6 +279,48 @@ app.controller('traineesAccounts', function ($scope, $http, $timeout) {
     site.showModal('#traineeSearchModal');
   };
 
+  $scope.sendActivationLink = function (user) {
+    user.$sendActivationLink = true;
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/user/send-activation-link',
+      data: user,
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+        } else if (response.data.error) {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+       
+      }
+    );
+  };
+  $scope.sendPasswordLink = function (user) {
+    user.$sendActivationLink = true;
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/user/send-forget-password-link',
+      data: user,
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          alert('Password Link Send To Mail ');
+        } else if (response.data.error) {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {}
+    );
+  };
+  
   $scope.getAccountList();
   $scope.getAccountsType();
   $scope.getGender();

@@ -64,8 +64,8 @@
                 <i-button ng-hide="c.active" label="##word.activate##" ng-click="showActivateModal(c)"></i-button>
                 <i-button ng-hide="!c.active" type="close" label="##word.deactivate##" ng-click="showDeactivateModal(c)"></i-button>
                 <i-button ng-hide="!c.active" type="edit" label="##word.edit##" ng-click="displayUpdateAccount(c)"></i-button>
-                <i-button ng-hide="!c.active" label="##word.activation_link##" ng-click="displayDetailsCity(c)"></i-button>
-                <i-button ng-hide="!c.active" label="##word.password_link##" ng-click="displayDetailsCity(c)"></i-button>
+                <i-button ng-hide="!c.active" label="##word.activation_link##" ng-click="sendActivationLink(c)"></i-button>
+                <i-button ng-hide="!c.active" label="##word.password_link##" ng-click="sendPasswordLink(c)"></i-button>
                 <i-button loading="busy" type="delete" label="##word.delete##" ng-click="displayDeleteAccount(c)"></i-button>
               </td>
             </tr>

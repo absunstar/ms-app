@@ -28,6 +28,12 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/json/days.json',
   });
 
+  site.get({ name: '/api/trainee.xlsx', public: true }, (req, res) => {
+    let path = site.path.join(site.cwd, '/apps_training/0/site_files/xls/trainee.xlsx');
+    console.log(path);
+    res.download(path, 'trainee.xlsx');
+  });
+
   site.post('/api/trainings/add', (req, res) => {
     let response = {
       done: false,
