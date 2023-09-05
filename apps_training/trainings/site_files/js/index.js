@@ -49,6 +49,9 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
+    if(!$scope.training.location){
+      $scope.training.location = 'online'
+    }
 
     $scope.busy = true;
     $http({

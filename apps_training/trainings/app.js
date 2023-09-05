@@ -545,7 +545,7 @@ module.exports = function init(site) {
 
     let where = req.body.where || {};
 
-    where['$or'] = [{ $and: [{ approve: true }, { 'privacy_type.id': 2 }] }, { 'privacy_type.id': 1 }];
+   // where['$or'] = [{ $and: [{ approve: true }, { 'privacy_type.id': 2 }] }, { 'privacy_type.id': 1 }];
 
     where['trainees_list.id'] = req.body.id;
     where['trainees_list.approve'] = true;

@@ -18,7 +18,6 @@ app.controller('traineeCertificates', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list && response.data.list.length > 0) {
           $scope.list = response.data.list;
-          console.log($scope.list[1]);
           $scope.count = $scope.list.length;
         }
       },

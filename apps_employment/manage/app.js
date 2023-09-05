@@ -31,8 +31,8 @@ module.exports = function init(site) {
     partners_logo_list: [],
     contact: {
       location: 'Egypt',
-      email: 'Absunstar@gmail.com',
-      phone: '01090061266',
+      email: '',
+      phone: '',
     },
     links: [
       {
