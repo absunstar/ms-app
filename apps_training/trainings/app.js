@@ -545,7 +545,7 @@ module.exports = function init(site) {
 
     let where = req.body.where || {};
 
-   // where['$or'] = [{ $and: [{ approve: true }, { 'privacy_type.id': 2 }] }, { 'privacy_type.id': 1 }];
+    // where['$or'] = [{ $and: [{ approve: true }, { 'privacy_type.id': 2 }] }, { 'privacy_type.id': 1 }];
 
     where['trainees_list.id'] = req.body.id;
     where['trainees_list.approve'] = true;
@@ -630,7 +630,9 @@ module.exports = function init(site) {
           response.done = true;
 
           let questionsData = {
-            where: req.body.where,
+            where: {
+              'training_category.id': doc.training_category.id,
+            },
             exam_template: req.body.exam_template,
             number_questions: req.body.number_questions,
           };
