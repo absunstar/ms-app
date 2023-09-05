@@ -950,7 +950,9 @@ module.exports = function init(site) {
                 nameField.setText(req.session.user.first_name + ' ' + (req.session.user.last_name || ''));
 
                 let TrainingCategories = form.getTextField('TrainingCategories');
-                TrainingCategories.setText(trainee_degree.toString() + ' % ');
+                if (TrainingCategories) {
+                  TrainingCategories.setText(trainee_degree.toString() + ' % ');
+                }
 
                 let start_date = form.getTextField('StartDate');
                 start_date.setText(`${startDate.getDate()}  /  ${startDate.getMonth() + 1} /  ${startDate.getFullYear()}`);

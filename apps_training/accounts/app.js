@@ -120,7 +120,6 @@ module.exports = function init(site) {
     delete user.retype_password;
     user.$req = req;
     user.$res = res;
-    user.email = user.email.toLowerCase();
     site.security.getUser(
       {
         'role.name': 'trainee',
@@ -129,7 +128,7 @@ module.exports = function init(site) {
       (err, doc) => {
         if (!err) {
           if (doc && doc.id) {
-            if (doc.email.toLowerCase() == user.email) {
+            if (doc.email== user.email) {
               response.error = 'User Exists';
             } else if (doc.id_number == user.id_number) {
               response.error = 'Number Id Is Exists';
