@@ -673,7 +673,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/trainings/createtrainee.certificates', (req, res) => {
+  site.post('/api/trainings/create_certificates', (req, res) => {
     let response = {
       done: false,
     };
