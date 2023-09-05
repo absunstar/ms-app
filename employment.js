@@ -2,7 +2,7 @@ require('dotenv').config();
 const site = require('../isite')({
   port: [44441],
   lang: 'en',
-  version: '3.177.88',
+  version: '_'+ new Date().getTime(),
   name: 'EmploymentV2',
   theme: 'theme_paper',
   savingTime: 10,
