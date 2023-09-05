@@ -41,7 +41,7 @@ app.controller('traineesAccounts', function ($scope, $http, $timeout) {
           if (response.data.done) {
             site.hideModal('#traineeAddModal');
             site.resetValidated('traineeAddModal');
-            $scope.getAccountList();
+            $scope.list.push(response.data.doc);
           } else if (response.data.error) {
             $scope.error = response.data.error;
             if (response.data.error.like('*Name Exists*')) {
