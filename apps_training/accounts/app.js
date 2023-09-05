@@ -70,7 +70,6 @@ module.exports = function init(site) {
     public: true,
   });
 
-
   site.post({ name: '/api/register', public: true }, (req, res) => {
     let response = {};
 
@@ -121,6 +120,7 @@ module.exports = function init(site) {
     delete user.retype_password;
     user.$req = req;
     user.$res = res;
+    user.email = user.email.toLowerCase();
     site.security.getUser(
       {
         'role.name': 'trainee',
@@ -129,7 +129,7 @@ module.exports = function init(site) {
       (err, doc) => {
         if (!err) {
           if (doc && doc.id) {
-            if (doc.email == user.email) {
+            if (doc.email.toLowerCase() == user.email) {
               response.error = 'User Exists';
             } else if (doc.id_number == user.id_number) {
               response.error = 'Number Id Is Exists';
@@ -195,6 +195,7 @@ module.exports = function init(site) {
     user.$req = req;
     user.$res = res;
     delete user.$$hashKey;
+    user.email = user.email;
     /*     site.security.isUserExists(user, function (err, user_found) {
       if (user_found && user.id != user_found.id) {
         response.error = 'Email Is Exist';
