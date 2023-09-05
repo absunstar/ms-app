@@ -30,7 +30,7 @@ app.controller('traineesAccounts', function ($scope, $http, $timeout) {
     if ($scope.trainee) {
       $scope.trainee.role = $scope.accountsTypeList[4];
       $scope.busy = true;
-
+      $scope.trainee.email = $scope.trainee.email.toLowerCase();
       $http({
         method: 'POST',
         url: '/api/user/add',
@@ -83,6 +83,7 @@ app.controller('traineesAccounts', function ($scope, $http, $timeout) {
       return;
     }
     $scope.busy = true;
+    account.email = account.email.toLowerCase();
     $http({
       method: 'POST',
       url: '/api/user/update',
@@ -119,6 +120,7 @@ app.controller('traineesAccounts', function ($scope, $http, $timeout) {
     }
 
     $scope.busy = true;
+    account.email = account.email.toLowerCase();
     $http({
       method: 'POST',
       url: '/api/user/update',
@@ -295,9 +297,7 @@ app.controller('traineesAccounts', function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
         }
       },
-      function (err) {
-       
-      }
+      function (err) {}
     );
   };
   $scope.sendPasswordLink = function (user) {
@@ -320,7 +320,7 @@ app.controller('traineesAccounts', function ($scope, $http, $timeout) {
       function (err) {}
     );
   };
-  
+
   $scope.getAccountList();
   $scope.getAccountsType();
   $scope.getGender();
