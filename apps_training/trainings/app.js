@@ -55,6 +55,7 @@ module.exports = function init(site) {
     }
 
     training_doc.dates_list = [];
+    training_doc.days = training_doc.days || [];
     training_doc.days.forEach((_d) => {
       let startDate = new Date(training_doc.start_date);
       let endDate = new Date(training_doc.end_date);
