@@ -498,7 +498,7 @@ module.exports = function init(site) {
           doc.forgetPasswordCode = Math.random().toString().replace('.', '');
           doc.active = true;
           site.security.updateUser(doc, () => {
-            res.redirect(`${req.headers['origin']}/changePassWord?code=${doc.forgetPasswordCode}&activated=true`);
+            res.redirect(`${req.host}/changePassWord?code=${doc.forgetPasswordCode}&activated=true`);
           });
         } else {
           response.error = 'Error While Activated User';
