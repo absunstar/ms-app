@@ -36,7 +36,7 @@ app.controller('forgetPassword', function ($scope, $http, $timeout) {
       $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
-    if (user.new_password !== user.new_password2) {
+    if (!user.new_password || user.new_password !== user.new_password2) {
       $scope.error = '##word.password_err_match##';
       return;
     }

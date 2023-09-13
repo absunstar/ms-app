@@ -566,6 +566,7 @@ module.exports = function init(site) {
         (err, doc) => {
           if (!err && doc) {
             doc.password = user.new_password;
+            delete doc.forgetPasswordCode;
             site.security.updateUser(doc);
             response.done = true;
             res.json(response);
