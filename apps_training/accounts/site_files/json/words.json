@@ -153,7 +153,8 @@
         "name": "existing_user",
         "en": "Existing user?",
         "ar": "مستخدم موجود؟"
-    },{
+    },
+    {
         "name": "the_account_is_inactive",
         "en": "The account is inactive",
         "ar": "الحساب غير نشط"
@@ -172,8 +173,7 @@
         "name": "login_via",
         "en": "Login Via",
         "ar": "تسجيل الدخول عبر"
-    }
-    ,
+    },
     {
         "name": "not_registered",
         "en": "Not registered?",
@@ -226,8 +226,13 @@
     },
     {
         "name": "new_password",
-        "en": "New Password",
+        "en": "Type New Password",
         "ar": "كلمة المرور الجديدة"
+    },
+    {
+        "name": "new_password",
+        "en": "Re-Type Password",
+        "ar": "كتابة كلمة المرور مرة أخرى"
     },
     {
         "name": "link_sent_your_email",

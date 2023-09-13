@@ -128,7 +128,7 @@ module.exports = function init(site) {
       (err, doc) => {
         if (!err) {
           if (doc && doc.id) {
-            if (doc.email== user.email) {
+            if (doc.email == user.email) {
               response.error = 'User Exists';
             } else if (doc.id_number == user.id_number) {
               response.error = 'Number Id Is Exists';
@@ -487,17 +487,19 @@ module.exports = function init(site) {
       done: false,
     };
 
-    site.security.getUser(
+    $users.findOne(
       {
-        id: req.query.id,
+        where: {
+          id: req.query.id,
+        },
       },
       (err, doc) => {
         if (!err && doc && doc.activationCode == req.query.code) {
-          response.done = true;
-          response.active = true;
+          doc.forgetPasswordCode = Math.random().toString().replace('.', '');
           doc.active = true;
-          site.security.updateUser(doc);
-          res.redirect('/login');
+          site.security.updateUser(doc, () => {
+            res.redirect(`${req.headers['origin']}/changePassWord?code=${doc.forgetPasswordCode}&activated=true`);
+          });
         } else {
           response.error = 'Error While Activated User';
           res.json(response);
