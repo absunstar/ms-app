@@ -502,9 +502,7 @@ module.exports = function init(site) {
           doc.forgetPasswordCode = Math.random().toString().replace('.', '');
           doc.active = true;
           site.security.updateUser(doc, () => {
-            let realHost = req.headers['origin'].replace('127.0.0.1:44442', '');
-
-            res.redirect(`${realHost}/changePassWord?code=${doc.forgetPasswordCode}&activated=true`);
+            res.redirect(`/changePassWord?code=${doc.forgetPasswordCode}&activated=true`);
           });
         } else {
           response.error = 'Error While Activated User';
