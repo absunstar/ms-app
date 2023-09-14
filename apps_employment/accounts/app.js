@@ -35,7 +35,6 @@ module.exports = function init(site) {
     public: true,
   });
 
-
   site.get({
     name: 'ForgetPassWord',
     path: __dirname + '/site_files/html/forget_password.html',
@@ -44,33 +43,32 @@ module.exports = function init(site) {
     public: true,
   });
 
-  site.get({
-    name: 'changePassWord',
-    parser: 'html',
-    compress: true,
-    public: true,
-  }, (req, res) => {
-
-    if (req.query.code) {
-
-      site.security.getUser(
-        {
-          forgetPasswordCode: req.query.code,
-        },
-        (err, doc) => {
-          if (!err && doc) {
-            res.render('accounts/reset_password.html' , {code : req.query.code});
-          } else {
-            res.json({ error: 'Code is invalid' })
+  site.get(
+    {
+      name: 'changePassWord',
+      parser: 'html',
+      compress: true,
+      public: true,
+    },
+    (req, res) => {
+      if (req.query.code) {
+        site.security.getUser(
+          {
+            forgetPasswordCode: req.query.code,
+          },
+          (err, doc) => {
+            if (!err && doc) {
+              res.render('accounts/reset_password.html', { code: req.query.code });
+            } else {
+              res.json({ error: 'Code is invalid' });
+            }
           }
-        }
-      );
-    } else {
-      res.json({ error: 'Code is invalid' })
+        );
+      } else {
+        res.json({ error: 'Code is invalid' });
+      }
     }
-
-  });
-
+  );
 
   site.post({ name: '/api/register', public: true }, (req, res) => {
     let response = {};
@@ -436,12 +434,11 @@ module.exports = function init(site) {
 
       delete where['general_search'];
     }
-    
+
     site.security.getUsers(
       {
         where: where,
         limit: req.body.limit || {},
-
       },
       (err, docs, count) => {
         if (!err) {
@@ -470,7 +467,8 @@ module.exports = function init(site) {
       } else {
         response.error = err.message;
       }
-      response.link = `${req.host}/api/user/activation?id=${response.user.id}&code=${response.user.activationCode}`;
+      let realHost = req.headers['origin'].replace('127.0.0.1:44441', '');
+      response.link = `${realHost}/api/user/activation?id=${response.user.id}&code=${response.user.activationCode}`;
       site.sendMailMessage({
         to: response.user.email,
         subject: `Activatin Link`,
@@ -525,8 +523,8 @@ module.exports = function init(site) {
         $users.update(doc, (err) => {
           if (!err) {
             response.done = true;
-
-            response.link = `${req.host}/changePassWord?code=${doc.forgetPasswordCode}`;
+            let realHost = req.headers['origin'].replace('127.0.0.1:44441', '');
+            response.link = `${realHost}/changePassWord?code=${doc.forgetPasswordCode}`;
             site.sendMailMessage({
               to: doc.email,
               subject: `Forget Password Link`,
@@ -544,8 +542,9 @@ module.exports = function init(site) {
   site.post(
     {
       name: '/api/user/new-password',
-      public: true
-    }, (req, res) => {
+      public: true,
+    },
+    (req, res) => {
       let response = {
         done: false,
       };
@@ -560,15 +559,16 @@ module.exports = function init(site) {
         },
         (err, doc) => {
           if (!err && doc) {
-              doc.password = user.new_password;
-              site.security.updateUser(doc);
-              response.done = true;
-              res.json(response);
+            doc.password = user.new_password;
+            site.security.updateUser(doc);
+            response.done = true;
+            res.json(response);
           } else {
             response.error = 'Error Email not correct';
             res.json(response);
           }
-        })
-
-    });
+        }
+      );
+    }
+  );
 };

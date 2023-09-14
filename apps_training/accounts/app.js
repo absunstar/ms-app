@@ -155,7 +155,9 @@ module.exports = function init(site) {
                     res.json(response);
                     doc.activationCode = Math.random().toString().replace('.', '');
                     site.security.updateUser(doc, (err) => {
-                      doc.activeLink = `${req.host}/api/user/activation?id=${doc.id}&code=${doc.activationCode}`;
+                      let realHost = req.headers['origin'].replace('127.0.0.1:44442', '');
+
+                      doc.activeLink = `${realHost}/api/user/activation?id=${doc.id}&code=${doc.activationCode}`;
                       site.sendMailMessage({
                         to: doc.email,
                         subject: `Activatin Link`,
@@ -472,7 +474,9 @@ module.exports = function init(site) {
       } else {
         response.error = err.message;
       }
-      response.link = `${req.host}/api/user/activation?id=${response.user.id}&code=${response.user.activationCode}`;
+      let realHost = req.headers['origin'].replace('127.0.0.1:44442', '');
+
+      response.link = `${realHost}/api/user/activation?id=${response.user.id}&code=${response.user.activationCode}`;
       site.sendMailMessage({
         to: response.user.email,
         subject: `Activatin Link`,
@@ -498,7 +502,9 @@ module.exports = function init(site) {
           doc.forgetPasswordCode = Math.random().toString().replace('.', '');
           doc.active = true;
           site.security.updateUser(doc, () => {
-            res.redirect(`${req.host}/changePassWord?code=${doc.forgetPasswordCode}&activated=true`);
+            let realHost = req.headers['origin'].replace('127.0.0.1:44442', '');
+
+            res.redirect(`${realHost}/changePassWord?code=${doc.forgetPasswordCode}&activated=true`);
           });
         } else {
           response.error = 'Error While Activated User';
@@ -529,8 +535,9 @@ module.exports = function init(site) {
         $users.update(doc, (err) => {
           if (!err) {
             response.done = true;
+            let realHost = req.headers['origin'].replace('127.0.0.1:44442', '');
 
-            response.link = `${req.host}/changePassWord?code=${doc.forgetPasswordCode}`;
+            response.link = `${realHost}/changePassWord?code=${doc.forgetPasswordCode}`;
             site.sendMailMessage({
               to: doc.email,
               subject: `Forget Password Link`,
