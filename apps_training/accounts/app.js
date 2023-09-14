@@ -155,7 +155,7 @@ module.exports = function init(site) {
                     res.json(response);
                     doc.activationCode = Math.random().toString().replace('.', '');
                     site.security.updateUser(doc, (err) => {
-                      doc.activeLink = `${req.headers['origin']}/api/user/activation?id=${doc.id}&code=${doc.activationCode}`;
+                      doc.activeLink = `${req.host}/api/user/activation?id=${doc.id}&code=${doc.activationCode}`;
                       site.sendMailMessage({
                         to: doc.email,
                         subject: `Activatin Link`,
@@ -472,7 +472,7 @@ module.exports = function init(site) {
       } else {
         response.error = err.message;
       }
-      response.link = `${req.headers['origin']}/api/user/activation?id=${response.user.id}&code=${response.user.activationCode}`;
+      response.link = `${req.host}/api/user/activation?id=${response.user.id}&code=${response.user.activationCode}`;
       site.sendMailMessage({
         to: response.user.email,
         subject: `Activatin Link`,
@@ -530,7 +530,7 @@ module.exports = function init(site) {
           if (!err) {
             response.done = true;
 
-            response.link = `${req.headers['origin']}/changePassWord?code=${doc.forgetPasswordCode}`;
+            response.link = `${req.host}/changePassWord?code=${doc.forgetPasswordCode}`;
             site.sendMailMessage({
               to: doc.email,
               subject: `Forget Password Link`,

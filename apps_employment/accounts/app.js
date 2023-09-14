@@ -470,7 +470,7 @@ module.exports = function init(site) {
       } else {
         response.error = err.message;
       }
-      response.link = `${req.headers['origin']}/api/user/activation?id=${response.user.id}&code=${response.user.activationCode}`;
+      response.link = `${req.host}/api/user/activation?id=${response.user.id}&code=${response.user.activationCode}`;
       site.sendMailMessage({
         to: response.user.email,
         subject: `Activatin Link`,
@@ -526,7 +526,7 @@ module.exports = function init(site) {
           if (!err) {
             response.done = true;
 
-            response.link = `${req.headers['origin']}/changePassWord?code=${doc.forgetPasswordCode}`;
+            response.link = `${req.host}/changePassWord?code=${doc.forgetPasswordCode}`;
             site.sendMailMessage({
               to: doc.email,
               subject: `Forget Password Link`,
