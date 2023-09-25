@@ -49,8 +49,8 @@ app.controller('trainings', function ($scope, $http, $timeout) {
       $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
-    if(!$scope.training.location){
-      $scope.training.location = 'online'
+    if (!$scope.training.location) {
+      $scope.training.location = 'online';
     }
 
     $scope.busy = true;
@@ -216,7 +216,6 @@ app.controller('trainings', function ($scope, $http, $timeout) {
             $scope.list.push(doc);
           });
           $scope.count += response.data.count;
-
         } else if (!more) {
           $scope.list = [];
         }
@@ -448,7 +447,7 @@ app.controller('trainings', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getDays = function () {
+  $scope.getDays = function (training) {
     $scope.error = '';
     $scope.busy = true;
     $scope.daysList = [];
@@ -458,7 +457,33 @@ app.controller('trainings', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        $scope.daysList = response.data;
+        if (training.start_date && training.end_date) {
+          let start = new Date(training.start_date);
+          let end = new Date(training.end_date);
+          let list = [];
+          let index = response.data.findIndex((itm) => itm.code === start.getDay());
+          if (index !== -1) {
+            if (!list.some((b) => b && b.code == response.data[index].code)) {
+              list.push(response.data[index]);
+            }
+          }
+          while (new Date(start) <= new Date(end)) {
+            start.setTime(start.getTime() + 1 * 24 * 60 * 60 * 1000);
+            let index = response.data.findIndex((itm) => itm.code === start.getDay());
+            if (index !== -1) {
+              if (!list.some((b) => b && b.code == response.data[index].code)) {
+                list.push(response.data[index]);
+              }
+            }
+            if (new Date(start) == new Date(end)) {
+              break;
+            }
+          }
+          $scope.daysList = list;
+          training.days = [];
+        } else {
+          $scope.daysList = response.data;
+        }
       },
       function (err) {
         $scope.busy = false;
@@ -583,6 +608,5 @@ app.controller('trainings', function ($scope, $http, $timeout) {
   $scope.getTrainingTypesList();
   $scope.getCountryList();
   $scope.getPrivacyType();
-  $scope.getDays();
   $scope.getExamTemplatesList();
 });

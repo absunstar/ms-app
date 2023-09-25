@@ -70,6 +70,18 @@ module.exports = function init(site) {
     public: true,
   });
 
+  site.isOverEighteen = function (birthday) {
+    birthday = new Date(birthday);
+    var ageDifMs = Date.now() - birthday.getTime();
+    var ageDate = new Date(ageDifMs);
+    var age = Math.abs(ageDate.getUTCFullYear() - 1970);
+    if (age >= 15) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   site.post({ name: '/api/register', public: true }, (req, res) => {
     let response = {};
 
@@ -80,6 +92,14 @@ module.exports = function init(site) {
       } else if (req.body.$encript === '123') {
         req.body.email = site.from123(req.body.email);
         req.body.password = site.from123(req.body.password);
+      }
+    }
+
+    if (req.body.birthdate) {
+      if (!site.isOverEighteen(req.body.birthdate)) {
+        response.error = 'A student under 15 years old cannot register';
+        res.json(response);
+        return;
       }
     }
 
@@ -136,6 +156,15 @@ module.exports = function init(site) {
             res.json(response);
             return;
           } else {
+
+            if (user.birthdate) {
+              if (!site.isOverEighteen(user.birthdate)) {
+                response.error = 'A student under 15 years old cannot register';
+                res.json(response);
+                return;
+              }
+            }
+
             $users.findOne(
               {
                 where: {
@@ -215,6 +244,14 @@ module.exports = function init(site) {
           response.error = 'Email Is Exist';
           res.json(response);
           return;
+        }
+
+        if (user.birthdate) {
+          if (!site.isOverEighteen(user.birthdate)) {
+            response.error = 'A student under 15 years old cannot register';
+            res.json(response);
+            return;
+          }
         }
 
         site.security.updateUser(user, (err) => {
