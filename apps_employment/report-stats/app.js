@@ -53,7 +53,6 @@ module.exports = function init(site) {
         response.undefined_gender_count = 0;
         for (let i = 0; i < docs.length; i++) {
           let u = docs[i]
-          console.log(u.id);
             response.job_seeker_count += 1
           if(u.gender) {
             if(u.gender.id == 1){

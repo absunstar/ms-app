@@ -64,7 +64,8 @@
 
             <td class="center not-print">
               <span ng-show="c.apology" class="font-18 bold">##word.apology##</span>
-              <i-button ng-show="!training.approve && !c.apology" label="##word.apology##" ng-click="displayApologyTrainee(c.id)"></i-button>
+              <i-button ng-show="!training.approve && !c.apology" label="##word.apology##" ng-click="displayApologyTrainee(c.id,true)"></i-button>
+              <i-button ng-show="!training.approve && c.apology" label="##word.active##" ng-click="displayApologyTrainee(c.id,false)"></i-button>
               <i-button type="add" ng-show="!c.approve" label="##word.approve##" ng-click="approveTrainee($index)"></i-button>
               <i-button type="delete" label="##word.delete##" ng-hide="training.approve" ng-click="displayRemoveTraineeModal(c.id)"></i-button>
               <a type="button" class="btn btn-primary btn-lg" style="font-size: inherit; color: #fff !important" href="/MyTrainings?id={{c.id}}">##word.certificates##</a>

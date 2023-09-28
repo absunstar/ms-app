@@ -2,14 +2,14 @@ require('dotenv').config();
 const site = require('../isite')({
   port: [44442],
   lang: 'en',
-  version: '_'+ new Date().getTime(),
+  version: '_' + new Date().getTime(),
   name: 'training',
   theme: 'theme_paper',
   savingTime: 1,
-  _0x14xo: 0,
+  _0x14xo: !0,
   mongodb: {
-    // db: process.env['TRAININGDB'],
-      db: 'training',
+    db: process.env['TRAININGDB'],
+    // db: 'training',
     limit: 100000,
     events: true,
     identity: {
@@ -88,7 +88,7 @@ setInterval(() => {
   site.setting.email_setting = site.setting.email_setting || {};
   site.setting.email_setting.day_limit = site.setting.email_setting.day_limit || 5000;
   site.setting.email_setting.day_hour = site.setting.email_setting.day_hour || 1000;
-  
+
   if (site.setting.email_setting) {
     if (site.sendPerDay > site.setting.email_setting.day_limit) {
       return;

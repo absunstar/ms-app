@@ -16,13 +16,14 @@
         <h3 class="center">##word.alert##</h3>
         <br />
         <br />
-        <b class="center">##word.sure_you_want_to_apologize_trainee##</b>
+        <b class="center" ng-show="training.$drop">##word.sure_you_want_to_apologize_trainee##</b>
+        <b class="center" ng-show="!training.$drop">##word.sure_you_want_to_notapologize_trainee##</b>
       </div>
     </div>
 
     <div class="modal-footer center">
       <h2 class="bold text-center text-danger">{{error}}</h2>
-      <i-button type="save" label="##word.apology##" ng-click="apologyTrainee()"></i-button>
+      <i-button type="save" label="##word.accept##" ng-click="apologyTrainee()"></i-button>
       <i-button type="close" label="##word.close##" ng-click="error = ''" onclick="site.hideModal( '#apologyTraineeModal')"></i-button>
     </div>
   </div>

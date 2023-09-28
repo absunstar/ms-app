@@ -517,7 +517,8 @@ app.controller('trainings', function ($scope, $http, $timeout) {
 
   $scope.displayAttendingSceduleModal = function (training) {
     $scope.error = '';
-    $scope.training = training;
+    $scope.viewTraining(training);
+    $scope.training = {};
     site.showModal('#attendingSceduleModal');
   };
 

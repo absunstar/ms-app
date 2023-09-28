@@ -143,7 +143,6 @@ app.controller('yearsOfExperience', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.years_of_experience = response.data.doc;
-          console.log($scope.years_of_experience);
         } else {
           $scope.error = response.data.error;
         }

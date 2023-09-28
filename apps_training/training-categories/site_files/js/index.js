@@ -210,7 +210,6 @@ app.controller('trainingCategories', function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
-          console.log($scope.list);
         }
       },
       function (err) {

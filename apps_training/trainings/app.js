@@ -30,7 +30,6 @@ module.exports = function init(site) {
 
   site.get({ name: '/api/trainee.xlsx', public: true }, (req, res) => {
     let path = site.path.join(site.cwd, '/apps_training/0/site_files/xls/trainee.xlsx');
-    console.log(path);
     res.download(path, 'trainee.xlsx');
   });
 
@@ -181,14 +180,14 @@ module.exports = function init(site) {
             if (_d.trainees_list && _d.trainees_list.length > 0) {
               let i = _d.trainees_list.findIndex((itm) => itm.id == req.body.traineeId);
               if (i !== -1) {
-                _d.trainees_list[i].apology = true;
+                _d.trainees_list[i].apology = req.body.type;
               }
             }
           });
 
           let index = doc.trainees_list.findIndex((itm) => itm.id == req.body.traineeId);
           if (index !== -1) {
-            doc.trainees_list[index].apology = true;
+            doc.trainees_list[index].apology = req.body.type;
           }
 
           $trainings.update(doc, (err1, result) => {
@@ -563,7 +562,6 @@ module.exports = function init(site) {
         if (!err) {
           response.done = true;
           docs.forEach((_doc) => {
-            console.log(_doc.id);
             let attend_count = 0;
             _doc.dates_list.forEach((_d) => {
               _d.trainees_list.forEach((_t) => {

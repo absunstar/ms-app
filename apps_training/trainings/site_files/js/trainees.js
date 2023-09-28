@@ -262,8 +262,9 @@ app.controller('trainees', function ($scope, $http, $timeout) {
     site.showModal('#deleteTraineeModal');
   };
 
-  $scope.displayApologyTrainee = function (id) {
+  $scope.displayApologyTrainee = function (id,type) {
     $scope.error = '';
+    $scope.training.$drop = type; 
     $scope.training.$traineeId = id;
     site.showModal('#apologyTraineeModal');
   };
@@ -298,6 +299,7 @@ app.controller('trainees', function ($scope, $http, $timeout) {
       data: {
         id: site.toNumber('##query.id##'),
         traineeId: $scope.training.$traineeId,
+        type: $scope.training.$drop,
       },
     }).then(
       function (response) {

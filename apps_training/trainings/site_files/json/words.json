@@ -191,7 +191,12 @@
   },
   {
     "name": "sure_you_want_to_apologize_trainee",
-    "en": "Are you sure that the trainee wants to apologize for the training?",
+    "en": "Are you sure that the trainee wants to Drop for the training?",
     "ar": "هل أنت متأكد أن المتدرب يريد الإعتذار عن التدريب"
+  },
+  {
+    "name": "sure_you_want_to_notapologize_trainee",
+    "en": "Are you sure that the trainee wants to Active for the training?",
+    "ar": "هل أنت متأكد أن المتدرب يريد إكمال التدريب"
   }
 ]
