@@ -470,7 +470,7 @@ app.controller('trainings', function ($scope, $http, $timeout) {
           while (new Date(start) <= new Date(end)) {
             start.setTime(start.getTime() + 1 * 24 * 60 * 60 * 1000);
             let index = response.data.findIndex((itm) => itm.code === start.getDay());
-            if (index !== -1) {
+            if (index !== -1 && new Date(start) <= new Date(end)) {
               if (!list.some((b) => b && b.code == response.data[index].code)) {
                 list.push(response.data[index]);
               }
