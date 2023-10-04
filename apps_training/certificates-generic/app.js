@@ -276,12 +276,12 @@ module.exports = function init(site) {
           }
 
           if (found_certificate && found_certificate.certificate) {
-            callback(null, {...found_certificate});
+            callback(null, { ...found_certificate });
           } else {
             found_certificate = docs.find((_c) => {
               return _c.type == 'system_generic';
             });
-            callback(null, {...found_certificate});
+            callback(null, { ...found_certificate });
           }
         } else {
           callback(err);

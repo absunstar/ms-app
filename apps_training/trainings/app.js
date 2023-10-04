@@ -914,20 +914,20 @@ module.exports = function init(site) {
         },
       },
       (err, trainingDoc) => {
-        if (!err) {
-          site.getCertificatesToExam(trainingDoc, (err, certificatesCb) => {
-            response.done = true;
-            let correct = 0;
-            req.body.questions_list.forEach((_q) => {
-              _q.answers_list.forEach((_a) => {
-                delete _a.active;
-                delete _a.create_date;
-                if (_a.correct && _a.trainee_answer) {
-                  correct += 1;
-                }
-              });
+        if (!err && trainingDoc) {
+          response.done = true;
+          let correct = 0;
+          req.body.questions_list.forEach((_q) => {
+            _q.answers_list.forEach((_a) => {
+              delete _a.active;
+              delete _a.create_date;
+              if (_a.correct && _a.trainee_answer) {
+                correct += 1;
+              }
             });
-
+          });
+          res.json(response);
+          site.getCertificatesToExam(trainingDoc, (err, certificatesCb) => {
             if (certificatesCb) {
               let file_stream = site.fs.readFileSync(certificatesCb.certificate.path);
               let file_name = req.body.trainee_id.toString() + '_' + Math.floor(Math.random() * 1000).toString() + '.pdf';
@@ -969,13 +969,11 @@ module.exports = function init(site) {
                 if (req.body.trainee_id == _t.id) {
                   _t.exam_questions_list = req.body.questions_list;
                   _t.trainee_degree = trainee_degree;
-                  // _t.certificate = certificatesCb.certificate;
                   _t.finish_exam = true;
                 }
               });
               $trainings.update(trainingDoc);
             }
-            res.json(response);
           });
         } else {
           response.error = err.message;
