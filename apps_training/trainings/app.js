@@ -926,12 +926,21 @@ module.exports = function init(site) {
               }
             });
           });
+          let trainee_degree = site.toNumber((correct / req.body.questions_list.length) * 100);
+          trainingDoc.trainees_list.forEach((_t) => {
+            if (req.body.trainee_id == _t.id) {
+              _t.exam_questions_list = req.body.questions_list;
+              _t.trainee_degree = trainee_degree;
+              _t.finish_exam = true;
+            }
+          });
+          $trainings.update(trainingDoc);
           res.json(response);
           site.getCertificatesToExam(trainingDoc, (err, certificatesCb) => {
             if (certificatesCb) {
               let file_stream = site.fs.readFileSync(certificatesCb.certificate.path);
               let file_name = req.body.trainee_id.toString() + '_' + Math.floor(Math.random() * 1000).toString() + '.pdf';
-              let trainee_degree = site.toNumber((correct / req.body.questions_list.length) * 100);
+
               certificatesCb.certificate.path = certificatesCb.certificate.path.split('\\');
               certificatesCb.certificate.path[certificatesCb.certificate.path.length - 1] = file_name;
               certificatesCb.certificate.path = certificatesCb.certificate.path.join('\\');
@@ -964,15 +973,6 @@ module.exports = function init(site) {
                   site.fs.writeFileSync(certificatesCb.certificate.path, new_file_stream);
                 });
               });
-
-              trainingDoc.trainees_list.forEach((_t) => {
-                if (req.body.trainee_id == _t.id) {
-                  _t.exam_questions_list = req.body.questions_list;
-                  _t.trainee_degree = trainee_degree;
-                  _t.finish_exam = true;
-                }
-              });
-              $trainings.update(trainingDoc);
             }
           });
         } else {
